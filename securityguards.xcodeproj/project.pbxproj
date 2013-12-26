@@ -368,6 +368,7 @@
 		6F60045C186BCE210085B4BD /* securityguards */ = {
 			isa = PBXGroup;
 			children = (
+				6F6005BA186C234C0085B4BD /* images */,
 				6F600544186BF0500085B4BD /* entities */,
 				6F6004D6186BD22F0085B4BD /* third */,
 				6F6004CD186BD0D40085B4BD /* protocals */,
@@ -842,6 +843,21 @@
 				6F6005B8186C1B410085B4BD /* RegisterStep2ViewController.m */,
 			);
 			name = login_register;
+			sourceTree = "<group>";
+		};
+		6F6005BA186C234C0085B4BD /* images */ = {
+			isa = PBXGroup;
+			children = (
+				6F6005BB186C23520085B4BD /* login */,
+			);
+			name = images;
+			sourceTree = "<group>";
+		};
+		6F6005BB186C23520085B4BD /* login */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = login;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

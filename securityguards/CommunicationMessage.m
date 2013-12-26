@@ -37,6 +37,7 @@
     [self addDataHeaderFor:message];
     
     NSData *dataDomain = [JsonUtils createJsonDataFromDictionary:[self.deviceCommand toDictionary]];
+    
 //#ifdef DEBUG
 //    NSString *str = [[NSString alloc] initWithData:dataDomain encoding:NSUTF8StringEncoding];
 //    NSLog(@"-----> %@", str);
