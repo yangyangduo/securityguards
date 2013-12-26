@@ -848,6 +848,7 @@
 		6F6005BA186C234C0085B4BD /* images */ = {
 			isa = PBXGroup;
 			children = (
+				6F6005BC186C23920085B4BD /* ui_elements */,
 				6F6005BB186C23520085B4BD /* login */,
 			);
 			name = images;
@@ -858,6 +859,13 @@
 			children = (
 			);
 			name = login;
+			sourceTree = "<group>";
+		};
+		6F6005BC186C23920085B4BD /* ui_elements */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = ui_elements;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
