@@ -12,7 +12,11 @@
 
 @end
 
-@implementation LoginViewController
+@implementation LoginViewController{
+    UITextField *txtPhoneNumber;
+    UITextField *txtPassword;
+    UIButton *btnLogin;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -28,7 +32,8 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    self.view.backgroundColor = [UIColor whiteColor];
+    //self.view.backgroundColor = [UIColor whiteColor];
+    [self initUI];
     
     
     UIButton *btnTest = [[UIButton alloc] initWithFrame:CGRectMake(230, 450, 80, 29)];
@@ -37,6 +42,43 @@
     btnTest.backgroundColor = [UIColor blackColor];
     [btnTest addTarget:self action:@selector(btnTestPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btnTest];
+}
+- (void)initUI{
+    
+    UIImageView *backgroundImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
+    backgroundImgView.image = [UIImage imageNamed:@"login-image-bg.png"];
+    [self.view addSubview:backgroundImgView];
+    
+    UIImageView *logoImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 100, 389/2, 147/2)];
+    logoImgView.center = CGPointMake(self.view.center.x, logoImgView.center.y);
+    logoImgView.image = [UIImage imageNamed:@"logo-login.png"];
+    [self.view addSubview:logoImgView];
+    
+    if (txtPhoneNumber == nil) {
+        txtPhoneNumber = [[UITextField alloc] initWithFrame:CGRectMake(0, logoImgView.frame.origin.y+logoImgView.frame.size.height+40, 400/2, 53/2)];
+        txtPhoneNumber.center = CGPointMake(self.view.center.x, txtPhoneNumber.center.y);
+        [txtPhoneNumber setBackground:[UIImage imageNamed:@"textbox-white-400.png"]];
+        txtPhoneNumber.placeholder = @"手机号";
+        [self.view addSubview:txtPhoneNumber];
+    }
+    
+    if (txtPassword == nil) {
+        txtPassword = [[UITextField alloc] initWithFrame:CGRectMake(0, txtPhoneNumber.frame.origin.y+txtPhoneNumber.frame.size.height+20, 400/2, 53/2)];
+        txtPassword.center = CGPointMake(self.view.center.x, txtPassword.center.y);
+        [txtPassword setBackground:[UIImage imageNamed:@"textbox-white-400.png"]];
+        txtPassword.placeholder = @"密码";
+        [self.view addSubview:txtPassword];
+    }
+    
+    if (btnLogin == nil) {
+        btnLogin = [[UIButton alloc] initWithFrame:CGRectMake(0, txtPassword.frame.origin.y+txtPassword.frame.size.height+20, 400/2, 53/2)];
+        btnLogin.center = CGPointMake(self.view.center.x,btnLogin.center.y);
+        [btnLogin setBackgroundImage:[UIImage imageNamed:@"button-royalblue-400.png"] forState:UIControlStateNormal];
+        [btnLogin setBackgroundImage:[UIImage imageNamed:@"button-skyblue-400.png"] forState:UIControlStateDisabled];
+        [self.view addSubview:btnLogin];
+    }
+    
+    
 }
 
 - (void)btnTestPressed:(id)sender {
