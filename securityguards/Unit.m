@@ -7,6 +7,7 @@
 //
 
 #import "Unit.h"
+#import "GlobalSettings.h"
 
 @interface Unit()
 
@@ -59,7 +60,7 @@
 
 - (NSDictionary *)toJson {
     NSMutableDictionary *json = [NSMutableDictionary dictionary];
-    [json setObject:([XXStringUtils isBlank:self.identifier] ? [XXStringUtils emptyString] : [NSString stringWithFormat:@"%@A001", self.identifier]) forKey:@"_id"];
+    [json setObject:([XXStringUtils isBlank:self.identifier] ? [XXStringUtils emptyString] : [NSString stringWithFormat:@"%@%@", self.identifier, APP_KEY]) forKey:@"_id"];
     
     [json setMayBlankString:self.localIP forKey:@"localIp"];
     [json setMayBlankString:self.name forKey:@"name"];
