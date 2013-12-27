@@ -51,14 +51,6 @@
     [self addSubview:tblItems];
 }
 
-- (void)ck:(id)sender {
-   
-    
-    if(self.delegate != nil && [self.delegate respondsToSelector:@selector(leftNavViewItemChanged:)]) {
-        [self.delegate leftNavViewItemChanged:[self.navItems objectAtIndex:0]];
-    }
-}
-
 #pragma mark -
 #pragma mark Table view delegate
 
@@ -76,6 +68,7 @@
     if(cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         cell.backgroundColor = [UIColor clearColor];
+        cell.textLabel.textColor = [UIColor whiteColor];
         cell.selectedBackgroundView = [[UIView alloc] initWithFrame:cell.bounds];
         cell.selectedBackgroundView.backgroundColor = [UIColor colorWithRed:24.f / 255.f green:233.f / 255.f blue:1.0f alpha:1.0f];
     }
@@ -84,11 +77,23 @@
     cell.imageView.image = [UIImage imageNamed:item.imageName];
     cell.textLabel.text = item.displayName;
     
+    if(indexPath.row == 0) {
+        [tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+    }
+    
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    LeftNavItem *item = nil;
+    LeftNavItem *selectedItem = [self.navItems objectAtIndex:indexPath.row];
+    if(![currentItem.identifier isEqualToString:selectedItem.identifier]) {
+        currentItem = selectedItem;
+        item = currentItem;
+    }
+    if(self.delegate != nil && [self.delegate respondsToSelector:@selector(leftNavViewItemChanged:)]) {
+        [self.delegate leftNavViewItemChanged:item];
+    }
 }
 
 - (void)setNavItems:(NSArray *)navItems {

@@ -66,6 +66,12 @@
 #pragma mark Left Nav View Delegate
 
 - (void)leftNavViewItemChanged:(LeftNavItem *)item {
+    // if the item is nil, we think not changed
+    if(item == nil) {
+        [self showCenterView:YES];
+        return;
+    }
+    
     UIViewController *centerViewController = nil;
     
     if([@"portalItem" isEqualToString:item.identifier]) {
