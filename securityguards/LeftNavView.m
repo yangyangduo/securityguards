@@ -36,14 +36,13 @@
 }
 
 - (void)initUI {
-    self.backgroundColor = [UIColor colorWithRed:238.f / 255.f green:238.f / 255.f blue:238.f / 255.f alpha:1.0f];
-    
+    self.backgroundColor = [UIColor appGray];
     UIImageView *imgLogo = [[UIImageView alloc] initWithFrame:CGRectMake(32, [UIDevice systemVersionIsMoreThanOrEuqal7] ? 34 : 14, 284 / 3, 94 / 3)];
     imgLogo.image = [UIImage imageNamed:@"logo_left_drawer"];
     [self addSubview:imgLogo];
     
     tblItems = [[UITableView alloc] initWithFrame:CGRectMake(0, 120, self.bounds.size.width, self.bounds.size.height - 120) style:UITableViewStylePlain];
-    tblItems.backgroundColor = [UIColor colorWithRed:0.f green:202.f / 255.f blue:1.f alpha:1.0f];
+    tblItems.backgroundColor = [UIColor appBlue];
     tblItems.separatorStyle = UITableViewCellSeparatorStyleNone;
     tblItems.bounces = NO;
     tblItems.delegate = self;
@@ -70,7 +69,7 @@
         cell.backgroundColor = [UIColor clearColor];
         cell.textLabel.textColor = [UIColor whiteColor];
         cell.selectedBackgroundView = [[UIView alloc] initWithFrame:cell.bounds];
-        cell.selectedBackgroundView.backgroundColor = [UIColor colorWithRed:24.f / 255.f green:233.f / 255.f blue:1.0f alpha:1.0f];
+        cell.selectedBackgroundView.backgroundColor = [UIColor appLightBlue];
     }
     
     LeftNavItem *item = [self.navItems objectAtIndex:indexPath.row];

@@ -14,3 +14,9 @@
 "account_mgr_drawer_title"       =      "账号管理";
 "copyright_drawer_title"         =      "版本信息";
 "logout_drawer_title"            =      "注销账号";
+
+/****************	Portal View Strings	****************/
+
+"heath_index_desc_tips1"         =      "您的健康安全指数已超";
+"heath_index_desc_tips2"         =      "过";
+"heath_index_desc_tips3"         =      "的同类用户";

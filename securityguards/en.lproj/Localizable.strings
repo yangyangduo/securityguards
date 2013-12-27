@@ -14,3 +14,9 @@
 "account_mgr_drawer_title"       =      "Account";
 "copyright_drawer_title"         =      "Copyright";
 "logout_drawer_title"            =      "Logout";
+
+/****************	Portal View Strings	****************/
+
+"heath_index_desc_tips1"         =      "Your health index is more";
+"heath_index_desc_tips2"         =      "than";
+"heath_index_desc_tips3"         =      "similar users";
