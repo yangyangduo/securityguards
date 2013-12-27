@@ -125,6 +125,7 @@
 		6F73273C186D5E3600A1276B /* UnitControlPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F73273B186D5E3600A1276B /* UnitControlPanel.m */; };
 		6F732741186D672900A1276B /* line_dashed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F732740186D672900A1276B /* line_dashed@2x.png */; };
 		6F732744186D6DD800A1276B /* CameraView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F732743186D6DD800A1276B /* CameraView.m */; };
+		6F732747186D7BD200A1276B /* SensorsDisplayPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F732746186D7BD200A1276B /* SensorsDisplayPanel.m */; };
 		6FEC0FDB186C5B2B00CB0D70 /* bg_topbar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FEC0FDA186C5B2B00CB0D70 /* bg_topbar@2x.png */; };
 		6FEC0FDF186C5DD700CB0D70 /* DrawerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FEC0FDE186C5DD700CB0D70 /* DrawerViewController.m */; };
 		6FEC0FE1186C5F3300CB0D70 /* btn_drawer_left@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FEC0FE0186C5F3300CB0D70 /* btn_drawer_left@2x.png */; };
@@ -373,6 +374,8 @@
 		6F732740186D672900A1276B /* line_dashed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "line_dashed@2x.png"; sourceTree = "<group>"; };
 		6F732742186D6DD800A1276B /* CameraView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraView.h; sourceTree = "<group>"; };
 		6F732743186D6DD800A1276B /* CameraView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraView.m; sourceTree = "<group>"; };
+		6F732745186D7BD200A1276B /* SensorsDisplayPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SensorsDisplayPanel.h; sourceTree = "<group>"; };
+		6F732746186D7BD200A1276B /* SensorsDisplayPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SensorsDisplayPanel.m; sourceTree = "<group>"; };
 		6FEC0FDA186C5B2B00CB0D70 /* bg_topbar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_topbar@2x.png"; sourceTree = "<group>"; };
 		6FEC0FDD186C5DD700CB0D70 /* DrawerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawerViewController.h; sourceTree = "<group>"; };
 		6FEC0FDE186C5DD700CB0D70 /* DrawerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawerViewController.m; sourceTree = "<group>"; };
@@ -1032,6 +1035,8 @@
 			children = (
 				6F732727186D430700A1276B /* SensorDisplayView.h */,
 				6F732728186D430700A1276B /* SensorDisplayView.m */,
+				6F732745186D7BD200A1276B /* SensorsDisplayPanel.h */,
+				6F732746186D7BD200A1276B /* SensorsDisplayPanel.m */,
 				6F73273A186D5E3600A1276B /* UnitControlPanel.h */,
 				6F73273B186D5E3600A1276B /* UnitControlPanel.m */,
 				6F732742186D6DD800A1276B /* CameraView.h */,
@@ -1291,6 +1296,7 @@
 				6F6005A3186C015B0085B4BD /* SmsService.m in Sources */,
 				6FEC0FE7186C663300CB0D70 /* NewsViewController.m in Sources */,
 				6F6004A1186BCEF10085B4BD /* XXEventFilter.m in Sources */,
+				6F732747186D7BD200A1276B /* SensorsDisplayPanel.m in Sources */,
 				6F73272C186D4A1E00A1276B /* UIColor+MoreColor.m in Sources */,
 				6F60058E186BF8EC0085B4BD /* CameraSocket.m in Sources */,
 			);
