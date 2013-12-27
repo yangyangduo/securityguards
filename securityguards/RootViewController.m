@@ -69,7 +69,7 @@
 #pragma mark Left Nav View Delegate
 
 - (void)leftNavViewItemChanged:(LeftNavItem *)item {
-    // if the item is nil, we think not changed
+    // if the item is nil, we think it not changed
     if(item == nil) {
         [self showCenterView:YES];
         return;
