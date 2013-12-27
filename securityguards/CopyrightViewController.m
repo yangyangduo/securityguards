@@ -1,18 +1,18 @@
 //
-//  NewsViewController.m
+//  CopyrightViewController.m
 //  securityguards
 //
-//  Created by Zhao yang on 12/26/13.
+//  Created by Zhao yang on 12/27/13.
 //  Copyright (c) 2013 hentre. All rights reserved.
 //
 
-#import "NewsViewController.h"
+#import "CopyrightViewController.h"
 
-@interface NewsViewController ()
+@interface CopyrightViewController ()
 
 @end
 
-@implementation NewsViewController
+@implementation CopyrightViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

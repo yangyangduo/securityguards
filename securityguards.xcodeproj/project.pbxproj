@@ -113,6 +113,7 @@
 		6F73271F186D212700A1276B /* bg_label_gray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F73271C186D212700A1276B /* bg_label_gray@2x.png */; };
 		6F732720186D212700A1276B /* bg_label_red@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F73271D186D212700A1276B /* bg_label_red@2x.png */; };
 		6F732721186D212700A1276B /* bg_label_yellow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F73271E186D212700A1276B /* bg_label_yellow@2x.png */; };
+		6F732725186D274C00A1276B /* CopyrightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F732724186D274C00A1276B /* CopyrightViewController.m */; };
 		6FEC0FDB186C5B2B00CB0D70 /* bg_topbar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FEC0FDA186C5B2B00CB0D70 /* bg_topbar@2x.png */; };
 		6FEC0FDF186C5DD700CB0D70 /* DrawerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FEC0FDE186C5DD700CB0D70 /* DrawerViewController.m */; };
 		6FEC0FE1186C5F3300CB0D70 /* btn_drawer_left@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FEC0FE0186C5F3300CB0D70 /* btn_drawer_left@2x.png */; };
@@ -339,6 +340,8 @@
 		6F73271C186D212700A1276B /* bg_label_gray@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_label_gray@2x.png"; sourceTree = "<group>"; };
 		6F73271D186D212700A1276B /* bg_label_red@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_label_red@2x.png"; sourceTree = "<group>"; };
 		6F73271E186D212700A1276B /* bg_label_yellow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_label_yellow@2x.png"; sourceTree = "<group>"; };
+		6F732723186D274C00A1276B /* CopyrightViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CopyrightViewController.h; sourceTree = "<group>"; };
+		6F732724186D274C00A1276B /* CopyrightViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CopyrightViewController.m; sourceTree = "<group>"; };
 		6FEC0FDA186C5B2B00CB0D70 /* bg_topbar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_topbar@2x.png"; sourceTree = "<group>"; };
 		6FEC0FDD186C5DD700CB0D70 /* DrawerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawerViewController.h; sourceTree = "<group>"; };
 		6FEC0FDE186C5DD700CB0D70 /* DrawerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawerViewController.m; sourceTree = "<group>"; };
@@ -570,6 +573,8 @@
 				6FEC0FE6186C663300CB0D70 /* NewsViewController.m */,
 				6FEC0FE8186C664200CB0D70 /* AccountManagementViewController.h */,
 				6FEC0FE9186C664200CB0D70 /* AccountManagementViewController.m */,
+				6F732723186D274C00A1276B /* CopyrightViewController.h */,
+				6F732724186D274C00A1276B /* CopyrightViewController.m */,
 			);
 			name = controllers;
 			sourceTree = "<group>";
@@ -590,6 +595,7 @@
 		6F6004C5186BD0680085B4BD /* core */ = {
 			isa = PBXGroup;
 			children = (
+				6F732722186D26F700A1276B /* manager */,
 				6F600582186BF5B30085B4BD /* command_executors */,
 				6F600564186BF3780085B4BD /* events */,
 				6F6004FF186BE90D0085B4BD /* command_handlers */,
@@ -783,8 +789,6 @@
 				6F600548186BF0710085B4BD /* Device.m */,
 				6F600549186BF0710085B4BD /* DeviceStatus.h */,
 				6F60054A186BF0710085B4BD /* DeviceStatus.m */,
-				6F60054B186BF0710085B4BD /* UnitManager.h */,
-				6F60054C186BF0710085B4BD /* UnitManager.m */,
 				6F60054D186BF0710085B4BD /* NotificationData.h */,
 				6F60054E186BF0710085B4BD /* NotificationData.m */,
 				6F600551186BF0710085B4BD /* SMNotification.h */,
@@ -962,6 +966,15 @@
 			children = (
 			);
 			name = control;
+			sourceTree = "<group>";
+		};
+		6F732722186D26F700A1276B /* manager */ = {
+			isa = PBXGroup;
+			children = (
+				6F60054B186BF0710085B4BD /* UnitManager.h */,
+				6F60054C186BF0710085B4BD /* UnitManager.m */,
+			);
+			name = manager;
 			sourceTree = "<group>";
 		};
 		6FEC0FDC186C5B3500CB0D70 /* topbar */ = {
@@ -1176,6 +1189,7 @@
 				6F600573186BF3940085B4BD /* DeviceCommandEvent.m in Sources */,
 				6F60053F186BF0010085B4BD /* DeviceCommandUpdateDevicesHandler.m in Sources */,
 				6F60052A186BE9890085B4BD /* DeviceCommandUpdateUnitName.m in Sources */,
+				6F732725186D274C00A1276B /* CopyrightViewController.m in Sources */,
 				6F60053E186BF0010085B4BD /* DeviceCommandHandler.m in Sources */,
 				6F60052C186BE9890085B4BD /* DeviceCommandVoiceControl.m in Sources */,
 				6F600589186BF89E0085B4BD /* CommandQueue.m in Sources */,

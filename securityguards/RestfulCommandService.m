@@ -7,7 +7,6 @@
 //
 
 #import "RestfulCommandService.h"
-#import "XXStringUtils.h"
 #import "XXEventSubscriptionPublisher.h"
 #import "DeviceCommandEvent.h"
 #import "UnitManager.h"

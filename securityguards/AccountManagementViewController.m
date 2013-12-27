@@ -35,4 +35,9 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)initUI {
+    [super initUI];
+    self.view.backgroundColor = [UIColor whiteColor];
+}
+
 @end

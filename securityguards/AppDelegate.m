@@ -64,6 +64,8 @@
     [[UnitManager defaultManager] clear];
     [[GlobalSettings defaultSettings] clearAuth];
     [[UIApplication sharedApplication] unregisterForRemoteNotifications];
+    
+    // must clear root view controller ...
 }
 
 @end
