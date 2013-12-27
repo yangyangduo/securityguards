@@ -7,9 +7,10 @@
 //
 
 #import "LoginViewController.h"
+#import "RegisterStep1ViewController.h"
+#define ORIGIN_HEIGHT [UIScreen mainScreen].bounds.size.height/6
 
 @interface LoginViewController ()
-
 @end
 
 @implementation LoginViewController{
@@ -51,7 +52,7 @@
     backgroundImgView.image = [UIImage imageNamed:@"login-image-bg.png"];
     [self.view addSubview:backgroundImgView];
     
-    UIImageView *logoImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 80, 389/2, 147/2)];
+    UIImageView *logoImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, ORIGIN_HEIGHT, 389/2, 147/2)];
     logoImgView.center = CGPointMake(self.view.center.x, logoImgView.center.y);
     logoImgView.image = [UIImage imageNamed:@"logo-login.png"];
     [self.view addSubview:logoImgView];
@@ -91,12 +92,14 @@
     
     UILabel *lblSeperator = [[UILabel alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-64, 5, 44)];
     lblSeperator.text = @"|";
+    lblSeperator.font = [UIFont systemFontOfSize:16.0f];
     lblSeperator.center = CGPointMake(self.view.center.x, lblSeperator.center.y);
     [self.view addSubview:lblSeperator];
     
     if (btnForgetPassword == nil) {
         btnForgetPassword = [[UIButton alloc] initWithFrame:CGRectMake(lblSeperator.frame.origin.x-80, self.view.frame.size.height-64, 80, 44)];
         [btnForgetPassword setTitle:NSLocalizedString(@"forget.password", @"") forState:UIControlStateNormal];
+        btnForgetPassword.titleLabel.font = [UIFont systemFontOfSize:14.f];
         [btnForgetPassword setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [btnForgetPassword addTarget:self action:@selector(btnForgetPasswordPressed:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:btnForgetPassword];
@@ -104,6 +107,7 @@
     if (btnRegister == nil) {
         btnRegister = [[UIButton alloc] initWithFrame:CGRectMake(lblSeperator.frame.origin.x+5, btnForgetPassword.frame.origin.y,80, 44)];
         [btnRegister setTitle:NSLocalizedString(@"register.account", @"") forState:UIControlStateNormal];
+        btnRegister.titleLabel.font = [UIFont systemFontOfSize:14.0f];
         [btnRegister setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [btnRegister addTarget:self action:@selector(btnRegisterPressed:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:btnRegister];
@@ -125,7 +129,8 @@
 }
 
 - (void)btnRegisterPressed:(id)sender {
-    
+    RegisterStep1ViewController *registerStep1ViewController = [[RegisterStep1ViewController alloc] init];
+    [self.navigationController pushViewController:registerStep1ViewController animated:YES];
 }
 
 

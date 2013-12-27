@@ -38,7 +38,9 @@
     if(hasLogin) {
         
     } else {
-        [self presentViewController:[[LoginViewController alloc] init] animated:NO completion:^{}];
+        UINavigationController *loginNavController = [[UINavigationController alloc] initWithRootViewController:[[LoginViewController alloc] init]];
+        loginNavController.navigationBarHidden = YES;
+        [self presentViewController:loginNavController animated:NO completion:^{}];
     }
 }
 
