@@ -62,6 +62,8 @@
         [txtPhoneNumber setBackground:[UIImage imageNamed:@"textbox-white-400.png"]];
         txtPhoneNumber.placeholder = NSLocalizedString(@"phone.number", @"");
         txtPhoneNumber.keyboardType = UIKeyboardTypeNumberPad;
+        txtPhoneNumber.clearButtonMode = UITextFieldViewModeWhileEditing;
+        txtPassword.autocorrectionType = UITextAutocapitalizationTypeNone;
         [self.view addSubview:txtPhoneNumber];
     }
     
@@ -70,6 +72,8 @@
         txtPassword.center = CGPointMake(self.view.center.x, txtPassword.center.y);
         [txtPassword setBackground:[UIImage imageNamed:@"textbox-white-400.png"]];
         txtPassword.placeholder = NSLocalizedString(@"password", @"");
+        txtPassword.clearButtonMode = UITextFieldViewModeWhileEditing;
+        txtPassword.autocorrectionType = UITextAutocapitalizationTypeNone;
         txtPassword.secureTextEntry = YES;
         [self.view addSubview:txtPassword];
     }
