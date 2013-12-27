@@ -11,8 +11,7 @@
 #import "JsonUtils.h"
 #import "SMNetworkTool.h"
 #import "NSDictionary+Extension.h"
-
-#define APP_KEY @"A001"
+#import "GlobalSettings.h"
 
 @implementation UnitFinder {
     BOOL hasReceivedData;

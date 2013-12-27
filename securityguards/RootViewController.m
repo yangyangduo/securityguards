@@ -8,6 +8,9 @@
 
 #import "RootViewController.h"
 #import "PortalViewController.h"
+#import "NewsViewController.h"
+#import "AccountManagementViewController.h"
+#import "CopyrightViewController.h"
 
 @interface RootViewController ()
 
@@ -83,13 +86,17 @@
             centerViewController = portalNavViewController;
         }
     } else if([@"newsItem" isEqualToString:item.identifier]) {
-        UIViewController *c = [[UIViewController alloc] init];
-        c.view.backgroundColor = [UIColor blackColor];
-        UINavigationController *cc = [[UINavigationController alloc] initWithRootViewController:c];
-        cc.navigationBarHidden = YES;
-        centerViewController = cc;
+        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:[[NewsViewController alloc] init]];
+        navController.navigationBarHidden = YES;
+        centerViewController = navController;
     } else if([@"accountManagerItem" isEqualToString:item.identifier]) {
-        
+        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:[[AccountManagementViewController alloc] init]];
+        navController.navigationBarHidden = YES;
+        centerViewController = navController;
+    } else if([@"copyrightItem" isEqualToString:item.identifier]) {
+        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:[[CopyrightViewController alloc] init]];
+        navController.navigationBarHidden = YES;
+        centerViewController = navController;
     }
     
     if(centerViewController == nil) return;

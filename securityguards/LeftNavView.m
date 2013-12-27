@@ -91,6 +91,10 @@
         currentItem = selectedItem;
         item = currentItem;
     }
+    if([@"logoutItem" isEqualToString:item.identifier]) {
+        
+        return;
+    }
     if(self.delegate != nil && [self.delegate respondsToSelector:@selector(leftNavViewItemChanged:)]) {
         [self.delegate leftNavViewItemChanged:item];
     }
