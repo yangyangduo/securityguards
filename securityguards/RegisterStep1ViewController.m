@@ -37,6 +37,7 @@
 
 - (void)initUI{
     [super initUI];
+    self.view.backgroundColor = [UIColor whiteColor];
     self.topbarView.title = NSLocalizedString(@"register.account", @"");
     UILabel *lblPhoneNumber = [[UILabel alloc] initWithFrame:CGRectMake(5, TOPBAR_HEIGHT+20, 80, 44)];
     lblPhoneNumber.text = [NSString stringWithFormat:@"%@ :", NSLocalizedString(@"phone.number", @"")];
