@@ -1,13 +1,13 @@
 //
-//  DrawerViewController.h
+//  NewsViewController.h
 //  securityguards
 //
 //  Created by Zhao yang on 12/26/13.
 //  Copyright (c) 2013 hentre. All rights reserved.
 //
 
-#import "BaseViewController.h"
+#import "DrawerViewController.h"
 
-@interface DrawerViewController : BaseViewController
+@interface NewsViewController : DrawerViewController
 
 @end

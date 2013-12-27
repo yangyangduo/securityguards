@@ -266,7 +266,7 @@
 #pragma mark Open or stop delivery service
 
 - (void)startService {
-    if(_state_ != ServiceStateClosed) {
+    if(_state_ != ServiceStateOpenned && _state_ != ServiceStateOpenning) {
 #ifdef DEBUG
         NSLog(@"[DeliveryService] Service starting.");
 #endif
@@ -297,7 +297,7 @@
 }
 
 - (void)stopService {
-    if(_state_ != ServiceStateOpenned) {
+    if(_state_ != ServiceStateClosed && _state_ != ServiceStateClosing) {
         _state_ = ServiceStateClosing;
         
         [[XXEventSubscriptionPublisher defaultPublisher] unSubscribeForSubscriber:self];

@@ -6,12 +6,9 @@
 //  Copyright (c) 2013 hentre. All rights reserved.
 //
 
-#import "DrawerViewController.h"
+#import "XXDrawerViewController.h"
 #import "LeftNavView.h"
-#import "MainViewController.h"
 
-@interface RootViewController : DrawerViewController
-
-@property (nonatomic, strong) UIViewController *mainController;
+@interface RootViewController : XXDrawerViewController<LeftNavViewDelegate>
 
 @end

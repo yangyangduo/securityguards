@@ -7,7 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LeftNavItem.h"
+
+@protocol LeftNavViewDelegate <NSObject>
+
+- (void)leftNavViewItemChanged:(LeftNavItem *)item;
+
+@end
 
 @interface LeftNavView : UIView<UITableViewDelegate, UITableViewDataSource>
+
+@property (nonatomic, weak) id<LeftNavViewDelegate> delegate;
+@property (nonatomic, strong) NSArray *navItems;
+@property (nonatomic, strong) LeftNavItem *currentItem;
+
+- (id)initWithFrame:(CGRect)frame andNavItems:(NSArray *)items;
 
 @end

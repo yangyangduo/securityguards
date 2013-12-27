@@ -1,21 +1,18 @@
 //
-//  MainViewController.m
+//  AccountManagementViewController.m
 //  securityguards
 //
 //  Created by Zhao yang on 12/26/13.
 //  Copyright (c) 2013 hentre. All rights reserved.
 //
 
-#import "MainViewController.h"
-#import "LoginViewController.h"
-#import "XXStringUtils.h"
-#import "GlobalSettings.h"
+#import "AccountManagementViewController.h"
 
-@interface MainViewController ()
+@interface AccountManagementViewController ()
 
 @end
 
-@implementation MainViewController
+@implementation AccountManagementViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -30,16 +27,6 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    
-    self.view.backgroundColor = [UIColor yellowColor];
-    self.topbarView.title = @"Test";
-    
-    BOOL hasLogin = ![[XXStringUtils emptyString] isEqualToString:[GlobalSettings defaultSettings].secretKey];
-    if(hasLogin) {
-        
-    } else {
-        [self presentViewController:[[LoginViewController alloc] init] animated:NO completion:^{}];
-    }
 }
 
 - (void)didReceiveMemoryWarning

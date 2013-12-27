@@ -31,7 +31,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     
-    UIButton *btnTest = [[UIButton alloc] initWithFrame:CGRectMake(230, 450, 80, 29)];
+    UIButton *btnTest = [[UIButton alloc] initWithFrame:CGRectMake(230, 150, 80, 29)];
     [btnTest setTitle:@"Skip" forState:UIControlStateNormal];
     [btnTest setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     btnTest.backgroundColor = [UIColor blackColor];
