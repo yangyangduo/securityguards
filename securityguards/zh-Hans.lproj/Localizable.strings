@@ -1,9 +1,16 @@
-/* 
-  Localizable.strings
-  securityguards
+/*
+ Localizable.strings
+ securityguards
+ 
+ Created by Zhao yang on 12/27/13.
+ Copyright (c) 2013 hentre. All rights reserved.
+ */
 
-  Created by Zhao yang on 12/26/13.
-  Copyright (c) 2013 hentre. All rights reserved.
-*/
 
-/****************	Global Strings	****************/
+/****************	Left Drawer View Strings	****************/
+
+"portal_drawer_title"            =      "首页";
+"news_drawer_title"              =      "动态";
+"account_mgr_drawer_title"       =      "账号管理";
+"copyright_drawer_title"         =      "版本信息";
+"logout_drawer_title"            =      "注销账号";

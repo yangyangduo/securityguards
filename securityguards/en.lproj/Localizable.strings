@@ -2,8 +2,15 @@
   Localizable.strings
   securityguards
 
-  Created by Zhao yang on 12/26/13.
+  Created by Zhao yang on 12/27/13.
   Copyright (c) 2013 hentre. All rights reserved.
 */
 
-/****************	Global Strings	****************/
+
+/****************	Left Drawer View Strings	****************/
+
+"portal_drawer_title"            =      "Portal";
+"news_drawer_title"              =      "News";
+"account_mgr_drawer_title"       =      "Account";
+"copyright_drawer_title"         =      "Copyright";
+"logout_drawer_title"            =      "Logout";
