@@ -16,6 +16,8 @@
     UITextField *txtPhoneNumber;
     UITextField *txtPassword;
     UIButton *btnLogin;
+    UIButton *btnForgetPassword;
+    UIButton *btnRegister;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -49,7 +51,7 @@
     backgroundImgView.image = [UIImage imageNamed:@"login-image-bg.png"];
     [self.view addSubview:backgroundImgView];
     
-    UIImageView *logoImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 100, 389/2, 147/2)];
+    UIImageView *logoImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 80, 389/2, 147/2)];
     logoImgView.center = CGPointMake(self.view.center.x, logoImgView.center.y);
     logoImgView.image = [UIImage imageNamed:@"logo-login.png"];
     [self.view addSubview:logoImgView];
@@ -58,7 +60,8 @@
         txtPhoneNumber = [[UITextField alloc] initWithFrame:CGRectMake(0, logoImgView.frame.origin.y+logoImgView.frame.size.height+40, 400/2, 53/2)];
         txtPhoneNumber.center = CGPointMake(self.view.center.x, txtPhoneNumber.center.y);
         [txtPhoneNumber setBackground:[UIImage imageNamed:@"textbox-white-400.png"]];
-        txtPhoneNumber.placeholder = @"手机号";
+        txtPhoneNumber.placeholder = NSLocalizedString(@"phone.number", @"");
+        txtPhoneNumber.keyboardType = UIKeyboardTypeNumberPad;
         [self.view addSubview:txtPhoneNumber];
     }
     
@@ -66,20 +69,61 @@
         txtPassword = [[UITextField alloc] initWithFrame:CGRectMake(0, txtPhoneNumber.frame.origin.y+txtPhoneNumber.frame.size.height+20, 400/2, 53/2)];
         txtPassword.center = CGPointMake(self.view.center.x, txtPassword.center.y);
         [txtPassword setBackground:[UIImage imageNamed:@"textbox-white-400.png"]];
-        txtPassword.placeholder = @"密码";
+        txtPassword.placeholder = NSLocalizedString(@"password", @"");
+        txtPassword.secureTextEntry = YES;
         [self.view addSubview:txtPassword];
     }
     
     if (btnLogin == nil) {
         btnLogin = [[UIButton alloc] initWithFrame:CGRectMake(0, txtPassword.frame.origin.y+txtPassword.frame.size.height+20, 400/2, 53/2)];
         btnLogin.center = CGPointMake(self.view.center.x,btnLogin.center.y);
+        [btnLogin setTitle:NSLocalizedString(@"login", @"") forState:UIControlStateNormal];
         [btnLogin setBackgroundImage:[UIImage imageNamed:@"button-royalblue-400.png"] forState:UIControlStateNormal];
         [btnLogin setBackgroundImage:[UIImage imageNamed:@"button-skyblue-400.png"] forState:UIControlStateDisabled];
+        [btnLogin setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [btnLogin addTarget:self action:@selector(btnLoginPressed:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:btnLogin];
+    }
+    
+    UILabel *lblSeperator = [[UILabel alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-64, 5, 44)];
+    lblSeperator.text = @"|";
+    lblSeperator.center = CGPointMake(self.view.center.x, lblSeperator.center.y);
+    [self.view addSubview:lblSeperator];
+    
+    if (btnForgetPassword == nil) {
+        btnForgetPassword = [[UIButton alloc] initWithFrame:CGRectMake(lblSeperator.frame.origin.x-80, self.view.frame.size.height-64, 80, 44)];
+        [btnForgetPassword setTitle:NSLocalizedString(@"forget.password", @"") forState:UIControlStateNormal];
+        [btnForgetPassword setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [btnForgetPassword addTarget:self action:@selector(btnForgetPasswordPressed:) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:btnForgetPassword];
+    }
+    if (btnRegister == nil) {
+        btnRegister = [[UIButton alloc] initWithFrame:CGRectMake(lblSeperator.frame.origin.x+5, btnForgetPassword.frame.origin.y,80, 44)];
+        [btnRegister setTitle:NSLocalizedString(@"register.account", @"") forState:UIControlStateNormal];
+        [btnRegister setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [btnRegister addTarget:self action:@selector(btnRegisterPressed:) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:btnRegister];
+        
     }
     
     
 }
+
+#pragma mark
+#pragma mark- button action
+
+- (void)btnLoginPressed:(id)sender {
+    
+}
+
+- (void)btnForgetPasswordPressed:(id)sender {
+    
+}
+
+- (void)btnRegisterPressed:(id)sender {
+    
+}
+
 
 - (void)btnTestPressed:(id)sender {
     [self dismissViewControllerAnimated:YES completion:^{}];

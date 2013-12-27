@@ -7,3 +7,10 @@
 */
 
 /****************	Global Strings	****************/
+/****************	Login Strings	****************/
+"phone.number"          =   "手机号";
+"password"              =   "密码";
+"forget.password"       =   "忘记秘密";
+"register.account"      =   "注册账号";
+"login"                 =   "登录";
+
