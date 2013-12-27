@@ -6,6 +6,10 @@
  Copyright (c) 2013 hentre. All rights reserved.
  */
 
+/****************	Global Strings	****************/
+
+"btn_voice_title"                =      "点击开启语音模式";
+
 
 /****************	Left Drawer View Strings	****************/
 

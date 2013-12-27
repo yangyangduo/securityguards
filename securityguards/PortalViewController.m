@@ -18,6 +18,8 @@
 @end
 
 @implementation PortalViewController {
+    UIScrollView *scrollView;
+    
     UILabel *lblHealthIndex;
     UILabel *lblHealthIndexGreatThan;
 }
@@ -55,9 +57,14 @@
 
 - (void)initUI {
     [super initUI];
+    
     UIButton *btnRight = [[UIButton alloc] initWithFrame:CGRectMake(([UIScreen mainScreen].bounds.size.width - 8 - 55 / 2), [UIDevice systemVersionIsMoreThanOrEuqal7] ? (20 + 8) : 8, 55 / 2, 55 / 2)];
     [btnRight setBackgroundImage:[UIImage imageNamed:@"btn_drawer_right"] forState:UIControlStateNormal];
     [self.topbarView addSubview:btnRight];
+    
+    scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, self.topbarView.bounds.size.height, [UIScreen mainScreen].bounds.size.width, self.view.bounds.size.height - self.topbarView.bounds.size.height - 20)];
+    scrollView.contentSize = CGSizeMake([UIScreen mainScreen].bounds.size.width, 100);
+    scrollView.backgroundColor = [UIColor redColor];
     
     UIImageView *imgHeathIndex = [[UIImageView alloc] initWithFrame:CGRectMake(0, self.topbarView.bounds.size.height, [UIScreen mainScreen].bounds.size.width, 120)];
     imgHeathIndex.image = [UIImage imageNamed:@"bg_health_index"];
@@ -108,17 +115,25 @@
     SensorDisplayView *sensor = [[SensorDisplayView alloc] initWithPoint:CGPointMake(10, 10) andDevice:nil];
     [displayPanelView addSubview:sensor];
     
-    
     SensorDisplayView *sensor1 = [[SensorDisplayView alloc] initWithPoint:CGPointMake(170, 10) andDevice:nil];
     [displayPanelView addSubview:sensor1];
     
     SensorDisplayView *sensor2 = [[SensorDisplayView alloc] initWithPoint:CGPointMake(10, 47) andDevice:nil];
     [displayPanelView addSubview:sensor2];
     
-    
     SensorDisplayView *sensor3 = [[SensorDisplayView alloc] initWithPoint:CGPointMake(170, 47) andDevice:nil];
     [displayPanelView addSubview:sensor3];
+
+    UIButton *btnVoice = [[UIButton alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height - 64 / 2, 556 / 2, 64 / 2)];
+    [btnVoice setBackgroundImage:[UIImage imageNamed:@"btn_voice_blue"] forState:UIControlStateNormal];
+    [btnVoice setBackgroundImage:[UIImage imageNamed:@"btn_voice_gray"] forState:UIControlStateHighlighted];
+    [btnVoice setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+    [btnVoice setTitle:NSLocalizedString(@"btn_voice_title", @"") forState:UIControlStateNormal];
+    btnVoice.center = CGPointMake(self.view.center.x, btnVoice.center.y);
+    [self.view addSubview:btnVoice];
     
+//    [self.view addSubview:scrollView];
 }
+
 
 @end
