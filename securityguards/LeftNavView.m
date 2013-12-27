@@ -42,7 +42,7 @@
     imgLogo.image = [UIImage imageNamed:@"logo_left_drawer"];
     [self addSubview:imgLogo];
     
-    tblItems = [[UITableView alloc] initWithFrame:CGRectMake(0, 100, self.bounds.size.width, self.bounds.size.height - 102) style:UITableViewStylePlain];
+    tblItems = [[UITableView alloc] initWithFrame:CGRectMake(0, 120, self.bounds.size.width, self.bounds.size.height - 120) style:UITableViewStylePlain];
     tblItems.backgroundColor = [UIColor colorWithRed:0.f green:202.f / 255.f blue:1.f alpha:1.0f];
     tblItems.separatorStyle = UITableViewCellSeparatorStyleNone;
     tblItems.bounces = NO;
@@ -82,6 +82,7 @@
     
     LeftNavItem *item = [self.navItems objectAtIndex:indexPath.row];
     cell.imageView.image = [UIImage imageNamed:item.imageName];
+    cell.textLabel.text = item.displayName;
     
     return cell;
 }

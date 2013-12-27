@@ -37,14 +37,15 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+
     
     // init left view
     NSArray *navItems = [NSArray arrayWithObjects:
-        [[LeftNavItem alloc] initWithIdentifier:@"portalItem" andDisplayName:@"" andImageName:@"icon_portal"],
-        [[LeftNavItem alloc] initWithIdentifier:@"newsItem" andDisplayName:@"" andImageName:@"icon_news"],
-        [[LeftNavItem alloc] initWithIdentifier:@"accountManagerItem" andDisplayName:@"" andImageName:@"icon_account"],
-        [[LeftNavItem alloc] initWithIdentifier:@"copyrightItem" andDisplayName:@"" andImageName:@"icon_copyright"],
-        [[LeftNavItem alloc] initWithIdentifier:@"logoutItem" andDisplayName:@"" andImageName:@"icon_logout"], nil];
+        [[LeftNavItem alloc] initWithIdentifier:@"portalItem" andDisplayName:NSLocalizedString(@"portal_drawer_title", @"") andImageName:@"icon_portal"],
+        [[LeftNavItem alloc] initWithIdentifier:@"newsItem" andDisplayName:NSLocalizedString(@"news_drawer_title", @"") andImageName:@"icon_news"],
+        [[LeftNavItem alloc] initWithIdentifier:@"accountManagerItem" andDisplayName:NSLocalizedString(@"account_mgr_drawer_title", @"") andImageName:@"icon_account"],
+        [[LeftNavItem alloc] initWithIdentifier:@"copyrightItem" andDisplayName:NSLocalizedString(@"copyright_drawer_title", @"") andImageName:@"icon_copyright"],
+        [[LeftNavItem alloc] initWithIdentifier:@"logoutItem" andDisplayName:NSLocalizedString(@"logout_drawer_title", @"") andImageName:@"icon_logout"], nil];
     LeftNavView *navView = [[LeftNavView alloc] initWithFrame:[UIScreen mainScreen].bounds andNavItems:navItems];
     navView.delegate = self;
     self.leftView = navView;
