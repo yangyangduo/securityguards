@@ -7,7 +7,6 @@
 //
 
 #import "TopbarView.h"
-#import "UIDevice+SystemVersion.h"
 
 @implementation TopbarView {
     UILabel *lblTitle;
@@ -19,13 +18,15 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = [UIColor grayColor];
+        UIImageView *imgBackground = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height)];
+        imgBackground.image = [UIImage imageNamed:@"bg_topbar"];
+        [self addSubview:imgBackground];
         lblTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, [UIDevice systemVersionIsMoreThanOrEuqal7] ? 20 : 0, 220, 44)];
         lblTitle.center = CGPointMake(self.center.x, lblTitle.center.y);
-        lblTitle.textColor = [UIColor lightTextColor];
+        lblTitle.textColor = [UIColor whiteColor];
         lblTitle.textAlignment = NSTextAlignmentCenter;
         lblTitle.backgroundColor = [UIColor clearColor];
-        lblTitle.font = [UIFont systemFontOfSize:20.0f];
+        lblTitle.font = [UIFont systemFontOfSize:18.0f];
         [self addSubview:lblTitle];
     }
     return self;
