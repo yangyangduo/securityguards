@@ -114,6 +114,8 @@
 		6F732720186D212700A1276B /* bg_label_red@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F73271D186D212700A1276B /* bg_label_red@2x.png */; };
 		6F732721186D212700A1276B /* bg_label_yellow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F73271E186D212700A1276B /* bg_label_yellow@2x.png */; };
 		6F732725186D274C00A1276B /* CopyrightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F732724186D274C00A1276B /* CopyrightViewController.m */; };
+		6F732729186D430700A1276B /* SensorDisplayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F732728186D430700A1276B /* SensorDisplayView.m */; };
+		6F73272C186D4A1E00A1276B /* UIColor+MoreColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F73272B186D4A1E00A1276B /* UIColor+MoreColor.m */; };
 		6FEC0FDB186C5B2B00CB0D70 /* bg_topbar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FEC0FDA186C5B2B00CB0D70 /* bg_topbar@2x.png */; };
 		6FEC0FDF186C5DD700CB0D70 /* DrawerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FEC0FDE186C5DD700CB0D70 /* DrawerViewController.m */; };
 		6FEC0FE1186C5F3300CB0D70 /* btn_drawer_left@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FEC0FE0186C5F3300CB0D70 /* btn_drawer_left@2x.png */; };
@@ -348,6 +350,10 @@
 		6F73271E186D212700A1276B /* bg_label_yellow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_label_yellow@2x.png"; sourceTree = "<group>"; };
 		6F732723186D274C00A1276B /* CopyrightViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CopyrightViewController.h; sourceTree = "<group>"; };
 		6F732724186D274C00A1276B /* CopyrightViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CopyrightViewController.m; sourceTree = "<group>"; };
+		6F732727186D430700A1276B /* SensorDisplayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SensorDisplayView.h; sourceTree = "<group>"; };
+		6F732728186D430700A1276B /* SensorDisplayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SensorDisplayView.m; sourceTree = "<group>"; };
+		6F73272A186D4A1E00A1276B /* UIColor+MoreColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+MoreColor.h"; sourceTree = "<group>"; };
+		6F73272B186D4A1E00A1276B /* UIColor+MoreColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+MoreColor.m"; sourceTree = "<group>"; };
 		6FEC0FDA186C5B2B00CB0D70 /* bg_topbar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_topbar@2x.png"; sourceTree = "<group>"; };
 		6FEC0FDD186C5DD700CB0D70 /* DrawerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawerViewController.h; sourceTree = "<group>"; };
 		6FEC0FDE186C5DD700CB0D70 /* DrawerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawerViewController.m; sourceTree = "<group>"; };
@@ -530,6 +536,7 @@
 		6F6004A4186BCF500085B4BD /* components */ = {
 			isa = PBXGroup;
 			children = (
+				6F732726186D42BB00A1276B /* sensors */,
 				6F600540186BF0350085B4BD /* alertview */,
 				6F6004C6186BD0990085B4BD /* drawer_nav */,
 				6F6004A9186BCFA30085B4BD /* button */,
@@ -569,6 +576,8 @@
 				6F6004B5186BCFF40085B4BD /* UIColor+HexColor.m */,
 				6F6004B6186BCFF40085B4BD /* UIDevice+ SystemVersion.m */,
 				6F6004B7186BCFF40085B4BD /* UIDevice+SystemVersion.h */,
+				6F73272A186D4A1E00A1276B /* UIColor+MoreColor.h */,
+				6F73272B186D4A1E00A1276B /* UIColor+MoreColor.m */,
 			);
 			name = categories;
 			sourceTree = "<group>";
@@ -995,6 +1004,15 @@
 			name = manager;
 			sourceTree = "<group>";
 		};
+		6F732726186D42BB00A1276B /* sensors */ = {
+			isa = PBXGroup;
+			children = (
+				6F732727186D430700A1276B /* SensorDisplayView.h */,
+				6F732728186D430700A1276B /* SensorDisplayView.m */,
+			);
+			name = sensors;
+			sourceTree = "<group>";
+		};
 		6FEC0FDC186C5B3500CB0D70 /* topbar */ = {
 			isa = PBXGroup;
 			children = (
@@ -1210,6 +1228,7 @@
 				6F600522186BE9890085B4BD /* DeviceCommandGetUnit.m in Sources */,
 				6F600562186BF0B90085B4BD /* Entity.m in Sources */,
 				6F600573186BF3940085B4BD /* DeviceCommandEvent.m in Sources */,
+				6F732729186D430700A1276B /* SensorDisplayView.m in Sources */,
 				6F60053F186BF0010085B4BD /* DeviceCommandUpdateDevicesHandler.m in Sources */,
 				6F60052A186BE9890085B4BD /* DeviceCommandUpdateUnitName.m in Sources */,
 				6F732725186D274C00A1276B /* CopyrightViewController.m in Sources */,
@@ -1227,6 +1246,7 @@
 				6F6005A3186C015B0085B4BD /* SmsService.m in Sources */,
 				6FEC0FE7186C663300CB0D70 /* NewsViewController.m in Sources */,
 				6F6004A1186BCEF10085B4BD /* XXEventFilter.m in Sources */,
+				6F73272C186D4A1E00A1276B /* UIColor+MoreColor.m in Sources */,
 				6F60058E186BF8EC0085B4BD /* CameraSocket.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

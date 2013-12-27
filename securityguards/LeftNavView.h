@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "LeftNavItem.h"
+#import "UIColor+MoreColor.h"
 
 @protocol LeftNavViewDelegate <NSObject>
 
