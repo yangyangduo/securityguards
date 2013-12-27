@@ -11,6 +11,7 @@
 #import "XXStringUtils.h"
 #import "GlobalSettings.h"
 #import "SensorDisplayView.h"
+#import "UnitControlPanel.h"
 #import "UIColor+MoreColor.h"
 
 @interface PortalViewController ()
@@ -125,6 +126,14 @@
     
     SensorDisplayView *sensor3 = [[SensorDisplayView alloc] initWithPoint:CGPointMake(170, 47) andDevice:nil];
     [displayPanelView addSubview:sensor3];
+    
+    UIImageView *imgLine = [[UIImageView alloc] initWithFrame:CGRectMake(0, displayPanelView.bounds.size.height - 2, displayPanelView.bounds.size.width, 2)];
+    imgLine.image = [UIImage imageNamed:@"line_dashed"];
+    [displayPanelView addSubview:imgLine];
+//    imgLine.backgroundColor = [UIColor redColor];
+    
+    UnitControlPanel *controlPanelView = [[UnitControlPanel alloc] initWithPoint:CGPointMake(0, displayPanelView.frame.origin.y + displayPanelView.bounds.size.height)];
+    [self.view addSubview:controlPanelView];
 
     UIButton *btnVoice = [[UIButton alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height - 64 / 2, 556 / 2, 64 / 2)];
     [btnVoice setBackgroundImage:[UIImage imageNamed:@"btn_voice_blue"] forState:UIControlStateNormal];
