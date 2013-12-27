@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#define APP_KEY     @"A001"
+#define APP_KEY     @"A002"
 #define PHONE_TYPE  @"IOS"
 
 @interface GlobalSettings : NSObject
