@@ -61,17 +61,42 @@
 - (void)initUI {
     [super initUI];
     
+    /*
+     * Create right button to show units list     
+     */
     UIButton *btnRight = [[UIButton alloc] initWithFrame:CGRectMake(([UIScreen mainScreen].bounds.size.width - 8 - 55 / 2), [UIDevice systemVersionIsMoreThanOrEuqal7] ? (20 + 8) : 8, 55 / 2, 55 / 2)];
     [btnRight setBackgroundImage:[UIImage imageNamed:@"btn_drawer_right"] forState:UIControlStateNormal];
     [self.topbarView addSubview:btnRight];
     
-    scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, self.topbarView.bounds.size.height, [UIScreen mainScreen].bounds.size.width, self.view.bounds.size.height - self.topbarView.bounds.size.height - 20)];
-    scrollView.contentSize = CGSizeMake([UIScreen mainScreen].bounds.size.width, 100);
-    scrollView.backgroundColor = [UIColor redColor];
+    /*
+     * Create voice button view
+     */
+    UIView *voiceBackgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height - 42, [UIScreen mainScreen].bounds.size.width, 42)];
+    voiceBackgroundView.backgroundColor = [UIColor appGray];
     
-    UIImageView *imgHeathIndex = [[UIImageView alloc] initWithFrame:CGRectMake(0, self.topbarView.bounds.size.height, [UIScreen mainScreen].bounds.size.width, 120)];
+    UIButton *btnVoice = [[UIButton alloc] initWithFrame:CGRectMake(0, 5, 556 / 2, 64 / 2)];
+    [btnVoice setBackgroundImage:[UIImage imageNamed:@"btn_voice_gray"] forState:UIControlStateNormal];
+    [btnVoice setBackgroundImage:[UIImage imageNamed:@"btn_voice_blue"] forState:UIControlStateHighlighted];
+    [btnVoice setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+    [btnVoice setTitle:NSLocalizedString(@"btn_voice_title", @"") forState:UIControlStateNormal];
+    btnVoice.center = CGPointMake(voiceBackgroundView.center.x, btnVoice.center.y);
+    
+    [voiceBackgroundView addSubview:btnVoice];
+    [self.view addSubview:voiceBackgroundView];
+    
+    /*
+     * Create scroll view
+     */
+    scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, self.topbarView.bounds.size.height, [UIScreen mainScreen].bounds.size.width, self.view.bounds.size.height - self.topbarView.bounds.size.height - voiceBackgroundView.bounds.size.height)];
+    scrollView.backgroundColor = [UIColor appGray];
+    [self.view addSubview:scrollView];
+    
+    /*
+     * Create heathIndex view
+     */
+    UIImageView *imgHeathIndex = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 120)];
     imgHeathIndex.image = [UIImage imageNamed:@"bg_health_index"];
-    [self.view addSubview:imgHeathIndex];
+    [scrollView addSubview:imgHeathIndex];
     
     lblHealthIndex = [[UILabel alloc] initWithFrame:CGRectMake(44, 34, 45, 50)];
     lblHealthIndex.backgroundColor = [UIColor clearColor];
@@ -110,10 +135,13 @@
     lblDescription2.backgroundColor = [UIColor clearColor];
     lblHealthIndexGreatThan.backgroundColor = [UIColor clearColor];
     lblDescription3.backgroundColor = [UIColor clearColor];
-
+    
+    /*
+     * Create sensors display view
+     */
     UIView *displayPanelView = [[UIView alloc] initWithFrame:CGRectMake(0, imgHeathIndex.frame.origin.y + imgHeathIndex.frame.size.height, [UIScreen mainScreen].bounds.size.width, 84)];
     displayPanelView.backgroundColor = [UIColor appGray];
-    [self.view addSubview:displayPanelView];
+    [scrollView addSubview:displayPanelView];
     
     SensorDisplayView *sensor = [[SensorDisplayView alloc] initWithPoint:CGPointMake(10, 10) andDevice:nil];
     [displayPanelView addSubview:sensor];
@@ -127,23 +155,31 @@
     SensorDisplayView *sensor3 = [[SensorDisplayView alloc] initWithPoint:CGPointMake(170, 47) andDevice:nil];
     [displayPanelView addSubview:sensor3];
     
+    /*
+     * Add blue line
+     */
+    UIImageView *imgLineBlue = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, displayPanelView.bounds.size.width, 11)];
+    imgLineBlue.image = [UIImage imageNamed:@"line_seperator_heavy_blue"];
+    [displayPanelView addSubview:imgLineBlue];
+    
+    /*
+     * Add separator line
+     */
     UIImageView *imgLine = [[UIImageView alloc] initWithFrame:CGRectMake(0, displayPanelView.bounds.size.height - 2, displayPanelView.bounds.size.width, 2)];
     imgLine.image = [UIImage imageNamed:@"line_dashed"];
     [displayPanelView addSubview:imgLine];
-//    imgLine.backgroundColor = [UIColor redColor];
     
+    /*
+     * Create unit control panel view
+     */
     UnitControlPanel *controlPanelView = [[UnitControlPanel alloc] initWithPoint:CGPointMake(0, displayPanelView.frame.origin.y + displayPanelView.bounds.size.height)];
-    [self.view addSubview:controlPanelView];
-
-    UIButton *btnVoice = [[UIButton alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height - 64 / 2, 556 / 2, 64 / 2)];
-    [btnVoice setBackgroundImage:[UIImage imageNamed:@"btn_voice_blue"] forState:UIControlStateNormal];
-    [btnVoice setBackgroundImage:[UIImage imageNamed:@"btn_voice_gray"] forState:UIControlStateHighlighted];
-    [btnVoice setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-    [btnVoice setTitle:NSLocalizedString(@"btn_voice_title", @"") forState:UIControlStateNormal];
-    btnVoice.center = CGPointMake(self.view.center.x, btnVoice.center.y);
-    [self.view addSubview:btnVoice];
+    [scrollView addSubview:controlPanelView];
     
-//    [self.view addSubview:scrollView];
+    CGFloat totalHeight = 0.f;
+    for(UIView *view in scrollView.subviews) {
+        totalHeight += view.bounds.size.height;
+    }
+    scrollView.contentSize = CGSizeMake([UIScreen mainScreen].bounds.size.width, totalHeight);
 }
 
 

@@ -124,6 +124,7 @@
 		6F732739186D5DB100A1276B /* icon_security@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F732736186D5DB100A1276B /* icon_security@2x.png */; };
 		6F73273C186D5E3600A1276B /* UnitControlPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F73273B186D5E3600A1276B /* UnitControlPanel.m */; };
 		6F732741186D672900A1276B /* line_dashed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F732740186D672900A1276B /* line_dashed@2x.png */; };
+		6F732744186D6DD800A1276B /* CameraView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F732743186D6DD800A1276B /* CameraView.m */; };
 		6FEC0FDB186C5B2B00CB0D70 /* bg_topbar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FEC0FDA186C5B2B00CB0D70 /* bg_topbar@2x.png */; };
 		6FEC0FDF186C5DD700CB0D70 /* DrawerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FEC0FDE186C5DD700CB0D70 /* DrawerViewController.m */; };
 		6FEC0FE1186C5F3300CB0D70 /* btn_drawer_left@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FEC0FE0186C5F3300CB0D70 /* btn_drawer_left@2x.png */; };
@@ -370,6 +371,8 @@
 		6F73273A186D5E3600A1276B /* UnitControlPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitControlPanel.h; sourceTree = "<group>"; };
 		6F73273B186D5E3600A1276B /* UnitControlPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnitControlPanel.m; sourceTree = "<group>"; };
 		6F732740186D672900A1276B /* line_dashed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "line_dashed@2x.png"; sourceTree = "<group>"; };
+		6F732742186D6DD800A1276B /* CameraView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraView.h; sourceTree = "<group>"; };
+		6F732743186D6DD800A1276B /* CameraView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraView.m; sourceTree = "<group>"; };
 		6FEC0FDA186C5B2B00CB0D70 /* bg_topbar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_topbar@2x.png"; sourceTree = "<group>"; };
 		6FEC0FDD186C5DD700CB0D70 /* DrawerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawerViewController.h; sourceTree = "<group>"; };
 		6FEC0FDE186C5DD700CB0D70 /* DrawerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawerViewController.m; sourceTree = "<group>"; };
@@ -1031,6 +1034,8 @@
 				6F732728186D430700A1276B /* SensorDisplayView.m */,
 				6F73273A186D5E3600A1276B /* UnitControlPanel.h */,
 				6F73273B186D5E3600A1276B /* UnitControlPanel.m */,
+				6F732742186D6DD800A1276B /* CameraView.h */,
+				6F732743186D6DD800A1276B /* CameraView.m */,
 			);
 			name = sensors;
 			sourceTree = "<group>";
@@ -1203,6 +1208,7 @@
 				6F6004C3186BD04D0085B4BD /* BaseViewController.m in Sources */,
 				6F600520186BE9890085B4BD /* DeviceCommandCheckVersion.m in Sources */,
 				6F600559186BF0710085B4BD /* DeviceStatus.m in Sources */,
+				6F732744186D6DD800A1276B /* CameraView.m in Sources */,
 				6F6005B9186C1B410085B4BD /* RegisterStep2ViewController.m in Sources */,
 				6F6004B8186BCFF40085B4BD /* NSDate+Extension.m in Sources */,
 				6F6004F6186BDB8C0085B4BD /* RestfulCommandService.m in Sources */,
