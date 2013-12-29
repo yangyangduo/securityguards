@@ -8,6 +8,12 @@
 
 #import "LoginViewController.h"
 #import "RegisterStep1ViewController.h"
+#import "AccountService.h"
+#import "JsonUtils.h"
+#import "DeviceCommand.h"
+#import "XXStringUtils.h"
+#import "CoreService.h"
+#import "AlertView.h"
 #define ORIGIN_HEIGHT [UIScreen mainScreen].bounds.size.height/6
 
 @interface LoginViewController ()
@@ -84,7 +90,8 @@
         btnLogin.center = CGPointMake(self.view.center.x,btnLogin.center.y);
         [btnLogin setTitle:NSLocalizedString(@"login", @"") forState:UIControlStateNormal];
         [btnLogin setBackgroundImage:[UIImage imageNamed:@"button-royalblue-400.png"] forState:UIControlStateNormal];
-        [btnLogin setBackgroundImage:[UIImage imageNamed:@"button-skyblue-400.png"] forState:UIControlStateDisabled];
+        [btnLogin setBackgroundImage:[UIImage imageNamed:@"button-skyblue-400.png"] forState:UIControlStateHighlighted];
+        [btnLogin setImage:[UIImage imageNamed:@"button-gray-400.png"] forState:UIControlStateDisabled];
         [btnLogin setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [btnLogin addTarget:self action:@selector(btnLoginPressed:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:btnLogin];
@@ -117,11 +124,62 @@
     
 }
 
-#pragma mark
-#pragma mark- button action
+#pragma mark-
+#pragma mark button action
 
 - (void)btnLoginPressed:(id)sender {
+    AccountService *accountService = [[AccountService alloc] init];
+
+    [accountService loginWithAccount:txtPhoneNumber.text password:txtPassword.text success:@selector(loginSuccess:) failed:@selector(loginFailed:) target:self callback:nil];
+}
+
+- (void)loginSuccess:(RestResponse *) resp{
+    if(resp.statusCode == 200) {
+        NSDictionary *json = [JsonUtils createDictionaryFromJson:resp.body];
+        if(json != nil) {
+            DeviceCommand *command = [[DeviceCommand alloc] initWithDictionary:json];
+            if(command != nil && ![XXStringUtils isBlank:command.result]) {
+                if([@"1" isEqualToString:command.result]) {
+                    // login success
+                    if(![XXStringUtils isBlank:command.security] && ![XXStringUtils isBlank:command.tcpAddress]) {
+                        // save account info
+                        GlobalSettings *settings = [GlobalSettings defaultSettings];
+                        settings.account = txtPhoneNumber.text;
+                        settings.secretKey = command.security;
+                        settings.tcpAddress = command.tcpAddress;
+                        settings.deviceCode = command.deviceCode;
+                        settings.restAddress = command.restAddress;
+                        [settings saveSettings];
+                        
+                        // start service
+                        [[CoreService defaultService] startService];
+                        
+                        txtPassword.text = [XXStringUtils emptyString];
+                        [self toMainPage];
+                        return;
+                    }
+                } else if([@"-1" isEqualToString:command.result] || [@"-2" isEqualToString:command.result]) {
+                    [[AlertView currentAlertView] setMessage:NSLocalizedString(@"name_or_pwd_error", @"") forType:AlertViewTypeFailed];
+                    [[AlertView currentAlertView] delayDismissAlertView];
+                    return;
+                } else if([@"-3" isEqualToString:command.result] || [@"-4" isEqualToString:command.result]) {
+                    [[AlertView currentAlertView] setMessage:NSLocalizedString(@"login_later", @"") forType:AlertViewTypeFailed];
+                    [[AlertView currentAlertView] delayDismissAlertView];
+                    return;
+                }
+            }
+        }
+    }
+    [self loginFailed:resp];
     
+}
+- (void)loginFailed:(RestResponse *) resp{
+    if(abs(resp.statusCode) == 1001) {
+        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"request_timeout", @"") forType:AlertViewTypeFailed];
+    } else {
+        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"unknow_error", @"") forType:AlertViewTypeFailed];
+    }
+    [[AlertView currentAlertView] delayDismissAlertView];
 }
 
 - (void)btnForgetPasswordPressed:(id)sender {
@@ -138,6 +196,9 @@
     [self dismissViewControllerAnimated:YES completion:^{}];
 }
 
+- (void) toMainPage{
+    
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
