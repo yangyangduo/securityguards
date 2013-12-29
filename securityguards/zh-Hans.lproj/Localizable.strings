@@ -39,8 +39,25 @@
 "copyright_drawer_title"         =      "版本信息";
 "logout_drawer_title"            =      "注销账号";
 
+
 /****************	Portal View Strings	****************/
 
 "heath_index_desc_tips1"         =      "您的健康安全指数已超";
 "heath_index_desc_tips2"         =      "过";
 "heath_index_desc_tips3"         =      "的同类用户";
+
+
+/****************	Login Strings	****************/
+
+"phone.number"          =   "手机号";
+"password"              =   "密码";
+"forget.password"       =   "忘记密码";
+"register.account"      =   "注册账号";
+"login"                 =   "登录";
+
+/****************  Register Strings **************/
+"please.input.phone.number.for.registerring" =  "请输入手机号用于注册";
+"register.tip"                               =  "＊确认后短信获取验证码，请在收到后30分钟内完成注册，否则将会失效！";
+"get.verification"                           =  "获取验证码";
+
+
