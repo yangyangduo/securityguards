@@ -20,6 +20,9 @@
 #import "CoreService.h"
 #import "RootViewController.h"
 #import "SpeechViewController.h"
+#import "UnitsListUpdatedEvent.h"
+#import "UnitSelectionDrawerView.h"
+#import "UnitManager.h"
 
 @interface PortalViewController ()
 
@@ -54,20 +57,20 @@
     self.topbarView.title = @"Test";
     
     BOOL hasLogin = ![[XXStringUtils emptyString] isEqualToString:[GlobalSettings defaultSettings].secretKey];
-    hasLogin = NO;
     if(hasLogin) {
-        
+        [[CoreService defaultService] startService];
     } else {
         UINavigationController *loginNavController = [[UINavigationController alloc] initWithRootViewController:[[LoginViewController alloc] init]];
         loginNavController.navigationBarHidden = YES;
         [self presentViewController:loginNavController animated:NO completion:^{}];
     }
-//    [GlobalSettings defaultSettings].tcpAddress = @"localhost:8888";
-//    [[CoreService defaultService] startService];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    XXEventSubscription *subscription = [[XXEventSubscription alloc] initWithSubscriber:self eventFilter:[[XXEventNameFilter alloc] initWithSupportedEventName:EventNetworkModeChanged]];
+    [self updateUnitsView];
+    
+    XXEventSubscription *subscription = [[XXEventSubscription alloc] initWithSubscriber:self eventFilter:[[XXEventNameFilter alloc] initWithSupportedEventNames:[NSArray arrayWithObjects:EventUnitsListUpdated, EventNetworkModeChanged, nil]]];
+    subscription.notifyMustInMainThread = YES;
     [[XXEventSubscriptionPublisher defaultPublisher] subscribeFor:subscription];
 }
 
@@ -257,6 +260,25 @@
         } else {
             NSLog(@"else");
         }
+    } else if([event isKindOfClass:[UnitsListUpdatedEvent class]]) {
+        [self updateUnitsView];
+    }
+}
+
+#pragma mark -
+#pragma mark View updates
+
+- (void)updateUnitsView {
+//    [UnitManager defaultManager].currentUnit;
+    [self updateUnitsSelectionView];
+}
+
+- (void)updateUnitsSelectionView {
+    if(self.parentViewController == nil || self.parentViewController.parentViewController == nil) return;
+    RootViewController *rootViewController = (RootViewController *)self.parentViewController.parentViewController;
+    if(rootViewController.rightView != nil) {
+        UnitSelectionDrawerView *unitSelectionView = (UnitSelectionDrawerView *)rootViewController.rightView;
+        [unitSelectionView refresh];
     }
 }
 

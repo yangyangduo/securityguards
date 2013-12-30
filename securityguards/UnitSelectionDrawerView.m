@@ -41,8 +41,9 @@
 - (void)refresh {
     if(units == nil) {
         units = [NSMutableArray array];
+    } else {
+        [units removeAllObjects];
     }
-    [units removeAllObjects];
     [units addObjectsFromArray:[UnitManager defaultManager].units];
     [tblUnits reloadData];
     Unit *currentUnit = [UnitManager defaultManager].currentUnit;
@@ -89,8 +90,8 @@
         cell.textLabel.textColor = [UIColor whiteColor];
         cell.textLabel.font = [UIFont systemFontOfSize:15.f];
     }
-    
-    cell.textLabel.text = @"我的净化器";
+    Unit *unit = [units objectAtIndex:indexPath.row];
+    cell.textLabel.text = unit.name;
     
     return cell;
 }
