@@ -11,9 +11,9 @@
 @interface ClientSocket : NSObject<NSStreamDelegate>
 
 @property (strong, nonatomic) NSString *ipAddress;
+@property (assign, nonatomic) NSInteger port;
 @property (strong, nonatomic, readonly) NSInputStream *inputStream;
 @property (strong, nonatomic, readonly) NSOutputStream *outputStream;
-@property (assign, nonatomic) NSInteger port;
 
 - (id)initWithIPAddress:(NSString *)ip andPort:(NSInteger)portNumber;
 

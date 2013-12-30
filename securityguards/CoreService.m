@@ -103,7 +103,7 @@
     if(command == nil) return;
     if(_state_ != ServiceStateOpenned) {
 #ifdef DEBUG
-        NSLog(@"[DeliveryService] Service is not ready, [%@] can't be executed.", command.commandName);
+        NSLog(@"[Core Service] Service is not ready, [%@] can't be executed.", command.commandName);
 #endif
         return;
     }
@@ -127,14 +127,14 @@
         [executor executeCommand:command];
     } else {
 #ifdef DEBUG
-        NSLog(@"[DeliveryService] Executor not found, [%@] can't be executed.", command.commandName);
+        NSLog(@"[Core Service] Executor not found, [%@] can't be executed.", command.commandName);
 #endif
     }
 }
 
 - (void)queueCommand:(DeviceCommand *)command {
 #ifdef DEBUG
-    NSLog(@"[DeliveryService] Queue command [%@].", command.commandName);
+    NSLog(@"[Core Service] Queue command [%@].", command.commandName);
 #endif
     [self.tcpService queueCommand:command];
 }
@@ -226,7 +226,7 @@
     // If the service is not served
     if(_state_ != ServiceStateOpenned) {
 #ifdef DEBUG
-        NSLog(@"[DeliveryService] Service is't opened, can't handle [%@].", command.commandName);
+        NSLog(@"[Core Service] Service is't opened, can't handle [%@].", command.commandName);
 #endif
         return;
     }
@@ -268,7 +268,7 @@
 - (void)startService {
     if(_state_ != ServiceStateOpenned && _state_ != ServiceStateOpenning) {
 #ifdef DEBUG
-        NSLog(@"[DeliveryService] Service starting.");
+        NSLog(@"[Core Service] Service starting.");
 #endif
         _state_ = ServiceStateOpenning;
         
@@ -291,7 +291,7 @@
         _state_ = ServiceStateOpenned;
         
 #ifdef DEBUG
-        NSLog(@"[DeliveryService] Service started.");
+        NSLog(@"[Core Service] Service started.");
 #endif
     }
 }
@@ -317,7 +317,7 @@
         [[UnitManager defaultManager] syncUnitsToDisk];
         
 #ifdef DEBUG
-        NSLog(@"[COMMAND SERVICE] Stopped.");
+        NSLog(@"[Core Service] Service stopped.");
 #endif
         _state_ = ServiceStateClosed;
     }
@@ -330,12 +330,10 @@
     [self startTcpIfNeed];
 }
 
-- (void)startTcpIfNeed {    
-    if(self.tcpService.isConnectted
-       || self.tcpService.isConnectting) {
-        return;
+- (void)startTcpIfNeed {
+    if(!self.tcpService.isConnecttingOrConnectted) {
+        [self.tcpService connect];
     }
-    [self.tcpService connect];
 }
 
 - (void)notifyTcpConnectionOpened {

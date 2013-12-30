@@ -17,4 +17,8 @@
 - (void)initUI;
 - (void)setUp;
 
+- (void)registerTapGestureToResignKeyboard;
+- (void)triggerTapGestureEventForResignKeyboard:(UIGestureRecognizer *)gesture;
+- (void)resignFirstResponderFor:(UIView *)view;
+
 @end

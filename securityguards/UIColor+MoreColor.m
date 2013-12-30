@@ -30,4 +30,12 @@
     return [UIColor colorWithRed:1.0f green:241.f / 255.f blue:187.f / 255.f alpha:1.0f];
 }
 
++ (UIColor *)appRed {
+    return [UIColor colorWithRed:1.0f green:96.f / 255.f blue:102.f / 255.f alpha:1.0f];
+}
+
++ (UIColor *)appDarkYellow {
+    return [UIColor colorWithRed:1.0f green:191.f / 255.f blue:0.f alpha:1.0f];
+}
+
 @end

@@ -16,8 +16,9 @@
 
 - (BOOL)isConnectted;
 - (BOOL)isConnectting;
+- (BOOL)isConnecttingOrConnectted;
 
-- (void)disconnect;
 - (void)connect;
+- (void)disconnect;
 
 @end

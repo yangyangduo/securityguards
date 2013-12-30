@@ -43,12 +43,14 @@
     @synchronized(self) {
         NSString *tcpAddress = [GlobalSettings defaultSettings].tcpAddress;
         NSArray *addressSet = [tcpAddress componentsSeparatedByString:@":"];
+        
         if(addressSet == nil || addressSet.count != 2) {
     #ifdef DEBUG
             NSLog(@"[TCP COMMAND SOCKET] Server address error [ %@ ]", tcpAddress == nil ? [XXStringUtils emptyString] : tcpAddress);
     #endif
             return;
         }
+        
         NSString *addr = [addressSet objectAtIndex:0];
         NSString *port = [addressSet objectAtIndex:1];
         socket = [[ExtranetClientSocket alloc] initWithIPAddress:addr andPort:port.integerValue];
@@ -75,7 +77,7 @@
 - (BOOL)isConnectted {
     @synchronized(self) {
         if(socket == nil) return NO;
-        return socket.isConnect;
+        return socket.isConnectted;
     }
 }
 
@@ -85,6 +87,56 @@
         return socket.isConnectting;
     }
 }
+
+- (BOOL)isConnecttingOrConnectted {
+    @synchronized(self) {
+        if(socket == nil) return NO;
+        return socket.isConnectting || socket.isConnectted;
+    }
+}
+
+#pragma mark -
+#pragma mark Exeutor Implementations
+
+- (void)queueCommand:(DeviceCommand *)command {
+    [self executeCommand:command];
+}
+
+- (void)executeCommand:(DeviceCommand *)command {
+    if(![queue contains:command]) {
+        [queue pushCommand:command];
+        [self flushQueue];
+    }
+}
+
+- (NSString *)executorName {
+    return @"TCP SERVICE";
+}
+
+/* Send all of device commands queue to server */
+- (void)flushQueue {
+    @synchronized(self) {
+        if(socket != nil && socket.isConnectted && socket.canWrite && queue.count > 0) {
+            NSMutableData *dataToSender = [NSMutableData data];
+            DeviceCommand *command = [queue popup];
+            while (command != nil) {
+                CommunicationMessage *message = [[CommunicationMessage alloc] init];
+                message.deviceCommand = command;
+                NSData *data = [message generateData];
+                if(data != nil) {
+                    [dataToSender appendData:data];
+                }
+                command = [queue popup];
+            }
+            if(dataToSender.length > 0) {
+                [socket writeData:dataToSender];
+            }
+        }
+    }
+}
+
+#pragma mark -
+#pragma mark Refresh tcp address
 
 - (void)refreshTcpAddress {
     AccountService *accountService = [[AccountService alloc] init];
@@ -123,48 +175,9 @@
 #endif
 }
 
-#pragma mark -
-#pragma mark Exeutor Implementations
-
-- (void)queueCommand:(DeviceCommand *)command {
-    [self executeCommand:command];
-}
-
-- (void)executeCommand:(DeviceCommand *)command {
-    if(![queue contains:command]) {
-        [queue pushCommand:command];
-        [self flushQueue];
-    }
-}
-
-- (NSString *)executorName {
-    return @"TCP SERVICE";
-}
-
-/* Send all of device commands queue to server */
-- (void)flushQueue {
-    @synchronized(self) {
-        if(socket != nil && socket.isConnect && [socket canWrite] && queue.count > 0) {
-            NSMutableData *dataToSender = [NSMutableData data];
-            DeviceCommand *command = [queue popup];
-            while (command != nil) {
-                CommunicationMessage *message = [[CommunicationMessage alloc] init];
-                message.deviceCommand = command;
-                NSData *data = [message generateData];
-                if(data != nil) {
-                    [dataToSender appendData:data];
-                }
-                command = [queue popup];
-            }
-            if(dataToSender.length > 0) {
-                [socket writeData:dataToSender];
-            }
-        }
-    }
-}
 
 #pragma mark -
-#pragma mark message handler
+#pragma mark Message Handler
 
 - (void)clientSocketSenderReady {
     [self flushQueue];
@@ -188,13 +201,12 @@
 //#endif
     DeviceCommand *command = [CommandFactory commandFromJson:[JsonUtils createDictionaryFromJson:messages]];
     command.commmandNetworkMode = CommandNetworkModeExternal;
-    [[XXEventSubscriptionPublisher defaultPublisher] publishWithEvent:
-     [[DeviceCommandEvent alloc] initWithDeviceCommand:command]];
+    [[XXEventSubscriptionPublisher defaultPublisher] publishWithEvent:[[DeviceCommandEvent alloc] initWithDeviceCommand:command]];
 }
 
 - (void)notifyConnectionClosed {
 #ifdef DEBUG
-    NSLog(@"[TCP COMMAND SOCKET] Closed");
+    NSLog(@"[TCP COMMAND SOCKET] Closed.");
 #endif
     [[CoreService defaultService] notifyTcpConnectionClosed];
 
@@ -202,14 +214,14 @@
 
 - (void)notifyConnectionOpened {
 #ifdef DEBUG
-    NSLog(@"[TCP COMMAND SOCKET] Opened");
+    NSLog(@"[TCP COMMAND SOCKET] Opened.");
 #endif
     [[CoreService defaultService] notifyTcpConnectionOpened];
 }
 
 - (void)notifyConnectionTimeout {
 #ifdef DEBUG
-    NSLog(@"[TCP COMMAND] Connection timeout.");
+    NSLog(@"[TCP COMMAND SOCKET] Connect timeout.");
 #endif
     [self refreshTcpAddress];
 }

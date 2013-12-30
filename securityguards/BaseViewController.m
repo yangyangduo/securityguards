@@ -52,4 +52,27 @@
 - (void)setUp {
 }
 
+
+#pragma mark -
+#pragma mark About first responder
+
+- (void)registerTapGestureToResignKeyboard {
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] init];
+    [tapGesture addTarget:self action:@selector(triggerTapGestureEventForResignKeyboard:)];
+    [self.view addGestureRecognizer:tapGesture];
+}
+
+- (void)triggerTapGestureEventForResignKeyboard:(UIGestureRecognizer *)gesture {
+    [self resignFirstResponderFor:self.view];
+}
+
+- (void)resignFirstResponderFor:(UIView *)view {
+    for (UIView *v in view.subviews) {
+        if([v isFirstResponder]) {
+            [v resignFirstResponder];
+            return;
+        }
+    }
+}
+
 @end

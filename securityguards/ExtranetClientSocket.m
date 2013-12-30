@@ -13,40 +13,90 @@
 #define TIME_OUT    12
 
 @implementation ExtranetClientSocket {
+    /*
+     * socket received data
+     */
     NSMutableData *receivedData;
+    
     BOOL inOpen;
     BOOL outOpen;
     
-    NSTimer *timeout;
+    NSTimer *timeoutTimer;
 }
 
 @synthesize messageHandlerDelegate;
-@synthesize isConnect;
+@synthesize isConnectted;
+@synthesize isConnectting;
+@synthesize canWrite;
+
+
+#pragma mark -
+#pragma mark Socket Connection
 
 - (void)connect {
+    /*     init defaults     */
     if(receivedData != nil) {
         receivedData = nil;
     }
-    if(timeout != nil) {
-        if(timeout.isValid) {
-            [timeout invalidate];
+    if(timeoutTimer != nil) {
+        if(timeoutTimer.isValid) {
+            [timeoutTimer invalidate];
         }
-        timeout = nil;
+        timeoutTimer = nil;
     }
-    timeout = [NSTimer scheduledTimerWithTimeInterval:TIME_OUT target:self selector:@selector(connectTimeout) userInfo:nil repeats:NO];
+    timeoutTimer = [NSTimer scheduledTimerWithTimeInterval:TIME_OUT target:self selector:@selector(connectTimeout) userInfo:nil repeats:NO];
     [super connect];
 }
 
 - (void)connectTimeout {
-    if(!self.isConnect) {
+    if(!self.isConnectted) {
         [self close];
         if(self.messageHandlerDelegate != nil && [self.messageHandlerDelegate respondsToSelector:@selector(notifyConnectionTimeout)]) {
             [self.messageHandlerDelegate notifyConnectionTimeout];
         }
     } else {
-        timeout = nil;
+        timeoutTimer = nil;
     }
 }
+
+- (BOOL)isConnectted {
+    return inOpen && outOpen;
+}
+
+- (BOOL)isConnectting {
+    return (self.inputStream != nil && self.inputStream.streamStatus == NSStreamStatusOpening)
+    || (self.outputStream != nil && self.outputStream.streamStatus == NSStreamStatusOpening);
+}
+
+- (BOOL)canWrite {
+    return self.outputStream.hasSpaceAvailable;
+}
+
+- (void)writeData:(NSData *)data {
+    [self.outputStream write:data.bytes maxLength:data.length];
+}
+
+#pragma mark -
+#pragma mark Socket Close
+
+- (void)close {
+    if(timeoutTimer != nil) {
+        if(timeoutTimer.isValid) {
+            [timeoutTimer invalidate];
+        }
+        timeoutTimer = nil;
+    }
+    receivedData = nil;
+    [super close];
+    inOpen = NO;
+    outOpen = NO;
+    if(self.messageHandlerDelegate != nil && [self.messageHandlerDelegate respondsToSelector:@selector(notifyConnectionClosed)]) {
+        [self.messageHandlerDelegate notifyConnectionClosed];
+    }
+}
+
+#pragma mark -
+#pragma mark Data processes
 
 - (void)stream:(NSStream *)aStream handleEvent:(NSStreamEvent)eventCode {
      if(eventCode == NSStreamEventHasBytesAvailable) {
@@ -243,14 +293,6 @@
     }
 }
 
-- (BOOL)canWrite {
-    return self.outputStream.hasSpaceAvailable;
-}
-
-- (void)writeData:(NSData *)data {
-    [self.outputStream write:data.bytes maxLength:data.length];
-}
-
 #pragma mark -
 #pragma mark message handler delegate
 
@@ -274,36 +316,6 @@
     if(self.messageHandlerDelegate != nil) {
         if([self.messageHandlerDelegate respondsToSelector:@selector(clientSocketWithReceivedMessage:)]) {
             [self.messageHandlerDelegate clientSocketWithReceivedMessage:message];
-        }
-    }
-}
-
-- (BOOL)isConnect {
-    return inOpen && outOpen;
-}
-
-- (BOOL)isConnectting {
-    return (self.inputStream != nil && self.inputStream.streamStatus == NSStreamStatusOpening)
-        || (self.outputStream != nil && self.outputStream.streamStatus == NSStreamStatusOpening);
-}
-
-#pragma mark -
-#pragma mark override super method
-
-- (void)close {
-    @synchronized(self) {
-        if(timeout != nil) {
-            if(timeout.isValid) {
-                [timeout invalidate];
-            }
-            timeout = nil;
-        }
-        receivedData = nil;
-        [super close];
-        inOpen = NO;
-        outOpen = NO;
-        if(self.messageHandlerDelegate != nil && [self.messageHandlerDelegate respondsToSelector:@selector(notifyConnectionClosed)]) {
-            [self.messageHandlerDelegate notifyConnectionClosed];
         }
     }
 }

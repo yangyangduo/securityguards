@@ -54,7 +54,6 @@
         }
         inputStream = nil;
     }
-    
     if(outputStream != nil) {
         [outputStream removeFromRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
         if(outputStream.streamStatus != NSStreamStatusNotOpen && outputStream.streamStatus != NSStreamStatusClosed) {

@@ -15,5 +15,7 @@
 + (UIColor *)appLightBlue;
 + (UIColor *)appDarkGray;
 + (UIColor *)appYellow;
++ (UIColor *)appRed;
++ (UIColor *)appDarkYellow;
 
 @end

@@ -10,4 +10,6 @@
 
 @interface NavigationViewController : BaseViewController
 
+- (void)popupViewController;
+
 @end
