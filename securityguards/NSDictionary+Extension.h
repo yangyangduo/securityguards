@@ -17,7 +17,8 @@
 - (NSString *)stringForKey:(id)key;
 - (NSNumber *)numberForKey:(id)key;
 - (NSDate *)dateForKey:(id)key;
-- (NSInteger)integerForKey:(id)key;
+- (int)intForKey:(id)key;
+- (long)longForKey:(id)key;
 - (double)doubleForKey:(id)key;
 - (NSArray *)arrayForKey:(id)key;
 - (NSDictionary *)dictionaryForKey:(id)key;

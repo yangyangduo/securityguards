@@ -39,7 +39,7 @@
             
             self.localIP = [json stringForKey:@"localIp"];
             self.name = [json stringForKey:@"name"];
-            self.localPort = [json integerForKey:@"localPort"];
+            self.localPort = [json intForKey:@"localPort"];
             self.status = [json stringForKey:@"status"];
             self.hashCode = [json numberForKey:@"hashCode"];
             self.updateTime = [json dateForKey:@"updateTime"];

@@ -22,13 +22,13 @@
 @property (copy, nonatomic) NSString *ip;
 @property (copy, nonatomic) NSString *nwkAddr;
 @property (copy, nonatomic) NSString *pwd;
-@property (assign, nonatomic) NSInteger ep;
-@property (assign, nonatomic) NSInteger irType;
-@property (assign, nonatomic) NSInteger port;
-@property (assign, nonatomic) NSInteger resolution;
-@property (assign, nonatomic) NSInteger state;
-@property (assign, nonatomic) NSInteger status;
-@property (assign, nonatomic) NSInteger type;
+@property (assign, nonatomic) int ep;
+@property (assign, nonatomic) int irType;
+@property (assign, nonatomic) int port;
+@property (assign, nonatomic) int resolution;
+@property (assign, nonatomic) int state;
+@property (assign, nonatomic) int status;
+@property (assign, nonatomic) int type;
 
 @property (assign, nonatomic) BOOL isOnline;
 
@@ -51,8 +51,8 @@
 @property (assign, nonatomic, readonly) BOOL isAvailableDevice;
 
 // 获取执行命令的字符串
-- (NSString *)commandStringForStatus:(NSInteger)st;
+- (NSString *)commandStringForStatus:(int)st;
 - (NSString *)commandStringForCamera:(NSString *)direction;
-- (NSString *)commandStringForRemote:(NSInteger)st;
+- (NSString *)commandStringForRemote:(int)st;
 
 @end

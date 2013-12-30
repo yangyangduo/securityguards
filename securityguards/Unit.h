@@ -15,7 +15,7 @@
 @property (strong, nonatomic) NSString *identifier;
 @property (strong, nonatomic) NSString *localIP;
 @property (strong, nonatomic) NSString *name;
-@property (assign, nonatomic) NSInteger localPort;
+@property (assign, nonatomic) unsigned int localPort;
 @property (strong, nonatomic) NSString *status;
 @property (strong, nonatomic) NSDate *updateTime;
 @property (strong, nonatomic) NSNumber *hashCode;

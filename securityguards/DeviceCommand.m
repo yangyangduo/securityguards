@@ -48,7 +48,7 @@
             self.result = [json stringForKey:@"id"];
             self.describe = [json stringForKey:@"describe"];
             self.hashCode = [json numberForKey:@"hashCode"];
-            self.resultID = [json integerForKey:@"resultId"];
+            self.resultID = [json intForKey:@"resultId"];
             self.security = [json stringForKey:@"security"];
             self.restAddress = [json noNilStringForKey:@"rest"];
             self.commandTime = [json dateForKey:@"commandTime"];

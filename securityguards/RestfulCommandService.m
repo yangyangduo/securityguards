@@ -69,7 +69,7 @@
 #pragma mark -
 #pragma mark Update devices from rest server
 
-- (void)updateDeviceWithAddress:(NSString *)address port:(NSInteger)port data:(NSData *)data {
+- (void)updateDeviceWithAddress:(NSString *)address port:(int)port data:(NSData *)data {
     NSString *url = [NSString stringWithFormat:@"http://%@:%d/executor", address, port];
     [self.client postForUrl:url acceptType:@"application/json" contentType:@"application/json" body:data success:@selector(updateDeviceSuccess:) error:@selector(updateDeviceFailed:) for:self callback:nil];
 }
@@ -94,8 +94,8 @@
 #pragma mark -
 #pragma mark Get units from rest server
 
-- (void)getUnitByIdentifier:(NSString *)unitIdentifier address:(NSString *)addr port:(NSInteger)port hashCode:(NSNumber *)hashCode {
-        NSString *url = [NSString stringWithFormat:@"http://%@:%d/gatewaycfg?hashCode=%d", addr, port, hashCode.integerValue];
+- (void)getUnitByIdentifier:(NSString *)unitIdentifier address:(NSString *)addr port:(int)port hashCode:(NSNumber *)hashCode {
+        NSString *url = [NSString stringWithFormat:@"http://%@:%d/gatewaycfg?hashCode=%d", addr, port, hashCode.intValue];
         [self getUnitByUrl:url];
 }
 

@@ -68,7 +68,7 @@
         }];
 }
 
-- (void)doError:(NSUInteger)statusCode {
+- (void)doError:(int)statusCode {
 #ifdef DEBUG
     NSLog(@"[CAMERA RESTFUL SERVICE] Error in reading image, status code is %d", statusCode);
 #endif

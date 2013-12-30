@@ -20,7 +20,7 @@ typedef NS_ENUM(NSUInteger, CommandNetworkMode) {
 @interface DeviceCommand : NSObject
 
 @property (strong, nonatomic) NSString *result;
-@property (assign, nonatomic) NSInteger resultID;
+@property (assign, nonatomic) int resultID;
 @property (strong, nonatomic) NSString *deviceCode;
 @property (strong, nonatomic) NSString *commandName;
 @property (strong, nonatomic) NSString *masterDeviceCode;
@@ -32,7 +32,7 @@ typedef NS_ENUM(NSUInteger, CommandNetworkMode) {
 @property (strong, nonatomic) NSString *describe;
 
 @property (strong, nonatomic) NSString *restAddress;
-@property (assign, nonatomic) NSInteger restPort;
+@property (assign, nonatomic) int restPort;
 @property (assign, nonatomic) CommandNetworkMode commmandNetworkMode;
 
 - (id)initWithDictionary:(NSDictionary *)json;

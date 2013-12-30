@@ -18,8 +18,8 @@
     self = [super init];
     if(self && json) {
         self.deviceIdentifer = [json stringForKey:@"code"];
-        self.status = [json integerForKey:@"status"];
-        self.state = [json integerForKey:@"state"];
+        self.status = [json intForKey:@"status"];
+        self.state = [json intForKey:@"state"];
     }
     return self;
 }

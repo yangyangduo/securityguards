@@ -10,7 +10,7 @@
 
 @interface RestResponse : NSObject
 
-@property(nonatomic) NSInteger statusCode;
+@property(nonatomic, assign) int statusCode;
 @property(nonatomic, strong) NSData *body;
 @property(nonatomic, strong) NSString *failedReason;
 @property(nonatomic, strong) NSString *contentType;

@@ -74,7 +74,7 @@
     if(str == nil) return nil;
     const char *original_str = str.UTF8String;
     unsigned char result[16];
-    CC_MD5(original_str, strlen(original_str), result);
+    CC_MD5(original_str, (CC_LONG)strlen(original_str), result);
     NSMutableString *hash = [NSMutableString string];
     for (int i = 0; i < 16; i++) {
         [hash appendFormat:@"%02X", result[i]];

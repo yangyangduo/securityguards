@@ -142,13 +142,11 @@ typedef NS_ENUM(NSInteger, RecognizerState) {
     [btnVoice setTitle:NSLocalizedString(@"release_end_speaking", @"") forState:UIControlStateHighlighted];
     btnVoice.center = CGPointMake(voiceBackgroundView.center.x, btnVoice.center.y);
     
-    /*
     [btnVoice addTarget:self action:@selector(btnSpeechTouchDown:) forControlEvents:UIControlEventTouchDown];
     [btnVoice addTarget:self action:@selector(btnSpeechTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
     [btnVoice addTarget:self action:@selector(btnSpeechTouchUpOutside:) forControlEvents:UIControlEventTouchUpOutside];
     [btnVoice addTarget:self action:@selector(btnSpeechTouchDragEnter:) forControlEvents:UIControlEventTouchDragEnter];
     [btnVoice addTarget:self action:@selector(btnSpeechTouchDragExit:) forControlEvents:UIControlEventTouchDragExit];
-     */
     
     [voiceBackgroundView addSubview:btnVoice];
     [self.view addSubview:voiceBackgroundView];
@@ -280,7 +278,7 @@ typedef NS_ENUM(NSInteger, RecognizerState) {
     speechRecognitionUtil.speechRecognitionNotificationDelegate = self;
     if(![speechRecognitionUtil startListening]) {
 #ifdef DEBUG
-        NSLog(@"[SPEECH RECOGNIZER] Start lisenting failed.");
+        NSLog(@"[SPEECH RECOGNIZER] Start listening failed.");
 #endif
     }
 }
@@ -311,7 +309,7 @@ typedef NS_ENUM(NSInteger, RecognizerState) {
 
 - (void)recognizeSuccess:(NSString *)result {
     if(![XXStringUtils isBlank:result]) {
-        //process text message
+        //Process text message
 #ifdef DEBUG
         NSLog(@"[SPEECH RECOGNIZER] Send voice command [%@].", result);
 #endif

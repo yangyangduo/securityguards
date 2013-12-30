@@ -51,16 +51,16 @@
     if(self) {
         if(json != nil) {
             self.category = [json stringForKey:@"category"];
-            self.ep = [json integerForKey:@"ep"];
+            self.ep = [json intForKey:@"ep"];
             self.identifier = [json stringForKey:@"code"];
             self.ip = [json stringForKey:@"ip"];
-            self.irType = [json integerForKey:@"irType"];
-            self.status = [json integerForKey:@"status"];
-            self.state = [json integerForKey:@"state"];
-            self.port = [json integerForKey:@"port"];
+            self.irType = [json intForKey:@"irType"];
+            self.status = [json intForKey:@"status"];
+            self.state = [json intForKey:@"state"];
+            self.port = [json intForKey:@"port"];
             self.pwd = [json stringForKey:@"pwd"];
-            self.resolution = [json integerForKey:@"resolution"];
-            self.type = [json integerForKey:@"type"];
+            self.resolution = [json intForKey:@"resolution"];
+            self.type = [json intForKey:@"type"];
             self.name = [json stringForKey:@"name"];
             self.nwkAddr = [json stringForKey:@"nwkAddr"];
             self.user = [json stringForKey:@"user"];
@@ -88,7 +88,7 @@
     return json;
 }
 
-- (NSString *)commandStringForStatus:(NSInteger)st {
+- (NSString *)commandStringForStatus:(int)st {
     return [NSString stringWithFormat:@"%@-%@-%d", self.category, self.identifier, st];
 }
 
@@ -96,7 +96,7 @@
     return [NSString stringWithFormat:@"%@-%@-%@", self.category, self.identifier, direction];
 }
 
-- (NSString *)commandStringForRemote:(NSInteger)st {
+- (NSString *)commandStringForRemote:(int)st {
     return [NSString stringWithFormat:@"%@-%@-%d", self.category, self.nwkAddr, st];
 }
 

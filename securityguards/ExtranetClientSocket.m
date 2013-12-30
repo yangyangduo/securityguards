@@ -109,7 +109,7 @@
             
             //read header data (one byte)
             uint8_t header[DATA_HEADER_LENGTH];
-            int bytesRead = [self.inputStream read:header maxLength:DATA_HEADER_LENGTH];
+            NSInteger bytesRead = [self.inputStream read:header maxLength:DATA_HEADER_LENGTH];
             if(bytesRead != DATA_HEADER_LENGTH) {
                 //unkonw, maybe server client was closed...
                 return;

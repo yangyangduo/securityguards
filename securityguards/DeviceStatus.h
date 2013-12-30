@@ -12,8 +12,8 @@
 @interface DeviceStatus : Entity
 
 @property (strong, nonatomic) NSString *deviceIdentifer;
-@property (assign, nonatomic) NSInteger state;
-@property (assign, nonatomic) NSInteger status;
+@property (assign, nonatomic) int state;
+@property (assign, nonatomic) int status;
 
 
 @end

@@ -56,7 +56,7 @@
         if(aStream != nil && aStream == self.inputStream) {
             if(!shakeHandsSuccess) {
                 uint8_t header[1];
-                int bytesRead = [self.inputStream read:header maxLength:1];
+                NSInteger bytesRead = [self.inputStream read:header maxLength:1];
                 if(bytesRead == -1) {
                     //unkonw, maybe server client was closed... don't need to process
                     return;
@@ -76,7 +76,7 @@
                     [self tryShakeHands];
                 }
             } else {
-                int bytesRead = 0;
+                NSInteger bytesRead = 0;
                 if(currentImageLength == -1) {
                     uint8_t dataLength[5-currentImageData.length];
                     bytesRead = [self.inputStream read:dataLength maxLength:5-currentImageData.length];

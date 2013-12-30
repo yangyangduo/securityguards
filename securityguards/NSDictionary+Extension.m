@@ -52,10 +52,16 @@
  * can not be nil
  ****************************/
 
-- (NSInteger)integerForKey:(id)key {
+- (int)intForKey:(id)key {
     NSNumber *number = [self notNSNullObjectForKey:key];
     if(number == nil) return 0;
-    return number.integerValue;
+    return number.intValue;
+}
+
+- (long)longForKey:(id)key {
+    NSNumber *number = [self notNSNullObjectForKey:key];
+    if(number == nil) return 0;
+    return number.longValue;
 }
 
 - (double)doubleForKey:(id)key {
