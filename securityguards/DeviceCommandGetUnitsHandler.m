@@ -30,6 +30,7 @@
                 // this unit is has not binding before, need to remove it .
                 [[UnitManager defaultManager] removeUnitByIdentifier:updateUnitsCommand.masterDeviceCode];
             } else {
+                // the array of units only contains one unit
                 if(updateUnitsCommand.units.count > 0) {
                     Unit *unit = [updateUnitsCommand.units objectAtIndex:0];
                     [[UnitManager defaultManager] updateUnit:unit];

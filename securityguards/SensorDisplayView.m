@@ -17,6 +17,7 @@
 }
 
 @synthesize device = _device_;
+@synthesize sensorDisplayViewColor = _sensorDisplayViewColor_;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -41,18 +42,14 @@
     imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 54 / 2, 54 / 2)];
     
     lblValue = [[UILabel alloc] initWithFrame:CGRectMake(29, 0, 40, 29)];
-    lblValue.textColor = [UIColor appBlue];
     lblValue.textAlignment = NSTextAlignmentCenter;
     lblValue.backgroundColor = [UIColor clearColor];
     
     imgDescBackground = [[UIImageView alloc] initWithFrame:CGRectMake(70, 3.5f, 140 / 2, 40 / 2)];
-    imgDescBackground.image = [UIImage imageNamed:@"bg_label_gray"];
-    
     lblDescription = [[UILabel alloc] initWithFrame:CGRectMake(14, 0, 56, 20)];
     lblDescription.textColor = [UIColor whiteColor];
     lblDescription.font = [UIFont systemFontOfSize:12.f];
     lblDescription.backgroundColor = [UIColor clearColor];
-    
     [imgDescBackground addSubview:lblDescription];
     
     [self addSubview:imageView];
@@ -62,6 +59,22 @@
     imageView.image = [UIImage imageNamed:@"icon_temp_blue"];
     lblValue.text = @"28度";
     lblDescription.text = @"细微粉尘";
+    
+    self.sensorDisplayViewColor = SensorDisplayViewColorBlue;
+}
+
+- (void)setSensorDisplayViewColor:(SensorDisplayViewColor)sensorDisplayViewColor {
+    _sensorDisplayViewColor_ = sensorDisplayViewColor;
+    if(_sensorDisplayViewColor_ == SensorDisplayViewColorBlue) {
+        imgDescBackground.image = [UIImage imageNamed:@"bg_label_gray"];
+        lblValue.textColor = [UIColor appBlue];
+    } else if(_sensorDisplayViewColor_ == SensorDisplayViewColorRed) {
+        imgDescBackground.image = [UIImage imageNamed:@"bg_label_red"];
+        lblValue.textColor = [UIColor appRed];
+    } else {
+        imgDescBackground.image = [UIImage imageNamed:@"bg_label_yellow"];
+        lblValue.textColor = [UIColor appDarkYellow];
+    }
 }
 
 @end

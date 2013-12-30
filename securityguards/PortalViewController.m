@@ -10,9 +10,16 @@
 #import "LoginViewController.h"
 #import "XXStringUtils.h"
 #import "GlobalSettings.h"
-#import "SensorDisplayView.h"
+#import "SensorsDisplayPanel.h"
 #import "UnitControlPanel.h"
 #import "UIColor+MoreColor.h"
+#import "XXDrawerViewController.h"
+#import "XXEventSubscriptionPublisher.h"
+#import "NetworkModeChangedEvent.h"
+#import "XXEventNameFilter.h"
+#import "CoreService.h"
+#import "RootViewController.h"
+#import "SpeechViewController.h"
 
 @interface PortalViewController ()
 
@@ -23,6 +30,10 @@
     
     UILabel *lblHealthIndex;
     UILabel *lblHealthIndexGreatThan;
+    
+    UnitControlPanel *controlPanelView;
+    
+    BOOL speechViewIsOpenning;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -51,12 +62,27 @@
         loginNavController.navigationBarHidden = YES;
         [self presentViewController:loginNavController animated:NO completion:^{}];
     }
+//    [GlobalSettings defaultSettings].tcpAddress = @"localhost:8888";
+//    [[CoreService defaultService] startService];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    XXEventSubscription *subscription = [[XXEventSubscription alloc] initWithSubscriber:self eventFilter:[[XXEventNameFilter alloc] initWithSupportedEventName:EventNetworkModeChanged]];
+    [[XXEventSubscriptionPublisher defaultPublisher] subscribeFor:subscription];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [[XXEventSubscriptionPublisher defaultPublisher] unSubscribeForSubscriber:self];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)initDefaults {
+    speechViewIsOpenning = NO;
 }
 
 - (void)initUI {
@@ -67,7 +93,12 @@
      */
     UIButton *btnRight = [[UIButton alloc] initWithFrame:CGRectMake(([UIScreen mainScreen].bounds.size.width - 8 - 55 / 2), [UIDevice systemVersionIsMoreThanOrEuqal7] ? (20 + 8) : 8, 55 / 2, 55 / 2)];
     [btnRight setBackgroundImage:[UIImage imageNamed:@"btn_drawer_right"] forState:UIControlStateNormal];
+    [btnRight addTarget:self action:@selector(showUnitSelectionView:) forControlEvents:UIControlEventTouchUpInside];
     [self.topbarView addSubview:btnRight];
+    
+    UIButton *btnRename = [[UIButton alloc] initWithFrame:CGRectMake(([UIScreen mainScreen].bounds.size.width - 8 - 55 - 5), [UIDevice systemVersionIsMoreThanOrEuqal7] ? (20 + 8) : 8, 55 / 2, 55 / 2)];
+    [btnRename setBackgroundImage:[UIImage imageNamed:@"btn_rename"] forState:UIControlStateNormal];
+    [self.topbarView addSubview:btnRename];
     
     /*
      * Create voice button view
@@ -81,6 +112,7 @@
     [btnVoice setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
     [btnVoice setTitle:NSLocalizedString(@"btn_voice_title", @"") forState:UIControlStateNormal];
     btnVoice.center = CGPointMake(voiceBackgroundView.center.x, btnVoice.center.y);
+    [btnVoice addTarget:self action:@selector(showSpeechViewContoller:) forControlEvents:UIControlEventTouchUpInside];
     
     [voiceBackgroundView addSubview:btnVoice];
     [self.view addSubview:voiceBackgroundView];
@@ -140,40 +172,27 @@
     /*
      * Create sensors display view
      */
-    UIView *displayPanelView = [[UIView alloc] initWithFrame:CGRectMake(0, imgHeathIndex.frame.origin.y + imgHeathIndex.frame.size.height, [UIScreen mainScreen].bounds.size.width, 84)];
-    displayPanelView.backgroundColor = [UIColor appGray];
-    [scrollView addSubview:displayPanelView];
-    
-    SensorDisplayView *sensor = [[SensorDisplayView alloc] initWithPoint:CGPointMake(10, 10) andDevice:nil];
-    [displayPanelView addSubview:sensor];
-    
-    SensorDisplayView *sensor1 = [[SensorDisplayView alloc] initWithPoint:CGPointMake(170, 10) andDevice:nil];
-    [displayPanelView addSubview:sensor1];
-    
-    SensorDisplayView *sensor2 = [[SensorDisplayView alloc] initWithPoint:CGPointMake(10, 47) andDevice:nil];
-    [displayPanelView addSubview:sensor2];
-    
-    SensorDisplayView *sensor3 = [[SensorDisplayView alloc] initWithPoint:CGPointMake(170, 47) andDevice:nil];
-    [displayPanelView addSubview:sensor3];
+    SensorsDisplayPanel *sensorDisplayPanel = [[SensorsDisplayPanel alloc] initWithPoint:CGPointMake(0, imgHeathIndex.frame.origin.y + imgHeathIndex.frame.size.height)];
+    [scrollView addSubview:sensorDisplayPanel];
     
     /*
      * Add blue line
      */
-    UIImageView *imgLineBlue = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, displayPanelView.bounds.size.width, 11)];
+    UIImageView *imgLineBlue = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, sensorDisplayPanel.bounds.size.width, 11)];
     imgLineBlue.image = [UIImage imageNamed:@"line_seperator_heavy_blue"];
-    [displayPanelView addSubview:imgLineBlue];
+    [sensorDisplayPanel addSubview:imgLineBlue];
     
     /*
      * Add separator line
      */
-    UIImageView *imgLine = [[UIImageView alloc] initWithFrame:CGRectMake(0, displayPanelView.bounds.size.height - 2, displayPanelView.bounds.size.width, 2)];
-    imgLine.image = [UIImage imageNamed:@"line_dashed"];
-    [displayPanelView addSubview:imgLine];
+    UIImageView *imgLine = [[UIImageView alloc] initWithFrame:CGRectMake(0, sensorDisplayPanel.bounds.size.height - 2, sensorDisplayPanel.bounds.size.width, 2)];
+    imgLine.image = [UIImage imageNamed:@"line_dashed_h"];
+    [sensorDisplayPanel addSubview:imgLine];
     
     /*
      * Create unit control panel view
      */
-    UnitControlPanel *controlPanelView = [[UnitControlPanel alloc] initWithPoint:CGPointMake(0, displayPanelView.frame.origin.y + displayPanelView.bounds.size.height)];
+    controlPanelView = [[UnitControlPanel alloc] initWithPoint:CGPointMake(0, sensorDisplayPanel.frame.origin.y + sensorDisplayPanel.bounds.size.height)];
     [scrollView addSubview:controlPanelView];
     
     CGFloat totalHeight = 0.f;
@@ -183,5 +202,62 @@
     scrollView.contentSize = CGSizeMake([UIScreen mainScreen].bounds.size.width, totalHeight);
 }
 
+- (void)setUp {
+    
+}
+
+#pragma mark -
+#pragma mark UI Methods
+
+- (void)showUnitSelectionView:(id)sender {
+    if(self.parentViewController != nil && self.parentViewController.parentViewController != nil) {
+        if([self.parentViewController.parentViewController isKindOfClass:[XXDrawerViewController class]]) {
+            XXDrawerViewController *drawerController = (XXDrawerViewController *)self.parentViewController.parentViewController;
+            [drawerController showRightView];
+        }
+    }
+}
+
+- (void)showSpeechViewContoller:(id)sender {
+    if(speechViewIsOpenning) return;
+    if(self.parentViewController != nil) {
+        speechViewIsOpenning = YES;
+        SpeechViewController *speechViewController = [[SpeechViewController alloc] init];
+        RootViewController *rootViewController = (RootViewController *)self.parentViewController.parentViewController;
+        [rootViewController addChildViewController:speechViewController];
+        [self.parentViewController willMoveToParentViewController:nil];
+        [rootViewController transitionFromViewController:self.parentViewController toViewController:speechViewController duration:1.f options:UIViewAnimationOptionTransitionCrossDissolve
+            animations:^{
+            }
+            completion:^(BOOL finished) {
+                [speechViewController didMoveToParentViewController:rootViewController];
+                [self.parentViewController removeFromParentViewController];
+                [rootViewController setDisplayViewController:speechViewController];
+                speechViewIsOpenning = NO;
+            }];
+    }
+}
+
+#pragma mark -
+#pragma mark Event Subscriber
+
+- (NSString *)xxEventSubscriberIdentifier {
+    return @"portalViewControllerSubscriber";
+}
+
+- (void)xxEventPublisherNotifyWithEvent:(XXEvent *)event {
+    if([event isKindOfClass:[NetworkModeChangedEvent class]]) {
+        NetworkModeChangedEvent *evt = (NetworkModeChangedEvent *)event;
+        if(evt.networkMode == NetworkModeExternal) {
+            NSLog(@"wai wang");
+        } else if(evt.networkMode == NetworkModeInternal) {
+            NSLog(@"nei wang");
+        } else if(evt.networkMode == NetworkModeNotChecked) {
+            NSLog(@"not checked");
+        } else {
+            NSLog(@"else");
+        }
+    }
+}
 
 @end

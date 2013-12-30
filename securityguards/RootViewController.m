@@ -7,10 +7,10 @@
 //
 
 #import "RootViewController.h"
-#import "PortalViewController.h"
 #import "NewsViewController.h"
 #import "AccountManagementViewController.h"
 #import "CopyrightViewController.h"
+#import "UnitSelectionDrawerView.h"
 
 @interface RootViewController ()
 
@@ -18,7 +18,7 @@
 
 @implementation RootViewController {
     UINavigationController *portalNavViewController;
-    UIViewController *displayViewController;
+    UIViewController *displayVC;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -41,7 +41,6 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 
-    
     // init left view
     NSArray *navItems = [NSArray arrayWithObjects:
         [[LeftNavItem alloc] initWithIdentifier:@"portalItem" andDisplayName:NSLocalizedString(@"portal_drawer_title", @"") andImageName:@"icon_portal"],
@@ -58,8 +57,15 @@
         [self leftNavViewItemChanged:[navItems objectAtIndex:0]];
     }
     
+    // init right view
+    
+    UnitSelectionDrawerView *unitSelectionView = [[UnitSelectionDrawerView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    self.rightView = unitSelectionView;
+    
     self.leftViewVisibleWidth = 160;
     self.showDrawerMaxTrasitionX = 50;
+    self.rightViewVisibleWidth = 160;
+    self.rightViewCenterX = 200;
     
     // setup
     [self initialDrawerViewController];
@@ -102,16 +108,35 @@
     if(centerViewController == nil) return;
     
     [self addChildViewController:centerViewController];
-    if(displayViewController != nil) {
-        [displayViewController willMoveToParentViewController:nil];
+    if(displayVC != nil) {
+        [displayVC willMoveToParentViewController:nil];
     }
     self.centerView = centerViewController.view;
     [centerViewController didMoveToParentViewController:self];
-    if(displayViewController != nil) {
-        [displayViewController removeFromParentViewController];
+    if(displayVC != nil) {
+        [displayVC removeFromParentViewController];
     }
-    displayViewController = centerViewController;
+    displayVC = centerViewController;
     [self showCenterView:YES];
+    
+    self.rightViewEnable = [@"portalItem" isEqualToString:item.identifier];
+}
+
+- (PortalViewController *)portalViewController {
+    if(portalNavViewController == nil
+       || portalNavViewController.childViewControllers == nil
+       || portalNavViewController.childViewControllers.count == 0) {
+        return nil;
+    }
+    UIViewController *controller = [portalNavViewController.childViewControllers objectAtIndex:0];
+    if([controller isKindOfClass:[PortalViewController class]]) {
+        return (PortalViewController *)controller;
+    }
+    return nil;
+}
+
+- (void)setDisplayViewController:(UIViewController *)displayViewController {
+    displayVC = displayViewController;
 }
 
 @end

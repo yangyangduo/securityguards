@@ -1,5 +1,5 @@
 //
-//  SensorsDisplayPanel.h
+//  UnitSelectionDrawerView.h
 //  securityguards
 //
 //  Created by Zhao yang on 12/27/13.
@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SensorsDisplayPanel : UIView
+@interface UnitSelectionDrawerView : UIView<UITableViewDataSource, UITableViewDelegate>
 
-- (id)initWithPoint:(CGPoint)point;
+- (void)refresh;
 
 @end

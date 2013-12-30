@@ -33,11 +33,11 @@
 
 @interface ExtranetClientSocket : ClientSocket
 
-@property (weak, nonatomic) id<MessageHandler> messageHandlerDelegate;
-@property (assign, nonatomic, readonly) BOOL isConnect;
+@property (nonatomic, weak) id<MessageHandler> messageHandlerDelegate;
+@property (nonatomic, assign, readonly) BOOL isConnectted;
+@property (nonatomic, assign, readonly) BOOL isConnectting;
+@property (nonatomic, assign, readonly) BOOL canWrite;
 
-- (BOOL)canWrite;
-- (BOOL)isConnectting;
 - (void)writeData:(NSData *)data;
 
 @end
