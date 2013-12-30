@@ -7,6 +7,7 @@
 //
 
 #import "XXTextField.h"
+#import "UIDevice+SystemVersion.h"
 
 @implementation XXTextField
 

@@ -8,6 +8,7 @@
 
 #import "DrawerViewController.h"
 #import "XXEventSubscriber.h"
+#import "TextViewController.h"
 
 @interface PortalViewController : DrawerViewController<XXEventSubscriber>
 

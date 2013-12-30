@@ -101,6 +101,7 @@
     
     UIButton *btnRename = [[UIButton alloc] initWithFrame:CGRectMake(([UIScreen mainScreen].bounds.size.width - 8 - 55 - 5), [UIDevice systemVersionIsMoreThanOrEuqal7] ? (20 + 8) : 8, 55 / 2, 55 / 2)];
     [btnRename setBackgroundImage:[UIImage imageNamed:@"btn_rename"] forState:UIControlStateNormal];
+    [btnRename addTarget:self action:@selector(btnRenameUnit:) forControlEvents:UIControlEventTouchUpInside];
     [self.topbarView addSubview:btnRename];
     
     /*
@@ -239,6 +240,15 @@
                 speechViewIsOpenning = NO;
             }];
     }
+}
+
+- (void)btnRenameUnit:(id)sender {
+    TextViewController *txtViewController = [[TextViewController alloc] init];
+    txtViewController.title = NSLocalizedString(@"rename_unit", @"");
+    if([UnitManager defaultManager].currentUnit != nil) {
+        txtViewController.defaultValue = [UnitManager defaultManager].currentUnit.name;
+    }
+    [self presentViewController:txtViewController animated:YES completion:^{}];
 }
 
 #pragma mark -

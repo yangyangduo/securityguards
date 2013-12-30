@@ -11,6 +11,7 @@
 "btn_voice_title"                =      "点击开启语音模式";
 "unknow_error"                   =      "系统错误";
 "request_timeout"                =      "请求超时";
+"submit"                         =      "提交";
 
 
 /****************	Right Drawer View Strings	****************/
@@ -33,6 +34,8 @@
 "heath_index_desc2"              =      "过";
 "heath_index_desc3"              =      "的同类用户";
 "speech_view_title"              =      "语音控制";
+"rename_unit"                    =      "重命名";
+"enter_new_unit_name"            =      "请输入新的主控名";
 
 
 /****************	Speech View Strings	****************/
@@ -41,7 +44,7 @@
 "release_end_speaking"           =      "松开结束";
 "finger_up_cancel_send"          =      "手指上滑,取消发送";
 "finger_release_cancel_send"     =      "松开手指,取消发送";
-"speech_tips"                    =      "您好,请说语音指令";
+"speech_tips"                    =      "您好,请说出语音指令";
 
 
 /****************	Login Strings	****************/
