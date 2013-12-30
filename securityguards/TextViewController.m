@@ -20,6 +20,7 @@
 }
 
 @synthesize defaultValue;
+@synthesize delegate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

@@ -8,8 +8,14 @@
 
 #import "NavigationViewController.h"
 
+@protocol TextViewDelegate <NSObject>
+
+
+@end
+
 @interface TextViewController : NavigationViewController
 
 @property (nonatomic, strong) NSString *defaultValue;
+@property (nonatomic, weak) id<TextViewDelegate> delegate;
 
 @end
