@@ -88,9 +88,9 @@
         btnLogin = [[UIButton alloc] initWithFrame:CGRectMake(0, txtPassword.frame.origin.y+txtPassword.frame.size.height+20, 400/2, 53/2)];
         btnLogin.center = CGPointMake(self.view.center.x,btnLogin.center.y);
         [btnLogin setTitle:NSLocalizedString(@"login", @"") forState:UIControlStateNormal];
-        [btnLogin setBackgroundImage:[UIImage imageNamed:@"button-royalblue-400.png"] forState:UIControlStateNormal];
-        [btnLogin setBackgroundImage:[UIImage imageNamed:@"button-skyblue-400.png"] forState:UIControlStateHighlighted];
-        [btnLogin setImage:[UIImage imageNamed:@"button-gray-400.png"] forState:UIControlStateDisabled];
+        [btnLogin setBackgroundImage:[UIImage imageNamed:@"btn_blue"] forState:UIControlStateNormal];
+        [btnLogin setBackgroundImage:[UIImage imageNamed:@"btn_blue_highlighted"] forState:UIControlStateHighlighted];
+        [btnLogin setImage:[UIImage imageNamed:@"btn_gray"] forState:UIControlStateDisabled];
         [btnLogin setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [btnLogin addTarget:self action:@selector(btnLoginPressed:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:btnLogin];
@@ -119,8 +119,6 @@
         [self.view addSubview:btnRegister];
         
     }
-    
-    
 }
 
 #pragma mark-
@@ -170,8 +168,8 @@
         }
     }
     [self loginFailed:resp];
-    
 }
+
 - (void)loginFailed:(RestResponse *) resp{
     if(abs(resp.statusCode) == 1001) {
         [[AlertView currentAlertView] setMessage:NSLocalizedString(@"request_timeout", @"") forType:AlertViewTypeFailed];

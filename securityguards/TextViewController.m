@@ -65,8 +65,8 @@
     
     UIButton *btnSubmit =  [[UIButton alloc] initWithFrame:CGRectMake(0, txt.frame.origin.y + txt.bounds.size.height + 30, 400 / 2, 53 / 2)];
     btnSubmit.center = CGPointMake(self.view.center.x, btnSubmit.center.y);
-    [btnSubmit setBackgroundImage:[UIImage imageNamed:@"button-royalblue-400"] forState:UIControlStateNormal];
-    [btnSubmit setBackgroundImage:[UIImage imageNamed:@"button-skyblue-400"] forState:UIControlStateHighlighted];
+    [btnSubmit setBackgroundImage:[UIImage imageNamed:@"btn_blue"] forState:UIControlStateNormal];
+    [btnSubmit setBackgroundImage:[UIImage imageNamed:@"btn_blue_highlighted"] forState:UIControlStateHighlighted];
     [btnSubmit setTitle:NSLocalizedString(@"submit", @"") forState:UIControlStateNormal];
     [self.view addSubview:btnSubmit];
 }
@@ -82,7 +82,5 @@
 - (void)popupViewController {
     [self dismissViewControllerAnimated:YES completion:^{}];
 }
-
-
 
 @end

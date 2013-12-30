@@ -230,7 +230,7 @@
         RootViewController *rootViewController = (RootViewController *)self.parentViewController.parentViewController;
         [rootViewController addChildViewController:speechViewController];
         [self.parentViewController willMoveToParentViewController:nil];
-        [rootViewController transitionFromViewController:self.parentViewController toViewController:speechViewController duration:1.f options:UIViewAnimationOptionTransitionCrossDissolve
+        [rootViewController transitionFromViewController:self.parentViewController toViewController:speechViewController duration:0.8f options:UIViewAnimationOptionTransitionCrossDissolve
             animations:^{
             }
             completion:^(BOOL finished) {

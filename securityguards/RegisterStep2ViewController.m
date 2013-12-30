@@ -95,9 +95,9 @@
         btnRegister = [[UIButton alloc] initWithFrame:CGRectMake(0, lblTip.frame.origin.y+lblTip.frame.size.height+10, 400/2, 53/2)];
         btnRegister.center = CGPointMake(self.view.center.x, btnRegister.center.y);
         [btnRegister setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [btnRegister setImage:[UIImage imageNamed:@"button-royalblue-400.png"] forState:UIControlStateNormal];
-        [btnRegister setImage:[UIImage imageNamed:@"button-gray-400.png"] forState:UIControlStateDisabled];
-        [btnRegister setImage:[UIImage imageNamed:@"button-skyblue-400.png"] forState:UIControlStateHighlighted];
+        [btnRegister setImage:[UIImage imageNamed:@"btn_blue"] forState:UIControlStateNormal];
+        [btnRegister setImage:[UIImage imageNamed:@"btn_gray"] forState:UIControlStateDisabled];
+        [btnRegister setImage:[UIImage imageNamed:@"btn_blue_highlighted"] forState:UIControlStateHighlighted];
         btnRegister.enabled = NO;
         [self.view addSubview:btnRegister];
     }
@@ -111,9 +111,9 @@
         [btnResendVerificationCode setTitle:[NSString stringWithFormat:@"%@(%i)",NSLocalizedString(@"resend.verification.code", @""),countDown] forState:UIControlStateDisabled];
         [btnResendVerificationCode setTitle:[NSString stringWithFormat:@"%@",NSLocalizedString(@"resend.verification.code", @"")] forState:UIControlStateNormal];
         [btnResendVerificationCode setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [btnResendVerificationCode setImage:[UIImage imageNamed:@"button-royalblue-400.png"] forState:UIControlStateNormal];
-        [btnResendVerificationCode setImage:[UIImage imageNamed:@"button-gray-400.png"] forState:UIControlStateDisabled];
-        [btnResendVerificationCode setImage:[UIImage imageNamed:@"button-skyblue-400.png"] forState:UIControlStateHighlighted];
+        [btnResendVerificationCode setImage:[UIImage imageNamed:@"btn_blue.png"] forState:UIControlStateNormal];
+        [btnResendVerificationCode setImage:[UIImage imageNamed:@"btn_gray.png"] forState:UIControlStateDisabled];
+        [btnResendVerificationCode setImage:[UIImage imageNamed:@"btn_blue_highlighted.png"] forState:UIControlStateHighlighted];
         btnResendVerificationCode.enabled = NO;
         [self.view addSubview:btnResendVerificationCode];
     }
