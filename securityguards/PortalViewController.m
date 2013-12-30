@@ -159,10 +159,10 @@
     lblDescription3.font = [UIFont systemFontOfSize:17.f];
     lblHealthIndexGreatThan.font = [UIFont systemFontOfSize:22.f];
     
-    lblDescription1.text = NSLocalizedString(@"heath_index_desc", @"");
-    lblDescription2.text = NSLocalizedString(@"heath_index_desc", @"");
+    lblDescription1.text = NSLocalizedString(@"heath_index_desc1", @"");
+    lblDescription2.text = NSLocalizedString(@"heath_index_desc2", @"");
     lblHealthIndexGreatThan.text = @"81%";
-    lblDescription3.text = NSLocalizedString(@"heath_index_desc", @"");
+    lblDescription3.text = NSLocalizedString(@"heath_index_desc3", @"");
     
     lblDescription1.backgroundColor = [UIColor clearColor];
     lblDescription2.backgroundColor = [UIColor clearColor];
