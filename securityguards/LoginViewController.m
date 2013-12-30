@@ -15,6 +15,7 @@
 #import "CoreService.h"
 #import "AlertView.h"
 #import "ForgetPasswordViewController.h"
+#import "XXTextField.h"
 #define ORIGIN_HEIGHT [UIScreen mainScreen].bounds.size.height/6
 
 @interface LoginViewController ()
@@ -72,20 +73,13 @@
         txtPhoneNumber.keyboardType = UIKeyboardTypeNumberPad;
         txtPhoneNumber.clearButtonMode = UITextFieldViewModeWhileEditing;
         txtPassword.autocorrectionType = UITextAutocapitalizationTypeNone;
-        txtPhoneNumber.font = [UIFont systemFontOfSize:14.f];
-        txtPhoneNumber.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0,6, 0)];
-        txtPhoneNumber.leftViewMode  = UITextFieldViewModeAlways;
-        txtPhoneNumber.contentVerticalAlignment  = UIControlContentVerticalAlignmentCenter;
         [self.view addSubview:txtPhoneNumber];
     }
     
     if (txtPassword == nil) {
-        txtPassword = [[UITextField alloc] initWithFrame:CGRectMake(0, txtPhoneNumber.frame.origin.y+txtPhoneNumber.frame.size.height+20, 400/2, 53/2)];
+        txtPassword = [XXTextField textFieldWithPoint:CGPointMake(0, txtPhoneNumber.frame.origin.y+txtPhoneNumber.frame.size.height+20)];
         txtPassword.center = CGPointMake(self.view.center.x, txtPassword.center.y);
-        [txtPassword setBackground:[UIImage imageNamed:@"textbox-white-400.png"]];
         txtPassword.placeholder = NSLocalizedString(@"password", @"");
-        txtPassword.clearButtonMode = UITextFieldViewModeWhileEditing;
-        txtPassword.autocorrectionType = UITextAutocapitalizationTypeNone;
         txtPassword.secureTextEntry = YES;
         [self.view addSubview:txtPassword];
     }
@@ -188,8 +182,7 @@
 }
 
 - (void)btnForgetPasswordPressed:(id)sender {
-    ForgetPasswordViewController *forgetPasswordViewController = [[ForgetPasswordViewController alloc] init];
-    [self.navigationController pushViewController:forgetPasswordViewController animated:YES];
+    
 }
 
 - (void)btnRegisterPressed:(id)sender {

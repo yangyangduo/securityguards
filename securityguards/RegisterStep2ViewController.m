@@ -118,7 +118,7 @@
 - (void)countDownForResend{
     if (countDown>0) {
         countDown--;
-        [btnResendVerificationCode setTitle:[NSString stringWithFormat:@"%@(%i\')",NSLocalizedString(@"resend.verification.code", @""),countDown] forState:UIControlStateDisabled];
+        [btnResendVerificationCode setTitle:[NSString stringWithFormat:@"%@(%iS)",NSLocalizedString(@"resend.verification.code", @""),countDown] forState:UIControlStateDisabled];
     }else{
         [countDownTimer invalidate];
         countDownTimer = nil;

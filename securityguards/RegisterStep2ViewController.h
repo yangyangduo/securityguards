@@ -10,6 +10,6 @@
 
 @interface RegisterStep2ViewController : NavigationViewController
 @property (strong,nonatomic) NSString *phoneNumber;
-@property (assign,nonatomic) NSInteger countDown;
+@property (assign,nonatomic) int countDown;
 
 @end
