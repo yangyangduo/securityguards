@@ -54,6 +54,7 @@
     self.topbarView.title = @"Test";
     
     BOOL hasLogin = ![[XXStringUtils emptyString] isEqualToString:[GlobalSettings defaultSettings].secretKey];
+    hasLogin = NO;
     if(hasLogin) {
         
     } else {
