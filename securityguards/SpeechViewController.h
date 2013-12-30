@@ -7,7 +7,13 @@
 //
 
 #import "NavigationViewController.h"
+#import "ConversationMessage.h"
 
-@interface SpeechViewController : NavigationViewController
+@interface SpeechViewController : NavigationViewController<UITableViewDataSource, UITableViewDelegate>
+
+- (id)initWithMessages:(NSArray *)messages;
+
+- (void)clearAllMessages;
+- (void)addMessage:(ConversationMessage *)message;
 
 @end
