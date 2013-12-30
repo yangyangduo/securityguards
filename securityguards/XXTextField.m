@@ -19,6 +19,19 @@
     return self;
 }
 
++ (UITextField *)textFieldWithPoint:(CGPoint) point{
+    UITextField *txtField = [[UITextField alloc] initWithFrame:CGRectMake(point.x,point.y, 400/2, 53/2)];
+    [txtField setBackground:[UIImage imageNamed:@"textbox-white-400.png"]];
+    txtField.clearButtonMode = UITextFieldViewModeWhileEditing;
+    txtField.autocorrectionType = UITextAutocapitalizationTypeNone;
+    txtField.font = [UIFont systemFontOfSize:14.f];
+    txtField.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0,6, 0)];
+    txtField.leftViewMode  = UITextFieldViewModeAlways;
+    txtField.contentVerticalAlignment  = UIControlContentVerticalAlignmentCenter;
+    return txtField;
+
+}
+
 /*
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
