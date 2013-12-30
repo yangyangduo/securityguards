@@ -178,6 +178,7 @@
 		6FEC0FF5186C73A900CB0D70 /* icon_news@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FEC0FF4186C73A900CB0D70 /* icon_news@2x.png */; };
 		6FEC0FF7186C73B400CB0D70 /* icon_copyright@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FEC0FF6186C73B400CB0D70 /* icon_copyright@2x.png */; };
 		F215125D187105380039CC8A /* ForgetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F215125C187105380039CC8A /* ForgetPasswordViewController.m */; };
+		F21512601871227C0039CC8A /* XXTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = F215125F1871227C0039CC8A /* XXTextField.m */; };
 		F24E552C18702180000DB402 /* button-gray-400@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F24E552B18702180000DB402 /* button-gray-400@2x.png */; };
 		F2F93692186D10FA002F7904 /* login-image-bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2F93690186D10FA002F7904 /* login-image-bg@2x.png */; };
 		F2F93693186D10FA002F7904 /* logo-login@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2F93691186D10FA002F7904 /* logo-login@2x.png */; };
@@ -486,6 +487,8 @@
 		6FEC0FF9186C75F500CB0D70 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		F215125B187105380039CC8A /* ForgetPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetPasswordViewController.h; sourceTree = "<group>"; };
 		F215125C187105380039CC8A /* ForgetPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetPasswordViewController.m; sourceTree = "<group>"; };
+		F215125E1871227C0039CC8A /* XXTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXTextField.h; sourceTree = "<group>"; };
+		F215125F1871227C0039CC8A /* XXTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXTextField.m; sourceTree = "<group>"; };
 		F24E552B18702180000DB402 /* button-gray-400@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-gray-400@2x.png"; sourceTree = "<group>"; };
 		F2F93690186D10FA002F7904 /* login-image-bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-image-bg@2x.png"; sourceTree = "<group>"; };
 		F2F93691186D10FA002F7904 /* logo-login@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo-login@2x.png"; sourceTree = "<group>"; };
@@ -672,6 +675,8 @@
 				6F6004C6186BD0990085B4BD /* drawer_nav */,
 				6F6004A9186BCFA30085B4BD /* button */,
 				6F6004A5186BCF5E0085B4BD /* topbar */,
+				F215125E1871227C0039CC8A /* XXTextField.h */,
+				F215125F1871227C0039CC8A /* XXTextField.m */,
 			);
 			name = components;
 			sourceTree = "<group>";
@@ -1478,6 +1483,7 @@
 				6F600493186BCED60085B4BD /* XXStringUtils.m in Sources */,
 				6F8F57BD18710D940033228F /* ParagraphBuilder.m in Sources */,
 				6F600491186BCED60085B4BD /* XXEventSubscription.m in Sources */,
+				F21512601871227C0039CC8A /* XXTextField.m in Sources */,
 				6F600572186BF3940085B4BD /* CurrentUnitChangedEvent.m in Sources */,
 				6F600523186BE9890085B4BD /* DeviceCommandReceivedCameraServer.m in Sources */,
 				6F8F57C5187111B70033228F /* ConversationTextMessage.m in Sources */,

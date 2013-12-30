@@ -72,6 +72,10 @@
         txtPhoneNumber.keyboardType = UIKeyboardTypeNumberPad;
         txtPhoneNumber.clearButtonMode = UITextFieldViewModeWhileEditing;
         txtPassword.autocorrectionType = UITextAutocapitalizationTypeNone;
+        txtPhoneNumber.font = [UIFont systemFontOfSize:14.f];
+        txtPhoneNumber.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0,6, 0)];
+        txtPhoneNumber.leftViewMode  = UITextFieldViewModeAlways;
+        txtPhoneNumber.contentVerticalAlignment  = UIControlContentVerticalAlignmentCenter;
         [self.view addSubview:txtPhoneNumber];
     }
     
@@ -184,7 +188,8 @@
 }
 
 - (void)btnForgetPasswordPressed:(id)sender {
-    
+    ForgetPasswordViewController *forgetPasswordViewController = [[ForgetPasswordViewController alloc] init];
+    [self.navigationController pushViewController:forgetPasswordViewController animated:YES];
 }
 
 - (void)btnRegisterPressed:(id)sender {

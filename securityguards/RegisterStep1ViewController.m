@@ -53,7 +53,7 @@
         txtPhoneNumber.placeholder = NSLocalizedString(@"please.input.phone.number.for.registerring", @"");
         txtPhoneNumber.clearButtonMode = UITextFieldViewModeWhileEditing;
         txtPhoneNumber.autocorrectionType = UITextAutocapitalizationTypeNone;
-        txtPhoneNumber.font = [UIFont systemFontOfSize:15.f];
+//        txtPhoneNumber.font = [UIFont systemFontOfSize:14.f];
         txtPhoneNumber.keyboardType = UIKeyboardTypeNumberPad;
         txtPhoneNumber.clearButtonMode = UITextFieldViewModeWhileEditing;
         [self.view addSubview:txtPhoneNumber];
@@ -90,8 +90,8 @@
 #pragma mark button actions
 
 - (void)btnGetVerificationPressed:(id) sender{
-//    AccountService *accountService = [[AccountService alloc] init];
-//    [accountService sendVerificationCodeFor:txtPhoneNumber.text success:@selector(sendVerificationCodeSuccess:) failed:@selector(sendVerificationCodeFailed:) target:self callback:nil];
+    AccountService *accountService = [[AccountService alloc] init];
+    [accountService sendVerificationCodeFor:txtPhoneNumber.text success:@selector(sendVerificationCodeSuccess:) failed:@selector(sendVerificationCodeFailed:) target:self callback:nil];
     RegisterStep2ViewController *step2ViewController = [[RegisterStep2ViewController alloc] init];
     step2ViewController.countDown = 60;
     [self.navigationController pushViewController:step2ViewController animated:YES];

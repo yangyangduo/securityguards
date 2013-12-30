@@ -71,7 +71,7 @@
     
     if (btnGetPasswordBack == nil) {
         btnGetPasswordBack = [[UIButton alloc] initWithFrame:CGRectMake(0, lblTip.frame.size.height+lblTip.frame.origin.y+10, 400/2, 53/2)];
-        [btnGetPasswordBack setTitle:NSLocalizedString(@"get.password.back", @"") forState:UIControlStateNormal];
+        [btnGetPasswordBack setTitle:NSLocalizedString(@"get.new.password", @"") forState:UIControlStateNormal];
         [btnGetPasswordBack setBackgroundImage:[UIImage imageNamed:@"button-royalblue-400.png"] forState:UIControlStateNormal];
         [btnGetPasswordBack setBackgroundImage:[UIImage imageNamed:@"button-skyblue-400.png"] forState:UIControlStateHighlighted];
         [btnGetPasswordBack setImage:[UIImage imageNamed:@"button-gray-400.png"] forState:UIControlStateDisabled];

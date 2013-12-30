@@ -62,5 +62,14 @@
 "phone_has_been_register"                     = "手机已被注册";
 "phone_format_invalid"                        = "号码格式错误";
 "verification.code"                           =  "验证码";
+"please.input.verification.code"              =  "请输入注册时的手机号";
+
+/**************** Forget password Strings *************/
+"forget.password.tip"                         =  "*确认后密码将会被重置，请在收到新密码后24小时内登录，否则将会失效！";
+"forget.password"                             =  "忘记密码";
+"please.input.phone.number.you.registered"    =  "请输入注册时的手机号";
+"get.new.password"                            =  "获取新密码";
+
+
 
 
