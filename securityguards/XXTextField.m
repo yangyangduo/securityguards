@@ -21,7 +21,7 @@
 
 + (UITextField *)textFieldWithPoint:(CGPoint) point{
     UITextField *txtField = [[UITextField alloc] initWithFrame:CGRectMake(point.x,point.y, 400/2, 53/2)];
-    txtField.background = [UIImage imageNamed:@"textbox-white-400"];
+    txtField.background = [UIImage imageNamed:@"bg_textbox"];
     txtField.clearButtonMode = UITextFieldViewModeWhileEditing;
     txtField.autocorrectionType = UITextAutocapitalizationTypeNone;
     txtField.font = [UIFont systemFontOfSize:14.f];
