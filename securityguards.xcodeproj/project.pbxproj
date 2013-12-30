@@ -672,6 +672,7 @@
 		6F6004A4186BCF500085B4BD /* components */ = {
 			isa = PBXGroup;
 			children = (
+				6F7247E018715768003B325F /* text_field */,
 				6F7247DC18714D60003B325F /* speech_state_view */,
 				6FA3B2FC186E795000EBC7FD /* actionsheet */,
 				6F732726186D42BB00A1276B /* sensors */,
@@ -679,8 +680,6 @@
 				6F6004C6186BD0990085B4BD /* drawer_nav */,
 				6F6004A9186BCFA30085B4BD /* button */,
 				6F6004A5186BCF5E0085B4BD /* topbar */,
-				F215125E1871227C0039CC8A /* XXTextField.h */,
-				F215125F1871227C0039CC8A /* XXTextField.m */,
 			);
 			name = components;
 			sourceTree = "<group>";
@@ -1120,6 +1119,15 @@
 				6F7247DE18714D70003B325F /* SpeechStateView.m */,
 			);
 			name = speech_state_view;
+			sourceTree = "<group>";
+		};
+		6F7247E018715768003B325F /* text_field */ = {
+			isa = PBXGroup;
+			children = (
+				F215125E1871227C0039CC8A /* XXTextField.h */,
+				F215125F1871227C0039CC8A /* XXTextField.m */,
+			);
+			name = text_field;
 			sourceTree = "<group>";
 		};
 		6F732711186D1E3300A1276B /* portal */ = {
