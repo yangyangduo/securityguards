@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface XXTextField : UITextField
-+ (UITextField *)textFieldWithPoint:(CGPoint) point;
+
++ (UITextField *)textFieldWithPoint:(CGPoint)point;
+
 @end

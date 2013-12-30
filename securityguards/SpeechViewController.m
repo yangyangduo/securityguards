@@ -189,6 +189,7 @@ typedef NS_ENUM(NSInteger, RecognizerState) {
     if(cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         cell.backgroundColor = [UIColor clearColor];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
 
     UIView *msgView = [cell viewWithTag:MESSAGE_VIEW_TAG];
