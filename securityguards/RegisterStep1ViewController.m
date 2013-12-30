@@ -41,6 +41,7 @@
 
 - (void)initUI{
     [super initUI];
+    [self registerTapGestureToResignKeyboard];
     self.view.backgroundColor = [UIColor whiteColor];
     self.topbarView.title = NSLocalizedString(@"register.account", @"");
     UILabel *lblPhoneNumber = [[UILabel alloc] initWithFrame:CGRectMake(5, TOPBAR_HEIGHT+20, 80, 44)];
