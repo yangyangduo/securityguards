@@ -24,13 +24,13 @@
 
 - (void)sendVerificationCodeFor:(NSString *)phoneNumber success:(SEL)s failed:(SEL)f target:(id)t callback:(id)cb {
     NSString *checkCode = [XXStringUtils md5HexDigest:[NSString stringWithFormat:@"%@%@", phoneNumber, MD5_KEY]];
-    NSString *url = [NSString stringWithFormat:@"/regist?mobileCode=%@&checkCode=%@", phoneNumber, checkCode];
+    NSString *url = [NSString stringWithFormat:@"/regist?mobileCode=%@&checkCode=%@&appKey=%@", phoneNumber, checkCode,APP_KEY];
     [self.client getForUrl:url acceptType:@"text/*" success:s error:f for:t callback:cb];
 }
 
 - (void)sendModifyUsernameVerificationCodeFor:(NSString *)phoneNumber success:(SEL)s failed:(SEL)f target:(id)t callback:(id)cb{
     NSString *checkCode = [XXStringUtils md5HexDigest:[NSString stringWithFormat:@"%@%@", phoneNumber, MD5_KEY]];
-    NSString *url = [NSString stringWithFormat:@"/modify/phone/check?mobileCode=%@&checkCode=%@", phoneNumber, checkCode];
+    NSString *url = [NSString stringWithFormat:@"/modify/phone/check?mobileCode=%@&checkCode=%@&appKey=%@", phoneNumber, checkCode,APP_KEY];
     [self.client getForUrl:url acceptType:@"text/*" success:s error:f for:t callback:cb];
 
 }
@@ -45,12 +45,12 @@
 }
 
 - (void)sendPasswordToMobile:(NSString *)phoneNumber success:(SEL)s failed:(SEL)f target:(id)t callback:(id)cb {
-    NSString *url = [NSString stringWithFormat:@"/forget/pwd?mobileCode=%@&checkCode=%@", phoneNumber, [XXStringUtils md5HexDigest:[NSString stringWithFormat:@"%@FFFF", phoneNumber]]];
+    NSString *url = [NSString stringWithFormat:@"/forget/pwd?mobileCode=%@&checkCode=%@&appKey=%@", phoneNumber, [XXStringUtils md5HexDigest:[NSString stringWithFormat:@"%@FFFF", phoneNumber]],APP_KEY];
     [self.client getForUrl:url acceptType:@"text/*" success:s error:f for:t callback:cb];
 }
 
 - (void)modifyUsernameByPhoneNumber:(NSString *)phoneNumber checkCode:(NSString *)checkCode oldPassword:(NSString *)password success:(SEL)s failed:(SEL)f target:(id)t callback:(id)cb{
-    NSString *url = [NSString stringWithFormat:@"/modify/phone?id=%@&pwd=%@&mobile=%@&checkCode=%@",[GlobalSettings defaultSettings].deviceCode,password, phoneNumber,checkCode];
+    NSString *url = [NSString stringWithFormat:@"/modify/phone?id=%@&pwd=%@&mobile=%@&checkCode=%@&appKey=%@",[GlobalSettings defaultSettings].deviceCode,password, phoneNumber,checkCode,APP_KEY];
     [self.client getForUrl:url acceptType:@"text/*" success:s error:f for:t callback:cb];
 }
 

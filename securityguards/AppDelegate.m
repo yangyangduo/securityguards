@@ -11,7 +11,6 @@
 #import "XXEventSubscriptionPublisher.h"
 #import "UnitManager.h"
 #import "GlobalSettings.h"
-#import "RootViewController.h"
 
 @implementation AppDelegate
 

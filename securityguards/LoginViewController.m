@@ -28,6 +28,7 @@
     UIButton *btnForgetPassword;
     UIButton *btnRegister;
 }
+@synthesize hasLogin;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -44,8 +45,6 @@
 	// Do any additional setup after loading the view.
     
     //self.view.backgroundColor = [UIColor whiteColor];
-    [self initUI];
-    
     
     UIButton *btnTest = [[UIButton alloc] initWithFrame:CGRectMake(230, 150, 80, 29)];
     [btnTest setTitle:@"Skip" forState:UIControlStateNormal];
@@ -55,7 +54,8 @@
     [self.view addSubview:btnTest];
 }
 - (void)initUI{
-    
+    [super initUI];
+    [self registerTapGestureToResignKeyboard];
     UIImageView *backgroundImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
     backgroundImgView.image = [UIImage imageNamed:@"login-image-bg.png"];
     [self.view addSubview:backgroundImgView];
