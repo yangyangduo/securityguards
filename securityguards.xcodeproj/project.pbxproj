@@ -138,6 +138,7 @@
 		6FEC0FF3186C739700CB0D70 /* icon_logout@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FEC0FF2186C739700CB0D70 /* icon_logout@2x.png */; };
 		6FEC0FF5186C73A900CB0D70 /* icon_news@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FEC0FF4186C73A900CB0D70 /* icon_news@2x.png */; };
 		6FEC0FF7186C73B400CB0D70 /* icon_copyright@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FEC0FF6186C73B400CB0D70 /* icon_copyright@2x.png */; };
+		F215125D187105380039CC8A /* ForgetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F215125C187105380039CC8A /* ForgetPasswordViewController.m */; };
 		F24E552C18702180000DB402 /* button-gray-400@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F24E552B18702180000DB402 /* button-gray-400@2x.png */; };
 		F2F93692186D10FA002F7904 /* login-image-bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2F93690186D10FA002F7904 /* login-image-bg@2x.png */; };
 		F2F93693186D10FA002F7904 /* logo-login@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2F93691186D10FA002F7904 /* logo-login@2x.png */; };
@@ -394,6 +395,8 @@
 		6FEC0FF6186C73B400CB0D70 /* icon_copyright@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_copyright@2x.png"; sourceTree = "<group>"; };
 		6FEC0FF8186C75F500CB0D70 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		6FEC0FF9186C75F500CB0D70 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		F215125B187105380039CC8A /* ForgetPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetPasswordViewController.h; sourceTree = "<group>"; };
+		F215125C187105380039CC8A /* ForgetPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetPasswordViewController.m; sourceTree = "<group>"; };
 		F24E552B18702180000DB402 /* button-gray-400@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-gray-400@2x.png"; sourceTree = "<group>"; };
 		F2F93690186D10FA002F7904 /* login-image-bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-image-bg@2x.png"; sourceTree = "<group>"; };
 		F2F93691186D10FA002F7904 /* logo-login@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo-login@2x.png"; sourceTree = "<group>"; };
@@ -943,6 +946,8 @@
 				6F6005B5186C1B320085B4BD /* RegisterStep1ViewController.m */,
 				6F6005B7186C1B410085B4BD /* RegisterStep2ViewController.h */,
 				6F6005B8186C1B410085B4BD /* RegisterStep2ViewController.m */,
+				F215125B187105380039CC8A /* ForgetPasswordViewController.h */,
+				F215125C187105380039CC8A /* ForgetPasswordViewController.m */,
 			);
 			name = login_register;
 			sourceTree = "<group>";
@@ -1260,6 +1265,7 @@
 				6F600521186BE9890085B4BD /* DeviceCommandGetCameraServer.m in Sources */,
 				6F6004A3186BCEF10085B4BD /* XXEventNameFilter.m in Sources */,
 				6F600557186BF0710085B4BD /* CameraPicPath.m in Sources */,
+				F215125D187105380039CC8A /* ForgetPasswordViewController.m in Sources */,
 				6F60053D186BF0010085B4BD /* DeviceCommandGetUnitsHandler.m in Sources */,
 				6F600576186BF3940085B4BD /* NotificationsFileUpdatedEvent.m in Sources */,
 				6F600586186BF8880085B4BD /* SMDateFormatter.m in Sources */,

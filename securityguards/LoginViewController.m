@@ -14,6 +14,7 @@
 #import "XXStringUtils.h"
 #import "CoreService.h"
 #import "AlertView.h"
+#import "ForgetPasswordViewController.h"
 #define ORIGIN_HEIGHT [UIScreen mainScreen].bounds.size.height/6
 
 @interface LoginViewController ()

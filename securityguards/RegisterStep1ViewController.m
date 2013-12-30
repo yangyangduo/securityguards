@@ -37,7 +37,6 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    [self initUI];
 }
 
 - (void)initUI{
@@ -138,7 +137,7 @@
 }
 
 - (void)sendVerificationCodeFailed:(RestResponse *) resp{
-    if(abs(resp.statusCode) == 1001) {
+    if(abs((int)resp.statusCode) == 1001) {
         [[AlertView currentAlertView] setMessage:NSLocalizedString(@"request_timeout", @"") forType:AlertViewTypeSuccess];
     } else {
         [[AlertView currentAlertView] setMessage:NSLocalizedString(@"unknow_error", @"") forType:AlertViewTypeFailed];
