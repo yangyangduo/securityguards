@@ -185,7 +185,7 @@
 
 - (void)clientSocketMessageDiscard:(NSData *)discardMessage {
 #ifdef DEBUG
-    NSLog(@"[TCP COMMAND SOCKET] Some data will discard, the length is %d", discardMessage.length);
+    NSLog(@"[TCP COMMAND SOCKET] Some data will discard, the length is %lul", (unsigned long)discardMessage.length);
 #endif
 }
 
