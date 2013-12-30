@@ -41,6 +41,7 @@
 "release_end_speaking"           =      "松开结束";
 "finger_up_cancel_send"          =      "手指上滑,取消发送";
 "finger_release_cancel_send"     =      "松开手指,取消发送";
+"speech_tips"                    =      "您好,请说语音指令";
 
 
 /****************	Login Strings	****************/

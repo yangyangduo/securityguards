@@ -11,6 +11,7 @@
 #import "ConversationTextMessage.h"
 #import "UIColor+MoreColor.h"
 #import "XXStringUtils.h"
+#import "SMDateFormatter.h"
 
 #define MESSAGE_VIEW_TAG 999
 
@@ -49,35 +50,6 @@ typedef NS_ENUM(NSInteger, RecognizerState) {
     self = [super init];
     if(self) {
         _messages_ = [NSMutableArray array];
-        
-        ConversationTextMessage *msg = [[ConversationTextMessage alloc] init];
-        msg.textMessage = @"你好， 你是一个猪";
-        msg.messageOwner = MESSAGE_OWNER_MINE;
-        msg.timeMessage = @"2012-12-12";
-        
-        [_messages_ addObject:msg];
-        
-        ConversationTextMessage *msg1 = [[ConversationTextMessage alloc] init];
-        msg1.textMessage = @"你好， 你是一个猪fj就度搜IF奖度搜ifdfsji发生较低偶发束带结发 收到就覅";
-        msg1.messageOwner = MESSAGE_OWNER_THEIRS;
-        msg1.timeMessage = @"2012-12-12";
-        
-        [_messages_ addObject:msg1];
-        
-        ConversationTextMessage *msg2 = [[ConversationTextMessage alloc] init];
-        msg2.textMessage = @"你好， 你是上地附近第四季覅 度搜积分 第三方记下来呢接任务无金额猪打了他";
-        msg2.messageOwner = MESSAGE_OWNER_MINE;
-        msg2.timeMessage = @"2012-12-12";
-        
-        [_messages_ addObject:msg2];
-        
-        ConversationTextMessage *msg3 = [[ConversationTextMessage alloc] init];
-        msg3.textMessage = @"你好， 电视机佛收到就猪";
-        msg3.messageOwner = MESSAGE_OWNER_THEIRS;
-        msg3.timeMessage = @"2012-12-12";
-        
-        [_messages_ addObject:msg3];
-        
     }
     return self;
 }
@@ -114,6 +86,15 @@ typedef NS_ENUM(NSInteger, RecognizerState) {
 - (void)viewWillDisappear:(BOOL)animated {
     RootViewController *rootViewController = (RootViewController *)self.parentViewController;
     [rootViewController enableGestureForDrawerView];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    if(_messages_.count > 0) return;
+    ConversationTextMessage *msg = [[ConversationTextMessage alloc] init];
+    msg.textMessage = NSLocalizedString(@"speech_tips", @"");
+    msg.messageOwner = MESSAGE_OWNER_THEIRS;
+    msg.timeMessage = [SMDateFormatter dateToString:[NSDate date] format:@"MM-dd HH:mm:ss"];
+    [self addMessage:msg];
 }
 
 - (void)initDefaults {
@@ -158,6 +139,9 @@ typedef NS_ENUM(NSInteger, RecognizerState) {
     tblMessages.backgroundColor = [UIColor clearColor];
     
     [self.view addSubview:tblMessages];
+}
+
+- (void)setUp {
 }
 
 - (void)addMessage:(ConversationMessage *)message {
