@@ -124,9 +124,9 @@ typedef NS_ENUM(NSInteger, RecognizerState) {
 
 - (void)initUI {
     [super initUI];
-    self.view.backgroundColor = [UIColor blackColor];
-    self.view.alpha = 0.7f;
-    self.topbarView.title = @"speech test";
+    
+    self.topbarView.title = NSLocalizedString(@"speech_view_title", @"");
+    self.view.backgroundColor = [UIColor whiteColor];
     
     /*
      * Create voice button view
@@ -222,27 +222,6 @@ typedef NS_ENUM(NSInteger, RecognizerState) {
 
 #pragma mark -
 #pragma mark Speech Recognizer
-
-//- (void)startSpeechAnimate {
-//    if(imgSpeechVolumnAffect != nil) {
-//        imgSpeechVolumnAffect.hidden = NO;
-//        if(!imgSpeechVolumnAffect.isAnimating) {
-//            [imgSpeechVolumnAffect startAnimating];
-//        }
-//    }
-//}
-//
-//- (void)stopSpeechAnimate {
-//    if(imgSpeechVolumnAffect != nil) {
-//        if(imgSpeechVolumnAffect.isAnimating) {
-//            [imgSpeechVolumnAffect stopAnimating];
-//        }
-//        imgSpeechVolumnAffect.hidden = YES;
-//    }
-//}
-
-#pragma mark -
-#pragma mark speech control
 
 - (void)resetRecognizer {
     recognizerState = RecognizerStateReady;

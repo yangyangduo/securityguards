@@ -14,7 +14,7 @@
 - (void)handle:(DeviceCommand *)command {
     [super handle:command];
     if([command isKindOfClass:[DeviceCommandUpdateAccount class]]) {
-        DeviceCommandUpdateAccount *deviceCommand = (DeviceCommandUpdateAccount *)command;
+//        DeviceCommandUpdateAccount *deviceCommand = (DeviceCommandUpdateAccount *)command;
 //        NavigationView *nav = (NavigationView *)[[ViewsPool sharedPool] viewWithIdentifier:@"portalView"];
 //        if(nav != nil) {
 //            DrawerView *drawerView = (DrawerView *)nav.ownerController.leftView;

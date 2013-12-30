@@ -29,9 +29,10 @@
 
 /****************	Portal View Strings	****************/
 
-"heath_index_desc_tips1"         =      "您的健康安全指数已超";
-"heath_index_desc_tips2"         =      "过";
-"heath_index_desc_tips3"         =      "的同类用户";
+"heath_index_desc1"              =      "您的健康安全指数已超";
+"heath_index_desc2"              =      "过";
+"heath_index_desc3"              =      "的同类用户";
+"speech_view_title"              =      "语音控制";
 
 
 /****************	Speech View Strings	****************/
@@ -63,7 +64,9 @@
 "phone_format_invalid"                        = "号码格式错误";
 "verification.code"                           =  "验证码";
 
+
 /**************** Forget password Strings *************/
+
 "forget.password.tip"                         =  "*确认后密码将会被重置，请在收到新密码后24小时内登录，否则将会失效！";
 "forget.password"                             =  "忘记密码";
 "please.input.phone.number.you.registered"    =  "请输入注册时的手机号";
