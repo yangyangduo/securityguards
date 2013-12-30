@@ -12,6 +12,7 @@
 #import "UIColor+MoreColor.h"
 #import "XXStringUtils.h"
 #import "SMDateFormatter.h"
+#import "SpeechStateView.h"
 
 #define MESSAGE_VIEW_TAG 999
 
@@ -306,7 +307,8 @@ typedef NS_ENUM(NSInteger, RecognizerState) {
         [self willMoveToParentViewController:nil];
         [rootViewController addChildViewController:toViewController];
         [rootViewController transitionFromViewController:self toViewController:toViewController duration:1.0f options:UIViewAnimationOptionTransitionCrossDissolve
-            animations:^{}
+            animations:^{
+            }
             completion:^(BOOL finished){
                 [toViewController didMoveToParentViewController:rootViewController];
                 [self removeFromParentViewController];

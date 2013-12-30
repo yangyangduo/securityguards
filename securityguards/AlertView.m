@@ -149,12 +149,12 @@
         case AlertViewTypeSuccess:
             indicatorView.hidden = YES;
             imgTips.hidden = NO;
-            imgTips.image = [UIImage imageNamed:@"alert_success.png"];
+            imgTips.image = [UIImage imageNamed:@"alert_success"];
             break;
         case AlertViewTypeFailed:
             indicatorView.hidden = YES;
             imgTips.hidden = NO;
-            imgTips.image = [UIImage imageNamed:@"alert_failed.png"];
+            imgTips.image = [UIImage imageNamed:@"alert_failed"];
             break;
         default:
             break;

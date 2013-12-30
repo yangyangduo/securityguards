@@ -135,6 +135,7 @@
 		6F7247D3187141EA003B325F /* iflyMSC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F7247D2187141EA003B325F /* iflyMSC.framework */; };
 		6F7247DA1871443B003B325F /* bubble_mine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F7247D81871443B003B325F /* bubble_mine@2x.png */; };
 		6F7247DB1871443B003B325F /* bubble_theirs@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F7247D91871443B003B325F /* bubble_theirs@2x.png */; };
+		6F7247DF18714D70003B325F /* SpeechStateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7247DE18714D70003B325F /* SpeechStateView.m */; };
 		6F73270D186D159600A1276B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6F73270F186D159600A1276B /* Localizable.strings */; };
 		6F732713186D1E4E00A1276B /* bg_health_index@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F732712186D1E4E00A1276B /* bg_health_index@2x.png */; };
 		6F732717186D20C500A1276B /* icon_temp_blue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F732714186D20C500A1276B /* icon_temp_blue@2x.png */; };
@@ -425,6 +426,8 @@
 		6F7247D2187141EA003B325F /* iflyMSC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = iflyMSC.framework; sourceTree = "<group>"; };
 		6F7247D81871443B003B325F /* bubble_mine@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bubble_mine@2x.png"; sourceTree = "<group>"; };
 		6F7247D91871443B003B325F /* bubble_theirs@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bubble_theirs@2x.png"; sourceTree = "<group>"; };
+		6F7247DD18714D70003B325F /* SpeechStateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeechStateView.h; sourceTree = "<group>"; };
+		6F7247DE18714D70003B325F /* SpeechStateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeechStateView.m; sourceTree = "<group>"; };
 		6F73270E186D159600A1276B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		6F732710186D159800A1276B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		6F732712186D1E4E00A1276B /* bg_health_index@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_health_index@2x.png"; sourceTree = "<group>"; };
@@ -669,6 +672,7 @@
 		6F6004A4186BCF500085B4BD /* components */ = {
 			isa = PBXGroup;
 			children = (
+				6F7247DC18714D60003B325F /* speech_state_view */,
 				6FA3B2FC186E795000EBC7FD /* actionsheet */,
 				6F732726186D42BB00A1276B /* sensors */,
 				6F600540186BF0350085B4BD /* alertview */,
@@ -1109,6 +1113,15 @@
 			name = ui;
 			sourceTree = "<group>";
 		};
+		6F7247DC18714D60003B325F /* speech_state_view */ = {
+			isa = PBXGroup;
+			children = (
+				6F7247DD18714D70003B325F /* SpeechStateView.h */,
+				6F7247DE18714D70003B325F /* SpeechStateView.m */,
+			);
+			name = speech_state_view;
+			sourceTree = "<group>";
+		};
 		6F732711186D1E3300A1276B /* portal */ = {
 			isa = PBXGroup;
 			children = (
@@ -1445,6 +1458,7 @@
 				6F600528186BE9890085B4BD /* DeviceCommandUpdateNotifications.m in Sources */,
 				6F6005B3186C1B160085B4BD /* LoginViewController.m in Sources */,
 				6F6005B6186C1B320085B4BD /* RegisterStep1ViewController.m in Sources */,
+				6F7247DF18714D70003B325F /* SpeechStateView.m in Sources */,
 				6F60058F186BF8EC0085B4BD /* ExtranetClientSocket.m in Sources */,
 				6F600524186BE9890085B4BD /* DeviceCommandUpdateAccount.m in Sources */,
 				6F600492186BCED60085B4BD /* XXEventSubscriptionPublisher.m in Sources */,
