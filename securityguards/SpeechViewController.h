@@ -8,8 +8,9 @@
 
 #import "NavigationViewController.h"
 #import "ConversationMessage.h"
+#import "SpeechRecognitionUtil.h"
 
-@interface SpeechViewController : NavigationViewController<UITableViewDataSource, UITableViewDelegate>
+@interface SpeechViewController : NavigationViewController<UITableViewDataSource, UITableViewDelegate, SpeechRecognitionNotificationDelegate>
 
 - (id)initWithMessages:(NSArray *)messages;
 

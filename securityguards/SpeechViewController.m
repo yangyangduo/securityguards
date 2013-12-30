@@ -10,8 +10,17 @@
 #import "RootViewController.h"
 #import "ConversationTextMessage.h"
 #import "UIColor+MoreColor.h"
+#import "XXStringUtils.h"
 
 #define MESSAGE_VIEW_TAG 999
+
+typedef NS_ENUM(NSInteger, RecognizerState) {
+    RecognizerStateReady,
+    RecognizerStatePrepareRecord,
+    RecognizerStateRecording,
+    RecognizerStateRecordingEnd,
+    RecognizerStateProcessing
+};
 
 @interface SpeechViewController ()
 
@@ -20,6 +29,9 @@
 @implementation SpeechViewController {
     UITableView *tblMessages;
     NSMutableArray *_messages_;
+    
+    SpeechRecognitionUtil *speechRecognitionUtil;
+    RecognizerState recognizerState;
     
     BOOL portalViewIsOpenning;
 }
@@ -106,8 +118,8 @@
 
 - (void)initDefaults {
     [super initDefaults];
-    
     portalViewIsOpenning = NO;
+    recognizerState = RecognizerStateReady;
 }
 
 - (void)initUI {
@@ -131,26 +143,23 @@
     btnVoice.center = CGPointMake(voiceBackgroundView.center.x, btnVoice.center.y);
     
     /*
-     
     [btnVoice addTarget:self action:@selector(btnSpeechTouchDown:) forControlEvents:UIControlEventTouchDown];
     [btnVoice addTarget:self action:@selector(btnSpeechTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
     [btnVoice addTarget:self action:@selector(btnSpeechTouchUpOutside:) forControlEvents:UIControlEventTouchUpOutside];
     [btnVoice addTarget:self action:@selector(btnSpeechTouchDragEnter:) forControlEvents:UIControlEventTouchDragEnter];
     [btnVoice addTarget:self action:@selector(btnSpeechTouchDragExit:) forControlEvents:UIControlEventTouchDragExit];
-     
      */
     
     [voiceBackgroundView addSubview:btnVoice];
     [self.view addSubview:voiceBackgroundView];
     
-    tblMessages = [[UITableView alloc] initWithFrame:CGRectMake(0, self.topbarView.bounds.size.height + 5, self.view.bounds.size.width, self.view.bounds.size.height - self.topbarView.bounds.size.height - voiceBackgroundView.bounds.size.height - 5) style:UITableViewStylePlain];
+    tblMessages = [[UITableView alloc] initWithFrame:CGRectMake(0, self.topbarView.bounds.size.height + 10, self.view.bounds.size.width, self.view.bounds.size.height - self.topbarView.bounds.size.height - voiceBackgroundView.bounds.size.height - 10) style:UITableViewStylePlain];
     tblMessages.delegate = self;
     tblMessages.dataSource = self;
     tblMessages.separatorStyle = UITableViewCellSeparatorStyleNone;
     tblMessages.backgroundColor = [UIColor clearColor];
     
     [self.view addSubview:tblMessages];
-    
 }
 
 - (void)addMessage:(ConversationMessage *)message {
@@ -211,6 +220,120 @@
         [cell addSubview:msgView];
     }
     return cell;
+}
+
+#pragma mark -
+#pragma mark Speech Recognizer
+
+//- (void)startSpeechAnimate {
+//    if(imgSpeechVolumnAffect != nil) {
+//        imgSpeechVolumnAffect.hidden = NO;
+//        if(!imgSpeechVolumnAffect.isAnimating) {
+//            [imgSpeechVolumnAffect startAnimating];
+//        }
+//    }
+//}
+//
+//- (void)stopSpeechAnimate {
+//    if(imgSpeechVolumnAffect != nil) {
+//        if(imgSpeechVolumnAffect.isAnimating) {
+//            [imgSpeechVolumnAffect stopAnimating];
+//        }
+//        imgSpeechVolumnAffect.hidden = YES;
+//    }
+//}
+
+#pragma mark -
+#pragma mark speech control
+
+- (void)resetRecognizer {
+    recognizerState = RecognizerStateReady;
+}
+
+- (void)btnSpeechTouchDown:(id)sender {
+    if(recognizerState == RecognizerStateReady) {
+        recognizerState = RecognizerStatePrepareRecord;
+        [self startListening:nil];
+    }
+}
+
+- (void)btnSpeechTouchUpInside:(id)sender {
+    [speechRecognitionUtil stopListening];
+}
+
+- (void)btnSpeechTouchUpOutside:(id)sender {
+    [speechRecognitionUtil cancel];
+}
+
+- (void)btnSpeechTouchDragExit:(id)sender {
+    //touch down and dragg out of button
+}
+
+- (void)btnSpeechTouchDragEnter:(id)sender {
+    //touch down and dragg enter button when previous status is out of button
+}
+
+- (void)startListening:(NSTimer *)timer {
+    if(speechRecognitionUtil == nil) {
+        speechRecognitionUtil = [SpeechRecognitionUtil current];
+    }
+    speechRecognitionUtil.speechRecognitionNotificationDelegate = self;
+    if(![speechRecognitionUtil startListening]) {
+#ifdef DEBUG
+        NSLog(@"[SPEECH RECOGNIZER] Start lisenting failed.");
+#endif
+    }
+}
+
+#pragma mark -
+#pragma mark speech recognizer notification delegate
+
+- (void)beginRecord {
+    recognizerState = RecognizerStateRecording;
+}
+
+- (void)endRecord {
+    recognizerState = RecognizerStateRecordingEnd;
+}
+
+- (void)recognizeCancelled {
+    [self speechRecognizerFailed:@"[SPEECH RECOGNIZER] Cancelled by user."];
+}
+
+- (void)speakerVolumeChanged:(int)volume {
+    if(recognizerState == RecognizerStateRecording) {
+        //        int v = volume / 3;
+        //        if(v > 9) v = 9;
+        //        if(v < 0) v = 0;
+        //        [btnSpeech setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"btn_speech_0%d.png", v]] forState:UIControlStateNormal];
+    }
+}
+
+- (void)recognizeSuccess:(NSString *)result {
+    if(![XXStringUtils isBlank:result]) {
+        //process text message
+#ifdef DEBUG
+        NSLog(@"[SPEECH RECOGNIZER] Send voice command [%@].", result);
+#endif
+//        DeviceCommandVoiceControl *command = (DeviceCommandVoiceControl *)[CommandFactory commandForType:CommandTypeUpdateDeviceViaVoice];
+//        command.masterDeviceCode = [SMShared current].memory.currentUnit.identifier;
+//        command.voiceText = result;
+//        [[SMShared current].deliveryService executeDeviceCommand:command];
+    } else {
+        [self speechRecognizerFailed:@"[SPEECH RECOGNIZER] No speaking"];
+    }
+    [self resetRecognizer];
+}
+
+- (void)recognizeError:(int)errorCode {
+    [self speechRecognizerFailed:[NSString stringWithFormat:@"[SPEECH RECOGNIZER] Error, the code is %d", errorCode]];
+    [self resetRecognizer];
+}
+
+- (void)speechRecognizerFailed:(NSString *)message {
+#ifdef DEBUG
+    NSLog(@"[SPEECH RECOGNIZER] Recognize failed, reason is [ %@ ]", message);
+#endif
 }
 
 - (void)popupViewController {

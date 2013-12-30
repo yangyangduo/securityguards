@@ -9,7 +9,7 @@
 #import "AccountService.h"
 #import "XXStringUtils.h"
 
-#define AUTH_URL @"http://smarthome.hentre.com:6868/FrontServer-1.0/auth"
+#define AUTH_URL @"http://172.16.8.162:6868/FrontServer-1.0/auth"
 #define MD5_KEY  @"FFFF"
 
 @implementation AccountService
