@@ -8,7 +8,7 @@
 
 #import "RootViewController.h"
 #import "NewsViewController.h"
-#import "AccountManagementViewController.h"
+#import "UserManagementViewController.h"
 #import "CopyrightViewController.h"
 #import "UnitSelectionDrawerView.h"
 
@@ -45,7 +45,7 @@
     NSArray *navItems = [NSArray arrayWithObjects:
         [[LeftNavItem alloc] initWithIdentifier:@"portalItem" andDisplayName:NSLocalizedString(@"portal_drawer_title", @"") andImageName:@"icon_portal"],
         [[LeftNavItem alloc] initWithIdentifier:@"newsItem" andDisplayName:NSLocalizedString(@"news_drawer_title", @"") andImageName:@"icon_news"],
-        [[LeftNavItem alloc] initWithIdentifier:@"accountManagerItem" andDisplayName:NSLocalizedString(@"account_mgr_drawer_title", @"") andImageName:@"icon_account"],
+        [[LeftNavItem alloc] initWithIdentifier:@"accountManagerItem" andDisplayName:NSLocalizedString(@"user_mgr_drawer_title", @"") andImageName:@"icon_account"],
         [[LeftNavItem alloc] initWithIdentifier:@"copyrightItem" andDisplayName:NSLocalizedString(@"copyright_drawer_title", @"") andImageName:@"icon_copyright"],
         [[LeftNavItem alloc] initWithIdentifier:@"logoutItem" andDisplayName:NSLocalizedString(@"logout_drawer_title", @"") andImageName:@"icon_logout"], nil];
     LeftNavView *navView = [[LeftNavView alloc] initWithFrame:[UIScreen mainScreen].bounds andNavItems:navItems];
@@ -60,6 +60,7 @@
     // init right view
     
     UnitSelectionDrawerView *unitSelectionView = [[UnitSelectionDrawerView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    unitSelectionView.weakRootViewController = self;
     self.rightView = unitSelectionView;
     
     self.leftViewVisibleWidth = 160;
@@ -96,7 +97,7 @@
         navController.navigationBarHidden = YES;
         centerViewController = navController;
     } else if([@"accountManagerItem" isEqualToString:item.identifier]) {
-        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:[[AccountManagementViewController alloc] init]];
+        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:[[UserManagementViewController alloc] init]];
         navController.navigationBarHidden = YES;
         centerViewController = navController;
     } else if([@"copyrightItem" isEqualToString:item.identifier]) {

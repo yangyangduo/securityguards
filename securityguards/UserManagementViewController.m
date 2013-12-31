@@ -1,18 +1,18 @@
 //
-//  AccountManagementViewController.m
+//  UserManagementViewController.m
 //  securityguards
 //
 //  Created by Zhao yang on 12/26/13.
 //  Copyright (c) 2013 hentre. All rights reserved.
 //
 
-#import "AccountManagementViewController.h"
+#import "UserManagementViewController.h"
 
-@interface AccountManagementViewController ()
+@interface UserManagementViewController ()
 
 @end
 
-@implementation AccountManagementViewController
+@implementation UserManagementViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -35,9 +35,26 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    
+}
+
+- (void)initDefaults {
+    
+}
+
 - (void)initUI {
     [super initUI];
+    self.topbarView.title = NSLocalizedString(@"user_mgr_drawer_title", @"");
     self.view.backgroundColor = [UIColor whiteColor];
+}
+
+- (void)setUp {
+    [super setUp];
 }
 
 @end

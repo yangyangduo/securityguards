@@ -17,5 +17,6 @@
 + (UIColor *)appYellow;
 + (UIColor *)appRed;
 + (UIColor *)appDarkYellow;
++ (UIColor *)appYellowFont;
 
 @end

@@ -1,5 +1,5 @@
 //
-//  AccountManagementViewController.h
+//  UserManagementViewController.h
 //  securityguards
 //
 //  Created by Zhao yang on 12/26/13.
@@ -8,6 +8,6 @@
 
 #import "DrawerViewController.h"
 
-@interface AccountManagementViewController : DrawerViewController
+@interface UserManagementViewController : DrawerViewController
 
 @end

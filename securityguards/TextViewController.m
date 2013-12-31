@@ -20,6 +20,7 @@
 }
 
 @synthesize defaultValue;
+@synthesize txtDescription;
 @synthesize delegate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -48,7 +49,6 @@
     self.view.backgroundColor = [UIColor appGray];
     
     lbl = [[UILabel alloc] initWithFrame:CGRectMake(10, self.topbarView.bounds.size.height + 5, 250, 30)];
-    lbl.text = [NSString stringWithFormat:@"%@:", NSLocalizedString(@"enter_new_unit_name", @"")];
     
     lbl.font = [UIFont systemFontOfSize:13.f];
     lbl.backgroundColor = [UIColor clearColor];
@@ -73,7 +73,8 @@
 }
 
 - (void)setUp {
-    txt.text = defaultValue;
+    lbl.text = self.txtDescription == nil ? [XXStringUtils emptyString] : self.txtDescription;
+    txt.text = self.defaultValue == nil ? [XXStringUtils emptyString] : self.defaultValue;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
