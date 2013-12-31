@@ -12,8 +12,9 @@
 #import "DeviceCommand.h"
 #import "ForgetPasswordViewController.h"
 #import "XXTextField.h"
+#import "UIDevice+SystemVersion.h"
 
-#define ORIGIN_HEIGHT 72
+#define ORIGIN_HEIGHT 52+([UIDevice systemVersionIsMoreThanOrEuqal7]?20:0)
 
 @interface LoginViewController ()
 
@@ -41,6 +42,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+   
 }
 
 - (void)initUI{

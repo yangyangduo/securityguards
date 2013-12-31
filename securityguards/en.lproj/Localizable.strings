@@ -14,7 +14,7 @@
 "unknow_error"                   =      "系统错误";
 "request_timeout"                =      "请求超时";
 "submit"                         =      "提交";
-"please_wait"                    = "请稍后";
+"please_wait"                    =      "请稍后";
 
 
 /****************	Right Drawer View Strings	****************/
@@ -63,7 +63,7 @@
 "login"                 =   "登录";
 "name_or_pwd_error"     =   "账号或密码错误";
 "login_later"           =   "请稍后再登录";
-
+"login_success"         =   "登录成功";
 
 /****************  Register Strings **************/
 
