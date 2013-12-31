@@ -70,6 +70,7 @@
         UILabel *detailTextLabel = [[UILabel alloc] initWithFrame:CGRectMake(cell.bounds.size.width - 150, 7, 120, 29)];
         detailTextLabel.tag = DETAIL_TEXT_LABEL_TAG;
         detailTextLabel.textColor = [UIColor appBlue];
+        detailTextLabel.backgroundColor = [UIColor clearColor];
         detailTextLabel.textAlignment = NSTextAlignmentRight;
         detailTextLabel.font = [UIFont systemFontOfSize:16.f];
         [cell addSubview:detailTextLabel];
