@@ -22,7 +22,6 @@
 @end
 
 @implementation RegisterStep2ViewController{
-    UITextField *txtPhoneNumber;
     UITextField *txtVerificationCode;
     UIButton *btnRegister;
     UIButton *btnResendVerificationCode;
@@ -48,24 +47,13 @@
 
 - (void)initUI{
     [super initUI];
-    [self registerTapGestureToResignKeyboard];
+    
     self.topbarView.title = NSLocalizedString(@"register.account", @"");
     
-//    UILabel *lblPhoneNumber = [[UILabel alloc] initWithFrame:CGRectMake(5, TOPBAR_HEIGHT+20, 80, 44)];
-//    lblPhoneNumber.text = [NSString stringWithFormat:@"%@ :", NSLocalizedString(@"phone.number", @"")];
-//    lblPhoneNumber.font = [UIFont systemFontOfSize:16.0f];
-//    [self.view addSubview:lblPhoneNumber];
-//
     UILabel *lblVerificationCode = [[UILabel alloc] initWithFrame:CGRectMake(5, TOPBAR_HEIGHT+5, 80, 44)];
     lblVerificationCode.text = [NSString stringWithFormat:@"%@ :", NSLocalizedString(@"verification.code", @"")];
     lblVerificationCode.font = [UIFont systemFontOfSize:16.0f];
     [self.view addSubview:lblVerificationCode];
-//
-//    if (txtPhoneNumber == nil) {
-//        txtPhoneNumber = [[UITextField alloc] initWithFrame:CGRectMake(85, 20+TOPBAR_HEIGHT, 200, 44)];
-//        txtPhoneNumber.text = phoneNumber;
-//        [self.view addSubview:txtPhoneNumber];
-//    }
     
     if (txtVerificationCode == nil) {
         txtVerificationCode = [[UITextField alloc] initWithFrame:CGRectMake(85, lblVerificationCode.frame.origin.y, 200, 44)];
@@ -91,7 +79,7 @@
     [self.view addSubview:lblTip];
     
     if (btnRegister == nil) {
-        btnRegister = [[UIButton alloc] initWithFrame:CGRectMake(0, lblTip.frame.origin.y+lblTip.frame.size.height+10, 400/2, 53/2)];
+        btnRegister = [[UIButton alloc] initWithFrame:CGRectMake(0, lblTip.frame.origin.y+lblTip.frame.size.height+5, 400/2, 53/2)];
         btnRegister.center = CGPointMake(self.view.center.x, btnRegister.center.y);
         [btnRegister setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [btnRegister addTarget:self action:@selector(btnRegisterPressed:) forControlEvents:UIControlEventTouchUpInside];
@@ -103,7 +91,7 @@
     }
     
     if (btnResendVerificationCode == nil) {
-        btnResendVerificationCode = [[UIButton alloc] initWithFrame:CGRectMake(0, btnRegister.frame.origin.y+btnRegister.frame.size.height+10, 400/2, 53/2)];
+        btnResendVerificationCode = [[UIButton alloc] initWithFrame:CGRectMake(0, btnRegister.frame.origin.y+btnRegister.frame.size.height+5, 400/2, 53/2)];
         btnResendVerificationCode.center = CGPointMake(self.view.center.x, btnResendVerificationCode.center.y);
         [btnResendVerificationCode setTitle:[NSString stringWithFormat:@"%@(%is)",NSLocalizedString(@"resend.verification.code", @""),countDown] forState:UIControlStateDisabled];
         if (countDownTimer == nil) {
@@ -118,7 +106,15 @@
         btnResendVerificationCode.enabled = NO;
         [self.view addSubview:btnResendVerificationCode];
     }
-    
+}
+
+- (void)setUp {
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    if(!txtVerificationCode.isFirstResponder) {
+        [txtVerificationCode becomeFirstResponder];
+    }
 }
 
 #pragma mark-

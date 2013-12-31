@@ -53,7 +53,6 @@
         txtPhoneNumber.autocorrectionType = UITextAutocapitalizationTypeNone;
 //        txtPhoneNumber.font = [UIFont systemFontOfSize:14.f];
         txtPhoneNumber.keyboardType = UIKeyboardTypeNumberPad;
-        [txtPhoneNumber becomeFirstResponder];
         txtPhoneNumber.clearButtonMode = UITextFieldViewModeWhileEditing;
         txtPhoneNumber.delegate =self;
         [self.view addSubview:txtPhoneNumber];
@@ -82,8 +81,12 @@
         [btnGetVerificationCode addTarget:self action:@selector(btnGetVerificationPressed:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:btnGetVerificationCode];
     }
-    
-    
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    if(!txtPhoneNumber.isFirstResponder) {
+        [txtPhoneNumber becomeFirstResponder];
+    }
 }
 
 #pragma mark-
