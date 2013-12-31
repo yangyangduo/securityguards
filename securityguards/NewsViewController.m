@@ -40,8 +40,4 @@
     self.topbarView.title = NSLocalizedString(@"news_drawer_title", @"");
 }
 
-- (void)clear {
-    [super clear];
-}
-
 @end

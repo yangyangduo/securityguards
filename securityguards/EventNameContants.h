@@ -15,5 +15,6 @@
 #define EventUnitsListUpdated           @"UnitsListUpdated"
 #define EventNotificationsFileUpdated   @"NotificationsFileUpdated"
 #define EventDeviceCommand              @"DeviceCommand"
+#define EventUserLogout                 @"Logout"
 
 #endif

@@ -35,9 +35,9 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 }
+
 - (void)initUI{
     [super initUI];
-    self.view.backgroundColor = [UIColor whiteColor];
     self.topbarView.title = NSLocalizedString(@"forget.password", @"");
     UILabel *lblPhoneNumber = [[UILabel alloc] initWithFrame:CGRectMake(5, TOPBAR_HEIGHT+20, 80, 44)];
     lblPhoneNumber.text = [NSString stringWithFormat:@"%@ :", NSLocalizedString(@"phone.number", @"")];
@@ -97,8 +97,6 @@
     [[[AccountService alloc] init] sendPasswordToMobile:phoneNumber success:@selector(sendPasswordSuccess:) failed:@selector(sendPasswordFailed:) target:self callback:nil];
     [[AlertView currentAlertView] setMessage:NSLocalizedString(@"please_wait", @"") forType:AlertViewTypeWaitting];
     [[AlertView currentAlertView] alertAutoDisappear:NO lockView:YES];
-
-    
 }
 
 - (void)sendPasswordSuccess:(RestResponse *)resp {
@@ -147,7 +145,6 @@
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
     return range.location<11;
 }
-
 
 - (void)didReceiveMemoryWarning
 {

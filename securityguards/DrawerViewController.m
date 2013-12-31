@@ -55,14 +55,4 @@
     }
 }
 
-- (void)showLoginViewController {
-    UINavigationController *loginNavController = [[UINavigationController alloc] initWithRootViewController:[[LoginViewController alloc] init]];
-    loginNavController.navigationBarHidden = YES;
-    [self presentViewController:loginNavController animated:NO completion:^{}];
-}
-
-- (void)clear {
-    
-}
-
 @end

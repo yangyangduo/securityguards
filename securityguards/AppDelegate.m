@@ -9,17 +9,22 @@
 #import "AppDelegate.h"
 #import "CoreService.h"
 #import "XXEventSubscriptionPublisher.h"
+#import "UIApplication+TopViewController.h"
 #import "UnitManager.h"
 #import "GlobalSettings.h"
 #import "AlertView.h"
+#import "UserLogoutEvent.h"
 
-@implementation AppDelegate
+@implementation AppDelegate {
+    UIViewController *_rootViewController_;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.rootViewController = [[RootViewController alloc] init];
+    _rootViewController_ = self.window.rootViewController;
     [self.window makeKeyAndVisible];
     return YES;
 }
@@ -58,6 +63,16 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+#pragma mark -
+#pragma mark Top View Controller
+
+- (UIViewController *)topViewController {
+    return [[UIApplication sharedApplication] topViewController:_rootViewController_];
+}
+
+#pragma mark -
+#pragma mark Logout
+
 - (void)logout {
     [[AlertView currentAlertView] setMessage:NSLocalizedString(@"logouting", @"") forType:AlertViewTypeWaitting];
     [[AlertView currentAlertView] alertAutoDisappear:NO lockView:YES];
@@ -70,24 +85,11 @@
     [[UnitManager defaultManager] clear];
     [[GlobalSettings defaultSettings] clearAuth];
     
-    if(self.window.rootViewController != nil && [self.window.rootViewController isKindOfClass:[RootViewController class]]) {
-        RootViewController *rootViewController = (RootViewController *)self.window.rootViewController;
-        if(rootViewController.displayViewController != nil) {
-            UIViewController *controller;
-            if([rootViewController.displayViewController isKindOfClass:[UINavigationController class]]) {
-                UINavigationController *navViewController = (UINavigationController *)rootViewController.displayViewController;
-                if(navViewController.viewControllers.count > 0) {
-                    controller = [navViewController.viewControllers objectAtIndex:0];
-                }
-            } else {
-                controller = rootViewController.displayViewController;
-            }
-            if(controller != nil && [controller isKindOfClass:[DrawerViewController class]]) {
-                DrawerViewController *drawerViewController = (DrawerViewController *)controller;
-                [drawerViewController showLoginViewController];
-            }
-        }
-    }
+    UINavigationController *loginNavController = [[UINavigationController alloc] initWithRootViewController:[[LoginViewController alloc] init]];
+    loginNavController.navigationBarHidden = YES;
+    [[self topViewController] presentViewController:loginNavController animated:NO completion:^{}];
+    
+    [[XXEventSubscriptionPublisher defaultPublisher] publishWithEvent:[[UserLogoutEvent alloc] init]];
     
     [[AlertView currentAlertView] setMessage:NSLocalizedString(@"logout_success", @"") forType:AlertViewTypeSuccess];
     [[AlertView currentAlertView] delayDismissAlertView];

@@ -39,8 +39,4 @@
     [super initUI];
 }
 
-- (void)clear {
-    [super clear];
-}
-
 @end

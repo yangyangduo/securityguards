@@ -16,6 +16,7 @@
 #define ORIGIN_HEIGHT 72
 
 @interface LoginViewController ()
+
 @end
 
 @implementation LoginViewController{
@@ -40,12 +41,11 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    
-    //self.view.backgroundColor = [UIColor whiteColor];
 }
 
 - (void)initUI{
     [super initUI];
+    
     [self registerTapGestureToResignKeyboard];
     UIImageView *backgroundImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
     backgroundImgView.image = [UIImage imageNamed:@"login-image-bg.png"];
@@ -107,7 +107,6 @@
         [btnRegister setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [btnRegister addTarget:self action:@selector(btnRegisterPressed:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:btnRegister];
-        
     }
 }
 
@@ -196,16 +195,17 @@
     [self.navigationController pushViewController:registerStep1ViewController animated:YES];
 }
 
-- (void) toMainPage{
+- (void)toMainPage {
     [self dismissViewControllerAnimated:NO completion:^{}];
 }
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-- (BOOL) textFieldShouldReturn:(UITextField *)textField{
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
     if ([txtPassword isEqual:textField]) {
         [self btnLoginPressed:btnLogin];
         return YES;

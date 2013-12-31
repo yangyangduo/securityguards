@@ -16,4 +16,5 @@
 
 - (void)logout;
 
+- (UIViewController *)topViewController;
 @end

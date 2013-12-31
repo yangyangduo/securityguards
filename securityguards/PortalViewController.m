@@ -7,15 +7,20 @@
 //
 
 #import "PortalViewController.h"
+#import "XXDrawerViewController.h"
+#import "RootViewController.h"
+#import "UnitManager.h"
+
+/*     components      */
 #import "SensorsDisplayPanel.h"
 #import "UnitControlPanel.h"
-#import "XXDrawerViewController.h"
-#import "NetworkModeChangedEvent.h"
-#import "RootViewController.h"
 #import "SpeechViewController.h"
-#import "UnitsListUpdatedEvent.h"
 #import "UnitSelectionDrawerView.h"
-#import "UnitManager.h"
+
+/*     events      */
+#import "UserLogoutEvent.h"
+#import "NetworkModeChangedEvent.h"
+#import "UnitsListUpdatedEvent.h"
 #import "CurrentUnitChangedEvent.h"
 
 @interface PortalViewController ()
@@ -53,7 +58,9 @@
     if(hasLogin) {
         [[CoreService defaultService] startService];
     } else {
-        [self showLoginViewController];
+        UINavigationController *loginNavController = [[UINavigationController alloc] initWithRootViewController:[[LoginViewController alloc] init]];
+        loginNavController.navigationBarHidden = YES;
+        [self presentViewController:loginNavController animated:NO completion:^{}];
     }
 }
 
@@ -65,7 +72,7 @@
     [self updateNetworkStateForView:[CoreService defaultService].currentNetworkMode];
     
     // subscribe events
-    XXEventSubscription *subscription = [[XXEventSubscription alloc] initWithSubscriber:self eventFilter:[[XXEventNameFilter alloc] initWithSupportedEventNames:[NSArray arrayWithObjects:EventUnitsListUpdated, EventNetworkModeChanged, EventCurrentUnitChanged, nil]]];
+    XXEventSubscription *subscription = [[XXEventSubscription alloc] initWithSubscriber:self eventFilter:[[XXEventNameFilter alloc] initWithSupportedEventNames:[NSArray arrayWithObjects:EventUnitsListUpdated, EventNetworkModeChanged, EventCurrentUnitChanged, EventUserLogout, nil]]];
     subscription.notifyMustInMainThread = YES;
     [[XXEventSubscriptionPublisher defaultPublisher] subscribeFor:subscription];
 }
@@ -206,11 +213,6 @@
 - (void)setUp {
 }
 
-// Clear user's data for view
-- (void)clear {
-    [super clear];
-}
-
 #pragma mark -
 #pragma mark UI Methods
 
@@ -291,11 +293,13 @@
     } else if([event isKindOfClass:[UnitsListUpdatedEvent class]]
               || [event isKindOfClass:[CurrentUnitChangedEvent class]]) {
         [self updateUnitsView];
+    } else if([event isKindOfClass:[UserLogoutEvent class]]) {
+        [self userHasLogout];
     }
 }
 
 #pragma mark -
-#pragma mark View updates
+#pragma mark Events notifications
 
 - (void)updateUnitsView {
     Unit *currentUnit = [UnitManager defaultManager].currentUnit;
@@ -332,6 +336,10 @@ NSString *str =        [[NSString alloc] initWithData:dd encoding:NSUTF8StringEn
     } else {
         NSLog(@"[PORTAL VIEW] Unknow network mode.");
     }
+}
+
+- (void)userHasLogout {
+    
 }
 
 @end

@@ -163,6 +163,9 @@
 		6F7CDB9F18725BCE0036F912 /* alert_success@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F7CDB9D18725BCE0036F912 /* alert_success@2x.png */; };
 		6F7CDBA21872738E0036F912 /* NotificationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7CDBA11872738E0036F912 /* NotificationsViewController.m */; };
 		6F7CDBA5187277120036F912 /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7CDBA4187277120036F912 /* CameraViewController.m */; };
+		6F7CDBA8187287BA0036F912 /* BaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7CDBA7187287BA0036F912 /* BaseView.m */; };
+		6F7CDBAB187289ED0036F912 /* UIApplication+TopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7CDBAA187289ED0036F912 /* UIApplication+TopViewController.m */; };
+		6F7CDBB11872984A0036F912 /* UserLogoutEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7CDBB01872984A0036F912 /* UserLogoutEvent.m */; };
 		6F8F57B21871016C0033228F /* btn_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F8F57B11871016C0033228F /* btn_back@2x.png */; };
 		6F8F57BC18710D940033228F /* AttributedStringBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F8F57B718710D940033228F /* AttributedStringBuilder.m */; };
 		6F8F57BD18710D940033228F /* ParagraphBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F8F57B918710D940033228F /* ParagraphBuilder.m */; };
@@ -473,6 +476,12 @@
 		6F7CDBA11872738E0036F912 /* NotificationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationsViewController.m; sourceTree = "<group>"; };
 		6F7CDBA3187277120036F912 /* CameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraViewController.h; sourceTree = "<group>"; };
 		6F7CDBA4187277120036F912 /* CameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraViewController.m; sourceTree = "<group>"; };
+		6F7CDBA6187287BA0036F912 /* BaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseView.h; sourceTree = "<group>"; };
+		6F7CDBA7187287BA0036F912 /* BaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseView.m; sourceTree = "<group>"; };
+		6F7CDBA9187289ED0036F912 /* UIApplication+TopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+TopViewController.h"; sourceTree = "<group>"; };
+		6F7CDBAA187289ED0036F912 /* UIApplication+TopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+TopViewController.m"; sourceTree = "<group>"; };
+		6F7CDBAF1872984A0036F912 /* UserLogoutEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserLogoutEvent.h; sourceTree = "<group>"; };
+		6F7CDBB01872984A0036F912 /* UserLogoutEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserLogoutEvent.m; sourceTree = "<group>"; };
 		6F8F57B11871016C0033228F /* btn_back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_back@2x.png"; sourceTree = "<group>"; };
 		6F8F57B618710D940033228F /* AttributedStringBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttributedStringBuilder.h; sourceTree = "<group>"; };
 		6F8F57B718710D940033228F /* AttributedStringBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttributedStringBuilder.m; sourceTree = "<group>"; };
@@ -736,6 +745,8 @@
 				6F73272B186D4A1E00A1276B /* UIColor+MoreColor.m */,
 				6F2AE0E31870653300BEDB29 /* UIImage+Rotate.h */,
 				6F2AE0E41870653300BEDB29 /* UIImage+Rotate.m */,
+				6F7CDBA9187289ED0036F912 /* UIApplication+TopViewController.h */,
+				6F7CDBAA187289ED0036F912 /* UIApplication+TopViewController.m */,
 			);
 			name = categories;
 			sourceTree = "<group>";
@@ -776,6 +787,8 @@
 				6FEC0FDE186C5DD700CB0D70 /* DrawerViewController.m */,
 				6F7247E11871655D003B325F /* TextViewController.h */,
 				6F7247E21871655D003B325F /* TextViewController.m */,
+				6F7CDBA6187287BA0036F912 /* BaseView.h */,
+				6F7CDBA7187287BA0036F912 /* BaseView.m */,
 			);
 			name = commons;
 			sourceTree = "<group>";
@@ -1014,6 +1027,8 @@
 				6F60056F186BF3940085B4BD /* NotificationsFileUpdatedEvent.m */,
 				6F600570186BF3940085B4BD /* UnitsListUpdatedEvent.h */,
 				6F600571186BF3940085B4BD /* UnitsListUpdatedEvent.m */,
+				6F7CDBAF1872984A0036F912 /* UserLogoutEvent.h */,
+				6F7CDBB01872984A0036F912 /* UserLogoutEvent.m */,
 			);
 			name = events;
 			sourceTree = "<group>";
@@ -1477,10 +1492,12 @@
 			files = (
 				6F6005A7186C029F0085B4BD /* Shared.m in Sources */,
 				6F60055F186BF0710085B4BD /* Zone.m in Sources */,
+				6F7CDBA8187287BA0036F912 /* BaseView.m in Sources */,
 				6F60053B186BF0010085B4BD /* DeviceCommandGetNotificationsHandler.m in Sources */,
 				6F6005A1186C015B0085B4BD /* CameraService.m in Sources */,
 				6F600580186BF57D0085B4BD /* RestClient.m in Sources */,
 				6F60055E186BF0710085B4BD /* Unit.m in Sources */,
+				6F7CDBB11872984A0036F912 /* UserLogoutEvent.m in Sources */,
 				6F600543186BF0490085B4BD /* AlertView.m in Sources */,
 				6F600581186BF57D0085B4BD /* RestResponse.m in Sources */,
 				6F6004C3186BD04D0085B4BD /* BaseViewController.m in Sources */,
@@ -1511,6 +1528,7 @@
 				6F600524186BE9890085B4BD /* DeviceCommandUpdateAccount.m in Sources */,
 				6F600492186BCED60085B4BD /* XXEventSubscriptionPublisher.m in Sources */,
 				6F60055D186BF0710085B4BD /* SMNotification.m in Sources */,
+				6F7CDBAB187289ED0036F912 /* UIApplication+TopViewController.m in Sources */,
 				6F6004E5186BD29D0085B4BD /* JsonUtils.m in Sources */,
 				6F60055B186BF0710085B4BD /* NotificationData.m in Sources */,
 				6FEC0FEA186C664200CB0D70 /* UserManagementViewController.m in Sources */,

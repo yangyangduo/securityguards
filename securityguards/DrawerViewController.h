@@ -11,7 +11,4 @@
 
 @interface DrawerViewController : BaseViewController
 
-- (void)clear;
-- (void)showLoginViewController;
-
 @end
