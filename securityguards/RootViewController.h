@@ -12,7 +12,8 @@
 
 @interface RootViewController : XXDrawerViewController<LeftNavViewDelegate>
 
+@property (nonatomic, strong) UIViewController *displayViewController;
+
 - (PortalViewController *)portalViewController;
-- (void)setDisplayViewController:(UIViewController *)displayViewController;
 
 @end

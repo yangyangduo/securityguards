@@ -18,8 +18,9 @@
 
 @implementation RootViewController {
     UINavigationController *portalNavViewController;
-    UIViewController *displayVC;
 }
+
+@synthesize displayViewController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -82,7 +83,7 @@
         return;
     }
     
-    UIViewController *centerViewController = nil;
+    UINavigationController *centerViewController = nil;
     
     if([@"portalItem" isEqualToString:item.identifier]) {
         if(portalNavViewController == nil) {
@@ -109,15 +110,15 @@
     if(centerViewController == nil) return;
     
     [self addChildViewController:centerViewController];
-    if(displayVC != nil) {
-        [displayVC willMoveToParentViewController:nil];
+    if(self.displayViewController != nil) {
+        [self.displayViewController willMoveToParentViewController:nil];
     }
     self.centerView = centerViewController.view;
     [centerViewController didMoveToParentViewController:self];
-    if(displayVC != nil) {
-        [displayVC removeFromParentViewController];
+    if(self.displayViewController != nil) {
+        [self.displayViewController removeFromParentViewController];
     }
-    displayVC = centerViewController;
+    self.displayViewController = centerViewController;
     [self showCenterView:YES];
     
     self.rightViewEnable = [@"portalItem" isEqualToString:item.identifier];
@@ -134,10 +135,6 @@
         return (PortalViewController *)controller;
     }
     return nil;
-}
-
-- (void)setDisplayViewController:(UIViewController *)displayViewController {
-    displayVC = displayViewController;
 }
 
 @end

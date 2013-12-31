@@ -72,11 +72,22 @@
     
     if(self.window.rootViewController != nil && [self.window.rootViewController isKindOfClass:[RootViewController class]]) {
         RootViewController *rootViewController = (RootViewController *)self.window.rootViewController;
-        if(rootViewController.portalViewController != nil) {
-            [rootViewController.portalViewController showLoginViewController];
+        if(rootViewController.displayViewController != nil) {
+            UIViewController *controller;
+            if([rootViewController.displayViewController isKindOfClass:[UINavigationController class]]) {
+                UINavigationController *navViewController = (UINavigationController *)rootViewController.displayViewController;
+                if(navViewController.viewControllers.count > 0) {
+                    controller = [navViewController.viewControllers objectAtIndex:0];
+                }
+            } else {
+                controller = rootViewController.displayViewController;
+            }
+            if(controller != nil && [controller isKindOfClass:[DrawerViewController class]]) {
+                DrawerViewController *drawerViewController = (DrawerViewController *)controller;
+                [drawerViewController showLoginViewController];
+            }
         }
     }
-    [[UIApplication sharedApplication] unregisterForRemoteNotifications];
     
     [[AlertView currentAlertView] setMessage:NSLocalizedString(@"logout_success", @"") forType:AlertViewTypeSuccess];
     [[AlertView currentAlertView] delayDismissAlertView];
