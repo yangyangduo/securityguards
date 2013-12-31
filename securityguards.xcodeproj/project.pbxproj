@@ -162,6 +162,7 @@
 		6F7CDB9E18725BCE0036F912 /* alert_failed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F7CDB9C18725BCE0036F912 /* alert_failed@2x.png */; };
 		6F7CDB9F18725BCE0036F912 /* alert_success@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F7CDB9D18725BCE0036F912 /* alert_success@2x.png */; };
 		6F7CDBA21872738E0036F912 /* NotificationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7CDBA11872738E0036F912 /* NotificationsViewController.m */; };
+		6F7CDBA5187277120036F912 /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7CDBA4187277120036F912 /* CameraViewController.m */; };
 		6F8F57B21871016C0033228F /* btn_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F8F57B11871016C0033228F /* btn_back@2x.png */; };
 		6F8F57BC18710D940033228F /* AttributedStringBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F8F57B718710D940033228F /* AttributedStringBuilder.m */; };
 		6F8F57BD18710D940033228F /* ParagraphBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F8F57B918710D940033228F /* ParagraphBuilder.m */; };
@@ -470,6 +471,8 @@
 		6F7CDB9D18725BCE0036F912 /* alert_success@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "alert_success@2x.png"; sourceTree = "<group>"; };
 		6F7CDBA01872738E0036F912 /* NotificationsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationsViewController.h; sourceTree = "<group>"; };
 		6F7CDBA11872738E0036F912 /* NotificationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationsViewController.m; sourceTree = "<group>"; };
+		6F7CDBA3187277120036F912 /* CameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraViewController.h; sourceTree = "<group>"; };
+		6F7CDBA4187277120036F912 /* CameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraViewController.m; sourceTree = "<group>"; };
 		6F8F57B11871016C0033228F /* btn_back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_back@2x.png"; sourceTree = "<group>"; };
 		6F8F57B618710D940033228F /* AttributedStringBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttributedStringBuilder.h; sourceTree = "<group>"; };
 		6F8F57B718710D940033228F /* AttributedStringBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttributedStringBuilder.m; sourceTree = "<group>"; };
@@ -756,6 +759,8 @@
 				6F2AE0DE187059A900BEDB29 /* SpeechViewController.m */,
 				6F7CDBA01872738E0036F912 /* NotificationsViewController.h */,
 				6F7CDBA11872738E0036F912 /* NotificationsViewController.m */,
+				6F7CDBA3187277120036F912 /* CameraViewController.h */,
+				6F7CDBA4187277120036F912 /* CameraViewController.m */,
 			);
 			name = controllers;
 			sourceTree = "<group>";
@@ -1509,6 +1514,7 @@
 				6F6004E5186BD29D0085B4BD /* JsonUtils.m in Sources */,
 				6F60055B186BF0710085B4BD /* NotificationData.m in Sources */,
 				6FEC0FEA186C664200CB0D70 /* UserManagementViewController.m in Sources */,
+				6F7CDBA5187277120036F912 /* CameraViewController.m in Sources */,
 				6F6004EE186BDB480085B4BD /* ClientSocket.m in Sources */,
 				6FEC0FDF186C5DD700CB0D70 /* DrawerViewController.m in Sources */,
 				6F6004BA186BCFF40085B4BD /* NSMutableDictionary+Extension.m in Sources */,
