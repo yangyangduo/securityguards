@@ -16,6 +16,8 @@
     UITableView *tblUnits;
 }
 
+@synthesize weakRootViewController;
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -105,6 +107,18 @@
     lblTitle.text = NSLocalizedString(@"select_unit", @"");
     [headView addSubview:lblTitle];
     return headView;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    Unit *unit = [units objectAtIndex:indexPath.row];
+    [[UnitManager defaultManager] changeCurrentUnitTo:unit.identifier];
+    if(self.weakRootViewController != nil) {
+        [self.weakRootViewController showCenterView:YES];
+    } else {
+#ifdef DEBUG
+        NSLog(@"[UNIT SELECTION VIEW] Weak root view controller is nil.");
+#endif
+    }
 }
 
 @end

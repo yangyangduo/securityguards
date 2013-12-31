@@ -23,6 +23,8 @@
 #import "UnitsListUpdatedEvent.h"
 #import "UnitSelectionDrawerView.h"
 #import "UnitManager.h"
+#import "CurrentUnitChangedEvent.h"
+#import "UIColor+MoreColor.h"
 
 @interface PortalViewController ()
 
@@ -37,6 +39,7 @@
     UnitControlPanel *controlPanelView;
     
     BOOL speechViewIsOpenning;
+    UIImageView *imgNetwork;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -54,8 +57,6 @@
 	// Do any additional setup after loading the view.
     
     self.view.backgroundColor = [UIColor whiteColor];
-    self.topbarView.title = @"Test";
-    
     BOOL hasLogin = ![[XXStringUtils emptyString] isEqualToString:[GlobalSettings defaultSettings].secretKey];
     if(hasLogin) {
         [[CoreService defaultService] startService];
@@ -67,14 +68,20 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    // update devices
     [self updateUnitsView];
     
-    XXEventSubscription *subscription = [[XXEventSubscription alloc] initWithSubscriber:self eventFilter:[[XXEventNameFilter alloc] initWithSupportedEventNames:[NSArray arrayWithObjects:EventUnitsListUpdated, EventNetworkModeChanged, nil]]];
+    // update network state display
+    [self updateNetworkStateForView:[CoreService defaultService].currentNetworkMode];
+    
+    // subscribe events
+    XXEventSubscription *subscription = [[XXEventSubscription alloc] initWithSubscriber:self eventFilter:[[XXEventNameFilter alloc] initWithSupportedEventNames:[NSArray arrayWithObjects:EventUnitsListUpdated, EventNetworkModeChanged, EventCurrentUnitChanged, nil]]];
     subscription.notifyMustInMainThread = YES;
     [[XXEventSubscriptionPublisher defaultPublisher] subscribeFor:subscription];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
+    // unsubscribe events
     [[XXEventSubscriptionPublisher defaultPublisher] unSubscribeForSubscriber:self];
 }
 
@@ -207,7 +214,6 @@
 }
 
 - (void)setUp {
-    
 }
 
 #pragma mark -
@@ -244,11 +250,36 @@
 
 - (void)btnRenameUnit:(id)sender {
     TextViewController *txtViewController = [[TextViewController alloc] init];
+    txtViewController.txtDescription = [NSString stringWithFormat:@"%@:", NSLocalizedString(@"enter_new_unit_name", @"")];
     txtViewController.title = NSLocalizedString(@"rename_unit", @"");
     if([UnitManager defaultManager].currentUnit != nil) {
         txtViewController.defaultValue = [UnitManager defaultManager].currentUnit.name;
     }
     [self presentViewController:txtViewController animated:YES completion:^{}];
+}
+
+- (void)showNetworkStateView {
+    if(imgNetwork == nil) {
+        imgNetwork = [[UIImageView alloc] initWithFrame:CGRectMake(0, self.topbarView.bounds.size.height, self.view.bounds.size.width, 30)];
+        imgNetwork.image = [UIImage imageNamed:@"bg_alert_yellow"];
+        UILabel *lblDescription = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 26)];
+        lblDescription.textColor = [UIColor appYellowFont];
+        lblDescription.textAlignment = NSTextAlignmentCenter;
+        lblDescription.backgroundColor = [UIColor clearColor];
+        lblDescription.font = [UIFont systemFontOfSize:14.f];
+        lblDescription.text = NSLocalizedString(@"no_network", @"");
+        [imgNetwork addSubview:lblDescription];
+    }
+    
+    if(imgNetwork.superview == nil) {
+        [self.view addSubview:imgNetwork];
+    }
+}
+
+- (void)hideNetworkStateView {
+    if(imgNetwork != nil && imgNetwork.superview != nil) {
+        [imgNetwork removeFromSuperview];
+    }
 }
 
 #pragma mark -
@@ -261,16 +292,9 @@
 - (void)xxEventPublisherNotifyWithEvent:(XXEvent *)event {
     if([event isKindOfClass:[NetworkModeChangedEvent class]]) {
         NetworkModeChangedEvent *evt = (NetworkModeChangedEvent *)event;
-        if(evt.networkMode == NetworkModeExternal) {
-            NSLog(@"wai wang");
-        } else if(evt.networkMode == NetworkModeInternal) {
-            NSLog(@"nei wang");
-        } else if(evt.networkMode == NetworkModeNotChecked) {
-            NSLog(@"not checked");
-        } else {
-            NSLog(@"else");
-        }
-    } else if([event isKindOfClass:[UnitsListUpdatedEvent class]]) {
+        [self updateNetworkStateForView:evt.networkMode];
+    } else if([event isKindOfClass:[UnitsListUpdatedEvent class]]
+              || [event isKindOfClass:[CurrentUnitChangedEvent class]]) {
         [self updateUnitsView];
     }
 }
@@ -279,7 +303,14 @@
 #pragma mark View updates
 
 - (void)updateUnitsView {
-//    [UnitManager defaultManager].currentUnit;
+    Unit *currentUnit = [UnitManager defaultManager].currentUnit;
+    if(currentUnit != nil) {
+        self.topbarView.title = currentUnit.name;
+        
+        
+    } else {
+        self.topbarView.title = NSLocalizedString(@"app_name", @"");
+    }
     [self updateUnitsSelectionView];
 }
 
@@ -289,6 +320,18 @@
     if(rootViewController.rightView != nil) {
         UnitSelectionDrawerView *unitSelectionView = (UnitSelectionDrawerView *)rootViewController.rightView;
         [unitSelectionView refresh];
+    }
+}
+
+- (void)updateNetworkStateForView:(NetworkMode)networkMode {
+    if(networkMode == NetworkModeExternal) {
+        [self hideNetworkStateView];
+    } else if(networkMode == NetworkModeInternal) {
+        [self hideNetworkStateView];
+    } else if(networkMode == NetworkModeNotChecked) {
+        [self showNetworkStateView];
+    } else {
+        NSLog(@"[PORTAL VIEW] Unknow network mode.");
     }
 }
 

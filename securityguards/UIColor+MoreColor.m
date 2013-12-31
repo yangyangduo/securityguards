@@ -38,4 +38,8 @@
     return [UIColor colorWithRed:1.0f green:191.f / 255.f blue:0.f alpha:1.0f];
 }
 
++ (UIColor *)appYellowFont {
+    return [UIColor colorWithRed:184.0f / 255.f green:135.f / 255.f blue:0.f alpha:1.0f];
+}
+
 @end

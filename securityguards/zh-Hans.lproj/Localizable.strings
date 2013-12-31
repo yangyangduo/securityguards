@@ -8,6 +8,8 @@
 
 /****************	Global Strings	****************/
 
+"app_name"                       =      "家庭卫士";
+
 "btn_voice_title"                =      "点击开启语音模式";
 "unknow_error"                   =      "系统错误";
 "request_timeout"                =      "请求超时";
@@ -23,7 +25,7 @@
 
 "portal_drawer_title"            =      "首页";
 "news_drawer_title"              =      "动态";
-"account_mgr_drawer_title"       =      "账号管理";
+"user_mgr_drawer_title"          =      "用户管理";
 "copyright_drawer_title"         =      "版本信息";
 "logout_drawer_title"            =      "注销账号";
 
@@ -36,6 +38,7 @@
 "speech_view_title"              =      "语音控制";
 "rename_unit"                    =      "重命名";
 "enter_new_unit_name"            =      "请输入新的主控名";
+"no_network"                     =      "网络无法连接,正在重试中...";
 
 
 /****************	Speech View Strings	****************/

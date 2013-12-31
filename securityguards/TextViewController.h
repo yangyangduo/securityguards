@@ -16,6 +16,7 @@
 @interface TextViewController : NavigationViewController
 
 @property (nonatomic, strong) NSString *defaultValue;
+@property (nonatomic, strong) NSString *txtDescription;
 @property (nonatomic, weak) id<TextViewDelegate> delegate;
 
 @end

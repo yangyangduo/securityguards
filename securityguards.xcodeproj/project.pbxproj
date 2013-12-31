@@ -174,7 +174,7 @@
 		6FEC0FE1186C5F3300CB0D70 /* btn_drawer_left@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FEC0FE0186C5F3300CB0D70 /* btn_drawer_left@2x.png */; };
 		6FEC0FE3186C61D400CB0D70 /* btn_drawer_right@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FEC0FE2186C61D400CB0D70 /* btn_drawer_right@2x.png */; };
 		6FEC0FE7186C663300CB0D70 /* NewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FEC0FE6186C663300CB0D70 /* NewsViewController.m */; };
-		6FEC0FEA186C664200CB0D70 /* AccountManagementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FEC0FE9186C664200CB0D70 /* AccountManagementViewController.m */; };
+		6FEC0FEA186C664200CB0D70 /* UserManagementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FEC0FE9186C664200CB0D70 /* UserManagementViewController.m */; };
 		6FEC0FED186C67C600CB0D70 /* logo_left_drawer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FEC0FEC186C67C600CB0D70 /* logo_left_drawer@2x.png */; };
 		6FEC0FEF186C6EAD00CB0D70 /* icon_portal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FEC0FEE186C6EAD00CB0D70 /* icon_portal@2x.png */; };
 		6FEC0FF1186C737300CB0D70 /* icon_account@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FEC0FF0186C737300CB0D70 /* icon_account@2x.png */; };
@@ -485,8 +485,8 @@
 		6FEC0FE2186C61D400CB0D70 /* btn_drawer_right@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_drawer_right@2x.png"; sourceTree = "<group>"; };
 		6FEC0FE5186C663300CB0D70 /* NewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsViewController.h; sourceTree = "<group>"; };
 		6FEC0FE6186C663300CB0D70 /* NewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsViewController.m; sourceTree = "<group>"; };
-		6FEC0FE8186C664200CB0D70 /* AccountManagementViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountManagementViewController.h; sourceTree = "<group>"; };
-		6FEC0FE9186C664200CB0D70 /* AccountManagementViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountManagementViewController.m; sourceTree = "<group>"; };
+		6FEC0FE8186C664200CB0D70 /* UserManagementViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserManagementViewController.h; sourceTree = "<group>"; };
+		6FEC0FE9186C664200CB0D70 /* UserManagementViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserManagementViewController.m; sourceTree = "<group>"; };
 		6FEC0FEC186C67C600CB0D70 /* logo_left_drawer@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo_left_drawer@2x.png"; sourceTree = "<group>"; };
 		6FEC0FEE186C6EAD00CB0D70 /* icon_portal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_portal@2x.png"; sourceTree = "<group>"; };
 		6FEC0FF0186C737300CB0D70 /* icon_account@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_account@2x.png"; sourceTree = "<group>"; };
@@ -741,8 +741,8 @@
 				6F6005AB186C18C10085B4BD /* PortalViewController.m */,
 				6FEC0FE5186C663300CB0D70 /* NewsViewController.h */,
 				6FEC0FE6186C663300CB0D70 /* NewsViewController.m */,
-				6FEC0FE8186C664200CB0D70 /* AccountManagementViewController.h */,
-				6FEC0FE9186C664200CB0D70 /* AccountManagementViewController.m */,
+				6FEC0FE8186C664200CB0D70 /* UserManagementViewController.h */,
+				6FEC0FE9186C664200CB0D70 /* UserManagementViewController.m */,
 				6F732723186D274C00A1276B /* CopyrightViewController.h */,
 				6F732724186D274C00A1276B /* CopyrightViewController.m */,
 				6F2AE0DD187059A900BEDB29 /* SpeechViewController.h */,
@@ -1494,7 +1494,7 @@
 				6F60055D186BF0710085B4BD /* SMNotification.m in Sources */,
 				6F6004E5186BD29D0085B4BD /* JsonUtils.m in Sources */,
 				6F60055B186BF0710085B4BD /* NotificationData.m in Sources */,
-				6FEC0FEA186C664200CB0D70 /* AccountManagementViewController.m in Sources */,
+				6FEC0FEA186C664200CB0D70 /* UserManagementViewController.m in Sources */,
 				6F6004EE186BDB480085B4BD /* ClientSocket.m in Sources */,
 				6FEC0FDF186C5DD700CB0D70 /* DrawerViewController.m in Sources */,
 				6F6004BA186BCFF40085B4BD /* NSMutableDictionary+Extension.m in Sources */,

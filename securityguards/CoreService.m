@@ -449,7 +449,7 @@
            || [Reachability reachabilityForLocalWiFi].currentReachabilityStatus == NotReachable) {
             networkMode = self.tcpService.isConnectted ? NetworkModeExternal : NetworkModeNotChecked;
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self notifyNetworkModeUpdate:NetworkModeExternal];
+                [self notifyNetworkModeUpdate:networkMode];
             });
             return;
         }
@@ -469,7 +469,7 @@
                         if([[UnitManager defaultManager].currentUnit.identifier isEqualToString:unitIdentifier]) {
                             networkMode = NetworkModeInternal;
                             dispatch_async(dispatch_get_main_queue(), ^{
-                                [self notifyNetworkModeUpdate:NetworkModeInternal];
+                                [self notifyNetworkModeUpdate:networkMode];
                             });
                             return;
                         }
@@ -480,7 +480,7 @@
         
         networkMode = self.tcpService.isConnectted ? NetworkModeExternal : NetworkModeNotChecked;
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self notifyNetworkModeUpdate:NetworkModeExternal];
+            [self notifyNetworkModeUpdate:networkMode];
         });
     }
 }

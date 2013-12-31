@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RootViewController.h"
 
 @interface UnitSelectionDrawerView : UIView<UITableViewDataSource, UITableViewDelegate>
+
+@property(nonatomic, weak) RootViewController *weakRootViewController;
 
 - (void)refresh;
 

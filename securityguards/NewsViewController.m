@@ -37,6 +37,7 @@
 
 - (void)initUI {
     [super initUI];
+    self.topbarView.title = NSLocalizedString(@"news_drawer_title", @"");
     self.view.backgroundColor = [UIColor whiteColor];
 }
 
