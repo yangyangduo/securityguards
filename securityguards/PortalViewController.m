@@ -18,7 +18,6 @@
 #import "UnitSelectionDrawerView.h"
 
 /*     events      */
-#import "UserLogoutEvent.h"
 #import "NetworkModeChangedEvent.h"
 #import "UnitsListUpdatedEvent.h"
 #import "CurrentUnitChangedEvent.h"
@@ -72,7 +71,7 @@
     [self updateNetworkStateForView:[CoreService defaultService].currentNetworkMode];
     
     // subscribe events
-    XXEventSubscription *subscription = [[XXEventSubscription alloc] initWithSubscriber:self eventFilter:[[XXEventNameFilter alloc] initWithSupportedEventNames:[NSArray arrayWithObjects:EventUnitsListUpdated, EventNetworkModeChanged, EventCurrentUnitChanged, EventUserLogout, nil]]];
+    XXEventSubscription *subscription = [[XXEventSubscription alloc] initWithSubscriber:self eventFilter:[[XXEventNameFilter alloc] initWithSupportedEventNames:[NSArray arrayWithObjects:EventUnitsListUpdated, EventNetworkModeChanged, EventCurrentUnitChanged, nil]]];
     subscription.notifyMustInMainThread = YES;
     [[XXEventSubscriptionPublisher defaultPublisher] subscribeFor:subscription];
 }
@@ -293,8 +292,6 @@
     } else if([event isKindOfClass:[UnitsListUpdatedEvent class]]
               || [event isKindOfClass:[CurrentUnitChangedEvent class]]) {
         [self updateUnitsView];
-    } else if([event isKindOfClass:[UserLogoutEvent class]]) {
-        [self userHasLogout];
     }
 }
 
@@ -336,10 +333,6 @@ NSString *str =        [[NSString alloc] initWithData:dd encoding:NSUTF8StringEn
     } else {
         NSLog(@"[PORTAL VIEW] Unknow network mode.");
     }
-}
-
-- (void)userHasLogout {
-    
 }
 
 @end
