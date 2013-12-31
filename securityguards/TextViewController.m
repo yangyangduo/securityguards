@@ -68,6 +68,7 @@
     btnSubmit.center = CGPointMake(self.view.center.x, btnSubmit.center.y);
     [btnSubmit setBackgroundImage:[UIImage imageNamed:@"btn_blue"] forState:UIControlStateNormal];
     [btnSubmit setBackgroundImage:[UIImage imageNamed:@"btn_blue_highlighted"] forState:UIControlStateHighlighted];
+    [btnSubmit addTarget:self action:@selector(btnSubmitPressed:) forControlEvents:UIControlEventTouchUpInside];
     [btnSubmit setTitle:NSLocalizedString(@"submit", @"") forState:UIControlStateNormal];
     [self.view addSubview:btnSubmit];
 }
@@ -79,6 +80,17 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [txt becomeFirstResponder];
+}
+
+- (void)btnSubmitPressed:(id)sender {
+    int c = [UIApplication sharedApplication].windows.count;
+    NSLog(@"%d", c);
+//    for(int i=0; i<[UIApplication sharedApplication].windows.count; i++) {
+//        UIWindow *w = [[UIApplication sharedApplication].windows objectAtIndex:i];
+//        NSLog([[w class] description]);
+//    }
+//    
+//    NSLog([[[UIApplication sharedApplication].keyWindow class] description]);
 }
 
 - (void)popupViewController {
