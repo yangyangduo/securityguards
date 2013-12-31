@@ -187,6 +187,9 @@
 		6FEC0FF3186C739700CB0D70 /* icon_logout@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FEC0FF2186C739700CB0D70 /* icon_logout@2x.png */; };
 		6FEC0FF5186C73A900CB0D70 /* icon_news@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FEC0FF4186C73A900CB0D70 /* icon_news@2x.png */; };
 		6FEC0FF7186C73B400CB0D70 /* icon_copyright@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FEC0FF6186C73B400CB0D70 /* icon_copyright@2x.png */; };
+		F20D6AC41872997400FE6B6D /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F20D6AC31872997400FE6B6D /* MessageCell.m */; };
+		F20D6AC718729A8800FE6B6D /* NotificationDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F20D6AC618729A8800FE6B6D /* NotificationDetailsViewController.m */; };
+		F20D6ACA18729C9F00FE6B6D /* XXDateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = F20D6AC918729C9F00FE6B6D /* XXDateFormatter.m */; };
 		F215125D187105380039CC8A /* ForgetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F215125C187105380039CC8A /* ForgetPasswordViewController.m */; };
 		F21512601871227C0039CC8A /* XXTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = F215125F1871227C0039CC8A /* XXTextField.m */; };
 		F215126118715DF00039CC8A /* iflyMSC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F7247D2187141EA003B325F /* iflyMSC.framework */; };
@@ -514,6 +517,12 @@
 		6FEC0FF6186C73B400CB0D70 /* icon_copyright@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_copyright@2x.png"; sourceTree = "<group>"; };
 		6FEC0FF8186C75F500CB0D70 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		6FEC0FF9186C75F500CB0D70 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		F20D6AC21872997400FE6B6D /* MessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageCell.h; sourceTree = "<group>"; };
+		F20D6AC31872997400FE6B6D /* MessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageCell.m; sourceTree = "<group>"; };
+		F20D6AC518729A8800FE6B6D /* NotificationDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationDetailsViewController.h; sourceTree = "<group>"; };
+		F20D6AC618729A8800FE6B6D /* NotificationDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationDetailsViewController.m; sourceTree = "<group>"; };
+		F20D6AC818729C9F00FE6B6D /* XXDateFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXDateFormatter.h; sourceTree = "<group>"; };
+		F20D6AC918729C9F00FE6B6D /* XXDateFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXDateFormatter.m; sourceTree = "<group>"; };
 		F215125B187105380039CC8A /* ForgetPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetPasswordViewController.h; sourceTree = "<group>"; };
 		F215125C187105380039CC8A /* ForgetPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetPasswordViewController.m; sourceTree = "<group>"; };
 		F215125E1871227C0039CC8A /* XXTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXTextField.h; sourceTree = "<group>"; };
@@ -659,6 +668,8 @@
 				6F6005A6186C029F0085B4BD /* Shared.m */,
 				6F600593186BFF7F0085B4BD /* GlobalSettings.h */,
 				6F600594186BFF7F0085B4BD /* GlobalSettings.m */,
+				F20D6AC818729C9F00FE6B6D /* XXDateFormatter.h */,
+				F20D6AC918729C9F00FE6B6D /* XXDateFormatter.m */,
 			);
 			name = commons;
 			sourceTree = "<group>";
@@ -698,6 +709,7 @@
 		6F6004A4186BCF500085B4BD /* components */ = {
 			isa = PBXGroup;
 			children = (
+				F20D6AC11872992500FE6B6D /* cells */,
 				6F7247E018715768003B325F /* text_field */,
 				6F7247DC18714D60003B325F /* speech_state_view */,
 				6FA3B2FC186E795000EBC7FD /* actionsheet */,
@@ -772,6 +784,8 @@
 				6F7CDBA11872738E0036F912 /* NotificationsViewController.m */,
 				6F7CDBA3187277120036F912 /* CameraViewController.h */,
 				6F7CDBA4187277120036F912 /* CameraViewController.m */,
+				F20D6AC518729A8800FE6B6D /* NotificationDetailsViewController.h */,
+				F20D6AC618729A8800FE6B6D /* NotificationDetailsViewController.m */,
 			);
 			name = controllers;
 			sourceTree = "<group>";
@@ -1339,6 +1353,15 @@
 			name = drawer;
 			sourceTree = "<group>";
 		};
+		F20D6AC11872992500FE6B6D /* cells */ = {
+			isa = PBXGroup;
+			children = (
+				F20D6AC21872997400FE6B6D /* MessageCell.h */,
+				F20D6AC31872997400FE6B6D /* MessageCell.m */,
+			);
+			name = cells;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1502,6 +1525,7 @@
 				6F600581186BF57D0085B4BD /* RestResponse.m in Sources */,
 				6F6004C3186BD04D0085B4BD /* BaseViewController.m in Sources */,
 				6F600520186BE9890085B4BD /* DeviceCommandCheckVersion.m in Sources */,
+				F20D6AC41872997400FE6B6D /* MessageCell.m in Sources */,
 				6F600559186BF0710085B4BD /* DeviceStatus.m in Sources */,
 				6F732744186D6DD800A1276B /* CameraView.m in Sources */,
 				6F6005B9186C1B410085B4BD /* RegisterStep2ViewController.m in Sources */,
@@ -1554,6 +1578,7 @@
 				6F600521186BE9890085B4BD /* DeviceCommandGetCameraServer.m in Sources */,
 				6F6004A3186BCEF10085B4BD /* XXEventNameFilter.m in Sources */,
 				6F600557186BF0710085B4BD /* CameraPicPath.m in Sources */,
+				F20D6AC718729A8800FE6B6D /* NotificationDetailsViewController.m in Sources */,
 				F215125D187105380039CC8A /* ForgetPasswordViewController.m in Sources */,
 				6F60053D186BF0010085B4BD /* DeviceCommandGetUnitsHandler.m in Sources */,
 				6F600576186BF3940085B4BD /* NotificationsFileUpdatedEvent.m in Sources */,
@@ -1578,6 +1603,7 @@
 				6F6004CB186BD0A50085B4BD /* XXDrawerViewController.m in Sources */,
 				6F600525186BE9890085B4BD /* DeviceCommandUpdateDevice.m in Sources */,
 				6F600595186BFF7F0085B4BD /* GlobalSettings.m in Sources */,
+				F20D6ACA18729C9F00FE6B6D /* XXDateFormatter.m in Sources */,
 				6F600522186BE9890085B4BD /* DeviceCommandGetUnit.m in Sources */,
 				6F600562186BF0B90085B4BD /* Entity.m in Sources */,
 				6F600573186BF3940085B4BD /* DeviceCommandEvent.m in Sources */,
