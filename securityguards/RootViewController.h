@@ -11,6 +11,7 @@
 #import "LeftNavView.h"
 
 @interface RootViewController : XXDrawerViewController<LeftNavViewDelegate>
+
 - (PortalViewController *)portalViewController;
 - (void)setDisplayViewController:(UIViewController *)displayViewController;
 

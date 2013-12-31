@@ -7,9 +7,6 @@
 //
 
 #import "TextViewController.h"
-#import "UIColor+MoreColor.h"
-#import "XXStringUtils.h"
-#import "AlertView.h"
 
 @interface TextViewController ()
 

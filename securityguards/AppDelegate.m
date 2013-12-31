@@ -11,6 +11,7 @@
 #import "XXEventSubscriptionPublisher.h"
 #import "UnitManager.h"
 #import "GlobalSettings.h"
+#import "AlertView.h"
 
 @implementation AppDelegate
 
@@ -58,13 +59,27 @@
 }
 
 - (void)logout {
+    [[AlertView currentAlertView] setMessage:NSLocalizedString(@"logouting", @"") forType:AlertViewTypeWaitting];
+    [[AlertView currentAlertView] alertAutoDisappear:NO lockView:YES];
+    [NSTimer scheduledTimerWithTimeInterval:0.8f target:self selector:@selector(delayLogout) userInfo:nil repeats:NO];
+}
+
+- (void)delayLogout {
     [[CoreService defaultService] stopService];
     [[XXEventSubscriptionPublisher defaultPublisher] unsubscribeAllSubscriptions];
     [[UnitManager defaultManager] clear];
     [[GlobalSettings defaultSettings] clearAuth];
+    
+    if(self.window.rootViewController != nil && [self.window.rootViewController isKindOfClass:[RootViewController class]]) {
+        RootViewController *rootViewController = (RootViewController *)self.window.rootViewController;
+        if(rootViewController.portalViewController != nil) {
+            [rootViewController.portalViewController showLoginViewController];
+        }
+    }
     [[UIApplication sharedApplication] unregisterForRemoteNotifications];
     
-    // must clear root view controller ...
+    [[AlertView currentAlertView] setMessage:NSLocalizedString(@"logout_success", @"") forType:AlertViewTypeSuccess];
+    [[AlertView currentAlertView] delayDismissAlertView];
 }
 
 @end

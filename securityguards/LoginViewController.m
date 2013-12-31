@@ -9,13 +9,10 @@
 #import "LoginViewController.h"
 #import "RegisterStep1ViewController.h"
 #import "AccountService.h"
-#import "JsonUtils.h"
 #import "DeviceCommand.h"
-#import "XXStringUtils.h"
-#import "CoreService.h"
-#import "AlertView.h"
 #import "ForgetPasswordViewController.h"
 #import "XXTextField.h"
+
 #define ORIGIN_HEIGHT [UIScreen mainScreen].bounds.size.height/6
 
 @interface LoginViewController ()

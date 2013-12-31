@@ -7,24 +7,16 @@
 //
 
 #import "PortalViewController.h"
-#import "LoginViewController.h"
-#import "XXStringUtils.h"
-#import "GlobalSettings.h"
 #import "SensorsDisplayPanel.h"
 #import "UnitControlPanel.h"
-#import "UIColor+MoreColor.h"
 #import "XXDrawerViewController.h"
-#import "XXEventSubscriptionPublisher.h"
 #import "NetworkModeChangedEvent.h"
-#import "XXEventNameFilter.h"
-#import "CoreService.h"
 #import "RootViewController.h"
 #import "SpeechViewController.h"
 #import "UnitsListUpdatedEvent.h"
 #import "UnitSelectionDrawerView.h"
 #import "UnitManager.h"
 #import "CurrentUnitChangedEvent.h"
-#import "UIColor+MoreColor.h"
 
 @interface PortalViewController ()
 
@@ -63,10 +55,7 @@
     if(hasLogin) {
         [[CoreService defaultService] startService];
     } else {
-        
-        UINavigationController *loginNavController = [[UINavigationController alloc] initWithRootViewController:[[LoginViewController alloc] init]];
-        loginNavController.navigationBarHidden = YES;
-        [self presentViewController:loginNavController animated:NO completion:^{}];
+        [self showLoginViewController];
     }
 }
 
@@ -285,6 +274,11 @@
     }
 }
 
+// Clear user's data for view
+- (void)clear {
+    [super clear];
+}
+
 #pragma mark -
 #pragma mark Event Subscriber
 
@@ -337,5 +331,6 @@
         NSLog(@"[PORTAL VIEW] Unknow network mode.");
     }
 }
+
 
 @end

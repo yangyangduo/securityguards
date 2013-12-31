@@ -9,14 +9,11 @@
 #import "RegisterStep2ViewController.h"
 #import "AccountService.h"
 #import "XXTextField.h"
-#import "XXStringUtils.h"
-#import "JsonUtils.h"
-#import "AlertView.h"
 #import "NSDictionary+Extension.h"
 #import "DeviceCommand.h"
 #import "LoginViewController.h"
 #import "Shared.h"
-#import "CoreService.h"
+
 #define TOPBAR_HEIGHT   self.topbarView.frame.size.height
 
 @interface RegisterStep2ViewController ()

@@ -7,7 +7,6 @@
 //
 
 #import "NavigationViewController.h"
-#import "UIImage+Rotate.h"
 
 @interface NavigationViewController ()
 

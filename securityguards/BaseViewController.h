@@ -8,6 +8,18 @@
 
 #import <UIKit/UIKit.h>
 #import "TopbarView.h"
+#import "XXStringUtils.h"
+#import "GlobalSettings.h"
+#import "UIColor+HexColor.h"
+#import "UIColor+MoreColor.h"
+#import "UIDevice+SystemVersion.h"
+#import "AlertView.h"
+#import "CoreService.h"
+#import "JsonUtils.h"
+#import "NSDictionary+Extension.h"
+#import "NSMutableDictionary+Extension.h"
+#import "XXEventNameFilter.h"
+#import "XXEventSubscriptionPublisher.h"
 
 @interface BaseViewController : UIViewController
 

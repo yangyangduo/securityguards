@@ -9,9 +9,7 @@
 #import "RegisterStep1ViewController.h"
 #import "RegisterStep2ViewController.h"
 #import "AccountService.h"
-#import "AlertView.h"
-#import "JsonUtils.h"
-#import "NSDictionary+Extension.h"
+
 #define TOPBAR_HEIGHT   self.topbarView.frame.size.height
 
 @interface RegisterStep1ViewController ()

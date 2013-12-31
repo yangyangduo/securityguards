@@ -7,7 +7,11 @@
 //
 
 #import "BaseViewController.h"
+#import "LoginViewController.h"
 
 @interface DrawerViewController : BaseViewController
+
+- (void)clear;
+- (void)showLoginViewController;
 
 @end

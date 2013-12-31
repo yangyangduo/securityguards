@@ -8,9 +8,7 @@
 
 #import "ForgetPasswordViewController.h"
 #import "AccountService.h"
-#import "AlertView.h"
-#import "JsonUtils.h"
-#import "NSDictionary+Extension.h"
+
 #define TOPBAR_HEIGHT   self.topbarView.frame.size.height
 
 @interface ForgetPasswordViewController ()

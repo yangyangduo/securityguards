@@ -7,6 +7,7 @@
 //
 
 #import "LeftNavView.h"
+#import "Shared.h"
 #import "UIDevice+SystemVersion.h"
 
 @implementation LeftNavView {
@@ -86,13 +87,14 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     LeftNavItem *item = nil;
     LeftNavItem *selectedItem = [self.navItems objectAtIndex:indexPath.row];
-    if(![currentItem.identifier isEqualToString:selectedItem.identifier]) {
-        currentItem = selectedItem;
-        item = currentItem;
-    }
-    if([@"logoutItem" isEqualToString:item.identifier]) {
-        
+    if([@"logoutItem" isEqualToString:selectedItem.identifier]) {
+        [[Shared shared].app logout];
         return;
+    } else {
+        if(![currentItem.identifier isEqualToString:selectedItem.identifier]) {
+            currentItem = selectedItem;
+            item = currentItem;
+        }
     }
     if(self.delegate != nil && [self.delegate respondsToSelector:@selector(leftNavViewItemChanged:)]) {
         [self.delegate leftNavViewItemChanged:item];

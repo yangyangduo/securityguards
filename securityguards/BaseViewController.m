@@ -7,7 +7,6 @@
 //
 
 #import "BaseViewController.h"
-#import "XXStringUtils.h"
 
 @interface BaseViewController ()
 
