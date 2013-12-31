@@ -51,21 +51,21 @@
     [self registerTapGestureToResignKeyboard];
     self.topbarView.title = NSLocalizedString(@"register.account", @"");
     
-    UILabel *lblPhoneNumber = [[UILabel alloc] initWithFrame:CGRectMake(5, TOPBAR_HEIGHT+20, 80, 44)];
-    lblPhoneNumber.text = [NSString stringWithFormat:@"%@ :", NSLocalizedString(@"phone.number", @"")];
-    lblPhoneNumber.font = [UIFont systemFontOfSize:16.0f];
-    [self.view addSubview:lblPhoneNumber];
-
-    UILabel *lblVerificationCode = [[UILabel alloc] initWithFrame:CGRectMake(5, lblPhoneNumber.frame.origin.y+lblPhoneNumber.frame.size.height+5, 80, 44)];
+//    UILabel *lblPhoneNumber = [[UILabel alloc] initWithFrame:CGRectMake(5, TOPBAR_HEIGHT+20, 80, 44)];
+//    lblPhoneNumber.text = [NSString stringWithFormat:@"%@ :", NSLocalizedString(@"phone.number", @"")];
+//    lblPhoneNumber.font = [UIFont systemFontOfSize:16.0f];
+//    [self.view addSubview:lblPhoneNumber];
+//
+    UILabel *lblVerificationCode = [[UILabel alloc] initWithFrame:CGRectMake(5, TOPBAR_HEIGHT+5, 80, 44)];
     lblVerificationCode.text = [NSString stringWithFormat:@"%@ :", NSLocalizedString(@"verification.code", @"")];
     lblVerificationCode.font = [UIFont systemFontOfSize:16.0f];
     [self.view addSubview:lblVerificationCode];
-
-    if (txtPhoneNumber == nil) {
-        txtPhoneNumber = [[UITextField alloc] initWithFrame:CGRectMake(85, 20+TOPBAR_HEIGHT, 200, 44)];
-        txtPhoneNumber.text = phoneNumber;
-        [self.view addSubview:txtPhoneNumber];
-    }
+//
+//    if (txtPhoneNumber == nil) {
+//        txtPhoneNumber = [[UITextField alloc] initWithFrame:CGRectMake(85, 20+TOPBAR_HEIGHT, 200, 44)];
+//        txtPhoneNumber.text = phoneNumber;
+//        [self.view addSubview:txtPhoneNumber];
+//    }
     
     if (txtVerificationCode == nil) {
         txtVerificationCode = [[UITextField alloc] initWithFrame:CGRectMake(85, lblVerificationCode.frame.origin.y, 200, 44)];

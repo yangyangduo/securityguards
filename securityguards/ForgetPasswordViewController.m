@@ -39,13 +39,13 @@
 - (void)initUI{
     [super initUI];
     self.topbarView.title = NSLocalizedString(@"forget.password", @"");
-    UILabel *lblPhoneNumber = [[UILabel alloc] initWithFrame:CGRectMake(5, TOPBAR_HEIGHT+20, 80, 44)];
+    UILabel *lblPhoneNumber = [[UILabel alloc] initWithFrame:CGRectMake(5, TOPBAR_HEIGHT+5, 80, 44)];
     lblPhoneNumber.text = [NSString stringWithFormat:@"%@ :", NSLocalizedString(@"phone.number", @"")];
     lblPhoneNumber.font = [UIFont systemFontOfSize:16.0f];
     [self.view addSubview:lblPhoneNumber];
     
     if (txtPhoneNumber == nil) {
-        txtPhoneNumber = [[UITextField alloc] initWithFrame:CGRectMake(85, TOPBAR_HEIGHT+20, 200, 44)];
+        txtPhoneNumber = [[UITextField alloc] initWithFrame:CGRectMake(85, TOPBAR_HEIGHT+5, 200, 44)];
         txtPhoneNumber.placeholder = NSLocalizedString(@"please.input.phone.number.you.registered", @"");
         txtPhoneNumber.clearButtonMode = UITextFieldViewModeWhileEditing;
         txtPhoneNumber.autocorrectionType = UITextAutocapitalizationTypeNone;
