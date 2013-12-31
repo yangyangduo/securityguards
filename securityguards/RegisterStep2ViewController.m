@@ -13,6 +13,7 @@
 #import "DeviceCommand.h"
 #import "LoginViewController.h"
 #import "Shared.h"
+#import "LoginViewController.h"
 
 #define TOPBAR_HEIGHT   self.topbarView.frame.size.height
 
@@ -212,7 +213,14 @@
                         settings.deviceCode = command.deviceCode;
                         settings.restAddress = command.restAddress;
                         [settings saveSettings];
-                        [self.navigationController popToRootViewControllerAnimated:NO];
+                        LoginViewController *loginViewController = nil;
+                        for (UIViewController *vc in self.navigationController.viewControllers) {
+                            if ([vc isMemberOfClass:[LoginViewController class]]) {
+                                loginViewController = (LoginViewController *)vc;
+                            }
+                        }
+                        [self.navigationController popToViewController:loginViewController animated:NO];
+                        [loginViewController dismissViewControllerAnimated:NO completion:^{}];
 //                        [self.navigationController pushViewController:[[UnitsBindingViewController alloc] init] animated:YES];
                         [[CoreService defaultService] startService];
                         return;
