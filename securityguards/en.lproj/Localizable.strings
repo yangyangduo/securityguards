@@ -28,6 +28,9 @@
 "user_mgr_drawer_title"          =      "用户管理";
 "copyright_drawer_title"         =      "版本信息";
 "logout_drawer_title"            =      "注销账号";
+"notifications_drawer_title"     =      "消息中心";
+"logouting"                      =      "登出中...";
+"logout_success"                 =      "登出成功";
 
 
 /****************	Portal View Strings	****************/
@@ -71,8 +74,6 @@
 "phone_format_invalid"                        =  "号码格式错误";
 "verification.code"                           =  "验证码";
 "please.input.verification.code"              =  "请输入获取的验证码";
-"finish.register.and.login"                   =  "完成注册并登录";
-"resend.verification.code"                    =  "重新发送验证码";
 
 
 /**************** Forget password Strings *************/

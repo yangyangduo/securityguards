@@ -161,6 +161,7 @@
 		6F732747186D7BD200A1276B /* SensorsDisplayPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F732746186D7BD200A1276B /* SensorsDisplayPanel.m */; };
 		6F7CDB9E18725BCE0036F912 /* alert_failed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F7CDB9C18725BCE0036F912 /* alert_failed@2x.png */; };
 		6F7CDB9F18725BCE0036F912 /* alert_success@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F7CDB9D18725BCE0036F912 /* alert_success@2x.png */; };
+		6F7CDBA21872738E0036F912 /* NotificationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7CDBA11872738E0036F912 /* NotificationsViewController.m */; };
 		6F8F57B21871016C0033228F /* btn_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F8F57B11871016C0033228F /* btn_back@2x.png */; };
 		6F8F57BC18710D940033228F /* AttributedStringBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F8F57B718710D940033228F /* AttributedStringBuilder.m */; };
 		6F8F57BD18710D940033228F /* ParagraphBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F8F57B918710D940033228F /* ParagraphBuilder.m */; };
@@ -185,7 +186,6 @@
 		F215125D187105380039CC8A /* ForgetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F215125C187105380039CC8A /* ForgetPasswordViewController.m */; };
 		F21512601871227C0039CC8A /* XXTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = F215125F1871227C0039CC8A /* XXTextField.m */; };
 		F215126118715DF00039CC8A /* iflyMSC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F7247D2187141EA003B325F /* iflyMSC.framework */; };
-		F24E552C18702180000DB402 /* button-gray-400@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F24E552B18702180000DB402 /* button-gray-400@2x.png */; };
 		F24E552C18702180000DB402 /* btn_gray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F24E552B18702180000DB402 /* btn_gray@2x.png */; };
 		F2F93692186D10FA002F7904 /* login-image-bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2F93690186D10FA002F7904 /* login-image-bg@2x.png */; };
 		F2F93693186D10FA002F7904 /* logo-login@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2F93691186D10FA002F7904 /* logo-login@2x.png */; };
@@ -468,6 +468,8 @@
 		6F732746186D7BD200A1276B /* SensorsDisplayPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SensorsDisplayPanel.m; sourceTree = "<group>"; };
 		6F7CDB9C18725BCE0036F912 /* alert_failed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "alert_failed@2x.png"; sourceTree = "<group>"; };
 		6F7CDB9D18725BCE0036F912 /* alert_success@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "alert_success@2x.png"; sourceTree = "<group>"; };
+		6F7CDBA01872738E0036F912 /* NotificationsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationsViewController.h; sourceTree = "<group>"; };
+		6F7CDBA11872738E0036F912 /* NotificationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationsViewController.m; sourceTree = "<group>"; };
 		6F8F57B11871016C0033228F /* btn_back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_back@2x.png"; sourceTree = "<group>"; };
 		6F8F57B618710D940033228F /* AttributedStringBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttributedStringBuilder.h; sourceTree = "<group>"; };
 		6F8F57B718710D940033228F /* AttributedStringBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttributedStringBuilder.m; sourceTree = "<group>"; };
@@ -752,6 +754,8 @@
 				6F732724186D274C00A1276B /* CopyrightViewController.m */,
 				6F2AE0DD187059A900BEDB29 /* SpeechViewController.h */,
 				6F2AE0DE187059A900BEDB29 /* SpeechViewController.m */,
+				6F7CDBA01872738E0036F912 /* NotificationsViewController.h */,
+				6F7CDBA11872738E0036F912 /* NotificationsViewController.m */,
 			);
 			name = controllers;
 			sourceTree = "<group>";
@@ -1495,6 +1499,7 @@
 				6F0CD5DF186DBD9E00B5A3EA /* UnitSelectionDrawerView.m in Sources */,
 				6F600528186BE9890085B4BD /* DeviceCommandUpdateNotifications.m in Sources */,
 				6F6005B3186C1B160085B4BD /* LoginViewController.m in Sources */,
+				6F7CDBA21872738E0036F912 /* NotificationsViewController.m in Sources */,
 				6F6005B6186C1B320085B4BD /* RegisterStep1ViewController.m in Sources */,
 				6F7247DF18714D70003B325F /* SpeechStateView.m in Sources */,
 				6F60058F186BF8EC0085B4BD /* ExtranetClientSocket.m in Sources */,

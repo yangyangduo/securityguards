@@ -11,6 +11,7 @@
 #import "UserManagementViewController.h"
 #import "CopyrightViewController.h"
 #import "UnitSelectionDrawerView.h"
+#import "NotificationsViewController.h"
 
 @interface RootViewController ()
 
@@ -46,6 +47,7 @@
     NSArray *navItems = [NSArray arrayWithObjects:
         [[LeftNavItem alloc] initWithIdentifier:@"portalItem" andDisplayName:NSLocalizedString(@"portal_drawer_title", @"") andImageName:@"icon_portal"],
         [[LeftNavItem alloc] initWithIdentifier:@"newsItem" andDisplayName:NSLocalizedString(@"news_drawer_title", @"") andImageName:@"icon_news"],
+        [[LeftNavItem alloc] initWithIdentifier:@"notificationsItem" andDisplayName:NSLocalizedString(@"notifications_drawer_title", @"") andImageName:@"icon_news"],
         [[LeftNavItem alloc] initWithIdentifier:@"accountManagerItem" andDisplayName:NSLocalizedString(@"user_mgr_drawer_title", @"") andImageName:@"icon_account"],
         [[LeftNavItem alloc] initWithIdentifier:@"copyrightItem" andDisplayName:NSLocalizedString(@"copyright_drawer_title", @"") andImageName:@"icon_copyright"],
         [[LeftNavItem alloc] initWithIdentifier:@"logoutItem" andDisplayName:NSLocalizedString(@"logout_drawer_title", @"") andImageName:@"icon_logout"], nil];
@@ -95,6 +97,10 @@
         }
     } else if([@"newsItem" isEqualToString:item.identifier]) {
         UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:[[NewsViewController alloc] init]];
+        navController.navigationBarHidden = YES;
+        centerViewController = navController;
+    } else if([@"notificationsItem" isEqualToString:item.identifier]) {
+        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:[[NotificationsViewController alloc] init]];
         navController.navigationBarHidden = YES;
         centerViewController = navController;
     } else if([@"accountManagerItem" isEqualToString:item.identifier]) {

@@ -1,18 +1,18 @@
 //
-//  UserManagementViewController.m
+//  NotificationsViewController.m
 //  securityguards
 //
-//  Created by Zhao yang on 12/26/13.
+//  Created by Zhao yang on 12/31/13.
 //  Copyright (c) 2013 hentre. All rights reserved.
 //
 
-#import "UserManagementViewController.h"
+#import "NotificationsViewController.h"
 
-@interface UserManagementViewController ()
+@interface NotificationsViewController ()
 
 @end
 
-@implementation UserManagementViewController
+@implementation NotificationsViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -35,21 +35,13 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-    
-}
-
 - (void)initDefaults {
-    
+    [super initDefaults];
 }
 
 - (void)initUI {
     [super initUI];
-    self.topbarView.title = NSLocalizedString(@"user_mgr_drawer_title", @"");
+    self.topbarView.title = NSLocalizedString(@"notifications_drawer_title", @"");
 }
 
 - (void)setUp {

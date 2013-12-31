@@ -28,6 +28,7 @@
 "user_mgr_drawer_title"          =      "用户管理";
 "copyright_drawer_title"         =      "版本信息";
 "logout_drawer_title"            =      "注销账号";
+"notifications_drawer_title"     =      "消息中心";
 "logouting"                      =      "登出中...";
 "logout_success"                 =      "登出成功";
 

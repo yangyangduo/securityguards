@@ -39,6 +39,7 @@
 
 - (void)initUI {
     [super initUI];
+    self.view.backgroundColor = [UIColor whiteColor];
     UIButton *btnLeft = [[UIButton alloc] initWithFrame:CGRectMake(8, [UIDevice systemVersionIsMoreThanOrEuqal7] ? (20 + 8) : 8, 55 / 2, 55 / 2)];
     [btnLeft setBackgroundImage:[UIImage imageNamed:@"btn_drawer_left"] forState:UIControlStateNormal];
     [btnLeft addTarget:self action:@selector(showLeftDrawerView:) forControlEvents:UIControlEventTouchUpInside];

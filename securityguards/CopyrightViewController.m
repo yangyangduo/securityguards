@@ -37,7 +37,6 @@
 
 - (void)initUI {
     [super initUI];
-    self.view.backgroundColor = [UIColor whiteColor];
 }
 
 - (void)clear {
