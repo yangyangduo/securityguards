@@ -64,6 +64,10 @@
     }
 }
 
+- (void)showUnitFinderView:(UITapGestureRecognizer *)tapGesture {
+    NSLog(@"oh , you clicked me !!!");
+}
+
 #pragma mark -
 #pragma mark Table view delegate
 
@@ -101,11 +105,22 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 160, [UIDevice systemVersionIsMoreThanOrEuqal7] ? 64 : 44)];
     headView.backgroundColor = [UIColor appGray];
-    UILabel *lblTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, [UIDevice systemVersionIsMoreThanOrEuqal7] ? 20 : 0, 160, 44)];
-    lblTitle.textAlignment = NSTextAlignmentCenter;
+    
+    UIImageView *img = [[UIImageView alloc] initWithFrame:CGRectMake(16, [UIDevice systemVersionIsMoreThanOrEuqal7] ? 33 : 0, 33 / 2, 34 / 2)];
+    img.image = [UIImage imageNamed:@"icon_add_unt_red"];
+    [headView addSubview:img];
+    
+    UILabel *lblTitle = [[UILabel alloc] initWithFrame:CGRectMake(47, [UIDevice systemVersionIsMoreThanOrEuqal7] ? 20 : 0, 110, 44)];
+    lblTitle.textAlignment = NSTextAlignmentLeft;
+    lblTitle.backgroundColor = [UIColor clearColor];
     lblTitle.textColor = [UIColor darkGrayColor];
-    lblTitle.text = NSLocalizedString(@"select_unit", @"");
+    lblTitle.font = [UIFont systemFontOfSize:14.f];
+    lblTitle.text = [NSString stringWithFormat:@"%@...", NSLocalizedString(@"add_unit", @"")];
     [headView addSubview:lblTitle];
+    
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showUnitFinderView:)];
+    [headView addGestureRecognizer:tapGesture];
+    
     return headView;
 }
 
