@@ -207,6 +207,11 @@
 - (void)setUp {
 }
 
+// Clear user's data for view
+- (void)clear {
+    [super clear];
+}
+
 #pragma mark -
 #pragma mark UI Methods
 
@@ -271,11 +276,6 @@
     if(imgNetwork != nil && imgNetwork.superview != nil) {
         [imgNetwork removeFromSuperview];
     }
-}
-
-// Clear user's data for view
-- (void)clear {
-    [super clear];
 }
 
 #pragma mark -

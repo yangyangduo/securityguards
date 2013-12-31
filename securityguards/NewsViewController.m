@@ -41,4 +41,8 @@
     self.view.backgroundColor = [UIColor whiteColor];
 }
 
+- (void)clear {
+    [super clear];
+}
+
 @end
