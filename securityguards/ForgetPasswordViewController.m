@@ -59,7 +59,7 @@
     seperatorView.backgroundColor = [UIColor lightGrayColor];
     [self.view addSubview:seperatorView];
     
-    UILabel *lblTip = [[UILabel alloc] initWithFrame:CGRectMake(0, seperatorView.frame.size.height+seperatorView.frame.origin.y+10,200,100)];
+    UILabel *lblTip = [[UILabel alloc] initWithFrame:CGRectMake(0, seperatorView.frame.size.height+seperatorView.frame.origin.y+10,200,60)];
     lblTip.numberOfLines = 2;
     lblTip.center = CGPointMake(self.view.center.x, lblTip.center.y);
     lblTip.lineBreakMode = NSLineBreakByWordWrapping;

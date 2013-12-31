@@ -39,7 +39,6 @@
 
 - (void)initUI{
     [super initUI];
-    [self registerTapGestureToResignKeyboard];
     self.view.backgroundColor = [UIColor whiteColor];
     self.topbarView.title = NSLocalizedString(@"register.account", @"");
     UILabel *lblPhoneNumber = [[UILabel alloc] initWithFrame:CGRectMake(5, TOPBAR_HEIGHT+20, 80, 44)];
@@ -54,6 +53,7 @@
         txtPhoneNumber.autocorrectionType = UITextAutocapitalizationTypeNone;
 //        txtPhoneNumber.font = [UIFont systemFontOfSize:14.f];
         txtPhoneNumber.keyboardType = UIKeyboardTypeNumberPad;
+        [txtPhoneNumber becomeFirstResponder];
         txtPhoneNumber.clearButtonMode = UITextFieldViewModeWhileEditing;
         [self.view addSubview:txtPhoneNumber];
     }
@@ -142,6 +142,9 @@
     [[AlertView currentAlertView] delayDismissAlertView];
 }
 
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    return range.location<=13;
+}
 
 - (void)didReceiveMemoryWarning
 {

@@ -51,7 +51,6 @@
     self.view.backgroundColor = [UIColor whiteColor];
     [[GlobalSettings defaultSettings] clearAuth];
     BOOL hasLogin = ![[XXStringUtils emptyString] isEqualToString:[GlobalSettings defaultSettings].secretKey];
-    hasLogin = NO;
     if(hasLogin) {
         [[CoreService defaultService] startService];
     } else {

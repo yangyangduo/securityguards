@@ -13,7 +13,7 @@
 #import "ForgetPasswordViewController.h"
 #import "XXTextField.h"
 
-#define ORIGIN_HEIGHT [UIScreen mainScreen].bounds.size.height/6
+#define ORIGIN_HEIGHT 72
 
 @interface LoginViewController ()
 @end
@@ -63,13 +63,10 @@
     [self.view addSubview:logoImgView];
     
     if (txtPhoneNumber == nil) {
-        txtPhoneNumber = [[UITextField alloc] initWithFrame:CGRectMake(0, logoImgView.frame.origin.y+logoImgView.frame.size.height+40, 400/2, 53/2)];
+        txtPhoneNumber = [XXTextField textFieldWithPoint:CGPointMake(0, logoImgView.frame.origin.y+logoImgView.frame.size.height+40)];
         txtPhoneNumber.center = CGPointMake(self.view.center.x, txtPhoneNumber.center.y);
-        [txtPhoneNumber setBackground:[UIImage imageNamed:@"textbox-white-400.png"]];
         txtPhoneNumber.placeholder = NSLocalizedString(@"phone.number", @"");
         txtPhoneNumber.keyboardType = UIKeyboardTypeNumberPad;
-        txtPhoneNumber.clearButtonMode = UITextFieldViewModeWhileEditing;
-        txtPassword.autocorrectionType = UITextAutocapitalizationTypeNone;
         [self.view addSubview:txtPhoneNumber];
     }
     
@@ -78,6 +75,7 @@
         txtPassword.center = CGPointMake(self.view.center.x, txtPassword.center.y);
         txtPassword.placeholder = NSLocalizedString(@"password", @"");
         txtPassword.secureTextEntry = YES;
+        txtPassword.returnKeyType = UIReturnKeyJoin;
         [self.view addSubview:txtPassword];
     }
     
@@ -122,6 +120,23 @@
 #pragma mark button action
 
 - (void)btnLoginPressed:(id)sender {
+    NSString *userName = [XXStringUtils trim:txtPhoneNumber.text];
+    NSString *password = [XXStringUtils trim:txtPassword.text];
+    
+    if([XXStringUtils isBlank:userName]) {
+        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"username_not_blank", @"") forType:AlertViewTypeFailed];
+        [[AlertView currentAlertView] alertAutoDisappear:YES lockView:nil];
+        return;
+    }
+    
+    if([XXStringUtils isBlank:password]) {
+        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"password_not_blank", @"") forType:AlertViewTypeFailed];
+        [[AlertView currentAlertView] alertAutoDisappear:YES lockView:nil];
+        return;
+    }
+    
+    [[AlertView currentAlertView] setMessage:NSLocalizedString(@"please_wait", @"") forType:AlertViewTypeWaitting];
+    [[AlertView currentAlertView] alertAutoDisappear:NO lockView:self.view];
     AccountService *accountService = [[AccountService alloc] init];
 
     [accountService loginWithAccount:txtPhoneNumber.text password:txtPassword.text success:@selector(loginSuccess:) failed:@selector(loginFailed:) target:self callback:nil];
@@ -147,8 +162,8 @@
                         
                         // start service
                         [[CoreService defaultService] startService];
-                        
                         txtPassword.text = [XXStringUtils emptyString];
+                        [[AlertView currentAlertView] delayDismissAlertView];
                         [self toMainPage];
                         return;
                     }
@@ -177,7 +192,7 @@
 }
 
 - (void)btnForgetPasswordPressed:(id)sender {
-    
+    [self.navigationController pushViewController:[[ForgetPasswordViewController alloc] init] animated:YES];
 }
 
 - (void)btnRegisterPressed:(id)sender {
@@ -191,12 +206,20 @@
 }
 
 - (void) toMainPage{
-    
+    [self dismissViewControllerAnimated:NO completion:^{}];
 }
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (BOOL) textFieldShouldReturn:(UITextField *)textField{
+    if ([txtPassword isEqual:textField]) {
+        [self btnLoginPressed:btnLogin];
+        return YES;
+    }
+    return  NO;
 }
 
 @end
