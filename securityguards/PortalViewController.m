@@ -228,7 +228,8 @@
     if(speechViewIsOpenning) return;
     if(self.parentViewController != nil) {
         speechViewIsOpenning = YES;
-        SpeechViewController *speechViewController = [[SpeechViewController alloc] init];
+        UINavigationController *speechViewController = [[UINavigationController alloc] initWithRootViewController:[[SpeechViewController alloc] init]];
+        [speechViewController setNavigationBarHidden:YES];
         RootViewController *rootViewController = (RootViewController *)self.parentViewController.parentViewController;
         [rootViewController addChildViewController:speechViewController];
         [self.parentViewController willMoveToParentViewController:nil];

@@ -111,7 +111,7 @@
     UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 160, [UIDevice systemVersionIsMoreThanOrEuqal7] ? 64 : 44)];
     headView.backgroundColor = [UIColor appGray];
     
-    UIImageView *img = [[UIImageView alloc] initWithFrame:CGRectMake(16, [UIDevice systemVersionIsMoreThanOrEuqal7] ? 33 : 0, 33 / 2, 34 / 2)];
+    UIImageView *img = [[UIImageView alloc] initWithFrame:CGRectMake(16, [UIDevice systemVersionIsMoreThanOrEuqal7] ? 33 : 13, 33 / 2, 34 / 2)];
     img.image = [UIImage imageNamed:@"icon_add_unt_red"];
     [headView addSubview:img];
     

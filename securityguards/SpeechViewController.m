@@ -80,12 +80,12 @@ typedef NS_ENUM(NSInteger, RecognizerState) {
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    RootViewController *rootViewController = (RootViewController *)self.parentViewController;
+    RootViewController *rootViewController = (RootViewController *)self.parentViewController.parentViewController;
     [rootViewController disableGestureForDrawerView];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-    RootViewController *rootViewController = (RootViewController *)self.parentViewController;
+    RootViewController *rootViewController = (RootViewController *)self.parentViewController.parentViewController;
     [rootViewController enableGestureForDrawerView];
 }
 
@@ -303,16 +303,16 @@ typedef NS_ENUM(NSInteger, RecognizerState) {
     if(portalViewIsOpenning) return;
     if(self.parentViewController != nil) {
         portalViewIsOpenning = YES;
-        RootViewController *rootViewController = (RootViewController *)self.parentViewController;
+        RootViewController *rootViewController = (RootViewController *)self.parentViewController.parentViewController;
         UIViewController *toViewController = rootViewController.portalViewController.parentViewController;
-        [self willMoveToParentViewController:nil];
+        [self.parentViewController willMoveToParentViewController:nil];
         [rootViewController addChildViewController:toViewController];
-        [rootViewController transitionFromViewController:self toViewController:toViewController duration:0.8f options:UIViewAnimationOptionTransitionCrossDissolve
+        [rootViewController transitionFromViewController:self.parentViewController toViewController:toViewController duration:0.8f options:UIViewAnimationOptionTransitionCrossDissolve
             animations:^{
             }
             completion:^(BOOL finished){
                 [toViewController didMoveToParentViewController:rootViewController];
-                [self removeFromParentViewController];
+                [self.parentViewController removeFromParentViewController];
                 [rootViewController setDisplayViewController:toViewController];
                 portalViewIsOpenning = NO;
             }];
