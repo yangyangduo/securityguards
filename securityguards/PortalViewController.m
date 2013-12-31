@@ -54,10 +54,11 @@
     self.topbarView.title = @"Test";
     
     BOOL hasLogin = ![[XXStringUtils emptyString] isEqualToString:[GlobalSettings defaultSettings].secretKey];
-//    hasLogin = NO;
+    hasLogin = NO;
     if(hasLogin) {
         
     } else {
+        
         UINavigationController *loginNavController = [[UINavigationController alloc] initWithRootViewController:[[LoginViewController alloc] init]];
         loginNavController.navigationBarHidden = YES;
         [self presentViewController:loginNavController animated:NO completion:^{}];

@@ -91,12 +91,10 @@
 #pragma mark button actions
 
 - (void)btnGetVerificationPressed:(id) sender{
+    [[AlertView currentAlertView] setMessage:NSLocalizedString(@"please_wait", @"") forType:AlertViewTypeWaitting];
+    [[AlertView currentAlertView] alertAutoDisappear:NO lockView:self.view];
     AccountService *accountService = [[AccountService alloc] init];
     [accountService sendVerificationCodeFor:txtPhoneNumber.text success:@selector(sendVerificationCodeSuccess:) failed:@selector(sendVerificationCodeFailed:) target:self callback:nil];
-    RegisterStep2ViewController *step2ViewController = [[RegisterStep2ViewController alloc] init];
-    step2ViewController.countDown = 60;
-    [self.navigationController pushViewController:step2ViewController animated:YES];
-    
 }
 
 - (void)sendVerificationCodeSuccess:(RestResponse *) resp{

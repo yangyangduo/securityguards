@@ -98,7 +98,9 @@
         [btnRegister setImage:[UIImage imageNamed:@"button-royalblue-400.png"] forState:UIControlStateNormal];
         [btnRegister setImage:[UIImage imageNamed:@"button-gray-400.png"] forState:UIControlStateDisabled];
         [btnRegister setImage:[UIImage imageNamed:@"button-skyblue-400.png"] forState:UIControlStateHighlighted];
-        btnRegister.enabled = NO;
+        [btnRegister setTitle:NSLocalizedString(@"finish.register.and.login", @"") forState:UIControlStateNormal];
+        [btnRegister addTarget:self action:@selector(btnRegisterPressed:) forControlEvents:UIControlEventTouchUpInside];
+//        btnRegister.enabled = NO;
         [self.view addSubview:btnRegister];
     }
     
@@ -114,6 +116,7 @@
         [btnResendVerificationCode setImage:[UIImage imageNamed:@"button-royalblue-400.png"] forState:UIControlStateNormal];
         [btnResendVerificationCode setImage:[UIImage imageNamed:@"button-gray-400.png"] forState:UIControlStateDisabled];
         [btnResendVerificationCode setImage:[UIImage imageNamed:@"button-skyblue-400.png"] forState:UIControlStateHighlighted];
+        [btnRegister addTarget:self action:@selector(btnResendVerificationCode:) forControlEvents:UIControlEventTouchUpInside];
         btnResendVerificationCode.enabled = NO;
         [self.view addSubview:btnResendVerificationCode];
     }

@@ -132,7 +132,6 @@
 		6F7247CB18711CB5003B325F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F7247CA18711CB5003B325F /* AVFoundation.framework */; };
 		6F7247CD18711CBC003B325F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F7247CC18711CBC003B325F /* QuartzCore.framework */; };
 		6F7247CF18711CC3003B325F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F7247CE18711CC3003B325F /* SystemConfiguration.framework */; };
-		6F7247D3187141EA003B325F /* iflyMSC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F7247D2187141EA003B325F /* iflyMSC.framework */; };
 		6F7247DA1871443B003B325F /* bubble_mine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F7247D81871443B003B325F /* bubble_mine@2x.png */; };
 		6F7247DB1871443B003B325F /* bubble_theirs@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F7247D91871443B003B325F /* bubble_theirs@2x.png */; };
 		6F7247DF18714D70003B325F /* SpeechStateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7247DE18714D70003B325F /* SpeechStateView.m */; };
@@ -180,6 +179,7 @@
 		6FEC0FF7186C73B400CB0D70 /* icon_copyright@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FEC0FF6186C73B400CB0D70 /* icon_copyright@2x.png */; };
 		F215125D187105380039CC8A /* ForgetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F215125C187105380039CC8A /* ForgetPasswordViewController.m */; };
 		F21512601871227C0039CC8A /* XXTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = F215125F1871227C0039CC8A /* XXTextField.m */; };
+		F215126118715DF00039CC8A /* iflyMSC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F7247D2187141EA003B325F /* iflyMSC.framework */; };
 		F24E552C18702180000DB402 /* button-gray-400@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F24E552B18702180000DB402 /* button-gray-400@2x.png */; };
 		F2F93692186D10FA002F7904 /* login-image-bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2F93690186D10FA002F7904 /* login-image-bg@2x.png */; };
 		F2F93693186D10FA002F7904 /* logo-login@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2F93691186D10FA002F7904 /* logo-login@2x.png */; };
@@ -505,6 +505,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F215126118715DF00039CC8A /* iflyMSC.framework in Frameworks */,
 				6F7247CF18711CC3003B325F /* SystemConfiguration.framework in Frameworks */,
 				6F7247CD18711CBC003B325F /* QuartzCore.framework in Frameworks */,
 				6F7247CB18711CB5003B325F /* AVFoundation.framework in Frameworks */,
@@ -513,7 +514,6 @@
 				6F7247C518711C72003B325F /* CoreVideo.framework in Frameworks */,
 				6F600459186BCE210085B4BD /* CoreGraphics.framework in Frameworks */,
 				6F60045B186BCE210085B4BD /* UIKit.framework in Frameworks */,
-				6F7247D3187141EA003B325F /* iflyMSC.framework in Frameworks */,
 				6F600457186BCE210085B4BD /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1679,6 +1679,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/young/Downloads/securityguards,
+					/Users/hadoop/securityguards,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "securityguards/securityguards-Prefix.pch";
@@ -1696,6 +1697,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/young/Downloads/securityguards,
+					/Users/hadoop/securityguards,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "securityguards/securityguards-Prefix.pch";
