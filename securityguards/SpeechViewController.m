@@ -307,7 +307,7 @@ typedef NS_ENUM(NSInteger, RecognizerState) {
         UIViewController *toViewController = rootViewController.portalViewController.parentViewController;
         [self willMoveToParentViewController:nil];
         [rootViewController addChildViewController:toViewController];
-        [rootViewController transitionFromViewController:self toViewController:toViewController duration:1.0f options:UIViewAnimationOptionTransitionCrossDissolve
+        [rootViewController transitionFromViewController:self toViewController:toViewController duration:0.8f options:UIViewAnimationOptionTransitionCrossDissolve
             animations:^{
             }
             completion:^(BOOL finished){

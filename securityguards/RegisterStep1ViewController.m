@@ -75,9 +75,9 @@
     if (btnGetVerificationCode == nil) {
         btnGetVerificationCode = [[UIButton alloc] initWithFrame:CGRectMake(0, lblTip.frame.size.height+lblTip.frame.origin.y+10, 400/2, 53/2)];
         [btnGetVerificationCode setTitle:NSLocalizedString(@"get.verification", @"") forState:UIControlStateNormal];
-        [btnGetVerificationCode setBackgroundImage:[UIImage imageNamed:@"button-royalblue-400.png"] forState:UIControlStateNormal];
-        [btnGetVerificationCode setBackgroundImage:[UIImage imageNamed:@"button-skyblue-400.png"] forState:UIControlStateHighlighted];
-        [btnGetVerificationCode setImage:[UIImage imageNamed:@"button-gray-400.png"] forState:UIControlStateDisabled];
+        [btnGetVerificationCode setBackgroundImage:[UIImage imageNamed:@"btn_blue"] forState:UIControlStateNormal];
+        [btnGetVerificationCode setBackgroundImage:[UIImage imageNamed:@"btn_blue_highlighted"] forState:UIControlStateHighlighted];
+        [btnGetVerificationCode setImage:[UIImage imageNamed:@"btn_gray"] forState:UIControlStateDisabled];
         [btnGetVerificationCode setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         btnGetVerificationCode.center = CGPointMake(self.view.center.x, btnGetVerificationCode.center.y);
         [btnGetVerificationCode addTarget:self action:@selector(btnGetVerificationPressed:) forControlEvents:UIControlEventTouchUpInside];

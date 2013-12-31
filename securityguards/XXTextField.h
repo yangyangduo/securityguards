@@ -10,6 +10,6 @@
 
 @interface XXTextField : UITextField
 
-+ (UITextField *)textFieldWithPoint:(CGPoint)point;
++ (XXTextField *)textFieldWithPoint:(CGPoint)point;
 
 @end

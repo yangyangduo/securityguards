@@ -20,6 +20,9 @@
 #import "CoreService.h"
 #import "RootViewController.h"
 #import "SpeechViewController.h"
+#import "UnitsListUpdatedEvent.h"
+#import "UnitSelectionDrawerView.h"
+#import "UnitManager.h"
 
 @interface PortalViewController ()
 
@@ -56,19 +59,20 @@
     BOOL hasLogin = ![[XXStringUtils emptyString] isEqualToString:[GlobalSettings defaultSettings].secretKey];
     hasLogin = NO;
     if(hasLogin) {
-        
+        [[CoreService defaultService] startService];
     } else {
         
         UINavigationController *loginNavController = [[UINavigationController alloc] initWithRootViewController:[[LoginViewController alloc] init]];
         loginNavController.navigationBarHidden = YES;
         [self presentViewController:loginNavController animated:NO completion:^{}];
     }
-//    [GlobalSettings defaultSettings].tcpAddress = @"localhost:8888";
-//    [[CoreService defaultService] startService];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    XXEventSubscription *subscription = [[XXEventSubscription alloc] initWithSubscriber:self eventFilter:[[XXEventNameFilter alloc] initWithSupportedEventName:EventNetworkModeChanged]];
+    [self updateUnitsView];
+    
+    XXEventSubscription *subscription = [[XXEventSubscription alloc] initWithSubscriber:self eventFilter:[[XXEventNameFilter alloc] initWithSupportedEventNames:[NSArray arrayWithObjects:EventUnitsListUpdated, EventNetworkModeChanged, nil]]];
+    subscription.notifyMustInMainThread = YES;
     [[XXEventSubscriptionPublisher defaultPublisher] subscribeFor:subscription];
 }
 
@@ -99,6 +103,7 @@
     
     UIButton *btnRename = [[UIButton alloc] initWithFrame:CGRectMake(([UIScreen mainScreen].bounds.size.width - 8 - 55 - 5), [UIDevice systemVersionIsMoreThanOrEuqal7] ? (20 + 8) : 8, 55 / 2, 55 / 2)];
     [btnRename setBackgroundImage:[UIImage imageNamed:@"btn_rename"] forState:UIControlStateNormal];
+    [btnRename addTarget:self action:@selector(btnRenameUnit:) forControlEvents:UIControlEventTouchUpInside];
     [self.topbarView addSubview:btnRename];
     
     /*
@@ -227,7 +232,7 @@
         RootViewController *rootViewController = (RootViewController *)self.parentViewController.parentViewController;
         [rootViewController addChildViewController:speechViewController];
         [self.parentViewController willMoveToParentViewController:nil];
-        [rootViewController transitionFromViewController:self.parentViewController toViewController:speechViewController duration:1.f options:UIViewAnimationOptionTransitionCrossDissolve
+        [rootViewController transitionFromViewController:self.parentViewController toViewController:speechViewController duration:0.8f options:UIViewAnimationOptionTransitionCrossDissolve
             animations:^{
             }
             completion:^(BOOL finished) {
@@ -237,6 +242,15 @@
                 speechViewIsOpenning = NO;
             }];
     }
+}
+
+- (void)btnRenameUnit:(id)sender {
+    TextViewController *txtViewController = [[TextViewController alloc] init];
+    txtViewController.title = NSLocalizedString(@"rename_unit", @"");
+    if([UnitManager defaultManager].currentUnit != nil) {
+        txtViewController.defaultValue = [UnitManager defaultManager].currentUnit.name;
+    }
+    [self presentViewController:txtViewController animated:YES completion:^{}];
 }
 
 #pragma mark -
@@ -258,6 +272,25 @@
         } else {
             NSLog(@"else");
         }
+    } else if([event isKindOfClass:[UnitsListUpdatedEvent class]]) {
+        [self updateUnitsView];
+    }
+}
+
+#pragma mark -
+#pragma mark View updates
+
+- (void)updateUnitsView {
+//    [UnitManager defaultManager].currentUnit;
+    [self updateUnitsSelectionView];
+}
+
+- (void)updateUnitsSelectionView {
+    if(self.parentViewController == nil || self.parentViewController.parentViewController == nil) return;
+    RootViewController *rootViewController = (RootViewController *)self.parentViewController.parentViewController;
+    if(rootViewController.rightView != nil) {
+        UnitSelectionDrawerView *unitSelectionView = (UnitSelectionDrawerView *)rootViewController.rightView;
+        [unitSelectionView refresh];
     }
 }
 

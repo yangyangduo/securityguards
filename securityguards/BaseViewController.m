@@ -7,6 +7,7 @@
 //
 
 #import "BaseViewController.h"
+#import "XXStringUtils.h"
 
 @interface BaseViewController ()
 
@@ -47,6 +48,10 @@
     self.topbarView = [TopbarView topbar];
     self.topbarView.backgroundColor = [UIColor grayColor];
     [self.view addSubview:self.topbarView];
+    
+    if(![XXStringUtils isBlank:self.title]) {
+        self.topbarView.title = self.title;
+    }
 }
 
 - (void)setUp {
