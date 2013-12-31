@@ -72,6 +72,7 @@
         txtVerificationCode.placeholder = NSLocalizedString(@"please.input.verification.code", @"");
         txtVerificationCode.clearButtonMode = UITextFieldViewModeWhileEditing;
         txtVerificationCode.autocorrectionType = UITextAutocapitalizationTypeNone;
+        txtVerificationCode.keyboardType = UIKeyboardTypeNumberPad;
         txtVerificationCode.delegate = self;
         [self.view addSubview:txtVerificationCode];
     }
@@ -93,27 +94,27 @@
         btnRegister = [[UIButton alloc] initWithFrame:CGRectMake(0, lblTip.frame.origin.y+lblTip.frame.size.height+10, 400/2, 53/2)];
         btnRegister.center = CGPointMake(self.view.center.x, btnRegister.center.y);
         [btnRegister setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [btnRegister setTitle:NSLocalizedString(@"finish.register.and.login", @"") forState:UIControlStateNormal];
         [btnRegister addTarget:self action:@selector(btnRegisterPressed:) forControlEvents:UIControlEventTouchUpInside];
-        [btnRegister setImage:[UIImage imageNamed:@"btn_blue"] forState:UIControlStateNormal];
-        [btnRegister setImage:[UIImage imageNamed:@"btn_gray"] forState:UIControlStateDisabled];
-        [btnRegister setImage:[UIImage imageNamed:@"btn_blue_highlighted"] forState:UIControlStateHighlighted];
+        [btnRegister setBackgroundImage:[UIImage imageNamed:@"btn_blue"] forState:UIControlStateNormal];
+        [btnRegister setBackgroundImage:[UIImage imageNamed:@"btn_gray"] forState:UIControlStateDisabled];
+        [btnRegister setBackgroundImage:[UIImage imageNamed:@"btn_blue_highlighted"] forState:UIControlStateHighlighted];
+        [btnRegister setTitle:NSLocalizedString(@"finish.register.and.login", @"") forState:UIControlStateNormal];
         [self.view addSubview:btnRegister];
     }
     
     if (btnResendVerificationCode == nil) {
         btnResendVerificationCode = [[UIButton alloc] initWithFrame:CGRectMake(0, btnRegister.frame.origin.y+btnRegister.frame.size.height+10, 400/2, 53/2)];
         btnResendVerificationCode.center = CGPointMake(self.view.center.x, btnResendVerificationCode.center.y);
-        [btnResendVerificationCode setTitle:[NSString stringWithFormat:@"%@(%i)",NSLocalizedString(@"resend.verification.code", @""),countDown] forState:UIControlStateDisabled];
+        [btnResendVerificationCode setTitle:[NSString stringWithFormat:@"%@(%is)",NSLocalizedString(@"resend.verification.code", @""),countDown] forState:UIControlStateDisabled];
         if (countDownTimer == nil) {
             countDownTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(countDownForResend) userInfo:nil repeats:YES];
         }
         [btnResendVerificationCode setTitle:[NSString stringWithFormat:@"%@",NSLocalizedString(@"resend.verification.code", @"")] forState:UIControlStateNormal];
         [btnResendVerificationCode setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [btnRegister addTarget:self action:@selector(btnResendVerificationCode:) forControlEvents:UIControlEventTouchUpInside];
-        [btnResendVerificationCode setImage:[UIImage imageNamed:@"btn_blue.png"] forState:UIControlStateNormal];
-        [btnResendVerificationCode setImage:[UIImage imageNamed:@"btn_gray.png"] forState:UIControlStateDisabled];
-        [btnResendVerificationCode setImage:[UIImage imageNamed:@"btn_blue_highlighted.png"] forState:UIControlStateHighlighted];
+        [btnResendVerificationCode addTarget:self action:@selector(btnResendVerificationCode:) forControlEvents:UIControlEventTouchUpInside];
+        [btnResendVerificationCode setBackgroundImage:[UIImage imageNamed:@"btn_blue.png"] forState:UIControlStateNormal];
+        [btnResendVerificationCode setBackgroundImage:[UIImage imageNamed:@"btn_gray.png"] forState:UIControlStateDisabled];
+        [btnResendVerificationCode setBackgroundImage:[UIImage imageNamed:@"btn_blue_highlighted.png"] forState:UIControlStateHighlighted];
         btnResendVerificationCode.enabled = NO;
         [self.view addSubview:btnResendVerificationCode];
     }
@@ -135,7 +136,7 @@
 - (void)countDownForResend{
     if (countDown>0) {
         countDown--;
-        [btnResendVerificationCode setTitle:[NSString stringWithFormat:@"%@(%iS)",NSLocalizedString(@"resend.verification.code", @""),countDown] forState:UIControlStateDisabled];
+        [btnResendVerificationCode setTitle:[NSString stringWithFormat:@"%@(%is)",NSLocalizedString(@"resend.verification.code", @""),countDown] forState:UIControlStateDisabled];
     }else{
         btnResendVerificationCode.enabled = YES;
         [countDownTimer invalidate];
@@ -165,7 +166,8 @@
                     [[AlertView currentAlertView] setMessage:NSLocalizedString(@"send_success", @"") forType:AlertViewTypeSuccess];
                     [[AlertView currentAlertView] delayDismissAlertView];
                     self.countDown = 60;
-                    [btnResendVerificationCode setTitle:[NSString stringWithFormat:@"%@(%iS)",NSLocalizedString(@"resend.verification.code", @""),countDown] forState:UIControlStateDisabled];
+                    [btnResendVerificationCode setTitle:[NSString stringWithFormat:@"%@(%is)",NSLocalizedString(@"resend.verification.code", @""),countDown] forState:UIControlStateDisabled];
+                    btnResendVerificationCode.enabled = NO;
                     [self startCountDown];
                     return;
                 }
@@ -211,8 +213,6 @@
                         settings.deviceCode = command.deviceCode;
                         settings.restAddress = command.restAddress;
                         [settings saveSettings];
-                        
-                        ((LoginViewController *)[Shared shared].app.window.rootViewController).hasLogin = YES;
                         [self.navigationController popToRootViewControllerAnimated:NO];
 //                        [self.navigationController pushViewController:[[UnitsBindingViewController alloc] init] animated:YES];
                         [[CoreService defaultService] startService];
