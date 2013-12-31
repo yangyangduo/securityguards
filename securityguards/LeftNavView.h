@@ -24,4 +24,6 @@
 
 - (id)initWithFrame:(CGRect)frame andNavItems:(NSArray *)items;
 
+- (void)reset;
+
 @end

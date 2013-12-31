@@ -137,6 +137,39 @@
     }
 }
 
+- (void)unSubscribeAllSubscriptionsExceptSubscriberId:(NSString *)subscriberId {
+    @synchronized(self) {
+        if([XXStringUtils isBlank:subscriberId]) {
+            [subscriptions removeAllObjects];
+#ifdef DEBUG
+            NSLog(@"[EVENT PUBLISHER] Unsubscribe All Subscriptions.");
+#endif
+            return;
+        }
+        XXEventSubscription *found = nil;
+        for(int i=0; i<subscriptions.count; i++) {
+            XXEventSubscription *subscription = [subscriptions objectAtIndex:i];
+            if(subscription.subscriber != nil) {
+                if([subscriberId isEqualToString:[subscription.subscriber xxEventSubscriberIdentifier]]) {
+                    found = subscription;
+                    break;
+                }
+            }
+        }
+        [subscriptions removeAllObjects];
+        if(found != nil) {
+            [subscriptions addObject:found];
+#ifdef DEBUG
+            NSLog(@"[EVENT PUBLISHER] Unsubscribe All Subscriptions, Except [%@].", [found.subscriber xxEventSubscriberIdentifier]);
+#endif
+        } else {
+#ifdef DEBUG
+            NSLog(@"[EVENT PUBLISHER] Unsubscribe All Subscriptions.");
+#endif
+        }
+    }
+}
+
 - (void)unSubscribeForSubscriberId:(NSString *)subscriberId {
     if([XXStringUtils isEmpty:subscriberId]) return;
     @synchronized(self) {

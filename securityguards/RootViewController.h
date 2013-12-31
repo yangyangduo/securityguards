@@ -8,9 +8,10 @@
 
 #import "XXDrawerViewController.h"
 #import "PortalViewController.h"
+#import "XXEventSubscriber.h"
 #import "LeftNavView.h"
 
-@interface RootViewController : XXDrawerViewController<LeftNavViewDelegate>
+@interface RootViewController : XXDrawerViewController<LeftNavViewDelegate, XXEventSubscriber>
 
 @property (nonatomic, strong) UIViewController *displayViewController;
 

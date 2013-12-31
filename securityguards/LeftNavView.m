@@ -110,4 +110,13 @@
     }
 }
 
+- (void)reset {
+    if(self.navItems == nil || self.navItems.count == 0) {
+        self.currentItem = nil;
+    } else {
+        self.currentItem = [self.navItems objectAtIndex:0];
+    }
+    [tblItems reloadData];
+}
+
 @end

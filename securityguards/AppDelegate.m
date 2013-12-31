@@ -81,7 +81,7 @@
 
 - (void)delayLogout {
     [[CoreService defaultService] stopService];
-    [[XXEventSubscriptionPublisher defaultPublisher] unsubscribeAllSubscriptions];
+    [[XXEventSubscriptionPublisher defaultPublisher] unSubscribeAllSubscriptionsExceptSubscriberId:@"rootViewControllerSubscriber"];
     [[UnitManager defaultManager] clear];
     [[GlobalSettings defaultSettings] clearAuth];
     

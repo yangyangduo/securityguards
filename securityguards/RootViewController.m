@@ -12,6 +12,7 @@
 #import "CopyrightViewController.h"
 #import "UnitSelectionDrawerView.h"
 #import "NotificationsViewController.h"
+#import "UserLogoutEvent.h"
 
 @interface RootViewController ()
 
@@ -73,6 +74,8 @@
     
     // setup
     [self initialDrawerViewController];
+    
+    [self subscribeEvents];
 }
 
 #pragma mark -
@@ -128,6 +131,39 @@
     [self showCenterView:YES];
     
     self.rightViewEnable = [@"portalItem" isEqualToString:item.identifier];
+}
+
+- (void)subscribeEvents {
+    XXEventSubscription *subscription = [[XXEventSubscription alloc] initWithSubscriber:self eventFilter:[[XXEventNameFilter alloc] initWithSupportedEventName:EventUserLogout]];
+    [[XXEventSubscriptionPublisher defaultPublisher] subscribeFor:subscription];
+}
+
+#pragma mark -
+#pragma mark Event Subscriber
+
+- (void)xxEventPublisherNotifyWithEvent:(XXEvent *)event {
+    if([event isKindOfClass:[UserLogoutEvent class]]) {
+        [self userHasLogout];
+    }
+}
+
+- (NSString *)xxEventSubscriberIdentifier {
+    return @"rootViewControllerSubscriber";
+}
+
+- (void)userHasLogout {
+    if(self.leftView != nil) {
+        LeftNavView *leftNavView = (LeftNavView *)self.leftView;
+        [leftNavView reset];
+    }
+    
+    if(self.displayViewController != nil) {
+        if(self.displayViewController != portalNavViewController) {
+            LeftNavItem *portalItem = [[LeftNavItem alloc] init];
+            portalItem.identifier = @"portalItem";
+            [self leftNavViewItemChanged:portalItem];
+        }
+    }
 }
 
 - (PortalViewController *)portalViewController {

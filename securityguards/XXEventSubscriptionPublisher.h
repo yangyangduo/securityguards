@@ -37,6 +37,7 @@
 - (void)unSubscribeForSubscription:(XXEventSubscription *)subscription;
 - (void)unSubscribeForSubscriber:(id<XXEventSubscriber>)subscriber;
 - (void)unSubscribeForSubscriberId:(NSString *)subscriberId;
+- (void)unSubscribeAllSubscriptionsExceptSubscriberId:(NSString *)subscriberId;
 - (void)unsubscribeAllSubscriptions;
 
 @end
