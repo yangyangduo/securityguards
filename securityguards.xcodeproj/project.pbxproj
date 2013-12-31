@@ -167,6 +167,7 @@
 		6F7CDBAB187289ED0036F912 /* UIApplication+TopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7CDBAA187289ED0036F912 /* UIApplication+TopViewController.m */; };
 		6F7CDBB11872984A0036F912 /* UserLogoutEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7CDBB01872984A0036F912 /* UserLogoutEvent.m */; };
 		6F7CDBB41872A2100036F912 /* NotificationsFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7CDBB31872A2100036F912 /* NotificationsFileManager.m */; };
+		6F7CDBB71872A4F40036F912 /* UIView+ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7CDBB61872A4F40036F912 /* UIView+ViewController.m */; };
 		6F8F57B21871016C0033228F /* btn_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F8F57B11871016C0033228F /* btn_back@2x.png */; };
 		6F8F57BC18710D940033228F /* AttributedStringBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F8F57B718710D940033228F /* AttributedStringBuilder.m */; };
 		6F8F57BD18710D940033228F /* ParagraphBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F8F57B918710D940033228F /* ParagraphBuilder.m */; };
@@ -488,6 +489,8 @@
 		6F7CDBB01872984A0036F912 /* UserLogoutEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserLogoutEvent.m; sourceTree = "<group>"; };
 		6F7CDBB21872A2100036F912 /* NotificationsFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationsFileManager.h; sourceTree = "<group>"; };
 		6F7CDBB31872A2100036F912 /* NotificationsFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationsFileManager.m; sourceTree = "<group>"; };
+		6F7CDBB51872A4F40036F912 /* UIView+ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+ViewController.h"; sourceTree = "<group>"; };
+		6F7CDBB61872A4F40036F912 /* UIView+ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+ViewController.m"; sourceTree = "<group>"; };
 		6F8F57B11871016C0033228F /* btn_back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_back@2x.png"; sourceTree = "<group>"; };
 		6F8F57B618710D940033228F /* AttributedStringBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttributedStringBuilder.h; sourceTree = "<group>"; };
 		6F8F57B718710D940033228F /* AttributedStringBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttributedStringBuilder.m; sourceTree = "<group>"; };
@@ -762,6 +765,8 @@
 				6F2AE0E41870653300BEDB29 /* UIImage+Rotate.m */,
 				6F7CDBA9187289ED0036F912 /* UIApplication+TopViewController.h */,
 				6F7CDBAA187289ED0036F912 /* UIApplication+TopViewController.m */,
+				6F7CDBB51872A4F40036F912 /* UIView+ViewController.h */,
+				6F7CDBB61872A4F40036F912 /* UIView+ViewController.m */,
 			);
 			name = categories;
 			sourceTree = "<group>";
@@ -1527,6 +1532,7 @@
 				6F60055E186BF0710085B4BD /* Unit.m in Sources */,
 				6F7CDBB11872984A0036F912 /* UserLogoutEvent.m in Sources */,
 				6F600543186BF0490085B4BD /* AlertView.m in Sources */,
+				6F7CDBB71872A4F40036F912 /* UIView+ViewController.m in Sources */,
 				6F600581186BF57D0085B4BD /* RestResponse.m in Sources */,
 				6F6004C3186BD04D0085B4BD /* BaseViewController.m in Sources */,
 				6F600520186BE9890085B4BD /* DeviceCommandCheckVersion.m in Sources */,

@@ -162,8 +162,11 @@
             LeftNavItem *portalItem = [[LeftNavItem alloc] init];
             portalItem.identifier = @"portalItem";
             [self leftNavViewItemChanged:portalItem];
+            return;
         }
     }
+    
+    [self showCenterView:NO];
 }
 
 - (PortalViewController *)portalViewController {

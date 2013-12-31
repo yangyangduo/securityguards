@@ -19,9 +19,4 @@
     return self;
 }
 
-- (UIViewController *)viewController {
-//    UITabBarController
-    return nil;
-}
-
 @end
