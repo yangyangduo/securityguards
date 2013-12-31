@@ -9,6 +9,7 @@
 #import "TextViewController.h"
 #import "UIColor+MoreColor.h"
 #import "XXStringUtils.h"
+#import "AlertView.h"
 
 @interface TextViewController ()
 
@@ -85,6 +86,11 @@
 - (void)btnSubmitPressed:(id)sender {
     int c = [UIApplication sharedApplication].windows.count;
     NSLog(@"%d", c);
+    
+    [[AlertView currentAlertView] setMessage:@"lalala" forType:AlertViewTypeWaitting];
+    [[AlertView currentAlertView] alertAutoDisappear:NO lockView:YES];
+    
+    
 //    for(int i=0; i<[UIApplication sharedApplication].windows.count; i++) {
 //        UIWindow *w = [[UIApplication sharedApplication].windows objectAtIndex:i];
 //        NSLog([[w class] description]);
@@ -92,6 +98,8 @@
 //    
 //    NSLog([[[UIApplication sharedApplication].keyWindow class] description]);
 }
+
+
 
 - (void)popupViewController {
     [self dismissViewControllerAnimated:YES completion:^{}];
