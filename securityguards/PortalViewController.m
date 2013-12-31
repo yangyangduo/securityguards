@@ -49,7 +49,6 @@
 	// Do any additional setup after loading the view.
     
     self.view.backgroundColor = [UIColor whiteColor];
-    [[GlobalSettings defaultSettings] clearAuth];
     BOOL hasLogin = ![[XXStringUtils emptyString] isEqualToString:[GlobalSettings defaultSettings].secretKey];
     if(hasLogin) {
         [[CoreService defaultService] startService];

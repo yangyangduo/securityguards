@@ -42,14 +42,8 @@
 	// Do any additional setup after loading the view.
     
     //self.view.backgroundColor = [UIColor whiteColor];
-    
-    UIButton *btnTest = [[UIButton alloc] initWithFrame:CGRectMake(230, 150, 80, 29)];
-    [btnTest setTitle:@"Skip" forState:UIControlStateNormal];
-    [btnTest setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    btnTest.backgroundColor = [UIColor blackColor];
-    [btnTest addTarget:self action:@selector(btnTestPressed:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:btnTest];
 }
+
 - (void)initUI{
     [super initUI];
     [self registerTapGestureToResignKeyboard];
@@ -200,11 +194,6 @@
 - (void)btnRegisterPressed:(id)sender {
     RegisterStep1ViewController *registerStep1ViewController = [[RegisterStep1ViewController alloc] init];
     [self.navigationController pushViewController:registerStep1ViewController animated:YES];
-}
-
-
-- (void)btnTestPressed:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:^{}];
 }
 
 - (void) toMainPage{
