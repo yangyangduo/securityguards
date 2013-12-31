@@ -47,7 +47,7 @@
     self.topbarView = [TopbarView topbar];
     self.topbarView.backgroundColor = [UIColor grayColor];
     [self.view addSubview:self.topbarView];
-    
+    self.view.backgroundColor = [UIColor whiteColor];
     if(![XXStringUtils isBlank:self.title]) {
         self.topbarView.title = self.title;
     }
