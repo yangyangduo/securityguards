@@ -11,7 +11,7 @@
 #import "XXEventSubscriptionPublisher.h"
 #import "GlobalSettings.h"
 
-#define DIRECTORY [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:@"units"]
+#define DIRECTORY [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:@"familyguards-units"]
 
 @implementation UnitManager {
     NSString *currentUnitIdentifier;
