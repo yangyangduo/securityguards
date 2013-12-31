@@ -57,4 +57,8 @@
     [super setUp];
 }
 
+- (void)clear {
+    [super clear];
+}
+
 @end
