@@ -211,8 +211,6 @@
     // Security key is invalid or expired
     if(command.resultID == -3000 || command.resultID == -2000 || command.resultID == -1000) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            [[AlertView currentAlertView] setMessage:NSLocalizedString(@"security_invalid", @"") forType:AlertViewTypeFailed];
-            [[AlertView currentAlertView] alertAutoDisappear:YES lockView:NO];
             [[Shared shared].app logout];
             return;
         });

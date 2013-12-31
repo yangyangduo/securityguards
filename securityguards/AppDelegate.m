@@ -17,6 +17,7 @@
 
 @implementation AppDelegate {
     UIViewController *_rootViewController_;
+    BOOL logouting;
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -74,17 +75,19 @@
 #pragma mark Logout
 
 - (void)logout {
-    [[AlertView currentAlertView] setMessage:NSLocalizedString(@"logouting", @"") forType:AlertViewTypeWaitting];
-    [[AlertView currentAlertView] alertAutoDisappear:NO lockView:YES];
-    [NSTimer scheduledTimerWithTimeInterval:0.8f target:self selector:@selector(delayLogout) userInfo:nil repeats:NO];
+    if(!logouting) {
+        logouting = YES;
+        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"logouting", @"") forType:AlertViewTypeWaitting];
+        [[AlertView currentAlertView] alertAutoDisappear:NO lockView:YES];
+        [[CoreService defaultService] stopService];
+        [[XXEventSubscriptionPublisher defaultPublisher] unSubscribeAllSubscriptionsExceptSubscriberId:@"rootViewControllerSubscriber"];
+        [[UnitManager defaultManager] clear];
+        [[GlobalSettings defaultSettings] clearAuth];
+        [NSTimer scheduledTimerWithTimeInterval:0.8f target:self selector:@selector(delayLogout) userInfo:nil repeats:NO];
+    }
 }
 
 - (void)delayLogout {
-    [[CoreService defaultService] stopService];
-    [[XXEventSubscriptionPublisher defaultPublisher] unSubscribeAllSubscriptionsExceptSubscriberId:@"rootViewControllerSubscriber"];
-    [[UnitManager defaultManager] clear];
-    [[GlobalSettings defaultSettings] clearAuth];
-    
     UINavigationController *loginNavController = [[UINavigationController alloc] initWithRootViewController:[[LoginViewController alloc] init]];
     loginNavController.navigationBarHidden = YES;
     [[self topViewController] presentViewController:loginNavController animated:NO completion:^{}];
@@ -93,6 +96,7 @@
     
     [[AlertView currentAlertView] setMessage:NSLocalizedString(@"logout_success", @"") forType:AlertViewTypeSuccess];
     [[AlertView currentAlertView] delayDismissAlertView];
+    logouting = NO;
 }
 
 @end
