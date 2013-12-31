@@ -85,11 +85,9 @@
 
 - (void)btnSubmitPressed:(id)sender {
     int c = [UIApplication sharedApplication].windows.count;
-    NSLog(@"%d", c);
     
     [[AlertView currentAlertView] setMessage:@"lalala" forType:AlertViewTypeWaitting];
     [[AlertView currentAlertView] alertAutoDisappear:NO lockView:YES];
-    
     
 //    for(int i=0; i<[UIApplication sharedApplication].windows.count; i++) {
 //        UIWindow *w = [[UIApplication sharedApplication].windows objectAtIndex:i];
