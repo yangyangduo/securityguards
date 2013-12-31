@@ -55,13 +55,14 @@
         txtPhoneNumber.keyboardType = UIKeyboardTypeNumberPad;
         [txtPhoneNumber becomeFirstResponder];
         txtPhoneNumber.clearButtonMode = UITextFieldViewModeWhileEditing;
+        txtPhoneNumber.delegate =self;
         [self.view addSubview:txtPhoneNumber];
     }
     UIView *seperatorView = [[UIView alloc] initWithFrame:CGRectMake(0, lblPhoneNumber.frame.size.height+lblPhoneNumber.frame.origin.y+5, self.view.bounds.size.width, 1)];
     seperatorView.backgroundColor = [UIColor lightGrayColor];
     [self.view addSubview:seperatorView];
     
-    UILabel *lblTip = [[UILabel alloc] initWithFrame:CGRectMake(0, seperatorView.frame.size.height+seperatorView.frame.origin.y+10,200,100)];
+    UILabel *lblTip = [[UILabel alloc] initWithFrame:CGRectMake(0, seperatorView.frame.size.height+seperatorView.frame.origin.y+10,200,60)];
     lblTip.numberOfLines = 2;
     lblTip.center = CGPointMake(self.view.center.x, lblTip.center.y);
     lblTip.lineBreakMode = NSLineBreakByWordWrapping;
@@ -90,7 +91,7 @@
 
 - (void)btnGetVerificationPressed:(id) sender{
     [[AlertView currentAlertView] setMessage:NSLocalizedString(@"please_wait", @"") forType:AlertViewTypeWaitting];
-    [[AlertView currentAlertView] alertAutoDisappear:NO lockView:self.view];
+    [[AlertView currentAlertView] alertAutoDisappear:NO lockView:YES];
     AccountService *accountService = [[AccountService alloc] init];
     [accountService sendVerificationCodeFor:txtPhoneNumber.text success:@selector(sendVerificationCodeSuccess:) failed:@selector(sendVerificationCodeFailed:) target:self callback:nil];
 }
@@ -143,7 +144,7 @@
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
-    return range.location<=13;
+    return range.location<11;
 }
 
 - (void)didReceiveMemoryWarning

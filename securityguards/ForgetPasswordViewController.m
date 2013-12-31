@@ -37,7 +37,6 @@
 }
 - (void)initUI{
     [super initUI];
-    [self registerTapGestureToResignKeyboard];
     self.view.backgroundColor = [UIColor whiteColor];
     self.topbarView.title = NSLocalizedString(@"forget.password", @"");
     UILabel *lblPhoneNumber = [[UILabel alloc] initWithFrame:CGRectMake(5, TOPBAR_HEIGHT+20, 80, 44)];
@@ -53,6 +52,8 @@
         txtPhoneNumber.font = [UIFont systemFontOfSize:15.f];
         txtPhoneNumber.keyboardType = UIKeyboardTypeNumberPad;
         txtPhoneNumber.clearButtonMode = UITextFieldViewModeWhileEditing;
+        [txtPhoneNumber becomeFirstResponder];
+        txtPhoneNumber.delegate = self;
         [self.view addSubview:txtPhoneNumber];
     }
     UIView *seperatorView = [[UIView alloc] initWithFrame:CGRectMake(0, lblPhoneNumber.frame.size.height+lblPhoneNumber.frame.origin.y+5, self.view.bounds.size.width, 1)];
@@ -90,12 +91,12 @@
     if([XXStringUtils isBlank:phoneNumber] || phoneNumber.length != 11) {
         [[[AccountService alloc] init] sendPasswordToMobile:phoneNumber success:@selector(sendPasswordSuccess:) failed:@selector(sendPasswordFailed:) target:self callback:nil];
         [[AlertView currentAlertView] setMessage:NSLocalizedString(@"phone_format_invalid", @"") forType:AlertViewTypeFailed];
-        [[AlertView currentAlertView] alertAutoDisappear:YES lockView:self.view];
+        [[AlertView currentAlertView] alertAutoDisappear:YES lockView:YES];
     }
     
     [[[AccountService alloc] init] sendPasswordToMobile:phoneNumber success:@selector(sendPasswordSuccess:) failed:@selector(sendPasswordFailed:) target:self callback:nil];
     [[AlertView currentAlertView] setMessage:NSLocalizedString(@"please_wait", @"") forType:AlertViewTypeWaitting];
-    [[AlertView currentAlertView] alertAutoDisappear:NO lockView:self.view];
+    [[AlertView currentAlertView] alertAutoDisappear:NO lockView:YES];
 
     
 }
@@ -143,6 +144,9 @@
     [[AlertView currentAlertView] delayDismissAlertView];
 }
 
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    return range.location<11;
+}
 
 
 - (void)didReceiveMemoryWarning

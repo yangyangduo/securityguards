@@ -76,6 +76,7 @@
         txtPassword.placeholder = NSLocalizedString(@"password", @"");
         txtPassword.secureTextEntry = YES;
         txtPassword.returnKeyType = UIReturnKeyJoin;
+        txtPassword.delegate = self;
         [self.view addSubview:txtPassword];
     }
     
@@ -125,18 +126,18 @@
     
     if([XXStringUtils isBlank:userName]) {
         [[AlertView currentAlertView] setMessage:NSLocalizedString(@"username_not_blank", @"") forType:AlertViewTypeFailed];
-        [[AlertView currentAlertView] alertAutoDisappear:YES lockView:nil];
+        [[AlertView currentAlertView] alertAutoDisappear:YES lockView:NO];
         return;
     }
     
     if([XXStringUtils isBlank:password]) {
         [[AlertView currentAlertView] setMessage:NSLocalizedString(@"password_not_blank", @"") forType:AlertViewTypeFailed];
-        [[AlertView currentAlertView] alertAutoDisappear:YES lockView:nil];
+        [[AlertView currentAlertView] alertAutoDisappear:YES lockView:NO];
         return;
     }
     
     [[AlertView currentAlertView] setMessage:NSLocalizedString(@"please_wait", @"") forType:AlertViewTypeWaitting];
-    [[AlertView currentAlertView] alertAutoDisappear:NO lockView:self.view];
+    [[AlertView currentAlertView] alertAutoDisappear:NO lockView:YES];
     AccountService *accountService = [[AccountService alloc] init];
 
     [accountService loginWithAccount:txtPhoneNumber.text password:txtPassword.text success:@selector(loginSuccess:) failed:@selector(loginFailed:) target:self callback:nil];
@@ -163,6 +164,7 @@
                         // start service
                         [[CoreService defaultService] startService];
                         txtPassword.text = [XXStringUtils emptyString];
+                        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"login_success", @"") forType:AlertViewTypeSuccess];
                         [[AlertView currentAlertView] delayDismissAlertView];
                         [self toMainPage];
                         return;

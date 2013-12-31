@@ -8,6 +8,6 @@
 
 #import "NavigationViewController.h"
 
-@interface ForgetPasswordViewController : NavigationViewController
+@interface ForgetPasswordViewController : NavigationViewController<UITextFieldDelegate>
 
 @end

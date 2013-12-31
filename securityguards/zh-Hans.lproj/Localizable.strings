@@ -72,6 +72,7 @@
 "phone_has_been_register"                     =  "手机已被注册";
 "phone_format_invalid"                        =  "号码格式错误";
 "verification.code"                           =  "验证码";
+"please.input.verification.code"              =  "请输入获取的验证码";
 
 
 /**************** Forget password Strings *************/

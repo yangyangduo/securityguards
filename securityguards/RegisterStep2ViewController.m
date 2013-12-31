@@ -72,6 +72,7 @@
         txtVerificationCode.placeholder = NSLocalizedString(@"please.input.verification.code", @"");
         txtVerificationCode.clearButtonMode = UITextFieldViewModeWhileEditing;
         txtVerificationCode.autocorrectionType = UITextAutocapitalizationTypeNone;
+        txtVerificationCode.delegate = self;
         [self.view addSubview:txtVerificationCode];
     }
     
@@ -79,7 +80,7 @@
     seperatorView.backgroundColor = [UIColor lightGrayColor];
     [self.view addSubview:seperatorView];
 
-    UILabel *lblTip = [[UILabel alloc] initWithFrame:CGRectMake(0, seperatorView.frame.size.height+seperatorView.frame.origin.y+10,200,100)];
+    UILabel *lblTip = [[UILabel alloc] initWithFrame:CGRectMake(0, seperatorView.frame.size.height+seperatorView.frame.origin.y+10,200,60)];
     lblTip.numberOfLines = 2;
     lblTip.center = CGPointMake(self.view.center.x, lblTip.center.y);
     lblTip.lineBreakMode = NSLineBreakByWordWrapping;
@@ -94,7 +95,6 @@
         [btnRegister setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [btnRegister setTitle:NSLocalizedString(@"finish.register.and.login", @"") forState:UIControlStateNormal];
         [btnRegister addTarget:self action:@selector(btnRegisterPressed:) forControlEvents:UIControlEventTouchUpInside];
-        btnRegister.enabled = NO;
         [btnRegister setImage:[UIImage imageNamed:@"btn_blue"] forState:UIControlStateNormal];
         [btnRegister setImage:[UIImage imageNamed:@"btn_gray"] forState:UIControlStateDisabled];
         [btnRegister setImage:[UIImage imageNamed:@"btn_blue_highlighted"] forState:UIControlStateHighlighted];
@@ -104,10 +104,10 @@
     if (btnResendVerificationCode == nil) {
         btnResendVerificationCode = [[UIButton alloc] initWithFrame:CGRectMake(0, btnRegister.frame.origin.y+btnRegister.frame.size.height+10, 400/2, 53/2)];
         btnResendVerificationCode.center = CGPointMake(self.view.center.x, btnResendVerificationCode.center.y);
+        [btnResendVerificationCode setTitle:[NSString stringWithFormat:@"%@(%i)",NSLocalizedString(@"resend.verification.code", @""),countDown] forState:UIControlStateDisabled];
         if (countDownTimer == nil) {
             countDownTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(countDownForResend) userInfo:nil repeats:YES];
         }
-        [btnResendVerificationCode setTitle:[NSString stringWithFormat:@"%@(%i)",NSLocalizedString(@"resend.verification.code", @""),countDown] forState:UIControlStateDisabled];
         [btnResendVerificationCode setTitle:[NSString stringWithFormat:@"%@",NSLocalizedString(@"resend.verification.code", @"")] forState:UIControlStateNormal];
         [btnResendVerificationCode setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [btnRegister addTarget:self action:@selector(btnResendVerificationCode:) forControlEvents:UIControlEventTouchUpInside];
@@ -143,12 +143,15 @@
     }
     
 }
+- (void)startCountDown{
+    countDownTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(countDownForResend) userInfo:nil repeats:YES];
+}
 
 #pragma mark-
 #pragma mark services
 - (void)resendVerificationCode {
     [[AlertView currentAlertView] setMessage:NSLocalizedString(@"please_wait", @"") forType:AlertViewTypeWaitting];
-    [[AlertView currentAlertView] alertAutoDisappear:NO lockView:self.view];
+    [[AlertView currentAlertView] alertAutoDisappear:NO lockView:YES];
     [[[AccountService alloc] init] sendVerificationCodeFor:self.phoneNumber success:@selector(verificationCodeSendSuccess:) failed:@selector(verificationCodeSendError:) target:self callback:nil];
 }
 
@@ -163,7 +166,7 @@
                     [[AlertView currentAlertView] delayDismissAlertView];
                     self.countDown = 60;
                     [btnResendVerificationCode setTitle:[NSString stringWithFormat:@"%@(%iS)",NSLocalizedString(@"resend.verification.code", @""),countDown] forState:UIControlStateDisabled];
-                    [self countDownForResend];
+                    [self startCountDown];
                     return;
                 }
             }
@@ -184,11 +187,11 @@
 - (void)submitVerificationCode {
     if([XXStringUtils isBlank:txtVerificationCode.text] || txtVerificationCode.text.length != 6) {
         [[AlertView currentAlertView] setMessage:NSLocalizedString(@"verification_code_error", @"") forType:AlertViewTypeFailed];
-        [[AlertView currentAlertView] alertAutoDisappear:YES lockView:self.view];
+        [[AlertView currentAlertView] alertAutoDisappear:YES lockView:YES];
         return;
     }
     [[AlertView currentAlertView] setMessage:NSLocalizedString(@"please_wait", @"") forType:AlertViewTypeWaitting];
-    [[AlertView currentAlertView] alertAutoDisappear:NO lockView:self.view];
+    [[AlertView currentAlertView] alertAutoDisappear:NO lockView:YES];
     [[[AccountService alloc] init] registerWithPhoneNumber:self.phoneNumber checkCode:txtVerificationCode.text success:@selector(registerSuccessfully:) failed:@selector(registerFailed:) target:self callback:nil];
 }
 
@@ -245,7 +248,9 @@
 
 
 
-
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    return range.location<6;
+}
 
 
 - (void)didReceiveMemoryWarning
