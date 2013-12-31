@@ -14,8 +14,6 @@
 #define ANIMATION_DURATION      0.4f
 #define BACKGROUND_VIEW_ALPHA   0.8f
 
-#define KEY_WINDOW [UIApplication sharedApplication].keyWindow
-
 @implementation AlertView {
     NSTimer *timer;
     UILabel *lblMessage;
@@ -71,21 +69,26 @@
 
 + (AlertView *)currentAlertView {
     static AlertView *currentAlertView;
-    if(currentAlertView == nil) {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
         currentAlertView = [[AlertView alloc] initWithFrame:CGRectMake(0, 0, 140, 88)];
-        currentAlertView.center = CGPointMake(KEY_WINDOW.center.x, KEY_WINDOW.center.y);
-    }
+        currentAlertView.center = CGPointMake(keyWindow.center.x, keyWindow.center.y);
+    });
     return currentAlertView;
 }
 
-- (void)alertAutoDisappear:(BOOL)autoDisappear lockView:(UIView *)lockView {
+- (void)alertAutoDisappear:(BOOL)autoDisappear lockView:(BOOL)lockView {
     if(self.alertViewState != AlertViewStateReady) return;
     self.alertViewState = AlertViewStateWillAppear;
+    UIWindow *lastWindow = [self lastWindow];
     if(lockView) {
-        lockView.userInteractionEnabled = NO;
-        lockedView = lockView;
+        lockedView = [[UIView alloc] initWithFrame:lastWindow.bounds];
+        lockedView.backgroundColor = [UIColor blackColor];
+        lockedView.alpha = 0.2f;
+        [lastWindow addSubview:lockedView];
     }
-    [KEY_WINDOW addSubview:self];
+    [lastWindow addSubview:self];
     if(self.alertViewType == AlertViewTypeWaitting) {
         if(!indicatorView.isAnimating) {
             [indicatorView startAnimating];
@@ -108,10 +111,10 @@
 }
 
 - (void)dismissAlertView {
-    if(timer != nil) {
+    if(timer != nil && timer.isValid) {
         [timer invalidate];
-        timer = nil;
     }
+    timer = nil;
     if(self.alertViewState == AlertViewStateWillAppear || self.alertViewState == AlertViewStateDidAppear) {
         self.alertViewState = AlertViewStateWillDisappear;
         [UIView animateWithDuration:ANIMATION_DURATION
@@ -123,8 +126,8 @@
                         [indicatorView stopAnimating];
                     }
                     [self removeFromSuperview];
-                    if(lockedView) {
-                        lockedView.userInteractionEnabled = YES;
+                    if(lockedView != nil) {
+                        [lockedView removeFromSuperview];
                         lockedView = nil;
                     }
                     self.alertViewState = AlertViewStateReady;
@@ -159,6 +162,11 @@
         default:
             break;
     }
+}
+
+- (UIWindow *)lastWindow {
+    NSArray *windows = [UIApplication sharedApplication].windows;
+    return [windows objectAtIndex:windows.count-1];
 }
 
 @end
