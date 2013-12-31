@@ -29,6 +29,14 @@
 	// Do any additional setup after loading the view.
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    // subscribe events here
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    // unsubscribe events here
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
