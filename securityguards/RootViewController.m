@@ -48,7 +48,7 @@
     NSArray *navItems = [NSArray arrayWithObjects:
         [[LeftNavItem alloc] initWithIdentifier:@"portalItem" andDisplayName:NSLocalizedString(@"portal_drawer_title", @"") andImageName:@"icon_portal"],
         [[LeftNavItem alloc] initWithIdentifier:@"newsItem" andDisplayName:NSLocalizedString(@"news_drawer_title", @"") andImageName:@"icon_news"],
-        [[LeftNavItem alloc] initWithIdentifier:@"notificationsItem" andDisplayName:NSLocalizedString(@"notifications_drawer_title", @"") andImageName:@"icon_news"],
+        [[LeftNavItem alloc] initWithIdentifier:@"notificationsItem" andDisplayName:NSLocalizedString(@"notifications_drawer_title", @"") andImageName:@"icon_notifications"],
         [[LeftNavItem alloc] initWithIdentifier:@"accountManagerItem" andDisplayName:NSLocalizedString(@"user_mgr_drawer_title", @"") andImageName:@"icon_account"],
         [[LeftNavItem alloc] initWithIdentifier:@"copyrightItem" andDisplayName:NSLocalizedString(@"copyright_drawer_title", @"") andImageName:@"icon_copyright"],
         [[LeftNavItem alloc] initWithIdentifier:@"logoutItem" andDisplayName:NSLocalizedString(@"logout_drawer_title", @"") andImageName:@"icon_logout"], nil];

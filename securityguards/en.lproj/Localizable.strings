@@ -10,16 +10,15 @@
 
 "app_name"                       =      "家庭卫士";
 
-"btn_voice_title"                =      "点击开启语音模式";
 "unknow_error"                   =      "系统错误";
 "request_timeout"                =      "请求超时";
 "submit"                         =      "提交";
-"please_wait"                    = "请稍后";
+"please_wait"                    =      "请稍后";
 
 
 /****************	Right Drawer View Strings	****************/
 
-"select_unit"                    =      "请选择主控";
+"add_unit"                       =      "添加设备";
 
 
 /****************	Left Drawer View Strings	****************/
@@ -30,12 +29,13 @@
 "copyright_drawer_title"         =      "版本信息";
 "logout_drawer_title"            =      "注销账号";
 "notifications_drawer_title"     =      "消息中心";
-"logouting"                      =      "登出中...";
-"logout_success"                 =      "登出成功";
+"logouting"                      =      "注销中...";
+"logout_success"                 =      "注销成功";
 
 
 /****************	Portal View Strings	****************/
 
+"btn_voice_title"                =      "点击开启语音模式";
 "heath_index_desc1"              =      "您的健康安全指数已超";
 "heath_index_desc2"              =      "过";
 "heath_index_desc3"              =      "的同类用户";
@@ -63,6 +63,7 @@
 "login"                 =   "登录";
 "name_or_pwd_error"     =   "账号或密码错误";
 "login_later"           =   "请稍后再登录";
+"login_success"         =   "登录成功";
 
 
 /****************  Register Strings **************/
