@@ -14,7 +14,9 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
+- (UIViewController *)topViewController;
+- (RootViewController *)rootViewController;
+
 - (void)logout;
 
-- (UIViewController *)topViewController;
 @end

@@ -269,7 +269,7 @@
     
     UILabel *lblDescription = (UILabel *)[imgNetwork viewWithTag:100];
     if(!isNoAllNetwork) {
-        imgNetwork.image = [UIImage imageNamed:@"bg_alert_blue"];
+        imgNetwork.image = [UIImage imageNamed:@"bg_alert_green"];
         lblDescription.text = NSLocalizedString(@"no_extra_network", @"");
     } else {
         imgNetwork.image = [UIImage imageNamed:@"bg_alert_yellow"];

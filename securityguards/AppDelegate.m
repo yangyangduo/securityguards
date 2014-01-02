@@ -16,7 +16,7 @@
 #import "UserLogoutEvent.h"
 
 @implementation AppDelegate {
-    UIViewController *_rootViewController_;
+    RootViewController *_rootViewController_;
     BOOL logouting;
 }
 
@@ -24,8 +24,8 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-    self.window.rootViewController = [[RootViewController alloc] init];
-    _rootViewController_ = self.window.rootViewController;
+    _rootViewController_ = [[RootViewController alloc] init];
+    self.window.rootViewController = _rootViewController_;
     [self.window makeKeyAndVisible];
     return YES;
 }
@@ -69,6 +69,10 @@
 
 - (UIViewController *)topViewController {
     return [[UIApplication sharedApplication] topViewController:_rootViewController_];
+}
+
+- (RootViewController *)rootViewController {
+    return _rootViewController_;
 }
 
 #pragma mark -

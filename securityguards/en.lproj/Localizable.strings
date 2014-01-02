@@ -20,7 +20,9 @@
 
 "add_unit"                       =      "添加设备";
 "no_unit_found"                  =      "没有找到新主控";
-"searching"                      =      "正在搜索...";
+"searching"                      =      "正在搜索主控";
+"binding_unit"                   =      "正在申请绑定";
+"binding_unit_success"           =      "已申请绑定主控";
 
 
 /****************	Left Drawer View Strings	****************/
