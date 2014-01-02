@@ -107,7 +107,7 @@
 //        UIButton *btnCheck =    [[UIButton alloc] initWithFrame:CGRectMake(5, view.frame.size.height+view.frame.origin.y+5, 152.5, 98/2)];
         XXButton *btnCheck = [XXButton blueButtonWithPoint:CGPointMake(5, view.frame.size.height+view.frame.origin.y+5) resize:CGSizeMake(152.5,98/2)];
         [btnCheck setTitle:NSLocalizedString(@"view_video", @"") forState:UIControlStateNormal];
-        [btnCheck addTarget:self action:@selector(btnCheckPressed:) forControlEvents:UIControlEventTouchUpInside];
+//        [btnCheck addTarget:self action:@selector(btnCheckPressed:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:btnCheck];
 //        UIButton *deleteButton = [[UIButton alloc] initWithFrame:CGRectMake(10+152.5, btnCheck.frame.origin.y, 152.5, 98/2)];
         XXButton *btnDelete = [XXButton blueButtonWithPoint:CGPointMake(162.5, btnCheck.frame.origin.y) resize:CGSizeMake(152.5,BLUE_BUTTON_DEFAULT_HEIGHT)];

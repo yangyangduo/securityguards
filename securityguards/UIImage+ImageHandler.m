@@ -9,6 +9,7 @@
 #import "UIImage+ImageHandler.h"
 
 @implementation UIImage (ImageHandler)
+
 + (UIImage *)scaleImage:(UIImage *)image toScale:(float)scaleSize{
     UIGraphicsBeginImageContext(CGSizeMake(image.size.width*scaleSize,image.size.height*scaleSize));
     [image drawInRect:CGRectMake(0, 0, image.size.width*scaleSize,image.size.height*scaleSize)];
