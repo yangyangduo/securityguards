@@ -28,6 +28,8 @@
 		6F0E244E187309F400F143F9 /* UnitFinderResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0E244D187309F400F143F9 /* UnitFinderResult.m */; };
 		6F2AE0DF187059A900BEDB29 /* SpeechViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F2AE0DE187059A900BEDB29 /* SpeechViewController.m */; };
 		6F2AE0E51870653300BEDB29 /* UIImage+Rotate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F2AE0E41870653300BEDB29 /* UIImage+Rotate.m */; };
+		6F348507187519BB00EBB635 /* DeviceCommandNameEventFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F348506187519BB00EBB635 /* DeviceCommandNameEventFilter.m */; };
+		6F34850A1875264D00EBB635 /* UnitRenameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F3485091875264D00EBB635 /* UnitRenameViewController.m */; };
 		6F600457186BCE210085B4BD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F600456186BCE210085B4BD /* Foundation.framework */; };
 		6F600459186BCE210085B4BD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F600458186BCE210085B4BD /* CoreGraphics.framework */; };
 		6F60045B186BCE210085B4BD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F60045A186BCE210085B4BD /* UIKit.framework */; };
@@ -248,6 +250,10 @@
 		6F2AE0DE187059A900BEDB29 /* SpeechViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeechViewController.m; sourceTree = "<group>"; };
 		6F2AE0E31870653300BEDB29 /* UIImage+Rotate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Rotate.h"; sourceTree = "<group>"; };
 		6F2AE0E41870653300BEDB29 /* UIImage+Rotate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Rotate.m"; sourceTree = "<group>"; };
+		6F348505187519BB00EBB635 /* DeviceCommandNameEventFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceCommandNameEventFilter.h; sourceTree = "<group>"; };
+		6F348506187519BB00EBB635 /* DeviceCommandNameEventFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceCommandNameEventFilter.m; sourceTree = "<group>"; };
+		6F3485081875264D00EBB635 /* UnitRenameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitRenameViewController.h; sourceTree = "<group>"; };
+		6F3485091875264D00EBB635 /* UnitRenameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnitRenameViewController.m; sourceTree = "<group>"; };
 		6F600453186BCE210085B4BD /* securityguards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = securityguards.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F600456186BCE210085B4BD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6F600458186BCE210085B4BD /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -590,6 +596,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6F348504187519A100EBB635 /* event_filters */ = {
+			isa = PBXGroup;
+			children = (
+				6F348505187519BB00EBB635 /* DeviceCommandNameEventFilter.h */,
+				6F348506187519BB00EBB635 /* DeviceCommandNameEventFilter.m */,
+			);
+			name = event_filters;
+			sourceTree = "<group>";
+		};
 		6F60044A186BCE210085B4BD = {
 			isa = PBXGroup;
 			children = (
@@ -814,6 +829,8 @@
 				F20D6AC618729A8800FE6B6D /* NotificationDetailsViewController.m */,
 				6F7CDBBE1872B30A0036F912 /* UnitFinderViewController.h */,
 				6F7CDBBF1872B30A0036F912 /* UnitFinderViewController.m */,
+				6F3485081875264D00EBB635 /* UnitRenameViewController.h */,
+				6F3485091875264D00EBB635 /* UnitRenameViewController.m */,
 			);
 			name = controllers;
 			sourceTree = "<group>";
@@ -838,9 +855,10 @@
 		6F6004C5186BD0680085B4BD /* core */ = {
 			isa = PBXGroup;
 			children = (
+				6F600564186BF3780085B4BD /* events */,
+				6F348504187519A100EBB635 /* event_filters */,
 				6F732722186D26F700A1276B /* manager */,
 				6F600582186BF5B30085B4BD /* command_executors */,
-				6F600564186BF3780085B4BD /* events */,
 				6F6004FF186BE90D0085B4BD /* command_handlers */,
 				6F6004FB186BE8A00085B4BD /* commands */,
 				6F6004EB186BDAA60085B4BD /* service */,
@@ -1651,11 +1669,13 @@
 				6F6004BB186BCFF40085B4BD /* UIColor+HexColor.m in Sources */,
 				6F73273C186D5E3600A1276B /* UnitControlPanel.m in Sources */,
 				6F6004F5186BDB8C0085B4BD /* CoreService.m in Sources */,
+				6F34850A1875264D00EBB635 /* UnitRenameViewController.m in Sources */,
 				F2B6A63D187500040020809D /* UIImage+ImageHandler.m in Sources */,
 				6F6004A2186BCEF10085B4BD /* XXEventFilterChain.m in Sources */,
 				6F0E244B1873091600F143F9 /* UnitFinder.m in Sources */,
 				6F6004FE186BE8C80085B4BD /* CommandFactory.m in Sources */,
 				6F60051E186BE9890085B4BD /* DeviceCommand.m in Sources */,
+				6F348507187519BB00EBB635 /* DeviceCommandNameEventFilter.m in Sources */,
 				6F6004CB186BD0A50085B4BD /* XXDrawerViewController.m in Sources */,
 				6F600525186BE9890085B4BD /* DeviceCommandUpdateDevice.m in Sources */,
 				6F600595186BFF7F0085B4BD /* GlobalSettings.m in Sources */,

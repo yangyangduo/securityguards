@@ -10,13 +10,17 @@
 
 @protocol TextViewDelegate <NSObject>
 
+- (void)textView:(NSString *)newText;
 
 @end
 
 @interface TextViewController : NavigationViewController
 
+@property (nonatomic, strong, readonly) NSString *value;
 @property (nonatomic, strong) NSString *defaultValue;
 @property (nonatomic, strong) NSString *txtDescription;
 @property (nonatomic, weak) id<TextViewDelegate> delegate;
+
+- (void)btnSubmitPressed:(id)sender;
 
 @end

@@ -16,6 +16,7 @@
 #import "UnitControlPanel.h"
 #import "SpeechViewController.h"
 #import "UnitSelectionDrawerView.h"
+#import "UnitRenameViewController.h"
 
 /*     events      */
 #import "NetworkModeChangedEvent.h"
@@ -70,9 +71,12 @@
     // update network state display
     [self updateNetworkStateForView:[CoreService defaultService].currentNetworkMode];
     
+    XXEventNameFilter *eventNameFilter = [[XXEventNameFilter alloc] initWithSupportedEventNames:[NSArray arrayWithObjects:EventUnitsListUpdated, EventNetworkModeChanged, EventCurrentUnitChanged, EventUnitNameChanged, nil]];
+    
     // subscribe events
-    XXEventSubscription *subscription = [[XXEventSubscription alloc] initWithSubscriber:self eventFilter:[[XXEventNameFilter alloc] initWithSupportedEventNames:[NSArray arrayWithObjects:EventUnitsListUpdated, EventNetworkModeChanged, EventCurrentUnitChanged, nil]]];
+    XXEventSubscription *subscription = [[XXEventSubscription alloc] initWithSubscriber:self eventFilter:eventNameFilter];
     subscription.notifyMustInMainThread = YES;
+    
     [[XXEventSubscriptionPublisher defaultPublisher] subscribeFor:subscription];
 }
 
@@ -246,13 +250,11 @@
 }
 
 - (void)btnRenameUnit:(id)sender {
-    TextViewController *txtViewController = [[TextViewController alloc] init];
-    txtViewController.txtDescription = [NSString stringWithFormat:@"%@:", NSLocalizedString(@"enter_new_unit_name", @"")];
-    txtViewController.title = NSLocalizedString(@"rename_unit", @"");
-    if([UnitManager defaultManager].currentUnit != nil) {
-        txtViewController.defaultValue = [UnitManager defaultManager].currentUnit.name;
+    Unit *currentUnit = [UnitManager defaultManager].currentUnit;
+    if(currentUnit != nil) {
+        UnitRenameViewController *unitRenameViewController = [[UnitRenameViewController alloc] initWithUnit:currentUnit];
+        [self presentViewController:unitRenameViewController animated:YES completion:^{}];
     }
-    [self presentViewController:txtViewController animated:YES completion:^{}];
 }
 
 - (void)showNetworkStateView:(BOOL)isNoAllNetwork {

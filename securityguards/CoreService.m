@@ -122,7 +122,7 @@
     id<CommandExecutor> executor = [self determineCommandExcutor:command];
     if(executor != nil) {
 #ifdef DEBUG
-        NSLog(@"Execute [%@] From [%@]", command.commandName, [executor executorName]);
+        NSLog(@"[Core Service] Execute [%@] From [%@]", command.commandName, [executor executorName]);
 #endif
         [executor executeCommand:command];
     } else {
@@ -205,7 +205,7 @@
     } else if(command.commmandNetworkMode == CommandNetworkModeInternal) {
         networkModeString = @"Internal";
     }
-    NSLog(@"[DeliveryService] Received [%@] From [%@]", command.commandName, networkModeString);
+    NSLog(@"[Core Service] Received [%@] From [%@]", command.commandName, networkModeString);
 #endif
 
     // Security key is invalid or expired

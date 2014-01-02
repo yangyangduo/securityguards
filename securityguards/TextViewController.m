@@ -13,12 +13,12 @@
 @end
 
 @implementation TextViewController {
-    UILabel *lbl;
-    UITextField *txt;
+    UILabel *lblTextDescription;
+    UITextField *textField;
 }
 
-@synthesize defaultValue;
-@synthesize txtDescription;
+@synthesize defaultValue = _defaultValue_;
+@synthesize txtDescription = _txtDescription_;
 @synthesize delegate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -46,23 +46,23 @@
     [super initUI];
     self.view.backgroundColor = [UIColor appGray];
     
-    lbl = [[UILabel alloc] initWithFrame:CGRectMake(10, self.topbarView.bounds.size.height + 5, 250, 30)];
+    lblTextDescription = [[UILabel alloc] initWithFrame:CGRectMake(10, self.topbarView.bounds.size.height + 5, 250, 30)];
     
-    lbl.font = [UIFont systemFontOfSize:13.f];
-    lbl.backgroundColor = [UIColor clearColor];
-    [self.view addSubview:lbl];
+    lblTextDescription.font = [UIFont systemFontOfSize:13.f];
+    lblTextDescription.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:lblTextDescription];
     
-    txt = [[UITextField alloc] initWithFrame:CGRectMake(0, lbl.frame.origin.y + lbl.bounds.size.height + 5, [UIScreen mainScreen].bounds.size.width, 30)];
-    txt.backgroundColor = [UIColor whiteColor];
-    txt.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 6, 0)];
-    txt.leftViewMode = UITextFieldViewModeAlways;
-    txt.font = [UIFont systemFontOfSize:14.f];
-    txt.textColor = [UIColor darkGrayColor];
-    txt.clearButtonMode = UITextFieldViewModeWhileEditing;
-    txt.contentVerticalAlignment  = UIControlContentVerticalAlignmentCenter;
-    [self.view addSubview:txt];
+    textField = [[UITextField alloc] initWithFrame:CGRectMake(0, lblTextDescription.frame.origin.y + lblTextDescription.bounds.size.height + 5, [UIScreen mainScreen].bounds.size.width, 30)];
+    textField.backgroundColor = [UIColor whiteColor];
+    textField.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 6, 0)];
+    textField.leftViewMode = UITextFieldViewModeAlways;
+    textField.font = [UIFont systemFontOfSize:14.f];
+    textField.textColor = [UIColor darkGrayColor];
+    textField.clearButtonMode = UITextFieldViewModeWhileEditing;
+    textField.contentVerticalAlignment  = UIControlContentVerticalAlignmentCenter;
+    [self.view addSubview:textField];
     
-    UIButton *btnSubmit =  [[UIButton alloc] initWithFrame:CGRectMake(0, txt.frame.origin.y + txt.bounds.size.height + 30, 400 / 2, 53 / 2)];
+    UIButton *btnSubmit =  [[UIButton alloc] initWithFrame:CGRectMake(0, textField.frame.origin.y + textField.bounds.size.height + 30, 400 / 2, 53 / 2)];
     btnSubmit.center = CGPointMake(self.view.center.x, btnSubmit.center.y);
     [btnSubmit setBackgroundImage:[UIImage imageNamed:@"btn_blue"] forState:UIControlStateNormal];
     [btnSubmit setBackgroundImage:[UIImage imageNamed:@"btn_blue_highlighted"] forState:UIControlStateHighlighted];
@@ -72,24 +72,47 @@
 }
 
 - (void)setUp {
-    lbl.text = self.txtDescription == nil ? [XXStringUtils emptyString] : self.txtDescription;
-    txt.text = self.defaultValue == nil ? [XXStringUtils emptyString] : self.defaultValue;
+    lblTextDescription.text = self.txtDescription == nil ? [XXStringUtils emptyString] : self.txtDescription;
+    textField.text = self.defaultValue == nil ? [XXStringUtils emptyString] : self.defaultValue;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    [txt becomeFirstResponder];
+    [textField becomeFirstResponder];
 }
 
 - (void)btnSubmitPressed:(id)sender {
-    int c = [UIApplication sharedApplication].windows.count;
-    [[AlertView currentAlertView] setMessage:@"lalala" forType:AlertViewTypeWaitting];
-    [[AlertView currentAlertView] alertAutoDisappear:NO lockView:YES];
-//    for(int i=0; i<[UIApplication sharedApplication].windows.count; i++) {
-//        UIWindow *w = [[UIApplication sharedApplication].windows objectAtIndex:i];
-//        NSLog([[w class] description]);
-//    }
-//    
-//    NSLog([[[UIApplication sharedApplication].keyWindow class] description]);
+    if(self.delegate != nil && [self.delegate respondsToSelector:@selector(textView:)]) {
+        [self.delegate textView:textField.text];
+    }
+}
+
+- (NSString *)value {
+    if(textField != nil) {
+        return textField.text;
+    }
+    return [XXStringUtils emptyString];
+}
+
+- (void)setDefaultValue:(NSString *)defaultValue {
+    _defaultValue_ = defaultValue;
+    if(textField != nil) {
+        if(_defaultValue_ == nil) {
+            textField.text = [XXStringUtils emptyString];
+        } else {
+            textField.text = defaultValue;
+        }
+    }
+}
+
+- (void)setTxtDescription:(NSString *)txtDescription {
+    _txtDescription_ = txtDescription;
+    if(lblTextDescription != nil) {
+        if(_txtDescription_ == nil) {
+            lblTextDescription.text = [XXStringUtils emptyString];
+        } else {
+            lblTextDescription.text = _txtDescription_;
+        }
+    }
 }
 
 - (void)popupViewController {

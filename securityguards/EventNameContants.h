@@ -16,5 +16,6 @@
 #define EventNotificationsFileUpdated   @"NotificationsFileUpdated"
 #define EventDeviceCommand              @"DeviceCommand"
 #define EventUserLogout                 @"Logout"
+#define EventUnitNameChanged            @"UnitNameChanged"
 
 #endif
