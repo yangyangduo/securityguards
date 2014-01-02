@@ -29,7 +29,7 @@
     static SpeechStateView *defaultView = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        defaultView = [[SpeechStateView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+        defaultView = [[SpeechStateView alloc] initWithFrame:CGRectMake(0, 0, 160, 100)];
     });
     return defaultView;
 }
@@ -42,7 +42,7 @@
     [self addSubview:lblTitle];
     
     self.layer.masksToBounds = YES;
-    self.layer.cornerRadius = 8.f;
+    self.layer.cornerRadius = 10.f;
     self.backgroundColor = [UIColor blackColor];
     self.alpha = 0.5f;
 }

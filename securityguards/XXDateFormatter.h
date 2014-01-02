@@ -9,5 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface XXDateFormatter : NSObject
+
 + (NSString *)dateToString:(NSDate *)date format:(NSString *)format;
+
 @end

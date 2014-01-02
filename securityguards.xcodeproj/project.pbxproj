@@ -24,6 +24,8 @@
 		6F0CD5DC186DB93000B5A3EA /* icon_voc_yellow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F0CD5CD186DB93000B5A3EA /* icon_voc_yellow@2x.png */; };
 		6F0CD5DF186DBD9E00B5A3EA /* UnitSelectionDrawerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0CD5DE186DBD9E00B5A3EA /* UnitSelectionDrawerView.m */; };
 		6F0CD5E1186DC75F00B5A3EA /* icon_unit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F0CD5E0186DC75F00B5A3EA /* icon_unit@2x.png */; };
+		6F0E244B1873091600F143F9 /* UnitFinder.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0E244A1873091600F143F9 /* UnitFinder.m */; };
+		6F0E244E187309F400F143F9 /* UnitFinderResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0E244D187309F400F143F9 /* UnitFinderResult.m */; };
 		6F2AE0DF187059A900BEDB29 /* SpeechViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F2AE0DE187059A900BEDB29 /* SpeechViewController.m */; };
 		6F2AE0E51870653300BEDB29 /* UIImage+Rotate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F2AE0E41870653300BEDB29 /* UIImage+Rotate.m */; };
 		6F600457186BCE210085B4BD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F600456186BCE210085B4BD /* Foundation.framework */; };
@@ -53,12 +55,11 @@
 		6F6004B9186BCFF40085B4BD /* NSDictionary+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6004B1186BCFF40085B4BD /* NSDictionary+Extension.m */; };
 		6F6004BA186BCFF40085B4BD /* NSMutableDictionary+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6004B3186BCFF40085B4BD /* NSMutableDictionary+Extension.m */; };
 		6F6004BB186BCFF40085B4BD /* UIColor+HexColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6004B5186BCFF40085B4BD /* UIColor+HexColor.m */; };
-		6F6004BC186BCFF40085B4BD /* UIDevice+ SystemVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6004B6186BCFF40085B4BD /* UIDevice+ SystemVersion.m */; };
+		6F6004BC186BCFF40085B4BD /* UIDevice+SystemVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6004B6186BCFF40085B4BD /* UIDevice+SystemVersion.m */; };
 		6F6004C3186BD04D0085B4BD /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6004C0186BD04D0085B4BD /* BaseViewController.m */; };
 		6F6004C4186BD04D0085B4BD /* NavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6004C2186BD04D0085B4BD /* NavigationViewController.m */; };
 		6F6004CB186BD0A50085B4BD /* XXDrawerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6004C8186BD0A50085B4BD /* XXDrawerViewController.m */; };
 		6F6004CC186BD0A50085B4BD /* LeftNavView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6004CA186BD0A50085B4BD /* LeftNavView.m */; };
-		6F6004D5186BD1B80085B4BD /* UnitFinder.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6004D4186BD1B80085B4BD /* UnitFinder.m */; };
 		6F6004D9186BD2430085B4BD /* AsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6004D8186BD2430085B4BD /* AsyncUdpSocket.m */; };
 		6F6004DE186BD2680085B4BD /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6004DD186BD2680085B4BD /* Reachability.m */; };
 		6F6004E4186BD29D0085B4BD /* BitUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6004E1186BD29D0085B4BD /* BitUtils.m */; };
@@ -108,7 +109,6 @@
 		6F60057B186BF5420085B4BD /* ServiceBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F60057A186BF5420085B4BD /* ServiceBase.m */; };
 		6F600580186BF57D0085B4BD /* RestClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F60057D186BF57D0085B4BD /* RestClient.m */; };
 		6F600581186BF57D0085B4BD /* RestResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F60057F186BF57D0085B4BD /* RestResponse.m */; };
-		6F600586186BF8880085B4BD /* SMDateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F600585186BF8880085B4BD /* SMDateFormatter.m */; };
 		6F600589186BF89E0085B4BD /* CommandQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F600588186BF89E0085B4BD /* CommandQueue.m */; };
 		6F60058E186BF8EC0085B4BD /* CameraSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F60058B186BF8EC0085B4BD /* CameraSocket.m */; };
 		6F60058F186BF8EC0085B4BD /* ExtranetClientSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F60058D186BF8EC0085B4BD /* ExtranetClientSocket.m */; };
@@ -236,6 +236,10 @@
 		6F0CD5DD186DBD9E00B5A3EA /* UnitSelectionDrawerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitSelectionDrawerView.h; sourceTree = "<group>"; };
 		6F0CD5DE186DBD9E00B5A3EA /* UnitSelectionDrawerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnitSelectionDrawerView.m; sourceTree = "<group>"; };
 		6F0CD5E0186DC75F00B5A3EA /* icon_unit@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_unit@2x.png"; sourceTree = "<group>"; };
+		6F0E24491873091600F143F9 /* UnitFinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitFinder.h; sourceTree = "<group>"; };
+		6F0E244A1873091600F143F9 /* UnitFinder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnitFinder.m; sourceTree = "<group>"; };
+		6F0E244C187309F400F143F9 /* UnitFinderResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitFinderResult.h; sourceTree = "<group>"; };
+		6F0E244D187309F400F143F9 /* UnitFinderResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnitFinderResult.m; sourceTree = "<group>"; };
 		6F2AE0DD187059A900BEDB29 /* SpeechViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeechViewController.h; sourceTree = "<group>"; };
 		6F2AE0DE187059A900BEDB29 /* SpeechViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeechViewController.m; sourceTree = "<group>"; };
 		6F2AE0E31870653300BEDB29 /* UIImage+Rotate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Rotate.h"; sourceTree = "<group>"; };
@@ -287,7 +291,7 @@
 		6F6004B3186BCFF40085B4BD /* NSMutableDictionary+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+Extension.m"; sourceTree = "<group>"; };
 		6F6004B4186BCFF40085B4BD /* UIColor+HexColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+HexColor.h"; sourceTree = "<group>"; };
 		6F6004B5186BCFF40085B4BD /* UIColor+HexColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+HexColor.m"; sourceTree = "<group>"; };
-		6F6004B6186BCFF40085B4BD /* UIDevice+ SystemVersion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+ SystemVersion.m"; sourceTree = "<group>"; };
+		6F6004B6186BCFF40085B4BD /* UIDevice+SystemVersion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+SystemVersion.m"; sourceTree = "<group>"; };
 		6F6004B7186BCFF40085B4BD /* UIDevice+SystemVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+SystemVersion.h"; sourceTree = "<group>"; };
 		6F6004BF186BD04D0085B4BD /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		6F6004C0186BD04D0085B4BD /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
@@ -298,8 +302,6 @@
 		6F6004C9186BD0A50085B4BD /* LeftNavView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftNavView.h; sourceTree = "<group>"; };
 		6F6004CA186BD0A50085B4BD /* LeftNavView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftNavView.m; sourceTree = "<group>"; };
 		6F6004CE186BD1000085B4BD /* ParameterAware.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ParameterAware.h; sourceTree = "<group>"; };
-		6F6004D3186BD1B80085B4BD /* UnitFinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitFinder.h; sourceTree = "<group>"; };
-		6F6004D4186BD1B80085B4BD /* UnitFinder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnitFinder.m; sourceTree = "<group>"; };
 		6F6004D7186BD2430085B4BD /* AsyncUdpSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncUdpSocket.h; sourceTree = "<group>"; };
 		6F6004D8186BD2430085B4BD /* AsyncUdpSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncUdpSocket.m; sourceTree = "<group>"; };
 		6F6004DC186BD2680085B4BD /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
@@ -400,8 +402,6 @@
 		6F60057D186BF57D0085B4BD /* RestClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestClient.m; sourceTree = "<group>"; };
 		6F60057E186BF57D0085B4BD /* RestResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestResponse.h; sourceTree = "<group>"; };
 		6F60057F186BF57D0085B4BD /* RestResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestResponse.m; sourceTree = "<group>"; };
-		6F600584186BF8880085B4BD /* SMDateFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMDateFormatter.h; sourceTree = "<group>"; };
-		6F600585186BF8880085B4BD /* SMDateFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SMDateFormatter.m; sourceTree = "<group>"; };
 		6F600587186BF89E0085B4BD /* CommandQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommandQueue.h; sourceTree = "<group>"; };
 		6F600588186BF89E0085B4BD /* CommandQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommandQueue.m; sourceTree = "<group>"; };
 		6F60058A186BF8EC0085B4BD /* CameraSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraSocket.h; sourceTree = "<group>"; };
@@ -766,8 +766,8 @@
 				6F6004B3186BCFF40085B4BD /* NSMutableDictionary+Extension.m */,
 				6F6004B4186BCFF40085B4BD /* UIColor+HexColor.h */,
 				6F6004B5186BCFF40085B4BD /* UIColor+HexColor.m */,
-				6F6004B6186BCFF40085B4BD /* UIDevice+ SystemVersion.m */,
 				6F6004B7186BCFF40085B4BD /* UIDevice+SystemVersion.h */,
+				6F6004B6186BCFF40085B4BD /* UIDevice+SystemVersion.m */,
 				6F73272A186D4A1E00A1276B /* UIColor+MoreColor.h */,
 				6F73272B186D4A1E00A1276B /* UIColor+MoreColor.m */,
 				6F2AE0E31870653300BEDB29 /* UIImage+Rotate.h */,
@@ -875,8 +875,10 @@
 		6F6004D2186BD19C0085B4BD /* udp */ = {
 			isa = PBXGroup;
 			children = (
-				6F6004D3186BD1B80085B4BD /* UnitFinder.h */,
-				6F6004D4186BD1B80085B4BD /* UnitFinder.m */,
+				6F0E24491873091600F143F9 /* UnitFinder.h */,
+				6F0E244A1873091600F143F9 /* UnitFinder.m */,
+				6F0E244C187309F400F143F9 /* UnitFinderResult.h */,
+				6F0E244D187309F400F143F9 /* UnitFinderResult.m */,
 			);
 			name = udp;
 			sourceTree = "<group>";
@@ -1098,8 +1100,6 @@
 		6F600583186BF86F0085B4BD /* date */ = {
 			isa = PBXGroup;
 			children = (
-				6F600584186BF8880085B4BD /* SMDateFormatter.h */,
-				6F600585186BF8880085B4BD /* SMDateFormatter.m */,
 			);
 			name = date;
 			sourceTree = "<group>";
@@ -1595,8 +1595,8 @@
 				6F600490186BCED60085B4BD /* XXEvent.m in Sources */,
 				6F6004E4186BD29D0085B4BD /* BitUtils.m in Sources */,
 				6F6005A4186C015B0085B4BD /* UserManagementService.m in Sources */,
-				6F6004D5186BD1B80085B4BD /* UnitFinder.m in Sources */,
-				6F6004BC186BCFF40085B4BD /* UIDevice+ SystemVersion.m in Sources */,
+				6F6004BC186BCFF40085B4BD /* UIDevice+SystemVersion.m in Sources */,
+				6F0E244E187309F400F143F9 /* UnitFinderResult.m in Sources */,
 				6F6004B9186BCFF40085B4BD /* NSDictionary+Extension.m in Sources */,
 				6F8F57C4187111B70033228F /* ConversationMessage.m in Sources */,
 				6F60055A186BF0710085B4BD /* UnitManager.m in Sources */,
@@ -1612,7 +1612,6 @@
 				F215125D187105380039CC8A /* ForgetPasswordViewController.m in Sources */,
 				6F60053D186BF0010085B4BD /* DeviceCommandGetUnitsHandler.m in Sources */,
 				6F600576186BF3940085B4BD /* NotificationsFileUpdatedEvent.m in Sources */,
-				6F600586186BF8880085B4BD /* SMDateFormatter.m in Sources */,
 				6F6005AF186C18D60085B4BD /* RootViewController.m in Sources */,
 				6F6004C4186BD04D0085B4BD /* NavigationViewController.m in Sources */,
 				6F8F57BC18710D940033228F /* AttributedStringBuilder.m in Sources */,
@@ -1628,6 +1627,7 @@
 				6F73273C186D5E3600A1276B /* UnitControlPanel.m in Sources */,
 				6F6004F5186BDB8C0085B4BD /* CoreService.m in Sources */,
 				6F6004A2186BCEF10085B4BD /* XXEventFilterChain.m in Sources */,
+				6F0E244B1873091600F143F9 /* UnitFinder.m in Sources */,
 				6F6004FE186BE8C80085B4BD /* CommandFactory.m in Sources */,
 				6F60051E186BE9890085B4BD /* DeviceCommand.m in Sources */,
 				6F6004CB186BD0A50085B4BD /* XXDrawerViewController.m in Sources */,

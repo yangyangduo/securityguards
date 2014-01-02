@@ -7,7 +7,8 @@
 //
 
 #import "NavigationViewController.h"
+#import "UnitFinder.h"
 
-@interface UnitFinderViewController : NavigationViewController
+@interface UnitFinderViewController : NavigationViewController<UnitFinderDelegate>
 
 @end

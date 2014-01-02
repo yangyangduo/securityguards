@@ -221,7 +221,7 @@
                 BOOL createDirSuccess = [[NSFileManager defaultManager] createDirectoryAtPath:DIRECTORY withIntermediateDirectories:YES attributes:nil error:&error];
                 if(!createDirSuccess) {
 #ifdef DEBUG
-                    NSLog(@"[MEMORY] Create directory for units failed , error >>> %@", error.description);
+                    NSLog(@"[UNIT MANAGER] Create directory for units failed , error >>> %@", error.description);
 #endif
                     return;
                 }
@@ -236,7 +236,7 @@
                     [[NSFileManager defaultManager] removeItemAtPath:filePath error:&error];
 #ifdef DEBUG
                     if(error) {
-                        NSLog(@"[MEMORY] Remove unit file failed. error >>>>  %@", error.description);
+                        NSLog(@"[UNIT MANAGER] Remove unit file failed. error >>>>  %@", error.description);
                     }
 #endif
                 }
@@ -253,13 +253,13 @@
             BOOL success = [data writeToFile:filePath atomically:YES];
             if(!success) {
 #ifdef DEBUG
-                NSLog(@"[MEMORY] Save units failed ...");
+                NSLog(@"[UNIT MANAGER] Save units failed ...");
 #endif
             }
         }
         @catch (NSException *exception) {
 #ifdef DEBUG
-            NSLog(@"[MEMORY] Save units exception reason %@", exception.reason);
+            NSLog(@"[UNIT MANAGER] Save units exception reason %@", exception.reason);
 #endif
         }
         @finally {
@@ -294,7 +294,7 @@
         currentUnitIdentifier = nil;
         currentUnit = nil;
 #ifdef DEBUG
-        NSLog(@"[Memory] Clear units.");
+        NSLog(@"[UNIT MANAGER] Clear units.");
 #endif
     }
 }

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UIDevice (Extension)
+@interface UIDevice (SystemVersion)
 
 + (BOOL)systemVersionIsMoreThanOrEuqal7;
 
