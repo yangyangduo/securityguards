@@ -91,6 +91,7 @@
     UILabel *lblSeperator = [[UILabel alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-64, 5, 44)];
     lblSeperator.text = @"|";
     lblSeperator.font = [UIFont systemFontOfSize:16.0f];
+    lblSeperator.backgroundColor = [UIColor clearColor];
     lblSeperator.center = CGPointMake(self.view.center.x, lblSeperator.center.y);
     [self.view addSubview:lblSeperator];
     
