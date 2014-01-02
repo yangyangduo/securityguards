@@ -29,7 +29,7 @@
 
 - (void)initUI {
     if (typeMessage == nil) {
-        typeMessage = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 50/2, 39/2)];
+        typeMessage = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 76/2, 64/2)];
         typeMessage.backgroundColor = [UIColor clearColor];
         typeMessage.tag = TYPE_IMAGE_TAG;
     }
@@ -52,25 +52,23 @@
         lblTime.font = [UIFont systemFontOfSize:12];
     }
     
-    UIImageView *accessory = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"message_accessory.png"]];
-    accessory.frame = CGRectMake(self.frame.size.width-30, 28, 12/2, 31/2);
-    
-    UIImageView *seperatorLine = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"line_cell_notification.png"]];
-    seperatorLine.frame = CGRectMake(0, MESSAGE_CELL_HEIGHT-1, 320, 1);
+    UIImageView *accessory = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_accessory.png"]];
+    accessory.frame = CGRectMake(self.frame.size.width-30, 28, 16/2, 41/2);
     
     if(view == nil) {
         view = [[UIView alloc] initWithFrame:self.contentView.frame];
-        view.backgroundColor = [UIColor clearColor];
+        view.backgroundColor = [UIColor whiteColor];
         [view addSubview:typeMessage];
         [view addSubview:textLabel];
         [view addSubview:accessory];
-        [view addSubview:seperatorLine];
+
         [view addSubview:lblTime];
         view.tag = CELL_VIEW_TAG;
         [self addSubview:view];
     }
     
     self.selectionStyle = UITableViewCellSelectionStyleNone;
+    self.backgroundColor = [UIColor clearColor];
 }
 
 - (void)loadWithMessage:(SMNotification *)message {

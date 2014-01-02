@@ -7,6 +7,7 @@
 //
 
 #import "XXButton.h"
+#import "UIImage+ImageHandler.h"
 
 @implementation XXButton {
 }
@@ -24,11 +25,14 @@
     return self;
 }
 
-+ (UIButton *) blueButtonWithPoint:(CGPoint)aPoint resize:(CGSize)aSize{
-    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(aPoint.x, aPoint.y, aSize.width, aSize.height)];
-    [button setBackgroundImage:[UIImage imageNamed:@"btn_blue.png"] forState:UIControlStateNormal];
-    [button setBackgroundImage:[UIImage imageNamed:@"btn_gray.png"] forState:UIControlStateDisabled];
-    [button setBackgroundImage:[UIImage imageNamed:@"btn_blue_highlighted.png"] forState:UIControlStateHighlighted];
++ (XXButton *) blueButtonWithPoint:(CGPoint)aPoint resize:(CGSize)aSize{
+    XXButton *button = [[XXButton alloc] initWithFrame:CGRectMake(aPoint.x, aPoint.y, aSize.width, aSize.height)];
+    UIImage *imgNormal = [UIImage reSizeImage:[UIImage imageNamed:@"btn_blue.png"] toSize:aSize];
+    UIImage *imgDisable = [UIImage reSizeImage:[UIImage imageNamed:@"btn_gray.png"] toSize:aSize];
+    UIImage *imgHighligted = [UIImage reSizeImage:[UIImage imageNamed:@"btn_blue_highlighted.png"] toSize:aSize];
+    [button setBackgroundImage:imgNormal forState:UIControlStateNormal];
+    [button setBackgroundImage:imgDisable forState:UIControlStateDisabled];
+    [button setBackgroundImage:imgHighligted forState:UIControlStateHighlighted];
     return button;
 }
 

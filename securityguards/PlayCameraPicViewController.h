@@ -1,17 +1,14 @@
 //
 //  PlayCameraPicViewController.h
-//  SmartHome
+//  securityguards
 //
-//  Created by Zhao yang on 9/16/13.
-//  Copyright (c) 2013 hentre. All rights reserved.
+//  Created by hadoop user account on 2/01/2014.
+//  Copyright (c) 2014 hentre. All rights reserved.
 //
 
-#import "PopViewController.h"
+#import <UIKit/UIKit.h>
 #import "NotificationData.h"
-#import "ImageProvider.h"
 
-@interface PlayCameraPicViewController : PopViewController<ImageProviderDelegate>
-
+@interface PlayCameraPicViewController : UIViewController
 @property (strong, nonatomic) NotificationData *data;
-
 @end

@@ -206,6 +206,8 @@
 		F2B6A6381874F8AF0020809D /* icon_validation@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2B6A6351874F8AF0020809D /* icon_validation@2x.png */; };
 		F2B6A6391874F8AF0020809D /* icon_warning@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2B6A6361874F8AF0020809D /* icon_warning@2x.png */; };
 		F2B6A63D187500040020809D /* UIImage+ImageHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = F2B6A63C187500040020809D /* UIImage+ImageHandler.m */; };
+		F2B6A63F187506090020809D /* icon_accessory@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2B6A63E187506090020809D /* icon_accessory@2x.png */; };
+		F2B6A642187515FE0020809D /* PlayCameraPicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2B6A641187515FE0020809D /* PlayCameraPicViewController.m */; };
 		F2F93692186D10FA002F7904 /* login-image-bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2F93690186D10FA002F7904 /* login-image-bg@2x.png */; };
 		F2F93693186D10FA002F7904 /* logo-login@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2F93691186D10FA002F7904 /* logo-login@2x.png */; };
 		F2F93697186D113E002F7904 /* btn_blue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2F93694186D113E002F7904 /* btn_blue@2x.png */; };
@@ -558,6 +560,9 @@
 		F2B6A6361874F8AF0020809D /* icon_warning@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_warning@2x.png"; sourceTree = "<group>"; };
 		F2B6A63B187500040020809D /* UIImage+ImageHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageHandler.h"; sourceTree = "<group>"; };
 		F2B6A63C187500040020809D /* UIImage+ImageHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageHandler.m"; sourceTree = "<group>"; };
+		F2B6A63E187506090020809D /* icon_accessory@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_accessory@2x.png"; sourceTree = "<group>"; };
+		F2B6A640187515FE0020809D /* PlayCameraPicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayCameraPicViewController.h; sourceTree = "<group>"; };
+		F2B6A641187515FE0020809D /* PlayCameraPicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayCameraPicViewController.m; sourceTree = "<group>"; };
 		F2F93690186D10FA002F7904 /* login-image-bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-image-bg@2x.png"; sourceTree = "<group>"; };
 		F2F93691186D10FA002F7904 /* logo-login@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo-login@2x.png"; sourceTree = "<group>"; };
 		F2F93694186D113E002F7904 /* btn_blue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_blue@2x.png"; sourceTree = "<group>"; };
@@ -831,6 +836,8 @@
 				6F7CDBBF1872B30A0036F912 /* UnitFinderViewController.m */,
 				6F3485081875264D00EBB635 /* UnitRenameViewController.h */,
 				6F3485091875264D00EBB635 /* UnitRenameViewController.m */,
+				F2B6A640187515FE0020809D /* PlayCameraPicViewController.h */,
+				F2B6A641187515FE0020809D /* PlayCameraPicViewController.m */,
 			);
 			name = controllers;
 			sourceTree = "<group>";
@@ -1422,6 +1429,7 @@
 				F2B6A6341874F8AF0020809D /* icon_message@2x.png */,
 				F2B6A6351874F8AF0020809D /* icon_validation@2x.png */,
 				F2B6A6361874F8AF0020809D /* icon_warning@2x.png */,
+				F2B6A63E187506090020809D /* icon_accessory@2x.png */,
 			);
 			name = notifications;
 			sourceTree = "<group>";
@@ -1518,6 +1526,7 @@
 				6FEC0FED186C67C600CB0D70 /* logo_left_drawer@2x.png in Resources */,
 				6F0CD5CF186DB93000B5A3EA /* icon_firegas_red@2x.png in Resources */,
 				6F732739186D5DB100A1276B /* icon_security@2x.png in Resources */,
+				F2B6A63F187506090020809D /* icon_accessory@2x.png in Resources */,
 				6F7247E718717344003B325F /* bg_alert_green@2x.png in Resources */,
 				F2F93693186D10FA002F7904 /* logo-login@2x.png in Resources */,
 				6F0CD5D6186DB93000B5A3EA /* icon_pm10_yellow@2x.png in Resources */,
@@ -1707,6 +1716,7 @@
 				6F6004A1186BCEF10085B4BD /* XXEventFilter.m in Sources */,
 				6F732747186D7BD200A1276B /* SensorsDisplayPanel.m in Sources */,
 				6F7247C218711C4E003B325F /* SpeechRecognitionUtil.m in Sources */,
+				F2B6A642187515FE0020809D /* PlayCameraPicViewController.m in Sources */,
 				6F73272C186D4A1E00A1276B /* UIColor+MoreColor.m in Sources */,
 				6F60058E186BF8EC0085B4BD /* CameraSocket.m in Sources */,
 			);
