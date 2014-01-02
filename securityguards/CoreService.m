@@ -337,11 +337,11 @@
 - (void)notifyTcpConnectionOpened {
     [self executeDeviceCommand:[CommandFactory commandForType:CommandTypeGetUnits]];
     [self executeDeviceCommand:[CommandFactory commandForType:CommandTypeGetNotifications]];
-    [self notifyNetworkModeUpdate:networkMode];
+    [self notifyNetworkModeUpdate:NetworkModeExternal];
 }
 
 - (void)notifyTcpConnectionClosed {
-    [self notifyNetworkModeUpdate:networkMode];
+    [self notifyNetworkModeUpdate:NetworkModeNotChecked];
 }
 
 #pragma mark -

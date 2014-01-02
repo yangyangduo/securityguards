@@ -255,17 +255,25 @@
     [self presentViewController:txtViewController animated:YES completion:^{}];
 }
 
-- (void)showNetworkStateView {
+- (void)showNetworkStateView:(BOOL)isNoAllNetwork {
     if(imgNetwork == nil) {
         imgNetwork = [[UIImageView alloc] initWithFrame:CGRectMake(0, self.topbarView.bounds.size.height, self.view.bounds.size.width, 30)];
-        imgNetwork.image = [UIImage imageNamed:@"bg_alert_yellow"];
         UILabel *lblDescription = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 26)];
+        lblDescription.tag = 100;
         lblDescription.textColor = [UIColor appYellowFont];
         lblDescription.textAlignment = NSTextAlignmentCenter;
         lblDescription.backgroundColor = [UIColor clearColor];
         lblDescription.font = [UIFont systemFontOfSize:14.f];
-        lblDescription.text = NSLocalizedString(@"no_network", @"");
         [imgNetwork addSubview:lblDescription];
+    }
+    
+    UILabel *lblDescription = (UILabel *)[imgNetwork viewWithTag:100];
+    if(!isNoAllNetwork) {
+        imgNetwork.image = [UIImage imageNamed:@"bg_alert_blue"];
+        lblDescription.text = NSLocalizedString(@"no_extra_network", @"");
+    } else {
+        imgNetwork.image = [UIImage imageNamed:@"bg_alert_yellow"];
+        lblDescription.text = NSLocalizedString(@"no_network", @"");
     }
     
     if(imgNetwork.superview == nil) {
@@ -326,11 +334,13 @@ NSString *str =        [[NSString alloc] initWithData:dd encoding:NSUTF8StringEn
 
 - (void)updateNetworkStateForView:(NetworkMode)networkMode {
     if(networkMode == NetworkModeExternal) {
-        [self hideNetworkStateView];
+        if([CoreService defaultService].tcpService.isConnectted) {
+            [self hideNetworkStateView];
+        }
     } else if(networkMode == NetworkModeInternal) {
-        [self hideNetworkStateView];
+        [self showNetworkStateView:![CoreService defaultService].tcpService.isConnectted];
     } else if(networkMode == NetworkModeNotChecked) {
-        [self showNetworkStateView];
+        [self showNetworkStateView:YES];
     } else {
         NSLog(@"[PORTAL VIEW] Unknow network mode.");
     }
