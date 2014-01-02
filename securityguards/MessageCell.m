@@ -7,7 +7,7 @@
 //
 
 #import "MessageCell.h"
-#import "SMDateFormatter.h"
+#import "XXDateFormatter.h"
 
 @implementation MessageCell {
     UIView  *view;
@@ -88,7 +88,7 @@
     typeMessage.tag = TYPE_IMAGE_TAG;
     textLabel.text = [@"    " stringByAppendingString:message.text];
     [textLabel sizeThatFits:textLabel.frame.size];
-    lblTime.text = [SMDateFormatter dateToString:message.createTime format:@"yyyy-MM-dd HH:mm:ss"];
+    lblTime.text = [XXDateFormatter dateToString:message.createTime format:@"yyyy-MM-dd HH:mm:ss"];
     view.tag = CELL_VIEW_TAG;
 }
 

@@ -99,17 +99,17 @@
     [accountService sendVerificationCodeFor:txtPhoneNumber.text success:@selector(sendVerificationCodeSuccess:) failed:@selector(sendVerificationCodeFailed:) target:self callback:nil];
 }
 
-- (void)sendVerificationCodeSuccess:(RestResponse *) resp{
+- (void)sendVerificationCodeSuccess:(RestResponse *)resp {
     if(resp.statusCode == 200) {
         NSDictionary *json = [JsonUtils createDictionaryFromJson:resp.body];
         if(json != nil) {
             NSString *result = [json notNSNullObjectForKey:@"id"];
             if(result != nil) {
                 if([@"1" isEqualToString:result] || [@"-3" isEqualToString:result] || [@"-4" isEqualToString:result]) {
-                    [[AlertView currentAlertView] dismissAlertView];
+                    [[AlertView currentAlertView] setMessage:NSLocalizedString(@"send_success", @"") forType:AlertViewTypeSuccess];
+                    [[AlertView currentAlertView] delayDismissAlertView];
                     RegisterStep2ViewController *step2ViewController = [[RegisterStep2ViewController alloc] init];
                     step2ViewController.phoneNumber = txtPhoneNumber.text;
-                    
                     if([@"1" isEqualToString:result]) {
                         step2ViewController.countDown = 60;
                     } else {
@@ -137,9 +137,9 @@
     [self sendVerificationCodeFailed:resp];
 }
 
-- (void)sendVerificationCodeFailed:(RestResponse *) resp{
+- (void)sendVerificationCodeFailed:(RestResponse *)resp {
     if(abs(resp.statusCode) == 1001) {
-        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"request_timeout", @"") forType:AlertViewTypeSuccess];
+        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"request_timeout", @"") forType:AlertViewTypeFailed];
     } else {
         [[AlertView currentAlertView] setMessage:NSLocalizedString(@"unknow_error", @"") forType:AlertViewTypeFailed];
     }
@@ -147,7 +147,7 @@
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
-    return range.location<11;
+    return range.location < 11;
 }
 
 - (void)didReceiveMemoryWarning

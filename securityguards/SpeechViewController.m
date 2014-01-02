@@ -11,7 +11,7 @@
 #import "ConversationTextMessage.h"
 #import "UIColor+MoreColor.h"
 #import "XXStringUtils.h"
-#import "SMDateFormatter.h"
+#import "XXDateFormatter.h"
 #import "SpeechStateView.h"
 
 #define MESSAGE_VIEW_TAG 999
@@ -94,7 +94,7 @@ typedef NS_ENUM(NSInteger, RecognizerState) {
     ConversationTextMessage *msg = [[ConversationTextMessage alloc] init];
     msg.textMessage = NSLocalizedString(@"speech_tips", @"");
     msg.messageOwner = MESSAGE_OWNER_THEIRS;
-    msg.timeMessage = [SMDateFormatter dateToString:[NSDate date] format:@"MM-dd HH:mm:ss"];
+    msg.timeMessage = [XXDateFormatter dateToString:[NSDate date] format:@"MM-dd HH:mm:ss"];
     [self addMessage:msg];
 }
 

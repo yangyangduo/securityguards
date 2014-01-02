@@ -7,7 +7,7 @@
 //
 
 #import "SMNotification.h"
-#import "SMDateFormatter.h"
+#import "XXDateFormatter.h"
 
 @implementation SMNotification
 

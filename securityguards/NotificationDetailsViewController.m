@@ -8,7 +8,7 @@
 
 #import "NotificationDetailsViewController.h"
 #import "MessageCell.h"
-#import "SMDateFormatter.h"
+#import "XXDateFormatter.h"
 
 @interface NotificationDetailsViewController ()
 

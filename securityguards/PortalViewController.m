@@ -54,9 +54,8 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     BOOL hasLogin = ![[XXStringUtils emptyString] isEqualToString:[GlobalSettings defaultSettings].secretKey];
-    hasLogin = YES;
     if(hasLogin) {
-//        [[CoreService defaultService] startService];
+        [[CoreService defaultService] startService];
     } else {
         UINavigationController *loginNavController = [[UINavigationController alloc] initWithRootViewController:[[LoginViewController alloc] init]];
         loginNavController.navigationBarHidden = YES;
