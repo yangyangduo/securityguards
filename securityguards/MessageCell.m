@@ -13,8 +13,6 @@
     UIView  *view;
     UIImageView *typeMessage;
     UILabel *textLabel;
-    UIImageView *accessory;
-    UIImageView *seperatorLine;
     UILabel *lblTime;
 }
 
@@ -33,6 +31,7 @@
     if (typeMessage == nil) {
         typeMessage = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 50/2, 39/2)];
         typeMessage.backgroundColor = [UIColor clearColor];
+        typeMessage.tag = TYPE_IMAGE_TAG;
     }
     
     if (textLabel == nil) {
@@ -53,18 +52,13 @@
         lblTime.font = [UIFont systemFontOfSize:12];
     }
     
-    if (accessory == nil) {
-        accessory = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"message_accessory.png"]];
-        accessory.frame = CGRectMake(self.frame.size.width-30, 28, 12/2, 31/2);
-
-    }
+    UIImageView *accessory = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"message_accessory.png"]];
+    accessory.frame = CGRectMake(self.frame.size.width-30, 28, 12/2, 31/2);
     
-    if (seperatorLine == nil) {
-       seperatorLine = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"line_cell_notification.png"]];
-        seperatorLine.frame = CGRectMake(0, MESSAGE_CELL_HEIGHT-1, 320, 1);
-
-    }
-    if(view == nil){
+    UIImageView *seperatorLine = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"line_cell_notification.png"]];
+    seperatorLine.frame = CGRectMake(0, MESSAGE_CELL_HEIGHT-1, 320, 1);
+    
+    if(view == nil) {
         view = [[UIView alloc] initWithFrame:self.contentView.frame];
         view.backgroundColor = [UIColor clearColor];
         [view addSubview:typeMessage];
@@ -72,24 +66,24 @@
         [view addSubview:accessory];
         [view addSubview:seperatorLine];
         [view addSubview:lblTime];
+        view.tag = CELL_VIEW_TAG;
         [self addSubview:view];
     }
+    
     self.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 
--(void) loadWithMessage:(SMNotification *) message {
-    if([message.type isEqualToString:@"MS"]||[message.type isEqualToString:@"AT"]) {
+- (void)loadWithMessage:(SMNotification *)message {
+    if([@"MS" isEqualToString:message.type] || [@"AT" isEqualToString:message.type]) {
         typeMessage.image = [UIImage imageNamed:@"icon_message.png"];
-    } else if([message.type isEqualToString:@"CF"]){
+    } else if([@"CF" isEqualToString:message.type]) {
         typeMessage.image = [UIImage imageNamed:@"icon_validation.png"];
-    } else if([message.type isEqualToString:@"AL"]){
+    } else if([@"AL" isEqualToString:message.type]){
         typeMessage.image = [UIImage imageNamed:@"icon_warning"];
     }
-    typeMessage.tag = TYPE_IMAGE_TAG;
     textLabel.text = [@"    " stringByAppendingString:message.text];
     [textLabel sizeThatFits:textLabel.frame.size];
     lblTime.text = [XXDateFormatter dateToString:message.createTime format:@"yyyy-MM-dd HH:mm:ss"];
-    view.tag = CELL_VIEW_TAG;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
