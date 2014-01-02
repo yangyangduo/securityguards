@@ -49,6 +49,8 @@
 "no_network"                     =      "网络无法连接,正在重试中...";
 "no_extra_network"               =      "无法连接云端,正在重试中...";
 "unit_name_not_blank"            =      "主控名不能为空";
+"unit_name_change_success"       =      "修改成功";
+"unit_name_change_failed"        =      "修改失败";
 
 
 /****************	Speech View Strings	****************/

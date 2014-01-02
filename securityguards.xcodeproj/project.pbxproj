@@ -174,6 +174,8 @@
 		6F7CDBBB1872ACE50036F912 /* icon_add_unit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F7CDBBA1872ACE50036F912 /* icon_add_unit@2x.png */; };
 		6F7CDBBD1872B2130036F912 /* icon_add_unt_red@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F7CDBBC1872B2130036F912 /* icon_add_unt_red@2x.png */; };
 		6F7CDBC01872B30A0036F912 /* UnitFinderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7CDBBF1872B30A0036F912 /* UnitFinderViewController.m */; };
+		6F860F2218753CB900792DBB /* UnitNameChangedEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F860F2118753CB900792DBB /* UnitNameChangedEvent.m */; };
+		6F860F2518753D9C00792DBB /* DeviceCommandUpdateUnitNameHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F860F2418753D9C00792DBB /* DeviceCommandUpdateUnitNameHandler.m */; };
 		6F8F57B21871016C0033228F /* btn_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F8F57B11871016C0033228F /* btn_back@2x.png */; };
 		6F8F57BC18710D940033228F /* AttributedStringBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F8F57B718710D940033228F /* AttributedStringBuilder.m */; };
 		6F8F57BD18710D940033228F /* ParagraphBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F8F57B918710D940033228F /* ParagraphBuilder.m */; };
@@ -512,6 +514,10 @@
 		6F7CDBBC1872B2130036F912 /* icon_add_unt_red@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_add_unt_red@2x.png"; sourceTree = "<group>"; };
 		6F7CDBBE1872B30A0036F912 /* UnitFinderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitFinderViewController.h; sourceTree = "<group>"; };
 		6F7CDBBF1872B30A0036F912 /* UnitFinderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnitFinderViewController.m; sourceTree = "<group>"; };
+		6F860F2018753CB900792DBB /* UnitNameChangedEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitNameChangedEvent.h; sourceTree = "<group>"; };
+		6F860F2118753CB900792DBB /* UnitNameChangedEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnitNameChangedEvent.m; sourceTree = "<group>"; };
+		6F860F2318753D9C00792DBB /* DeviceCommandUpdateUnitNameHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceCommandUpdateUnitNameHandler.h; sourceTree = "<group>"; };
+		6F860F2418753D9C00792DBB /* DeviceCommandUpdateUnitNameHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceCommandUpdateUnitNameHandler.m; sourceTree = "<group>"; };
 		6F8F57B11871016C0033228F /* btn_back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_back@2x.png"; sourceTree = "<group>"; };
 		6F8F57B618710D940033228F /* AttributedStringBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttributedStringBuilder.h; sourceTree = "<group>"; };
 		6F8F57B718710D940033228F /* AttributedStringBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttributedStringBuilder.m; sourceTree = "<group>"; };
@@ -1034,6 +1040,8 @@
 				6F600537186BF0010085B4BD /* DeviceCommandHandler.m */,
 				6F600538186BF0010085B4BD /* DeviceCommandUpdateDevicesHandler.h */,
 				6F600539186BF0010085B4BD /* DeviceCommandUpdateDevicesHandler.m */,
+				6F860F2318753D9C00792DBB /* DeviceCommandUpdateUnitNameHandler.h */,
+				6F860F2418753D9C00792DBB /* DeviceCommandUpdateUnitNameHandler.m */,
 			);
 			name = command_handlers;
 			sourceTree = "<group>";
@@ -1098,6 +1106,8 @@
 				6F600571186BF3940085B4BD /* UnitsListUpdatedEvent.m */,
 				6F7CDBAF1872984A0036F912 /* UserLogoutEvent.h */,
 				6F7CDBB01872984A0036F912 /* UserLogoutEvent.m */,
+				6F860F2018753CB900792DBB /* UnitNameChangedEvent.h */,
+				6F860F2118753CB900792DBB /* UnitNameChangedEvent.m */,
 			);
 			name = events;
 			sourceTree = "<group>";
@@ -1619,6 +1629,7 @@
 				6F6004FA186BE88A0085B4BD /* CommunicationMessage.m in Sources */,
 				6F600574186BF3940085B4BD /* DeviceStatusChangedEvent.m in Sources */,
 				6F60051F186BE9890085B4BD /* DeviceCommandAuthBinding.m in Sources */,
+				6F860F2518753D9C00792DBB /* DeviceCommandUpdateUnitNameHandler.m in Sources */,
 				6F6004D9186BD2430085B4BD /* AsyncUdpSocket.m in Sources */,
 				6F6005AC186C18C10085B4BD /* PortalViewController.m in Sources */,
 				6F6004F7186BDB8C0085B4BD /* TCPCommandService.m in Sources */,
@@ -1718,6 +1729,7 @@
 				6F7247C218711C4E003B325F /* SpeechRecognitionUtil.m in Sources */,
 				F2B6A642187515FE0020809D /* PlayCameraPicViewController.m in Sources */,
 				6F73272C186D4A1E00A1276B /* UIColor+MoreColor.m in Sources */,
+				6F860F2218753CB900792DBB /* UnitNameChangedEvent.m in Sources */,
 				6F60058E186BF8EC0085B4BD /* CameraSocket.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

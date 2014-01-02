@@ -7,8 +7,9 @@
 //
 
 #import "TextViewController.h"
+#import "XXEventSubscriber.h"
 
-@interface UnitRenameViewController : TextViewController
+@interface UnitRenameViewController : TextViewController<XXEventSubscriber>
 
 @property (nonatomic, strong) Unit *unit;
 

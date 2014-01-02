@@ -14,7 +14,7 @@
 
 @end
 
-@interface TextViewController : NavigationViewController
+@interface TextViewController : NavigationViewController<UITextFieldDelegate>
 
 @property (nonatomic, strong, readonly) NSString *value;
 @property (nonatomic, strong) NSString *defaultValue;

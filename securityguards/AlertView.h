@@ -30,7 +30,8 @@ typedef NS_ENUM(NSUInteger, AlertViewType) {
 + (AlertView *)currentAlertView;
 
 - (void)setMessage:(NSString *)message forType:(AlertViewType)type;
-- (void)alertAutoDisappear:(BOOL)autoDisappear lockView:(BOOL)lockView;
+- (void)alert:(BOOL)autoDisappear isLock:(BOOL)isLock;
+- (void)alert:(BOOL)isLock withTimeout:(NSTimeInterval)timeout andTimeoutMessage:(NSString *)msg;
 - (void)delayDismissAlertView;
 - (void)dismissAlertView;
 

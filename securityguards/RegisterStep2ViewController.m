@@ -148,7 +148,7 @@
 #pragma mark services
 - (void)resendVerificationCode {
     [[AlertView currentAlertView] setMessage:NSLocalizedString(@"please_wait", @"") forType:AlertViewTypeWaitting];
-    [[AlertView currentAlertView] alertAutoDisappear:NO lockView:YES];
+    [[AlertView currentAlertView] alert:NO isLock:YES];
     [[[AccountService alloc] init] sendVerificationCodeFor:self.phoneNumber success:@selector(verificationCodeSendSuccess:) failed:@selector(verificationCodeSendError:) target:self callback:nil];
 }
 
@@ -185,11 +185,11 @@
 - (void)submitVerificationCode {
     if([XXStringUtils isBlank:txtVerificationCode.text] || txtVerificationCode.text.length != 6) {
         [[AlertView currentAlertView] setMessage:NSLocalizedString(@"verification_code_error", @"") forType:AlertViewTypeFailed];
-        [[AlertView currentAlertView] alertAutoDisappear:YES lockView:YES];
+        [[AlertView currentAlertView] alert:YES isLock:YES];
         return;
     }
     [[AlertView currentAlertView] setMessage:NSLocalizedString(@"please_wait", @"") forType:AlertViewTypeWaitting];
-    [[AlertView currentAlertView] alertAutoDisappear:NO lockView:YES];
+    [[AlertView currentAlertView] alert:NO isLock:YES];
     [[[AccountService alloc] init] registerWithPhoneNumber:self.phoneNumber checkCode:txtVerificationCode.text success:@selector(registerSuccessfully:) failed:@selector(registerFailed:) target:self callback:nil];
 }
 

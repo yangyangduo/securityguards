@@ -10,7 +10,6 @@
 
 @interface DeviceCommandHandler()
 
-
 @end
 
 @implementation DeviceCommandHandler

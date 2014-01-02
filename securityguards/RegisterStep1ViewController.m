@@ -94,7 +94,7 @@
 
 - (void)btnGetVerificationPressed:(id) sender{
     [[AlertView currentAlertView] setMessage:NSLocalizedString(@"please_wait", @"") forType:AlertViewTypeWaitting];
-    [[AlertView currentAlertView] alertAutoDisappear:NO lockView:YES];
+    [[AlertView currentAlertView] alert:NO isLock:YES];
     AccountService *accountService = [[AccountService alloc] init];
     [accountService sendVerificationCodeFor:txtPhoneNumber.text success:@selector(sendVerificationCodeSuccess:) failed:@selector(sendVerificationCodeFailed:) target:self callback:nil];
 }

@@ -60,6 +60,9 @@
     textField.textColor = [UIColor darkGrayColor];
     textField.clearButtonMode = UITextFieldViewModeWhileEditing;
     textField.contentVerticalAlignment  = UIControlContentVerticalAlignmentCenter;
+    textField.returnKeyType = UIReturnKeyDone;
+    textField.delegate = self;
+    
     [self.view addSubview:textField];
     
     UIButton *btnSubmit =  [[UIButton alloc] initWithFrame:CGRectMake(0, textField.frame.origin.y + textField.bounds.size.height + 30, 400 / 2, 53 / 2)];
@@ -113,6 +116,14 @@
             lblTextDescription.text = _txtDescription_;
         }
     }
+}
+
+#pragma mark -
+#pragma mark Text Field Delegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [self btnSubmitPressed:nil];
+    return YES;
 }
 
 - (void)popupViewController {

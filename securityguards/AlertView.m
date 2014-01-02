@@ -16,6 +16,7 @@
 
 @implementation AlertView {
     NSTimer *timer;
+    NSTimer *timeoutTimer;
     UILabel *lblMessage;
     UIImageView *imgTips;
     UIActivityIndicatorView *indicatorView;
@@ -78,11 +79,11 @@
     return currentAlertView;
 }
 
-- (void)alertAutoDisappear:(BOOL)autoDisappear lockView:(BOOL)lockView {
+- (void)alert:(BOOL)autoDisappear isLock:(BOOL)isLock {
     if(self.alertViewState != AlertViewStateReady) return;
     self.alertViewState = AlertViewStateWillAppear;
     UIWindow *lastWindow = [self lastWindow];
-    if(lockView) {
+    if(isLock) {
         lockedView = [[UIView alloc] initWithFrame:lastWindow.bounds];
         lockedView.backgroundColor = [UIColor blackColor];
         lockedView.alpha = 0.2f;
@@ -106,7 +107,29 @@
             }];
 }
 
+- (void)alert:(BOOL)isLock withTimeout:(NSTimeInterval)timeout andTimeoutMessage:(NSString *)msg {
+    [self alert:NO isLock:isLock];
+    if(msg == nil) {
+        msg = [XXStringUtils emptyString];
+    }
+    timeoutTimer = [NSTimer scheduledTimerWithTimeInterval:timeout target:self selector:@selector(alertTimeout:) userInfo:[NSDictionary dictionaryWithObject:msg forKey:@"timeoutMsgKey"] repeats:NO];
+}
+
+- (void)alertTimeout:(NSTimer *)tTimer {
+    if(self.alertViewState == AlertViewStateWillAppear || self.alertViewState == AlertViewStateDidAppear) {
+        if(tTimer.userInfo != nil) {
+            [self setMessage:[tTimer.userInfo objectForKey:@"timeoutMsgKey"] forType:AlertViewTypeFailed];
+        }
+        [self delayDismissAlertView];
+    }
+    timeoutTimer = nil;
+}
+
 - (void)delayDismissAlertView {
+    if(timeoutTimer != nil && timeoutTimer.isValid) {
+        [timeoutTimer invalidate];
+    }
+    timeoutTimer = nil;
     timer = [NSTimer scheduledTimerWithTimeInterval:DELAY_DURATION target:self selector:@selector(dismissAlertView) userInfo:nil repeats:NO];
 }
 
@@ -115,6 +138,10 @@
         [timer invalidate];
     }
     timer = nil;
+    if(timeoutTimer != nil && timeoutTimer.isValid) {
+        [timeoutTimer invalidate];
+    }
+    timeoutTimer = nil;
     if(self.alertViewState == AlertViewStateWillAppear || self.alertViewState == AlertViewStateDidAppear) {
         self.alertViewState = AlertViewStateWillDisappear;
         [UIView animateWithDuration:ANIMATION_DURATION

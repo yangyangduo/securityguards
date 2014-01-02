@@ -82,7 +82,7 @@
     if(!logouting) {
         logouting = YES;
         [[AlertView currentAlertView] setMessage:NSLocalizedString(@"logouting", @"") forType:AlertViewTypeWaitting];
-        [[AlertView currentAlertView] alertAutoDisappear:NO lockView:YES];
+        [[AlertView currentAlertView] alert:NO isLock:YES];
         [[CoreService defaultService] stopService];
         [[XXEventSubscriptionPublisher defaultPublisher] unSubscribeAllSubscriptionsExceptSubscriberId:@"rootViewControllerSubscriber"];
         [[UnitManager defaultManager] clear];

@@ -19,6 +19,7 @@
 #import "DeviceCommandGetAccountHandler.h"
 #import "DeviceCommandGetNotificationsHandler.h"
 #import "DeviceCommandUpdateDevicesHandler.h"
+#import "DeviceCommandUpdateUnitNameHandler.h"
 #import "AlertView.h"
 
 #define NETWORK_CHECK_INTERVAL 5
@@ -239,6 +240,8 @@
         handler = [[DeviceCommandGetNotificationsHandler alloc] init];
     } else if([COMMAND_PUSH_DEVICE_STATUS isEqualToString:command.commandName]) {
         handler = [[DeviceCommandUpdateDevicesHandler alloc] init];
+    } else if([COMMAND_CHANGE_UNIT_NAME isEqualToString:command.commandName]) {
+        handler = [[DeviceCommandUpdateUnitNameHandler alloc] init];
     }
         
     if(handler != nil) {

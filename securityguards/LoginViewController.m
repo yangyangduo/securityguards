@@ -122,18 +122,18 @@
     
     if([XXStringUtils isBlank:userName]) {
         [[AlertView currentAlertView] setMessage:NSLocalizedString(@"username_not_blank", @"") forType:AlertViewTypeFailed];
-        [[AlertView currentAlertView] alertAutoDisappear:YES lockView:NO];
+        [[AlertView currentAlertView] alert:YES isLock:NO];
         return;
     }
     
     if([XXStringUtils isBlank:password]) {
         [[AlertView currentAlertView] setMessage:NSLocalizedString(@"password_not_blank", @"") forType:AlertViewTypeFailed];
-        [[AlertView currentAlertView] alertAutoDisappear:YES lockView:NO];
+        [[AlertView currentAlertView] alert:YES isLock:NO];
         return;
     }
     
     [[AlertView currentAlertView] setMessage:NSLocalizedString(@"please_wait", @"") forType:AlertViewTypeWaitting];
-    [[AlertView currentAlertView] alertAutoDisappear:NO lockView:YES];
+    [[AlertView currentAlertView] alert:NO isLock:YES];
     AccountService *accountService = [[AccountService alloc] init];
 
     [accountService loginWithAccount:txtPhoneNumber.text password:txtPassword.text success:@selector(loginSuccess:) failed:@selector(loginFailed:) target:self callback:nil];
