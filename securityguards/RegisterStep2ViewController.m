@@ -219,6 +219,7 @@
                         [loginViewController dismissViewControllerAnimated:NO completion:^{}];
 //                        [self.navigationController pushViewController:[[UnitsBindingViewController alloc] init] animated:YES];
                         [[CoreService defaultService] startService];
+                        [[CoreService defaultService] startRefreshCurrentUnit];
                         return;
                     }
                 } else if([@"-1" isEqualToString:command.result]) {

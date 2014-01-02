@@ -76,7 +76,7 @@
     
     _state_ = ServiceStateClosed;
     networkMode = NetworkModeNotChecked;
-    _needRefreshUnit_ = NO;
+    _needRefreshUnit_ = YES;
     
     mayUsingInternalNetworkCommands = [NSArray arrayWithObjects:COMMAND_KEY_CONTROL, COMMAND_GET_CAMERA_SERVER, nil];
     

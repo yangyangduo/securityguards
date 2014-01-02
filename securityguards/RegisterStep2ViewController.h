@@ -9,6 +9,7 @@
 #import "NavigationViewController.h"
 
 @interface RegisterStep2ViewController : NavigationViewController<UITextFieldDelegate>
+
 @property (strong,nonatomic) NSString *phoneNumber;
 @property (assign,nonatomic) int countDown;
 

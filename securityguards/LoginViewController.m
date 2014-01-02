@@ -139,7 +139,7 @@
     [accountService loginWithAccount:txtPhoneNumber.text password:txtPassword.text success:@selector(loginSuccess:) failed:@selector(loginFailed:) target:self callback:nil];
 }
 
-- (void)loginSuccess:(RestResponse *) resp{
+- (void)loginSuccess:(RestResponse *)resp {
     if(resp.statusCode == 200) {
         NSDictionary *json = [JsonUtils createDictionaryFromJson:resp.body];
         if(json != nil) {
@@ -159,7 +159,8 @@
                         
                         // start service
                         [[CoreService defaultService] startService];
-                        txtPassword.text = [XXStringUtils emptyString];
+                        [[CoreService defaultService] startRefreshCurrentUnit];
+                        
                         [[AlertView currentAlertView] setMessage:NSLocalizedString(@"login_success", @"") forType:AlertViewTypeSuccess];
                         [[AlertView currentAlertView] delayDismissAlertView];
                         [self toMainPage];
