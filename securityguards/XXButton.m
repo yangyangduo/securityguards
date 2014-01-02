@@ -24,6 +24,14 @@
     return self;
 }
 
++ (UIButton *) blueButtonWithPoint:(CGPoint)aPoint resize:(CGSize)aSize{
+    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(aPoint.x, aPoint.y, aSize.width, aSize.height)];
+    [button setBackgroundImage:[UIImage imageNamed:@"btn_blue.png"] forState:UIControlStateNormal];
+    [button setBackgroundImage:[UIImage imageNamed:@"btn_gray.png"] forState:UIControlStateDisabled];
+    [button setBackgroundImage:[UIImage imageNamed:@"btn_blue_highlighted.png"] forState:UIControlStateHighlighted];
+    return button;
+}
+
 #pragma mark -
 #pragma mark Extension for parameters
     

@@ -203,6 +203,7 @@
 		F2B6A6371874F8AF0020809D /* icon_message@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2B6A6341874F8AF0020809D /* icon_message@2x.png */; };
 		F2B6A6381874F8AF0020809D /* icon_validation@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2B6A6351874F8AF0020809D /* icon_validation@2x.png */; };
 		F2B6A6391874F8AF0020809D /* icon_warning@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2B6A6361874F8AF0020809D /* icon_warning@2x.png */; };
+		F2B6A63D187500040020809D /* UIImage+ImageHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = F2B6A63C187500040020809D /* UIImage+ImageHandler.m */; };
 		F2F93692186D10FA002F7904 /* login-image-bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2F93690186D10FA002F7904 /* login-image-bg@2x.png */; };
 		F2F93693186D10FA002F7904 /* logo-login@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2F93691186D10FA002F7904 /* logo-login@2x.png */; };
 		F2F93697186D113E002F7904 /* btn_blue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2F93694186D113E002F7904 /* btn_blue@2x.png */; };
@@ -549,6 +550,8 @@
 		F2B6A6341874F8AF0020809D /* icon_message@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_message@2x.png"; sourceTree = "<group>"; };
 		F2B6A6351874F8AF0020809D /* icon_validation@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_validation@2x.png"; sourceTree = "<group>"; };
 		F2B6A6361874F8AF0020809D /* icon_warning@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_warning@2x.png"; sourceTree = "<group>"; };
+		F2B6A63B187500040020809D /* UIImage+ImageHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageHandler.h"; sourceTree = "<group>"; };
+		F2B6A63C187500040020809D /* UIImage+ImageHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageHandler.m"; sourceTree = "<group>"; };
 		F2F93690186D10FA002F7904 /* login-image-bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-image-bg@2x.png"; sourceTree = "<group>"; };
 		F2F93691186D10FA002F7904 /* logo-login@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo-login@2x.png"; sourceTree = "<group>"; };
 		F2F93694186D113E002F7904 /* btn_blue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_blue@2x.png"; sourceTree = "<group>"; };
@@ -689,8 +692,6 @@
 				6F6005A6186C029F0085B4BD /* Shared.m */,
 				6F600593186BFF7F0085B4BD /* GlobalSettings.h */,
 				6F600594186BFF7F0085B4BD /* GlobalSettings.m */,
-				F20D6AC818729C9F00FE6B6D /* XXDateFormatter.h */,
-				F20D6AC918729C9F00FE6B6D /* XXDateFormatter.m */,
 			);
 			name = commons;
 			sourceTree = "<group>";
@@ -782,6 +783,8 @@
 				6F7CDBAA187289ED0036F912 /* UIApplication+TopViewController.m */,
 				6F7CDBB51872A4F40036F912 /* UIView+ViewController.h */,
 				6F7CDBB61872A4F40036F912 /* UIView+ViewController.m */,
+				F2B6A63B187500040020809D /* UIImage+ImageHandler.h */,
+				F2B6A63C187500040020809D /* UIImage+ImageHandler.m */,
 			);
 			name = categories;
 			sourceTree = "<group>";
@@ -1106,6 +1109,8 @@
 		6F600583186BF86F0085B4BD /* date */ = {
 			isa = PBXGroup;
 			children = (
+				F20D6AC818729C9F00FE6B6D /* XXDateFormatter.h */,
+				F20D6AC918729C9F00FE6B6D /* XXDateFormatter.m */,
 			);
 			name = date;
 			sourceTree = "<group>";
@@ -1646,6 +1651,7 @@
 				6F6004BB186BCFF40085B4BD /* UIColor+HexColor.m in Sources */,
 				6F73273C186D5E3600A1276B /* UnitControlPanel.m in Sources */,
 				6F6004F5186BDB8C0085B4BD /* CoreService.m in Sources */,
+				F2B6A63D187500040020809D /* UIImage+ImageHandler.m in Sources */,
 				6F6004A2186BCEF10085B4BD /* XXEventFilterChain.m in Sources */,
 				6F0E244B1873091600F143F9 /* UnitFinder.m in Sources */,
 				6F6004FE186BE8C80085B4BD /* CommandFactory.m in Sources */,
