@@ -59,8 +59,8 @@
         tblNotifications = [[UITableView alloc] initWithFrame:CGRectMake(0, self.topbarView.frame.size.height, self.view.frame.size.width,self.view.frame.size.height-self.topbarView.frame.size.height) style:UITableViewStylePlain];
         tblNotifications.dataSource = self;
         tblNotifications.delegate = self;
-        tblNotifications.backgroundColor = [UIColor clearColor];
-        tblNotifications.separatorStyle= UITableViewCellSelectionStyleNone;
+        tblNotifications.backgroundColor = [UIColor lightGrayColor];
+        tblNotifications.separatorStyle= UITableViewCellSeparatorStyleNone;
         [self.view addSubview:tblNotifications];
     }
 
@@ -104,14 +104,15 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return  MESSAGE_CELL_HEIGHT;
 }
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     SMNotification *notificaion = [messageArr objectAtIndex:indexPath.row];
     NotificationDetailsViewController *notificationDetailsViewController = [[NotificationDetailsViewController alloc] initWithNotification:notificaion];
     notificationDetailsViewController.delegate = self;
     [self.navigationController pushViewController:notificationDetailsViewController animated:YES];
 }
-
+- (void)smNotificationsWasUpdated{
+    [tblNotifications reloadData];
+}
 - (void)setUp {
     [super setUp];
 }

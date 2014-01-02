@@ -18,7 +18,7 @@
 @property (strong, nonatomic) id userObject;
 @property (strong, nonatomic) NSMutableDictionary *parameters;
 @property (weak, nonatomic) id<LongPressDelegate> longPressDelegate;
-+ (UIButton *)blueButtonWithPoint:(CGPoint) aPoint resize:(CGSize) aSize;
++ (XXButton *)blueButtonWithPoint:(CGPoint) aPoint resize:(CGSize) aSize;
 @end
 @protocol LongPressDelegate <NSObject>
 
