@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface UIImage (ImageHandler)
+
 + (UIImage *)scaleImage:(UIImage *)image toScale:(float)scaleSize;
 + (UIImage *)reSizeImage:(UIImage *)image toSize:(CGSize)reSize;
 
