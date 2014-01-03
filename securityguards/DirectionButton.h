@@ -8,22 +8,24 @@
 
 #import <UIKit/UIKit.h>
 
+typedef NS_ENUM(NSUInteger, Direction) {
+    DirectionUpNone,
+    DirectionUp,
+    DirectionDown,
+    DirectionLeft,
+    DirectionRight
+};
+
 @protocol DirectionButtonDelegate <NSObject>
 
-- (void)leftButtonClicked;
-- (void)rightButtonClicked;
-- (void)centerButtonClicked;
-- (void)topButtonClicked;
-- (void)bottomButtonClicked;
+- (void)directionButtonClicked:(Direction)direction;
 
 @end
 
 @interface DirectionButton : UIView
 
-@property (weak, nonatomic) id<DirectionButtonDelegate> delegate;
+@property (nonatomic, weak) id<DirectionButtonDelegate> delegate;
 
-+ (DirectionButton *)cameraDirectionButtonWithPoint:(CGPoint)point;
-+ (DirectionButton *)tvDirectionButtonWithPoint:(CGPoint)point;
-+ (DirectionButton *)bgMusicDirectionButtonWithPoint:(CGPoint)point;
+- (id)initWithPoint:(CGPoint)point;
 
 @end

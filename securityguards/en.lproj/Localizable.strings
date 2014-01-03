@@ -69,6 +69,11 @@
 "auto_find"              =      "自动发现";
 
 
+/****************	Camera View Strings	****************/
+
+"screenshots"            =      "视频截屏";
+
+
 /****************	Login Strings	****************/
 
 "phone.number"          =   "手机号";
