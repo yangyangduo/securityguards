@@ -55,6 +55,7 @@
         txtPhoneNumber.keyboardType = UIKeyboardTypeNumberPad;
         txtPhoneNumber.clearButtonMode = UITextFieldViewModeWhileEditing;
         txtPhoneNumber.delegate =self;
+        txtPhoneNumber.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
         [self.view addSubview:txtPhoneNumber];
     }
     UIView *seperatorView = [[UIView alloc] initWithFrame:CGRectMake(0, lblPhoneNumber.frame.size.height+lblPhoneNumber.frame.origin.y+5, self.view.bounds.size.width, 1)];

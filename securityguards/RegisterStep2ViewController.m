@@ -61,6 +61,7 @@
         txtVerificationCode.clearButtonMode = UITextFieldViewModeWhileEditing;
         txtVerificationCode.autocorrectionType = UITextAutocapitalizationTypeNone;
         txtVerificationCode.keyboardType = UIKeyboardTypeNumberPad;
+        txtVerificationCode.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
         txtVerificationCode.delegate = self;
         [self.view addSubview:txtVerificationCode];
     }
