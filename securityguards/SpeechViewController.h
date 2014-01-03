@@ -9,8 +9,9 @@
 #import "NavigationViewController.h"
 #import "ConversationMessage.h"
 #import "SpeechRecognitionUtil.h"
+#import "XXEventSubscriber.h"
 
-@interface SpeechViewController : NavigationViewController<UITableViewDataSource, UITableViewDelegate, SpeechRecognitionNotificationDelegate>
+@interface SpeechViewController : NavigationViewController<UITableViewDataSource, UITableViewDelegate, SpeechRecognitionNotificationDelegate, XXEventSubscriber>
 
 - (id)initWithMessages:(NSArray *)messages;
 

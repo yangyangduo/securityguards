@@ -61,6 +61,7 @@
     [super viewWillAppear:animated];
     
     XXEventSubscription *subscription = [[XXEventSubscription alloc] initWithSubscriber:self eventFilter:[[XXEventNameFilter alloc] initWithSupportedEventName:EventUnitNameChanged]];
+    subscription.notifyMustInMainThread = YES;
     [[XXEventSubscriptionPublisher defaultPublisher] subscribeFor:subscription];
 }
 

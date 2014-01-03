@@ -22,6 +22,7 @@
 #import "NetworkModeChangedEvent.h"
 #import "UnitsListUpdatedEvent.h"
 #import "CurrentUnitChangedEvent.h"
+#import "DeviceStatusChangedEvent.h"
 
 @interface PortalViewController ()
 
@@ -72,7 +73,7 @@
     // update network state display
     [self updateNetworkStateForView:[CoreService defaultService].currentNetworkMode];
     
-    XXEventNameFilter *eventNameFilter = [[XXEventNameFilter alloc] initWithSupportedEventNames:[NSArray arrayWithObjects:EventUnitsListUpdated, EventNetworkModeChanged, EventCurrentUnitChanged, EventUnitNameChanged, nil]];
+    XXEventNameFilter *eventNameFilter = [[XXEventNameFilter alloc] initWithSupportedEventNames:[NSArray arrayWithObjects:EventUnitsListUpdated, EventNetworkModeChanged, EventCurrentUnitChanged, EventUnitNameChanged, EventDeviceStatusChanged, nil]];
     
     // subscribe events
     XXEventSubscription *subscription = [[XXEventSubscription alloc] initWithSubscriber:self eventFilter:eventNameFilter];
@@ -304,6 +305,8 @@
     } else if([event isKindOfClass:[UnitsListUpdatedEvent class]]
               || [event isKindOfClass:[CurrentUnitChangedEvent class]]) {
         [self updateUnitsView];
+    } else if([event isKindOfClass:[DeviceStatusChangedEvent class]]) {
+        [self updateUnitStatus];
     }
 }
 
@@ -315,15 +318,20 @@
     if(currentUnit != nil) {
         self.topbarView.title = currentUnit.name;
         
-NSData *dd =        [JsonUtils createJsonDataFromDictionary:
-         [currentUnit toJson]];
-NSString *str =        [[NSString alloc] initWithData:dd encoding:NSUTF8StringEncoding];
+        NSData *dd = [JsonUtils createJsonDataFromDictionary:[currentUnit toJson]];
+        NSString *str =        [[NSString alloc] initWithData:dd encoding:NSUTF8StringEncoding];
         NSLog(str);
+        
+        [self updateUnitStatus];
         
     } else {
         self.topbarView.title = NSLocalizedString(@"app_name", @"");
     }
     [self updateUnitsSelectionView];
+}
+
+- (void)updateUnitStatus {
+    
 }
 
 - (void)updateUnitsSelectionView {

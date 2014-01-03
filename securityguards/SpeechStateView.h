@@ -20,6 +20,4 @@ typedef NS_ENUM(int, SpeechViewState) {
 
 + (SpeechStateView *)defaultView;
 
-- (void)setState:(SpeechViewState)state andVolumn:(int)volumn;
-
 @end

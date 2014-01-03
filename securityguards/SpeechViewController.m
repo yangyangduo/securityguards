@@ -13,6 +13,11 @@
 #import "XXStringUtils.h"
 #import "XXDateFormatter.h"
 #import "SpeechStateView.h"
+#import "DeviceCommandNameEventFilter.h"
+#import "XXEventNameFilter.h"
+#import "XXEventFilterChain.h"
+#import "DeviceStatusChangedEvent.h"
+#import "DeviceCommandEvent.h"
 
 #define MESSAGE_VIEW_TAG 999
 
@@ -82,11 +87,22 @@ typedef NS_ENUM(NSInteger, RecognizerState) {
 - (void)viewWillAppear:(BOOL)animated {
     RootViewController *rootViewController = (RootViewController *)self.parentViewController.parentViewController;
     [rootViewController disableGestureForDrawerView];
+    
+    DeviceCommandNameEventFilter *commandNameFilter = [[DeviceCommandNameEventFilter alloc] init];
+    [commandNameFilter.supportedCommandNames addObject:COMMAND_VOICE_CONTROL];
+    XXEventNameFilter *eventNameFilter = [[XXEventNameFilter alloc] initWithSupportedEventNames:[NSArray arrayWithObjects:EventDeviceStatusChanged, nil]];
+    XXEventFilterChain *filterChain = [[XXEventFilterChain alloc] init];
+    [[filterChain orFilter:commandNameFilter] orFilter:eventNameFilter];
+    
+    XXEventSubscription *subscription = [[XXEventSubscription alloc] initWithSubscriber:self eventFilter:filterChain];
+    [[XXEventSubscriptionPublisher defaultPublisher] subscribeFor:subscription];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     RootViewController *rootViewController = (RootViewController *)self.parentViewController.parentViewController;
     [rootViewController enableGestureForDrawerView];
+    
+    [[XXEventSubscriptionPublisher defaultPublisher] unSubscribeForSubscriber:self];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -201,6 +217,7 @@ typedef NS_ENUM(NSInteger, RecognizerState) {
     ConversationMessage *msg = [_messages_ objectAtIndex:indexPath.row];
     msgView = [msg viewWithMessage:self.view.bounds.size.width];
     if(msgView != nil) {
+        msgView.tag = MESSAGE_VIEW_TAG;
         [cell addSubview:msgView];
     }
     return cell;
@@ -221,19 +238,23 @@ typedef NS_ENUM(NSInteger, RecognizerState) {
 }
 
 - (void)btnSpeechTouchUpInside:(id)sender {
+    [SpeechStateView defaultView].state = SpeechViewStateNone;
     [speechRecognitionUtil stopListening];
 }
 
 - (void)btnSpeechTouchUpOutside:(id)sender {
+    [SpeechStateView defaultView].state = SpeechViewStateNone;
     [speechRecognitionUtil cancel];
 }
 
 - (void)btnSpeechTouchDragExit:(id)sender {
     //touch down and dragg out of button
+    [SpeechStateView defaultView].state = SpeechViewStateWillCancel;
 }
 
 - (void)btnSpeechTouchDragEnter:(id)sender {
     //touch down and dragg enter button when previous status is out of button
+    [SpeechStateView defaultView].state = SpeechViewStateSpeaking;
 }
 
 - (void)startListening:(NSTimer *)timer {
@@ -253,10 +274,12 @@ typedef NS_ENUM(NSInteger, RecognizerState) {
 
 - (void)beginRecord {
     recognizerState = RecognizerStateRecording;
+    [SpeechStateView defaultView].state = SpeechViewStateSpeaking;
 }
 
 - (void)endRecord {
     recognizerState = RecognizerStateRecordingEnd;
+    [SpeechStateView defaultView].state = SpeechViewStateNone;
 }
 
 - (void)recognizeCancelled {
@@ -278,10 +301,10 @@ typedef NS_ENUM(NSInteger, RecognizerState) {
 #ifdef DEBUG
         NSLog(@"[SPEECH RECOGNIZER] Send voice command [%@].", result);
 #endif
-//        DeviceCommandVoiceControl *command = (DeviceCommandVoiceControl *)[CommandFactory commandForType:CommandTypeUpdateDeviceViaVoice];
-//        command.masterDeviceCode = [SMShared current].memory.currentUnit.identifier;
-//        command.voiceText = result;
-//        [[SMShared current].deliveryService executeDeviceCommand:command];
+        DeviceCommandVoiceControl *command = (DeviceCommandVoiceControl *)[CommandFactory commandForType:CommandTypeUpdateDeviceViaVoice];
+//        command.masterDeviceCode = 
+        command.voiceText = result;
+        [[CoreService defaultService] executeDeviceCommand:command];
     } else {
         [self speechRecognizerFailed:@"[SPEECH RECOGNIZER] No speaking"];
     }
@@ -297,6 +320,39 @@ typedef NS_ENUM(NSInteger, RecognizerState) {
 #ifdef DEBUG
     NSLog(@"[SPEECH RECOGNIZER] Recognize failed, reason is [ %@ ]", message);
 #endif
+}
+
+#pragma mark -
+#pragma mark Event Subscriber
+
+- (void)xxEventPublisherNotifyWithEvent:(XXEvent *)event {
+    if([event isKindOfClass:[DeviceCommandEvent class]]) {
+        DeviceCommandEvent *evt = (DeviceCommandEvent *)event;
+        DeviceCommandVoiceControl *cmd = (DeviceCommandVoiceControl *)evt.command;
+        [self notifyVoiceControlAccept:cmd];
+    } else if([event isKindOfClass:[DeviceStatusChangedEvent class]]) {
+        
+    }
+}
+
+- (NSString *)xxEventSubscriberIdentifier {
+    return @"speechViewControllerSubscriber";
+}
+
+- (void)notifyVoiceControlAccept:(DeviceCommandVoiceControl *)command {
+    if(command == nil) return;
+    ConversationTextMessage *textMessage = [[ConversationTextMessage alloc] init];
+    textMessage.messageOwner = MESSAGE_OWNER_MINE;
+    textMessage.textMessage = command.voiceText;
+    textMessage.timeMessage = [XXDateFormatter dateToString:[NSDate date] format:@"HH:mm:ss"];
+    [self addMessage:textMessage];
+    if(command.resultID != 1) {
+        ConversationTextMessage *textMessage = [[ConversationTextMessage alloc] init];
+        textMessage.messageOwner = MESSAGE_OWNER_THEIRS;
+        textMessage.textMessage = command.describe;
+        textMessage.timeMessage = [XXDateFormatter dateToString:[NSDate date] format:@"HH:mm:ss"];
+        [self addMessage:textMessage];
+    }
 }
 
 - (void)popupViewController {

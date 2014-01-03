@@ -9,6 +9,8 @@
 #import "UnitControlPanel.h"
 #import "UIColor+MoreColor.h"
 #import "UIDevice+SystemVersion.h"
+#import "CameraViewController.h"
+#import "Shared.h"
 
 #define DETAIL_TEXT_LABEL_TAG 888
 #define CONTROL_ITEMS_COUNT 4
@@ -105,6 +107,11 @@
             cell.textLabel.text = @"安防";
             [self detailTextLabelForCell:cell].text = @"开启";
             break;
+        case 3:
+            cell.imageView.image = [UIImage imageNamed:@"icon_camera"];
+            cell.textLabel.text = @"摄像头";
+            [self detailTextLabelForCell:cell].text = @"查看";
+            break;
         default:
             break;
     }
@@ -115,7 +122,10 @@
     
     // do some thing here
     
-    
+    if(indexPath.row == 3) {
+        CameraViewController *cameraViewController = [[CameraViewController alloc] init];
+        [[[Shared shared].app topViewController] presentViewController:cameraViewController animated:YES completion:^{}];
+    }
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }

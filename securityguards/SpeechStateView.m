@@ -7,11 +7,12 @@
 //
 
 #import "SpeechStateView.h"
+#import "UIColor+MoreColor.h"
 #import <QuartzCore/QuartzCore.h>
 
 @implementation SpeechStateView {
-    UIImageView *imgState;
     UILabel *lblTitle;
+    UILabel *lblDescription;
 }
 
 @synthesize state = _state_;
@@ -29,17 +30,28 @@
     static SpeechStateView *defaultView = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        defaultView = [[SpeechStateView alloc] initWithFrame:CGRectMake(0, 0, 160, 100)];
+        UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
+        defaultView = [[SpeechStateView alloc] initWithFrame:CGRectMake(0, 0, 160, 60)];
+        defaultView.center = CGPointMake(keyWindow.center.x, keyWindow.center.y);
     });
     return defaultView;
 }
 
 - (void)initUI {
-    imgState = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
-    [self addSubview:imgState];
-    
-    lblTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+    lblTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, 5, self.bounds.size.width, 30)];
+    lblTitle.backgroundColor = [UIColor clearColor];
+    lblTitle.textAlignment = NSTextAlignmentCenter;
+    lblTitle.textColor = [UIColor whiteColor];
+    lblTitle.font = [UIFont boldSystemFontOfSize:18.f];
+    lblTitle.text = NSLocalizedString(@"please_speaking", @"");
     [self addSubview:lblTitle];
+    
+    lblDescription = [[UILabel alloc] initWithFrame:CGRectMake(0, 35, self.bounds.size.width, 25)];
+    lblDescription.backgroundColor = [UIColor clearColor];
+    lblDescription.textAlignment = NSTextAlignmentCenter;
+    lblDescription.textColor = [UIColor redColor];
+    lblDescription.font = [UIFont systemFontOfSize:11.f];
+    [self addSubview:lblDescription];
     
     self.layer.masksToBounds = YES;
     self.layer.cornerRadius = 10.f;
@@ -53,23 +65,22 @@
             [self removeFromSuperview];
         }
     } else {
-        if(self.superview == nil) {
-            [[UIApplication sharedApplication].keyWindow addSubview:self];
-        }
         if(state == SpeechViewStateSpeaking) {
-            
+            lblDescription.text = NSLocalizedString(@"finger_up_cancel_send", @"");
+            lblDescription.textColor = [UIColor whiteColor];
         } else if(state == SpeechViewStateWillCancel) {
-            
+            lblDescription.text = NSLocalizedString(@"finger_release_cancel_send", @"");
+            lblDescription.textColor = [UIColor appRed];
         } else {
     #ifdef DEBUG
             NSLog(@"[Speech State View] Oh my god, unknow state!!!");
     #endif
         }
+        
+        if(self.superview == nil) {
+            [[UIApplication sharedApplication].keyWindow addSubview:self];
+        }
     }
-}
-
-- (void)setState:(SpeechViewState)state andVolumn:(int)volumn {
-    self.state = state;
 }
 
 @end

@@ -1,13 +1,19 @@
 //
 //  CameraViewController.h
-//  securityguards
+//  SmartHome
 //
-//  Created by Zhao yang on 12/31/13.
+//  Created by hadoop user account on 21/08/13.
 //  Copyright (c) 2013 hentre. All rights reserved.
 //
 
+#import <UIKit/UIKit.h>
 #import "NavigationViewController.h"
+#import "XXEventSubscriber.h"
+#import "DirectionButton.h"
+#import "CameraSocket.h"
 
-@interface CameraViewController : NavigationViewController
+@interface CameraViewController : NavigationViewController<DirectionButtonDelegate, CameraMessageDelegate, XXEventSubscriber>
+
+@property (strong, nonatomic) Device *cameraDevice;
 
 @end

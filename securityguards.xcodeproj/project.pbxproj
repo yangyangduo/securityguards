@@ -159,7 +159,6 @@
 		6F732739186D5DB100A1276B /* icon_security@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F732736186D5DB100A1276B /* icon_security@2x.png */; };
 		6F73273C186D5E3600A1276B /* UnitControlPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F73273B186D5E3600A1276B /* UnitControlPanel.m */; };
 		6F732741186D672900A1276B /* line_dashed_h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F732740186D672900A1276B /* line_dashed_h@2x.png */; };
-		6F732744186D6DD800A1276B /* CameraView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F732743186D6DD800A1276B /* CameraView.m */; };
 		6F732747186D7BD200A1276B /* SensorsDisplayPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F732746186D7BD200A1276B /* SensorsDisplayPanel.m */; };
 		6F7CDB9E18725BCE0036F912 /* alert_failed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F7CDB9C18725BCE0036F912 /* alert_failed@2x.png */; };
 		6F7CDB9F18725BCE0036F912 /* alert_success@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F7CDB9D18725BCE0036F912 /* alert_success@2x.png */; };
@@ -180,6 +179,9 @@
 		6F860F2B187552C200792DBB /* btn_drawer_right@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F860F27187552C200792DBB /* btn_drawer_right@2x.png */; };
 		6F860F2C187552C200792DBB /* btn_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F860F28187552C200792DBB /* btn_back@2x.png */; };
 		6F860F2D187552C200792DBB /* btn_rename@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F860F29187552C200792DBB /* btn_rename@2x.png */; };
+		6F860F2F1875580E00792DBB /* icon_camera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F860F2E1875580E00792DBB /* icon_camera@2x.png */; };
+		6F860F3218755BF000792DBB /* DirectionButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F860F3118755BF000792DBB /* DirectionButton.m */; };
+		6F860F3518755C8400792DBB /* SystemAudio.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F860F3418755C8400792DBB /* SystemAudio.m */; };
 		6F8F57BC18710D940033228F /* AttributedStringBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F8F57B718710D940033228F /* AttributedStringBuilder.m */; };
 		6F8F57BD18710D940033228F /* ParagraphBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F8F57B918710D940033228F /* ParagraphBuilder.m */; };
 		6F8F57BE18710D940033228F /* TextContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F8F57BB18710D940033228F /* TextContainerView.m */; };
@@ -489,8 +491,6 @@
 		6F73273A186D5E3600A1276B /* UnitControlPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitControlPanel.h; sourceTree = "<group>"; };
 		6F73273B186D5E3600A1276B /* UnitControlPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnitControlPanel.m; sourceTree = "<group>"; };
 		6F732740186D672900A1276B /* line_dashed_h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "line_dashed_h@2x.png"; sourceTree = "<group>"; };
-		6F732742186D6DD800A1276B /* CameraView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraView.h; sourceTree = "<group>"; };
-		6F732743186D6DD800A1276B /* CameraView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraView.m; sourceTree = "<group>"; };
 		6F732745186D7BD200A1276B /* SensorsDisplayPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SensorsDisplayPanel.h; sourceTree = "<group>"; };
 		6F732746186D7BD200A1276B /* SensorsDisplayPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SensorsDisplayPanel.m; sourceTree = "<group>"; };
 		6F7CDB9C18725BCE0036F912 /* alert_failed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "alert_failed@2x.png"; sourceTree = "<group>"; };
@@ -522,6 +522,11 @@
 		6F860F27187552C200792DBB /* btn_drawer_right@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_drawer_right@2x.png"; sourceTree = "<group>"; };
 		6F860F28187552C200792DBB /* btn_back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_back@2x.png"; sourceTree = "<group>"; };
 		6F860F29187552C200792DBB /* btn_rename@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_rename@2x.png"; sourceTree = "<group>"; };
+		6F860F2E1875580E00792DBB /* icon_camera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_camera@2x.png"; sourceTree = "<group>"; };
+		6F860F3018755BF000792DBB /* DirectionButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DirectionButton.h; sourceTree = "<group>"; };
+		6F860F3118755BF000792DBB /* DirectionButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DirectionButton.m; sourceTree = "<group>"; };
+		6F860F3318755C8400792DBB /* SystemAudio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemAudio.h; sourceTree = "<group>"; };
+		6F860F3418755C8400792DBB /* SystemAudio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SystemAudio.m; sourceTree = "<group>"; };
 		6F8F57B618710D940033228F /* AttributedStringBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttributedStringBuilder.h; sourceTree = "<group>"; };
 		6F8F57B718710D940033228F /* AttributedStringBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttributedStringBuilder.m; sourceTree = "<group>"; };
 		6F8F57B818710D940033228F /* ParagraphBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParagraphBuilder.h; sourceTree = "<group>"; };
@@ -714,6 +719,8 @@
 				6F600486186BCEBE0085B4BD /* event_pub_sub */,
 				6F6004E0186BD29D0085B4BD /* BitUtils.h */,
 				6F6004E1186BD29D0085B4BD /* BitUtils.m */,
+				6F860F3318755C8400792DBB /* SystemAudio.h */,
+				6F860F3418755C8400792DBB /* SystemAudio.m */,
 				6F6005A5186C029E0085B4BD /* Shared.h */,
 				6F6005A6186C029F0085B4BD /* Shared.m */,
 				6F600593186BFF7F0085B4BD /* GlobalSettings.h */,
@@ -784,6 +791,8 @@
 			children = (
 				6F6004AA186BCFBF0085B4BD /* XXButton.h */,
 				6F6004AB186BCFBF0085B4BD /* XXButton.m */,
+				6F860F3018755BF000792DBB /* DirectionButton.h */,
+				6F860F3118755BF000792DBB /* DirectionButton.m */,
 			);
 			name = button;
 			sourceTree = "<group>";
@@ -1308,6 +1317,7 @@
 				6F732734186D5DB100A1276B /* icon_level@2x.png */,
 				6F732735186D5DB100A1276B /* icon_power@2x.png */,
 				6F732736186D5DB100A1276B /* icon_security@2x.png */,
+				6F860F2E1875580E00792DBB /* icon_camera@2x.png */,
 			);
 			name = control;
 			sourceTree = "<group>";
@@ -1332,8 +1342,6 @@
 				6F732746186D7BD200A1276B /* SensorsDisplayPanel.m */,
 				6F73273A186D5E3600A1276B /* UnitControlPanel.h */,
 				6F73273B186D5E3600A1276B /* UnitControlPanel.m */,
-				6F732742186D6DD800A1276B /* CameraView.h */,
-				6F732743186D6DD800A1276B /* CameraView.m */,
 				6F0CD5DD186DBD9E00B5A3EA /* UnitSelectionDrawerView.h */,
 				6F0CD5DE186DBD9E00B5A3EA /* UnitSelectionDrawerView.m */,
 			);
@@ -1552,6 +1560,7 @@
 				6F7CDB9F18725BCE0036F912 /* alert_success@2x.png in Resources */,
 				6FEC0FF5186C73A900CB0D70 /* icon_notifications@2x.png in Resources */,
 				F2B6A6371874F8AF0020809D /* icon_message@2x.png in Resources */,
+				6F860F2F1875580E00792DBB /* icon_camera@2x.png in Resources */,
 				6F7247DA1871443B003B325F /* bubble_mine@2x.png in Resources */,
 				6F0CD5D0186DB93000B5A3EA /* icon_firegas_yellow@2x.png in Resources */,
 				6F0CD5DC186DB93000B5A3EA /* icon_voc_yellow@2x.png in Resources */,
@@ -1614,13 +1623,14 @@
 				6F7CDBB71872A4F40036F912 /* UIView+ViewController.m in Sources */,
 				6F600581186BF57D0085B4BD /* RestResponse.m in Sources */,
 				6F6004C3186BD04D0085B4BD /* BaseViewController.m in Sources */,
+				6F860F3218755BF000792DBB /* DirectionButton.m in Sources */,
 				6F600520186BE9890085B4BD /* DeviceCommandCheckVersion.m in Sources */,
 				F20D6AC41872997400FE6B6D /* MessageCell.m in Sources */,
 				6F600559186BF0710085B4BD /* DeviceStatus.m in Sources */,
 				6F7CDBC01872B30A0036F912 /* UnitFinderViewController.m in Sources */,
-				6F732744186D6DD800A1276B /* CameraView.m in Sources */,
 				6F6005B9186C1B410085B4BD /* RegisterStep2ViewController.m in Sources */,
 				6F6004B8186BCFF40085B4BD /* NSDate+Extension.m in Sources */,
+				6F860F3518755C8400792DBB /* SystemAudio.m in Sources */,
 				6F6004F6186BDB8C0085B4BD /* RestfulCommandService.m in Sources */,
 				6F600575186BF3940085B4BD /* NetworkModeChangedEvent.m in Sources */,
 				6F6005C0186C2E220085B4BD /* LeftNavItem.m in Sources */,
