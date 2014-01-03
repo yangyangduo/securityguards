@@ -319,8 +319,8 @@
         self.topbarView.title = currentUnit.name;
         
         NSData *dd = [JsonUtils createJsonDataFromDictionary:[currentUnit toJson]];
-        NSString *str =        [[NSString alloc] initWithData:dd encoding:NSUTF8StringEncoding];
-        NSLog(str);
+        NSString *str = [[NSString alloc] initWithData:dd encoding:NSUTF8StringEncoding];
+        NSLog(@"<--------------------------------- \r\n %@", str);
         
         [self updateUnitStatus];
         

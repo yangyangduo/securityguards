@@ -11,11 +11,12 @@
 
 @implementation CameraLoadingView {
     UIActivityIndicatorView *indicatorView;
+    UIButton *btnPlay;
     UILabel *lblTitle;
-    UIImageView *imgView;
 }
 
-@synthesize message = _message_;
+@synthesize delegate;
+@synthesize cameraState = _cameraState_;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -27,9 +28,13 @@
     return self;
 }
 
-+ (CameraLoadingView *)viewWithPoint:(CGPoint)point {
-    CameraLoadingView *view = [[CameraLoadingView alloc] initWithFrame:CGRectMake(point.x, point.y, 180, 50)];
-    return view;
+- (id)initWithPoint:(CGPoint)point {
+    self = [super initWithFrame:CGRectMake(point.x, point.y, 170, 110)];
+    if(self) {
+        [self initDefaults];
+        [self initUI];
+    }
+    return self;
 }
 
 - (void)initDefaults {
@@ -37,62 +42,68 @@
 }
 
 - (void)initUI {
-    self.backgroundColor = [UIColor blackColor];
+    self.backgroundColor = [UIColor clearColor];
     
-    if(indicatorView == nil) {
-        indicatorView = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(5, 3, 44, 44)];
-        indicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhiteLarge;
-        [self addSubview:indicatorView];
-    }
+    btnPlay = [[UIButton alloc] initWithFrame:CGRectMake(0, 3, 136 / 2, 136 / 2)];
+    btnPlay.center = CGPointMake(self.bounds.size.width / 2, btnPlay.center.y);
+    [btnPlay setBackgroundImage:[UIImage imageNamed:@"btn_play"] forState:UIControlStateNormal];
+    [btnPlay setBackgroundImage:[UIImage imageNamed:@"btn_play_selected"] forState:UIControlStateHighlighted];
+    [btnPlay addTarget:self action:@selector(btnPlayPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:btnPlay];
+
+    indicatorView = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 3, 136 / 2, 136 / 2)];
+    indicatorView.center = CGPointMake(self.bounds.size.width / 2, indicatorView.center.y);
+    indicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhiteLarge;
+    [self addSubview:indicatorView];
     
-    if(imgView == nil) {
-        imgView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 3, 44, 44)];
-        imgView.image = [UIImage imageNamed:@"alert_failed.png"];
-        [self addSubview:imgView];
-    }
-    
-    if(lblTitle == nil) {
-        lblTitle = [[UILabel alloc] initWithFrame:CGRectMake(60, 3, 110, 44)];
-        lblTitle.textColor = [UIColor whiteColor];
-        lblTitle.textAlignment = NSTextAlignmentCenter;
-        lblTitle.backgroundColor = [UIColor clearColor];
-        [self addSubview:lblTitle];
-    }
-    
-    [self show];
+    lblTitle = [[UILabel alloc] initWithFrame:CGRectMake(5, btnPlay.frame.origin.y + btnPlay.bounds.size.height + 5, 160, 30)];
+    lblTitle.textColor = [UIColor lightTextColor];
+    lblTitle.textAlignment = NSTextAlignmentCenter;
+    lblTitle.backgroundColor = [UIColor clearColor];
+    lblTitle.font = [UIFont systemFontOfSize:14.f];
+    [self addSubview:lblTitle];
 }
 
-- (void)show {
-    self.hidden = NO;
-    imgView.hidden = YES;
-    lblTitle.text = NSLocalizedString(@"loading", @"");
-    if(!indicatorView.isAnimating) {
-        [indicatorView startAnimating];
-    }
-}
-
-- (void)hide {
-    if(indicatorView.isAnimating) {
-        [indicatorView stopAnimating];
-    }
-    self.hidden = YES;
-}
-
-- (void)showError {
-    imgView.hidden = NO;
-    self.hidden = NO;
-    if(indicatorView.isAnimating) {
-        [indicatorView stopAnimating];
-    }
-    [self setMessage:NSLocalizedString(@"connect_failed", @"")];
-}
-
-- (void)setMessage:(NSString *)message {
-    _message_ = message;
-    if([XXStringUtils isBlank:_message_]) {
+- (void)setCameraState:(CameraState)cameraState {
+    _cameraState_ = cameraState;
+    if(_cameraState_ == CameraStateNotOpen) {
+        btnPlay.hidden = NO;
+        if(indicatorView.isAnimating) {
+            [indicatorView stopAnimating];
+        }
+        indicatorView.hidden = YES;
+        lblTitle.text = NSLocalizedString(@"play", @"");
+        lblTitle.hidden = NO;
+    } else if(_cameraState_ == CameraStateOpenning) {
+        btnPlay.hidden = YES;
+        if(!indicatorView.isAnimating) {
+            [indicatorView startAnimating];
+        }
+        indicatorView.hidden = NO;
+        lblTitle.text = NSLocalizedString(@"camera_connectting", @"");
+        lblTitle.hidden = NO;
+    } else if(_cameraState_ == CameraStatePlaying) {
+        btnPlay.hidden = YES;
+        if(indicatorView.isAnimating) {
+            [indicatorView stopAnimating];
+        }
         lblTitle.text = [XXStringUtils emptyString];
-    } else {
-        lblTitle.text = _message_;
+        indicatorView.hidden = YES;
+        lblTitle.hidden = YES;
+    } else if(_cameraState_ == CameraStateError) {
+        btnPlay.hidden = NO;
+        if(indicatorView.isAnimating) {
+            [indicatorView stopAnimating];
+        }
+        lblTitle.text = NSLocalizedString(@"camera_error", @"");
+        indicatorView.hidden = YES;
+        lblTitle.hidden = NO;
+    }
+}
+
+- (void)btnPlayPressed:(id)sender {
+    if(self.delegate != nil && [self.delegate respondsToSelector:@selector(playButtonPressed)]) {
+        [self.delegate playButtonPressed];
     }
 }
 

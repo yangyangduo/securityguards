@@ -12,6 +12,9 @@
 #import "CameraViewController.h"
 #import "Shared.h"
 
+
+#import "UnitManager.h"
+
 #define DETAIL_TEXT_LABEL_TAG 888
 #define CONTROL_ITEMS_COUNT 4
 
@@ -124,6 +127,7 @@
     
     if(indexPath.row == 3) {
         CameraViewController *cameraViewController = [[CameraViewController alloc] init];
+        cameraViewController.cameraDevice = [[UnitManager defaultManager].currentUnit.devices objectAtIndex:0];
         [[[Shared shared].app topViewController] presentViewController:cameraViewController animated:YES completion:^{}];
     }
     
