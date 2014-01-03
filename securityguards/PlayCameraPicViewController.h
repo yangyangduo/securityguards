@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "NotificationData.h"
+#import "NavigationViewController.h"
+#import "ImageProvider.h"
+#import "CameraLoadingView.h"
 
-@interface PlayCameraPicViewController : UIViewController
+@interface PlayCameraPicViewController : NavigationViewController<ImageProviderDelegate>
 @property (strong, nonatomic) NotificationData *data;
 @end

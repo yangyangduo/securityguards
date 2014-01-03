@@ -212,6 +212,8 @@
 		F2B6A63D187500040020809D /* UIImage+ImageHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = F2B6A63C187500040020809D /* UIImage+ImageHandler.m */; };
 		F2B6A63F187506090020809D /* icon_accessory@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2B6A63E187506090020809D /* icon_accessory@2x.png */; };
 		F2B6A642187515FE0020809D /* PlayCameraPicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2B6A641187515FE0020809D /* PlayCameraPicViewController.m */; };
+		F2C1DFF218764C3400DD66D7 /* ImageProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = F2C1DFF118764C3400DD66D7 /* ImageProvider.m */; };
+		F2C1DFF518764CF700DD66D7 /* CameraLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = F2C1DFF418764CF700DD66D7 /* CameraLoadingView.m */; };
 		F2F93692186D10FA002F7904 /* login-image-bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2F93690186D10FA002F7904 /* login-image-bg@2x.png */; };
 		F2F93693186D10FA002F7904 /* logo-login@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2F93691186D10FA002F7904 /* logo-login@2x.png */; };
 		F2F93697186D113E002F7904 /* btn_blue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2F93694186D113E002F7904 /* btn_blue@2x.png */; };
@@ -574,6 +576,10 @@
 		F2B6A63E187506090020809D /* icon_accessory@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_accessory@2x.png"; sourceTree = "<group>"; };
 		F2B6A640187515FE0020809D /* PlayCameraPicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayCameraPicViewController.h; sourceTree = "<group>"; };
 		F2B6A641187515FE0020809D /* PlayCameraPicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayCameraPicViewController.m; sourceTree = "<group>"; };
+		F2C1DFF018764C3400DD66D7 /* ImageProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageProvider.h; sourceTree = "<group>"; };
+		F2C1DFF118764C3400DD66D7 /* ImageProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageProvider.m; sourceTree = "<group>"; };
+		F2C1DFF318764CF700DD66D7 /* CameraLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraLoadingView.h; sourceTree = "<group>"; };
+		F2C1DFF418764CF700DD66D7 /* CameraLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraLoadingView.m; sourceTree = "<group>"; };
 		F2F93690186D10FA002F7904 /* login-image-bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-image-bg@2x.png"; sourceTree = "<group>"; };
 		F2F93691186D10FA002F7904 /* logo-login@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo-login@2x.png"; sourceTree = "<group>"; };
 		F2F93694186D113E002F7904 /* btn_blue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_blue@2x.png"; sourceTree = "<group>"; };
@@ -710,6 +716,8 @@
 		6F600485186BCEA70085B4BD /* commons */ = {
 			isa = PBXGroup;
 			children = (
+				F2C1DFF018764C3400DD66D7 /* ImageProvider.h */,
+				F2C1DFF118764C3400DD66D7 /* ImageProvider.m */,
 				6F8F57BF187111B10033228F /* speech */,
 				6F8F57B518710D8A0033228F /* core_text */,
 				6F600583186BF86F0085B4BD /* date */,
@@ -764,6 +772,8 @@
 		6F6004A4186BCF500085B4BD /* components */ = {
 			isa = PBXGroup;
 			children = (
+				F2C1DFF318764CF700DD66D7 /* CameraLoadingView.h */,
+				F2C1DFF418764CF700DD66D7 /* CameraLoadingView.m */,
 				F20D6AC11872992500FE6B6D /* cells */,
 				6F7247E018715768003B325F /* text_field */,
 				6F7247DC18714D60003B325F /* speech_state_view */,
@@ -1629,6 +1639,7 @@
 				6F600559186BF0710085B4BD /* DeviceStatus.m in Sources */,
 				6F7CDBC01872B30A0036F912 /* UnitFinderViewController.m in Sources */,
 				6F6005B9186C1B410085B4BD /* RegisterStep2ViewController.m in Sources */,
+				F2C1DFF218764C3400DD66D7 /* ImageProvider.m in Sources */,
 				6F6004B8186BCFF40085B4BD /* NSDate+Extension.m in Sources */,
 				6F860F3518755C8400792DBB /* SystemAudio.m in Sources */,
 				6F6004F6186BDB8C0085B4BD /* RestfulCommandService.m in Sources */,
@@ -1645,6 +1656,7 @@
 				6F6004F7186BDB8C0085B4BD /* TCPCommandService.m in Sources */,
 				6F6004DE186BD2680085B4BD /* Reachability.m in Sources */,
 				6F0CD5DF186DBD9E00B5A3EA /* UnitSelectionDrawerView.m in Sources */,
+				F2C1DFF518764CF700DD66D7 /* CameraLoadingView.m in Sources */,
 				6F600528186BE9890085B4BD /* DeviceCommandUpdateNotifications.m in Sources */,
 				6F6005B3186C1B160085B4BD /* LoginViewController.m in Sources */,
 				6F7CDBA21872738E0036F912 /* NotificationsViewController.m in Sources */,
