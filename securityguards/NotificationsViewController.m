@@ -8,6 +8,7 @@
 
 #import "NotificationsViewController.h"
 #import "MessageCell.h"
+#import "NotificationsFileUpdatedEvent.h"
 
 
 @interface NotificationsViewController ()
@@ -36,11 +37,35 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     // subscribe events here
+    XXEventNameFilter *eventNameFilter = [[XXEventNameFilter alloc] initWithSupportedEventName:EventNotificationsFileUpdated];
+    XXEventSubscription *eventSubscription = [[XXEventSubscription alloc] initWithSubscriber:self eventFilter:eventNameFilter];
+    [[XXEventSubscriptionPublisher defaultPublisher] subscribeFor:eventSubscription];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     // unsubscribe events here
+    [[XXEventSubscriptionPublisher defaultPublisher] unSubscribeForSubscriber:self];
 }
+
+#pragma mark -
+#pragma mark Event Subscriber
+
+- (NSString *)xxEventSubscriberIdentifier {
+    return @"portalViewControllerSubscriber";
+}
+
+- (void)xxEventPublisherNotifyWithEvent:(XXEvent *)event {
+//    if([event isKindOfClass:[NetworkModeChangedEvent class]]) {
+//        NetworkModeChangedEvent *evt = (NetworkModeChangedEvent *)event;
+//        [self updateNetworkStateForView:evt.networkMode];
+//    } else if([event isKindOfClass:[UnitsListUpdatedEvent class]]
+//              || [event isKindOfClass:[CurrentUnitChangedEvent class]]) {
+//        [self updateUnitsView];
+//    } else if([event isKindOfClass:[DeviceStatusChangedEvent class]]) {
+//        [self updateUnitStatus];
+//    }
+}
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -50,16 +75,27 @@
 
 - (void)initDefaults {
     [super initDefaults];
+    messageArr = [NSMutableArray arrayWithArray:[[NotificationsFileManager fileManager] readFromDisk]];
+    if (messageArr && messageArr.count > 0) {
+        for (SMNotification *notification in messageArr) {
+            notification.hasRead = YES;
+        }
+    }
+    [[NotificationsFileManager fileManager] update:messageArr deleteList:nil];
+    [self sort:messageArr ascending:NO];
+
 }
 
 - (void)initUI {
     [super initUI];
     self.topbarView.title = NSLocalizedString(@"notifications_drawer_title", @"");
+    self.view.backgroundColor = [UIColor colorWithHexString:@"eeeeee"];
     if(tblNotifications == nil) {
-        tblNotifications = [[UITableView alloc] initWithFrame:CGRectMake(0, self.topbarView.frame.size.height, self.view.frame.size.width,self.view.frame.size.height-self.topbarView.frame.size.height) style:UITableViewStylePlain];
+        tblNotifications = [[UITableView alloc] initWithFrame:CGRectMake(0, self.topbarView.frame.size.height+10, self.view.frame.size.width-20,self.view.frame.size.height-self.topbarView.frame.size.height) style:UITableViewStylePlain];
+        tblNotifications.center = CGPointMake(self.view.center.x, tblNotifications.center.y);
         tblNotifications.dataSource = self;
         tblNotifications.delegate = self;
-        tblNotifications.backgroundColor = [UIColor lightGrayColor];
+        tblNotifications.backgroundColor = [UIColor clearColor];
         tblNotifications.separatorStyle= UITableViewCellSeparatorStyleNone;
         [self.view addSubview:tblNotifications];
     }
@@ -95,6 +131,7 @@
     if (messageCell == nil) {
         messageCell = [[MessageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:messageIdentifier];
         messageCell.backgroundColor = [UIColor clearColor];
+        
     }
     [messageCell loadWithMessage:notification];
     
@@ -110,9 +147,16 @@
     notificationDetailsViewController.delegate = self;
     [self.navigationController pushViewController:notificationDetailsViewController animated:YES];
 }
-- (void)smNotificationsWasUpdated{
+- (void)refresh {
+    messageArr = [NSMutableArray arrayWithArray:[[NotificationsFileManager fileManager] readFromDisk]];
+    [self sort:messageArr ascending:NO];
     [tblNotifications reloadData];
 }
+
+- (void)smNotificationsWasUpdated{
+    [self refresh];
+}
+
 - (void)setUp {
     [super setUp];
 }

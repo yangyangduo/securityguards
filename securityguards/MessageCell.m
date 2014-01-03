@@ -33,35 +33,41 @@
         typeMessage.backgroundColor = [UIColor clearColor];
         typeMessage.tag = TYPE_IMAGE_TAG;
     }
+    UIView *ySeperatorView = [[UIView alloc] initWithFrame:CGRectMake(50, 0, 1, MESSAGE_CELL_HEIGHT-10)];
+    ySeperatorView.backgroundColor = [UIColor colorWithHexString:@"eeeeee"];
     
     if (textLabel == nil) {
-        textLabel = [[UILabel alloc] initWithFrame:CGRectMake(40, 0, 240,MESSAGE_CELL_HEIGHT-25)];
+        textLabel = [[UILabel alloc] initWithFrame:CGRectMake(60, 0, 180,MESSAGE_CELL_HEIGHT-30)];
         textLabel.tag = TEXT_LABEL_TAG;
-        textLabel.font =[UIFont systemFontOfSize:14];
+        textLabel.font =[UIFont systemFontOfSize:10];
         textLabel.textAlignment = NSTextAlignmentLeft;
-        textLabel.textColor = [UIColor lightTextColor];
-        textLabel.lineBreakMode = NSLineBreakByWordWrapping;
+        textLabel.textColor = [UIColor blackColor];
+        textLabel.lineBreakMode = NSLineBreakByCharWrapping;
         textLabel.numberOfLines = 0;
         textLabel.backgroundColor = [UIColor clearColor];
     }
     
     if (lblTime == nil) {
-        lblTime = [[UILabel alloc] initWithFrame:CGRectMake(40, MESSAGE_CELL_HEIGHT-20, 240, 15)];
+        lblTime = [[UILabel alloc] initWithFrame:CGRectMake(60, MESSAGE_CELL_HEIGHT-25, 240, 15)];
         lblTime.backgroundColor = [UIColor clearColor];
-        lblTime.textColor = [UIColor lightTextColor];
-        lblTime.font = [UIFont systemFontOfSize:12];
+        lblTime.textColor = [UIColor blackColor];
+        lblTime.font = [UIFont systemFontOfSize:8];
     }
     
-    UIImageView *accessory = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_accessory.png"]];
-    accessory.frame = CGRectMake(self.frame.size.width-30, 28, 16/2, 41/2);
     
     if(view == nil) {
-        view = [[UIView alloc] initWithFrame:self.contentView.frame];
+        view = [[UIView alloc] initWithFrame:CGRectMake(0, 10, self.frame.size.width, MESSAGE_CELL_HEIGHT-10)];
         view.backgroundColor = [UIColor whiteColor];
+        typeMessage.center = CGPointMake(typeMessage.center.x, view.center.y-10);
         [view addSubview:typeMessage];
+        [view addSubview:ySeperatorView];
         [view addSubview:textLabel];
+        UIImageView *accessory = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_accessory.png"]];
+        accessory.backgroundColor = [UIColor clearColor];
+        accessory.frame = CGRectMake(view.frame.size.width-40, 28, 16/2, 41/2);
+        accessory.center = CGPointMake(accessory.center.x, view.center.y-10);
         [view addSubview:accessory];
-
+        
         [view addSubview:lblTime];
         view.tag = CELL_VIEW_TAG;
         [self addSubview:view];
