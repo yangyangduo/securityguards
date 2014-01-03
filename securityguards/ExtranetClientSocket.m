@@ -119,7 +119,7 @@
             // this is heart beat message
             if(header[0] == 127) {
 #ifdef DEBUG
-                NSLog(@"[External Socket] Received heart beat message.");
+//                NSLog(@"[External Socket] Received heart beat message.");
 #endif
                 if(!self.inputStream.hasBytesAvailable) {
                     return;

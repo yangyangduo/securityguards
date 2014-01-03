@@ -7,8 +7,6 @@
 //
 
 #import "CameraViewController.h"
-//#import "CameraLoadingView.h"
-//#import "VideoConverter.h"
 #import "CameraService.h"
 #import "SystemAudio.h"
 #import "DeviceCommandNameEventFilter.h"
@@ -23,13 +21,13 @@
 
 @implementation CameraViewController{
     UIImageView *imgCameraShots;
+    CameraLoadingView *loadingView;
     
     BOOL firstImageHasBeenSet;
-    DirectionButton *btnDirection;
+    
     CameraSocket *socket;
     CameraService *cameraService;
     double lastedClickTime;
-    UIButton *btnCatchScreen;
     
     BOOL cameraIsRunning;
     
@@ -54,26 +52,23 @@
 	// Do any additional setup after loading the view.
 }
 
-//- (void)viewWillAppear:(BOOL)animated {
-//    DeviceCommandNameEventFilter *filter = [[DeviceCommandNameEventFilter alloc] init];
-//    [filter.supportedCommandNames addObject:COMMAND_GET_CAMERA_SERVER];
-//    XXEventSubscription *subscription = [[XXEventSubscription alloc] initWithSubscriber:self eventFilter:filter];
-//    subscription.notifyMustInMainThread = YES;
-//    [[XXEventSubscriptionPublisher defaultPublisher] subscribeFor:subscription];
-//    
-//    [self startMonitorCamera];
-//}
-//
-//- (void)viewWillDisappear:(BOOL)animated {
-//    [[XXEventSubscriptionPublisher defaultPublisher] unSubscribeForSubscriber:self];
-//}
+- (void)viewWillAppear:(BOOL)animated {
+    DeviceCommandNameEventFilter *filter = [[DeviceCommandNameEventFilter alloc] init];
+    [filter.supportedCommandNames addObject:COMMAND_GET_CAMERA_SERVER];
+    XXEventSubscription *subscription = [[XXEventSubscription alloc] initWithSubscriber:self eventFilter:filter];
+    subscription.notifyMustInMainThread = YES;
+    [[XXEventSubscriptionPublisher defaultPublisher] subscribeFor:subscription];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [[XXEventSubscriptionPublisher defaultPublisher] unSubscribeForSubscriber:self];
+}
 
 #pragma mark -
 #pragma mark Initializations
 
 - (void)initDefaults {
     [super initDefaults];
-    
     cameraIsRunning = NO;
     isCapture = NO;
 }
@@ -81,28 +76,40 @@
 - (void)initUI {
     [super initUI];
     
+    self.topbarView.title = self.cameraDevice != nil ? self.cameraDevice.name : NSLocalizedString(@"camera", @"");
+    
     imgCameraShots = [[UIImageView alloc] initWithFrame:CGRectMake(0, self.topbarView.bounds.size.height, [UIScreen mainScreen].bounds.size.width, 240)];
     imgCameraShots.backgroundColor = [UIColor colorWithRed:102.f / 255.f green:102.f / 255.f blue:102.f / 255.f alpha:1.0f];
+    imgCameraShots.userInteractionEnabled = YES;
     [self.view addSubview:imgCameraShots];
     
+    loadingView = [[CameraLoadingView alloc] initWithPoint:CGPointMake(0, 0)];
+    loadingView.center = CGPointMake(imgCameraShots.bounds.size.width / 2, imgCameraShots.bounds.size.height / 2);
+    loadingView.delegate = self;
+    [imgCameraShots addSubview:loadingView];
+    loadingView.cameraState = CameraStateNotOpen;
     
+    UIImageView *imgLine = [[UIImageView alloc] initWithFrame:CGRectMake(0, imgCameraShots.frame.origin.y + imgCameraShots.bounds.size.height, self.view.bounds.size.width, 2)];
+    imgLine.image = [UIImage imageNamed:@"line_seperator_camera"];
+    [self.view addSubview:imgLine];
+    
+    UIButton *btnCatchScreen = [[UIButton alloc] initWithFrame:CGRectMake(20, imgLine.frame.origin.y + imgLine.bounds.size.height + 20, 116 / 2, 85 / 2)];
+    [btnCatchScreen setBackgroundImage:[UIImage imageNamed:@"btn_screenshots"] forState:UIControlStateNormal];
+    [btnCatchScreen setBackgroundImage:[UIImage imageNamed:@"btn_screenshots_selected"] forState:UIControlStateHighlighted];
+//    [btnCatchScreen addTarget:self action:@selector(catchScreen) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:btnCatchScreen];
+    
+    UILabel *lblScreenshots = [[UILabel alloc] initWithFrame:CGRectMake(15, btnCatchScreen.frame.origin.y + btnCatchScreen.bounds.size.height + 1, 68, 30)];
+    lblScreenshots.text = NSLocalizedString(@"screenshots", @"");
+    lblScreenshots.font = [UIFont systemFontOfSize:14.f];
+    lblScreenshots.textColor = [UIColor darkGrayColor];
+    lblScreenshots.backgroundColor = [UIColor clearColor];
+    lblScreenshots.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:lblScreenshots];
 
-    
-    
-//    if (btnCatchScreen == nil) {
-//        btnCatchScreen = [[UIButton alloc] initWithFrame:CGRectMake(266, backgroundView.frame.origin.y+15, 44, 44)];
-//        [btnCatchScreen setBackgroundImage:[UIImage imageNamed:@"btn_catch_screen.png"] forState:UIControlStateNormal];
-//        [btnCatchScreen addTarget:self action:@selector(catchScreen) forControlEvents:UIControlEventTouchUpInside];
-//        [self.view addSubview:btnCatchScreen];
-//    }
-//    
-//    
-//    
-//    if(btnDirection == nil) {
-//        btnDirection = [DirectionButton cameraDirectionButtonWithPoint:CGPointMake(90, imgCameraShots.frame.origin.y + imgCameraShots.bounds.size.height + 20)];
-//        btnDirection.delegate = self;
-//        [self.view addSubview:btnDirection];
-//    }
+    DirectionButton *btnDirection = [[DirectionButton alloc] initWithPoint:CGPointMake(140, self.view.bounds.size.height - (self.topbarView.bounds.size.height + imgCameraShots.bounds.size.height) / 2)];
+    btnDirection.delegate = self;
+    [self.view addSubview:btnDirection];
 }
 
 - (void)didReceiveMemoryWarning
@@ -136,10 +143,11 @@
 
 - (void)startMonitorCamera {
     if(self.cameraDevice == nil) return;
+    loadingView.cameraState = CameraStateOpenning;
     DeviceCommandGetCameraServer *cmd = (DeviceCommandGetCameraServer *)[CommandFactory commandForType:CommandTypeGetCameraServer];
     cmd.masterDeviceCode = self.cameraDevice.zone.unit.identifier;
     cmd.cameraId = self.cameraDevice.identifier;
-//    [[SMShared current].deliveryService executeDeviceCommand:cmd];
+    [[CoreService defaultService] executeDeviceCommand:cmd];
 }
 
 - (void)stopMonitorCamera {
@@ -199,36 +207,31 @@
 #pragma mark Camera socket delegate
 
 ///* Called by main thread */
-//- (void)notifyNewImageWasReceived:(UIImage *)image {
-//    if(!firstImageHasBeenSet) {
-//        CameraLoadingView * loadingView = (CameraLoadingView *)[imgCameraShots viewWithTag:9999];
-//        if(loadingView != nil) {
-//            [loadingView hide];
-//        }
-//    }
-//    imgCameraShots.image = image;
-//    
-//    //    if(isRecoding) {
-//    //        [self recodingWithImage:image];
-//    //    }
-//}
-//
-//- (void)notifyCameraConnectted {
-//    firstImageHasBeenSet = NO;
-//    cameraIsRunning = YES;
-//}
-//
-//- (void)notifyCameraWasDisconnectted {
-//    imgCameraShots.image = nil;
-//    firstImageHasBeenSet = NO;
-//    CameraLoadingView * loadingView = (CameraLoadingView *)[imgCameraShots viewWithTag:9999];
-//    if(loadingView != nil) {
-//        [loadingView showError];
-//    }
-//#ifdef DEBUG
-//    NSLog(@"[CAMERA] Closed.");
-//#endif
-//}
+
+- (void)notifyNewImageWasReceived:(UIImage *)image {
+    if(!firstImageHasBeenSet) {
+        if(loadingView != nil) {
+            loadingView.cameraState = CameraStatePlaying;
+        }
+    }
+    imgCameraShots.image = image;
+}
+
+- (void)notifyCameraConnectted {
+    firstImageHasBeenSet = NO;
+    cameraIsRunning = YES;
+}
+
+- (void)notifyCameraWasDisconnectted {
+    imgCameraShots.image = nil;
+    firstImageHasBeenSet = NO;
+    if(loadingView != nil) {
+        loadingView.cameraState = CameraStateError;
+    }
+#ifdef DEBUG
+    NSLog(@"[CAMERA] Closed.");
+#endif
+}
 
 #pragma mark -
 #pragma mark Screen shots
@@ -259,20 +262,16 @@
 #pragma mark -
 #pragma mark Direction button delegate
 
-- (void)leftButtonClicked {
-    [self adjustCamera:@"2"];
-}
-
-- (void)rightButtonClicked {
-    [self adjustCamera:@"3"];
-}
-
-- (void)topButtonClicked {
-    [self adjustCamera:@"0"];
-}
-
-- (void)bottomButtonClicked {
-    [self adjustCamera:@"1"];
+- (void)directionButtonClicked:(Direction)direction {
+    if(DirectionUp == direction) {
+        [self adjustCamera:@"0"];
+    } else if(DirectionDown == direction) {
+        [self adjustCamera:@"1"];
+    } else if(DirectionLeft == direction) {
+        [self adjustCamera:@"2"];
+    } else if(DirectionRight == direction) {
+        [self adjustCamera:@"3"];
+    }
 }
 
 - (void)adjustCamera:(NSString *)direction {
@@ -291,8 +290,14 @@
     DeviceCommandUpdateDevice *updateDeviceCommand = (DeviceCommandUpdateDevice *)[CommandFactory commandForType:CommandTypeUpdateDevice];
     updateDeviceCommand.masterDeviceCode = self.cameraDevice.zone.unit.identifier;
     [updateDeviceCommand addCommandString:[self.cameraDevice commandStringForCamera:direction]];
-//    [[SMShared current].deliveryService executeDeviceCommand:updateDeviceCommand
-//     ];
+    [[CoreService defaultService] executeDeviceCommand:updateDeviceCommand];
+}
+
+#pragma mark -
+#pragma mark Camera Loading View Delegate 
+
+- (void)playButtonPressed {
+    [self startMonitorCamera];
 }
 
 @end

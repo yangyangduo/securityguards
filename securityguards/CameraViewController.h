@@ -11,9 +11,11 @@
 #import "XXEventSubscriber.h"
 #import "DirectionButton.h"
 #import "CameraSocket.h"
+#import "CameraLoadingView.h"
 
-@interface CameraViewController : NavigationViewController<DirectionButtonDelegate, CameraMessageDelegate, XXEventSubscriber>
+@interface CameraViewController : NavigationViewController<DirectionButtonDelegate, CameraMessageDelegate, XXEventSubscriber, CameraLoadingViewDelegate>
 
 @property (strong, nonatomic) Device *cameraDevice;
+
 
 @end

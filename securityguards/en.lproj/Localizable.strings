@@ -69,6 +69,17 @@
 "auto_find"              =      "自动发现";
 
 
+/****************	Camera View Strings	****************/
+
+"camera"                 =      "摄像头";
+"screenshots"            =      "视频截屏";
+"catch_screen_success"   =      "照片已保存到相册";
+"camera_is_not_running"  =      "摄像头未连接";
+"play"                   =      "点击查看摄像头";
+"camera_connectting"     =      "正在连接摄像头...";
+"camera_error"           =      "连接已断开,请重试";
+
+
 /****************	Login Strings	****************/
 
 "phone.number"          =   "手机号";

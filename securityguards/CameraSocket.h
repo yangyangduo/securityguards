@@ -18,12 +18,11 @@
 
 @interface CameraSocket : ClientSocket
 
-@property (strong, nonatomic) NSString *key;
-@property (weak, nonatomic) id<CameraMessageDelegate> delegate;
+@property (nonatomic, strong) NSString *key;
+@property (nonatomic, weak) id<CameraMessageDelegate> delegate;
 
 - (BOOL)isConnectted;
 - (void)close;
-
 - (void)closeGraceful;
 
 @end

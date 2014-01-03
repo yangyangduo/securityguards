@@ -62,12 +62,12 @@
         playView.backgroundColor = [UIColor blackColor];
         [self.view addSubview:playView];
         
-        if(loadingView == nil) {
-            loadingView = [CameraLoadingView viewWithPoint:CGPointMake(0, 0)];
-            loadingView.center = CGPointMake(playView.center.x, playView.bounds.size.height / 2);
-            [loadingView hide];
-            [playView addSubview:loadingView];
-        }
+//        if(loadingView == nil) {
+//            loadingView = [CameraLoadingView viewWithPoint:CGPointMake(0, 0)];
+//            loadingView.center = CGPointMake(playView.center.x, playView.bounds.size.height / 2);
+//            [loadingView hide];
+//            [playView addSubview:loadingView];
+//        }
     }
     
     if(data.cameraPicPaths != nil) {
@@ -114,7 +114,7 @@
         NSString *url = [source parameterForKey:@"url"];
         if(![XXStringUtils isBlank:url]) {
             isPlaying = YES;
-            [loadingView show];
+//            [loadingView show];
             [self performSelectorInBackground:@selector(startDownloader:) withObject:url];
         }
     }
@@ -130,7 +130,7 @@
 - (void)imageProviderNotifyImageAvailable:(UIImage *)image {
     if(isFirst) {
         isFirst = NO;
-        [loadingView hide];
+//        [loadingView hide];
     }
     playView.image = image;
 }
@@ -139,7 +139,7 @@
     isPlaying = NO;
     isFirst = YES;
     playView.image = nil;
-    [loadingView showError];
+//    [loadingView showError];
 #ifdef DEBUG
     NSLog(@"[Image provider] Download Ended.");
 #endif
@@ -149,7 +149,7 @@
     isPlaying = NO;
     isFirst = YES;
     playView.image = nil;
-    [loadingView showError];
+//    [loadingView showError];
 #ifdef DEBUG
     NSLog(@"[Image provider] Reading Error.");
 #endif
