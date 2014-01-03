@@ -18,6 +18,7 @@
 #import "XXEventFilterChain.h"
 #import "DeviceStatusChangedEvent.h"
 #import "DeviceCommandEvent.h"
+#import "UnitManager.h"
 
 #define MESSAGE_VIEW_TAG 999
 
@@ -301,8 +302,14 @@ typedef NS_ENUM(NSInteger, RecognizerState) {
 #ifdef DEBUG
         NSLog(@"[SPEECH RECOGNIZER] Send voice command [%@].", result);
 #endif
+        ConversationTextMessage *textMessage = [[ConversationTextMessage alloc] init];
+        textMessage.messageOwner = MESSAGE_OWNER_MINE;
+        textMessage.textMessage = result;
+        textMessage.timeMessage = [XXDateFormatter dateToString:[NSDate date] format:@"HH:mm:ss"];
+        [self addMessage:textMessage];
+        
         DeviceCommandVoiceControl *command = (DeviceCommandVoiceControl *)[CommandFactory commandForType:CommandTypeUpdateDeviceViaVoice];
-//        command.masterDeviceCode = 
+        command.masterDeviceCode = [UnitManager defaultManager].currentUnit.identifier;
         command.voiceText = result;
         [[CoreService defaultService] executeDeviceCommand:command];
     } else {
@@ -331,7 +338,8 @@ typedef NS_ENUM(NSInteger, RecognizerState) {
         DeviceCommandVoiceControl *cmd = (DeviceCommandVoiceControl *)evt.command;
         [self notifyVoiceControlAccept:cmd];
     } else if([event isKindOfClass:[DeviceStatusChangedEvent class]]) {
-        
+        DeviceStatusChangedEvent *evt = (DeviceStatusChangedEvent *)event;
+        [self notifyDeviceStatusChanged:evt.command];
     }
 }
 
@@ -339,13 +347,22 @@ typedef NS_ENUM(NSInteger, RecognizerState) {
     return @"speechViewControllerSubscriber";
 }
 
-- (void)notifyVoiceControlAccept:(DeviceCommandVoiceControl *)command {
-    if(command == nil) return;
+- (void)notifyDeviceStatusChanged:(DeviceCommandUpdateDevices *)command {
+    if([XXStringUtils isBlank:command.voiceText]) return;
+    
+    NSString *successMsg = [NSString stringWithFormat:@"[%@]", NSLocalizedString(@"execution_success", @"")] ;
+    NSString *successErr = [NSString stringWithFormat:@"[%@]", NSLocalizedString(@"execution_failed", @"")] ;
+    NSString *executeResult = (command.resultID == 1) ? successMsg : successErr;
+    
     ConversationTextMessage *textMessage = [[ConversationTextMessage alloc] init];
-    textMessage.messageOwner = MESSAGE_OWNER_MINE;
-    textMessage.textMessage = command.voiceText;
+    textMessage.messageOwner = MESSAGE_OWNER_THEIRS;
+    textMessage.textMessage = [NSString stringWithFormat:@"%@ %@", command.voiceText, executeResult];
     textMessage.timeMessage = [XXDateFormatter dateToString:[NSDate date] format:@"HH:mm:ss"];
     [self addMessage:textMessage];
+}
+
+- (void)notifyVoiceControlAccept:(DeviceCommandVoiceControl *)command {
+    if(command == nil) return;
     if(command.resultID != 1) {
         ConversationTextMessage *textMessage = [[ConversationTextMessage alloc] init];
         textMessage.messageOwner = MESSAGE_OWNER_THEIRS;

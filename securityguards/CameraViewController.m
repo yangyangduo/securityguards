@@ -85,10 +85,6 @@
     imgCameraShots.backgroundColor = [UIColor colorWithRed:102.f / 255.f green:102.f / 255.f blue:102.f / 255.f alpha:1.0f];
     [self.view addSubview:imgCameraShots];
     
-    
-
-    
-    
 //    if (btnCatchScreen == nil) {
 //        btnCatchScreen = [[UIButton alloc] initWithFrame:CGRectMake(266, backgroundView.frame.origin.y+15, 44, 44)];
 //        [btnCatchScreen setBackgroundImage:[UIImage imageNamed:@"btn_catch_screen.png"] forState:UIControlStateNormal];
