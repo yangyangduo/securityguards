@@ -19,7 +19,10 @@
         [operations addObject:[[DeviceOperationItem alloc] initWithDisplayName:NSLocalizedString(@"high_level", @"") andCommandString:@""]];
         [operations addObject:[[DeviceOperationItem alloc] initWithDisplayName:NSLocalizedString(@"medium_level", @"") andCommandString:@""]];
         [operations addObject:[[DeviceOperationItem alloc] initWithDisplayName:NSLocalizedString(@"", @"low_level") andCommandString:@""]];
-    } else if(device.isSecurity) {
+    } else if(device.isAirPurifierModeControl) {
+        [operations addObject:[[DeviceOperationItem alloc] initWithDisplayName:NSLocalizedString(@"device_automatic", @"") andCommandString:@""]];
+        [operations addObject:[[DeviceOperationItem alloc] initWithDisplayName:NSLocalizedString(@"device_manual", @"") andCommandString:@""]];
+    } else if(device.isAirPurifierSecurity) {
         [operations addObject:[[DeviceOperationItem alloc] initWithDisplayName:NSLocalizedString(@"device_open", @"") andCommandString:@""]];
         [operations addObject:[[DeviceOperationItem alloc] initWithDisplayName:NSLocalizedString(@"device_close", @"") andCommandString:@""]];
     }

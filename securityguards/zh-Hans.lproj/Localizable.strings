@@ -71,6 +71,8 @@
 "low_level"                      =      "低";
 "device_open"                    =      "开启";
 "device_close"                   =      "关闭";
+"device_automatic"               =      "自动模式";
+"device_manual"                  =      "手动模式";
 
 
 /****************	Unif Finder View Strings	****************/
