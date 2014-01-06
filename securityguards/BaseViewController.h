@@ -33,4 +33,7 @@
 - (void)triggerTapGestureEventForResignKeyboard:(UIGestureRecognizer *)gesture;
 - (void)resignFirstResponderFor:(UIView *)view;
 
+- (void)showEmptyContentViewWithMessage:(NSString *)message;
+- (void)removeEmptyContentView;
+
 @end

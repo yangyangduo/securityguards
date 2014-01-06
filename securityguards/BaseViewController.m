@@ -8,6 +8,8 @@
 
 #import "BaseViewController.h"
 
+#define EMPTY_CONTENT_VIEW_TAG 384
+
 @interface BaseViewController ()
 
 @end
@@ -56,7 +58,6 @@
 - (void)setUp {
 }
 
-
 #pragma mark -
 #pragma mark About first responder
 
@@ -77,6 +78,34 @@
             return;
         }
     }
+}
+
+#pragma mark -
+#pragma mark Empty Content View
+
+- (void)showEmptyContentViewWithMessage:(NSString *)message {
+    UIView *emptyContentView = [self.view viewWithTag:EMPTY_CONTENT_VIEW_TAG];
+    if(emptyContentView == nil) {
+        emptyContentView = [[UIView alloc] initWithFrame:CGRectMake(0, self.topbarView.bounds.size.height, self.view.bounds.size.width, self.view.bounds.size.height - self.topbarView.bounds.size.height)];
+        emptyContentView.backgroundColor = [UIColor whiteColor];
+        UILabel *lbl = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 220, 30)];
+        lbl.textColor = [UIColor lightGrayColor];
+        lbl.font = [UIFont systemFontOfSize:16.f];
+        lbl.tag = 777;
+        lbl.textAlignment = NSTextAlignmentCenter;
+        lbl.center = CGPointMake(self.view.center.x, self.view.bounds.size.height / 2 - self.topbarView.bounds.size.height);
+        [emptyContentView addSubview:lbl];
+    }
+    UILabel *label = (UILabel *)[self.view viewWithTag:777];
+    if([XXStringUtils isBlank:message]) {
+        label.text = NSLocalizedString(@"no_content", @"");
+    }
+    [self.view addSubview:emptyContentView];
+}
+
+- (void)removeEmptyContentView {
+    UIView *emptyContentView = [self.view viewWithTag:EMPTY_CONTENT_VIEW_TAG];
+    if(emptyContentView != nil) [emptyContentView removeFromSuperview];
 }
 
 @end

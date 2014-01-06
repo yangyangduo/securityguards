@@ -76,7 +76,7 @@
 }
 
 - (void)initDefaults {
-    [self initDefaults];
+    [super initDefaults];
     buttonPanelViewIsVisable = NO;
     if (userManagementService == nil) {
         userManagementService = [[UserManagementService alloc] init];

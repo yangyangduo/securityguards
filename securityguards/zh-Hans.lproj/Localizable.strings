@@ -14,6 +14,7 @@
 "request_timeout"                =      "请求超时";
 "please_wait"                    =      "请稍后";
 "submit"                         =      "提交";
+"no_content"                     =      "没有任何内容";
 
 
 /****************	Right Drawer View Strings	****************/
@@ -146,5 +147,3 @@
 "call.phoneNumber"                            =  "拨打电话";
 "unbinding"                                   =  "解除绑定";
 "confirm.unbinding"                           =  "是否确定解除用户[%@]与主控[%@]的绑定关系？";
-
-
