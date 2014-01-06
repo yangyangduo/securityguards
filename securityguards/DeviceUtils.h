@@ -8,8 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import "Device.h"
-#import "DeviceOperationsManager.h"
+#import "DeviceOperationItem.h"
 
 @interface DeviceUtils : NSObject
+
++ (NSString *)stateAsStringFor:(Device *)device;
++ (NSMutableArray *)operationsListFor:(Device *)device;
 
 @end

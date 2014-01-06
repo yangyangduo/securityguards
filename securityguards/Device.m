@@ -100,10 +100,6 @@
     return [NSString stringWithFormat:@"%@-%@-%d", self.category, self.nwkAddr, st];
 }
 
-- (NSString *)stateAsString {
-    return @"";
-}
-
 #pragma mark -
 #pragma mark Device type or state
 

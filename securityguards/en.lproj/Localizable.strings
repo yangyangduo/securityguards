@@ -1,10 +1,10 @@
 /*
-  Localizable.strings
-  securityguards
-  
-  Created by Zhao yang on 12/27/13.
-  Copyright (c) 2013 hentre. All rights reserved.
-  */
+ Localizable.strings
+ securityguards
+ 
+ Created by Zhao yang on 12/27/13.
+ Copyright (c) 2013 hentre. All rights reserved.
+ */
 
 /****************	Global Strings	****************/
 
@@ -20,6 +20,8 @@
 "deleting"                       =      "删除中...";
 "delete_success"                 =      "删除成功";
 "loading"                        =      "加载中...";
+"please_select"                  =      "请选择";
+"cancel"                         =      "取消";
 "no_content"                     =      "没有任何内容";
 
 

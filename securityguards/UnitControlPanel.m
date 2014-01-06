@@ -13,6 +13,7 @@
 #import "UnitManager.h"
 #import "DeviceOperationItem.h"
 #import "Shared.h"
+#import "DeviceUtils.h"
 
 #define DETAIL_TEXT_LABEL_TAG 888
 #define CONTROL_ITEM_HEIGHT 44
@@ -154,20 +155,52 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if(self.unit == nil) {
+    if(self.unit == nil || self.delegate == nil) {
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
         return;
     }
-    
     Zone *zone = [self.unit.zones objectAtIndex:0];
     Device *device = [zone.devices objectAtIndex:indexPath.row];
-    
     if(device.isCamera) {
         CameraViewController *cameraViewController = [[CameraViewController alloc] init];
         cameraViewController.cameraDevice = device;
         [[[Shared shared].app topViewController] presentViewController:cameraViewController animated:YES completion:^{}];
+    } else {
+        NSArray *operations = [DeviceUtils operationsListFor:device];
+        if(operations != nil && operations.count > 0) {
+            XXActionSheet *actionSheet = [[XXActionSheet alloc] init];
+            [actionSheet setParameter:operations forKey:@"deviceOperations"];
+            actionSheet.actionSheetStyle = UIActionSheetStyleDefault;
+            actionSheet.title = NSLocalizedString(@"please_select", @"");
+            actionSheet.delegate = self;
+            for(int i=0; i<operations.count; i++) {
+                DeviceOperationItem *item = [operations objectAtIndex:i];
+//            item.deviceState == device.state
+                if(i==1) {
+                actionSheet.destructiveButtonIndex = i;
+                }
+                [actionSheet addButtonWithTitle:item.displayName];
+            }
+            actionSheet.cancelButtonIndex = [actionSheet addButtonWithTitle:NSLocalizedString(@"cancel", @"")];
+            UIViewController *viewController = (UIViewController *)self.delegate;
+            [actionSheet showInView:viewController.view];
+        }
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+#pragma mark -
+#pragma mark Action Sheet Delegate
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if([actionSheet isKindOfClass:[XXActionSheet class]]) {
+        XXActionSheet *aSheet = (XXActionSheet *)actionSheet;
+        NSArray *operations = [aSheet parameterForKey:@"deviceOperations"];
+        if(buttonIndex != operations.count) {
+            DeviceOperationItem *item = [operations objectAtIndex:buttonIndex];
+            NSLog(@" is %@", item.displayName);
+        }
+    }
 }
 
 

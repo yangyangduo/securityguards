@@ -12,6 +12,7 @@
 
 @synthesize displayName = _displayName_;
 @synthesize commandString = _commandString_;
+@synthesize deviceState;
 
 - (id)initWithDisplayName:(NSString *)displayName andCommandString:(NSString *)commandString {
     self = [super init];
