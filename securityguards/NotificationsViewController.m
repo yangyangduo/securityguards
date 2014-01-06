@@ -51,7 +51,7 @@
 #pragma mark Event Subscriber
 
 - (NSString *)xxEventSubscriberIdentifier {
-    return @"portalViewControllerSubscriber";
+    return @"notificationsViewControllerSubscriber";
 }
 
 - (void)xxEventPublisherNotifyWithEvent:(XXEvent *)event {
