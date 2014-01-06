@@ -245,6 +245,8 @@
 		F2F3E1AA187A3FD6006A9447 /* whiteArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2F3E19E187A3FD6006A9447 /* whiteArrow@2x.png */; };
 		F2F3E1AF187A43EA006A9447 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F3E1AC187A43EA006A9447 /* User.m */; };
 		F2F3E1B0187A43EA006A9447 /* Users.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F3E1AE187A43EA006A9447 /* Users.m */; };
+		F2F3E1B3187A54D5006A9447 /* AccountManageCellData.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F3E1B2187A54D5006A9447 /* AccountManageCellData.m */; };
+		F2F3E1B6187A5598006A9447 /* SystemService.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F3E1B5187A5598006A9447 /* SystemService.m */; };
 		F2F93692186D10FA002F7904 /* login-image-bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2F93690186D10FA002F7904 /* login-image-bg@2x.png */; };
 		F2F93693186D10FA002F7904 /* logo-login@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2F93691186D10FA002F7904 /* logo-login@2x.png */; };
 		F2F93697186D113E002F7904 /* btn_blue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2F93694186D113E002F7904 /* btn_blue@2x.png */; };
@@ -652,6 +654,10 @@
 		F2F3E1AC187A43EA006A9447 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		F2F3E1AD187A43EA006A9447 /* Users.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Users.h; sourceTree = "<group>"; };
 		F2F3E1AE187A43EA006A9447 /* Users.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Users.m; sourceTree = "<group>"; };
+		F2F3E1B1187A54D5006A9447 /* AccountManageCellData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountManageCellData.h; sourceTree = "<group>"; };
+		F2F3E1B2187A54D5006A9447 /* AccountManageCellData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountManageCellData.m; sourceTree = "<group>"; };
+		F2F3E1B4187A5598006A9447 /* SystemService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemService.h; sourceTree = "<group>"; };
+		F2F3E1B5187A5598006A9447 /* SystemService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SystemService.m; sourceTree = "<group>"; };
 		F2F93690186D10FA002F7904 /* login-image-bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-image-bg@2x.png"; sourceTree = "<group>"; };
 		F2F93691186D10FA002F7904 /* logo-login@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo-login@2x.png"; sourceTree = "<group>"; };
 		F2F93694186D113E002F7904 /* btn_blue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_blue@2x.png"; sourceTree = "<group>"; };
@@ -1129,6 +1135,8 @@
 		6F6004EB186BDAA60085B4BD /* service */ = {
 			isa = PBXGroup;
 			children = (
+				F2F3E1B4187A5598006A9447 /* SystemService.h */,
+				F2F3E1B5187A5598006A9447 /* SystemService.m */,
 				6F6004EF186BDB8C0085B4BD /* CoreService.h */,
 				6F6004F0186BDB8C0085B4BD /* CoreService.m */,
 			);
@@ -1338,6 +1346,7 @@
 		6F6005BA186C234C0085B4BD /* images */ = {
 			isa = PBXGroup;
 			children = (
+				F2F3E1B7187A807F006A9447 /* user_management */,
 				6F45ADE118765F2300DC18CA /* camera */,
 				F2B6A63A1874F8C80020809D /* notifications */,
 				6F7247E418717338003B325F /* alert */,
@@ -1374,6 +1383,8 @@
 		6F6005BD186C27A30085B4BD /* ui */ = {
 			isa = PBXGroup;
 			children = (
+				F2F3E1B1187A54D5006A9447 /* AccountManageCellData.h */,
+				F2F3E1B2187A54D5006A9447 /* AccountManageCellData.m */,
 				6F6005BE186C2E220085B4BD /* LeftNavItem.h */,
 				6F6005BF186C2E220085B4BD /* LeftNavItem.m */,
 			);
@@ -1629,6 +1640,13 @@
 				F2F3E19E187A3FD6006A9447 /* whiteArrow@2x.png */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		F2F3E1B7187A807F006A9447 /* user_management */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = user_management;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1945,6 +1963,7 @@
 				6F60057B186BF5420085B4BD /* ServiceBase.m in Sources */,
 				6F6005A0186C015B0085B4BD /* AccountService.m in Sources */,
 				6F6005A3186C015B0085B4BD /* SmsService.m in Sources */,
+				F2F3E1B6187A5598006A9447 /* SystemService.m in Sources */,
 				6FEC0FE7186C663300CB0D70 /* NewsViewController.m in Sources */,
 				6F6004A1186BCEF10085B4BD /* XXEventFilter.m in Sources */,
 				6F732747186D7BD200A1276B /* SensorsDisplayPanel.m in Sources */,
@@ -1953,6 +1972,7 @@
 				6F73272C186D4A1E00A1276B /* UIColor+MoreColor.m in Sources */,
 				6F860F2218753CB900792DBB /* UnitNameChangedEvent.m in Sources */,
 				6F60058E186BF8EC0085B4BD /* CameraSocket.m in Sources */,
+				F2F3E1B3187A54D5006A9447 /* AccountManageCellData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,7 +7,8 @@
 //
 
 #import "DrawerViewController.h"
+#import "PullTableView.h"
 
-@interface UserManagementViewController : DrawerViewController
+@interface UserManagementViewController : DrawerViewController<UITableViewDataSource,UITableViewDelegate,PullTableViewDelegate>
 
 @end
