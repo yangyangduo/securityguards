@@ -240,6 +240,8 @@
 		F2F3E1A8187A3FD6006A9447 /* grayArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2F3E19C187A3FD6006A9447 /* grayArrow@2x.png */; };
 		F2F3E1A9187A3FD6006A9447 /* whiteArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = F2F3E19D187A3FD6006A9447 /* whiteArrow.png */; };
 		F2F3E1AA187A3FD6006A9447 /* whiteArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2F3E19E187A3FD6006A9447 /* whiteArrow@2x.png */; };
+		F2F3E1AF187A43EA006A9447 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F3E1AC187A43EA006A9447 /* User.m */; };
+		F2F3E1B0187A43EA006A9447 /* Users.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F3E1AE187A43EA006A9447 /* Users.m */; };
 		F2F93692186D10FA002F7904 /* login-image-bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2F93690186D10FA002F7904 /* login-image-bg@2x.png */; };
 		F2F93693186D10FA002F7904 /* logo-login@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2F93691186D10FA002F7904 /* logo-login@2x.png */; };
 		F2F93697186D113E002F7904 /* btn_blue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2F93694186D113E002F7904 /* btn_blue@2x.png */; };
@@ -637,6 +639,10 @@
 		F2F3E19C187A3FD6006A9447 /* grayArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "grayArrow@2x.png"; sourceTree = "<group>"; };
 		F2F3E19D187A3FD6006A9447 /* whiteArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whiteArrow.png; sourceTree = "<group>"; };
 		F2F3E19E187A3FD6006A9447 /* whiteArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whiteArrow@2x.png"; sourceTree = "<group>"; };
+		F2F3E1AB187A43EA006A9447 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		F2F3E1AC187A43EA006A9447 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		F2F3E1AD187A43EA006A9447 /* Users.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Users.h; sourceTree = "<group>"; };
+		F2F3E1AE187A43EA006A9447 /* Users.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Users.m; sourceTree = "<group>"; };
 		F2F93690186D10FA002F7904 /* login-image-bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-image-bg@2x.png"; sourceTree = "<group>"; };
 		F2F93691186D10FA002F7904 /* logo-login@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo-login@2x.png"; sourceTree = "<group>"; };
 		F2F93694186D113E002F7904 /* btn_blue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_blue@2x.png"; sourceTree = "<group>"; };
@@ -1157,6 +1163,10 @@
 		6F600544186BF0500085B4BD /* entities */ = {
 			isa = PBXGroup;
 			children = (
+				F2F3E1AB187A43EA006A9447 /* User.h */,
+				F2F3E1AC187A43EA006A9447 /* User.m */,
+				F2F3E1AD187A43EA006A9447 /* Users.h */,
+				F2F3E1AE187A43EA006A9447 /* Users.m */,
 				6F6005BD186C27A30085B4BD /* ui */,
 				6F600560186BF0B90085B4BD /* Entity.h */,
 				6F600561186BF0B90085B4BD /* Entity.m */,
@@ -1866,11 +1876,13 @@
 				6F600595186BFF7F0085B4BD /* GlobalSettings.m in Sources */,
 				F20D6ACA18729C9F00FE6B6D /* XXDateFormatter.m in Sources */,
 				6F600522186BE9890085B4BD /* DeviceCommandGetUnit.m in Sources */,
+				F2F3E1AF187A43EA006A9447 /* User.m in Sources */,
 				F2F3E1A2187A3FD6006A9447 /* PullTableView.m in Sources */,
 				F2F3E1A0187A3FD6006A9447 /* LoadMoreTableFooterView.m in Sources */,
 				6F45ADF418766AFC00DC18CA /* DirectionItemButton.m in Sources */,
 				6F600562186BF0B90085B4BD /* Entity.m in Sources */,
 				6F600573186BF3940085B4BD /* DeviceCommandEvent.m in Sources */,
+				F2F3E1B0187A43EA006A9447 /* Users.m in Sources */,
 				6F7247C318711C4E003B325F /* SpeechSynthesizer.m in Sources */,
 				6F732729186D430700A1276B /* SensorDisplayView.m in Sources */,
 				6F60053F186BF0010085B4BD /* DeviceCommandUpdateDevicesHandler.m in Sources */,
