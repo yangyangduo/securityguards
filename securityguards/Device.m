@@ -108,8 +108,11 @@
 }
 
 - (BOOL)isAvailableDevice {
-    return self.isLightOrInlight || self.isSocket || self.isCurtainOrSccurtain || self.isTV || self.isAircondition
-    || self.isSTB || self.isCamera || self.isWarsignal || self.isBackgroundMusic;
+    return
+    self.isAirPurifierPower || self.isAirPurifierLevel || self.isSecurity ||
+    self.isLightOrInlight || self.isSocket || self.isCurtainOrSccurtain || self.isTV ||
+    self.isAircondition || self.isSTB || self.isCamera || self.isWarsignal ||
+    self.isBackgroundMusic;
 }
 
 - (BOOL)isLight {
@@ -170,6 +173,18 @@
 
 - (BOOL)isWarsignal {
     return [@"warsignal" isEqualToString:self.category];
+}
+
+- (BOOL)isAirPurifierPower {
+    return [@"air-purifier" isEqualToString:self.category];
+}
+
+- (BOOL)isAirPurifierLevel {
+    return [@"air-purifier-level" isEqualToString:self.category];
+}
+
+- (BOOL)isSecurity {
+    return [@"security" isEqualToString:self.category];
 }
 
 @end

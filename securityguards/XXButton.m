@@ -7,34 +7,13 @@
 //
 
 #import "XXButton.h"
-#import "UIImage+ImageHandler.h"
 
-@implementation XXButton {
-}
+@implementation XXButton
 
 @synthesize identifier;
 @synthesize userObject;
 @synthesize parameters = _parameters_;
 @synthesize longPressDelegate = _longPressDelegate_;
-
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-    }
-    return self;
-}
-
-+ (XXButton *) blueButtonWithPoint:(CGPoint)aPoint resize:(CGSize)aSize{
-    XXButton *button = [[XXButton alloc] initWithFrame:CGRectMake(aPoint.x, aPoint.y, aSize.width, aSize.height)];
-    UIImage *imgNormal = [UIImage reSizeImage:[UIImage imageNamed:@"btn_blue.png"] toSize:aSize];
-    UIImage *imgDisable = [UIImage reSizeImage:[UIImage imageNamed:@"btn_gray.png"] toSize:aSize];
-    UIImage *imgHighligted = [UIImage reSizeImage:[UIImage imageNamed:@"btn_blue_highlighted.png"] toSize:aSize];
-    [button setBackgroundImage:imgNormal forState:UIControlStateNormal];
-    [button setBackgroundImage:imgDisable forState:UIControlStateDisabled];
-    [button setBackgroundImage:imgHighligted forState:UIControlStateHighlighted];
-    return button;
-}
 
 #pragma mark -
 #pragma mark Extension for parameters
@@ -65,7 +44,7 @@
 
 - (void)longPressed:(UILongPressGestureRecognizer *)gesture {
     if(self.longPressDelegate != nil && gesture.state == UIGestureRecognizerStateBegan) {
-        [self.longPressDelegate smButtonLongPressed:self];
+        [self.longPressDelegate xxButtonLongPressed:self];
     }
 }
 

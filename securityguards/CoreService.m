@@ -122,9 +122,9 @@
     /* Find the best command executor */
     id<CommandExecutor> executor = [self determineCommandExcutor:command];
     if(executor != nil) {
-#ifdef DEBUG
-        NSLog(@"[Core Service] Execute [%@] From [%@]", command.commandName, [executor executorName]);
-#endif
+//#ifdef DEBUG
+//        NSLog(@"[Core Service] Execute [%@] From [%@]", command.commandName, [executor executorName]);
+//#endif
         [executor executeCommand:command];
     } else {
 #ifdef DEBUG
@@ -199,15 +199,15 @@
 - (void)handleDeviceCommand:(DeviceCommand *)command {
     if(command == nil) return;
     
-#ifdef DEBUG
-    NSString *networkModeString = [XXStringUtils emptyString];
-    if(command.commmandNetworkMode == CommandNetworkModeExternal) {
-        networkModeString = @"External";
-    } else if(command.commmandNetworkMode == CommandNetworkModeInternal) {
-        networkModeString = @"Internal";
-    }
-    NSLog(@"[Core Service] Received [%@] From [%@]", command.commandName, networkModeString);
-#endif
+//#ifdef DEBUG
+//    NSString *networkModeString = [XXStringUtils emptyString];
+//    if(command.commmandNetworkMode == CommandNetworkModeExternal) {
+//        networkModeString = @"External";
+//    } else if(command.commmandNetworkMode == CommandNetworkModeInternal) {
+//        networkModeString = @"Internal";
+//    }
+//    NSLog(@"[Core Service] Received [%@] From [%@]", command.commandName, networkModeString);
+//#endif
 
     // Security key is invalid or expired
     if(command.resultID == -3000 || command.resultID == -2000 || command.resultID == -1000) {

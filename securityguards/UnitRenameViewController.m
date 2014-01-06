@@ -100,7 +100,7 @@
 - (void)btnSubmitPressed:(id)sender {
     if([XXStringUtils isBlank:self.value]) {
         [[AlertView currentAlertView] setMessage:NSLocalizedString(@"unit_name_not_blank", @"") forType:AlertViewTypeFailed];
-        [[AlertView currentAlertView] alert:YES isLock:NO];
+        [[AlertView currentAlertView] alertForLock:NO autoDismiss:YES];
         return;
     }
     
@@ -110,8 +110,7 @@
     }
     
     [[AlertView currentAlertView] setMessage:NSLocalizedString(@"please_wait", @"") forType:AlertViewTypeWaitting];
-    [[AlertView currentAlertView] alert:NO isLock:YES];
-    [[AlertView currentAlertView] alert:YES withTimeout:10.f andTimeoutMessage:NSLocalizedString(@"request_timeout", @"")];
+    [[AlertView currentAlertView] alertForLock:YES timeout:10.f timeoutMessage:NSLocalizedString(@"", @"")];
     
     DeviceCommandUpdateUnitName *updateUnitNameCommand = (DeviceCommandUpdateUnitName *)[CommandFactory commandForType:CommandTypeUpdateUnitName];
     updateUnitNameCommand.masterDeviceCode = self.unit.identifier;

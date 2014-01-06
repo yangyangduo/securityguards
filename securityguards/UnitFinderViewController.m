@@ -69,7 +69,7 @@
 
 - (void)findUnit {
     [[AlertView currentAlertView] setMessage:NSLocalizedString(@"searching", @"") forType:AlertViewTypeWaitting];
-    [[AlertView currentAlertView] alert:NO isLock:YES];
+    [[AlertView currentAlertView] alertForLock:YES autoDismiss:NO];
     UnitFinder *finder = [[UnitFinder alloc] init];
     finder.delegate = self;
     [finder findUnit];

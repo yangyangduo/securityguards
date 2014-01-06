@@ -13,7 +13,6 @@
 
 /*     components      */
 #import "SensorsDisplayPanel.h"
-#import "UnitControlPanel.h"
 #import "SpeechViewController.h"
 #import "UnitSelectionDrawerView.h"
 #import "UnitRenameViewController.h"
@@ -23,6 +22,8 @@
 #import "UnitsListUpdatedEvent.h"
 #import "CurrentUnitChangedEvent.h"
 #import "DeviceStatusChangedEvent.h"
+
+#define IMAGE_VIEW_TAG 500
 
 @interface PortalViewController ()
 
@@ -135,14 +136,15 @@
      */
     scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, self.topbarView.bounds.size.height, [UIScreen mainScreen].bounds.size.width, self.view.bounds.size.height - self.topbarView.bounds.size.height - voiceBackgroundView.bounds.size.height)];
     scrollView.backgroundColor = [UIColor appGray];
+    scrollView.showsHorizontalScrollIndicator = NO;
     [self.view addSubview:scrollView];
     
     /*
      * Create heathIndex view
      */
     UIImageView *imgHeathIndex = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 120)];
+    imgHeathIndex.tag = IMAGE_VIEW_TAG;
     imgHeathIndex.image = [UIImage imageNamed:@"bg_health_index"];
-    [scrollView addSubview:imgHeathIndex];
     
     lblHealthIndex = [[UILabel alloc] initWithFrame:CGRectMake(44, 34, 45, 50)];
     lblHealthIndex.backgroundColor = [UIColor clearColor];
@@ -182,6 +184,8 @@
     lblHealthIndexGreatThan.backgroundColor = [UIColor clearColor];
     lblDescription3.backgroundColor = [UIColor clearColor];
     
+    [scrollView addSubview:imgHeathIndex];
+    
     /*
      * Create sensors display view
      */
@@ -206,20 +210,35 @@
      * Create unit control panel view
      */
     controlPanelView = [[UnitControlPanel alloc] initWithPoint:CGPointMake(0, sensorDisplayPanel.frame.origin.y + sensorDisplayPanel.bounds.size.height)];
+    controlPanelView.delegate = self;
     [scrollView addSubview:controlPanelView];
     
-    CGFloat totalHeight = 0.f;
-    for(UIView *view in scrollView.subviews) {
-        totalHeight += view.bounds.size.height;
-    }
-    scrollView.contentSize = CGSizeMake([UIScreen mainScreen].bounds.size.width, totalHeight);
+    [self resizeScrollView];
 }
 
 - (void)setUp {
 }
 
 #pragma mark -
+#pragma mark Unit Control View Delegate
+
+- (void)unitControlPanelSizeChanged:(UnitControlPanel *)controlPanel {
+    [self resizeScrollView];
+}
+
+#pragma mark -
 #pragma mark UI Methods
+
+- (void)resizeScrollView {
+    CGFloat totalHeight = 0.f;
+    for(UIView *view in scrollView.subviews) {
+        if([view isKindOfClass:[UIImageView class]] && view.tag != IMAGE_VIEW_TAG) {
+            continue;
+        }
+        totalHeight += view.bounds.size.height;
+    }
+    scrollView.contentSize = CGSizeMake([UIScreen mainScreen].bounds.size.width, totalHeight);
+}
 
 - (void)showUnitSelectionView:(id)sender {
     if(self.parentViewController != nil && self.parentViewController.parentViewController != nil) {
@@ -318,9 +337,9 @@
     if(currentUnit != nil) {
         self.topbarView.title = currentUnit.name;
         
-        NSData *dd = [JsonUtils createJsonDataFromDictionary:[currentUnit toJson]];
-        NSString *str = [[NSString alloc] initWithData:dd encoding:NSUTF8StringEncoding];
-        NSLog(@"<--------------------------------- \r\n %@", str);
+//        NSData *dd = [JsonUtils createJsonDataFromDictionary:[currentUnit toJson]];
+//        NSString *str = [[NSString alloc] initWithData:dd encoding:NSUTF8StringEncoding];
+//        NSLog(@"<--------------------------------- \r\n %@", str);
         
         [self updateUnitStatus];
         

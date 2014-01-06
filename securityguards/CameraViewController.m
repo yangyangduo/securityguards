@@ -247,14 +247,14 @@
                 [SystemAudio photoShutter];
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [[AlertView currentAlertView] setMessage:NSLocalizedString(@"catch_screen_success", @"") forType:AlertViewTypeSuccess];
-                    [[AlertView currentAlertView] alert:YES isLock:NO];
+                    [[AlertView currentAlertView] alertForLock:NO autoDismiss:YES];
                     isCapture = NO;
                 });
             });
         }
     } else {
         [[AlertView currentAlertView] setMessage:NSLocalizedString(@"camera_is_not_running", @"") forType:AlertViewTypeSuccess];
-        [[AlertView currentAlertView] alert:YES isLock:NO];
+        [[AlertView currentAlertView] alertForLock:NO autoDismiss:YES];
         return;
     }
 }

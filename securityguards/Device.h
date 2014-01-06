@@ -47,6 +47,10 @@
 @property (assign, nonatomic, readonly) BOOL isWarsignal;            //安防,警报
 @property (assign, nonatomic, readonly) BOOL isBackgroundMusic;      //背景音乐
 @property (assign, nonatomic, readonly) BOOL isDVD;                  //DVD
+@property (assign, nonatomic, readonly) BOOL isAirPurifierPower;     //空气净化器电源
+@property (assign, nonatomic, readonly) BOOL isAirPurifierLevel;     //空气净化器档位
+@property (assign, nonatomic, readonly) BOOL isSecurity;             //安防
+
 
 @property (assign, nonatomic, readonly) BOOL isAvailableDevice;
 

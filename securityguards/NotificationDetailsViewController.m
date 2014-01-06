@@ -9,7 +9,7 @@
 #import "NotificationDetailsViewController.h"
 #import "MessageCell.h"
 #import "XXDateFormatter.h"
-#import "XXButton.h"
+#import "BlueButton.h"
 #import "NotificationsFileManager.h"
 
 @interface NotificationDetailsViewController ()
@@ -105,31 +105,31 @@
     [self.view addSubview:view];
     if(self.notification.isWarning && self.notification.data.isCameraData) {
 //        UIButton *btnCheck =    [[UIButton alloc] initWithFrame:CGRectMake(5, view.frame.size.height+view.frame.origin.y+5, 152.5, 98/2)];
-        XXButton *btnCheck = [XXButton blueButtonWithPoint:CGPointMake(5, view.frame.size.height+view.frame.origin.y+5) resize:CGSizeMake(152.5,98/2)];
+        BlueButton *btnCheck = [BlueButton blueButtonWithPoint:CGPointMake(5, view.frame.size.height+view.frame.origin.y+5) resize:CGSizeMake(152.5,98/2)];
         [btnCheck setTitle:NSLocalizedString(@"view_video", @"") forState:UIControlStateNormal];
 //        [btnCheck addTarget:self action:@selector(btnCheckPressed:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:btnCheck];
 //        UIButton *deleteButton = [[UIButton alloc] initWithFrame:CGRectMake(10+152.5, btnCheck.frame.origin.y, 152.5, 98/2)];
-        XXButton *btnDelete = [XXButton blueButtonWithPoint:CGPointMake(162.5, btnCheck.frame.origin.y) resize:CGSizeMake(152.5,BLUE_BUTTON_DEFAULT_HEIGHT)];
+        BlueButton *btnDelete = [BlueButton blueButtonWithPoint:CGPointMake(162.5, btnCheck.frame.origin.y) resize:CGSizeMake(152.5,BLUE_BUTTON_DEFAULT_HEIGHT)];
         [btnDelete setTitle:NSLocalizedString(@"delete", @"") forState:UIControlStateNormal];
         [btnDelete addTarget:self action:@selector(deleteBtnPressed:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:btnDelete];
     } else if([self.notification.type isEqualToString:@"MS"] || [self.notification.type isEqualToString:@"AT"] || [self.notification.type isEqualToString:@"AL"]) {
 //        UIButton *deleteButton = [LongButton buttonWithPoint:CGPointMake(5, view.frame.size.height+view.frame.origin.y+5)];
-        XXButton *btnDelete = [XXButton blueButtonWithPoint:CGPointMake(0,view.frame.size.height+view.frame.origin.y+5) resize:CGSizeMake(BLUE_BUTTON_DEFAULT_WIDTH,BLUE_BUTTON_DEFAULT_HEIGHT)];
+        BlueButton *btnDelete = [BlueButton blueButtonWithPoint:CGPointMake(0,view.frame.size.height+view.frame.origin.y+5) resize:CGSizeMake(BLUE_BUTTON_DEFAULT_WIDTH,BLUE_BUTTON_DEFAULT_HEIGHT)];
         btnDelete.center = CGPointMake(self.view.center.x, btnDelete.center.y);
         [btnDelete setTitle: NSLocalizedString(@"delete", @"") forState:UIControlStateNormal];
         [btnDelete addTarget:self action:@selector(deleteBtnPressed:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:btnDelete];
     } else if ([self.notification.type isEqualToString:@"CF"]) {
-        XXButton *btnAgree = [XXButton blueButtonWithPoint:CGPointMake(0,view.frame.size.height+view.frame.origin.y+5) resize:CGSizeMake(66, BLUE_BUTTON_DEFAULT_HEIGHT)];
+        BlueButton *btnAgree = [BlueButton blueButtonWithPoint:CGPointMake(0,view.frame.size.height+view.frame.origin.y+5) resize:CGSizeMake(66, BLUE_BUTTON_DEFAULT_HEIGHT)];
         btnAgree.center = CGPointMake(self.view.center.x, btnAgree.center.y);
         [btnAgree setTitle: NSLocalizedString(@"agree", @"") forState:UIControlStateNormal];
         btnAgree.identifier = @"btnAgree";
         [self.view addSubview:btnAgree];
         [btnAgree addTarget:self action:@selector(btnAgreeOrRefusePressed:) forControlEvents:UIControlEventTouchUpInside];
         
-        XXButton *btnRefuse = [XXButton blueButtonWithPoint:CGPointMake(0, 0) resize:CGSizeMake(66, BLUE_BUTTON_DEFAULT_HEIGHT)];//[[SMButton alloc] initWithFrame:CGRectMake(0, 0, 203/2, 98/2)];
+        BlueButton *btnRefuse = [BlueButton blueButtonWithPoint:CGPointMake(0, 0) resize:CGSizeMake(66, BLUE_BUTTON_DEFAULT_HEIGHT)];//[[SMButton alloc] initWithFrame:CGRectMake(0, 0, 203/2, 98/2)];
         btnRefuse.identifier = @"btnRefuse";
         btnRefuse.center = CGPointMake(btnAgree.center.x+btnAgree.frame.size.width+5, btnAgree.center.y);
         [btnRefuse setTitle: NSLocalizedString(@"refuse", @"") forState:UIControlStateNormal];
@@ -140,7 +140,7 @@
             btnRefuse.enabled = NO;
         }
         
-        XXButton *btnDelete = [XXButton blueButtonWithPoint:CGPointMake(0, 0) resize:CGSizeMake(66, BLUE_BUTTON_DEFAULT_HEIGHT)];//[[UIButton alloc] initWithFrame:CGRectMake(0, 0, 203/2, 98/2)];
+        BlueButton *btnDelete = [BlueButton blueButtonWithPoint:CGPointMake(0, 0) resize:CGSizeMake(66, BLUE_BUTTON_DEFAULT_HEIGHT)];//[[UIButton alloc] initWithFrame:CGRectMake(0, 0, 203/2, 98/2)];
         btnDelete.center = CGPointMake(btnRefuse.center.x+btnRefuse.frame.size.width+5, btnRefuse.center.y);
         [btnDelete setTitle: NSLocalizedString(@"delete", @"") forState:UIControlStateNormal];
         [btnDelete addTarget:self action:@selector(deleteBtnPressed:) forControlEvents:UIControlEventTouchUpInside];
@@ -149,7 +149,6 @@
 }
 
 - (void)setUp {
-    NSLog(@"jodsjfoisdjfiosdjfoisdjfoi");
     self.notification.hasRead = YES;
     [[NotificationsFileManager fileManager] update:[NSArray arrayWithObject:self.notification] deleteList:nil];
     if(self.delegate != nil && [self.delegate respondsToSelector:@selector(smNotificationsWasUpdated)]) {
@@ -170,7 +169,7 @@
 - (void)deleteBtnPressed:(UIButton *)sender {
     [[NotificationsFileManager fileManager] update:nil deleteList:[NSArray arrayWithObject:self.notification]];
     [[AlertView currentAlertView] setMessage:NSLocalizedString(@"delete_success", @"") forType:AlertViewTypeSuccess];
-    [[AlertView currentAlertView] alert:YES isLock:NO];
+    [[AlertView currentAlertView] alertForLock:NO autoDismiss:YES];
     if(self.delegate != nil) {
         if([self.delegate respondsToSelector:@selector(smNotificationsWasUpdated)]) {
             [self.delegate smNotificationsWasUpdated];
@@ -193,7 +192,7 @@
     self.notification.hasProcess = YES;
     [[NotificationsFileManager fileManager] update:[NSArray arrayWithObject:self.notification] deleteList:nil];
     [[AlertView currentAlertView] setMessage:alertString forType:AlertViewTypeSuccess];
-    [[AlertView currentAlertView] alert:YES isLock:NO];
+    [[AlertView currentAlertView] alertForLock:NO autoDismiss:YES];
     if(self.delegate != nil) {
         if([self.delegate respondsToSelector:@selector(smNotificationsWasUpdated)]) {
             [self.delegate smNotificationsWasUpdated];

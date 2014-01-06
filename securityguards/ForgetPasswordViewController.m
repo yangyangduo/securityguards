@@ -91,12 +91,12 @@
     if([XXStringUtils isBlank:phoneNumber] || phoneNumber.length != 11) {
         [[[AccountService alloc] init] sendPasswordToMobile:phoneNumber success:@selector(sendPasswordSuccess:) failed:@selector(sendPasswordFailed:) target:self callback:nil];
         [[AlertView currentAlertView] setMessage:NSLocalizedString(@"phone_format_invalid", @"") forType:AlertViewTypeFailed];
-        [[AlertView currentAlertView] alert:YES isLock:YES];
+        [[AlertView currentAlertView] alertForLock:NO autoDismiss:YES];
     }
     
     [[[AccountService alloc] init] sendPasswordToMobile:phoneNumber success:@selector(sendPasswordSuccess:) failed:@selector(sendPasswordFailed:) target:self callback:nil];
     [[AlertView currentAlertView] setMessage:NSLocalizedString(@"please_wait", @"") forType:AlertViewTypeWaitting];
-    [[AlertView currentAlertView] alert:NO isLock:YES];
+    [[AlertView currentAlertView] alertForLock:YES autoDismiss:NO];
 }
 
 - (void)sendPasswordSuccess:(RestResponse *)resp {

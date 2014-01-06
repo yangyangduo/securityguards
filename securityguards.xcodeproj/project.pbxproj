@@ -44,6 +44,7 @@
 		6F45ADFA1876897600DC18CA /* btn_play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F45ADF91876897600DC18CA /* btn_play@2x.png */; };
 		6F45ADFC1876A2E000DC18CA /* btn_play_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F45ADFB1876A2E000DC18CA /* btn_play_selected@2x.png */; };
 		6F45ADFE1876A39E00DC18CA /* line_seperator_camera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F45ADFD1876A39E00DC18CA /* line_seperator_camera@2x.png */; };
+		6F531B231877EBED0084AE93 /* BlueButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F531B221877EBED0084AE93 /* BlueButton.m */; };
 		6F600457186BCE210085B4BD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F600456186BCE210085B4BD /* Foundation.framework */; };
 		6F600459186BCE210085B4BD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F600458186BCE210085B4BD /* CoreGraphics.framework */; };
 		6F60045B186BCE210085B4BD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F60045A186BCE210085B4BD /* UIKit.framework */; };
@@ -291,6 +292,8 @@
 		6F45ADF91876897600DC18CA /* btn_play@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_play@2x.png"; sourceTree = "<group>"; };
 		6F45ADFB1876A2E000DC18CA /* btn_play_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_play_selected@2x.png"; sourceTree = "<group>"; };
 		6F45ADFD1876A39E00DC18CA /* line_seperator_camera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "line_seperator_camera@2x.png"; sourceTree = "<group>"; };
+		6F531B211877EBED0084AE93 /* BlueButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlueButton.h; sourceTree = "<group>"; };
+		6F531B221877EBED0084AE93 /* BlueButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlueButton.m; sourceTree = "<group>"; };
 		6F600453186BCE210085B4BD /* securityguards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = securityguards.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F600456186BCE210085B4BD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6F600458186BCE210085B4BD /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -676,6 +679,15 @@
 			name = camera;
 			sourceTree = "<group>";
 		};
+		6F45ADFF1876AF8200DC18CA /* camera_loading_view */ = {
+			isa = PBXGroup;
+			children = (
+				F2C1DFF318764CF700DD66D7 /* CameraLoadingView.h */,
+				F2C1DFF418764CF700DD66D7 /* CameraLoadingView.m */,
+			);
+			name = camera_loading_view;
+			sourceTree = "<group>";
+		};
 		6F60044A186BCE210085B4BD = {
 			isa = PBXGroup;
 			children = (
@@ -821,8 +833,7 @@
 		6F6004A4186BCF500085B4BD /* components */ = {
 			isa = PBXGroup;
 			children = (
-				F2C1DFF318764CF700DD66D7 /* CameraLoadingView.h */,
-				F2C1DFF418764CF700DD66D7 /* CameraLoadingView.m */,
+				6F45ADFF1876AF8200DC18CA /* camera_loading_view */,
 				F20D6AC11872992500FE6B6D /* cells */,
 				6F7247E018715768003B325F /* text_field */,
 				6F7247DC18714D60003B325F /* speech_state_view */,
@@ -854,6 +865,8 @@
 				6F860F3118755BF000792DBB /* DirectionButton.m */,
 				6F45ADF218766AFC00DC18CA /* DirectionItemButton.h */,
 				6F45ADF318766AFC00DC18CA /* DirectionItemButton.m */,
+				6F531B211877EBED0084AE93 /* BlueButton.h */,
+				6F531B221877EBED0084AE93 /* BlueButton.m */,
 			);
 			name = button;
 			sourceTree = "<group>";
@@ -1703,6 +1716,7 @@
 				F20D6AC41872997400FE6B6D /* MessageCell.m in Sources */,
 				6F600559186BF0710085B4BD /* DeviceStatus.m in Sources */,
 				6F7CDBC01872B30A0036F912 /* UnitFinderViewController.m in Sources */,
+				6F531B231877EBED0084AE93 /* BlueButton.m in Sources */,
 				6F6005B9186C1B410085B4BD /* RegisterStep2ViewController.m in Sources */,
 				F2C1DFF218764C3400DD66D7 /* ImageProvider.m in Sources */,
 				6F6004B8186BCFF40085B4BD /* NSDate+Extension.m in Sources */,

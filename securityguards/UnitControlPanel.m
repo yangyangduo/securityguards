@@ -10,17 +10,19 @@
 #import "UIColor+MoreColor.h"
 #import "UIDevice+SystemVersion.h"
 #import "CameraViewController.h"
+#import "UnitManager.h"
 #import "Shared.h"
 
-
-#import "UnitManager.h"
-
 #define DETAIL_TEXT_LABEL_TAG 888
-#define CONTROL_ITEMS_COUNT 4
+#define CONTROL_ITEM_HEIGHT 44
 
 @implementation UnitControlPanel {
     UITableView *tblControlItems;
+    int count;
 }
+
+@synthesize delegate;
+@synthesize unit = _unit_;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -32,7 +34,8 @@
 }
 
 - (id)initWithPoint:(CGPoint)point {
-    self = [super initWithFrame:CGRectMake(point.x, point.y, [UIScreen mainScreen].bounds.size.height, 44 * CONTROL_ITEMS_COUNT)];
+    count = 8;
+    self = [super initWithFrame:CGRectMake(point.x, point.y, [UIScreen mainScreen].bounds.size.height, CONTROL_ITEM_HEIGHT * count)];
     if (self) {
         // Initialization code
         [self initUI];
@@ -58,7 +61,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return CONTROL_ITEMS_COUNT;
+    return count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -94,6 +97,7 @@
     } else {
         cell.backgroundView.backgroundColor = (indexPath.row % 2 == 0) ? [UIColor whiteColor] : [UIColor appDarkGray];
     }
+    
     switch (indexPath.row) {
         case 0:
             cell.imageView.image = [UIImage imageNamed:@"icon_power"];
@@ -116,6 +120,7 @@
             [self detailTextLabelForCell:cell].text = @"查看";
             break;
         default:
+            cell.textLabel.text = @"jdsofj";
             break;
     }
     return cell;
@@ -124,6 +129,18 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     // do some thing here
+    
+    if(indexPath.row == 0) {
+        count = 4;
+        CGRect frame = self.frame;
+        self.frame = CGRectMake(frame.origin.x, frame.origin.y, [UIScreen mainScreen].bounds.size.width, CONTROL_ITEM_HEIGHT * count);
+        tblControlItems.frame = self.bounds;
+        [tblControlItems reloadData];
+        if(self.delegate != nil && [self.delegate respondsToSelector:@selector(unitControlPanelSizeChanged:)] ) {
+            [self.delegate unitControlPanelSizeChanged:self];
+        }
+        return;
+    }
     
     if(indexPath.row == 3) {
         CameraViewController *cameraViewController = [[CameraViewController alloc] init];
@@ -142,6 +159,10 @@
         }
     }
     return nil;
+}
+
+- (void)setUnit:(Unit *)unit {
+    _unit_ = unit;
 }
 
 @end

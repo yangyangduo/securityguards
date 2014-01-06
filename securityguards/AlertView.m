@@ -79,7 +79,7 @@
     return currentAlertView;
 }
 
-- (void)alert:(BOOL)autoDisappear isLock:(BOOL)isLock {
+- (void)alertForLock:(BOOL)isLock autoDismiss:(BOOL)autoDismiss {
     if(self.alertViewState != AlertViewStateReady) return;
     self.alertViewState = AlertViewStateWillAppear;
     UIWindow *lastWindow = [self lastWindow];
@@ -101,18 +101,18 @@
             }
             completion:^(BOOL finished) {
                 self.alertViewState = AlertViewStateDidAppear;
-                if(autoDisappear) {
+                if(autoDismiss) {
                     [self delayDismissAlertView];
                 }
             }];
 }
 
-- (void)alert:(BOOL)isLock withTimeout:(NSTimeInterval)timeout andTimeoutMessage:(NSString *)msg {
-    [self alert:NO isLock:isLock];
-    if(msg == nil) {
-        msg = [XXStringUtils emptyString];
+- (void)alertForLock:(BOOL)isLock timeout:(NSTimeInterval)timeout timeoutMessage:(NSString *)message {
+    [self alertForLock:isLock autoDismiss:NO];
+    if(message == nil) {
+        message = [XXStringUtils emptyString];
     }
-    timeoutTimer = [NSTimer scheduledTimerWithTimeInterval:timeout target:self selector:@selector(alertTimeout:) userInfo:[NSDictionary dictionaryWithObject:msg forKey:@"timeoutMsgKey"] repeats:NO];
+    timeoutTimer = [NSTimer scheduledTimerWithTimeInterval:timeout target:self selector:@selector(alertTimeout:) userInfo:[NSDictionary dictionaryWithObject:message forKey:@"timeoutMsgKey"] repeats:NO];
 }
 
 - (void)alertTimeout:(NSTimer *)tTimer {

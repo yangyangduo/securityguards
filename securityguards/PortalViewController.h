@@ -8,7 +8,8 @@
 
 #import "DrawerViewController.h"
 #import "XXEventSubscriber.h"
+#import "UnitControlPanel.h"
 
-@interface PortalViewController : DrawerViewController<XXEventSubscriber>
+@interface PortalViewController : DrawerViewController<XXEventSubscriber, UnitControlPanelDelegate>
 
 @end

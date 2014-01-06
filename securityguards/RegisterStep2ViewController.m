@@ -45,6 +45,12 @@
 	// Do any additional setup after loading the view.
 }
 
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
 - (void)initUI{
     [super initUI];
     
@@ -148,7 +154,7 @@
 #pragma mark services
 - (void)resendVerificationCode {
     [[AlertView currentAlertView] setMessage:NSLocalizedString(@"please_wait", @"") forType:AlertViewTypeWaitting];
-    [[AlertView currentAlertView] alert:NO isLock:YES];
+    [[AlertView currentAlertView] alertForLock:YES autoDismiss:NO];
     [[[AccountService alloc] init] sendVerificationCodeFor:self.phoneNumber success:@selector(verificationCodeSendSuccess:) failed:@selector(verificationCodeSendError:) target:self callback:nil];
 }
 
@@ -185,11 +191,11 @@
 - (void)submitVerificationCode {
     if([XXStringUtils isBlank:txtVerificationCode.text] || txtVerificationCode.text.length != 6) {
         [[AlertView currentAlertView] setMessage:NSLocalizedString(@"verification_code_error", @"") forType:AlertViewTypeFailed];
-        [[AlertView currentAlertView] alert:YES isLock:YES];
+        [[AlertView currentAlertView] alertForLock:NO autoDismiss:YES];
         return;
     }
     [[AlertView currentAlertView] setMessage:NSLocalizedString(@"please_wait", @"") forType:AlertViewTypeWaitting];
-    [[AlertView currentAlertView] alert:NO isLock:YES];
+    [[AlertView currentAlertView] alertForLock:YES autoDismiss:NO];
     [[[AccountService alloc] init] registerWithPhoneNumber:self.phoneNumber checkCode:txtVerificationCode.text success:@selector(registerSuccessfully:) failed:@selector(registerFailed:) target:self callback:nil];
 }
 
@@ -250,17 +256,8 @@
     [[AlertView currentAlertView] delayDismissAlertView];
 }
 
-
-
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
-    return range.location<6;
-}
-
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    return range.location < 6;
 }
 
 @end
