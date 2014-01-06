@@ -34,11 +34,19 @@
 }
 
 - (id)initWithPoint:(CGPoint)point {
-    count = 8;
+    count = 4;
     self = [super initWithFrame:CGRectMake(point.x, point.y, [UIScreen mainScreen].bounds.size.height, CONTROL_ITEM_HEIGHT * count)];
     if (self) {
         // Initialization code
         [self initUI];
+    }
+    return self;
+}
+
+- (id)initWithPoint:(CGPoint)point andUnit:(Unit *)unit {
+    self = [self initWithPoint:point];
+    if(self) {
+        _unit_ = unit;
     }
     return self;
 }

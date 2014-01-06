@@ -22,10 +22,10 @@
 
 @interface ImageProvider : NSObject
 
-@property (weak, nonatomic) id<ImageProviderDelegate> delegate;
-@property (assign, atomic) BOOL isDownloading;
+@property (nonatomic, weak) id<ImageProviderDelegate> delegate;
+@property (atomic, assign) BOOL isDownloading;
 
-- (void)startDownloader:(NSString *)url imageIndex:(NSInteger)index;
+- (void)startDownloader:(NSString *)url imageIndex:(unsigned int)index;
 - (void)stopDownload;
 
 @end

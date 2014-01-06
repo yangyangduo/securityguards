@@ -60,6 +60,7 @@
 }
 
 - (void)xxEventPublisherNotifyWithEvent:(XXEvent *)event {
+    [self refresh];
 }
 
 - (void)initDefaults {
@@ -132,19 +133,21 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return MESSAGE_CELL_HEIGHT;
 }
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     SMNotification *notificaion = [messageArr objectAtIndex:indexPath.row];
     NotificationDetailsViewController *notificationDetailsViewController = [[NotificationDetailsViewController alloc] initWithNotification:notificaion];
     notificationDetailsViewController.delegate = self;
     [self.navigationController pushViewController:notificationDetailsViewController animated:YES];
 }
+
 - (void)refresh {
     messageArr = [NSMutableArray arrayWithArray:[[NotificationsFileManager fileManager] readFromDisk]];
     [self sort:messageArr ascending:NO];
     [tblNotifications reloadData];
 }
 
-- (void)smNotificationsWasUpdated{
+- (void)smNotificationsWasUpdated {
     [self refresh];
 }
 

@@ -44,6 +44,7 @@
 		6F45ADFA1876897600DC18CA /* btn_play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F45ADF91876897600DC18CA /* btn_play@2x.png */; };
 		6F45ADFC1876A2E000DC18CA /* btn_play_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F45ADFB1876A2E000DC18CA /* btn_play_selected@2x.png */; };
 		6F45ADFE1876A39E00DC18CA /* line_seperator_camera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F45ADFD1876A39E00DC18CA /* line_seperator_camera@2x.png */; };
+		6F4B4CCF187A4E1D004F1795 /* DeviceUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F4B4CCE187A4E1D004F1795 /* DeviceUtils.m */; };
 		6F531B231877EBED0084AE93 /* BlueButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F531B221877EBED0084AE93 /* BlueButton.m */; };
 		6F600457186BCE210085B4BD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F600456186BCE210085B4BD /* Foundation.framework */; };
 		6F600459186BCE210085B4BD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F600458186BCE210085B4BD /* CoreGraphics.framework */; };
@@ -306,6 +307,8 @@
 		6F45ADF91876897600DC18CA /* btn_play@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_play@2x.png"; sourceTree = "<group>"; };
 		6F45ADFB1876A2E000DC18CA /* btn_play_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_play_selected@2x.png"; sourceTree = "<group>"; };
 		6F45ADFD1876A39E00DC18CA /* line_seperator_camera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "line_seperator_camera@2x.png"; sourceTree = "<group>"; };
+		6F4B4CCD187A4E1D004F1795 /* DeviceUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceUtils.h; sourceTree = "<group>"; };
+		6F4B4CCE187A4E1D004F1795 /* DeviceUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceUtils.m; sourceTree = "<group>"; };
 		6F531B211877EBED0084AE93 /* BlueButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlueButton.h; sourceTree = "<group>"; };
 		6F531B221877EBED0084AE93 /* BlueButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlueButton.m; sourceTree = "<group>"; };
 		6F600453186BCE210085B4BD /* securityguards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = securityguards.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -722,6 +725,24 @@
 			name = camera_loading_view;
 			sourceTree = "<group>";
 		};
+		6F4B4CCB187A4D18004F1795 /* camera_image_provider */ = {
+			isa = PBXGroup;
+			children = (
+				F2C1DFF018764C3400DD66D7 /* ImageProvider.h */,
+				F2C1DFF118764C3400DD66D7 /* ImageProvider.m */,
+			);
+			name = camera_image_provider;
+			sourceTree = "<group>";
+		};
+		6F4B4CCC187A4DA7004F1795 /* devices */ = {
+			isa = PBXGroup;
+			children = (
+				6F4B4CCD187A4E1D004F1795 /* DeviceUtils.h */,
+				6F4B4CCE187A4E1D004F1795 /* DeviceUtils.m */,
+			);
+			name = devices;
+			sourceTree = "<group>";
+		};
 		6F60044A186BCE210085B4BD = {
 			isa = PBXGroup;
 			children = (
@@ -811,8 +832,7 @@
 		6F600485186BCEA70085B4BD /* commons */ = {
 			isa = PBXGroup;
 			children = (
-				F2C1DFF018764C3400DD66D7 /* ImageProvider.h */,
-				F2C1DFF118764C3400DD66D7 /* ImageProvider.m */,
+				6F4B4CCB187A4D18004F1795 /* camera_image_provider */,
 				6F8F57BF187111B10033228F /* speech */,
 				6F8F57B518710D8A0033228F /* core_text */,
 				6F600583186BF86F0085B4BD /* date */,
@@ -985,14 +1005,15 @@
 		6F6004C5186BD0680085B4BD /* core */ = {
 			isa = PBXGroup;
 			children = (
+				6F6004D1186BD18D0085B4BD /* communications */,
+				6F6004EB186BDAA60085B4BD /* service */,
 				6F600564186BF3780085B4BD /* events */,
 				6F348504187519A100EBB635 /* event_filters */,
+				6F4B4CCC187A4DA7004F1795 /* devices */,
 				6F732722186D26F700A1276B /* manager */,
 				6F600582186BF5B30085B4BD /* command_executors */,
 				6F6004FF186BE90D0085B4BD /* command_handlers */,
 				6F6004FB186BE8A00085B4BD /* commands */,
-				6F6004EB186BDAA60085B4BD /* service */,
-				6F6004D1186BD18D0085B4BD /* communications */,
 			);
 			name = core;
 			sourceTree = "<group>";
@@ -1829,6 +1850,7 @@
 				6F6005B6186C1B320085B4BD /* RegisterStep1ViewController.m in Sources */,
 				6F7247DF18714D70003B325F /* SpeechStateView.m in Sources */,
 				6F60058F186BF8EC0085B4BD /* ExtranetClientSocket.m in Sources */,
+				6F4B4CCF187A4E1D004F1795 /* DeviceUtils.m in Sources */,
 				6F600524186BE9890085B4BD /* DeviceCommandUpdateAccount.m in Sources */,
 				6F600492186BCED60085B4BD /* XXEventSubscriptionPublisher.m in Sources */,
 				6F60055D186BF0710085B4BD /* SMNotification.m in Sources */,

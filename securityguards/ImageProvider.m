@@ -32,7 +32,7 @@
     errorCount = 0;
 }
 
-- (void)startDownloader:(NSString *)url imageIndex:(NSInteger)index {
+- (void)startDownloader:(NSString *)url imageIndex:(unsigned int)index {
     if(self.isDownloading) {
         return;
     } else {
@@ -46,7 +46,7 @@
     self.isDownloading = NO;
 }
 
-- (void)startDownloaderInternal:(NSString *)url imageIndex:(NSInteger)index {
+- (void)startDownloaderInternal:(NSString *)url imageIndex:(unsigned int)index {
     if(!self.isDownloading) {
         [self performSelectorOnMainThread:@selector(notifyImageStreamWasEnded) withObject:nil waitUntilDone:NO];
         return;

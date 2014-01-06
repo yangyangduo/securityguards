@@ -11,6 +11,6 @@
 #import "NotificationsFileManager.h"
 #import "XXEventSubscriber.h"
 
-@interface NotificationsViewController : DrawerViewController<UITableViewDataSource,UITableViewDelegate,SMNotificationDelegate,XXEventSubscriber>
+@interface NotificationsViewController : DrawerViewController<UITableViewDataSource,UITableViewDelegate, XXEventSubscriber, SMNotificationDelegate>
 
 @end
