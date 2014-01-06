@@ -10,7 +10,6 @@
 #import "MessageCell.h"
 #import "NotificationsFileUpdatedEvent.h"
 
-
 @interface NotificationsViewController ()
 
 @end
@@ -27,6 +26,12 @@
         // Custom initialization
     }
     return self;
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
 - (void)viewDidLoad
@@ -55,22 +60,6 @@
 }
 
 - (void)xxEventPublisherNotifyWithEvent:(XXEvent *)event {
-//    if([event isKindOfClass:[NetworkModeChangedEvent class]]) {
-//        NetworkModeChangedEvent *evt = (NetworkModeChangedEvent *)event;
-//        [self updateNetworkStateForView:evt.networkMode];
-//    } else if([event isKindOfClass:[UnitsListUpdatedEvent class]]
-//              || [event isKindOfClass:[CurrentUnitChangedEvent class]]) {
-//        [self updateUnitsView];
-//    } else if([event isKindOfClass:[DeviceStatusChangedEvent class]]) {
-//        [self updateUnitStatus];
-//    }
-}
-
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)initDefaults {
@@ -83,7 +72,6 @@
     }
     [[NotificationsFileManager fileManager] update:messageArr deleteList:nil];
     [self sort:messageArr ascending:NO];
-
 }
 
 - (void)initUI {
@@ -99,7 +87,10 @@
         tblNotifications.separatorStyle= UITableViewCellSeparatorStyleNone;
         [self.view addSubview:tblNotifications];
     }
+}
 
+- (void)setUp {
+    [super setUp];
 }
 
 #pragma mark -
@@ -139,7 +130,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return  MESSAGE_CELL_HEIGHT;
+    return MESSAGE_CELL_HEIGHT;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     SMNotification *notificaion = [messageArr objectAtIndex:indexPath.row];
@@ -155,10 +146,6 @@
 
 - (void)smNotificationsWasUpdated{
     [self refresh];
-}
-
-- (void)setUp {
-    [super setUp];
 }
 
 @end
