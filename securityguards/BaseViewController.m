@@ -96,9 +96,11 @@
         lbl.center = CGPointMake(self.view.center.x, self.view.bounds.size.height / 2 - self.topbarView.bounds.size.height);
         [emptyContentView addSubview:lbl];
     }
-    UILabel *label = (UILabel *)[self.view viewWithTag:777];
+    UILabel *label = (UILabel *)[emptyContentView viewWithTag:777];
     if([XXStringUtils isBlank:message]) {
         label.text = NSLocalizedString(@"no_content", @"");
+    } else {
+        label.text = message;
     }
     [self.view addSubview:emptyContentView];
 }

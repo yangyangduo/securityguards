@@ -219,10 +219,6 @@
 - (void)setUp {
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [self showEmptyContentViewWithMessage:@""];
-}
-
 #pragma mark -
 #pragma mark Unit Control View Delegate
 
