@@ -1,5 +1,5 @@
 //
-//  DeviceUtils.h
+//  DeviceOperationsManager.h
 //  securityguards
 //
 //  Created by Zhao yang on 1/6/14.
@@ -7,9 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Device.h"
-#import "DeviceOperationsManager.h"
+#import "DeviceOperationItem.h"
 
-@interface DeviceUtils : NSObject
+@interface DeviceOperationsManager : NSObject
 
 @end

@@ -92,7 +92,7 @@
 - (void)setUp {
     [super setUp];
     if(messageArr.count == 0) {
-        [self showEmptyContentViewWithMessage:nil];
+        [self showEmptyContentViewWithMessage:NSLocalizedString(@"empty_notifications", @"")];
     }
 }
 
@@ -146,7 +146,7 @@
 - (void)refresh {
     messageArr = [NSMutableArray arrayWithArray:[[NotificationsFileManager fileManager] readFromDisk]];
     if(messageArr.count == 0) {
-        [self showEmptyContentViewWithMessage:nil];
+        [self showEmptyContentViewWithMessage:NSLocalizedString(@"empty_notifications", @"")];
     } else {
         [self removeEmptyContentView];
         [self sort:messageArr ascending:NO];

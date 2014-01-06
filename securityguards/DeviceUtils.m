@@ -13,8 +13,7 @@
 - (NSMutableArray *)operationsListForDevice:(Device *)device {
     NSMutableArray *operations = [NSMutableArray array];
     if(device.isAirPurifierPower) {
-        [operations addObject:[[DeviceOperationItem alloc] initWithDisplayName:NSLocalizedString(@"device_open", @"") andCommandString:@""]];
-        [operations addObject:[[DeviceOperationItem alloc] initWithDisplayName:NSLocalizedString(@"device_close", @"") andCommandString:@""]];
+       
     } else if(device.isAirPurifierLevel) {
         [operations addObject:[[DeviceOperationItem alloc] initWithDisplayName:NSLocalizedString(@"high_level", @"") andCommandString:@""]];
         [operations addObject:[[DeviceOperationItem alloc] initWithDisplayName:NSLocalizedString(@"medium_level", @"") andCommandString:@""]];

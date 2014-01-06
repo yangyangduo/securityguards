@@ -57,6 +57,8 @@
 
 @property (assign, nonatomic, readonly) BOOL isAvailableDevice;
 
+- (NSString *)stateAsString;
+
 // 获取执行命令的字符串
 - (NSString *)commandStringForStatus:(int)st;
 - (NSString *)commandStringForCamera:(NSString *)direction;

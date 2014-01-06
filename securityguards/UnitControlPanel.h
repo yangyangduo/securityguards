@@ -19,6 +19,8 @@
 - (id)initWithPoint:(CGPoint)point;
 - (id)initWithPoint:(CGPoint)point andUnit:(Unit *)unit;
 
+- (void)refreshWithUnit:(Unit *)unit;
+
 @end
 
 @protocol UnitControlPanelDelegate <NSObject>

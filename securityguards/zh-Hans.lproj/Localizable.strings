@@ -14,6 +14,12 @@
 "request_timeout"                =      "请求超时";
 "please_wait"                    =      "请稍后";
 "submit"                         =      "提交";
+"delete"                         =      "删除";
+"refuse"                         =      "拒绝";
+"agree"                          =      "同意";
+"deleting"                       =      "删除中...";
+"delete_success"                 =      "删除成功";
+"loading"                        =      "加载中...";
 "no_content"                     =      "没有任何内容";
 
 
@@ -73,6 +79,7 @@
 "device_close"                   =      "关闭";
 "device_automatic"               =      "自动模式";
 "device_manual"                  =      "手动模式";
+"view"                           =      "查看";
 
 
 /****************	Unif Finder View Strings	****************/
@@ -123,7 +130,6 @@
 "verification_code_expire"                    =  "验证码已过期";
 "none_verification_code"                      =  "请先获取验证码";
 "send_password"                               =  "发送密码";
-
 "phone_not_exists"                            =  "号码不存在";
 "send_failed"                                 =  "发送失败";
 "delay_send"                                  =  "请稍后再试";
@@ -137,17 +143,13 @@
 "get.new.password"                            =  "获取新密码";
 
 
-/**************** Notifications Strings ****************/
+/**************** Notifications View Strings ****************/
 
-"delete"                                      = "删除";
-"refuse"                                      = "拒绝";
-"agree"                                       = "同意";
-"deleting"                                    = "删除中...";
-"delete_success"                              = "删除成功";
-"loading"                                     = "加载中...";
 "cf"                                          = "验证消息";
 "at"                                          = "消息内容";
 "al"                                          = "警报内容";
+"empty_notifications"                         = "没有新的消息";
+
 
 /****************	Account Management View Strings	****************/
 

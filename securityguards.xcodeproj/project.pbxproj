@@ -46,6 +46,7 @@
 		6F45ADFE1876A39E00DC18CA /* line_seperator_camera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F45ADFD1876A39E00DC18CA /* line_seperator_camera@2x.png */; };
 		6F4B4CCF187A4E1D004F1795 /* DeviceUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F4B4CCE187A4E1D004F1795 /* DeviceUtils.m */; };
 		6F4B4CD2187A5F5D004F1795 /* DeviceOperationItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F4B4CD1187A5F5D004F1795 /* DeviceOperationItem.m */; };
+		6F4B4CD5187A969B004F1795 /* DeviceOperationsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F4B4CD4187A969B004F1795 /* DeviceOperationsManager.m */; };
 		6F531B231877EBED0084AE93 /* BlueButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F531B221877EBED0084AE93 /* BlueButton.m */; };
 		6F600457186BCE210085B4BD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F600456186BCE210085B4BD /* Foundation.framework */; };
 		6F600459186BCE210085B4BD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F600458186BCE210085B4BD /* CoreGraphics.framework */; };
@@ -324,6 +325,8 @@
 		6F4B4CCE187A4E1D004F1795 /* DeviceUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceUtils.m; sourceTree = "<group>"; };
 		6F4B4CD0187A5F5D004F1795 /* DeviceOperationItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceOperationItem.h; sourceTree = "<group>"; };
 		6F4B4CD1187A5F5D004F1795 /* DeviceOperationItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceOperationItem.m; sourceTree = "<group>"; };
+		6F4B4CD3187A969B004F1795 /* DeviceOperationsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceOperationsManager.h; sourceTree = "<group>"; };
+		6F4B4CD4187A969B004F1795 /* DeviceOperationsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceOperationsManager.m; sourceTree = "<group>"; };
 		6F531B211877EBED0084AE93 /* BlueButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlueButton.h; sourceTree = "<group>"; };
 		6F531B221877EBED0084AE93 /* BlueButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlueButton.m; sourceTree = "<group>"; };
 		6F600453186BCE210085B4BD /* securityguards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = securityguards.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -770,6 +773,8 @@
 				6F4B4CCE187A4E1D004F1795 /* DeviceUtils.m */,
 				6F4B4CD0187A5F5D004F1795 /* DeviceOperationItem.h */,
 				6F4B4CD1187A5F5D004F1795 /* DeviceOperationItem.m */,
+				6F4B4CD3187A969B004F1795 /* DeviceOperationsManager.h */,
+				6F4B4CD4187A969B004F1795 /* DeviceOperationsManager.m */,
 			);
 			name = devices;
 			sourceTree = "<group>";
@@ -1960,6 +1965,7 @@
 				F21512601871227C0039CC8A /* XXTextField.m in Sources */,
 				6F600572186BF3940085B4BD /* CurrentUnitChangedEvent.m in Sources */,
 				6F600523186BE9890085B4BD /* DeviceCommandReceivedCameraServer.m in Sources */,
+				6F4B4CD5187A969B004F1795 /* DeviceOperationsManager.m in Sources */,
 				6F8F57C5187111B70033228F /* ConversationTextMessage.m in Sources */,
 				6F6004BB186BCFF40085B4BD /* UIColor+HexColor.m in Sources */,
 				6F73273C186D5E3600A1276B /* UnitControlPanel.m in Sources */,

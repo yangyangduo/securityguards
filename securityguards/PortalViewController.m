@@ -209,7 +209,7 @@
     /*
      * Create unit control panel view
      */
-    controlPanelView = [[UnitControlPanel alloc] initWithPoint:CGPointMake(0, sensorDisplayPanel.frame.origin.y + sensorDisplayPanel.bounds.size.height)];
+    controlPanelView = [[UnitControlPanel alloc] initWithPoint:CGPointMake(0, sensorDisplayPanel.frame.origin.y + sensorDisplayPanel.bounds.size.height) andUnit:[UnitManager defaultManager].currentUnit];
     controlPanelView.delegate = self;
     [scrollView addSubview:controlPanelView];
     
@@ -326,7 +326,7 @@
               || [event isKindOfClass:[CurrentUnitChangedEvent class]]) {
         [self updateUnitsView];
     } else if([event isKindOfClass:[DeviceStatusChangedEvent class]]) {
-        [self updateUnitStatus];
+        [self updateUnitStatus:[UnitManager defaultManager].currentUnit];
     }
 }
 
@@ -342,16 +342,18 @@
         NSString *str = [[NSString alloc] initWithData:dd encoding:NSUTF8StringEncoding];
         NSLog(@"<--------------------------------- \r\n %@", str);
         
-        [self updateUnitStatus];
-        
     } else {
         self.topbarView.title = NSLocalizedString(@"app_name", @"");
     }
+    
+    [self updateUnitStatus:currentUnit];
     [self updateUnitsSelectionView];
 }
 
-- (void)updateUnitStatus {
-    
+- (void)updateUnitStatus:(Unit *)unit {
+    if(controlPanelView != nil) {
+        [controlPanelView refreshWithUnit:unit];
+    }
 }
 
 - (void)updateUnitsSelectionView {
