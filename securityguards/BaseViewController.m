@@ -49,7 +49,7 @@
     self.topbarView = [TopbarView topbar];
     self.topbarView.backgroundColor = [UIColor grayColor];
     [self.view addSubview:self.topbarView];
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor appGray];
     if(![XXStringUtils isBlank:self.title]) {
         self.topbarView.title = self.title;
     }
@@ -87,7 +87,7 @@
     UIView *emptyContentView = [self.view viewWithTag:EMPTY_CONTENT_VIEW_TAG];
     if(emptyContentView == nil) {
         emptyContentView = [[UIView alloc] initWithFrame:CGRectMake(0, self.topbarView.bounds.size.height, self.view.bounds.size.width, self.view.bounds.size.height - self.topbarView.bounds.size.height)];
-        emptyContentView.backgroundColor = [UIColor whiteColor];
+        emptyContentView.backgroundColor = [UIColor appGray];
         UILabel *lbl = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 220, 30)];
         lbl.textColor = [UIColor lightGrayColor];
         lbl.font = [UIFont systemFontOfSize:16.f];
