@@ -138,7 +138,7 @@
         buttonPanelView.backgroundColor = [UIColor clearColor];
         if (btnMsg == nil) {
             btnMsg = [[UIButton alloc] initWithFrame:CGRectMake(46, 5,BTN_WIDTH , BTN_HEIGHT)];
-            [btnMsg setBackgroundImage:[UIImage imageNamed:@"icon_send_msg.png"] forState:UIControlStateNormal];
+            [btnMsg setBackgroundImage:[UIImage imageNamed:@"icon_send_message.png"] forState:UIControlStateNormal];
             btnMsg.center = CGPointMake(btnMsg.center.x, buttonPanelView.center.y);
             [btnMsg addTarget:self action:@selector(btnPressed:) forControlEvents:UIControlEventTouchUpInside];
             [buttonPanelView addSubview:btnMsg];
@@ -156,7 +156,7 @@
             btnUnbinding = [[UIButton alloc] initWithFrame:CGRectMake(btnPhone.frame.origin.x+BTN_WIDTH+BTN_MARGIN, 5,BTN_WIDTH , BTN_HEIGHT)];
             [btnUnbinding setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
             btnUnbinding.titleLabel.font = [UIFont systemFontOfSize:14];
-            [btnUnbinding setBackgroundImage:[UIImage imageNamed:@"unbinding.png"] forState:UIControlStateNormal];
+            [btnUnbinding setBackgroundImage:[UIImage imageNamed:@"icon_unbind.png"] forState:UIControlStateNormal];
             btnUnbinding.center = CGPointMake(btnUnbinding.center.x, buttonPanelView.center.y);
             [btnUnbinding addTarget:self action:@selector(btnPressed:) forControlEvents:UIControlEventTouchUpInside];
             [buttonPanelView addSubview:btnUnbinding];
@@ -279,9 +279,17 @@
             cell.textLabel.text = [NSString stringWithFormat:@"%@(%@)" ,user.name,user.mobile];
             cell.detailTextLabel.text = [NSString stringWithFormat:@"%@   ", [user stringForUserState]];
             if(user.isCurrentUser) {
-                cell.imageView.image = [UIImage imageNamed:user.isOwner ? @"icon_me_owner.png" : @"icon_me.png"];
+                if (user.userState == UserStateOnline) {
+                    cell.imageView.image = [UIImage imageNamed:user.isOwner ? @"icon_me_owner.png" : @"icon_me.png"];
+                }else{
+                    cell.imageView.image = [UIImage imageNamed:user.isOwner ? @"icon_me_owner.png" : @"icon_me_offline.png"];
+                }
             } else {
-                cell.imageView.image = [UIImage imageNamed:user.isOwner ? @"icon_owner.png" : @"transparent.png"];
+                if (user.userState == UserStateOnline) {
+                    cell.imageView.image = [UIImage imageNamed:user.isOwner ? @"icon_owner.png" : @"transparent.png"];
+                }else{
+                    cell.imageView.image = [UIImage imageNamed:user.isOwner ? @"icon_owner_offline.png" : @"transparent.png"];
+                }
             }
         }
     }
