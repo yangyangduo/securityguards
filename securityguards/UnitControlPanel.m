@@ -230,7 +230,7 @@
             deviceCount = 0;
         } else {
             Zone *zone = [unit.zones objectAtIndex:0];
-            deviceCount = zone.devices.count;
+            deviceCount = (int)zone.devices.count;
         }
     }
     deviceCountChanged = oldDeviceCount != deviceCount;
