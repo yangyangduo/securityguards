@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Device.h"
+#import "DeviceOperationItem.h"
 
 @interface DeviceUtils : NSObject
 

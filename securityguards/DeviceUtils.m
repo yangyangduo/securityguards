@@ -10,4 +10,24 @@
 
 @implementation DeviceUtils
 
+- (NSMutableArray *)operationsListForDevice:(Device *)device {
+    NSMutableArray *operations = [NSMutableArray array];
+    if(device.isAirPurifierPower) {
+        [operations addObject:[[DeviceOperationItem alloc] initWithDisplayName:NSLocalizedString(@"device_open", @"") andCommandString:@""]];
+        [operations addObject:[[DeviceOperationItem alloc] initWithDisplayName:NSLocalizedString(@"device_close", @"") andCommandString:@""]];
+    } else if(device.isAirPurifierLevel) {
+        [operations addObject:[[DeviceOperationItem alloc] initWithDisplayName:NSLocalizedString(@"high_level", @"") andCommandString:@""]];
+        [operations addObject:[[DeviceOperationItem alloc] initWithDisplayName:NSLocalizedString(@"medium_level", @"") andCommandString:@""]];
+        [operations addObject:[[DeviceOperationItem alloc] initWithDisplayName:NSLocalizedString(@"", @"low_level") andCommandString:@""]];
+    } else if(device.isSecurity) {
+        [operations addObject:[[DeviceOperationItem alloc] initWithDisplayName:NSLocalizedString(@"device_open", @"") andCommandString:@""]];
+        [operations addObject:[[DeviceOperationItem alloc] initWithDisplayName:NSLocalizedString(@"device_close", @"") andCommandString:@""]];
+    }
+    return operations;
+}
+
+- (void)executeOperationItem:(DeviceOperationItem *)operationItem {
+    if(operationItem == nil) return;
+}
+
 @end

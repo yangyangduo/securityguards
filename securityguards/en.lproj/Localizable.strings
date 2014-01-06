@@ -64,7 +64,16 @@
 "speech_tips"                    =      "您好,请说出语音指令";
 
 
-/****************	Speech View Strings	****************/
+/****************	Device Strings	****************/
+
+"high_level"                     =      "高";
+"medium_level"                   =      "中";
+"low_level"                      =      "低";
+"device_open"                    =      "开启";
+"device_close"                   =      "关闭";
+
+
+/****************	Unif Finder View Strings	****************/
 
 "unit_binding_tips"      =      "将主控与手机处于同一Wifi下,按下\"自动发现\"按钮,主控与手机将自动绑定";
 "auto_find"              =      "自动发现";
