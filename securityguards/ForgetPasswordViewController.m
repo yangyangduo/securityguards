@@ -50,6 +50,7 @@
         txtPhoneNumber.clearButtonMode = UITextFieldViewModeWhileEditing;
         txtPhoneNumber.autocorrectionType = UITextAutocapitalizationTypeNone;
         txtPhoneNumber.font = [UIFont systemFontOfSize:15.f];
+        txtPhoneNumber.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
         txtPhoneNumber.keyboardType = UIKeyboardTypeNumberPad;
         txtPhoneNumber.clearButtonMode = UITextFieldViewModeWhileEditing;
         [txtPhoneNumber becomeFirstResponder];

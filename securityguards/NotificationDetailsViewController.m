@@ -11,6 +11,7 @@
 #import "XXDateFormatter.h"
 #import "BlueButton.h"
 #import "NotificationsFileManager.h"
+#import "PlayCameraPicViewController.h"
 
 @interface NotificationDetailsViewController ()
 
@@ -63,7 +64,7 @@
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, self.topbarView.frame.size.height+5,self.view.frame.size.width-10 , MESSAGE_CELL_HEIGHT)];
     view.backgroundColor = [UIColor clearColor];
     view.center = CGPointMake(self.view.center.x, view.center.y);
-    view.backgroundColor = [UIColor colorWithHexString:@"282E3C"];
+    view.backgroundColor = [UIColor colorWithHexString:@"eeeeee"];
     view.layer.cornerRadius = 5;
     
     UIImageView *typeMessage = typeMessage = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 50/2, 39/2)];
@@ -84,7 +85,7 @@
     textLabel.textAlignment = NSTextAlignmentLeft;
     textLabel.font = font;
     textLabel.text = [@"    " stringByAppendingString:self.notification.text];
-    textLabel.textColor = [UIColor lightTextColor];
+    textLabel.textColor = [UIColor blackColor];
     textLabel.numberOfLines = 0;
     CGSize constraint = CGSizeMake(240, 20000.0f);
     CGSize size = [textLabel.text sizeWithFont:font constrainedToSize:constraint lineBreakMode:NSLineBreakByWordWrapping];
@@ -96,7 +97,7 @@
     UILabel *lblTime = [[UILabel alloc]initWithFrame:CGRectMake(40, textLabel.frame.size.height+5+2, 240, 15)];
     lblTime.text = [XXDateFormatter dateToString:self.notification.createTime format:@"yyyy-MM-dd HH:mm:ss"];
     lblTime.backgroundColor = [UIColor clearColor];
-    lblTime.textColor = [UIColor lightTextColor];
+    lblTime.textColor = [UIColor blackColor];
     lblTime.font = [UIFont systemFontOfSize:12];
     [view addSubview:lblTime];
     
@@ -104,32 +105,27 @@
     view.tag = CELL_VIEW_TAG;
     [self.view addSubview:view];
     if(self.notification.isWarning && self.notification.data.isCameraData) {
-//        UIButton *btnCheck =    [[UIButton alloc] initWithFrame:CGRectMake(5, view.frame.size.height+view.frame.origin.y+5, 152.5, 98/2)];
         BlueButton *btnCheck = [BlueButton blueButtonWithPoint:CGPointMake(5, view.frame.size.height+view.frame.origin.y+5) resize:CGSizeMake(152.5,98/2)];
         [btnCheck setTitle:NSLocalizedString(@"view_video", @"") forState:UIControlStateNormal];
-//        [btnCheck addTarget:self action:@selector(btnCheckPressed:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:btnCheck];
-//        UIButton *deleteButton = [[UIButton alloc] initWithFrame:CGRectMake(10+152.5, btnCheck.frame.origin.y, 152.5, 98/2)];
         BlueButton *btnDelete = [BlueButton blueButtonWithPoint:CGPointMake(162.5, btnCheck.frame.origin.y) resize:CGSizeMake(152.5,BLUE_BUTTON_DEFAULT_HEIGHT)];
         [btnDelete setTitle:NSLocalizedString(@"delete", @"") forState:UIControlStateNormal];
         [btnDelete addTarget:self action:@selector(deleteBtnPressed:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:btnDelete];
     } else if([self.notification.type isEqualToString:@"MS"] || [self.notification.type isEqualToString:@"AT"] || [self.notification.type isEqualToString:@"AL"]) {
-//        UIButton *deleteButton = [LongButton buttonWithPoint:CGPointMake(5, view.frame.size.height+view.frame.origin.y+5)];
         BlueButton *btnDelete = [BlueButton blueButtonWithPoint:CGPointMake(0,view.frame.size.height+view.frame.origin.y+5) resize:CGSizeMake(BLUE_BUTTON_DEFAULT_WIDTH,BLUE_BUTTON_DEFAULT_HEIGHT)];
         btnDelete.center = CGPointMake(self.view.center.x, btnDelete.center.y);
         [btnDelete setTitle: NSLocalizedString(@"delete", @"") forState:UIControlStateNormal];
         [btnDelete addTarget:self action:@selector(deleteBtnPressed:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:btnDelete];
     } else if ([self.notification.type isEqualToString:@"CF"]) {
-        BlueButton *btnAgree = [BlueButton blueButtonWithPoint:CGPointMake(0,view.frame.size.height+view.frame.origin.y+5) resize:CGSizeMake(66, BLUE_BUTTON_DEFAULT_HEIGHT)];
+        BlueButton *btnAgree = [BlueButton blueButtonWithPoint:CGPointMake(0,view.frame.size.height+view.frame.origin.y+5) resize:CGSizeMake(100, BLUE_BUTTON_DEFAULT_HEIGHT)];
         btnAgree.center = CGPointMake(self.view.center.x, btnAgree.center.y);
         [btnAgree setTitle: NSLocalizedString(@"agree", @"") forState:UIControlStateNormal];
         btnAgree.identifier = @"btnAgree";
         [self.view addSubview:btnAgree];
         [btnAgree addTarget:self action:@selector(btnAgreeOrRefusePressed:) forControlEvents:UIControlEventTouchUpInside];
-        
-        BlueButton *btnRefuse = [BlueButton blueButtonWithPoint:CGPointMake(0, 0) resize:CGSizeMake(66, BLUE_BUTTON_DEFAULT_HEIGHT)];//[[SMButton alloc] initWithFrame:CGRectMake(0, 0, 203/2, 98/2)];
+        BlueButton *btnRefuse = [BlueButton blueButtonWithPoint:CGPointMake(0, 0) resize:CGSizeMake(100, BLUE_BUTTON_DEFAULT_HEIGHT)];
         btnRefuse.identifier = @"btnRefuse";
         btnRefuse.center = CGPointMake(btnAgree.center.x+btnAgree.frame.size.width+5, btnAgree.center.y);
         [btnRefuse setTitle: NSLocalizedString(@"refuse", @"") forState:UIControlStateNormal];
@@ -139,8 +135,7 @@
             btnAgree.enabled = NO;
             btnRefuse.enabled = NO;
         }
-        
-        BlueButton *btnDelete = [BlueButton blueButtonWithPoint:CGPointMake(0, 0) resize:CGSizeMake(66, BLUE_BUTTON_DEFAULT_HEIGHT)];//[[UIButton alloc] initWithFrame:CGRectMake(0, 0, 203/2, 98/2)];
+        BlueButton *btnDelete = [BlueButton blueButtonWithPoint:CGPointMake(0, 0) resize:CGSizeMake(100, BLUE_BUTTON_DEFAULT_HEIGHT)];
         btnDelete.center = CGPointMake(btnRefuse.center.x+btnRefuse.frame.size.width+5, btnRefuse.center.y);
         [btnDelete setTitle: NSLocalizedString(@"delete", @"") forState:UIControlStateNormal];
         [btnDelete addTarget:self action:@selector(deleteBtnPressed:) forControlEvents:UIControlEventTouchUpInside];
@@ -160,11 +155,11 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-//- (void)btnCheckPressed:(UIButton *)sender {
-//    PlayCameraPicViewController *playCameraPicViewController = [[PlayCameraPicViewController alloc] init];
-//    playCameraPicViewController.data = self.notification.data;
-//    [self presentViewController:playCameraPicViewController animated:YES completion:nil];
-//}
+- (void)btnCheckPressed:(UIButton *)sender {
+    PlayCameraPicViewController *playCameraPicViewController = [[PlayCameraPicViewController alloc] init];
+    playCameraPicViewController.data = self.notification.data;
+    [self presentViewController:playCameraPicViewController animated:YES completion:nil];
+}
 
 - (void)deleteBtnPressed:(UIButton *)sender {
     [[NotificationsFileManager fileManager] update:nil deleteList:[NSArray arrayWithObject:self.notification]];
@@ -208,8 +203,5 @@
     authBindingCommand.requestDeviceCode = self.notification.data.requestDeviceCode;
     [[CoreService defaultService].tcpService executeCommand:authBindingCommand];
 }
-
-
-
 
 @end

@@ -125,3 +125,28 @@
 "get.new.password"                            =  "获取新密码";
 
 
+/**************** Notifications Strings ****************/
+
+"delete"                                      = "删除";
+"refuse"                                      = "拒绝";
+"agree"                                       = "同意";
+"deleting"                                    = "删除中...";
+"delete_success"                              = "删除成功";
+"loading"                                     = "加载中...";
+"cf"                                          = "验证消息";
+"at"                                          = "消息内容";
+"al"                                          = "警报内容";
+
+/****************	Account Management View Strings	****************/
+
+"account_management"                          =  "用户管理";
+"user_online"                                 =  "在线";
+"user_offline"                                =  "下线";
+"send.message"                                =  "发送短信";
+"call.phoneNumber"                            =  "拨打电话";
+"unbinding"                                   =  "解除绑定";
+"confirm.unbinding"                           =  "是否确定解除用户[%@]与主控[%@]的绑定关系？";
+
+
+
+

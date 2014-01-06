@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "NSDictionary+Extension.h"
 #import "NSMutableDictionary+Extension.h"
+#import "XXStringUtils.h"
 
 @interface Entity : NSObject
 

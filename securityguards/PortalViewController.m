@@ -95,7 +95,7 @@
 }
 
 - (void)initDefaults {
-    speechViewIsOpenning = NO;
+    speechViewIsOpenning = NO; 
 }
 
 - (void)initUI {

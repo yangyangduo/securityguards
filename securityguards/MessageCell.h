@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "SMNotification.h"
+#import "UIColor+HexColor.h"
 
 #define MESSAGE_CELL_HEIGHT 80
 #define TYPE_IMAGE_TAG 1001
