@@ -66,13 +66,13 @@
 - (void)initDefaults {
     [super initDefaults];
     messageArr = [NSMutableArray arrayWithArray:[[NotificationsFileManager fileManager] readFromDisk]];
-    if (messageArr && messageArr.count > 0) {
+    if (messageArr.count > 0) {
         for (SMNotification *notification in messageArr) {
             notification.hasRead = YES;
         }
+        [[NotificationsFileManager fileManager] update:messageArr deleteList:nil];
+        [self sort:messageArr ascending:NO];
     }
-    [[NotificationsFileManager fileManager] update:messageArr deleteList:nil];
-    [self sort:messageArr ascending:NO];
 }
 
 - (void)initUI {
@@ -91,6 +91,9 @@
 
 - (void)setUp {
     [super setUp];
+    if(messageArr.count == 0) {
+        [self showEmptyContentViewWithMessage:nil];
+    }
 }
 
 #pragma mark -
@@ -142,7 +145,12 @@
 
 - (void)refresh {
     messageArr = [NSMutableArray arrayWithArray:[[NotificationsFileManager fileManager] readFromDisk]];
-    [self sort:messageArr ascending:NO];
+    if(messageArr.count == 0) {
+        [self showEmptyContentViewWithMessage:nil];
+    } else {
+        [self removeEmptyContentView];
+        [self sort:messageArr ascending:NO];
+    }
     [tblNotifications reloadData];
 }
 
