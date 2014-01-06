@@ -7,12 +7,16 @@
 //
 
 #import "UserManagementViewController.h"
+#import <QuartzCore/QuartzCore.h>
+#import "UIColor+MoreColor.h"
+#import "XXButton.h"
 
 @interface UserManagementViewController ()
 
 @end
 
-@implementation UserManagementViewController
+@implementation UserManagementViewController{
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -50,6 +54,13 @@
 - (void)initUI {
     [super initUI];
     self.topbarView.title = NSLocalizedString(@"user_mgr_drawer_title", @"");
+    
+
+    
+    
+    
+    
+    
 }
 
 - (void)setUp {
