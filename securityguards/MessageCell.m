@@ -33,8 +33,11 @@
         typeMessage.backgroundColor = [UIColor clearColor];
         typeMessage.tag = TYPE_IMAGE_TAG;
     }
-    UIView *ySeperatorView = [[UIView alloc] initWithFrame:CGRectMake(50, 0, 1, MESSAGE_CELL_HEIGHT-10)];
-    ySeperatorView.backgroundColor = [UIColor colorWithHexString:@"eeeeee"];
+    UIView *ySeperatorView1 = [[UIView alloc] initWithFrame:CGRectMake(50, 0, 1, MESSAGE_CELL_HEIGHT-10)];
+    ySeperatorView1.backgroundColor = [UIColor colorWithHexString:@"e0e0e0"];
+    UIView *ySeperatorView2 = [[UIView alloc] initWithFrame:CGRectMake(51, 0, 1, MESSAGE_CELL_HEIGHT-10)];
+    ySeperatorView2.backgroundColor = [UIColor whiteColor];
+
     
     if (textLabel == nil) {
         textLabel = [[UILabel alloc] initWithFrame:CGRectMake(60, 0, 180,MESSAGE_CELL_HEIGHT-30)];
@@ -57,10 +60,11 @@
     
     if(view == nil) {
         view = [[UIView alloc] initWithFrame:CGRectMake(0, 10, self.frame.size.width, MESSAGE_CELL_HEIGHT-10)];
-        view.backgroundColor = [UIColor whiteColor];
+        view.backgroundColor = [UIColor colorWithHexString:@"fafafa"];
         typeMessage.center = CGPointMake(typeMessage.center.x, view.center.y-10);
         [view addSubview:typeMessage];
-        [view addSubview:ySeperatorView];
+        [view addSubview:ySeperatorView1];
+        [view addSubview:ySeperatorView2];
         [view addSubview:textLabel];
         UIImageView *accessory = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_accessory.png"]];
         accessory.backgroundColor = [UIColor clearColor];

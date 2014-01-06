@@ -113,14 +113,13 @@
         [btnDelete addTarget:self action:@selector(deleteBtnPressed:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:btnDelete];
     } else if([self.notification.type isEqualToString:@"MS"] || [self.notification.type isEqualToString:@"AT"] || [self.notification.type isEqualToString:@"AL"]) {
-        BlueButton *btnDelete = [BlueButton blueButtonWithPoint:CGPointMake(0,view.frame.size.height+view.frame.origin.y+5) resize:CGSizeMake(BLUE_BUTTON_DEFAULT_WIDTH,BLUE_BUTTON_DEFAULT_HEIGHT)];
+        BlueButton *btnDelete = [BlueButton blueButtonWithPoint:CGPointMake(0,view.frame.size.height+view.frame.origin.y+5) resize:CGSizeMake(311,BLUE_BUTTON_DEFAULT_HEIGHT)];
         btnDelete.center = CGPointMake(self.view.center.x, btnDelete.center.y);
         [btnDelete setTitle: NSLocalizedString(@"delete", @"") forState:UIControlStateNormal];
         [btnDelete addTarget:self action:@selector(deleteBtnPressed:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:btnDelete];
     } else if ([self.notification.type isEqualToString:@"CF"]) {
-        BlueButton *btnAgree = [BlueButton blueButtonWithPoint:CGPointMake(0,view.frame.size.height+view.frame.origin.y+5) resize:CGSizeMake(100, BLUE_BUTTON_DEFAULT_HEIGHT)];
-        btnAgree.center = CGPointMake(self.view.center.x, btnAgree.center.y);
+        BlueButton *btnAgree = [BlueButton blueButtonWithPoint:CGPointMake(5,view.frame.size.height+view.frame.origin.y+5) resize:CGSizeMake(100, BLUE_BUTTON_DEFAULT_HEIGHT)];
         [btnAgree setTitle: NSLocalizedString(@"agree", @"") forState:UIControlStateNormal];
         btnAgree.identifier = @"btnAgree";
         [self.view addSubview:btnAgree];
