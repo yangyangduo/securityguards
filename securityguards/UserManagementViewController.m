@@ -82,7 +82,6 @@
         tblUnits = [[PullTableView alloc] initWithFrame:CGRectMake(0, self.topbarView.bounds.size.height, self.view.bounds.size.width, self.view.frame.size.height - self.topbarView.bounds.size.height) style:UITableViewStylePlain];
         tblUnits.pullDelegate = self;
         tblUnits.pullTextColor = [UIColor darkGrayColor];
-        tblUnits.pullArrowImage = [UIImage imageNamed:@"whiteArrow"];
         tblUnits.center = CGPointMake(self.view.center.x, tblUnits.center.y);
         tblUnits.delegate = self;
         tblUnits.separatorStyle = UITableViewCellSeparatorStyleNone;
