@@ -77,7 +77,7 @@
     [super initUI];
     self.topbarView.title = NSLocalizedString(@"notifications_drawer_title", @"");
     if(tblNotifications == nil) {
-        tblNotifications = [[UITableView alloc] initWithFrame:CGRectMake(0, self.topbarView.frame.size.height+10, self.view.frame.size.width-20,self.view.frame.size.height-self.topbarView.frame.size.height) style:UITableViewStylePlain];
+        tblNotifications = [[UITableView alloc] initWithFrame:CGRectMake(0, self.topbarView.frame.size.height, self.view.frame.size.width - 20, self.view.frame.size.height-self.topbarView.frame.size.height) style:UITableViewStylePlain];
         tblNotifications.center = CGPointMake(self.view.center.x, tblNotifications.center.y);
         tblNotifications.dataSource = self;
         tblNotifications.delegate = self;
@@ -123,7 +123,6 @@
     if (messageCell == nil) {
         messageCell = [[MessageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:messageIdentifier];
         messageCell.backgroundColor = [UIColor clearColor];
-        
     }
     [messageCell loadWithMessage:notification];
     

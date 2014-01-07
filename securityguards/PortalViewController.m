@@ -7,6 +7,7 @@
 //
 
 #import "PortalViewController.h"
+#import "Shared.h"
 #import "XXDrawerViewController.h"
 #import "RootViewController.h"
 #import "UnitManager.h"
@@ -244,12 +245,7 @@
 }
 
 - (void)showUnitSelectionView:(id)sender {
-    if(self.parentViewController != nil && self.parentViewController.parentViewController != nil) {
-        if([self.parentViewController.parentViewController isKindOfClass:[XXDrawerViewController class]]) {
-            XXDrawerViewController *drawerController = (XXDrawerViewController *)self.parentViewController.parentViewController;
-            [drawerController showRightView];
-        }
-    }
+    [[Shared shared].app.rootViewController showRightView];
 }
 
 - (void)showSpeechViewContoller:(id)sender {
@@ -359,11 +355,7 @@
 }
 
 - (void)updateUnitsSelectionView {
-    if(self.parentViewController == nil
-       || self.parentViewController.parentViewController == nil) {
-        return;
-    }
-    RootViewController *rootViewController = (RootViewController *)self.parentViewController.parentViewController;
+    RootViewController *rootViewController = [Shared shared].app.rootViewController;
     if(rootViewController.rightView != nil) {
         UnitSelectionDrawerView *unitSelectionView = (UnitSelectionDrawerView *)rootViewController.rightView;
         [unitSelectionView refresh];

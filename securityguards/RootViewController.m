@@ -19,7 +19,7 @@
 @end
 
 @implementation RootViewController {
-    UINavigationController *portalNavViewController;
+    PortalViewController *portalViewController;
 }
 
 @synthesize displayViewController;
@@ -88,32 +88,21 @@
         return;
     }
     
-    UINavigationController *centerViewController = nil;
+    UIViewController *centerViewController = nil;
     
     if([@"portalItem" isEqualToString:item.identifier]) {
-        if(portalNavViewController == nil) {
-            portalNavViewController = [[UINavigationController alloc] initWithRootViewController:[[PortalViewController alloc] init]];
-            portalNavViewController.navigationBarHidden = YES;
-            centerViewController = portalNavViewController;
-        } else {
-            centerViewController = portalNavViewController;
+        if(portalViewController == nil) {
+            portalViewController = [[PortalViewController alloc] init];
         }
+        centerViewController = portalViewController;
     } else if([@"newsItem" isEqualToString:item.identifier]) {
-        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:[[NewsViewController alloc] init]];
-        navController.navigationBarHidden = YES;
-        centerViewController = navController;
+        centerViewController = [[NewsViewController alloc] init];
     } else if([@"notificationsItem" isEqualToString:item.identifier]) {
-        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:[[NotificationsViewController alloc] init]];
-        navController.navigationBarHidden = YES;
-        centerViewController = navController;
+        centerViewController = [[NotificationsViewController alloc] init];
     } else if([@"accountManagerItem" isEqualToString:item.identifier]) {
-        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:[[UserManagementViewController alloc] init]];
-        navController.navigationBarHidden = YES;
-        centerViewController = navController;
+        centerViewController = [[UserManagementViewController alloc] init];
     } else if([@"copyrightItem" isEqualToString:item.identifier]) {
-        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:[[CopyrightViewController alloc] init]];
-        navController.navigationBarHidden = YES;
-        centerViewController = navController;
+        centerViewController = [[CopyrightViewController alloc] init];
     }
     
     if(centerViewController == nil) return;
@@ -159,7 +148,7 @@
     }
     
     if(self.displayViewController != nil) {
-        if(self.displayViewController != portalNavViewController) {
+        if(self.displayViewController != portalViewController) {
             LeftNavItem *portalItem = [[LeftNavItem alloc] init];
             portalItem.identifier = @"portalItem";
             [self leftNavViewItemChanged:portalItem];
@@ -171,16 +160,7 @@
 }
 
 - (PortalViewController *)portalViewController {
-    if(portalNavViewController == nil
-       || portalNavViewController.childViewControllers == nil
-       || portalNavViewController.childViewControllers.count == 0) {
-        return nil;
-    }
-    UIViewController *controller = [portalNavViewController.childViewControllers objectAtIndex:0];
-    if([controller isKindOfClass:[PortalViewController class]]) {
-        return (PortalViewController *)controller;
-    }
-    return nil;
+    return portalViewController;
 }
 
 @end

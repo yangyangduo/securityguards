@@ -8,6 +8,7 @@
 
 #import "DrawerViewController.h"
 #import "XXDrawerViewController.h"
+#import "Shared.h"
 
 @interface DrawerViewController ()
 
@@ -46,12 +47,7 @@
 }
 
 - (void)showLeftDrawerView:(id)sender {
-    if(self.parentViewController != nil && self.parentViewController.parentViewController != nil) {
-        if([self.parentViewController.parentViewController isKindOfClass:[XXDrawerViewController class]]) {
-            XXDrawerViewController *drawerController = (XXDrawerViewController *)self.parentViewController.parentViewController;
-            [drawerController showLeftView];
-        }
-    }
+    [[Shared shared].app.rootViewController showLeftView];
 }
 
 @end

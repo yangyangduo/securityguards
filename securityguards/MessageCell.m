@@ -33,30 +33,29 @@
         typeMessage.backgroundColor = [UIColor clearColor];
         typeMessage.tag = TYPE_IMAGE_TAG;
     }
-    UIView *ySeperatorView1 = [[UIView alloc] initWithFrame:CGRectMake(50, 0, 1, MESSAGE_CELL_HEIGHT-10)];
+    UIView *ySeperatorView1 = [[UIView alloc] initWithFrame:CGRectMake(58, 0, 1, MESSAGE_CELL_HEIGHT-10)];
     ySeperatorView1.backgroundColor = [UIColor colorWithHexString:@"e0e0e0"];
-    UIView *ySeperatorView2 = [[UIView alloc] initWithFrame:CGRectMake(51, 0, 1, MESSAGE_CELL_HEIGHT-10)];
+    
+    UIView *ySeperatorView2 = [[UIView alloc] initWithFrame:CGRectMake(59, 0, 1, MESSAGE_CELL_HEIGHT-10)];
     ySeperatorView2.backgroundColor = [UIColor whiteColor];
-
     
     if (textLabel == nil) {
-        textLabel = [[UILabel alloc] initWithFrame:CGRectMake(60, 0, 180,MESSAGE_CELL_HEIGHT-30)];
+        textLabel = [[UILabel alloc] initWithFrame:CGRectMake(80, 0, 180, MESSAGE_CELL_HEIGHT-30)];
         textLabel.tag = TEXT_LABEL_TAG;
         textLabel.font =[UIFont systemFontOfSize:10];
         textLabel.textAlignment = NSTextAlignmentLeft;
-        textLabel.textColor = [UIColor blackColor];
+        textLabel.textColor = [UIColor darkGrayColor];
         textLabel.lineBreakMode = NSLineBreakByCharWrapping;
         textLabel.numberOfLines = 0;
         textLabel.backgroundColor = [UIColor clearColor];
     }
     
     if (lblTime == nil) {
-        lblTime = [[UILabel alloc] initWithFrame:CGRectMake(60, MESSAGE_CELL_HEIGHT-25, 240, 15)];
+        lblTime = [[UILabel alloc] initWithFrame:CGRectMake(80, MESSAGE_CELL_HEIGHT-30, 240, 15)];
         lblTime.backgroundColor = [UIColor clearColor];
-        lblTime.textColor = [UIColor blackColor];
+        lblTime.textColor = [UIColor darkGrayColor];
         lblTime.font = [UIFont systemFontOfSize:8];
     }
-    
     
     if(view == nil) {
         view = [[UIView alloc] initWithFrame:CGRectMake(0, 10, self.frame.size.width, MESSAGE_CELL_HEIGHT-10)];
