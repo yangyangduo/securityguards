@@ -99,9 +99,7 @@
     UINavigationController *loginNavController = [[UINavigationController alloc] initWithRootViewController:[[LoginViewController alloc] init]];
     loginNavController.navigationBarHidden = YES;
     [[self topViewController] presentViewController:loginNavController animated:NO completion:^{}];
-    
     [[XXEventSubscriptionPublisher defaultPublisher] publishWithEvent:[[UserLogoutEvent alloc] init]];
-    
     [[AlertView currentAlertView] setMessage:NSLocalizedString(@"logout_success", @"") forType:AlertViewTypeSuccess];
     [[AlertView currentAlertView] delayDismissAlertView];
     logouting = NO;
