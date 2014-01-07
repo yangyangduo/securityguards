@@ -157,7 +157,7 @@
 "empty_notifications"                         = "没有新的消息";
 
 
-/****************	Account Management View Strings	****************/
+/****************	User Management View Strings	****************/
 
 "account_management"                          =  "用户管理";
 "user_online"                                 =  "在线";
@@ -166,6 +166,8 @@
 "call.phoneNumber"                            =  "拨打电话";
 "unbinding"                                   =  "解除绑定";
 "confirm.unbinding"                           =  "是否确定解除用户[%@]与主控[%@]的绑定关系？";
+"unbinding_success"                           =  "已解除绑定";
+
 
 /*************** Refresh Table View Strings *************************/
 
@@ -178,4 +180,3 @@
 "minute"                = "分钟";
 "hour"                  = "小时";
 "day"                   = "天";
-
