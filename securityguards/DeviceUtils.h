@@ -14,5 +14,6 @@
 
 + (NSString *)stateAsStringFor:(Device *)device;
 + (NSMutableArray *)operationsListFor:(Device *)device;
++ (void)executeOperationItem:(DeviceOperationItem *)operationItem;
 
 @end

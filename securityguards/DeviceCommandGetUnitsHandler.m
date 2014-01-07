@@ -24,6 +24,10 @@
         // update units
         if([XXStringUtils isBlank:updateUnitsCommand.masterDeviceCode]) {
             [[UnitManager defaultManager] replaceUnits:updateUnitsCommand.units];
+            [[UnitManager defaultManager] syncUnitsToDisk];
+#ifdef DEBUG
+            NSLog(@"[GET UNITS HANDLER] All of new units have saved to disk.");
+#endif
         // update unit
         } else {
             if(updateUnitsCommand.resultID == -1) {

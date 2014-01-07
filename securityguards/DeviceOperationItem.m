@@ -14,13 +14,4 @@
 @synthesize commandString = _commandString_;
 @synthesize deviceState;
 
-- (id)initWithDisplayName:(NSString *)displayName andCommandString:(NSString *)commandString {
-    self = [super init];
-    if(self) {
-        _displayName_ = displayName;
-        _commandString_ = commandString;
-    }
-    return self;
-}
-
 @end

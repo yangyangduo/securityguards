@@ -7,8 +7,8 @@
 //
 
 #import "NotificationsViewController.h"
-#import "MessageCell.h"
 #import "NotificationsFileUpdatedEvent.h"
+#import "MessageCell.h"
 
 @interface NotificationsViewController ()
 
@@ -41,14 +41,12 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    // subscribe events here
-    XXEventNameFilter *eventNameFilter = [[XXEventNameFilter alloc] initWithSupportedEventName:EventNotificationsFileUpdated];
-    XXEventSubscription *eventSubscription = [[XXEventSubscription alloc] initWithSubscriber:self eventFilter:eventNameFilter];
-    [[XXEventSubscriptionPublisher defaultPublisher] subscribeFor:eventSubscription];
+    XXEventSubscription *subscription = [[XXEventSubscription alloc] initWithSubscriber:self eventFilter:[[XXEventNameFilter alloc] initWithSupportedEventName:EventNotificationsFileUpdated]];
+    subscription.notifyMustInMainThread = YES;
+    [[XXEventSubscriptionPublisher defaultPublisher] subscribeFor:subscription];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-    // unsubscribe events here
     [[XXEventSubscriptionPublisher defaultPublisher] unSubscribeForSubscriber:self];
 }
 

@@ -54,17 +54,6 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    
-    self.view.backgroundColor = [UIColor whiteColor];
-    BOOL hasLogin = ![[XXStringUtils emptyString] isEqualToString:[GlobalSettings defaultSettings].secretKey];
-    if(hasLogin) {
-        [[CoreService defaultService] startService];
-        [[CoreService defaultService] startRefreshCurrentUnit];
-    } else {
-        UINavigationController *loginNavController = [[UINavigationController alloc] initWithRootViewController:[[LoginViewController alloc] init]];
-        loginNavController.navigationBarHidden = YES;
-        [self presentViewController:loginNavController animated:NO completion:^{}];
-    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -209,7 +198,8 @@
     /*
      * Create unit control panel view
      */
-    controlPanelView = [[UnitControlPanel alloc] initWithPoint:CGPointMake(0, sensorDisplayPanel.frame.origin.y + sensorDisplayPanel.bounds.size.height) andUnit:[UnitManager defaultManager].currentUnit];
+    controlPanelView = [[UnitControlPanel alloc] initWithPoint:CGPointMake(0, sensorDisplayPanel.frame.origin.y + sensorDisplayPanel.bounds.size.height)];
+    
     controlPanelView.delegate = self;
     [scrollView addSubview:controlPanelView];
     
@@ -217,7 +207,19 @@
 }
 
 - (void)setUp {
+    [super setUp];
     
+    BOOL hasLogin = ![[XXStringUtils emptyString] isEqualToString:[GlobalSettings defaultSettings].secretKey];
+    if(hasLogin) {
+        [[CoreService defaultService] startService];
+        [[CoreService defaultService] startRefreshCurrentUnit];
+    } else {
+        UINavigationController *loginNavController = [[UINavigationController alloc] initWithRootViewController:[[LoginViewController alloc] init]];
+        loginNavController.navigationBarHidden = YES;
+        [self presentViewController:loginNavController animated:NO completion:^{}];
+    }
+    
+    controlPanelView.unit = [UnitManager defaultManager].currentUnit;
 }
 
 #pragma mark -
@@ -357,7 +359,10 @@
 }
 
 - (void)updateUnitsSelectionView {
-    if(self.parentViewController == nil || self.parentViewController.parentViewController == nil) return;
+    if(self.parentViewController == nil
+       || self.parentViewController.parentViewController == nil) {
+        return;
+    }
     RootViewController *rootViewController = (RootViewController *)self.parentViewController.parentViewController;
     if(rootViewController.rightView != nil) {
         UnitSelectionDrawerView *unitSelectionView = (UnitSelectionDrawerView *)rootViewController.rightView;

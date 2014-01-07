@@ -10,6 +10,7 @@
 
 "app_name"                       =      "家庭卫士";
 
+"unknow"                         =      "未知";
 "unknow_error"                   =      "系统错误";
 "request_timeout"                =      "请求超时";
 "please_wait"                    =      "请稍后";

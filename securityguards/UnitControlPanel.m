@@ -122,7 +122,11 @@
     
     Zone *zone = [_unit_.zones objectAtIndex:0];
     Device *device = [zone.devices objectAtIndex:indexPath.row];
+    
+    // set device display name
     cell.textLabel.text = device.name;
+    
+    // set device display image
     if(device.isAirPurifierPower) {
         cell.imageView.image = [UIImage imageNamed:@"icon_power"];
     } else if(device.isAirPurifierLevel) {
@@ -133,24 +137,16 @@
         cell.imageView.image = [UIImage imageNamed:@"icon_security"];
     } else if(device.isCamera) {
         cell.imageView.image = [UIImage imageNamed:@"icon_camera"];
-        [self detailTextLabelForCell:cell].text = NSLocalizedString(@"view", @"");
     } else {
-
     }
     
-    switch (indexPath.row) {
-        case 0:
-            [self detailTextLabelForCell:cell].text = @"开启";
-            break;
-        case 1:
-            [self detailTextLabelForCell:cell].text = @"开启";
-            break;
-        case 2:
-            [self detailTextLabelForCell:cell].text = @"开启";
-            break;
-        default:
-            break;
+    // set device state for detail text label
+    if(device.isCamera) {
+        [self detailTextLabelForCell:cell].text = NSLocalizedString(@"view", @"");
+    } else {
+        [self detailTextLabelForCell:cell].text = [DeviceUtils stateAsStringFor:device];
     }
+    
     return cell;
 }
 
@@ -175,9 +171,8 @@
             actionSheet.delegate = self;
             for(int i=0; i<operations.count; i++) {
                 DeviceOperationItem *item = [operations objectAtIndex:i];
-//            item.deviceState == device.state
-                if(i==1) {
-                actionSheet.destructiveButtonIndex = i;
+                if(device.state == item.deviceState) {
+                    actionSheet.destructiveButtonIndex = i;
                 }
                 [actionSheet addButtonWithTitle:item.displayName];
             }
@@ -198,11 +193,12 @@
         NSArray *operations = [aSheet parameterForKey:@"deviceOperations"];
         if(buttonIndex != operations.count) {
             DeviceOperationItem *item = [operations objectAtIndex:buttonIndex];
-            NSLog(@" is %@", item.displayName);
+            NSLog(@"[%@] - [%@]", item.displayName, item.commandString);
+return;
+            [DeviceUtils executeOperationItem:item];
         }
     }
 }
-
 
 #pragma mark -
 #pragma mark UI Methods
