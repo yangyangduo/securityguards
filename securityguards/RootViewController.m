@@ -20,6 +20,7 @@
 
 @implementation RootViewController {
     PortalViewController *portalViewController;
+    UserManagementViewController *userManagementViewController;
 }
 
 @synthesize displayViewController;
@@ -103,7 +104,10 @@
     } else if([@"notificationsItem" isEqualToString:item.identifier]) {
         centerViewController = [[NotificationsViewController alloc] init];
     } else if([@"accountManagerItem" isEqualToString:item.identifier]) {
-        centerViewController = [[UserManagementViewController alloc] init];
+        if(userManagementViewController == nil) {
+            userManagementViewController = [[UserManagementViewController alloc] init];
+        }
+        centerViewController = userManagementViewController;
     } else if([@"copyrightItem" isEqualToString:item.identifier]) {
         centerViewController = [[CopyrightViewController alloc] init];
     }
