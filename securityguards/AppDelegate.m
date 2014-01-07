@@ -26,8 +26,7 @@
     // Override point for customization after application launch.
     
     _rootViewController_ = [[RootViewController alloc] init];
-    UINavigationController *navigationViewController = [[UINavigationController alloc] init];
-    
+    UINavigationController *navigationViewController = [[UINavigationController alloc] initWithRootViewController:_rootViewController_];
     navigationViewController.navigationBarHidden = YES;
 
     self.window.rootViewController = navigationViewController;
