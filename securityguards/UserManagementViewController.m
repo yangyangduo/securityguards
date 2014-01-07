@@ -24,7 +24,6 @@
 #define CELL_WIDTH                  624/2
 #define ACCESSORY_TAG               1998
 
-
 @interface UserManagementViewController ()
 
 @end
@@ -41,15 +40,10 @@
     UIButton *btnMsg;
     UIButton *btnPhone;
     UIButton *btnUnbinding;
-
-    UserManagementService *userManagementService;
     
     BOOL buttonPanelViewIsVisable;
     BOOL currentIsOwner;
-    
-    //    NSDate *lastRereshDate;
 }
-
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -72,46 +66,9 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    // current unit is empty
-    if([UnitManager defaultManager].currentUnit == nil) {
-        buttonPanelViewIsVisable = NO;
-        if(unitBindingAccounts != nil) {
-            [unitBindingAccounts removeAllObjects];
-            [tblUnits reloadData];
-        }
-        return;
-    } else {
-        // current unit not changed
-        if([[UnitManager defaultManager].currentUnit.identifier isEqualToString:curUnitIdentifier]) {
-            // check refresh is too often ?
-            if(tblUnits.pullLastRefreshDate != nil) {
-                NSTimeInterval timerInterval = [[NSDate date] timeIntervalSinceDate:tblUnits.pullLastRefreshDate];
-                double minutes = timerInterval / 60;
-                if(minutes < REFRESH_AGAIN_DURATION) return;
-            }
-        } else {
-            curUnitIdentifier = [UnitManager defaultManager].currentUnit.identifier;
-            buttonPanelViewIsVisable = NO;
-        }
-    }
-    
-    tblUnits.pullTableIsRefreshing = YES;
-    [self pullTableViewDidTriggerRefresh:tblUnits];
-
-    
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-    
-}
-
 - (void)initDefaults {
     [super initDefaults];
     buttonPanelViewIsVisable = NO;
-    if (userManagementService == nil) {
-        userManagementService = [[UserManagementService alloc] init];
-    }
     
     if (unitBindingAccounts == nil) {
         unitBindingAccounts = [NSMutableArray array];
@@ -122,7 +79,7 @@
     [super initUI];
     self.topbarView.title = NSLocalizedString(@"user_mgr_drawer_title", @"");
     if(tblUnits == nil) {
-        tblUnits = [[PullTableView alloc] initWithFrame:CGRectMake(0, self.topbarView.bounds.size.height+5, self.view.bounds.size.width, self.view.frame.size.height - self.topbarView.bounds.size.height-5) style:UITableViewStylePlain];
+        tblUnits = [[PullTableView alloc] initWithFrame:CGRectMake(0, self.topbarView.bounds.size.height, self.view.bounds.size.width, self.view.frame.size.height - self.topbarView.bounds.size.height) style:UITableViewStylePlain];
         tblUnits.pullDelegate = self;
         tblUnits.pullTextColor = [UIColor darkGrayColor];
         tblUnits.pullArrowImage = [UIImage imageNamed:@"whiteArrow"];
@@ -165,15 +122,49 @@
     }
 }
 
-- (void) addPanelData:(AccountManageCellData *) data{
-    if (!unitBindingAccounts) {
+- (void)setUp {
+    [super setUp];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    // current unit is empty
+    if([UnitManager defaultManager].currentUnit == nil) {
+        buttonPanelViewIsVisable = NO;
+        if(unitBindingAccounts != nil) {
+            [unitBindingAccounts removeAllObjects];
+            [tblUnits reloadData];
+        }
         return;
+    } else {
+        // current unit not changed
+        if([[UnitManager defaultManager].currentUnit.identifier isEqualToString:curUnitIdentifier]) {
+            // check refresh is too often ?
+            if(tblUnits.pullLastRefreshDate != nil) {
+                NSTimeInterval timerInterval = [[NSDate date] timeIntervalSinceDate:tblUnits.pullLastRefreshDate];
+                double minutes = timerInterval / 60;
+                if(minutes < REFRESH_AGAIN_DURATION) return;
+            }
+        } else {
+            curUnitIdentifier = [UnitManager defaultManager].currentUnit.identifier;
+            buttonPanelViewIsVisable = NO;
+        }
     }
+    
+    tblUnits.pullTableIsRefreshing = YES;
+    [self pullTableViewDidTriggerRefresh:tblUnits];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    
+}
+
+- (void)addPanelData:(AccountManageCellData *)data {
+    if (!unitBindingAccounts) return;
     [unitBindingAccounts insertObject:data atIndex:curIndexPath.row+1];
 }
 
 - (void)removePanelData {
-    if (!unitBindingAccounts||unitBindingAccounts.count<=curIndexPath.row+1) {
+    if (!unitBindingAccounts || unitBindingAccounts.count <= curIndexPath.row+1) {
         return;
     }
     [unitBindingAccounts removeObjectAtIndex:curIndexPath.row+1];
@@ -322,7 +313,6 @@
 }
 
 - (void)showButtonPanelViewAtIndexPath:(NSIndexPath *) indexPath {
-    
     UITableViewCell *curCell = [tblUnits cellForRowAtIndexPath:curIndexPath];
     CGAffineTransform transformOpen = CGAffineTransformMakeRotation(-M_PI/2);
     CGAffineTransform transformClose = CGAffineTransformMakeRotation(0);
@@ -376,6 +366,7 @@
 - (void)delayProcess {
     [[AlertView currentAlertView] setMessage:NSLocalizedString(@"processing", @"") forType:AlertViewTypeWaitting];
     [[AlertView currentAlertView] alertForLock:YES autoDismiss:NO];
+    UserManagementService *userManagementService = [[UserManagementService alloc] init];
     [userManagementService unBindUnit:curUnitIdentifier forUser:selectedUser.identifier success:@selector(unbindingSuccess:) failed:@selector(unbindingFailed:) target:self callback:nil];
 }
 
@@ -387,6 +378,7 @@
 }
 
 - (void)refresh {
+    UserManagementService *userManagementService = [[UserManagementService alloc] init];
     [userManagementService usersForUnit:curUnitIdentifier success:@selector(getUsersForUnitSuccess:) failed:@selector(getUsersForUnitFailed:) target:self callback:nil];
 }
 
@@ -437,7 +429,7 @@
     }
 }
 
-- (void)unbindingSuccess:(RestResponse *) resp{
+- (void)unbindingSuccess:(RestResponse *)resp {
     if (resp && resp.statusCode == 200) {
         [[AlertView currentAlertView] setMessage:NSLocalizedString(@"execution_success", @"") forType:AlertViewTypeSuccess];
         [[AlertView currentAlertView] delayDismissAlertView];
@@ -460,22 +452,6 @@
         [[AlertView currentAlertView] setMessage:NSLocalizedString(@"unknow_error", @"") forType:AlertViewTypeFailed];
         [[AlertView currentAlertView] delayDismissAlertView];
     }
-}
-
-- (void)destory {
-#ifdef DEBUG
-    NSLog(@"AccountManagement View] Destoryed.");
-#endif
-}
-
-
-
-
-
-
-
-- (void)setUp {
-    [super setUp];
 }
 
 @end

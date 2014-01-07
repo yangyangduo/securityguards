@@ -118,11 +118,6 @@
     CGRect frame = centerViewController.view.frame;
     centerViewController.view.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
     self.centerView = centerViewController.view;
-    if([UIDevice systemVersionIsMoreThanOrEuqal7]) {
-        
-    } else {
-
-    }
     [centerViewController didMoveToParentViewController:self];
     if(self.displayViewController != nil) {
         [self.displayViewController removeFromParentViewController];
