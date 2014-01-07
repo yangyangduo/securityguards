@@ -17,11 +17,12 @@
 #import "UnitManager.h"
 
 #define BTN_MARGIN                  35
-#define BTN_WIDTH                   41 / 2
-#define BTN_HEIGHT                  41 / 2
+#define BTN_WIDTH                   45 / 2
+#define BTN_HEIGHT                  44 / 2
 #define REFRESH_AGAIN_DURATION      2
 #define CELL_HEIGHT                 93/2
 #define CELL_WIDTH                  624/2
+#define ACCESSORY_TAG               1998
 
 
 @interface UserManagementViewController ()
@@ -40,7 +41,7 @@
     UIButton *btnMsg;
     UIButton *btnPhone;
     UIButton *btnUnbinding;
-    
+
     UserManagementService *userManagementService;
     
     BOOL buttonPanelViewIsVisable;
@@ -123,7 +124,7 @@
     if(tblUnits == nil) {
         tblUnits = [[PullTableView alloc] initWithFrame:CGRectMake(0, self.topbarView.bounds.size.height+5, self.view.bounds.size.width, self.view.frame.size.height - self.topbarView.bounds.size.height-5) style:UITableViewStylePlain];
         tblUnits.pullDelegate = self;
-        tblUnits.pullTextColor = [UIColor lightTextColor];
+        tblUnits.pullTextColor = [UIColor darkGrayColor];
         tblUnits.pullArrowImage = [UIImage imageNamed:@"whiteArrow"];
         tblUnits.center = CGPointMake(self.view.center.x, tblUnits.center.y);
         tblUnits.delegate = self;
@@ -134,7 +135,7 @@
     }
     
     if (buttonPanelView == nil) {
-        buttonPanelView = [[UIView alloc] initWithFrame:CGRectMake(0, 0,CELL_WIDTH/2, CELL_HEIGHT/2)];
+        buttonPanelView = [[UIView alloc] initWithFrame:CGRectMake(0, 0,CELL_WIDTH, CELL_HEIGHT)];
         buttonPanelView.backgroundColor = [UIColor clearColor];
         if (btnMsg == nil) {
             btnMsg = [[UIButton alloc] initWithFrame:CGRectMake(46, 5,BTN_WIDTH , BTN_HEIGHT)];
@@ -264,9 +265,11 @@
             cell.backgroundView.backgroundColor = [UIColor lightTextColor];
             cell.backgroundColor = [UIColor lightTextColor];
         } else {
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             cell.backgroundView.backgroundColor = [UIColor whiteColor];
             cell.backgroundColor = [UIColor whiteColor];
+            UIImageView *accessoryImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_yellow_accessory.png"]];
+            accessoryImageView.tag = ACCESSORY_TAG;
+            cell.accessoryView = accessoryImageView;
         }
     }
     
@@ -277,7 +280,6 @@
         User *user = data.user;
         if(user != nil) {
             cell.textLabel.text = [NSString stringWithFormat:@"%@(%@)" ,user.name,user.mobile];
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"%@   ", [user stringForUserState]];
             if(user.isCurrentUser) {
                 if (user.userState == UserStateOnline) {
                     cell.imageView.image = [UIImage imageNamed:user.isOwner ? @"icon_me_owner.png" : @"icon_me.png"];
@@ -320,6 +322,18 @@
 }
 
 - (void)showButtonPanelViewAtIndexPath:(NSIndexPath *) indexPath {
+    
+    UITableViewCell *curCell = [tblUnits cellForRowAtIndexPath:curIndexPath];
+    CGAffineTransform transformOpen = CGAffineTransformMakeRotation(-M_PI/2);
+    CGAffineTransform transformClose = CGAffineTransformMakeRotation(0);
+    UITableViewCell *selectedCell = [tblUnits cellForRowAtIndexPath:indexPath];
+    if (curCell != nil) {
+        UIImageView *curAccessoryView = (UIImageView *)[curCell viewWithTag:ACCESSORY_TAG];
+        curAccessoryView.transform = transformClose;
+    }
+    UIImageView *selectedAccessoryView = (UIImageView *)[selectedCell viewWithTag:ACCESSORY_TAG];
+    selectedAccessoryView.transform = transformOpen;
+
     buttonPanelViewIsVisable = YES;
     curIndexPath = indexPath;
     AccountManageCellData *data = [[AccountManageCellData alloc] init];

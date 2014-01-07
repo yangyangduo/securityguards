@@ -15,6 +15,10 @@
 "please_wait"                    =      "请稍后";
 "submit"                         =      "提交";
 "no_content"                     =      "没有任何内容";
+"cancel"                         =      "取消";
+"determine"                      =      "确定";
+"tips"                           =      "提示";
+
 
 
 /****************	Right Drawer View Strings	****************/
@@ -158,3 +162,15 @@
 "call.phoneNumber"                            =  "拨打电话";
 "unbinding"                                   =  "解除绑定";
 "confirm.unbinding"                           =  "是否确定解除用户[%@]与主控[%@]的绑定关系？";
+
+/*************** Refresh Table View Strings *************************/
+
+"pull.refresh"          = "下拉刷新";
+"release.refresh"       = "释放立即刷新";
+"refreshing"            = "刷新中...";
+"last.update"           = "最后更新";
+"ago"                   = "以前";
+"just_now"              = "刚刚";
+"minute"                = "分钟";
+"hour"                  = "小时";
+"day"                   = "天";

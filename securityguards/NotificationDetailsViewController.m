@@ -97,7 +97,7 @@
     UILabel *lblTime = [[UILabel alloc]initWithFrame:CGRectMake(40, textLabel.frame.size.height+5+2, 240, 15)];
     lblTime.text = [XXDateFormatter dateToString:self.notification.createTime format:@"yyyy-MM-dd HH:mm:ss"];
     lblTime.backgroundColor = [UIColor clearColor];
-    lblTime.textColor = [UIColor blackColor];
+    lblTime.textColor = [UIColor darkGrayColor];
     lblTime.font = [UIFont systemFontOfSize:12];
     [view addSubview:lblTime];
     
