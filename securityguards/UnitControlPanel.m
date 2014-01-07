@@ -11,14 +11,23 @@
 #import "UIDevice+SystemVersion.h"
 #import "CameraViewController.h"
 #import "UnitManager.h"
+#import "DeviceOperationItem.h"
 #import "Shared.h"
+#import "DeviceUtils.h"
 
 #define DETAIL_TEXT_LABEL_TAG 888
 #define CONTROL_ITEM_HEIGHT 44
 
 @implementation UnitControlPanel {
     UITableView *tblControlItems;
-    int count;
+    
+    /*
+     * if device count has changed that
+     * we should to change the frame(height) tblControlItems
+     * and also need to change contentSize fo self.superView (UIScrollView)
+     */
+    int deviceCount;
+    BOOL deviceCountChanged;
 }
 
 @synthesize delegate;
@@ -28,27 +37,32 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        [self initDefaults];
         [self initUI];
     }
     return self;
 }
 
 - (id)initWithPoint:(CGPoint)point {
-    count = 4;
-    self = [super initWithFrame:CGRectMake(point.x, point.y, [UIScreen mainScreen].bounds.size.height, CONTROL_ITEM_HEIGHT * count)];
+    self = [super initWithFrame:CGRectMake(point.x, point.y, [UIScreen mainScreen].bounds.size.height, CONTROL_ITEM_HEIGHT * deviceCount)];
     if (self) {
         // Initialization code
+        [self initDefaults];
         [self initUI];
     }
     return self;
 }
 
 - (id)initWithPoint:(CGPoint)point andUnit:(Unit *)unit {
+    [self calculateDeviceCountForUnit:unit];
     self = [self initWithPoint:point];
     if(self) {
         _unit_ = unit;
     }
     return self;
+}
+
+- (void)initDefaults {
 }
 
 - (void)initUI {
@@ -69,7 +83,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return count;
+    return deviceCount;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -106,57 +120,91 @@
         cell.backgroundView.backgroundColor = (indexPath.row % 2 == 0) ? [UIColor whiteColor] : [UIColor appDarkGray];
     }
     
-    switch (indexPath.row) {
-        case 0:
-            cell.imageView.image = [UIImage imageNamed:@"icon_power"];
-            cell.textLabel.text = @"电源";
-            [self detailTextLabelForCell:cell].text = @"开启";
-            break;
-        case 1:
-            cell.imageView.image = [UIImage imageNamed:@"icon_level"];
-            cell.textLabel.text = @"档位";
-            [self detailTextLabelForCell:cell].text = @"开启";
-            break;
-        case 2:
-            cell.imageView.image = [UIImage imageNamed:@"icon_security"];
-            cell.textLabel.text = @"安防";
-            [self detailTextLabelForCell:cell].text = @"开启";
-            break;
-        case 3:
-            cell.imageView.image = [UIImage imageNamed:@"icon_camera"];
-            cell.textLabel.text = @"摄像头";
-            [self detailTextLabelForCell:cell].text = @"查看";
-            break;
-        default:
-            cell.textLabel.text = @"jdsofj";
-            break;
+    Zone *zone = [_unit_.zones objectAtIndex:0];
+    Device *device = [zone.devices objectAtIndex:indexPath.row];
+    
+    // set device display name
+    cell.textLabel.text = device.name;
+    
+    // set device display image
+    if(device.isAirPurifierPower) {
+        cell.imageView.image = [UIImage imageNamed:@"icon_power"];
+    } else if(device.isAirPurifierLevel) {
+        cell.imageView.image = [UIImage imageNamed:@"icon_level"];
+    } else if(device.isAirPurifierModeControl) {
+        cell.imageView.image = [UIImage imageNamed:@"icon_level"];
+    } else if(device.isAirPurifierSecurity) {
+        cell.imageView.image = [UIImage imageNamed:@"icon_security"];
+    } else if(device.isCamera) {
+        cell.imageView.image = [UIImage imageNamed:@"icon_camera"];
+    } else {
     }
+    
+    // set device state for detail text label
+    if(device.isCamera) {
+        [self detailTextLabelForCell:cell].text = NSLocalizedString(@"view", @"");
+    } else {
+        [self detailTextLabelForCell:cell].text = [DeviceUtils stateAsStringFor:device];
+    }
+    
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    // do some thing here
-    
-    if(indexPath.row == 0) {
-        count = 4;
-        CGRect frame = self.frame;
-        self.frame = CGRectMake(frame.origin.x, frame.origin.y, [UIScreen mainScreen].bounds.size.width, CONTROL_ITEM_HEIGHT * count);
-        tblControlItems.frame = self.bounds;
-        [tblControlItems reloadData];
-        if(self.delegate != nil && [self.delegate respondsToSelector:@selector(unitControlPanelSizeChanged:)] ) {
-            [self.delegate unitControlPanelSizeChanged:self];
-        }
+    if(self.unit == nil || self.delegate == nil) {
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
         return;
     }
-    
-    if(indexPath.row == 3) {
+    Zone *zone = [self.unit.zones objectAtIndex:0];
+    Device *device = [zone.devices objectAtIndex:indexPath.row];
+    if(device.isCamera) {
         CameraViewController *cameraViewController = [[CameraViewController alloc] init];
-        cameraViewController.cameraDevice = [[UnitManager defaultManager].currentUnit.devices objectAtIndex:0];
+        cameraViewController.cameraDevice = device;
         [[[Shared shared].app topViewController] presentViewController:cameraViewController animated:YES completion:^{}];
+    } else {
+        NSArray *operations = [DeviceUtils operationsListFor:device];
+        if(operations != nil && operations.count > 0) {
+            XXActionSheet *actionSheet = [[XXActionSheet alloc] init];
+            [actionSheet setParameter:operations forKey:@"deviceOperations"];
+            actionSheet.actionSheetStyle = UIActionSheetStyleDefault;
+            actionSheet.title = NSLocalizedString(@"please_select", @"");
+            actionSheet.delegate = self;
+            for(int i=0; i<operations.count; i++) {
+                DeviceOperationItem *item = [operations objectAtIndex:i];
+                if(device.state == item.deviceState) {
+                    actionSheet.destructiveButtonIndex = i;
+                }
+                [actionSheet addButtonWithTitle:item.displayName];
+            }
+            actionSheet.cancelButtonIndex = [actionSheet addButtonWithTitle:NSLocalizedString(@"cancel", @"")];
+            UIViewController *viewController = (UIViewController *)self.delegate;
+            [actionSheet showInView:viewController.view];
+        }
     }
-    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+#pragma mark -
+#pragma mark Action Sheet Delegate
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if([actionSheet isKindOfClass:[XXActionSheet class]]) {
+        XXActionSheet *aSheet = (XXActionSheet *)actionSheet;
+        NSArray *operations = [aSheet parameterForKey:@"deviceOperations"];
+        if(buttonIndex != operations.count) {
+            DeviceOperationItem *item = [operations objectAtIndex:buttonIndex];
+            NSLog(@"[%@] - [%@]", item.displayName, item.commandString);
+return;
+            [DeviceUtils executeOperationItem:item];
+        }
+    }
+}
+
+#pragma mark -
+#pragma mark UI Methods
+
+- (void)refreshWithUnit:(Unit *)unit {
+    self.unit = unit;
 }
 
 - (UILabel *)detailTextLabelForCell:(UITableViewCell *)cell {
@@ -169,8 +217,33 @@
     return nil;
 }
 
+- (void)calculateDeviceCountForUnit:(Unit *)unit {
+    int oldDeviceCount = deviceCount;
+    if(unit == nil) {
+        deviceCount = 0;
+    } else {
+        if(unit.zones.count == 0) {
+            deviceCount = 0;
+        } else {
+            Zone *zone = [unit.zones objectAtIndex:0];
+            deviceCount = (int)zone.devices.count;
+        }
+    }
+    deviceCountChanged = oldDeviceCount != deviceCount;
+}
+
 - (void)setUnit:(Unit *)unit {
     _unit_ = unit;
+    [self calculateDeviceCountForUnit:_unit_];
+    if(tblControlItems != nil) {
+        CGRect frame = self.frame;
+        self.frame = CGRectMake(frame.origin.x, frame.origin.y, [UIScreen mainScreen].bounds.size.width, CONTROL_ITEM_HEIGHT * deviceCount);
+        tblControlItems.frame = self.bounds;
+        [tblControlItems reloadData];
+        if(deviceCountChanged && self.delegate != nil && [self.delegate respondsToSelector:@selector(unitControlPanelSizeChanged:)] ) {
+            [self.delegate unitControlPanelSizeChanged:self];
+        }
+    }
 }
 
 @end

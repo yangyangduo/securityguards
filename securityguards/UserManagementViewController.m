@@ -74,7 +74,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     // current unit is empty
-    if([XXStringUtils isBlank:[UnitManager defaultManager].currentUnit.identifier]) {
+    if([UnitManager defaultManager].currentUnit == nil) {
         buttonPanelViewIsVisable = NO;
         if(unitBindingAccounts != nil) {
             [unitBindingAccounts removeAllObjects];

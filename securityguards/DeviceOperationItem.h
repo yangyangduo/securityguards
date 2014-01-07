@@ -12,7 +12,6 @@
 
 @property (nonatomic, strong) NSString *displayName;
 @property (nonatomic, strong) NSString *commandString;
-
-- (id)initWithDisplayName:(NSString *)displayName andCommandString:(NSString *)commandString;
+@property (nonatomic, assign) unsigned int deviceState;
 
 @end

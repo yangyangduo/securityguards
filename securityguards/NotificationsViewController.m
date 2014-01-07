@@ -7,8 +7,8 @@
 //
 
 #import "NotificationsViewController.h"
-#import "MessageCell.h"
 #import "NotificationsFileUpdatedEvent.h"
+#import "MessageCell.h"
 
 @interface NotificationsViewController ()
 
@@ -41,14 +41,12 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    // subscribe events here
-    XXEventNameFilter *eventNameFilter = [[XXEventNameFilter alloc] initWithSupportedEventName:EventNotificationsFileUpdated];
-    XXEventSubscription *eventSubscription = [[XXEventSubscription alloc] initWithSubscriber:self eventFilter:eventNameFilter];
-    [[XXEventSubscriptionPublisher defaultPublisher] subscribeFor:eventSubscription];
+    XXEventSubscription *subscription = [[XXEventSubscription alloc] initWithSubscriber:self eventFilter:[[XXEventNameFilter alloc] initWithSupportedEventName:EventNotificationsFileUpdated]];
+    subscription.notifyMustInMainThread = YES;
+    [[XXEventSubscriptionPublisher defaultPublisher] subscribeFor:subscription];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-    // unsubscribe events here
     [[XXEventSubscriptionPublisher defaultPublisher] unSubscribeForSubscriber:self];
 }
 
@@ -79,7 +77,7 @@
     [super initUI];
     self.topbarView.title = NSLocalizedString(@"notifications_drawer_title", @"");
     if(tblNotifications == nil) {
-        tblNotifications = [[UITableView alloc] initWithFrame:CGRectMake(0, self.topbarView.frame.size.height+10, self.view.frame.size.width-20,self.view.frame.size.height-self.topbarView.frame.size.height) style:UITableViewStylePlain];
+        tblNotifications = [[UITableView alloc] initWithFrame:CGRectMake(0, self.topbarView.frame.size.height, self.view.frame.size.width - 20, self.view.frame.size.height-self.topbarView.frame.size.height) style:UITableViewStylePlain];
         tblNotifications.center = CGPointMake(self.view.center.x, tblNotifications.center.y);
         tblNotifications.dataSource = self;
         tblNotifications.delegate = self;
@@ -92,7 +90,7 @@
 - (void)setUp {
     [super setUp];
     if(messageArr.count == 0) {
-        [self showEmptyContentViewWithMessage:nil];
+        [self showEmptyContentViewWithMessage:NSLocalizedString(@"empty_notifications", @"")];
     }
 }
 
@@ -125,7 +123,6 @@
     if (messageCell == nil) {
         messageCell = [[MessageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:messageIdentifier];
         messageCell.backgroundColor = [UIColor clearColor];
-        
     }
     [messageCell loadWithMessage:notification];
     
@@ -146,7 +143,7 @@
 - (void)refresh {
     messageArr = [NSMutableArray arrayWithArray:[[NotificationsFileManager fileManager] readFromDisk]];
     if(messageArr.count == 0) {
-        [self showEmptyContentViewWithMessage:nil];
+        [self showEmptyContentViewWithMessage:NSLocalizedString(@"empty_notifications", @"")];
     } else {
         [self removeEmptyContentView];
         [self sort:messageArr ascending:NO];

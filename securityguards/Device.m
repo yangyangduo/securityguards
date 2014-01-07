@@ -101,7 +101,7 @@
 }
 
 #pragma mark -
-#pragma mark device type or state
+#pragma mark Device type or state
 
 - (BOOL)isOnline {
     return self.state == 1;
@@ -173,27 +173,27 @@
 }
 
 - (BOOL)isAirPurifier {
-    return [@"air-purifier" isEqualToString:self.category];
+    return [@"airpurifier" isEqualToString:self.category];
 }
 
 - (BOOL)isAirPurifierPower {
     if(!self.isAirPurifier) return NO;
-    return self.irType == 1;
+    return self.ep == 1;
 }
 
 - (BOOL)isAirPurifierLevel {
     if(!self.isAirPurifier) return NO;
-    return self.irType == 2;
+    return self.ep == 2;
 }
 
 - (BOOL)isAirPurifierModeControl {
     if(!self.isAirPurifier) return NO;
-    return self.irType == 3;
+    return self.ep == 3;
 }
 
 - (BOOL)isAirPurifierSecurity {
     if(!self.isAirPurifier) return NO;
-    return self.irType == 9;
+    return self.ep == 9;
 }
 
 @end

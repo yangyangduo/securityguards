@@ -7,6 +7,7 @@
 //
 
 #import "PortalViewController.h"
+#import "Shared.h"
 #import "XXDrawerViewController.h"
 #import "RootViewController.h"
 #import "UnitManager.h"
@@ -54,17 +55,6 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    
-    self.view.backgroundColor = [UIColor whiteColor];
-    BOOL hasLogin = ![[XXStringUtils emptyString] isEqualToString:[GlobalSettings defaultSettings].secretKey];
-    if(hasLogin) {
-        [[CoreService defaultService] startService];
-        [[CoreService defaultService] startRefreshCurrentUnit];
-    } else {
-        UINavigationController *loginNavController = [[UINavigationController alloc] initWithRootViewController:[[LoginViewController alloc] init]];
-        loginNavController.navigationBarHidden = YES;
-        [self presentViewController:loginNavController animated:NO completion:^{}];
-    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -210,6 +200,7 @@
      * Create unit control panel view
      */
     controlPanelView = [[UnitControlPanel alloc] initWithPoint:CGPointMake(0, sensorDisplayPanel.frame.origin.y + sensorDisplayPanel.bounds.size.height)];
+    
     controlPanelView.delegate = self;
     [scrollView addSubview:controlPanelView];
     
@@ -217,7 +208,19 @@
 }
 
 - (void)setUp {
+    [super setUp];
     
+    BOOL hasLogin = ![[XXStringUtils emptyString] isEqualToString:[GlobalSettings defaultSettings].secretKey];
+    if(hasLogin) {
+        [[CoreService defaultService] startService];
+        [[CoreService defaultService] startRefreshCurrentUnit];
+    } else {
+        UINavigationController *loginNavController = [[UINavigationController alloc] initWithRootViewController:[[LoginViewController alloc] init]];
+        loginNavController.navigationBarHidden = YES;
+        [self presentViewController:loginNavController animated:NO completion:^{}];
+    }
+    
+    controlPanelView.unit = [UnitManager defaultManager].currentUnit;
 }
 
 #pragma mark -
@@ -242,12 +245,7 @@
 }
 
 - (void)showUnitSelectionView:(id)sender {
-    if(self.parentViewController != nil && self.parentViewController.parentViewController != nil) {
-        if([self.parentViewController.parentViewController isKindOfClass:[XXDrawerViewController class]]) {
-            XXDrawerViewController *drawerController = (XXDrawerViewController *)self.parentViewController.parentViewController;
-            [drawerController showRightView];
-        }
-    }
+    [[Shared shared].app.rootViewController showRightView];
 }
 
 - (void)showSpeechViewContoller:(id)sender {
@@ -326,7 +324,7 @@
               || [event isKindOfClass:[CurrentUnitChangedEvent class]]) {
         [self updateUnitsView];
     } else if([event isKindOfClass:[DeviceStatusChangedEvent class]]) {
-        [self updateUnitStatus];
+        [self updateUnitStatus:[UnitManager defaultManager].currentUnit];
     }
 }
 
@@ -342,21 +340,22 @@
         NSString *str = [[NSString alloc] initWithData:dd encoding:NSUTF8StringEncoding];
         NSLog(@"<--------------------------------- \r\n %@", str);
         
-        [self updateUnitStatus];
-        
     } else {
         self.topbarView.title = NSLocalizedString(@"app_name", @"");
     }
+    
+    [self updateUnitStatus:currentUnit];
     [self updateUnitsSelectionView];
 }
 
-- (void)updateUnitStatus {
-    
+- (void)updateUnitStatus:(Unit *)unit {
+    if(controlPanelView != nil) {
+        [controlPanelView refreshWithUnit:unit];
+    }
 }
 
 - (void)updateUnitsSelectionView {
-    if(self.parentViewController == nil || self.parentViewController.parentViewController == nil) return;
-    RootViewController *rootViewController = (RootViewController *)self.parentViewController.parentViewController;
+    RootViewController *rootViewController = [Shared shared].app.rootViewController;
     if(rootViewController.rightView != nil) {
         UnitSelectionDrawerView *unitSelectionView = (UnitSelectionDrawerView *)rootViewController.rightView;
         [unitSelectionView refresh];
