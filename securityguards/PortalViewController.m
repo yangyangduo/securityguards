@@ -252,17 +252,18 @@
     if(speechViewIsOpenning) return;
     if(self.parentViewController != nil) {
         speechViewIsOpenning = YES;
-        UINavigationController *speechViewController = [[UINavigationController alloc] initWithRootViewController:[[SpeechViewController alloc] init]];
-        [speechViewController setNavigationBarHidden:YES];
-        RootViewController *rootViewController = (RootViewController *)self.parentViewController.parentViewController;
+        SpeechViewController *speechViewController = [[SpeechViewController alloc] init];
+        RootViewController *rootViewController = [Shared shared].app.rootViewController;
         [rootViewController addChildViewController:speechViewController];
-        [self.parentViewController willMoveToParentViewController:nil];
-        [rootViewController transitionFromViewController:self.parentViewController toViewController:speechViewController duration:0.8f options:UIViewAnimationOptionTransitionCrossDissolve
+        [self willMoveToParentViewController:nil];
+        CGRect frame = speechViewController.view.frame;
+        speechViewController.view.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
+        [rootViewController transitionFromViewController:self toViewController:speechViewController duration:0.8f options:UIViewAnimationOptionTransitionCrossDissolve
             animations:^{
             }
             completion:^(BOOL finished) {
                 [speechViewController didMoveToParentViewController:rootViewController];
-                [self.parentViewController removeFromParentViewController];
+                [self removeFromParentViewController];
                 [rootViewController setDisplayViewController:speechViewController];
                 speechViewIsOpenning = NO;
             }];

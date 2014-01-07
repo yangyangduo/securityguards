@@ -43,6 +43,8 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+//    self.edgesForExtendedLayout = UIRectEdgeNone;
 
     // init left view
     NSArray *navItems = [NSArray arrayWithObjects:
@@ -56,6 +58,7 @@
     navView.delegate = self;
     self.leftView = navView;
     
+    self.centerView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     // init center view
     if(navItems.count > 0) {
         [self leftNavViewItemChanged:[navItems objectAtIndex:0]];
@@ -111,7 +114,15 @@
     if(self.displayViewController != nil) {
         [self.displayViewController willMoveToParentViewController:nil];
     }
+    
+    CGRect frame = centerViewController.view.frame;
+    centerViewController.view.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
     self.centerView = centerViewController.view;
+    if([UIDevice systemVersionIsMoreThanOrEuqal7]) {
+        
+    } else {
+
+    }
     [centerViewController didMoveToParentViewController:self];
     if(self.displayViewController != nil) {
         [self.displayViewController removeFromParentViewController];

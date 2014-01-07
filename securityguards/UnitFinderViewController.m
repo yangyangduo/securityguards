@@ -52,6 +52,7 @@
     
     UILabel *lblDescription = [[UILabel alloc] initWithFrame:CGRectMake(0, 150, 260, 58)];
     lblDescription.textAlignment = NSTextAlignmentCenter;
+    lblDescription.backgroundColor = [UIColor clearColor];
     lblDescription.text = NSLocalizedString(@"unit_binding_tips", @"");
     lblDescription.center = CGPointMake(self.view.center.x, lblDescription.center.y);
     lblDescription.font = [UIFont systemFontOfSize:13.f];

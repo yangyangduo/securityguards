@@ -7,10 +7,7 @@
 //
 
 #import "SpeechViewController.h"
-#import "RootViewController.h"
 #import "ConversationTextMessage.h"
-#import "UIColor+MoreColor.h"
-#import "XXStringUtils.h"
 #import "XXDateFormatter.h"
 #import "SpeechStateView.h"
 #import "DeviceCommandNameEventFilter.h"
@@ -18,6 +15,7 @@
 #import "XXEventFilterChain.h"
 #import "DeviceStatusChangedEvent.h"
 #import "DeviceCommandEvent.h"
+#import "Shared.h"
 #import "UnitManager.h"
 
 #define MESSAGE_VIEW_TAG 999
@@ -86,8 +84,7 @@ typedef NS_ENUM(NSInteger, RecognizerState) {
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    RootViewController *rootViewController = (RootViewController *)self.parentViewController.parentViewController;
-    [rootViewController disableGestureForDrawerView];
+    [[Shared shared].app.rootViewController disableGestureForDrawerView];
     
     DeviceCommandNameEventFilter *commandNameFilter = [[DeviceCommandNameEventFilter alloc] init];
     [commandNameFilter.supportedCommandNames addObject:COMMAND_VOICE_CONTROL];
@@ -100,9 +97,7 @@ typedef NS_ENUM(NSInteger, RecognizerState) {
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-    RootViewController *rootViewController = (RootViewController *)self.parentViewController.parentViewController;
-    [rootViewController enableGestureForDrawerView];
-    
+    [[Shared shared].app.rootViewController enableGestureForDrawerView];
     [[XXEventSubscriptionPublisher defaultPublisher] unSubscribeForSubscriber:self];
 }
 
@@ -376,16 +371,16 @@ typedef NS_ENUM(NSInteger, RecognizerState) {
     if(portalViewIsOpenning) return;
     if(self.parentViewController != nil) {
         portalViewIsOpenning = YES;
-        RootViewController *rootViewController = (RootViewController *)self.parentViewController.parentViewController;
-        UIViewController *toViewController = rootViewController.portalViewController.parentViewController;
-        [self.parentViewController willMoveToParentViewController:nil];
+        RootViewController *rootViewController = [Shared shared].app.rootViewController;
+        UIViewController *toViewController = rootViewController.portalViewController;
+        [self willMoveToParentViewController:nil];
         [rootViewController addChildViewController:toViewController];
-        [rootViewController transitionFromViewController:self.parentViewController toViewController:toViewController duration:0.8f options:UIViewAnimationOptionTransitionCrossDissolve
+        [rootViewController transitionFromViewController:self toViewController:toViewController duration:0.8f options:UIViewAnimationOptionTransitionCrossDissolve
             animations:^{
             }
             completion:^(BOOL finished){
                 [toViewController didMoveToParentViewController:rootViewController];
-                [self.parentViewController removeFromParentViewController];
+                [self removeFromParentViewController];
                 [rootViewController setDisplayViewController:toViewController];
                 portalViewIsOpenning = NO;
             }];

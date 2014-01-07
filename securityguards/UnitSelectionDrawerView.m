@@ -33,12 +33,18 @@
 - (void)initUI {
     self.backgroundColor = [UIColor appBlue];
     
+    /* to fix may be a bug in ios7 when presented table view controller */
+    UILabel *lbl = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 1, 1)];
+    lbl.text = @"";
+    lbl.textColor = [UIColor clearColor];
+    lbl.backgroundColor = [UIColor clearColor];
+    [self addSubview:lbl];
+    
     tblUnits = [[UITableView alloc] initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width - 160, 0, 160, [UIScreen mainScreen].bounds.size.height) style:UITableViewStylePlain];
     tblUnits.separatorStyle = UITableViewCellSeparatorStyleNone;
     tblUnits.delegate = self;
     tblUnits.dataSource = self;
     tblUnits.backgroundColor = [UIColor clearColor];
-    
     [self addSubview:tblUnits];
 }
 

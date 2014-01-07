@@ -42,7 +42,8 @@
     imgLogo.image = [UIImage imageNamed:@"logo_left_drawer"];
     [self addSubview:imgLogo];
     
-    tblItems = [[UITableView alloc] initWithFrame:CGRectMake(0, 120, self.bounds.size.width, self.bounds.size.height - 120) style:UITableViewStylePlain];
+    CGFloat yyy = imgLogo.frame.origin.y + imgLogo.bounds.size.height + 50;
+    tblItems = [[UITableView alloc] initWithFrame:CGRectMake(0, yyy, self.bounds.size.width, self.bounds.size.height - yyy) style:UITableViewStylePlain];
     tblItems.backgroundColor = [UIColor appBlue];
     tblItems.separatorStyle = UITableViewCellSeparatorStyleNone;
     tblItems.bounces = NO;
