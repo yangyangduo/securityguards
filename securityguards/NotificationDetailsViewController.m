@@ -85,7 +85,7 @@
     textLabel.textAlignment = NSTextAlignmentLeft;
     textLabel.font = font;
     textLabel.text = [@"    " stringByAppendingString:self.notification.text];
-    textLabel.textColor = [UIColor blackColor];
+    textLabel.textColor = [UIColor darkGrayColor];
     textLabel.numberOfLines = 0;
     CGSize constraint = CGSizeMake(240, 20000.0f);
     CGSize size = [textLabel.text sizeWithFont:font constrainedToSize:constraint lineBreakMode:NSLineBreakByWordWrapping];
