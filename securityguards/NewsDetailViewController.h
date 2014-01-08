@@ -8,6 +8,6 @@
 
 #import "NavigationViewController.h"
 
-@interface NewsDetailViewController : NavigationViewController
+@interface NewsDetailViewController : NavigationViewController<UIWebViewDelegate>
 
 @end

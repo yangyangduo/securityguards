@@ -12,7 +12,9 @@
 
 @end
 
-@implementation NewsDetailViewController
+@implementation NewsDetailViewController {
+    UIWebView *newsWebView;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

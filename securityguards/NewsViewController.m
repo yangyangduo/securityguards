@@ -8,6 +8,7 @@
 
 #import "NewsViewController.h"
 #import "NewsDetailViewController.h"
+#import "UIImageView+WebCache.h"
 #import "NewsCell.h"
 
 @interface NewsViewController ()
@@ -24,7 +25,7 @@
     if (self) {
         // Custom initialization
     }
-    return self; 
+    return self;
 }
 
 - (void)viewDidLoad
@@ -95,11 +96,30 @@
             cell.frame = CGRectMake(0, 0, cell.bounds.size.width, 165);
             UIImageView *imgNews = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, cell.bounds.size.width, 160)];
             imgNews.tag = 888;
+            
+            UIView *titleView = [[UIView alloc] initWithFrame:CGRectMake(0, imgNews.bounds.size.height - 30, 320, 30)];
+            titleView.tag = 889;
+            titleView.backgroundColor = [UIColor colorWithRed:255 green:251 blue:240 alpha:0.6];
+            UILabel *lblTitle = [[UILabel alloc] initWithFrame:CGRectMake(10, 2, 260, 26)];
+            lblTitle.tag = 300;
+            lblTitle.backgroundColor = [UIColor clearColor];
+            lblTitle.font = [UIFont systemFontOfSize:12];
+            lblTitle.textColor = [UIColor darkGrayColor];
+            [titleView addSubview:lblTitle];
+            [imgNews addSubview:titleView];
+            
             [cell addSubview:imgNews];
         }
         
         UIImageView *imgView = (UIImageView *)[cell viewWithTag:888];
-        imgView.image = [UIImage imageNamed:@"test"];
+        UILabel *lblNewsTitle = (UILabel *)[[cell viewWithTag:889] viewWithTag:300];
+        
+        [imgView setImageWithURL:[[NSURL alloc] initWithString:@"http://d.hiphotos.baidu.com/image/w%3D2048/sign=fc97483737fae6cd0cb4ac613b8b0e24/728da9773912b31bdbed64298418367adab4e129.jpg"] placeholderImage:[UIImage imageNamed:@"test"]];
+        lblNewsTitle.text = @"又发现一起净化器爆炸事件";
+        
+//        Clear memory cache
+//        [[SDImageCache sharedImageCache] clearMemory];
+//        [[SDImageCache sharedImageCache] clearDisk];
     } else {
         NewsCell *newsCell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
         if(newsCell == nil) {
