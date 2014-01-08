@@ -29,6 +29,11 @@
 		6F203361187D035800BACFA5 /* PasswordTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F203360187D035800BACFA5 /* PasswordTextViewController.m */; };
 		6F203363187D1C2500BACFA5 /* bubble_mine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F203362187D1C2500BACFA5 /* bubble_mine@2x.png */; };
 		6F203365187D1C7F00BACFA5 /* icon_header@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F203364187D1C7F00BACFA5 /* icon_header@2x.png */; };
+		6F203368187D32A700BACFA5 /* test@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F203367187D32A700BACFA5 /* test@2x.png */; };
+		6F20336B187D33BD00BACFA5 /* NewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F20336A187D33BD00BACFA5 /* NewsCell.m */; };
+		6F20336E187D35CE00BACFA5 /* icon_star@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F20336D187D35CE00BACFA5 /* icon_star@2x.png */; };
+		6F203370187D452400BACFA5 /* line_news@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F20336F187D452400BACFA5 /* line_news@2x.png */; };
+		6F203373187D46EC00BACFA5 /* NewsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F203372187D46EC00BACFA5 /* NewsDetailViewController.m */; };
 		6F2AE0DF187059A900BEDB29 /* SpeechViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F2AE0DE187059A900BEDB29 /* SpeechViewController.m */; };
 		6F2AE0E51870653300BEDB29 /* UIImage+Rotate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F2AE0E41870653300BEDB29 /* UIImage+Rotate.m */; };
 		6F348507187519BB00EBB635 /* DeviceCommandNameEventFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F348506187519BB00EBB635 /* DeviceCommandNameEventFilter.m */; };
@@ -304,6 +309,13 @@
 		6F203360187D035800BACFA5 /* PasswordTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PasswordTextViewController.m; sourceTree = "<group>"; };
 		6F203362187D1C2500BACFA5 /* bubble_mine@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bubble_mine@2x.png"; sourceTree = "<group>"; };
 		6F203364187D1C7F00BACFA5 /* icon_header@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_header@2x.png"; sourceTree = "<group>"; };
+		6F203367187D32A700BACFA5 /* test@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "test@2x.png"; sourceTree = "<group>"; };
+		6F203369187D33BD00BACFA5 /* NewsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsCell.h; sourceTree = "<group>"; };
+		6F20336A187D33BD00BACFA5 /* NewsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsCell.m; sourceTree = "<group>"; };
+		6F20336D187D35CE00BACFA5 /* icon_star@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_star@2x.png"; sourceTree = "<group>"; };
+		6F20336F187D452400BACFA5 /* line_news@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "line_news@2x.png"; sourceTree = "<group>"; };
+		6F203371187D46EC00BACFA5 /* NewsDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsDetailViewController.h; sourceTree = "<group>"; };
+		6F203372187D46EC00BACFA5 /* NewsDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsDetailViewController.m; sourceTree = "<group>"; };
 		6F2AE0DD187059A900BEDB29 /* SpeechViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeechViewController.h; sourceTree = "<group>"; };
 		6F2AE0DE187059A900BEDB29 /* SpeechViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeechViewController.m; sourceTree = "<group>"; };
 		6F2AE0E31870653300BEDB29 /* UIImage+Rotate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Rotate.h"; sourceTree = "<group>"; };
@@ -724,6 +736,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6F203366187D329400BACFA5 /* test */ = {
+			isa = PBXGroup;
+			children = (
+				6F203367187D32A700BACFA5 /* test@2x.png */,
+			);
+			name = test;
+			sourceTree = "<group>";
+		};
+		6F20336C187D35C100BACFA5 /* news */ = {
+			isa = PBXGroup;
+			children = (
+				6F20336D187D35CE00BACFA5 /* icon_star@2x.png */,
+				6F20336F187D452400BACFA5 /* line_news@2x.png */,
+			);
+			name = news;
+			sourceTree = "<group>";
+		};
 		6F348504187519A100EBB635 /* event_filters */ = {
 			isa = PBXGroup;
 			children = (
@@ -1003,6 +1032,8 @@
 				6F6005AB186C18C10085B4BD /* PortalViewController.m */,
 				6FEC0FE5186C663300CB0D70 /* NewsViewController.h */,
 				6FEC0FE6186C663300CB0D70 /* NewsViewController.m */,
+				6F203371187D46EC00BACFA5 /* NewsDetailViewController.h */,
+				6F203372187D46EC00BACFA5 /* NewsDetailViewController.m */,
 				6FEC0FE8186C664200CB0D70 /* UserManagementViewController.h */,
 				6FEC0FE9186C664200CB0D70 /* UserManagementViewController.m */,
 				6F732723186D274C00A1276B /* CopyrightViewController.h */,
@@ -1375,6 +1406,8 @@
 		6F6005BA186C234C0085B4BD /* images */ = {
 			isa = PBXGroup;
 			children = (
+				6F203366187D329400BACFA5 /* test */,
+				6F20336C187D35C100BACFA5 /* news */,
 				F2F3E1B7187A807F006A9447 /* user_management */,
 				6F45ADE118765F2300DC18CA /* camera */,
 				F2B6A63A1874F8C80020809D /* notifications */,
@@ -1629,6 +1662,8 @@
 			children = (
 				F20D6AC21872997400FE6B6D /* MessageCell.h */,
 				F20D6AC31872997400FE6B6D /* MessageCell.m */,
+				6F203369187D33BD00BACFA5 /* NewsCell.h */,
+				6F20336A187D33BD00BACFA5 /* NewsCell.m */,
 			);
 			name = cells;
 			sourceTree = "<group>";
@@ -1791,9 +1826,11 @@
 				6F860F2D187552C200792DBB /* btn_rename@2x.png in Resources */,
 				6F0CD5D4186DB93000B5A3EA /* icon_pm10_blue@2x.png in Resources */,
 				6F732737186D5DB100A1276B /* icon_level@2x.png in Resources */,
+				6F203370187D452400BACFA5 /* line_news@2x.png in Resources */,
 				6F73270D186D159600A1276B /* Localizable.strings in Resources */,
 				6F45ADF118765F2D00DC18CA /* btn_camera_top@2x.png in Resources */,
 				6F45ADEE18765F2D00DC18CA /* btn_camera_right_selected@2x.png in Resources */,
+				6F20336E187D35CE00BACFA5 /* icon_star@2x.png in Resources */,
 				6F45ADFE1876A39E00DC18CA /* line_seperator_camera@2x.png in Resources */,
 				6F45ADEA18765F2D00DC18CA /* btn_camera_bottom_selected@2x.png in Resources */,
 				F2F3E1A3187A3FD6006A9447 /* blackArrow.png in Resources */,
@@ -1871,6 +1908,7 @@
 				6F45ADF81876838300DC18CA /* btn_screenshots@2x.png in Resources */,
 				6F732731186D4F4000A1276B /* btn_voice_blue@2x.png in Resources */,
 				F2B6A6381874F8AF0020809D /* icon_validation@2x.png in Resources */,
+				6F203368187D32A700BACFA5 /* test@2x.png in Resources */,
 				F2B6A6391874F8AF0020809D /* icon_warning@2x.png in Resources */,
 				F24E552C18702180000DB402 /* btn_gray@2x.png in Resources */,
 			);
@@ -1908,6 +1946,7 @@
 				F20D6AC41872997400FE6B6D /* MessageCell.m in Sources */,
 				6F600559186BF0710085B4BD /* DeviceStatus.m in Sources */,
 				6F7CDBC01872B30A0036F912 /* UnitFinderViewController.m in Sources */,
+				6F20336B187D33BD00BACFA5 /* NewsCell.m in Sources */,
 				6F531B231877EBED0084AE93 /* BlueButton.m in Sources */,
 				6F6005B9186C1B410085B4BD /* RegisterStep2ViewController.m in Sources */,
 				F2C1DFF218764C3400DD66D7 /* ImageProvider.m in Sources */,
@@ -1926,6 +1965,7 @@
 				6F6004D9186BD2430085B4BD /* AsyncUdpSocket.m in Sources */,
 				6F6005AC186C18C10085B4BD /* PortalViewController.m in Sources */,
 				6F6004F7186BDB8C0085B4BD /* TCPCommandService.m in Sources */,
+				6F203373187D46EC00BACFA5 /* NewsDetailViewController.m in Sources */,
 				6F6004DE186BD2680085B4BD /* Reachability.m in Sources */,
 				6FCEBCFB187C2749000CB911 /* AccountSettingsViewController.m in Sources */,
 				6F0CD5DF186DBD9E00B5A3EA /* UnitSelectionDrawerView.m in Sources */,
