@@ -24,6 +24,7 @@
 
 - (id)initWithFrame:(CGRect)frame andNavItems:(NSArray *)items;
 
+- (void)setScreenName:(NSString *)screenName;
 - (void)reset;
 
 @end

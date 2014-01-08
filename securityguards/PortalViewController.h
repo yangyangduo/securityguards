@@ -12,4 +12,6 @@
 
 @interface PortalViewController : DrawerViewController<XXEventSubscriber, UnitControlPanelDelegate>
 
+- (void)reset;
+
 @end

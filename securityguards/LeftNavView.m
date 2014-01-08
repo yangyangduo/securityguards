@@ -15,6 +15,8 @@
 
 @implementation LeftNavView {
     UITableView *tblItems;
+    
+    UILabel *lblAccount;
 }
 
 @synthesize delegate;
@@ -50,8 +52,8 @@
     [btnHeader addTarget:self action:@selector(showAccountSettingsViewController:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:btnHeader];
     
-    UILabel *lblAccount = [[UILabel alloc] initWithFrame:CGRectMake(59, btnHeader.frame.origin.y - 4, 92, 21)];
-    lblAccount.text = @"Young-hentre";
+    lblAccount = [[UILabel alloc] initWithFrame:CGRectMake(58, btnHeader.frame.origin.y - 4, 92, 21)];
+    lblAccount.text = [GlobalSettings defaultSettings].account;
     lblAccount.textColor = [UIColor lightGrayColor];
     lblAccount.font = [UIFont systemFontOfSize:14.f];
     lblAccount.backgroundColor = [UIColor clearColor];
@@ -79,6 +81,15 @@
 
 - (void)showAccountSettingsViewController:(id)sender {
     [[Shared shared].app.rootViewController.navigationController pushViewController:[[AccountSettingsViewController alloc] init] animated:YES];
+}
+
+- (void)setScreenName:(NSString *)screenName {
+    if(lblAccount == nil) return;
+    if([XXStringUtils isBlank:screenName]) {
+        lblAccount.text = [GlobalSettings defaultSettings].account;
+    } else {
+        lblAccount.text = screenName;
+    }
 }
 
 #pragma mark -

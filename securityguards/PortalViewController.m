@@ -19,6 +19,8 @@
 #import "UnitRenameViewController.h"
 
 /*     events      */
+#import "DeviceCommandNameEventFilter.h"
+#import "XXEventFilterChain.h"
 #import "NetworkModeChangedEvent.h"
 #import "UnitsListUpdatedEvent.h"
 #import "CurrentUnitChangedEvent.h"
@@ -40,6 +42,8 @@
     
     BOOL speechViewIsOpenning;
     UIImageView *imgNetwork;
+    
+    BOOL getAccountCommandHasSent;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -66,11 +70,22 @@
     
     XXEventNameFilter *eventNameFilter = [[XXEventNameFilter alloc] initWithSupportedEventNames:[NSArray arrayWithObjects:EventUnitsListUpdated, EventNetworkModeChanged, EventCurrentUnitChanged, EventUnitNameChanged, EventDeviceStatusChanged, nil]];
     
+    DeviceCommandNameEventFilter *commandNameFilter = [[DeviceCommandNameEventFilter alloc] init];
+    [commandNameFilter.supportedCommandNames addObject:COMMAND_GET_ACCOUNT];
+    
+    XXEventFilterChain *filterChain = [[XXEventFilterChain alloc] init];
+    [[filterChain orFilter:eventNameFilter] orFilter:commandNameFilter];
+    
     // subscribe events
-    XXEventSubscription *subscription = [[XXEventSubscription alloc] initWithSubscriber:self eventFilter:eventNameFilter];
+    XXEventSubscription *subscription = [[XXEventSubscription alloc] initWithSubscriber:self eventFilter:filterChain];
     subscription.notifyMustInMainThread = YES;
     
     [[XXEventSubscriptionPublisher defaultPublisher] subscribeFor:subscription];
+    
+    if(!getAccountCommandHasSent) {
+        getAccountCommandHasSent = YES;
+        [[CoreService defaultService] queueCommand:[CommandFactory commandForType:CommandTypeGetAccount]];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -85,7 +100,8 @@
 }
 
 - (void)initDefaults {
-    speechViewIsOpenning = NO; 
+    speechViewIsOpenning = NO;
+    getAccountCommandHasSent = NO;
 }
 
 - (void)initUI {
@@ -326,6 +342,13 @@
         [self updateUnitsView];
     } else if([event isKindOfClass:[DeviceStatusChangedEvent class]]) {
         [self updateUnitStatus:[UnitManager defaultManager].currentUnit];
+    } else if([event isKindOfClass:[DeviceCommandEvent class]]) {
+        DeviceCommandEvent *evt = (DeviceCommandEvent *)event;
+        if([evt.command isKindOfClass:[DeviceCommandUpdateAccount class]]) {
+            DeviceCommandUpdateAccount *cmd = (DeviceCommandUpdateAccount *)evt.command;
+            LeftNavView *leftView = (LeftNavView *)[Shared shared].app.rootViewController.leftView;
+            [leftView setScreenName:cmd.screenName];
+        }
     }
 }
 
@@ -375,6 +398,10 @@
     } else {
         NSLog(@"[PORTAL VIEW] Unknow network mode.");
     }
+}
+
+- (void)reset {
+    getAccountCommandHasSent = NO;
 }
 
 @end

@@ -8,6 +8,7 @@
 
 #import "AccountSettingsViewController.h"
 //#import "VerificationCodeSendViewController.h"
+#import "Shared.h"
 
 #import "CommandFactory.h"
 #import "DeviceCommandUpdateAccount.h"
@@ -121,6 +122,7 @@
             profile.nickName = cmd.screenName;
             profile.mail = cmd.email;
             [tblAccountSettings reloadData];
+            [self notifyLeftNavViewScreenNameChanged:cmd.screenName];
         } else {
             [self updateAccountOnComplete:evt.command];
         }
@@ -131,14 +133,9 @@
     return @"accountSettingsViewControllerSubscriber";
 }
 
-- (void)notifyMainViewScreenNameChanged {
-//    NavigationView *nav = (NavigationView *)[[ViewsPool sharedPool] viewWithIdentifier:@"portalView"];
-//    if(nav != nil) {
-//        DrawerView *drawerView = (DrawerView *)nav.ownerController.leftView;
-//        if(drawerView != nil) {
-//            [drawerView setScreenName:[infoDictionary objectForKey:NSLocalizedString(@"nick_name", @"")]];
-//        }
-//    }
+- (void)notifyLeftNavViewScreenNameChanged:(NSString *)screenName {
+    LeftNavView *leftView = (LeftNavView *)[Shared shared].app.rootViewController.leftView;
+    [leftView setScreenName:screenName];
 }
 
 #pragma mark -
@@ -336,7 +333,7 @@
                 [[AlertView currentAlertView] delayDismissAlertView];
                 profileChanged = NO;
                 btnSubmit.enabled = NO;
-                [self notifyMainViewScreenNameChanged];
+                [self notifyLeftNavViewScreenNameChanged:profile.nickName];
                 break;
             case -1:
                 [[AlertView currentAlertView] setMessage:NSLocalizedString(@"pwd_invalid", @"") forType:AlertViewTypeFailed];
@@ -387,6 +384,12 @@
 }
 
 - (void)delaySubmit {
+    if(![CoreService defaultService].tcpService.isConnectted) {
+        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"offline", @"") forType:AlertViewTypeFailed];
+        [[AlertView currentAlertView] alertForLock:NO autoDismiss:YES];
+        return;
+    }
+    
     [[AlertView currentAlertView] setMessage:NSLocalizedString(@"processing", @"") forType:AlertViewTypeWaitting];
     [[AlertView currentAlertView] alertForLock:YES timeout:10.f timeoutMessage:NSLocalizedString(@"request_timeout", @"")];
     DeviceCommandUpdateAccount *updateAccountCommand = (DeviceCommandUpdateAccount *)[CommandFactory commandForType:CommandTypeUpdateAccount];

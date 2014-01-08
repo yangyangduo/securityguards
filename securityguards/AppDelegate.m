@@ -91,6 +91,7 @@
         [[XXEventSubscriptionPublisher defaultPublisher] unSubscribeAllSubscriptionsExceptSubscriberId:@"rootViewControllerSubscriber"];
         [[UnitManager defaultManager] clear];
         [[GlobalSettings defaultSettings] clearAuth];
+        [self.rootViewController.portalViewController reset];
         [NSTimer scheduledTimerWithTimeInterval:0.8f target:self selector:@selector(delayLogout) userInfo:nil repeats:NO];
     }
 }
