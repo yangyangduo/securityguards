@@ -27,6 +27,8 @@
 		6F0E244B1873091600F143F9 /* UnitFinder.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0E244A1873091600F143F9 /* UnitFinder.m */; };
 		6F0E244E187309F400F143F9 /* UnitFinderResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0E244D187309F400F143F9 /* UnitFinderResult.m */; };
 		6F203361187D035800BACFA5 /* PasswordTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F203360187D035800BACFA5 /* PasswordTextViewController.m */; };
+		6F203363187D1C2500BACFA5 /* bubble_mine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F203362187D1C2500BACFA5 /* bubble_mine@2x.png */; };
+		6F203365187D1C7F00BACFA5 /* icon_header@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F203364187D1C7F00BACFA5 /* icon_header@2x.png */; };
 		6F2AE0DF187059A900BEDB29 /* SpeechViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F2AE0DE187059A900BEDB29 /* SpeechViewController.m */; };
 		6F2AE0E51870653300BEDB29 /* UIImage+Rotate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F2AE0E41870653300BEDB29 /* UIImage+Rotate.m */; };
 		6F348507187519BB00EBB635 /* DeviceCommandNameEventFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F348506187519BB00EBB635 /* DeviceCommandNameEventFilter.m */; };
@@ -152,7 +154,6 @@
 		6F7247CB18711CB5003B325F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F7247CA18711CB5003B325F /* AVFoundation.framework */; };
 		6F7247CD18711CBC003B325F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F7247CC18711CBC003B325F /* QuartzCore.framework */; };
 		6F7247CF18711CC3003B325F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F7247CE18711CC3003B325F /* SystemConfiguration.framework */; };
-		6F7247DA1871443B003B325F /* bubble_mine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F7247D81871443B003B325F /* bubble_mine@2x.png */; };
 		6F7247DB1871443B003B325F /* bubble_theirs@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F7247D91871443B003B325F /* bubble_theirs@2x.png */; };
 		6F7247DF18714D70003B325F /* SpeechStateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7247DE18714D70003B325F /* SpeechStateView.m */; };
 		6F7247E31871655D003B325F /* TextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7247E21871655D003B325F /* TextViewController.m */; };
@@ -301,6 +302,8 @@
 		6F0E244D187309F400F143F9 /* UnitFinderResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnitFinderResult.m; sourceTree = "<group>"; };
 		6F20335F187D035800BACFA5 /* PasswordTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PasswordTextViewController.h; sourceTree = "<group>"; };
 		6F203360187D035800BACFA5 /* PasswordTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PasswordTextViewController.m; sourceTree = "<group>"; };
+		6F203362187D1C2500BACFA5 /* bubble_mine@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bubble_mine@2x.png"; sourceTree = "<group>"; };
+		6F203364187D1C7F00BACFA5 /* icon_header@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_header@2x.png"; sourceTree = "<group>"; };
 		6F2AE0DD187059A900BEDB29 /* SpeechViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeechViewController.h; sourceTree = "<group>"; };
 		6F2AE0DE187059A900BEDB29 /* SpeechViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeechViewController.m; sourceTree = "<group>"; };
 		6F2AE0E31870653300BEDB29 /* UIImage+Rotate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Rotate.h"; sourceTree = "<group>"; };
@@ -529,7 +532,6 @@
 		6F7247CC18711CBC003B325F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		6F7247CE18711CC3003B325F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		6F7247D2187141EA003B325F /* iflyMSC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = iflyMSC.framework; sourceTree = "<group>"; };
-		6F7247D81871443B003B325F /* bubble_mine@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bubble_mine@2x.png"; sourceTree = "<group>"; };
 		6F7247D91871443B003B325F /* bubble_theirs@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bubble_theirs@2x.png"; sourceTree = "<group>"; };
 		6F7247DD18714D70003B325F /* SpeechStateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeechStateView.h; sourceTree = "<group>"; };
 		6F7247DE18714D70003B325F /* SpeechStateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeechStateView.m; sourceTree = "<group>"; };
@@ -1566,7 +1568,7 @@
 		6F8F57C6187113E10033228F /* speech */ = {
 			isa = PBXGroup;
 			children = (
-				6F7247D81871443B003B325F /* bubble_mine@2x.png */,
+				6F203362187D1C2500BACFA5 /* bubble_mine@2x.png */,
 				6F7247D91871443B003B325F /* bubble_theirs@2x.png */,
 			);
 			name = speech;
@@ -1608,6 +1610,7 @@
 			isa = PBXGroup;
 			children = (
 				6F0CD5E0186DC75F00B5A3EA /* icon_unit@2x.png */,
+				6F203364187D1C7F00BACFA5 /* icon_header@2x.png */,
 				6F7CDBBA1872ACE50036F912 /* icon_add_unit@2x.png */,
 				6F7CDBBC1872B2130036F912 /* icon_add_unt_red@2x.png */,
 				6FEC0FEC186C67C600CB0D70 /* logo_left_drawer@2x.png */,
@@ -1814,13 +1817,13 @@
 				6F0CD5D8186DB93000B5A3EA /* icon_pm25_red@2x.png in Resources */,
 				6F7CDBBB1872ACE50036F912 /* icon_add_unit@2x.png in Resources */,
 				6F45ADED18765F2D00DC18CA /* btn_camera_left@2x.png in Resources */,
+				6F203365187D1C7F00BACFA5 /* icon_header@2x.png in Resources */,
 				6F732718186D20C500A1276B /* icon_temp_red@2x.png in Resources */,
 				F2F3E1A4187A3FD6006A9447 /* blackArrow@2x.png in Resources */,
 				6F7CDB9F18725BCE0036F912 /* alert_success@2x.png in Resources */,
 				6FEC0FF5186C73A900CB0D70 /* icon_notifications@2x.png in Resources */,
 				F2B6A6371874F8AF0020809D /* icon_message@2x.png in Resources */,
 				6F860F2F1875580E00792DBB /* icon_camera@2x.png in Resources */,
-				6F7247DA1871443B003B325F /* bubble_mine@2x.png in Resources */,
 				6F45ADFC1876A2E000DC18CA /* btn_play_selected@2x.png in Resources */,
 				6F0CD5D0186DB93000B5A3EA /* icon_firegas_yellow@2x.png in Resources */,
 				F2F3E1A9187A3FD6006A9447 /* whiteArrow.png in Resources */,
@@ -1841,6 +1844,7 @@
 				F2F3E1C8187A86E1006A9447 /* icon_me_offline@2x.png in Resources */,
 				6F0CD5D1186DB93000B5A3EA /* icon_humidity_blue@2x.png in Resources */,
 				6F0CD5D9186DB93000B5A3EA /* icon_pm25_yellow@2x.png in Resources */,
+				6F203363187D1C2500BACFA5 /* bubble_mine@2x.png in Resources */,
 				6F0CD5DB186DB93000B5A3EA /* icon_voc_red@2x.png in Resources */,
 				6F732719186D20C500A1276B /* icon_temp_yellow@2x.png in Resources */,
 				6F45ADEC18765F2D00DC18CA /* btn_camera_left_selected@2x.png in Resources */,

@@ -141,11 +141,6 @@
 //    }
 }
 
-//- (void)updateUsername:(NSString *)username{
-//    UITableViewCell *usernameCell = [infoTable cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
-//    usernameCell.detailTextLabel.text = username;
-//}
-
 #pragma mark -
 #pragma mark UI Table View Delegate
 
@@ -365,17 +360,6 @@
     }
 }
 
-//- (void)delayDimiss {
-//    @synchronized(self){
-//        if ([AlertView currentAlertView].alertViewState != AlertViewStateReady) {
-//            [[AlertView currentAlertView] setMessage:NSLocalizedString(@"unknow_error", @"") forType:AlertViewTypeFailed];
-//            [[AlertView currentAlertView] delayDismissAlertView];
-//        }
-//    }
-//}
-
-
-
 //- (BOOL)checkExternalNetwork {
 //    if([[SMShared current].deliveryService.tcpService isConnectted]) {
 //        return YES;
@@ -395,15 +379,16 @@
             [self reallyPopupViewController];
         }
     } else {
-        profile.oldPassword = [alertView textFieldAtIndex:0].text;
-        [NSTimer scheduledTimerWithTimeInterval:0.6f target:self selector:@selector(delaySubmit) userInfo:nil repeats:NO];
+        if(buttonIndex == 1) {
+            profile.oldPassword = [alertView textFieldAtIndex:0].text;
+            [NSTimer scheduledTimerWithTimeInterval:0.6f target:self selector:@selector(delaySubmit) userInfo:nil repeats:NO];
+        }
     }
 }
 
 - (void)delaySubmit {
     [[AlertView currentAlertView] setMessage:NSLocalizedString(@"processing", @"") forType:AlertViewTypeWaitting];
     [[AlertView currentAlertView] alertForLock:YES timeout:10.f timeoutMessage:NSLocalizedString(@"request_timeout", @"")];
-    
     DeviceCommandUpdateAccount *updateAccountCommand = (DeviceCommandUpdateAccount *)[CommandFactory commandForType:CommandTypeUpdateAccount];
     updateAccountCommand.email = profile.mail;
     updateAccountCommand.screenName = profile.nickName;

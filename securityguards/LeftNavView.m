@@ -45,15 +45,27 @@
     imgLogo.image = [UIImage imageNamed:@"logo_left_drawer"];
     [self addSubview:imgLogo];
     
-    UIButton *btnTest = [[UIButton alloc] initWithFrame:CGRectMake(10, 80, 120, 30)];
-    btnTest.titleLabel.text = @"Test";
-    btnTest.backgroundColor = [UIColor blackColor];
-    btnTest.titleLabel.textColor = [UIColor whiteColor];
-    [btnTest addTarget:self action:@selector(test:) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:btnTest];
+    UIButton *btnHeader = [[UIButton alloc] initWithFrame:CGRectMake(10, imgLogo.frame.origin.y + imgLogo.bounds.size.height + 20, 79.f / 2, 80 / 2)];
+    [btnHeader setBackgroundImage:[UIImage imageNamed:@"icon_header"] forState:UIControlStateNormal];
+    [btnHeader addTarget:self action:@selector(showAccountSettingsViewController:) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:btnHeader];
     
-    CGFloat yyy = imgLogo.frame.origin.y + imgLogo.bounds.size.height + 50;
-    tblItems = [[UITableView alloc] initWithFrame:CGRectMake(0, yyy, self.bounds.size.width, self.bounds.size.height - yyy) style:UITableViewStylePlain];
+    UILabel *lblAccount = [[UILabel alloc] initWithFrame:CGRectMake(59, btnHeader.frame.origin.y - 4, 92, 21)];
+    lblAccount.text = @"Young-hentre";
+    lblAccount.textColor = [UIColor lightGrayColor];
+    lblAccount.font = [UIFont systemFontOfSize:14.f];
+    lblAccount.backgroundColor = [UIColor clearColor];
+    [self addSubview:lblAccount];
+    
+    UILabel *lblAccountSetting = [[UILabel alloc] initWithFrame:CGRectMake(59, btnHeader.frame.origin.y + 23, 60, 21)];
+    lblAccountSetting.text = NSLocalizedString(@"account_settings", @"");
+    lblAccountSetting.textColor = [UIColor lightGrayColor];
+    lblAccountSetting.font = [UIFont systemFontOfSize:12.f];
+    lblAccountSetting.backgroundColor = [UIColor clearColor];
+    [self addSubview:lblAccountSetting];
+    
+    CGFloat height = btnHeader.frame.origin.y + btnHeader.bounds.size.height + 20;
+    tblItems = [[UITableView alloc] initWithFrame:CGRectMake(0, height, self.bounds.size.width, self.bounds.size.height - height) style:UITableViewStylePlain];
     tblItems.backgroundColor = [UIColor appBlue];
     tblItems.separatorStyle = UITableViewCellSeparatorStyleNone;
     tblItems.bounces = NO;
@@ -62,10 +74,11 @@
     [self addSubview:tblItems];
 }
 
-- (void)test:(id)sender {
-    AccountSettingsViewController *s = [[AccountSettingsViewController alloc] init];
+#pragma mark -
+#pragma mark UI Methods
 
-    [[Shared shared].app.rootViewController.navigationController pushViewController:s animated:YES];
+- (void)showAccountSettingsViewController:(id)sender {
+    [[Shared shared].app.rootViewController.navigationController pushViewController:[[AccountSettingsViewController alloc] init] animated:YES];
 }
 
 #pragma mark -

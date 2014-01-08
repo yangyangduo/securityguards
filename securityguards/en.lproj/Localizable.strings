@@ -54,6 +54,7 @@
 "notifications_drawer_title"     =      "消息中心";
 "logouting"                      =      "注销中...";
 "logout_success"                 =      "注销成功";
+"account_settings"               =      "账号设置";
 
 
 /****************	Portal View Strings	****************/
@@ -89,8 +90,8 @@
 "low_level"                      =      "低";
 "device_open"                    =      "开启";
 "device_close"                   =      "关闭";
-"device_automatic"               =      "自动模式";
-"device_manual"                  =      "手动模式";
+"device_automatic"               =      "自动";
+"device_manual"                  =      "手动";
 "view"                           =      "查看";
 
 
