@@ -26,6 +26,7 @@
 		6F0CD5E1186DC75F00B5A3EA /* icon_unit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F0CD5E0186DC75F00B5A3EA /* icon_unit@2x.png */; };
 		6F0E244B1873091600F143F9 /* UnitFinder.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0E244A1873091600F143F9 /* UnitFinder.m */; };
 		6F0E244E187309F400F143F9 /* UnitFinderResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0E244D187309F400F143F9 /* UnitFinderResult.m */; };
+		6F203361187D035800BACFA5 /* PasswordTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F203360187D035800BACFA5 /* PasswordTextViewController.m */; };
 		6F2AE0DF187059A900BEDB29 /* SpeechViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F2AE0DE187059A900BEDB29 /* SpeechViewController.m */; };
 		6F2AE0E51870653300BEDB29 /* UIImage+Rotate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F2AE0E41870653300BEDB29 /* UIImage+Rotate.m */; };
 		6F348507187519BB00EBB635 /* DeviceCommandNameEventFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F348506187519BB00EBB635 /* DeviceCommandNameEventFilter.m */; };
@@ -206,6 +207,7 @@
 		6F8F57C5187111B70033228F /* ConversationTextMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F8F57C3187111B70033228F /* ConversationTextMessage.m */; };
 		6FA3B2FB186E73EC00EBC7FD /* line_dashed_v@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FA3B2FA186E73EC00EBC7FD /* line_dashed_v@2x.png */; };
 		6FA3B2FF186E796000EBC7FD /* XXActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FA3B2FE186E796000EBC7FD /* XXActionSheet.m */; };
+		6FCEBCFB187C2749000CB911 /* AccountSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FCEBCFA187C2749000CB911 /* AccountSettingsViewController.m */; };
 		6FEC0FDB186C5B2B00CB0D70 /* bg_topbar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FEC0FDA186C5B2B00CB0D70 /* bg_topbar@2x.png */; };
 		6FEC0FDF186C5DD700CB0D70 /* DrawerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FEC0FDE186C5DD700CB0D70 /* DrawerViewController.m */; };
 		6FEC0FE7186C663300CB0D70 /* NewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FEC0FE6186C663300CB0D70 /* NewsViewController.m */; };
@@ -297,6 +299,8 @@
 		6F0E244A1873091600F143F9 /* UnitFinder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnitFinder.m; sourceTree = "<group>"; };
 		6F0E244C187309F400F143F9 /* UnitFinderResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitFinderResult.h; sourceTree = "<group>"; };
 		6F0E244D187309F400F143F9 /* UnitFinderResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnitFinderResult.m; sourceTree = "<group>"; };
+		6F20335F187D035800BACFA5 /* PasswordTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PasswordTextViewController.h; sourceTree = "<group>"; };
+		6F203360187D035800BACFA5 /* PasswordTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PasswordTextViewController.m; sourceTree = "<group>"; };
 		6F2AE0DD187059A900BEDB29 /* SpeechViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeechViewController.h; sourceTree = "<group>"; };
 		6F2AE0DE187059A900BEDB29 /* SpeechViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeechViewController.m; sourceTree = "<group>"; };
 		6F2AE0E31870653300BEDB29 /* UIImage+Rotate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Rotate.h"; sourceTree = "<group>"; };
@@ -606,6 +610,8 @@
 		6FA3B2FA186E73EC00EBC7FD /* line_dashed_v@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "line_dashed_v@2x.png"; sourceTree = "<group>"; };
 		6FA3B2FD186E796000EBC7FD /* XXActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXActionSheet.h; sourceTree = "<group>"; };
 		6FA3B2FE186E796000EBC7FD /* XXActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXActionSheet.m; sourceTree = "<group>"; };
+		6FCEBCF9187C2749000CB911 /* AccountSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountSettingsViewController.h; sourceTree = "<group>"; };
+		6FCEBCFA187C2749000CB911 /* AccountSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountSettingsViewController.m; sourceTree = "<group>"; };
 		6FEC0FDA186C5B2B00CB0D70 /* bg_topbar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_topbar@2x.png"; sourceTree = "<group>"; };
 		6FEC0FDD186C5DD700CB0D70 /* DrawerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawerViewController.h; sourceTree = "<group>"; };
 		6FEC0FDE186C5DD700CB0D70 /* DrawerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawerViewController.m; sourceTree = "<group>"; };
@@ -988,6 +994,7 @@
 			children = (
 				6F6004BE186BD0290085B4BD /* commons */,
 				6F6005B0186C1ADB0085B4BD /* login_register */,
+				6FCEBCF8187C2734000CB911 /* account_settings */,
 				6F6005AD186C18D60085B4BD /* RootViewController.h */,
 				6F6005AE186C18D60085B4BD /* RootViewController.m */,
 				6F6005AA186C18C10085B4BD /* PortalViewController.h */,
@@ -1574,6 +1581,17 @@
 			name = actionsheet;
 			sourceTree = "<group>";
 		};
+		6FCEBCF8187C2734000CB911 /* account_settings */ = {
+			isa = PBXGroup;
+			children = (
+				6FCEBCF9187C2749000CB911 /* AccountSettingsViewController.h */,
+				6FCEBCFA187C2749000CB911 /* AccountSettingsViewController.m */,
+				6F20335F187D035800BACFA5 /* PasswordTextViewController.h */,
+				6F203360187D035800BACFA5 /* PasswordTextViewController.m */,
+			);
+			name = account_settings;
+			sourceTree = "<group>";
+		};
 		6FEC0FDC186C5B3500CB0D70 /* topbar */ = {
 			isa = PBXGroup;
 			children = (
@@ -1905,6 +1923,7 @@
 				6F6005AC186C18C10085B4BD /* PortalViewController.m in Sources */,
 				6F6004F7186BDB8C0085B4BD /* TCPCommandService.m in Sources */,
 				6F6004DE186BD2680085B4BD /* Reachability.m in Sources */,
+				6FCEBCFB187C2749000CB911 /* AccountSettingsViewController.m in Sources */,
 				6F0CD5DF186DBD9E00B5A3EA /* UnitSelectionDrawerView.m in Sources */,
 				F2C1DFF518764CF700DD66D7 /* CameraLoadingView.m in Sources */,
 				6F600528186BE9890085B4BD /* DeviceCommandUpdateNotifications.m in Sources */,
@@ -1992,6 +2011,7 @@
 				6F732725186D274C00A1276B /* CopyrightViewController.m in Sources */,
 				6F2AE0E51870653300BEDB29 /* UIImage+Rotate.m in Sources */,
 				6F60053E186BF0010085B4BD /* DeviceCommandHandler.m in Sources */,
+				6F203361187D035800BACFA5 /* PasswordTextViewController.m in Sources */,
 				6F60052C186BE9890085B4BD /* DeviceCommandVoiceControl.m in Sources */,
 				6F600589186BF89E0085B4BD /* CommandQueue.m in Sources */,
 				6F6004CC186BD0A50085B4BD /* LeftNavView.m in Sources */,

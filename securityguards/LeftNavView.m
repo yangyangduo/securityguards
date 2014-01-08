@@ -10,6 +10,9 @@
 #import "Shared.h"
 #import "UIDevice+SystemVersion.h"
 
+#import "AccountSettingsViewController.h"
+#import "Shared.h"
+
 @implementation LeftNavView {
     UITableView *tblItems;
 }
@@ -42,6 +45,13 @@
     imgLogo.image = [UIImage imageNamed:@"logo_left_drawer"];
     [self addSubview:imgLogo];
     
+    UIButton *btnTest = [[UIButton alloc] initWithFrame:CGRectMake(10, 80, 120, 30)];
+    btnTest.titleLabel.text = @"Test";
+    btnTest.backgroundColor = [UIColor blackColor];
+    btnTest.titleLabel.textColor = [UIColor whiteColor];
+    [btnTest addTarget:self action:@selector(test:) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:btnTest];
+    
     CGFloat yyy = imgLogo.frame.origin.y + imgLogo.bounds.size.height + 50;
     tblItems = [[UITableView alloc] initWithFrame:CGRectMake(0, yyy, self.bounds.size.width, self.bounds.size.height - yyy) style:UITableViewStylePlain];
     tblItems.backgroundColor = [UIColor appBlue];
@@ -50,6 +60,12 @@
     tblItems.delegate = self;
     tblItems.dataSource = self;
     [self addSubview:tblItems];
+}
+
+- (void)test:(id)sender {
+    AccountSettingsViewController *s = [[AccountSettingsViewController alloc] init];
+
+    [[Shared shared].app.rootViewController.navigationController pushViewController:s animated:YES];
 }
 
 #pragma mark -

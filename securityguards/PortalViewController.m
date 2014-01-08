@@ -125,7 +125,7 @@
      * Create scroll view
      */
     scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, self.topbarView.bounds.size.height, [UIScreen mainScreen].bounds.size.width, self.view.bounds.size.height - self.topbarView.bounds.size.height - voiceBackgroundView.bounds.size.height)];
-    scrollView.backgroundColor = [UIColor appGray];
+    scrollView.backgroundColor = [UIColor whiteColor];
     scrollView.showsHorizontalScrollIndicator = NO;
     [self.view addSubview:scrollView];
     

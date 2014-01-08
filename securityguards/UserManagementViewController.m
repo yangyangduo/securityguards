@@ -77,7 +77,9 @@
 
 - (void)initUI {
     [super initUI];
+    
     self.topbarView.title = NSLocalizedString(@"user_mgr_drawer_title", @"");
+    
     if(tblUnits == nil) {
         tblUnits = [[PullTableView alloc] initWithFrame:CGRectMake(0, self.topbarView.bounds.size.height, self.view.bounds.size.width, self.view.frame.size.height - self.topbarView.bounds.size.height) style:UITableViewStylePlain];
         tblUnits.pullDelegate = self;

@@ -76,6 +76,7 @@
 - (void)initUI {
     [super initUI];
     self.topbarView.title = NSLocalizedString(@"notifications_drawer_title", @"");
+    self.view.backgroundColor = [UIColor appGray];
     if(tblNotifications == nil) {
         tblNotifications = [[UITableView alloc] initWithFrame:CGRectMake(0, self.topbarView.frame.size.height, self.view.frame.size.width - 20, self.view.frame.size.height-self.topbarView.frame.size.height) style:UITableViewStylePlain];
         tblNotifications.center = CGPointMake(self.view.center.x, tblNotifications.center.y);

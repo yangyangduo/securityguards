@@ -17,6 +17,7 @@
     UITextField *textField;
 }
 
+@synthesize identifier;
 @synthesize defaultValue = _defaultValue_;
 @synthesize txtDescription = _txtDescription_;
 @synthesize delegate;
@@ -44,10 +45,10 @@
 
 - (void)initUI {
     [super initUI];
+    
     self.view.backgroundColor = [UIColor appGray];
     
     lblTextDescription = [[UILabel alloc] initWithFrame:CGRectMake(10, self.topbarView.bounds.size.height + 5, 250, 30)];
-    
     lblTextDescription.font = [UIFont systemFontOfSize:13.f];
     lblTextDescription.backgroundColor = [UIColor clearColor];
     [self.view addSubview:lblTextDescription];
@@ -62,19 +63,22 @@
     textField.contentVerticalAlignment  = UIControlContentVerticalAlignmentCenter;
     textField.returnKeyType = UIReturnKeyDone;
     textField.delegate = self;
-    
+    textField.tag = TEXT_FIELD_TAG;
     [self.view addSubview:textField];
     
     UIButton *btnSubmit =  [[UIButton alloc] initWithFrame:CGRectMake(0, textField.frame.origin.y + textField.bounds.size.height + 30, 400 / 2, 53 / 2)];
+    btnSubmit.tag = SUBMIT_BUTTON_TAG;
     btnSubmit.center = CGPointMake(self.view.center.x, btnSubmit.center.y);
     [btnSubmit setBackgroundImage:[UIImage imageNamed:@"btn_blue"] forState:UIControlStateNormal];
     [btnSubmit setBackgroundImage:[UIImage imageNamed:@"btn_blue_highlighted"] forState:UIControlStateHighlighted];
+    [btnSubmit setBackgroundImage:[UIImage imageNamed:@"btn_gray"] forState:UIControlStateDisabled];
     [btnSubmit addTarget:self action:@selector(btnSubmitPressed:) forControlEvents:UIControlEventTouchUpInside];
-    [btnSubmit setTitle:NSLocalizedString(@"submit", @"") forState:UIControlStateNormal];
+    [btnSubmit setTitle:NSLocalizedString(@"determine", @"") forState:UIControlStateNormal];
     [self.view addSubview:btnSubmit];
 }
 
 - (void)setUp {
+    [super setUp];
     lblTextDescription.text = self.txtDescription == nil ? [XXStringUtils emptyString] : self.txtDescription;
     textField.text = self.defaultValue == nil ? [XXStringUtils emptyString] : self.defaultValue;
 }
@@ -84,9 +88,13 @@
 }
 
 - (void)btnSubmitPressed:(id)sender {
-    if(self.delegate != nil && [self.delegate respondsToSelector:@selector(textView:)]) {
-        [self.delegate textView:textField.text];
+    if(self.delegate != nil && [self.delegate respondsToSelector:@selector(textView:newText:)]) {
+        [self.delegate textView:self newText:textField.text];
     }
+}
+
+- (void)close {
+    [self popupViewController];
 }
 
 - (NSString *)value {

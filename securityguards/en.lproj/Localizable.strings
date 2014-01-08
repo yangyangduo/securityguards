@@ -21,12 +21,17 @@
 "deleting"                       =      "删除中...";
 "delete_success"                 =      "删除成功";
 "loading"                        =      "加载中...";
+"processing"                     =      "处理中";
 "please_select"                  =      "请选择";
 "cancel"                         =      "取消";
 "no_content"                     =      "没有任何内容";
 "cancel"                         =      "取消";
 "determine"                      =      "确定";
 "tips"                           =      "提示";
+"discard"                        =      "放弃";
+"request_frequently"             =      "请求过于频繁";
+"update_success"                 =      "更新成功";
+"ok"                             =      "好";
 
 
 /****************	Right Drawer View Strings	****************/
@@ -40,6 +45,7 @@
 
 /****************	Left Drawer View Strings	****************/
 
+"profile_title"                  =      "个人信息";
 "portal_drawer_title"            =      "首页";
 "news_drawer_title"              =      "动态";
 "user_mgr_drawer_title"          =      "用户管理";
@@ -141,7 +147,35 @@
 "delay_send"                                  =  "请稍后再试";
 
 
-/**************** Forget password Strings *************/
+/**************** Account Settings View Strings *************/
+
+"user_name"                                   =  "用户名";
+"nick_name"                                   =  "昵称";
+"mail"                                        =  "邮箱";
+"profile_modify"                              =  "账号修改";
+"enter_new_nick_name"                         =  "请输入新的昵称:";
+"enter_new_mail"                              =  "请输入新的邮箱:";
+"nick_name_not_blank"                         =  "昵称不能为空";
+"mail_not_blank"                              =  "邮箱不能为空";
+"modify_pwd"                                  =  "修改密码";
+"password_valid"                              =  "密码验证";
+"pwd_invalid"                                 =  "密码错误";
+"enter_old_pwd"                               =  "请输入旧密码";
+"enter_new_pwd"                               =  "输入新密码";
+"enter_pwd_again"                             =  "再次输入密码";
+"pwd_edited"                                  =  "密码已编辑";
+"mail_name_blank"                             =  "昵称或邮箱为空!";
+"format_error"                                =  "请求格式错误!";
+"pwd_different"                               =  "两次输入不一致";
+"pwd_format_invalid"                          =  "密码格式错误";
+"modify_tip"                                  =  "此手机号将作为新的用户名使用";
+"enter_new_mobile"                            =  "请输入新手机号码";
+"profile_changed_tips"                        =  "修改的用户信息尚未提交,是否放弃更改?";
+"modify_account_tips"                         =  "点击修改用户登录账号";
+"modify_profile_tips"                         =  "除去修改用户登录账号之外的所有信息修改完成后,需要点击提交更改按钮进行提交";
+
+
+/**************** Forget Password View Strings *************/
 
 "forget.password.tip"                         =  "*确认后密码将会被重置，请在收到新密码后24小时内登录，否则将会失效！";
 "forget.password"                             =  "忘记密码";

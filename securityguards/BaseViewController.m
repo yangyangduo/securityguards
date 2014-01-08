@@ -48,7 +48,7 @@
 - (void)initUI {
     self.topbarView = [TopbarView topbar];
     [self.view addSubview:self.topbarView];
-    self.view.backgroundColor = [UIColor appGray];
+    self.view.backgroundColor = [UIColor whiteColor];
     if(![XXStringUtils isBlank:self.title]) {
         self.topbarView.title = self.title;
     }

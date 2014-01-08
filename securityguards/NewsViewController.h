@@ -8,6 +8,6 @@
 
 #import "DrawerViewController.h"
 
-@interface NewsViewController : DrawerViewController
+@interface NewsViewController : DrawerViewController<UITableViewDataSource, UITableViewDelegate>
 
 @end

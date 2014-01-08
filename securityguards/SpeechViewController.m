@@ -120,7 +120,6 @@ typedef NS_ENUM(NSInteger, RecognizerState) {
     [super initUI];
     
     self.topbarView.title = NSLocalizedString(@"speech_view_title", @"");
-    self.view.backgroundColor = [UIColor appGray];
     
     /*
      * Create voice button view
