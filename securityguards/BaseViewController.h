@@ -36,4 +36,7 @@
 - (void)showEmptyContentViewWithMessage:(NSString *)message;
 - (void)removeEmptyContentView;
 
+- (void)showLoadingViewWithMessage:(NSString *)message;
+- (void)removeLoadingView;
+
 @end

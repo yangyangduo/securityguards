@@ -9,6 +9,7 @@
 #import "BaseViewController.h"
 
 #define EMPTY_CONTENT_VIEW_TAG 384
+#define LOADING_VIEW_TAG 222
 
 @interface BaseViewController ()
 
@@ -82,25 +83,56 @@
 #pragma mark -
 #pragma mark Empty Content View
 
-- (void)showEmptyContentViewWithMessage:(NSString *)message {
-    UIView *emptyContentView = [self.view viewWithTag:EMPTY_CONTENT_VIEW_TAG];
-    if(emptyContentView == nil) {
-        emptyContentView = [[UIView alloc] initWithFrame:CGRectMake(0, self.topbarView.bounds.size.height, self.view.bounds.size.width, self.view.bounds.size.height - self.topbarView.bounds.size.height)];
-        emptyContentView.backgroundColor = [UIColor appGray];
-        UILabel *lbl = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 220, 30)];
-        lbl.backgroundColor = [UIColor clearColor];
-        lbl.textColor = [UIColor lightGrayColor];
-        lbl.font = [UIFont systemFontOfSize:16.f];
-        lbl.tag = 777;
-        lbl.textAlignment = NSTextAlignmentCenter;
-        lbl.center = CGPointMake(self.view.center.x, self.view.bounds.size.height / 2 - self.topbarView.bounds.size.height);
-        [emptyContentView addSubview:lbl];
-    }
-    UILabel *label = (UILabel *)[emptyContentView viewWithTag:777];
+- (void)showLoadingViewWithMessage:(NSString *)message {
+    UIView *loadingView = [[UIView alloc] initWithFrame:CGRectMake(0, self.topbarView.bounds.size.height, self.view.bounds.size.width, self.view.bounds.size.height - self.topbarView.bounds.size.height)];
+    loadingView.tag = LOADING_VIEW_TAG;
+    loadingView.backgroundColor = self.view.backgroundColor;
+    
+    UIActivityIndicatorView *indicatorView = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
+    indicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
+    indicatorView.center = CGPointMake(self.view.center.x - 35, self.view.bounds.size.height / 2 - self.topbarView.bounds.size.height);
+    [loadingView addSubview:indicatorView];
+    
+    UILabel *lbl = [[UILabel alloc] initWithFrame:CGRectMake(self.view.center.x - 15, 0, 120, 30)];
+    lbl.backgroundColor = [UIColor clearColor];
+    lbl.textColor = [UIColor lightGrayColor];
+    lbl.font = [UIFont systemFontOfSize:16.f];
+    lbl.textAlignment = NSTextAlignmentLeft;;
+    lbl.center = CGPointMake(lbl.center.x, indicatorView.center.y);
+    [loadingView addSubview:lbl];
+    
     if([XXStringUtils isBlank:message]) {
-        label.text = NSLocalizedString(@"no_content", @"");
+        lbl.text = NSLocalizedString(@"loading", @"");
     } else {
-        label.text = message;
+        lbl.text = message;
+    }
+    
+    [indicatorView startAnimating];
+    
+    [self.view addSubview:loadingView];
+}
+
+- (void)removeLoadingView {
+    UIView *loadingView = [self.view viewWithTag:LOADING_VIEW_TAG];
+    if(loadingView != nil) [loadingView removeFromSuperview];
+}
+
+- (void)showEmptyContentViewWithMessage:(NSString *)message {
+    UIView *emptyContentView = [[UIView alloc] initWithFrame:CGRectMake(0, self.topbarView.bounds.size.height, self.view.bounds.size.width, self.view.bounds.size.height - self.topbarView.bounds.size.height)];
+    emptyContentView.tag = EMPTY_CONTENT_VIEW_TAG;
+    emptyContentView.backgroundColor = self.view.backgroundColor;
+    UILabel *lbl = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 220, 30)];
+    lbl.backgroundColor = [UIColor clearColor];
+    lbl.textColor = [UIColor lightGrayColor];
+    lbl.font = [UIFont systemFontOfSize:16.f];
+    lbl.textAlignment = NSTextAlignmentCenter;
+    lbl.center = CGPointMake(self.view.center.x, self.view.bounds.size.height / 2 - self.topbarView.bounds.size.height);
+    [emptyContentView addSubview:lbl];
+    
+    if([XXStringUtils isBlank:message]) {
+        lbl.text = NSLocalizedString(@"no_content", @"");
+    } else {
+        lbl.text = message;
     }
     [self.view addSubview:emptyContentView];
 }

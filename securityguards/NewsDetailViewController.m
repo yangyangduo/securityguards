@@ -7,6 +7,7 @@
 //
 
 #import "NewsDetailViewController.h"
+#import "RestClient.h"
 
 @interface NewsDetailViewController ()
 
@@ -14,6 +15,8 @@
 
 @implementation NewsDetailViewController {
     UIWebView *newsWebView;
+    RestClient *client;
+    UITapGestureRecognizer *tapGesture;
 }
 
 @synthesize news = _news_;
@@ -49,18 +52,82 @@
 
 - (void)initDefaults {
     [super initDefaults];
+    client = [[RestClient alloc] init];
+    client.timeoutInterval = 15.f;
 }
 
 - (void)initUI {
     [super initUI];
     newsWebView = [[UIWebView alloc] initWithFrame:CGRectMake(0, self.topbarView.bounds.size.height, self.view.bounds.size.width, self.view.bounds.size.height - self.topbarView.bounds.size.height)];
-    newsWebView.backgroundColor = [UIColor redColor];
+    newsWebView.delegate = self;
     [self.view addSubview:newsWebView];
 }
 
 - (void)setUp {
     [super setUp];
 }
+
+- (void)viewDidAppear:(BOOL)animated {
+    
+    
+        [self loadPage];
+    
+}
+
+- (void)loadPage {
+    if(self.news == nil || [XXStringUtils isBlank:self.news.contentUrl]) return;
+    [self showLoadingViewWithMessage:nil];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [client get:self.news.contentUrl acceptType:@"text/html"
+            success:^(RestResponse *resp) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    if(resp.statusCode == 200) {
+                        NSString *htmlString = [[NSString alloc] initWithData:resp.body encoding:NSUTF8StringEncoding];
+                        [newsWebView loadHTMLString:htmlString baseURL:nil];
+                        [self removeLoadingView];
+                    } else {
+                        [self loadWasFailed];
+                    }
+                });
+            }
+            error:^(RestResponse *resp) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self loadWasFailed];
+                });
+            }];
+    });
+}
+
+- (void)loadWasFailed {
+    [self removeLoadingView];
+    [self showEmptyContentViewWithMessage:NSLocalizedString(@"retry_loading", @"")];
+    if(tapGesture == nil) {
+        tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(reloadPage)];
+    }
+    [self.view addGestureRecognizer:tapGesture];
+}
+
+- (void)reloadPage {
+    self.news.contentUrl = @"http://www.baidu.com";
+    [self.view removeGestureRecognizer:tapGesture];
+    [self removeEmptyContentView];
+    [self loadPage];
+}
+
+#pragma mark -
+#pragma mark Web View Delegate
+
+
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
+    
+}
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+    NSLog(request.URL.relativeString);
+    return YES;
+}
+
+
 
 - (void)setNews:(News *)news {
     _news_ = news;

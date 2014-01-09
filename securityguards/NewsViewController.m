@@ -147,7 +147,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 //    News *news = [allNews objectAtIndex:indexPath.row];
-    NewsDetailViewController *newsDetailViewController = [[NewsDetailViewController alloc] initWithNews:nil];
+    News *n =    [[News alloc] init];
+    n.contentUrl = @"http://www.baidjfdu.com";
+    
+    NewsDetailViewController *newsDetailViewController = [[NewsDetailViewController alloc] initWithNews:n];
     [self.navigationController pushViewController:newsDetailViewController animated:YES];
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
