@@ -105,7 +105,7 @@
         timeSinceLastUpdate *= -1;
         if(timeSinceLastUpdate < anHour) {
             timeToDisplay = (NSInteger) (timeSinceLastUpdate / aMinute);
-            if(timeToDisplay < 5) {
+            if(timeToDisplay < 1) {
                 _lastUpdatedLabel.text = [NSString stringWithFormat:@"%@: %@", NSLocalizedString(@"last.update", @""), NSLocalizedString(@"just_now", @"")];
             } else {
                 _lastUpdatedLabel.text = [NSString stringWithFormat:@"%@: %ld%@%@", NSLocalizedString(@"last.update", @""), (long)timeToDisplay, NSLocalizedString(@"minute", @""), NSLocalizedString(@"ago", @"")];

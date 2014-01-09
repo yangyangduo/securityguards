@@ -12,6 +12,4 @@
 
 @interface AccountSettingsViewController : NavigationViewController<UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate, TextViewDelegate, XXEventSubscriber>
 
-- (void)refresh;
-
 @end
