@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "News.h"
 
 @interface NewsCell : UITableViewCell
 
-@property (nonatomic, strong) NSString *content;
-@property (nonatomic, strong) NSDate *dateTime;
+- (void)setContent:(NSString *)content;
+- (void)setCreateTime:(NSString *)createTime;
 
 @end

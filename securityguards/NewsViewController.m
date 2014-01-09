@@ -19,6 +19,7 @@
 
 @implementation NewsViewController {
     PullTableView *tblNews;
+    NSMutableArray *allNews;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -44,6 +45,7 @@
 
 - (void)initDefaults {
     [super initDefaults];
+    allNews = [NSMutableArray array];
 }
 
 - (void)initUI {
@@ -130,14 +132,22 @@
         if(newsCell == nil) {
             newsCell = [[NewsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         }
+        
+        News *news = [[News alloc] init];
+        news.title = @"昨晚,位于岳麓大道林科大旁边发生了一起空气净化器爆炸案";
+        news.createTime = @"09-12 12:21:31";
+        
+        [newsCell setContent:news.title];
+        [newsCell setCreateTime:news.createTime];
+    
         cell = newsCell;
     }
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NewsDetailViewController *newsDetailViewController = [[NewsDetailViewController alloc] init];
-    
+//    News *news = [allNews objectAtIndex:indexPath.row];
+    NewsDetailViewController *newsDetailViewController = [[NewsDetailViewController alloc] initWithNews:nil];
     [self.navigationController pushViewController:newsDetailViewController animated:YES];
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];

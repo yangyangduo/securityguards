@@ -24,6 +24,8 @@
 		6F0CD5DC186DB93000B5A3EA /* icon_voc_yellow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F0CD5CD186DB93000B5A3EA /* icon_voc_yellow@2x.png */; };
 		6F0CD5DF186DBD9E00B5A3EA /* UnitSelectionDrawerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0CD5DE186DBD9E00B5A3EA /* UnitSelectionDrawerView.m */; };
 		6F0CD5E1186DC75F00B5A3EA /* icon_unit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F0CD5E0186DC75F00B5A3EA /* icon_unit@2x.png */; };
+		6F0D8037187E6AAC00DB5040 /* icon_ disclosure@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F0D8036187E6AAC00DB5040 /* icon_ disclosure@2x.png */; };
+		6F0D803A187E6DA800DB5040 /* NewsService.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0D8039187E6DA800DB5040 /* NewsService.m */; };
 		6F0E244B1873091600F143F9 /* UnitFinder.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0E244A1873091600F143F9 /* UnitFinder.m */; };
 		6F0E244E187309F400F143F9 /* UnitFinderResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0E244D187309F400F143F9 /* UnitFinderResult.m */; };
 		6F203361187D035800BACFA5 /* PasswordTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F203360187D035800BACFA5 /* PasswordTextViewController.m */; };
@@ -228,6 +230,7 @@
 		6F8F57C5187111B70033228F /* ConversationTextMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F8F57C3187111B70033228F /* ConversationTextMessage.m */; };
 		6FA3B2FB186E73EC00EBC7FD /* line_dashed_v@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FA3B2FA186E73EC00EBC7FD /* line_dashed_v@2x.png */; };
 		6FA3B2FF186E796000EBC7FD /* XXActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FA3B2FE186E796000EBC7FD /* XXActionSheet.m */; };
+		6FCCE92F187E551B007B42D2 /* News.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FCCE92E187E551B007B42D2 /* News.m */; };
 		6FCEBCFB187C2749000CB911 /* AccountSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FCEBCFA187C2749000CB911 /* AccountSettingsViewController.m */; };
 		6FEC0FDB186C5B2B00CB0D70 /* bg_topbar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FEC0FDA186C5B2B00CB0D70 /* bg_topbar@2x.png */; };
 		6FEC0FDF186C5DD700CB0D70 /* DrawerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FEC0FDE186C5DD700CB0D70 /* DrawerViewController.m */; };
@@ -316,6 +319,9 @@
 		6F0CD5DD186DBD9E00B5A3EA /* UnitSelectionDrawerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitSelectionDrawerView.h; sourceTree = "<group>"; };
 		6F0CD5DE186DBD9E00B5A3EA /* UnitSelectionDrawerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnitSelectionDrawerView.m; sourceTree = "<group>"; };
 		6F0CD5E0186DC75F00B5A3EA /* icon_unit@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_unit@2x.png"; sourceTree = "<group>"; };
+		6F0D8036187E6AAC00DB5040 /* icon_ disclosure@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_ disclosure@2x.png"; sourceTree = "<group>"; };
+		6F0D8038187E6DA800DB5040 /* NewsService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsService.h; sourceTree = "<group>"; };
+		6F0D8039187E6DA800DB5040 /* NewsService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsService.m; sourceTree = "<group>"; };
 		6F0E24491873091600F143F9 /* UnitFinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitFinder.h; sourceTree = "<group>"; };
 		6F0E244A1873091600F143F9 /* UnitFinder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnitFinder.m; sourceTree = "<group>"; };
 		6F0E244C187309F400F143F9 /* UnitFinderResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitFinderResult.h; sourceTree = "<group>"; };
@@ -669,6 +675,8 @@
 		6FA3B2FA186E73EC00EBC7FD /* line_dashed_v@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "line_dashed_v@2x.png"; sourceTree = "<group>"; };
 		6FA3B2FD186E796000EBC7FD /* XXActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXActionSheet.h; sourceTree = "<group>"; };
 		6FA3B2FE186E796000EBC7FD /* XXActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXActionSheet.m; sourceTree = "<group>"; };
+		6FCCE92D187E551B007B42D2 /* News.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = News.h; sourceTree = "<group>"; };
+		6FCCE92E187E551B007B42D2 /* News.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = News.m; sourceTree = "<group>"; };
 		6FCEBCF9187C2749000CB911 /* AccountSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountSettingsViewController.h; sourceTree = "<group>"; };
 		6FCEBCFA187C2749000CB911 /* AccountSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountSettingsViewController.m; sourceTree = "<group>"; };
 		6FEC0FDA186C5B2B00CB0D70 /* bg_topbar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_topbar@2x.png"; sourceTree = "<group>"; };
@@ -795,6 +803,7 @@
 			children = (
 				6F20336D187D35CE00BACFA5 /* icon_star@2x.png */,
 				6F20336F187D452400BACFA5 /* line_news@2x.png */,
+				6F0D8036187E6AAC00DB5040 /* icon_ disclosure@2x.png */,
 			);
 			name = news;
 			sourceTree = "<group>";
@@ -1354,11 +1363,11 @@
 		6F600544186BF0500085B4BD /* entities */ = {
 			isa = PBXGroup;
 			children = (
+				6F6005BD186C27A30085B4BD /* ui */,
 				F2F3E1AB187A43EA006A9447 /* User.h */,
 				F2F3E1AC187A43EA006A9447 /* User.m */,
 				F2F3E1AD187A43EA006A9447 /* Users.h */,
 				F2F3E1AE187A43EA006A9447 /* Users.m */,
-				6F6005BD186C27A30085B4BD /* ui */,
 				6F600560186BF0B90085B4BD /* Entity.h */,
 				6F600561186BF0B90085B4BD /* Entity.m */,
 				6F600545186BF0710085B4BD /* CameraPicPath.h */,
@@ -1375,6 +1384,8 @@
 				6F600554186BF0710085B4BD /* Unit.m */,
 				6F600555186BF0710085B4BD /* Zone.h */,
 				6F600556186BF0710085B4BD /* Zone.m */,
+				6FCCE92D187E551B007B42D2 /* News.h */,
+				6FCCE92E187E551B007B42D2 /* News.m */,
 			);
 			name = entities;
 			sourceTree = "<group>";
@@ -1426,6 +1437,8 @@
 				6F60059D186C015B0085B4BD /* SmsService.m */,
 				6F60059E186C015B0085B4BD /* UserManagementService.h */,
 				6F60059F186C015B0085B4BD /* UserManagementService.m */,
+				6F0D8038187E6DA800DB5040 /* NewsService.h */,
+				6F0D8039187E6DA800DB5040 /* NewsService.m */,
 			);
 			name = rest;
 			sourceTree = "<group>";
@@ -1895,6 +1908,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6F0D8037187E6AAC00DB5040 /* icon_ disclosure@2x.png in Resources */,
 				6FEC0FF7186C73B400CB0D70 /* icon_copyright@2x.png in Resources */,
 				6F0CD5D7186DB93000B5A3EA /* icon_pm25_blue@2x.png in Resources */,
 				6F860F2A187552C200792DBB /* btn_nav@2x.png in Resources */,
@@ -2075,6 +2089,7 @@
 				6FEC0FEA186C664200CB0D70 /* UserManagementViewController.m in Sources */,
 				6F203399187D4E2000BACFA5 /* SDWebImageManager.m in Sources */,
 				6F203393187D4E2000BACFA5 /* NSData+GIF.m in Sources */,
+				6FCCE92F187E551B007B42D2 /* News.m in Sources */,
 				6F7CDBA5187277120036F912 /* CameraViewController.m in Sources */,
 				6F7CDBB41872A2100036F912 /* NotificationsFileManager.m in Sources */,
 				6F6004EE186BDB480085B4BD /* ClientSocket.m in Sources */,
@@ -2114,6 +2129,7 @@
 				6F600493186BCED60085B4BD /* XXStringUtils.m in Sources */,
 				6F8F57BD18710D940033228F /* ParagraphBuilder.m in Sources */,
 				6F600491186BCED60085B4BD /* XXEventSubscription.m in Sources */,
+				6F0D803A187E6DA800DB5040 /* NewsService.m in Sources */,
 				F21512601871227C0039CC8A /* XXTextField.m in Sources */,
 				6F600572186BF3940085B4BD /* CurrentUnitChangedEvent.m in Sources */,
 				6F600523186BE9890085B4BD /* DeviceCommandReceivedCameraServer.m in Sources */,

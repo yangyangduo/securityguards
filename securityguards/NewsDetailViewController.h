@@ -7,7 +7,12 @@
 //
 
 #import "NavigationViewController.h"
+#import "News.h"
 
 @interface NewsDetailViewController : NavigationViewController<UIWebViewDelegate>
+
+@property (nonatomic, strong) News *news;
+
+- (id)initWithNews:(News *)news;
 
 @end

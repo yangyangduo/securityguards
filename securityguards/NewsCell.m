@@ -8,14 +8,12 @@
 
 #import "NewsCell.h"
 #import "UIColor+MoreColor.h"
+#import "XXStringUtils.h"
 
 @implementation NewsCell {
     UILabel *lblContent;
     UILabel *lblTime;
 }
-
-@synthesize content;
-@synthesize dateTime;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -64,11 +62,30 @@
     imgSeperator.image = [UIImage imageNamed:@"line_news"];
     [self addSubview:imgSeperator];
     
-    lblContent = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+    lblContent = [[UILabel alloc] initWithFrame:CGRectMake(imgSeperator.frame.origin.x + 10, 7, 210, 42)];
     lblContent.numberOfLines = 2;
-    lblTime = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+    lblContent.backgroundColor = [UIColor clearColor];
+    lblContent.textColor = [UIColor darkGrayColor];
+    lblContent.font = [UIFont systemFontOfSize:13.f];
+    lblTime = [[UILabel alloc] initWithFrame:CGRectMake(lblContent.frame.origin.x, lblContent.frame.origin.y + lblContent.bounds.size.height, 120, 18)];
+    lblTime.textColor = [UIColor darkGrayColor];
+    lblTime.backgroundColor = [UIColor clearColor];
+    lblTime.font = [UIFont systemFontOfSize:11.f];
+    
     [self addSubview:lblContent];
     [self addSubview:lblTime];
+    
+    UIImageView *imgDisclosure =  [[UIImageView alloc] initWithFrame:CGRectMake(backgroundView.bounds.size.width - 5, (65 - 41.f / 2) / 2 + 5, 16 / 2, 41.f / 2)];
+    imgDisclosure.image = [UIImage imageNamed:@"icon_ disclosure"];
+    [self addSubview:imgDisclosure];
+}
+
+- (void)setContent:(NSString *)content {
+    lblContent.text = [XXStringUtils isBlank:content] ? [XXStringUtils emptyString] : content;
+}
+
+- (void)setCreateTime:(NSString *)createTime {
+    lblTime.text = [XXStringUtils isBlank:createTime] ? [XXStringUtils emptyString] : createTime;
 }
 
 @end
