@@ -7,7 +7,8 @@
 //
 
 #import "DrawerViewController.h"
+#import "PullTableView.h"
 
-@interface NewsViewController : DrawerViewController<UITableViewDataSource, UITableViewDelegate>
+@interface NewsViewController : DrawerViewController<UITableViewDataSource, UITableViewDelegate, PullTableViewDelegate>
 
 @end

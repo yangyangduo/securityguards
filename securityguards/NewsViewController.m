@@ -11,12 +11,14 @@
 #import "UIImageView+WebCache.h"
 #import "NewsCell.h"
 
+#define WATTING_SECONDS 1
+
 @interface NewsViewController ()
 
 @end
 
 @implementation NewsViewController {
-    UITableView *tblNews;
+    PullTableView *tblNews;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -49,12 +51,13 @@
     self.topbarView.title = NSLocalizedString(@"news_drawer_title", @"");
     self.view.backgroundColor = [UIColor appGray];
     
-    tblNews = [[UITableView alloc] initWithFrame:CGRectMake(0, self.topbarView.bounds.size.height, self.view.bounds.size.width, self.view.bounds.size.height - self.topbarView.bounds.size.height) style:UITableViewStylePlain];
+    tblNews = [[PullTableView alloc] initWithFrame:CGRectMake(0, self.topbarView.bounds.size.height, self.view.bounds.size.width, self.view.bounds.size.height - self.topbarView.bounds.size.height) style:UITableViewStylePlain];
     tblNews.backgroundColor = [UIColor clearColor];
     tblNews.backgroundView = nil;
     tblNews.separatorStyle = UITableViewCellSeparatorStyleNone;
     tblNews.delegate = self;
     tblNews.dataSource = self;
+    tblNews.pullDelegate = self;
     [self.view addSubview:tblNews];
 }
 
@@ -137,5 +140,32 @@
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
+
+#pragma mark -
+#pragma mark Pull Table View Delegate
+
+- (void)pullTableViewDidTriggerRefresh:(PullTableView *)pullTableView {
+    if(tblNews.pullTableIsLoadingMore) {
+        [self performSelector:@selector(cancelRefresh) withObject:nil afterDelay:WATTING_SECONDS];
+        return;
+    }
+}
+
+- (void)pullTableViewDidTriggerLoadMore:(PullTableView *)pullTableView {
+    if(tblNews.pullTableIsRefreshing) {
+        [self performSelector:@selector(cancelLoadMore) withObject:nil afterDelay:WATTING_SECONDS];
+        return;
+    }
+}
+
+- (void)cancelRefresh {
+    tblNews.pullTableIsRefreshing = NO;
+}
+
+- (void)cancelLoadMore {
+    tblNews.pullTableIsLoadingMore = NO;
+}
+
+
 
 @end
