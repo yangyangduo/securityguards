@@ -138,6 +138,12 @@
     [leftView setScreenName:screenName];
 }
 
+- (void)refresh {
+    if(tblAccountSettings != nil) {
+        [tblAccountSettings reloadData];
+    }
+}
+
 #pragma mark -
 #pragma mark UI Table View Delegate
 

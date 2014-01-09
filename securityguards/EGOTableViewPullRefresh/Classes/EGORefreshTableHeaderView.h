@@ -3,7 +3,7 @@
 //  Demo
 //
 //  Created by Devin Doty on 10/14/09October14.
-//  Copyright 2009 v. All rights reserved.
+//  Copyright 2009 enormego. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -56,6 +56,7 @@ typedef enum{
     
     // Set this to Yes when egoRefreshTableHeaderDidTriggerRefresh delegate is called and No with egoRefreshScrollViewDataSourceDidFinishedLoading
     BOOL isLoading;
+	
 }
 
 @property(nonatomic,assign) id <EGORefreshTableHeaderDelegate> delegate;
