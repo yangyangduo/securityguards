@@ -62,11 +62,11 @@
     imgSeperator.image = [UIImage imageNamed:@"line_news"];
     [self addSubview:imgSeperator];
     
-    lblContent = [[UILabel alloc] initWithFrame:CGRectMake(imgSeperator.frame.origin.x + 10, 7, 210, 42)];
+    lblContent = [[UILabel alloc] initWithFrame:CGRectMake(imgSeperator.frame.origin.x + 10, 9, 210, 42)];
     lblContent.numberOfLines = 2;
     lblContent.backgroundColor = [UIColor clearColor];
     lblContent.textColor = [UIColor darkGrayColor];
-    lblContent.font = [UIFont systemFontOfSize:13.f];
+    lblContent.font = [UIFont systemFontOfSize:14.f];
     lblTime = [[UILabel alloc] initWithFrame:CGRectMake(lblContent.frame.origin.x, lblContent.frame.origin.y + lblContent.bounds.size.height, 120, 18)];
     lblTime.textColor = [UIColor darkGrayColor];
     lblTime.backgroundColor = [UIColor clearColor];

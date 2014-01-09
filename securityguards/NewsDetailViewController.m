@@ -53,7 +53,7 @@
 - (void)initDefaults {
     [super initDefaults];
     client = [[RestClient alloc] init];
-    client.timeoutInterval = 15.f;
+    client.timeoutInterval = 10.f;
 }
 
 - (void)initUI {
@@ -68,10 +68,7 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    
-    
-        [self loadPage];
-    
+    [self loadPage];
 }
 
 - (void)loadPage {
@@ -123,11 +120,15 @@
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
-    NSLog(request.URL.relativeString);
+    
+    NSDictionary *dic =    request.allHTTPHeaderFields;
+    for(NSString *str in    dic.allKeys) {
+        NSLog(@"%@   :   %@", str, [dic objectForKey:str]);
+        NSLog(@"------>");
+    }
+    
     return YES;
 }
-
-
 
 - (void)setNews:(News *)news {
     _news_ = news;

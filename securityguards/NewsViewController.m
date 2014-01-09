@@ -110,7 +110,7 @@
             UILabel *lblTitle = [[UILabel alloc] initWithFrame:CGRectMake(10, 2, 260, 26)];
             lblTitle.tag = 300;
             lblTitle.backgroundColor = [UIColor clearColor];
-            lblTitle.font = [UIFont systemFontOfSize:12];
+            lblTitle.font = [UIFont boldSystemFontOfSize:13];
             lblTitle.textColor = [UIColor darkGrayColor];
             [titleView addSubview:lblTitle];
             [imgNews addSubview:titleView];
@@ -121,7 +121,7 @@
         UIImageView *imgView = (UIImageView *)[cell viewWithTag:888];
         UILabel *lblNewsTitle = (UILabel *)[[cell viewWithTag:889] viewWithTag:300];
         
-        [imgView setImageWithURL:[[NSURL alloc] initWithString:@"http://d.hiphotos.baidu.com/image/w%3D2048/sign=fc97483737fae6cd0cb4ac613b8b0e24/728da9773912b31bdbed64298418367adab4e129.jpg"] placeholderImage:[UIImage imageNamed:@"test"]];
+        [imgView setImageWithURL:[[NSURL alloc] initWithString:@"http://g.hiphotos.baidu.com/image/w%3D2048/sign=7862eddcab773912c4268261cc218718/622762d0f703918f2e8d96ab533d269759eec477.jpg"] placeholderImage:[UIImage imageNamed:@"test"]];
         lblNewsTitle.text = @"又发现一起净化器爆炸事件";
         
 //        Clear memory cache
@@ -134,7 +134,7 @@
         }
         
         News *news = [[News alloc] init];
-        news.title = @"昨晚,位于岳麓大道林科大旁边发生了一起空气净化器爆炸案";
+        news.title = @"昨晚,位于岳麓大道林科大旁昨晚,位于岳麓大道林科大旁昨晚,位于岳麓大道林科大旁昨晚,位于岳麓大道林科大旁";
         news.createTime = @"09-12 12:21:31";
         
         [newsCell setContent:news.title];

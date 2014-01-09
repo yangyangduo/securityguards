@@ -89,6 +89,7 @@
     
     /* Load more view init */
     loadMoreView = [[LoadMoreTableFooterView alloc] initWithFrame:CGRectMake(0, self.bounds.size.height, self.bounds.size.width, self.bounds.size.height)];
+    loadMoreView.tag = 800;
     loadMoreView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
     loadMoreView.delegate = self;
     [self addSubview:loadMoreView];
