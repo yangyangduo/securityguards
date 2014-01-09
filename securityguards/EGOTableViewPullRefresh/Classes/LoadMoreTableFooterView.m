@@ -54,29 +54,29 @@
 		
         /* Config Arrow Image */
         /*
-		CALayer *layer = [[CALayer alloc] init];
-		layer.frame = CGRectMake(25.0f,midY - 20, 30.0f, 55.0f);
-		layer.contentsGravity = kCAGravityResizeAspect;
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 40000
-		if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)]) {
-			layer.contentsScale = [[UIScreen mainScreen] scale];
-		}
-#endif
-		[[self layer] addSublayer:layer];
-		_arrowImage = layer;
-        _arrowImage.hidden = YES;
+         CALayer *layer = [[CALayer alloc] init];
+         layer.frame = CGRectMake(25.0f,midY - 20, 30.0f, 55.0f);
+         layer.contentsGravity = kCAGravityResizeAspect;
+         #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 40000
+         if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)]) {
+         layer.contentsScale = [[UIScreen mainScreen] scale];
+         }
+         #endif
+         [[self layer] addSublayer:layer];
+         _arrowImage = layer;
+         _arrowImage.hidden = YES;
          */
 		
         /* Config activity indicator */
 		UIActivityIndicatorView *view = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:DEFAULT_ACTIVITY_INDICATOR_STYLE];
 		view.frame = CGRectMake(105.0f, midY - 9, 20.0f, 20.0f);
 		[self addSubview:view];
-		_activityView = view;		
+		_activityView = view;
 		
 		[self setState:EGOOPullNormal]; // Also transform the image
         
         /* Configure the default colors and arrow image */
-        [self setBackgroundColor:nil textColor:nil arrowImage:nil];	
+        [self setBackgroundColor:nil textColor:nil arrowImage:nil];
     }
     return self;
 }
@@ -104,36 +104,36 @@
 		case EGOOPullPulling:
 			_statusLabel.text = NSLocalizedString(@"release.pull.loadmore", @"");
             /*
-			[CATransaction begin];
-			[CATransaction setAnimationDuration:FLIP_ANIMATION_DURATION];
-			_arrowImage.transform = CATransform3DIdentity;
-			[CATransaction commit];*/
+             [CATransaction begin];
+             [CATransaction setAnimationDuration:FLIP_ANIMATION_DURATION];
+             _arrowImage.transform = CATransform3DIdentity;
+             [CATransaction commit];*/
 			break;
 		case EGOOPullNormal:
             /*
-			if (_state == EGOOPullPulling) {
-				[CATransaction begin];
-				[CATransaction setAnimationDuration:FLIP_ANIMATION_DURATION];
-				_arrowImage.transform = CATransform3DMakeRotation((M_PI / 180.0) * 180.0f, 0.0f, 0.0f, 1.0f);
-				[CATransaction commit];
-			}*/
+             if (_state == EGOOPullPulling) {
+             [CATransaction begin];
+             [CATransaction setAnimationDuration:FLIP_ANIMATION_DURATION];
+             _arrowImage.transform = CATransform3DMakeRotation((M_PI / 180.0) * 180.0f, 0.0f, 0.0f, 1.0f);
+             [CATransaction commit];
+             }*/
 			_statusLabel.text = NSLocalizedString(@"pull.loadmore", @"");
 			[_activityView stopAnimating];
             /*
-			[CATransaction begin];
-			[CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions]; 
-			_arrowImage.hidden = NO;
-			_arrowImage.transform = CATransform3DMakeRotation((M_PI / 180.0) * 180.0f, 0.0f, 0.0f, 1.0f);
-			[CATransaction commit];*/
+             [CATransaction begin];
+             [CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
+             _arrowImage.hidden = NO;
+             _arrowImage.transform = CATransform3DMakeRotation((M_PI / 180.0) * 180.0f, 0.0f, 0.0f, 1.0f);
+             [CATransaction commit];*/
 			break;
 		case EGOOPullLoading:
 			_statusLabel.text = NSLocalizedString(@"loading", @"");
             [_activityView startAnimating];
             /*
-			[CATransaction begin];
-			[CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions]; 
-			_arrowImage.hidden = YES;
-			[CATransaction commit];*/
+             [CATransaction begin];
+             [CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
+             _arrowImage.hidden = YES;
+             [CATransaction commit];*/
 			break;
 		default:
 			break;
@@ -145,14 +145,14 @@
     self.backgroundColor = backgroundColor? backgroundColor : DEFAULT_BACKGROUND_COLOR;
     _statusLabel.textColor = textColor? textColor: DEFAULT_TEXT_COLOR;
     _statusLabel.shadowColor = [_statusLabel.textColor colorWithAlphaComponent:0.1f];
-//    _arrowImage.contents = (id)(arrowImage? arrowImage.CGImage : DEFAULT_ARROW_IMAGE.CGImage);
+    //    _arrowImage.contents = (id)(arrowImage? arrowImage.CGImage : DEFAULT_ARROW_IMAGE.CGImage);
 }
 
 
 #pragma mark -
 #pragma mark ScrollView Methods
 
-- (void)egoRefreshScrollViewDidScroll:(UIScrollView *)scrollView {	
+- (void)egoRefreshScrollViewDidScroll:(UIScrollView *)scrollView {
     CGFloat bottomOffset = [self scrollViewOffsetFromBottom:scrollView];
 	if (_state == EGOOPullLoading) {
 		CGFloat offset = MAX(bottomOffset * -1, 0);

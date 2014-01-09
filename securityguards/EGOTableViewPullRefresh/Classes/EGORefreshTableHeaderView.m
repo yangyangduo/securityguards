@@ -76,7 +76,7 @@
 		UIActivityIndicatorView *view = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:DEFAULT_ACTIVITY_INDICATOR_STYLE];
 		view.frame = CGRectMake(25.0f,midY - 8, 20.0f, 20.0f);
 		[self addSubview:view];
-		_activityView = view;		
+		_activityView = view;
 		
 		[self setState:EGOOPullNormal];
         
@@ -105,7 +105,7 @@
         timeSinceLastUpdate *= -1;
         if(timeSinceLastUpdate < anHour) {
             timeToDisplay = (NSInteger) (timeSinceLastUpdate / aMinute);
-            if(timeToDisplay < 1) {
+            if(timeToDisplay < 5) {
                 _lastUpdatedLabel.text = [NSString stringWithFormat:@"%@: %@", NSLocalizedString(@"last.update", @""), NSLocalizedString(@"just_now", @"")];
             } else {
                 _lastUpdatedLabel.text = [NSString stringWithFormat:@"%@: %ld%@%@", NSLocalizedString(@"last.update", @""), (long)timeToDisplay, NSLocalizedString(@"minute", @""), NSLocalizedString(@"ago", @"")];
@@ -150,7 +150,7 @@
 			_statusLabel.text = NSLocalizedString(@"pull.refresh", @"");
 			[_activityView stopAnimating];
 			[CATransaction begin];
-			[CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions]; 
+			[CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
 			_arrowImage.hidden = NO;
 			_arrowImage.transform = CATransform3DIdentity;
 			[CATransaction commit];
@@ -160,7 +160,7 @@
 			_statusLabel.text = NSLocalizedString(@"refreshing", @"");
 			[_activityView startAnimating];
 			[CATransaction begin];
-			[CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions]; 
+			[CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
 			_arrowImage.hidden = YES;
 			[CATransaction commit];
 			break;
@@ -171,7 +171,7 @@
 }
 
 - (void)setBackgroundColor:(UIColor *)backgroundColor textColor:(UIColor *) textColor arrowImage:(UIImage *) arrowImage {
-//    self.backgroundColor = backgroundColor ? backgroundColor : DEFAULT_BACKGROUND_COLOR;
+    //    self.backgroundColor = backgroundColor ? backgroundColor : DEFAULT_BACKGROUND_COLOR;
     self.backgroundColor = [UIColor clearColor];
     if(textColor) {
         _lastUpdatedLabel.textColor = textColor;
@@ -189,7 +189,7 @@
 #pragma mark ScrollView Methods
 
 
-- (void)egoRefreshScrollViewDidScroll:(UIScrollView *)scrollView {	
+- (void)egoRefreshScrollViewDidScroll:(UIScrollView *)scrollView {
     
 	if (_state == EGOOPullLoading) {
 		CGFloat offset = MAX(scrollView.contentOffset.y * -1, 0);
@@ -223,7 +223,7 @@
     [UIView commitAnimations];
     if(scrollView.contentOffset.y == 0) {
         [scrollView setContentOffset:CGPointMake(scrollView.contentOffset.x, -PULL_TRIGGER_HEIGHT) animated:YES];
-    }    
+    }
 }
 
 - (void)egoRefreshScrollViewDidEndDragging:(UIScrollView *)scrollView {
@@ -235,7 +235,7 @@
 	}
 }
 
-- (void)egoRefreshScrollViewDataSourceDidFinishedLoading:(UIScrollView *)scrollView {	
+- (void)egoRefreshScrollViewDataSourceDidFinishedLoading:(UIScrollView *)scrollView {
     isLoading = NO;
 	[UIView beginAnimations:nil context:NULL];
 	[UIView setAnimationDuration:.3];
