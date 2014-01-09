@@ -208,6 +208,8 @@
 /*************** Refresh Table View Strings *************************/
 
 "pull.refresh"          = "下拉刷新";
+"pull.loadmore"         = "上拉加载更多";
+"release.pull.loadmore" = "释放加载更多";
 "release.refresh"       = "释放立即刷新";
 "refreshing"            = "刷新中...";
 "last.update"           = "最后更新";

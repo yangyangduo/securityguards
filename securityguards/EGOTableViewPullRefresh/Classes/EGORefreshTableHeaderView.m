@@ -62,7 +62,7 @@
 		
         /* Config Arrow Image */
 		CALayer *layer = [[CALayer alloc] init];
-		layer.frame = CGRectMake(25.0f,midY - 35, 30.0f, 55.0f);
+		layer.frame = CGRectMake(75.0f,midY - 17, 30.0f, 35.0f);
 		layer.contentsGravity = kCAGravityResizeAspect;
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 40000
 		if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)]) {
@@ -74,7 +74,7 @@
 		
         /* Config activity indicator */
 		UIActivityIndicatorView *view = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:DEFAULT_ACTIVITY_INDICATOR_STYLE];
-		view.frame = CGRectMake(25.0f,midY - 8, 20.0f, 20.0f);
+		view.frame = CGRectMake(75.0f,midY - 8, 20.0f, 20.0f);
 		[self addSubview:view];
 		_activityView = view;
 		

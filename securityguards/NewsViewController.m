@@ -11,7 +11,7 @@
 #import "UIImageView+WebCache.h"
 #import "NewsCell.h"
 
-#define WATTING_SECONDS 1
+#define WATTING_SECONDS 1.5f
 
 @interface NewsViewController ()
 
@@ -55,9 +55,11 @@
     tblNews.backgroundColor = [UIColor clearColor];
     tblNews.backgroundView = nil;
     tblNews.separatorStyle = UITableViewCellSeparatorStyleNone;
+    tblNews.pullTextColor = [UIColor lightGrayColor];
     tblNews.delegate = self;
     tblNews.dataSource = self;
     tblNews.pullDelegate = self;
+    tblNews.pullLastRefreshDate = [NSDate date];
     [self.view addSubview:tblNews];
 }
 
@@ -149,6 +151,7 @@
         [self performSelector:@selector(cancelRefresh) withObject:nil afterDelay:WATTING_SECONDS];
         return;
     }
+    NSLog(@"refresh table ...");
 }
 
 - (void)pullTableViewDidTriggerLoadMore:(PullTableView *)pullTableView {
@@ -156,6 +159,15 @@
         [self performSelector:@selector(cancelLoadMore) withObject:nil afterDelay:WATTING_SECONDS];
         return;
     }
+    NSLog(@"load more table ...");
+}
+
+- (void)refresh {
+    
+}
+
+- (void)loadMore {
+    
 }
 
 - (void)cancelRefresh {
@@ -165,7 +177,5 @@
 - (void)cancelLoadMore {
     tblNews.pullTableIsLoadingMore = NO;
 }
-
-
 
 @end
