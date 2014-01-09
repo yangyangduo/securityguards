@@ -15,13 +15,12 @@
 #import "AccountManageCellData.h"
 #import "SystemService.h"
 #import "UnitManager.h"
+#import "AccountManageCell.h"
 
 #define BTN_MARGIN                  35
 #define BTN_WIDTH                   45 / 2
 #define BTN_HEIGHT                  44 / 2
 #define REFRESH_AGAIN_DURATION      2
-#define CELL_HEIGHT                 93/2
-#define CELL_WIDTH                  624/2
 #define ACCESSORY_TAG               1998
 
 @interface UserManagementViewController ()

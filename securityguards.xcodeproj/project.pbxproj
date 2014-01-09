@@ -239,6 +239,7 @@
 		6FEC0FF3186C739700CB0D70 /* icon_logout@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FEC0FF2186C739700CB0D70 /* icon_logout@2x.png */; };
 		6FEC0FF5186C73A900CB0D70 /* icon_notifications@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FEC0FF4186C73A900CB0D70 /* icon_notifications@2x.png */; };
 		6FEC0FF7186C73B400CB0D70 /* icon_copyright@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FEC0FF6186C73B400CB0D70 /* icon_copyright@2x.png */; };
+		F207BE31187E33F400993A6F /* AccountManageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F207BE30187E33F400993A6F /* AccountManageCell.m */; };
 		F20D6AC41872997400FE6B6D /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F20D6AC31872997400FE6B6D /* MessageCell.m */; };
 		F20D6AC718729A8800FE6B6D /* NotificationDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F20D6AC618729A8800FE6B6D /* NotificationDetailsViewController.m */; };
 		F20D6ACA18729C9F00FE6B6D /* XXDateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = F20D6AC918729C9F00FE6B6D /* XXDateFormatter.m */; };
@@ -686,6 +687,8 @@
 		6FEC0FF6186C73B400CB0D70 /* icon_copyright@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_copyright@2x.png"; sourceTree = "<group>"; };
 		6FEC0FF8186C75F500CB0D70 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		6FEC0FF9186C75F500CB0D70 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		F207BE2F187E33F400993A6F /* AccountManageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountManageCell.h; sourceTree = "<group>"; };
+		F207BE30187E33F400993A6F /* AccountManageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountManageCell.m; sourceTree = "<group>"; };
 		F20D6AC21872997400FE6B6D /* MessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageCell.h; sourceTree = "<group>"; };
 		F20D6AC31872997400FE6B6D /* MessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageCell.m; sourceTree = "<group>"; };
 		F20D6AC518729A8800FE6B6D /* NotificationDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationDetailsViewController.h; sourceTree = "<group>"; };
@@ -1748,6 +1751,8 @@
 				F20D6AC31872997400FE6B6D /* MessageCell.m */,
 				6F203369187D33BD00BACFA5 /* NewsCell.h */,
 				6F20336A187D33BD00BACFA5 /* NewsCell.m */,
+				F207BE2F187E33F400993A6F /* AccountManageCell.h */,
+				F207BE30187E33F400993A6F /* AccountManageCell.m */,
 			);
 			name = cells;
 			sourceTree = "<group>";
@@ -2141,6 +2146,7 @@
 				6F45ADF418766AFC00DC18CA /* DirectionItemButton.m in Sources */,
 				6F600562186BF0B90085B4BD /* Entity.m in Sources */,
 				6F600573186BF3940085B4BD /* DeviceCommandEvent.m in Sources */,
+				F207BE31187E33F400993A6F /* AccountManageCell.m in Sources */,
 				6F203392187D4E2000BACFA5 /* MKAnnotationView+WebCache.m in Sources */,
 				F2F3E1B0187A43EA006A9447 /* Users.m in Sources */,
 				6F7247C318711C4E003B325F /* SpeechSynthesizer.m in Sources */,
