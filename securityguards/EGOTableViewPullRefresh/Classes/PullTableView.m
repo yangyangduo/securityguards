@@ -87,11 +87,11 @@
     refreshView.delegate = self;
     [self addSubview:refreshView];
     
-//    /* Load more view init */
-//    loadMoreView = [[LoadMoreTableFooterView alloc] initWithFrame:CGRectMake(0, self.bounds.size.height, self.bounds.size.width, self.bounds.size.height)];
-//    loadMoreView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
-//    loadMoreView.delegate = self;
-//    [self addSubview:loadMoreView];
+    /* Load more view init */
+    loadMoreView = [[LoadMoreTableFooterView alloc] initWithFrame:CGRectMake(0, self.bounds.size.height, self.bounds.size.width, self.bounds.size.height)];
+    loadMoreView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
+    loadMoreView.delegate = self;
+    [self addSubview:loadMoreView];
     
 }
 
@@ -106,6 +106,10 @@
     CGRect loadMoreFrame = loadMoreView.frame;
     loadMoreFrame.origin.y = self.contentSize.height + visibleTableDiffBoundsHeight;
     loadMoreView.frame = loadMoreFrame;
+    
+    
+    
+    
 }
 
 #pragma mark - Preserving the original behaviour
