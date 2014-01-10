@@ -226,8 +226,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     News *news = [allNews objectAtIndex:indexPath.row];
-
-    news.contentUrl = @"wap.baidu.com";
     
     NewsDetailViewController *newsDetailViewController = [[NewsDetailViewController alloc] initWithNews:news];
     [self.navigationController pushViewController:newsDetailViewController animated:YES];

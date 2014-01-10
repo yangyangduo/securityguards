@@ -58,7 +58,9 @@
 
 - (void)initUI {
     [super initUI];
+    self.view.backgroundColor = [UIColor whiteColor];
     newsWebView = [[UIWebView alloc] initWithFrame:CGRectMake(0, self.topbarView.bounds.size.height, self.view.bounds.size.width, self.view.bounds.size.height - self.topbarView.bounds.size.height)];
+    newsWebView.backgroundColor = [UIColor whiteColor];
     newsWebView.delegate = self;
     [self.view addSubview:newsWebView];
 }
@@ -105,7 +107,6 @@
 }
 
 - (void)reloadPage {
-    self.news.contentUrl = @"http://www.baidu.com";
     [self.view removeGestureRecognizer:tapGesture];
     [self removeEmptyContentView];
     [self loadPage];
@@ -114,19 +115,10 @@
 #pragma mark -
 #pragma mark Web View Delegate
 
-
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
-    
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
-    
-    NSDictionary *dic =    request.allHTTPHeaderFields;
-    for(NSString *str in    dic.allKeys) {
-        NSLog(@"%@   :   %@", str, [dic objectForKey:str]);
-        NSLog(@"------>");
-    }
-    
     return YES;
 }
 
