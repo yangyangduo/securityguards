@@ -9,6 +9,7 @@
 #import "AccountSettingsViewController.h"
 //#import "VerificationCodeSendViewController.h"
 #import "Shared.h"
+#import "BlueButton.h"
 
 #import "CommandFactory.h"
 #import "DeviceCommandUpdateAccount.h"
@@ -182,7 +183,7 @@
         lblDescription.text = NSLocalizedString(@"modify_profile_tips", @"");
         [footView addSubview:lblDescription];
         if(btnSubmit == nil) {
-            btnSubmit = [[UIButton alloc] initWithFrame:CGRectMake(0, 70, 400 / 2, 53 / 2)];
+            btnSubmit = [BlueButton blueButtonWithPoint:CGPointMake(0, 70) resize:CGSizeMake(300, 40)];
             btnSubmit.center = CGPointMake(footView.center.x, btnSubmit.center.y);
             [btnSubmit setBackgroundImage:[UIImage imageNamed:@"btn_blue"] forState:UIControlStateNormal];
             [btnSubmit setBackgroundImage:[UIImage imageNamed:@"btn_blue_highlighted"] forState:UIControlStateHighlighted];
