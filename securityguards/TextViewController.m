@@ -50,11 +50,11 @@
     self.view.backgroundColor = [UIColor appGray];
     
     lblTextDescription = [[UILabel alloc] initWithFrame:CGRectMake(10, self.topbarView.bounds.size.height + 5, 250, 30)];
-    lblTextDescription.font = [UIFont systemFontOfSize:13.f];
+    lblTextDescription.font = [UIFont systemFontOfSize:15.f];
     lblTextDescription.backgroundColor = [UIColor clearColor];
     [self.view addSubview:lblTextDescription];
     
-    textField = [[UITextField alloc] initWithFrame:CGRectMake(0, lblTextDescription.frame.origin.y + lblTextDescription.bounds.size.height + 5, [UIScreen mainScreen].bounds.size.width, 30)];
+    textField = [[UITextField alloc] initWithFrame:CGRectMake(0, lblTextDescription.frame.origin.y + lblTextDescription.bounds.size.height + 5, [UIScreen mainScreen].bounds.size.width, 35)];
     textField.backgroundColor = [UIColor whiteColor];
     textField.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 6, 0)];
     textField.leftViewMode = UITextFieldViewModeAlways;
@@ -67,12 +67,7 @@
     textField.tag = TEXT_FIELD_TAG;
     [self.view addSubview:textField];
     
-    
-
-    
-    UIButton *btnSubmit = [BlueButton blueButtonWithPoint:CGPointMake(0, textField.frame.origin.y + textField.bounds.size.height + 30) resize:CGSizeMake(300, 40)];
-    
-//    UIButton *btnSubmit =  [[UIButton alloc] initWithFrame:CGRectMake(0, textField.frame.origin.y + textField.bounds.size.height + 30, 400 / 2, 53 / 2)];
+    UIButton *btnSubmit = [BlueButton blueButtonWithPoint:CGPointMake(0, textField.frame.origin.y + textField.bounds.size.height + 25) resize:CGSizeMake(300, 40)];
     btnSubmit.tag = SUBMIT_BUTTON_TAG;
     btnSubmit.center = CGPointMake(self.view.center.x, btnSubmit.center.y);
     [btnSubmit setBackgroundImage:[UIImage imageNamed:@"btn_blue"] forState:UIControlStateNormal];

@@ -52,7 +52,7 @@
     lblTextDescription.backgroundColor = [UIColor clearColor];
     [self.view addSubview:lblTextDescription];
     
-    textField = [[UITextField alloc] initWithFrame:CGRectMake(0, lblTextDescription.frame.origin.y + lblTextDescription.bounds.size.height + 5, [UIScreen mainScreen].bounds.size.width, 30)];
+    textField = [[UITextField alloc] initWithFrame:CGRectMake(0, lblTextDescription.frame.origin.y + lblTextDescription.bounds.size.height + 5, [UIScreen mainScreen].bounds.size.width, 35)];
     textField.secureTextEntry = YES;
     textField.backgroundColor = [UIColor whiteColor];
     textField.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 6, 0)];
