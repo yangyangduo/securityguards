@@ -12,8 +12,10 @@
 #import "NSDate+Extension.h"
 #import "NewsCell.h"
 #import "NewsService.h"
+#import "NewsFileManager.h"
 
 #define WATTING_SECONDS 1.5f
+#define Refresh_TIME_DIFFERENCE_MINUTES 60
 
 @interface NewsViewController ()
 
@@ -63,12 +65,27 @@
     tblNews.delegate = self;
     tblNews.dataSource = self;
     tblNews.pullDelegate = self;
-    tblNews.pullLastRefreshDate = [NSDate date];
     [self.view addSubview:tblNews];
 }
 
 - (void)setUp {
     [super setUp];
+    
+    NSDate *lastUpdateTime = nil;
+    NSArray *news = [[NewsFileManager fileManager] readFromDisk:&lastUpdateTime];
+    if(news != nil) {
+        tblNews.pullLastRefreshDate = lastUpdateTime;
+        [allNews addObjectsFromArray:news];
+        [tblNews reloadData];
+    }
+    
+    if(lastUpdateTime != nil) {
+        NSTimeInterval timeDifference = [[NSDate date] timeIntervalSinceDate:lastUpdateTime];
+        NSTimeInterval minutes = timeDifference / 60;
+        if(minutes < Refresh_TIME_DIFFERENCE_MINUTES) {
+            return;
+        }
+    }
     
     [self getTopNews];
     tblNews.pullTableIsRefreshing = YES;
@@ -128,6 +145,9 @@
                 
                 if(!isAppendNews) {
                     [tblNews reloadData];
+                    NSDate *now = [NSDate date];
+                    tblNews.pullLastRefreshDate = now;
+                    [[NewsFileManager fileManager] saveToDisk:allNews lastUpdateTime:now];
                 } else {
                     [tblNews beginUpdates];
                     [tblNews insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationNone];

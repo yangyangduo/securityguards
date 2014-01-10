@@ -83,7 +83,6 @@
                     if(resp.statusCode == 200) {
                         NSString *htmlString = [[NSString alloc] initWithData:resp.body encoding:NSUTF8StringEncoding];
                         [newsWebView loadHTMLString:htmlString baseURL:nil];
-                        [self removeLoadingView];
                     } else {
                         [self loadWasFailed];
                     }
@@ -115,7 +114,12 @@
 #pragma mark -
 #pragma mark Web View Delegate
 
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+    [self removeLoadingView];
+}
+
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
+    [self removeLoadingView];
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {

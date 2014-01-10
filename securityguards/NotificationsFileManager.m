@@ -19,9 +19,10 @@
 
 + (NotificationsFileManager *)fileManager {
     static NotificationsFileManager *manager;
-    if(manager == nil) {
+    static dispatch_once_t notificationOnceToken;
+    dispatch_once(&notificationOnceToken, ^{
         manager = [[NotificationsFileManager alloc] init];
-    }
+    });
     return manager;
 }
 

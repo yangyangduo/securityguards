@@ -30,7 +30,11 @@
 
 - (NSMutableDictionary *)toJson {
     NSMutableDictionary *json = [super toJson];
-    
+    [json setMayBlankString:self.identifier forKey:@"a"];
+    [json setMayBlankString:self.title forKey:@"b"];
+    [json setMayBlankString:self.imageUrl forKey:@"c"];
+    [json setMayBlankString:self.contentUrl forKey:@"d"];
+    [json setLongLong:self.createTime forKey:@"e"];
     return json;
 }
 

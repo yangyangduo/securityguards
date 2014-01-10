@@ -230,6 +230,7 @@
 		6F8F57C5187111B70033228F /* ConversationTextMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F8F57C3187111B70033228F /* ConversationTextMessage.m */; };
 		6FA3B2FB186E73EC00EBC7FD /* line_dashed_v@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FA3B2FA186E73EC00EBC7FD /* line_dashed_v@2x.png */; };
 		6FA3B2FF186E796000EBC7FD /* XXActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FA3B2FE186E796000EBC7FD /* XXActionSheet.m */; };
+		6FA69113187F9618005D1415 /* NewsFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FA69112187F9618005D1415 /* NewsFileManager.m */; };
 		6FCCE92F187E551B007B42D2 /* News.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FCCE92E187E551B007B42D2 /* News.m */; };
 		6FCEBCFB187C2749000CB911 /* AccountSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FCEBCFA187C2749000CB911 /* AccountSettingsViewController.m */; };
 		6FEC0FDB186C5B2B00CB0D70 /* bg_topbar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FEC0FDA186C5B2B00CB0D70 /* bg_topbar@2x.png */; };
@@ -677,6 +678,8 @@
 		6FA3B2FA186E73EC00EBC7FD /* line_dashed_v@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "line_dashed_v@2x.png"; sourceTree = "<group>"; };
 		6FA3B2FD186E796000EBC7FD /* XXActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXActionSheet.h; sourceTree = "<group>"; };
 		6FA3B2FE186E796000EBC7FD /* XXActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXActionSheet.m; sourceTree = "<group>"; };
+		6FA69111187F9618005D1415 /* NewsFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsFileManager.h; sourceTree = "<group>"; };
+		6FA69112187F9618005D1415 /* NewsFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsFileManager.m; sourceTree = "<group>"; };
 		6FCCE92D187E551B007B42D2 /* News.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = News.h; sourceTree = "<group>"; };
 		6FCCE92E187E551B007B42D2 /* News.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = News.m; sourceTree = "<group>"; };
 		6FCEBCF9187C2749000CB911 /* AccountSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountSettingsViewController.h; sourceTree = "<group>"; };
@@ -1644,6 +1647,8 @@
 				6F60054C186BF0710085B4BD /* UnitManager.m */,
 				6F7CDBB21872A2100036F912 /* NotificationsFileManager.h */,
 				6F7CDBB31872A2100036F912 /* NotificationsFileManager.m */,
+				6FA69111187F9618005D1415 /* NewsFileManager.h */,
+				6FA69112187F9618005D1415 /* NewsFileManager.m */,
 			);
 			name = manager;
 			sourceTree = "<group>";
@@ -2122,6 +2127,7 @@
 				6F600558186BF0710085B4BD /* Device.m in Sources */,
 				6F600463186BCE210085B4BD /* main.m in Sources */,
 				6F60049F186BCEF10085B4BD /* XXAllAllowedEventFilter.m in Sources */,
+				6FA69113187F9618005D1415 /* NewsFileManager.m in Sources */,
 				6F60052B186BE9890085B4BD /* DeviceCommandUpdateUnits.m in Sources */,
 				6F600521186BE9890085B4BD /* DeviceCommandGetCameraServer.m in Sources */,
 				6F6004A3186BCEF10085B4BD /* XXEventNameFilter.m in Sources */,

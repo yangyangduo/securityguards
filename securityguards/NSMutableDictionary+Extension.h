@@ -13,6 +13,7 @@
 
 - (void)setInteger:(NSInteger)integer forKey:(id<NSCopying>)key;
 - (void)setDouble:(double)db forKey:(id<NSCopying>)key;
+- (void)setLongLong:(long long)ll forKey:(id<NSCopying>)key;
 - (void)setDateLongLongValue:(NSDate *)date forKey:(id<NSCopying>)key;
 - (void)setNoNilObject:(id)object forKey:(id<NSCopying>)key;
 - (void)setNoBlankString:(NSString *)string forKey:(id<NSCopying>)key;
