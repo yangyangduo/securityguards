@@ -111,7 +111,8 @@
                 NSMutableArray *indexPaths = [NSMutableArray array];
                 int lastIndex = allNews.count;
                 if(arr == nil || arr.count == 0) {
-                    NSLog(@"no more messages");
+                    [[AlertView currentAlertView] setMessage:NSLocalizedString(@"no_more", @"") forType:AlertViewTypeFailed];
+                    [[AlertView currentAlertView] alertForLock:NO autoDismiss:YES];
                 } else {
                     for(int i=0; i<arr.count; i++) {
                         NSDictionary *dic = [arr objectAtIndex:i];

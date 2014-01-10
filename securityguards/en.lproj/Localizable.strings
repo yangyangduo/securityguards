@@ -219,6 +219,7 @@
 "release.refresh"       = "释放立即刷新";
 "refreshing"            = "刷新中...";
 "last.update"           = "最后更新";
+"no_more"               = "已经到底了";
 "ago"                   = "以前";
 "just_now"              = "刚刚";
 "minute"                = "分钟";
