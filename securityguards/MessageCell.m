@@ -8,6 +8,7 @@
 
 #import "MessageCell.h"
 #import "XXDateFormatter.h"
+#import "UIColor+MoreColor.h"
 
 @implementation MessageCell {
     UIView  *view;
@@ -28,47 +29,57 @@
 }
 
 - (void)initUI {
+    
+    self.backgroundColor = [UIColor clearColor];
+    self.backgroundView = [[UIView alloc] initWithFrame:self.bounds];
+    self.selectedBackgroundView = [[UIView alloc] initWithFrame:self.bounds];
+    self.backgroundView.backgroundColor = [UIColor clearColor];
+    self.selectedBackgroundView.backgroundColor = [UIColor clearColor];
+    
+    UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectMake(10, 5, 300, 65)];
+    backgroundView.backgroundColor = [UIColor appWhite];
+    [self.backgroundView addSubview:backgroundView];
+    
+    UIView *selectedBackgroundView = [[UIView alloc] initWithFrame:CGRectMake(10, 5, 300, 65)];
+    selectedBackgroundView.backgroundColor = [UIColor appDarkGray];
+    [self.selectedBackgroundView addSubview:selectedBackgroundView];
+
     if (typeMessage == nil) {
         typeMessage = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 76/2, 64/2)];
         typeMessage.backgroundColor = [UIColor clearColor];
         typeMessage.tag = TYPE_IMAGE_TAG;
     }
-    UIView *ySeperatorView1 = [[UIView alloc] initWithFrame:CGRectMake(58, 0, 1, MESSAGE_CELL_HEIGHT-10)];
-    ySeperatorView1.backgroundColor = [UIColor colorWithHexString:@"e0e0e0"];
-    
-    UIView *ySeperatorView2 = [[UIView alloc] initWithFrame:CGRectMake(59, 0, 1, MESSAGE_CELL_HEIGHT-10)];
-    ySeperatorView2.backgroundColor = [UIColor whiteColor];
+    UIImageView *imgSeperator = [[UIImageView alloc] initWithFrame:CGRectMake(70, 0, 2, 65)];
+    imgSeperator.image = [UIImage imageNamed:@"line_news"];
     
     if (textLabel == nil) {
-        textLabel = [[UILabel alloc] initWithFrame:CGRectMake(80, 0, 180, MESSAGE_CELL_HEIGHT-30)];
+        textLabel = [[UILabel alloc] initWithFrame:CGRectMake(80, 5, 180, 42)];
         textLabel.tag = TEXT_LABEL_TAG;
-        textLabel.font =[UIFont systemFontOfSize:11];
+        textLabel.font =[UIFont systemFontOfSize:14];
         textLabel.textAlignment = NSTextAlignmentLeft;
         textLabel.textColor = [UIColor darkGrayColor];
-        textLabel.lineBreakMode = NSLineBreakByCharWrapping;
-        textLabel.numberOfLines = 0;
+        textLabel.numberOfLines = 2;
         textLabel.backgroundColor = [UIColor clearColor];
     }
     
     if (lblTime == nil) {
-        lblTime = [[UILabel alloc] initWithFrame:CGRectMake(80, MESSAGE_CELL_HEIGHT-30, 240, 15)];
+        lblTime = [[UILabel alloc] initWithFrame:CGRectMake(80, 46, 240, 18)];
         lblTime.backgroundColor = [UIColor clearColor];
         lblTime.textColor = [UIColor darkGrayColor];
-        lblTime.font = [UIFont systemFontOfSize:9];
+        lblTime.font = [UIFont systemFontOfSize:11];
     }
     
     if(view == nil) {
-        view = [[UIView alloc] initWithFrame:CGRectMake(0, 10, self.frame.size.width, MESSAGE_CELL_HEIGHT-10)];
+        view = [[UIView alloc] initWithFrame:CGRectMake(10, 5, self.frame.size.width, MESSAGE_CELL_HEIGHT-5)];
         view.backgroundColor = [UIColor colorWithHexString:@"fafafa"];
-        typeMessage.center = CGPointMake(typeMessage.center.x, view.center.y-10);
+        typeMessage.center = CGPointMake(typeMessage.center.x, view.center.y);
         [view addSubview:typeMessage];
-        [view addSubview:ySeperatorView1];
-        [view addSubview:ySeperatorView2];
+        [view addSubview:imgSeperator];
         [view addSubview:textLabel];
         UIImageView *accessory = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_accessory.png"]];
         accessory.backgroundColor = [UIColor clearColor];
-        accessory.frame = CGRectMake(view.frame.size.width-40, 28, 16/2, 41/2);
-        accessory.center = CGPointMake(accessory.center.x, view.center.y-10);
+        accessory.frame = CGRectMake(view.frame.size.width-50, 28, 16/2, 41/2);
+        accessory.center = CGPointMake(accessory.center.x, view.center.y-5);
         [view addSubview:accessory];
         
         [view addSubview:lblTime];
