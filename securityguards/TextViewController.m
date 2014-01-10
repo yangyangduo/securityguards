@@ -7,6 +7,7 @@
 //
 
 #import "TextViewController.h"
+#import "BlueButton.h"
 
 @interface TextViewController ()
 
@@ -66,7 +67,12 @@
     textField.tag = TEXT_FIELD_TAG;
     [self.view addSubview:textField];
     
-    UIButton *btnSubmit =  [[UIButton alloc] initWithFrame:CGRectMake(0, textField.frame.origin.y + textField.bounds.size.height + 30, 400 / 2, 53 / 2)];
+    
+
+    
+    UIButton *btnSubmit = [BlueButton blueButtonWithPoint:CGPointMake(0, textField.frame.origin.y + textField.bounds.size.height + 30) resize:CGSizeMake(300, 40)];
+    
+//    UIButton *btnSubmit =  [[UIButton alloc] initWithFrame:CGRectMake(0, textField.frame.origin.y + textField.bounds.size.height + 30, 400 / 2, 53 / 2)];
     btnSubmit.tag = SUBMIT_BUTTON_TAG;
     btnSubmit.center = CGPointMake(self.view.center.x, btnSubmit.center.y);
     [btnSubmit setBackgroundImage:[UIImage imageNamed:@"btn_blue"] forState:UIControlStateNormal];
