@@ -8,6 +8,6 @@
 
 #import "DrawerViewController.h"
 
-@interface CopyrightViewController : DrawerViewController
+@interface CopyrightViewController : DrawerViewController<UITableViewDataSource, UITableViewDelegate>
 
 @end

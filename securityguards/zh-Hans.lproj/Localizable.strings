@@ -9,6 +9,7 @@
 /****************	Global Strings	****************/
 
 "app_name"                       =      "家庭卫士";
+"version"                        =      "版本号 1.0.0";
 
 "unknow"                         =      "未知";
 "unknow_error"                   =      "系统错误";
@@ -51,7 +52,7 @@
 "portal_drawer_title"            =      "首页";
 "news_drawer_title"              =      "动态";
 "user_mgr_drawer_title"          =      "用户管理";
-"copyright_drawer_title"         =      "版本信息";
+"copyright_drawer_title"         =      "版权信息";
 "logout_drawer_title"            =      "注销账号";
 "notifications_drawer_title"     =      "消息中心";
 "logouting"                      =      "注销中...";
@@ -213,15 +214,15 @@
 
 /*************** Refresh Table View Strings *************************/
 
-"pull.refresh"          = "下拉刷新";
-"pull.loadmore"         = "上拉加载更多";
-"release.pull.loadmore" = "释放加载更多";
-"release.refresh"       = "释放立即刷新";
-"refreshing"            = "刷新中...";
-"last.update"           = "最后更新";
-"no_more"               = "已经到底了";
-"ago"                   = "以前";
-"just_now"              = "刚刚";
-"minute"                = "分钟";
-"hour"                  = "小时";
-"day"                   = "天";
+"pull.refresh"                                =  "下拉刷新";
+"pull.loadmore"                               =  "上拉加载更多";
+"release.pull.loadmore"                       =  "释放加载更多";
+"release.refresh"                             =  "释放立即刷新";
+"refreshing"                                  =  "刷新中...";
+"last.update"                                 =  "最后更新";
+"no_more"                                     =  "已经到底了";
+"ago"                                         =  "以前";
+"just_now"                                    =  "刚刚";
+"minute"                                      =  "分钟";
+"hour"                                        =  "小时";
+"day"                                         =  "天";
