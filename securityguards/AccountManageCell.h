@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "AccountManageCellData.h"
-#define CELL_HEIGHT                 93/2
-#define CELL_WIDTH                  624/2
+#define CELL_HEIGHT                 65
+#define CELL_WIDTH                  300
 
 @interface AccountManageCell : UITableViewCell
 @property (nonatomic, strong) AccountManageCellData *data;

@@ -39,6 +39,7 @@
     UIButton *btnMsg;
     UIButton *btnPhone;
     UIButton *btnUnbinding;
+    UISegmentedControl *scPanel;
     
     BOOL buttonPanelViewIsVisable;
     BOOL currentIsOwner;
@@ -78,9 +79,10 @@
     [super initUI];
     
     self.topbarView.title = NSLocalizedString(@"user_mgr_drawer_title", @"");
+    self.view.backgroundColor = [UIColor appGray];
     
     if(tblUnits == nil) {
-        tblUnits = [[PullTableView alloc] initWithFrame:CGRectMake(0, self.topbarView.bounds.size.height, self.view.bounds.size.width, self.view.frame.size.height - self.topbarView.bounds.size.height) style:UITableViewStylePlain];
+        tblUnits = [[PullTableView alloc] initWithFrame:CGRectMake(0, self.topbarView.bounds.size.height+10, self.view.bounds.size.width, self.view.frame.size.height - self.topbarView.bounds.size.height) style:UITableViewStylePlain];
         tblUnits.pullDelegate = self;
         tblUnits.center = CGPointMake(self.view.center.x, tblUnits.center.y);
         tblUnits.delegate = self;
@@ -169,28 +171,46 @@
     [unitBindingAccounts removeObjectAtIndex:curIndexPath.row+1];
 }
 
-- (void)showButton {
+- (void)showSegments {
     AccountManageCellData *data = (AccountManageCellData *)[unitBindingAccounts objectAtIndex:curIndexPath.row];
     User *user = data.user;
     if (user == nil) {
         return;
     }
-    btnMsg.hidden = NO;
-    btnPhone.hidden = NO;
-    btnUnbinding.hidden = NO;
+    NSMutableArray *segments = [[NSMutableArray alloc] initWithObjects:[UIImage imageNamed:@"icon_send_message.png"],[UIImage imageNamed:@"icon_dial_phone.png"],[UIImage imageNamed:@"icon_unbind.png"], nil];
+//    btnMsg.hidden = NO;
+//    btnPhone.hidden = NO;
+//    btnUnbinding.hidden = NO;
     if (user.isCurrentUser) {
         if (user.isOwner) {
-            btnUnbinding.hidden = YES;
+//            btnUnbinding.hidden = YES;
+            [segments removeObjectAtIndex:2];
         }
     }else{
         if (!currentIsOwner) {
-            btnUnbinding.hidden = YES;
+//            btnUnbinding.hidden = YES;
+            [segments removeObjectAtIndex:2];
         }
     }
-    if (buttonPanelView.superview) {
-        [buttonPanelView removeFromSuperview];
+    if (scPanel != nil) {
+        [scPanel removeAllSegments];
+        scPanel = nil;
+    }
+    scPanel = [[UISegmentedControl alloc] initWithItems:segments];
+    scPanel.frame = CGRectMake(10, 5, CELL_WIDTH, CELL_HEIGHT-5);
+    scPanel.momentary = YES;
+    scPanel.segmentedControlStyle  = UISegmentedControlStyleBar;
+    [scPanel setTintColor:[UIColor appRed]];
+    if (scPanel.superview != nil) {
+        [scPanel removeFromSuperview];
     }
 }
+
+
+
+
+
+
 
 
 #pragma mark -
@@ -220,6 +240,9 @@
     return 1;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return CELL_HEIGHT;
+}
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *userCellIdentifier = @"userCellIdentifier";
     static NSString *panelCellIdentifier = @"panelIdentifier";
@@ -231,7 +254,7 @@
     if (cell == nil) {
         cell = [[AccountManageCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:data.isPanel ? panelCellIdentifier : userCellIdentifier withData:data];
         // cell style
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.backgroundView = [[UIView alloc] initWithFrame:cell.bounds];
         
         // cell font style
@@ -263,8 +286,8 @@
     }
     
     if(data.isPanel) {
-        [self showButton];
-        [cell addSubview:buttonPanelView];
+        [self showSegments];
+        [cell addSubview:scPanel];
     } else {
 //        User *user = data.user;
 //        if(user != nil) {
