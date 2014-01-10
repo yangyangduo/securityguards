@@ -59,7 +59,7 @@
     [self.view addSubview:logoImgView];
     
     if (txtPhoneNumber == nil) {
-        txtPhoneNumber = [XXTextField textFieldWithPoint:CGPointMake(0, logoImgView.frame.origin.y+logoImgView.frame.size.height+40)];
+        txtPhoneNumber = [XXTextField textFieldWithPoint:CGPointMake(0, logoImgView.frame.origin.y + logoImgView.frame.size.height + 30)];
         txtPhoneNumber.center = CGPointMake(self.view.center.x, txtPhoneNumber.center.y);
         txtPhoneNumber.placeholder = NSLocalizedString(@"phone.number", @"");
         txtPhoneNumber.keyboardType = UIKeyboardTypeNumberPad;
@@ -67,7 +67,7 @@
     }
     
     if (txtPassword == nil) {
-        txtPassword = [XXTextField textFieldWithPoint:CGPointMake(0, txtPhoneNumber.frame.origin.y+txtPhoneNumber.frame.size.height+20)];
+        txtPassword = [XXTextField textFieldWithPoint:CGPointMake(0, txtPhoneNumber.frame.origin.y + txtPhoneNumber.frame.size.height + 20)];
         txtPassword.center = CGPointMake(self.view.center.x, txtPassword.center.y);
         txtPassword.placeholder = NSLocalizedString(@"password", @"");
         txtPassword.secureTextEntry = YES;
@@ -103,6 +103,7 @@
         [btnForgetPassword addTarget:self action:@selector(btnForgetPasswordPressed:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:btnForgetPassword];
     }
+    
     if (btnRegister == nil) {
         btnRegister = [[UIButton alloc] initWithFrame:CGRectMake(lblSeperator.frame.origin.x+5, btnForgetPassword.frame.origin.y,80, 44)];
         [btnRegister setTitle:NSLocalizedString(@"register.account", @"") forState:UIControlStateNormal];
