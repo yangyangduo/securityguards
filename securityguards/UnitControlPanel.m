@@ -132,7 +132,7 @@
     } else if(device.isAirPurifierLevel) {
         cell.imageView.image = [UIImage imageNamed:@"icon_level"];
     } else if(device.isAirPurifierModeControl) {
-        cell.imageView.image = [UIImage imageNamed:@"icon_level"];
+        cell.imageView.image = [UIImage imageNamed:@"icon_control_mode"];
     } else if(device.isAirPurifierSecurity) {
         cell.imageView.image = [UIImage imageNamed:@"icon_security"];
     } else if(device.isCamera) {
