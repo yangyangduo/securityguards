@@ -154,6 +154,7 @@ typedef NS_ENUM(NSInteger, RecognizerState) {
 }
 
 - (void)setUp {
+    [super setUp];
 }
 
 - (void)addMessage:(ConversationMessage *)message {
