@@ -12,6 +12,6 @@
 @interface NewsService : ServiceBase
 
 - (void)getTopNewsWithSuccess:(SEL)s failed:(SEL)f target:(id)t callback:(id)cb;
-- (void)getNewsBefore:(News *)news;
+- (void)getMoreNewsWithTimeline:(long long)timeline success:(SEL)s failed:(SEL)f target:(id)t callback:(id)cb;
 
 @end

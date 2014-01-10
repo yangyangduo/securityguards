@@ -82,6 +82,14 @@
     [service getTopNewsWithSuccess:@selector(getNewsSuccess:) failed:@selector(getNewsFailed:) target:self callback:nil];
 }
 
+- (void)getMoreNews {
+    if(allNews != nil && allNews.count > 0) {
+        NewsService *service = [[NewsService alloc] init];
+        News *lastNews = [allNews lastObject];
+        [service getMoreNewsWithTimeline:lastNews.createTime success:@selector(getNewsSuccess:) failed:@selector(getNewsFailed:) target:self callback:@"appendNews"];
+    }
+}
+
 - (void)getNewsSuccess:(RestResponse *)resp {
     if(resp.statusCode == 200) {
         NSDictionary *json = [JsonUtils createDictionaryFromJson:resp.body];
@@ -100,17 +108,30 @@
                     [allNews removeAllObjects];
                 }
                 
+                NSMutableArray *indexPaths = [NSMutableArray array];
+                int lastIndex = allNews.count;
                 if(arr == nil || arr.count == 0) {
                     NSLog(@"no more messages");
                 } else {
                     for(int i=0; i<arr.count; i++) {
                         NSDictionary *dic = [arr objectAtIndex:i];
                         [allNews addObject:[[News alloc] initWithJson:dic]];
+                        if(isAppendNews) {
+                            [indexPaths addObject:[NSIndexPath indexPathForRow:lastIndex + i inSection:0]];
+                        }
                     }
                 }
                 
                 [self cancelRefresh];
-                [tblNews reloadData];
+                [self cancelLoadMore];
+                
+                if(!isAppendNews) {
+                    [tblNews reloadData];
+                } else {
+                    [tblNews beginUpdates];
+                    [tblNews insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationNone];
+                    [tblNews endUpdates];
+                }
                 return;
             }
         }
@@ -120,6 +141,7 @@
 
 - (void)getNewsFailed:(RestResponse *)resp {
     [self cancelRefresh];
+    [self cancelLoadMore];
     if(abs(resp.statusCode) == 1001) {
         [[AlertView currentAlertView] setMessage:NSLocalizedString(@"request_timeout", @"") forType:AlertViewTypeFailed];
     } else if(abs(resp.statusCode == 1004)) {
@@ -228,15 +250,7 @@
         [self performSelector:@selector(cancelLoadMore) withObject:nil afterDelay:WATTING_SECONDS];
         return;
     }
-    NSLog(@"load more table ...");
-}
-
-- (void)refresh {
-    
-}
-
-- (void)loadMore {
-    
+    [self getMoreNews];
 }
 
 - (void)cancelRefresh {

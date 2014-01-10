@@ -76,7 +76,7 @@
     [self addSubview:lblTime];
     
     UIImageView *imgDisclosure =  [[UIImageView alloc] initWithFrame:CGRectMake(backgroundView.bounds.size.width - 5, (65 - 41.f / 2) / 2 + 5, 16 / 2, 41.f / 2)];
-    imgDisclosure.image = [UIImage imageNamed:@"icon_ disclosure"];
+    imgDisclosure.image = [UIImage imageNamed:@"icon_disclosure"];
     [self addSubview:imgDisclosure];
 }
 

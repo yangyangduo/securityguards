@@ -22,4 +22,9 @@
     [self.client getForUrl:nil acceptType:@"text/*" success:s error:f for:t callback:cb];
 }
 
+- (void)getMoreNewsWithTimeline:(long long)timeline success:(SEL)s failed:(SEL)f target:(id)t callback:(id)cb {
+    NSString *url = [NSString stringWithFormat:@"?t=%lld", timeline];
+    [self.client getForUrl:url acceptType:@"text/*" success:s error:f for:t callback:cb];
+}
+
 @end
