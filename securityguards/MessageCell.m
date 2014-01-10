@@ -42,7 +42,7 @@
     if (textLabel == nil) {
         textLabel = [[UILabel alloc] initWithFrame:CGRectMake(80, 0, 180, MESSAGE_CELL_HEIGHT-30)];
         textLabel.tag = TEXT_LABEL_TAG;
-        textLabel.font =[UIFont systemFontOfSize:10];
+        textLabel.font =[UIFont systemFontOfSize:11];
         textLabel.textAlignment = NSTextAlignmentLeft;
         textLabel.textColor = [UIColor darkGrayColor];
         textLabel.lineBreakMode = NSLineBreakByCharWrapping;
@@ -54,7 +54,7 @@
         lblTime = [[UILabel alloc] initWithFrame:CGRectMake(80, MESSAGE_CELL_HEIGHT-30, 240, 15)];
         lblTime.backgroundColor = [UIColor clearColor];
         lblTime.textColor = [UIColor darkGrayColor];
-        lblTime.font = [UIFont systemFontOfSize:8];
+        lblTime.font = [UIFont systemFontOfSize:9];
     }
     
     if(view == nil) {
