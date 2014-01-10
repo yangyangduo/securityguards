@@ -11,7 +11,7 @@
 
 @interface NewsService : ServiceBase
 
-- (void)getTopNews;
+- (void)getTopNewsWithSuccess:(SEL)s failed:(SEL)f target:(id)t callback:(id)cb;
 - (void)getNewsBefore:(News *)news;
 
 @end

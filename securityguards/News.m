@@ -19,7 +19,11 @@
 - (id)initWithJson:(NSDictionary *)json {
     self = [super initWithJson:json];
     if(self) {
-        
+        self.identifier = [json noNilStringForKey:@"a"];
+        self.title = [json noNilStringForKey:@"b"];
+        self.imageUrl = [json noNilStringForKey:@"c"];
+        self.contentUrl = [json noNilStringForKey:@"d"];
+        self.createTime = [json longlongForKey:@"e"];
     }
     return self;
 }

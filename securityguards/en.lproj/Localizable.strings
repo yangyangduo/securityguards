@@ -31,6 +31,7 @@
 "discard"                        =      "放弃";
 "request_frequently"             =      "请求过于频繁";
 "update_success"                 =      "更新成功";
+"network_error"                  =      "网络错误";
 "ok"                             =      "好";
 "offline"                        =      "未连接云端";
 

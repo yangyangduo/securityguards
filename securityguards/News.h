@@ -14,6 +14,6 @@
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *contentUrl;
 @property (nonatomic, strong) NSString *imageUrl;
-@property (nonatomic, strong) NSString *createTime;
+@property (nonatomic, assign) long long createTime;
 
 @end

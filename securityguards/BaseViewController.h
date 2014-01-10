@@ -16,6 +16,7 @@
 #import "AlertView.h"
 #import "CoreService.h"
 #import "JsonUtils.h"
+#import "XXDateFormatter.h"
 #import "NSDictionary+Extension.h"
 #import "NSMutableDictionary+Extension.h"
 #import "XXEventNameFilter.h"

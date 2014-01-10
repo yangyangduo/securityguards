@@ -64,6 +64,12 @@
     return number.longValue;
 }
 
+- (long long)longlongForKey:(id)key {
+    NSNumber *number = [self notNSNullObjectForKey:key];
+    if(number == nil) return 0;
+    return number.longLongValue;
+}
+
 - (double)doubleForKey:(id)key {
     NSNumber *number = [self notNSNullObjectForKey:key];
     if(number == nil) return 0;

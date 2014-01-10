@@ -9,7 +9,9 @@
 #import "NewsViewController.h"
 #import "NewsDetailViewController.h"
 #import "UIImageView+WebCache.h"
+#import "NSDate+Extension.h"
 #import "NewsCell.h"
+#import "NewsService.h"
 
 #define WATTING_SECONDS 1.5f
 
@@ -67,6 +69,65 @@
 
 - (void)setUp {
     [super setUp];
+    
+    [self getTopNews];
+    tblNews.pullTableIsRefreshing = YES;
+}
+
+#pragma mark -
+#pragma mark News Service
+
+- (void)getTopNews {
+    NewsService *service = [[NewsService alloc] init];
+    [service getTopNewsWithSuccess:@selector(getNewsSuccess:) failed:@selector(getNewsFailed:) target:self callback:nil];
+}
+
+- (void)getNewsSuccess:(RestResponse *)resp {
+    if(resp.statusCode == 200) {
+        NSDictionary *json = [JsonUtils createDictionaryFromJson:resp.body];
+        if(json != nil) {
+            if([json intForKey:@"i"] == 1) {
+                NSArray *arr = [json arrayForKey:@"m"];
+                
+                BOOL isAppendNews = NO;
+                if(resp.callbackObject != nil
+                   && [resp.callbackObject isKindOfClass:[NSString class]]
+                   && [@"appendNews" isEqualToString:resp.callbackObject]) {
+                    isAppendNews = YES;
+                }
+                
+                if(!isAppendNews) {
+                    [allNews removeAllObjects];
+                }
+                
+                if(arr == nil || arr.count == 0) {
+                    NSLog(@"no more messages");
+                } else {
+                    for(int i=0; i<arr.count; i++) {
+                        NSDictionary *dic = [arr objectAtIndex:i];
+                        [allNews addObject:[[News alloc] initWithJson:dic]];
+                    }
+                }
+                
+                [self cancelRefresh];
+                [tblNews reloadData];
+                return;
+            }
+        }
+    }
+    [self getNewsFailed:resp];
+}
+
+- (void)getNewsFailed:(RestResponse *)resp {
+    [self cancelRefresh];
+    if(abs(resp.statusCode) == 1001) {
+        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"request_timeout", @"") forType:AlertViewTypeFailed];
+    } else if(abs(resp.statusCode == 1004)) {
+        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"network_error", @"") forType:AlertViewTypeFailed];
+    } else {
+        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"unknow_error", @"") forType:AlertViewTypeFailed];
+    }
+    [[AlertView currentAlertView] alertForLock:NO autoDismiss:YES];
 }
 
 #pragma mark -
@@ -85,12 +146,14 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 10;
+    return allNews == nil ? 0 : allNews.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *cellIdentifier = @"cellIdentifier";
     static NSString *cellTopNewsIdentifier = @"cellTopNewsIdentifier";
+    
+    News *news = [allNews objectAtIndex:indexPath.row];
     
     UITableViewCell *cell = nil;
     
@@ -121,24 +184,17 @@
         UIImageView *imgView = (UIImageView *)[cell viewWithTag:888];
         UILabel *lblNewsTitle = (UILabel *)[[cell viewWithTag:889] viewWithTag:300];
         
-        [imgView setImageWithURL:[[NSURL alloc] initWithString:@"http://g.hiphotos.baidu.com/image/w%3D2048/sign=7862eddcab773912c4268261cc218718/622762d0f703918f2e8d96ab533d269759eec477.jpg"] placeholderImage:[UIImage imageNamed:@"test"]];
-        lblNewsTitle.text = @"又发现一起净化器爆炸事件";
-        
-//        Clear memory cache
-//        [[SDImageCache sharedImageCache] clearMemory];
-//        [[SDImageCache sharedImageCache] clearDisk];
+        [imgView setImageWithURL:[[NSURL alloc] initWithString:news.imageUrl] placeholderImage:[UIImage imageNamed:@"test"]];
+        lblNewsTitle.text = news.title;
     } else {
         NewsCell *newsCell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
         if(newsCell == nil) {
             newsCell = [[NewsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         }
         
-        News *news = [[News alloc] init];
-        news.title = @"昨晚,位于岳麓大道林科大旁昨晚,位于岳麓大道林科大旁昨晚,位于岳麓大道林科大旁昨晚,位于岳麓大道林科大旁";
-        news.createTime = @"09-12 12:21:31";
-        
+        NSDate *newsDate = [NSDate dateWithTimeIntervalMillisecondSince1970:news.createTime];
         [newsCell setContent:news.title];
-        [newsCell setCreateTime:news.createTime];
+        [newsCell setCreateTime:[XXDateFormatter dateToString:newsDate format:@"MM-dd HH:mm:ss"]];
     
         cell = newsCell;
     }
@@ -146,11 +202,11 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-//    News *news = [allNews objectAtIndex:indexPath.row];
-    News *n =    [[News alloc] init];
-    n.contentUrl = @"http://www.baidjfdu.com";
+    News *news = [allNews objectAtIndex:indexPath.row];
+
+    news.contentUrl = @"wap.baidu.com";
     
-    NewsDetailViewController *newsDetailViewController = [[NewsDetailViewController alloc] initWithNews:n];
+    NewsDetailViewController *newsDetailViewController = [[NewsDetailViewController alloc] initWithNews:news];
     [self.navigationController pushViewController:newsDetailViewController animated:YES];
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -164,7 +220,7 @@
         [self performSelector:@selector(cancelRefresh) withObject:nil afterDelay:WATTING_SECONDS];
         return;
     }
-    NSLog(@"refresh table ...");
+    [self getTopNews];
 }
 
 - (void)pullTableViewDidTriggerLoadMore:(PullTableView *)pullTableView {

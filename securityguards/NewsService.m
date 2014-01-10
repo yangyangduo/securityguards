@@ -13,9 +13,13 @@
 - (id)init {
     self = [super init];
     if(self) {
-        [self setupWithUrl:[NSString stringWithFormat:@"%@/mgr/acc", [GlobalSettings defaultSettings].restAddress]];
+        [self setupWithUrl:[NSString stringWithFormat:@"%@/news/list", [GlobalSettings defaultSettings].restAddress]];
     }
     return self;
+}
+
+- (void)getTopNewsWithSuccess:(SEL)s failed:(SEL)f target:(id)t callback:(id)cb {
+    [self.client getForUrl:nil acceptType:@"text/*" success:s error:f for:t callback:cb];
 }
 
 @end
