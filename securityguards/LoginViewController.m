@@ -77,7 +77,7 @@
     }
     
     if (btnLogin == nil) {
-        btnLogin = [[UIButton alloc] initWithFrame:CGRectMake(0, txtPassword.frame.origin.y+txtPassword.frame.size.height+20, 400/2, 53/2)];
+        btnLogin = [[UIButton alloc] initWithFrame:CGRectMake(0, txtPassword.frame.origin.y+txtPassword.frame.size.height + 20, 460 / 2, 60 / 2)];
         btnLogin.center = CGPointMake(self.view.center.x,btnLogin.center.y);
         [btnLogin setTitle:NSLocalizedString(@"login", @"") forState:UIControlStateNormal];
         [btnLogin setBackgroundImage:[UIImage imageNamed:@"btn_blue"] forState:UIControlStateNormal];
