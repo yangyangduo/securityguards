@@ -229,8 +229,7 @@
     
     AccountManageCell *cell = [tableView dequeueReusableCellWithIdentifier:data.isPanel ? panelCellIdentifier : userCellIdentifier];
     if (cell == nil) {
-        cell = [[AccountManageCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:data.isPanel ? panelCellIdentifier : userCellIdentifier];
-        cell.data = data;
+        cell = [[AccountManageCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:data.isPanel ? panelCellIdentifier : userCellIdentifier withData:data];
         // cell style
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.backgroundView = [[UIView alloc] initWithFrame:cell.bounds];

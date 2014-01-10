@@ -14,5 +14,7 @@
 @interface AccountManageCell : UITableViewCell
 @property (nonatomic, strong) AccountManageCellData *data;
 
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier withData:(AccountManageCellData *) cellData;
+
 - (void)loadData;
 @end
