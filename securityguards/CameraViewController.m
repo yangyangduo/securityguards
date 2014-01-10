@@ -93,7 +93,7 @@
     imgLine.image = [UIImage imageNamed:@"line_seperator_camera"];
     [self.view addSubview:imgLine];
     
-    UIButton *btnCatchScreen = [[UIButton alloc] initWithFrame:CGRectMake(20, imgLine.frame.origin.y + imgLine.bounds.size.height + 20, 116 / 2, 85 / 2)];
+    UIButton *btnCatchScreen = [[UIButton alloc] initWithFrame:CGRectMake(20, imgLine.frame.origin.y + imgLine.bounds.size.height + 23, 116 / 2, 85 / 2)];
     [btnCatchScreen setBackgroundImage:[UIImage imageNamed:@"btn_screenshots"] forState:UIControlStateNormal];
     [btnCatchScreen setBackgroundImage:[UIImage imageNamed:@"btn_screenshots_selected"] forState:UIControlStateHighlighted];
 //    [btnCatchScreen addTarget:self action:@selector(catchScreen) forControlEvents:UIControlEventTouchUpInside];
@@ -107,7 +107,7 @@
     lblScreenshots.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:lblScreenshots];
 
-    DirectionButton *btnDirection = [[DirectionButton alloc] initWithPoint:CGPointMake(140, self.view.bounds.size.height - (self.topbarView.bounds.size.height + imgCameraShots.bounds.size.height) / 2)];
+    DirectionButton *btnDirection = [[DirectionButton alloc] initWithPoint:CGPointMake(140, btnCatchScreen.frame.origin.y)];
     btnDirection.delegate = self;
     [self.view addSubview:btnDirection];
 }
