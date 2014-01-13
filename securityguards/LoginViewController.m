@@ -189,7 +189,9 @@
 - (void)loginFailed:(RestResponse *) resp{
     if(abs(resp.statusCode) == 1001) {
         [[AlertView currentAlertView] setMessage:NSLocalizedString(@"request_timeout", @"") forType:AlertViewTypeFailed];
-    } else {
+    } else if(abs(resp.statusCode) == 1004) {
+        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"network_error", @"") forType:AlertViewTypeFailed];
+    }  else {
         [[AlertView currentAlertView] setMessage:NSLocalizedString(@"network_error", @"") forType:AlertViewTypeFailed];
     }
     [[AlertView currentAlertView] delayDismissAlertView];

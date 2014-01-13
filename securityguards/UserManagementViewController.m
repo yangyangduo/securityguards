@@ -387,7 +387,9 @@
         [[AlertView currentAlertView] setMessage:NSLocalizedString(@"request_timeout", @"") forType:AlertViewTypeFailed];
         [[AlertView currentAlertView] alertForLock:NO autoDismiss:YES];
         return;
-    } else {
+    } else if(abs(resp.statusCode) == 1004) {
+        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"network_error", @"") forType:AlertViewTypeFailed];
+    }  else {
         // Error
         [[AlertView currentAlertView] setMessage:NSLocalizedString(@"unknow_error", @"") forType:AlertViewTypeFailed];
         [[AlertView currentAlertView] alertForLock:NO autoDismiss:YES];
@@ -412,7 +414,9 @@
         [[AlertView currentAlertView] setMessage:NSLocalizedString(@"request_timeout", @"") forType:AlertViewTypeFailed];
         [[AlertView currentAlertView] delayDismissAlertView];
         return;
-    } else {
+    } else if(abs(resp.statusCode) == 1004) {
+        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"network_error", @"") forType:AlertViewTypeFailed];
+    }  else {
         // Error
         [[AlertView currentAlertView] setMessage:NSLocalizedString(@"unknow_error", @"") forType:AlertViewTypeFailed];
         [[AlertView currentAlertView] delayDismissAlertView];

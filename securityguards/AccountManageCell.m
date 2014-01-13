@@ -54,13 +54,6 @@
         view.backgroundColor = [UIColor colorWithHexString:@"fafafa"];
 
         self.selectionStyle = UITableViewCellSelectionStyleDefault;
-//        UIView *ySeperatorView1 = [[UIView alloc] initWithFrame:CGRectMake(58, 0, 1, CELL_HEIGHT-10)];
-//        ySeperatorView1.backgroundColor = [UIColor colorWithHexString:@"e0e0e0"];
-//        [view addSubview:ySeperatorView1];
-//        
-//        UIView *ySeperatorView2 = [[UIView alloc] initWithFrame:CGRectMake(59, 0, 1, CELL_HEIGHT-10)];
-//        ySeperatorView2.backgroundColor = [UIColor whiteColor];
-//        [view addSubview:ySeperatorView2];
         
         if (imgUserRole == nil) {
             imgUserRole = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 44/2, 34/2)];
