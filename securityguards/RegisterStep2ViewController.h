@@ -10,7 +10,7 @@
 
 @interface RegisterStep2ViewController : NavigationViewController<UITextFieldDelegate>
 
-@property (strong,nonatomic) NSString *phoneNumber;
-@property (assign,nonatomic) int countDown;
+@property (nonatomic, strong) NSString *phoneNumber;
+@property (nonatomic, assign) int countDown;
 
 @end
