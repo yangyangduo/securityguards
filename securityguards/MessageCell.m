@@ -45,7 +45,7 @@
     [self.selectedBackgroundView addSubview:selectedBackgroundView];
 
     if (typeMessage == nil) {
-        typeMessage = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 76/2, 64/2)];
+        typeMessage = [[UIImageView alloc] initWithFrame:CGRectMake(15, 10, 76/2, 64/2)];
         typeMessage.backgroundColor = [UIColor clearColor];
         typeMessage.tag = TYPE_IMAGE_TAG;
     }
@@ -53,7 +53,7 @@
     imgSeperator.image = [UIImage imageNamed:@"line_news"];
     
     if (textLabel == nil) {
-        textLabel = [[UILabel alloc] initWithFrame:CGRectMake(80, 5, 180, 42)];
+        textLabel = [[UILabel alloc] initWithFrame:CGRectMake(80, 3, 180, 42)];
         textLabel.tag = TEXT_LABEL_TAG;
         textLabel.font =[UIFont systemFontOfSize:14];
         textLabel.textAlignment = NSTextAlignmentLeft;
@@ -63,14 +63,14 @@
     }
     
     if (lblTime == nil) {
-        lblTime = [[UILabel alloc] initWithFrame:CGRectMake(80, 46, 240, 18)];
+        lblTime = [[UILabel alloc] initWithFrame:CGRectMake(80, 45, 240, 18)];
         lblTime.backgroundColor = [UIColor clearColor];
         lblTime.textColor = [UIColor darkGrayColor];
         lblTime.font = [UIFont systemFontOfSize:11];
     }
     
     if(view == nil) {
-        view = [[UIView alloc] initWithFrame:CGRectMake(10, 5, self.frame.size.width, MESSAGE_CELL_HEIGHT-5)];
+        view = [[UIView alloc] initWithFrame:CGRectMake(10, 5, 300, MESSAGE_CELL_HEIGHT-5)];
         view.backgroundColor = [UIColor colorWithHexString:@"fafafa"];
         typeMessage.center = CGPointMake(typeMessage.center.x, view.center.y);
         [view addSubview:typeMessage];
@@ -78,7 +78,7 @@
         [view addSubview:textLabel];
         UIImageView *accessory = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_accessory.png"]];
         accessory.backgroundColor = [UIColor clearColor];
-        accessory.frame = CGRectMake(view.frame.size.width-50, 28, 16/2, 41/2);
+        accessory.frame = CGRectMake(view.frame.size.width-20, 28, 16/2, 41/2);
         accessory.center = CGPointMake(accessory.center.x, view.center.y-5);
         [view addSubview:accessory];
         
@@ -87,7 +87,6 @@
         [self addSubview:view];
     }
     
-    self.selectionStyle = UITableViewCellSelectionStyleNone;
     self.backgroundColor = [UIColor clearColor];
 }
 

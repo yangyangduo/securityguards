@@ -47,10 +47,12 @@
     [self.selectedBackgroundView addSubview:selectedBackgroundView];
     
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(10, 5, CELL_WIDTH, CELL_HEIGHT-5)];
-    view.backgroundColor = [UIColor colorWithHexString:@"fafafa"];
+    view.backgroundColor = [UIColor clearColor];
     [self addSubview:view];
     
     if (!data.isPanel) {
+        view.backgroundColor = [UIColor colorWithHexString:@"fafafa"];
+
         self.selectionStyle = UITableViewCellSelectionStyleDefault;
 //        UIView *ySeperatorView1 = [[UIView alloc] initWithFrame:CGRectMake(58, 0, 1, CELL_HEIGHT-10)];
 //        ySeperatorView1.backgroundColor = [UIColor colorWithHexString:@"e0e0e0"];

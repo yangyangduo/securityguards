@@ -21,12 +21,22 @@
     UIButton    *btnGetVerificationCode;
 }
 
+@synthesize isModify;
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+    }
+    return self;
+}
+
+- (id)initAsModify:(BOOL)modify{
+    self = [super init];
+    if (self) {
+        isModify = modify;
     }
     return self;
 }
@@ -68,20 +78,32 @@
     lblTip.lineBreakMode = NSLineBreakByWordWrapping;
     lblTip.textColor = [UIColor lightGrayColor];
     lblTip.font = [UIFont systemFontOfSize:11.f];
-    lblTip.text = NSLocalizedString(@"register.tip1", @"");
-    [self.view addSubview:lblTip];
+        [self.view addSubview:lblTip];
+
     
     if (btnGetVerificationCode == nil) {
         btnGetVerificationCode = [[UIButton alloc] initWithFrame:CGRectMake(0, lblTip.frame.size.height+lblTip.frame.origin.y+10, 400/2, 53/2)];
-        [btnGetVerificationCode setTitle:NSLocalizedString(@"get.verification", @"") forState:UIControlStateNormal];
+
         [btnGetVerificationCode setBackgroundImage:[UIImage imageNamed:@"btn_blue"] forState:UIControlStateNormal];
         [btnGetVerificationCode setBackgroundImage:[UIImage imageNamed:@"btn_blue_highlighted"] forState:UIControlStateHighlighted];
         [btnGetVerificationCode setImage:[UIImage imageNamed:@"btn_gray"] forState:UIControlStateDisabled];
         [btnGetVerificationCode setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         btnGetVerificationCode.center = CGPointMake(self.view.center.x, btnGetVerificationCode.center.y);
-        [btnGetVerificationCode addTarget:self action:@selector(btnGetVerificationPressed:) forControlEvents:UIControlEventTouchUpInside];
+        
         [self.view addSubview:btnGetVerificationCode];
     }
+
+    if(isModify) {
+        
+        lblTip.text = NSLocalizedString(@"modify_tip", @"");
+        
+        [btnGetVerificationCode setTitle:NSLocalizedString(@"next_step", @"") forState:UIControlStateNormal];
+    }else{
+        lblTip.text = NSLocalizedString(@"register.tip1", @"");
+        [btnGetVerificationCode setTitle:NSLocalizedString(@"get.verification", @"") forState:UIControlStateNormal];
+    
+    }
+
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -97,7 +119,11 @@
     [[AlertView currentAlertView] setMessage:NSLocalizedString(@"please_wait", @"") forType:AlertViewTypeWaitting];
     [[AlertView currentAlertView] alertForLock:YES autoDismiss:NO];
     AccountService *accountService = [[AccountService alloc] init];
-    [accountService sendVerificationCodeFor:txtPhoneNumber.text success:@selector(sendVerificationCodeSuccess:) failed:@selector(sendVerificationCodeFailed:) target:self callback:nil];
+    if(isModify) {
+        [accountService sendModifyUsernameVerificationCodeFor:txtPhoneNumber.text success:@selector(sendVerificationCodeSuccess:) failed:@selector(sendVerificationCodeFailed:) target:self callback:nil];
+    }else{
+        [accountService sendVerificationCodeFor:txtPhoneNumber.text success:@selector(sendVerificationCodeSuccess:) failed:@selector(sendVerificationCodeFailed:) target:self callback:nil];
+    }
 }
 
 - (void)sendVerificationCodeSuccess:(RestResponse *)resp {
@@ -109,7 +135,7 @@
                 if([@"1" isEqualToString:result] || [@"-3" isEqualToString:result] || [@"-4" isEqualToString:result]) {
                     [[AlertView currentAlertView] setMessage:NSLocalizedString(@"send_success", @"") forType:AlertViewTypeSuccess];
                     [[AlertView currentAlertView] delayDismissAlertView];
-                    RegisterStep2ViewController *step2ViewController = [[RegisterStep2ViewController alloc] init];
+                    RegisterStep2ViewController *step2ViewController = [[RegisterStep2ViewController alloc] initAsModify:self.isModify];
                     step2ViewController.phoneNumber = txtPhoneNumber.text;
                     if([@"1" isEqualToString:result]) {
                         step2ViewController.countDown = 60;
@@ -127,7 +153,7 @@
                     [[AlertView currentAlertView] setMessage:NSLocalizedString(@"phone_format_invalid", @"") forType:AlertViewTypeSuccess];
                     [[AlertView currentAlertView] delayDismissAlertView];
                     return;
-                } else if([@"-2" isEqualToString:result]||[@"-7" isEqualToString:result]) {
+                } else if(([@"-2" isEqualToString:result] && !isModify)||([@"-7" isEqualToString:result] && isModify)) {
                     [[AlertView currentAlertView] setMessage:NSLocalizedString(@"phone_has_been_register", @"") forType:AlertViewTypeSuccess];
                     [[AlertView currentAlertView] delayDismissAlertView];
                     return;
@@ -141,7 +167,9 @@
 - (void)sendVerificationCodeFailed:(RestResponse *)resp {
     if(abs(resp.statusCode) == 1001) {
         [[AlertView currentAlertView] setMessage:NSLocalizedString(@"request_timeout", @"") forType:AlertViewTypeFailed];
-    } else {
+    } else if(resp.statusCode == 1004){
+        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"network_error", @"") forType:AlertViewTypeFailed];
+    }else {
         [[AlertView currentAlertView] setMessage:NSLocalizedString(@"unknow_error", @"") forType:AlertViewTypeFailed];
     }
     [[AlertView currentAlertView] delayDismissAlertView];

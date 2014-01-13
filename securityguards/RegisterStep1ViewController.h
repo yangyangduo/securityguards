@@ -9,5 +9,7 @@
 #import "NavigationViewController.h"
 
 @interface RegisterStep1ViewController : NavigationViewController<UITextFieldDelegate>
+@property (assign, nonatomic, readonly) BOOL isModify;
+- (id)initAsModify:(BOOL) modify;
 
 @end

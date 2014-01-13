@@ -7,7 +7,7 @@
 //
 
 #import "AccountSettingsViewController.h"
-//#import "VerificationCodeSendViewController.h"
+#import "RegisterStep1ViewController.h"
 #import "Shared.h"
 #import "BlueButton.h"
 
@@ -243,8 +243,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if(indexPath.section == 0) {
-//        VerificationCodeSendViewController *verificationCodeSendViewController = [[VerificationCodeSendViewController alloc] initAsModify:YES];
-//        [self.navigationController pushViewController:verificationCodeSendViewController animated:YES];
+        RegisterStep1ViewController *registerStep1ViewController = [[RegisterStep1ViewController alloc] initAsModify:YES];
+        [self.navigationController pushViewController:registerStep1ViewController animated:YES];
     } else if(indexPath.section == 1) {
         TextViewController *textViewController = [[TextViewController alloc] init];
         if(indexPath.row == 0) {
@@ -401,6 +401,12 @@
     [[CoreService defaultService] executeDeviceCommand:updateAccountCommand];
     profile.password = [XXStringUtils emptyString];
 }
+
+- (void)updateUsername:(NSString *)username{
+    UITableViewCell *usernameCell = [tblAccountSettings cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+    usernameCell.detailTextLabel.text = username;
+}
+
 
 - (void)popupViewController {
     if(profileChanged) {

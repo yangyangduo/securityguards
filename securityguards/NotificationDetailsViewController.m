@@ -105,7 +105,7 @@
     view.tag = CELL_VIEW_TAG;
     [self.view addSubview:view];
     if(self.notification.isWarning && self.notification.data.isCameraData) {
-        BlueButton *btnCheck = [BlueButton blueButtonWithPoint:CGPointMake(5, view.frame.size.height+view.frame.origin.y+5) resize:CGSizeMake(152.5,98/2)];
+        BlueButton *btnCheck = [BlueButton blueButtonWithPoint:CGPointMake(5, view.frame.size.height+view.frame.origin.y+5) resize:CGSizeMake(152.5,BLUE_BUTTON_DEFAULT_HEIGHT)];
         [btnCheck setTitle:NSLocalizedString(@"view_video", @"") forState:UIControlStateNormal];
         [self.view addSubview:btnCheck];
         BlueButton *btnDelete = [BlueButton blueButtonWithPoint:CGPointMake(162.5, btnCheck.frame.origin.y) resize:CGSizeMake(152.5,BLUE_BUTTON_DEFAULT_HEIGHT)];

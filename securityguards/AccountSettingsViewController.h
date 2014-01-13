@@ -12,4 +12,6 @@
 
 @interface AccountSettingsViewController : NavigationViewController<UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate, TextViewDelegate, XXEventSubscriber>
 
+- (void)updateUsername:(NSString *)username;
+
 @end

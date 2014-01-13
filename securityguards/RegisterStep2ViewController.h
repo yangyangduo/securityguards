@@ -12,5 +12,8 @@
 
 @property (strong,nonatomic) NSString *phoneNumber;
 @property (assign,nonatomic) int countDown;
+@property (assign, nonatomic, readonly) BOOL isModify;
+
+- (id) initAsModify:(BOOL) modify;
 
 @end
