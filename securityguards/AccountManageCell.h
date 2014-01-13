@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "AccountManageCellData.h"
-#define CELL_HEIGHT                 70
+#define CELL_HEIGHT                 45
 #define CELL_WIDTH                  300
 
 @interface AccountManageCell : UITableViewCell

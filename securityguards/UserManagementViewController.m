@@ -17,9 +17,8 @@
 #import "UnitManager.h"
 #import "AccountManageCell.h"
 
-#define BTN_MARGIN                  35
-#define BTN_WIDTH                   45 / 2
-#define BTN_HEIGHT                  44 / 2
+#define BTN_WIDTH                   100
+#define BTN_HEIGHT                  CELL_HEIGHT-5
 #define REFRESH_AGAIN_DURATION      2
 #define ACCESSORY_TAG               1998
 
@@ -93,30 +92,30 @@
     }
     
     if (buttonPanelView == nil) {
-        buttonPanelView = [[UIView alloc] initWithFrame:CGRectMake(0, 0,CELL_WIDTH, CELL_HEIGHT)];
-        buttonPanelView.backgroundColor = [UIColor clearColor];
+        buttonPanelView = [[UIView alloc] initWithFrame:CGRectMake(10, 5,CELL_WIDTH, BTN_HEIGHT)];
+        buttonPanelView.backgroundColor = [UIColor appWhite];
         if (btnMsg == nil) {
-            btnMsg = [[UIButton alloc] initWithFrame:CGRectMake(46, 5,BTN_WIDTH , BTN_HEIGHT)];
-            [btnMsg setBackgroundImage:[UIImage imageNamed:@"icon_send_message.png"] forState:UIControlStateNormal];
-            btnMsg.center = CGPointMake(btnMsg.center.x, buttonPanelView.center.y);
+            btnMsg = [[UIButton alloc] initWithFrame:CGRectMake(0, 0,BTN_WIDTH , BTN_HEIGHT)];
+            [btnMsg setBackgroundImage:[UIImage imageNamed:@"icon_white_msg.png"] forState:UIControlStateNormal];
+            [btnMsg setBackgroundImage:[UIImage imageNamed:@"icon_gray_msg.png"] forState:UIControlStateHighlighted];
             [btnMsg addTarget:self action:@selector(btnPressed:) forControlEvents:UIControlEventTouchUpInside];
             [buttonPanelView addSubview:btnMsg];
         }
         
         if (btnPhone == nil) {
-            btnPhone = [[UIButton alloc] initWithFrame:CGRectMake(btnMsg.frame.origin.x+BTN_WIDTH+BTN_MARGIN, 5,BTN_WIDTH , BTN_HEIGHT)];
-            [btnPhone setBackgroundImage:[UIImage imageNamed:@"icon_dial_phone.png"] forState:UIControlStateNormal];
-            btnPhone.center = CGPointMake(btnPhone.center.x,buttonPanelView.center.y);
+            btnPhone = [[UIButton alloc] initWithFrame:CGRectMake(btnMsg.frame.origin.x+BTN_WIDTH, 0,BTN_WIDTH , BTN_HEIGHT)];
+            [btnPhone setBackgroundImage:[UIImage imageNamed:@"icon_white_dial_phone.png"] forState:UIControlStateNormal];
+            [btnPhone setBackgroundImage:[UIImage imageNamed:@"icon_gray_dial_phone.png"] forState:UIControlStateHighlighted];
             [btnPhone addTarget:self action:@selector(btnPressed:) forControlEvents:UIControlEventTouchUpInside];
             [buttonPanelView addSubview:btnPhone];
         }
         
         if (btnUnbinding == nil) {
-            btnUnbinding = [[UIButton alloc] initWithFrame:CGRectMake(btnPhone.frame.origin.x+BTN_WIDTH+BTN_MARGIN, 5,BTN_WIDTH , BTN_HEIGHT)];
+            btnUnbinding = [[UIButton alloc] initWithFrame:CGRectMake(btnPhone.frame.origin.x+BTN_WIDTH,0,BTN_WIDTH , BTN_HEIGHT)];
             [btnUnbinding setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
             btnUnbinding.titleLabel.font = [UIFont systemFontOfSize:14];
-            [btnUnbinding setBackgroundImage:[UIImage imageNamed:@"icon_unbind.png"] forState:UIControlStateNormal];
-            btnUnbinding.center = CGPointMake(btnUnbinding.center.x, buttonPanelView.center.y);
+            [btnUnbinding setBackgroundImage:[UIImage imageNamed:@"icon_white_unbind.png"] forState:UIControlStateNormal];
+            [btnUnbinding setBackgroundImage:[UIImage imageNamed:@"icon_gray_unbind.png"] forState:UIControlStateHighlighted];
             [btnUnbinding addTarget:self action:@selector(btnPressed:) forControlEvents:UIControlEventTouchUpInside];
             [buttonPanelView addSubview:btnUnbinding];
         }
@@ -171,38 +170,27 @@
     [unitBindingAccounts removeObjectAtIndex:curIndexPath.row+1];
 }
 
-- (void)showSegments {
+- (void)showButtons {
     AccountManageCellData *data = (AccountManageCellData *)[unitBindingAccounts objectAtIndex:curIndexPath.row];
     User *user = data.user;
     if (user == nil) {
         return;
     }
-    NSMutableArray *segments = [[NSMutableArray alloc] initWithObjects:[UIImage imageNamed:@"icon_send_message.png"],[UIImage imageNamed:@"icon_dial_phone.png"],[UIImage imageNamed:@"icon_unbind.png"], nil];
-//    btnMsg.hidden = NO;
-//    btnPhone.hidden = NO;
-//    btnUnbinding.hidden = NO;
+    btnMsg.hidden = NO;
+    btnPhone.hidden = NO;
+    btnUnbinding.hidden = NO;
     if (user.isCurrentUser) {
         if (user.isOwner) {
-//            btnUnbinding.hidden = YES;
-            [segments removeObjectAtIndex:2];
+            btnUnbinding.hidden = YES;
         }
     }else{
         if (!currentIsOwner) {
-//            btnUnbinding.hidden = YES;
-            [segments removeObjectAtIndex:2];
+            btnUnbinding.hidden = YES;
         }
     }
-    if (scPanel != nil) {
-        [scPanel removeAllSegments];
-        scPanel = nil;
-    }
-    scPanel = [[UISegmentedControl alloc] initWithItems:segments];
-    scPanel.frame = CGRectMake(10, 5, CELL_WIDTH, CELL_HEIGHT-5);
-    scPanel.momentary = YES;
-    scPanel.segmentedControlStyle  = UISegmentedControlStyleBar;
-    [scPanel setTintColor:[UIColor appRed]];
-    if (scPanel.superview != nil) {
+        if (buttonPanelView.superview != nil) {
         [scPanel removeFromSuperview];
+        
     }
 }
 
@@ -286,8 +274,8 @@
     }
     
     if(data.isPanel) {
-        [self showSegments];
-        [cell addSubview:scPanel];
+        [self showButtons];
+        [cell addSubview:buttonPanelView];
     } else {
 //        User *user = data.user;
 //        if(user != nil) {
