@@ -241,59 +241,14 @@
     AccountManageCell *cell = [tableView dequeueReusableCellWithIdentifier:data.isPanel ? panelCellIdentifier : userCellIdentifier];
     if (cell == nil) {
         cell = [[AccountManageCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:data.isPanel ? panelCellIdentifier : userCellIdentifier withData:data];
-        // cell style
-//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.backgroundView = [[UIView alloc] initWithFrame:cell.bounds];
         
-        // cell font style
-//        cell.textLabel.font = [UIFont systemFontOfSize:13.f];
-//        cell.textLabel.textColor = [UIColor darkGrayColor];
-//        cell.detailTextLabel.font = [UIFont systemFontOfSize:13.f];
-//        if(![UIDevice systemVersionIsMoreThanOrEuqal7]) {
-//            cell.detailTextLabel.textColor = [UIColor lightGrayColor];
-//        }
-        
-        // cell separator line
-//        UIView *separatorLineView = [[UIImageView alloc] initWithFrame:CGRectMake(46, cell.bounds.size.height - 0.7, cell.bounds.size.width, 0.7)];
-//        separatorLineView.backgroundColor = [UIColor lightGrayColor];
-//        separatorLineView.alpha = 0.7;
-//        [cell addSubview:separatorLineView];
-        
-        // cell accessory
-//        if(data.isPanel) {
-//            cell.accessoryType = UITableViewCellAccessoryNone;
-//            cell.backgroundView.backgroundColor = [UIColor lightTextColor];
-//            cell.backgroundColor = [UIColor lightTextColor];
-//        } else {
-//            cell.backgroundView.backgroundColor = [UIColor whiteColor];
-//            cell.backgroundColor = [UIColor whiteColor];
-//            UIImageView *accessoryImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_yellow_accessory.png"]];
-//            accessoryImageView.tag = ACCESSORY_TAG;
-//            cell.accessoryView = accessoryImageView;
-//        }
     }
     
     if(data.isPanel) {
         [self showButtons];
         [cell addSubview:buttonPanelView];
     } else {
-//        User *user = data.user;
-//        if(user != nil) {
-//            cell.textLabel.text = [NSString stringWithFormat:@"%@(%@)" ,user.name,user.mobile];
-//            if(user.isCurrentUser) {
-//                if (user.userState == UserStateOnline) {
-//                    cell.imageView.image = [UIImage imageNamed:user.isOwner ? @"icon_me_owner.png" : @"icon_me.png"];
-//                }else{
-//                    cell.imageView.image = [UIImage imageNamed:user.isOwner ? @"icon_me_owner.png" : @"icon_me_offline.png"];
-//                }
-//            } else {
-//                if (user.userState == UserStateOnline) {
-//                    cell.imageView.image = [UIImage imageNamed:user.isOwner ? @"icon_owner.png" : @"transparent.png"];
-//                }else{
-//                    cell.imageView.image = [UIImage imageNamed:user.isOwner ? @"icon_owner_offline.png" : @"transparent.png"];
-//                }
-//            }
-//        }
         [cell loadData];
     }
     return cell;
