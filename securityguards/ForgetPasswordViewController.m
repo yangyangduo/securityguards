@@ -9,17 +9,13 @@
 #import "ForgetPasswordViewController.h"
 #import "AccountService.h"
 
-#define TOPBAR_HEIGHT   self.topbarView.frame.size.height
-
 @interface ForgetPasswordViewController ()
 
 @end
 
 @implementation ForgetPasswordViewController{
     UITextField *txtPhoneNumber;
-    UIButton    *btnGetPasswordBack;
 }
-
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -38,25 +34,26 @@
 
 - (void)initUI{
     [super initUI];
-    self.topbarView.title = NSLocalizedString(@"forget.password", @"");
-    UILabel *lblPhoneNumber = [[UILabel alloc] initWithFrame:CGRectMake(5, TOPBAR_HEIGHT+5, 80, 44)];
-    lblPhoneNumber.text = [NSString stringWithFormat:@"%@ :", NSLocalizedString(@"phone.number", @"")];
+    
+    self.topbarView.title = NSLocalizedString(@"forget_password_title", @"");
+    
+    UILabel *lblPhoneNumber = [[UILabel alloc] initWithFrame:CGRectMake(5, self.topbarView.bounds.size.height + 5, 80, 44)];
+    lblPhoneNumber.text = [NSString stringWithFormat:@"%@ :", NSLocalizedString(@"phone_number", @"")];
     lblPhoneNumber.font = [UIFont systemFontOfSize:16.0f];
     [self.view addSubview:lblPhoneNumber];
     
-    if (txtPhoneNumber == nil) {
-        txtPhoneNumber = [[UITextField alloc] initWithFrame:CGRectMake(85, TOPBAR_HEIGHT+5, 200, 44)];
-        txtPhoneNumber.placeholder = NSLocalizedString(@"please.input.phone.number.you.registered", @"");
-        txtPhoneNumber.clearButtonMode = UITextFieldViewModeWhileEditing;
-        txtPhoneNumber.autocorrectionType = UITextAutocapitalizationTypeNone;
-        txtPhoneNumber.font = [UIFont systemFontOfSize:15.f];
-        txtPhoneNumber.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-        txtPhoneNumber.keyboardType = UIKeyboardTypeNumberPad;
-        txtPhoneNumber.clearButtonMode = UITextFieldViewModeWhileEditing;
-        [txtPhoneNumber becomeFirstResponder];
-        txtPhoneNumber.delegate = self;
-        [self.view addSubview:txtPhoneNumber];
-    }
+    txtPhoneNumber = [[UITextField alloc] initWithFrame:CGRectMake(85, self.topbarView.bounds.size.height + 7, 200, 44)];
+    txtPhoneNumber.placeholder = NSLocalizedString(@"enter_register_phone_number", @"");
+    txtPhoneNumber.clearButtonMode = UITextFieldViewModeWhileEditing;
+    txtPhoneNumber.autocorrectionType = UITextAutocapitalizationTypeNone;
+    txtPhoneNumber.font = [UIFont systemFontOfSize:15.f];
+    txtPhoneNumber.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+    txtPhoneNumber.keyboardType = UIKeyboardTypeNumberPad;
+    txtPhoneNumber.clearButtonMode = UITextFieldViewModeWhileEditing;
+    [txtPhoneNumber becomeFirstResponder];
+    txtPhoneNumber.delegate = self;
+    [self.view addSubview:txtPhoneNumber];
+    
     UIView *seperatorView = [[UIView alloc] initWithFrame:CGRectMake(0, lblPhoneNumber.frame.size.height+lblPhoneNumber.frame.origin.y+5, self.view.bounds.size.width, 1)];
     seperatorView.backgroundColor = [UIColor lightGrayColor];
     [self.view addSubview:seperatorView];
@@ -67,27 +64,24 @@
     lblTip.lineBreakMode = NSLineBreakByWordWrapping;
     lblTip.textColor = [UIColor lightGrayColor];
     lblTip.font = [UIFont systemFontOfSize:11.f];
-    lblTip.text = NSLocalizedString(@"forget.password.tip", @"");
+    lblTip.text = NSLocalizedString(@"forget_password_tips", @"");
     [self.view addSubview:lblTip];
-    
-    if (btnGetPasswordBack == nil) {
-        btnGetPasswordBack = [[UIButton alloc] initWithFrame:CGRectMake(0, lblTip.frame.size.height+lblTip.frame.origin.y+10, 400/2, 53/2)];
-        [btnGetPasswordBack setTitle:NSLocalizedString(@"get.new.password", @"") forState:UIControlStateNormal];
-        [btnGetPasswordBack setBackgroundImage:[UIImage imageNamed:@"btn_blue"] forState:UIControlStateNormal];
-        [btnGetPasswordBack setBackgroundImage:[UIImage imageNamed:@"btn_blue_highlighted"] forState:UIControlStateHighlighted];
-        [btnGetPasswordBack setImage:[UIImage imageNamed:@"btn_gray"] forState:UIControlStateDisabled];
-        [btnGetPasswordBack setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        btnGetPasswordBack.center = CGPointMake(self.view.center.x, btnGetPasswordBack.center.y);
-        [btnGetPasswordBack addTarget:self action:@selector(btnGetPasswordBackPressed:) forControlEvents:UIControlEventTouchUpInside];
-        [self.view addSubview:btnGetPasswordBack];
-    }
 
+    UIButton *btnGetPasswordBack = [[UIButton alloc] initWithFrame:CGRectMake(0, lblTip.frame.size.height + lblTip.frame.origin.y + 10, 460 / 2, 60 / 2)];
+    [btnGetPasswordBack setTitle:NSLocalizedString(@"get_new_password", @"") forState:UIControlStateNormal];
+    [btnGetPasswordBack setBackgroundImage:[UIImage imageNamed:@"btn_blue"] forState:UIControlStateNormal];
+    [btnGetPasswordBack setBackgroundImage:[UIImage imageNamed:@"btn_blue_highlighted"] forState:UIControlStateHighlighted];
+    [btnGetPasswordBack setImage:[UIImage imageNamed:@"btn_gray"] forState:UIControlStateDisabled];
+    [btnGetPasswordBack setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    btnGetPasswordBack.center = CGPointMake(self.view.center.x, btnGetPasswordBack.center.y);
+    [btnGetPasswordBack addTarget:self action:@selector(btnGetPasswordBackPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:btnGetPasswordBack];
 }
 
 #pragma mark-
-#pragma mark button actions
+#pragma mark UI Actions
 
-- (void)btnGetPasswordBackPressed:(id) sender{
+- (void)btnGetPasswordBackPressed:(id)sender {
     NSString *phoneNumber = [XXStringUtils trim:txtPhoneNumber.text];
     if([XXStringUtils isBlank:phoneNumber] || phoneNumber.length != 11) {
         [[[AccountService alloc] init] sendPasswordToMobile:phoneNumber success:@selector(sendPasswordSuccess:) failed:@selector(sendPasswordFailed:) target:self callback:nil];
@@ -99,6 +93,9 @@
     [[AlertView currentAlertView] setMessage:NSLocalizedString(@"please_wait", @"") forType:AlertViewTypeWaitting];
     [[AlertView currentAlertView] alertForLock:YES autoDismiss:NO];
 }
+
+#pragma mark -
+#pragma mark Service
 
 - (void)sendPasswordSuccess:(RestResponse *)resp {
     if(resp.statusCode == 200) {
@@ -137,20 +134,19 @@
 - (void)sendPasswordFailed:(RestResponse *)resp {
     if(abs(resp.statusCode) == 1001) {
         [[AlertView currentAlertView] setMessage:NSLocalizedString(@"request_timeout", @"") forType:AlertViewTypeSuccess];
+    } else if(abs(resp.statusCode) == 1004) {
+        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"network_error", @"") forType:AlertViewTypeSuccess];
     } else {
         [[AlertView currentAlertView] setMessage:NSLocalizedString(@"unknow_error", @"") forType:AlertViewTypeSuccess];
     }
     [[AlertView currentAlertView] delayDismissAlertView];
 }
 
+#pragma mark -
+#pragma mark Text View Delegate
+
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
     return range.location<11;
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end

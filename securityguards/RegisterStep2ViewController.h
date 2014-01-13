@@ -15,5 +15,4 @@
 @property (assign, nonatomic, readonly) BOOL isModify;
 
 - (id) initAsModify:(BOOL) modify;
-
 @end

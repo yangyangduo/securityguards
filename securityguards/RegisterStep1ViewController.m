@@ -10,19 +10,15 @@
 #import "RegisterStep2ViewController.h"
 #import "AccountService.h"
 
-#define TOPBAR_HEIGHT   self.topbarView.frame.size.height
-
 @interface RegisterStep1ViewController ()
 
 @end
 
 @implementation RegisterStep1ViewController{
     UITextField *txtPhoneNumber;
-    UIButton    *btnGetVerificationCode;
 }
 
 @synthesize isModify;
-
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -50,48 +46,47 @@
 - (void)initUI{
     [super initUI];
 
-    self.topbarView.title = NSLocalizedString(@"register.account", @"");
-    UILabel *lblPhoneNumber = [[UILabel alloc] initWithFrame:CGRectMake(5, TOPBAR_HEIGHT+5, 80, 44)];
-    lblPhoneNumber.text = [NSString stringWithFormat:@"%@ :", NSLocalizedString(@"phone.number", @"")];
+    self.topbarView.title = NSLocalizedString(@"register_title", @"");
+    
+    UILabel *lblPhoneNumber = [[UILabel alloc] initWithFrame:CGRectMake(5, self.topbarView.bounds.size.height + 5, 80, 44)];
+    lblPhoneNumber.text = [NSString stringWithFormat:@"%@ :", NSLocalizedString(@"phone_number", @"")];
     lblPhoneNumber.font = [UIFont systemFontOfSize:16.0f];
     [self.view addSubview:lblPhoneNumber];
     
-    if (txtPhoneNumber == nil) {
-        txtPhoneNumber = [[UITextField alloc] initWithFrame:CGRectMake(85, TOPBAR_HEIGHT+5, 200, 44)];
-        txtPhoneNumber.placeholder = NSLocalizedString(@"please.input.phone.number.for.registerring", @"");
-        txtPhoneNumber.clearButtonMode = UITextFieldViewModeWhileEditing;
-        txtPhoneNumber.autocorrectionType = UITextAutocapitalizationTypeNone;
-//        txtPhoneNumber.font = [UIFont systemFontOfSize:14.f];
-        txtPhoneNumber.keyboardType = UIKeyboardTypeNumberPad;
-        txtPhoneNumber.clearButtonMode = UITextFieldViewModeWhileEditing;
-        txtPhoneNumber.delegate =self;
-        txtPhoneNumber.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-        [self.view addSubview:txtPhoneNumber];
-    }
+    txtPhoneNumber = [[UITextField alloc] initWithFrame:CGRectMake(85, self.topbarView.bounds.size.height + 7, 200, 44)];
+    txtPhoneNumber.placeholder = NSLocalizedString(@"phone_text_placeholder", @"");
+    txtPhoneNumber.clearButtonMode = UITextFieldViewModeWhileEditing;
+    txtPhoneNumber.autocorrectionType = UITextAutocapitalizationTypeNone;
+    txtPhoneNumber.keyboardType = UIKeyboardTypeNumberPad;
+    txtPhoneNumber.clearButtonMode = UITextFieldViewModeWhileEditing;
+    txtPhoneNumber.delegate =self;
+    txtPhoneNumber.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+    [self.view addSubview:txtPhoneNumber];
+    
     UIView *seperatorView = [[UIView alloc] initWithFrame:CGRectMake(0, lblPhoneNumber.frame.size.height+lblPhoneNumber.frame.origin.y+5, self.view.bounds.size.width, 1)];
     seperatorView.backgroundColor = [UIColor lightGrayColor];
     [self.view addSubview:seperatorView];
     
-    UILabel *lblTip = [[UILabel alloc] initWithFrame:CGRectMake(0, seperatorView.frame.size.height+seperatorView.frame.origin.y+10,200,60)];
+    UILabel *lblTip = [[UILabel alloc] initWithFrame:CGRectMake(0, seperatorView.frame.size.height+seperatorView.frame.origin.y + 10, 200, 60)];
     lblTip.numberOfLines = 2;
     lblTip.center = CGPointMake(self.view.center.x, lblTip.center.y);
     lblTip.lineBreakMode = NSLineBreakByWordWrapping;
     lblTip.textColor = [UIColor lightGrayColor];
     lblTip.font = [UIFont systemFontOfSize:11.f];
-        [self.view addSubview:lblTip];
 
-    
-    if (btnGetVerificationCode == nil) {
-        btnGetVerificationCode = [[UIButton alloc] initWithFrame:CGRectMake(0, lblTip.frame.size.height+lblTip.frame.origin.y+10, 400/2, 53/2)];
+    [self.view addSubview:lblTip];
 
-        [btnGetVerificationCode setBackgroundImage:[UIImage imageNamed:@"btn_blue"] forState:UIControlStateNormal];
-        [btnGetVerificationCode setBackgroundImage:[UIImage imageNamed:@"btn_blue_highlighted"] forState:UIControlStateHighlighted];
-        [btnGetVerificationCode setImage:[UIImage imageNamed:@"btn_gray"] forState:UIControlStateDisabled];
-        [btnGetVerificationCode setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        btnGetVerificationCode.center = CGPointMake(self.view.center.x, btnGetVerificationCode.center.y);
-        
-        [self.view addSubview:btnGetVerificationCode];
-    }
+
+    UIButton *btnGetVerificationCode = [[UIButton alloc] initWithFrame:CGRectMake(0, lblTip.frame.size.height+lblTip.frame.origin.y + 10, 460 / 2, 60 / 2)];
+    [btnGetVerificationCode setTitle:NSLocalizedString(@"get_verification_code", @"") forState:UIControlStateNormal];
+    [btnGetVerificationCode setBackgroundImage:[UIImage imageNamed:@"btn_blue"] forState:UIControlStateNormal];
+    [btnGetVerificationCode setBackgroundImage:[UIImage imageNamed:@"btn_blue_highlighted"] forState:UIControlStateHighlighted];
+    [btnGetVerificationCode setImage:[UIImage imageNamed:@"btn_gray"] forState:UIControlStateDisabled];
+    [btnGetVerificationCode setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    btnGetVerificationCode.center = CGPointMake(self.view.center.x, btnGetVerificationCode.center.y);
+    [btnGetVerificationCode addTarget:self action:@selector(btnGetVerificationPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:btnGetVerificationCode];
+
 
     if(isModify) {
         
@@ -99,8 +94,8 @@
         
         [btnGetVerificationCode setTitle:NSLocalizedString(@"next_step", @"") forState:UIControlStateNormal];
     }else{
-        lblTip.text = NSLocalizedString(@"register.tip1", @"");
-        [btnGetVerificationCode setTitle:NSLocalizedString(@"get.verification", @"") forState:UIControlStateNormal];
+        lblTip.text = NSLocalizedString(@"register_tips1", @"");
+        [btnGetVerificationCode setTitle:NSLocalizedString(@"get_verification_code", @"") forState:UIControlStateNormal];
     
     }
 
@@ -112,10 +107,10 @@
     }
 }
 
-#pragma mark-
-#pragma mark button actions
+#pragma mark -
+#pragma mark UI Actions
 
-- (void)btnGetVerificationPressed:(id) sender{
+- (void)btnGetVerificationPressed:(id)sender {    
     [[AlertView currentAlertView] setMessage:NSLocalizedString(@"please_wait", @"") forType:AlertViewTypeWaitting];
     [[AlertView currentAlertView] alertForLock:YES autoDismiss:NO];
     AccountService *accountService = [[AccountService alloc] init];
@@ -125,6 +120,9 @@
         [accountService sendVerificationCodeFor:txtPhoneNumber.text success:@selector(sendVerificationCodeSuccess:) failed:@selector(sendVerificationCodeFailed:) target:self callback:nil];
     }
 }
+
+#pragma mark -
+#pragma mark Service
 
 - (void)sendVerificationCodeSuccess:(RestResponse *)resp {
     if(resp.statusCode == 200) {
@@ -167,22 +165,19 @@
 - (void)sendVerificationCodeFailed:(RestResponse *)resp {
     if(abs(resp.statusCode) == 1001) {
         [[AlertView currentAlertView] setMessage:NSLocalizedString(@"request_timeout", @"") forType:AlertViewTypeFailed];
-    } else if(resp.statusCode == 1004){
+    } else if(abs(resp.statusCode) == 1004) {
         [[AlertView currentAlertView] setMessage:NSLocalizedString(@"network_error", @"") forType:AlertViewTypeFailed];
-    }else {
+    } else {
         [[AlertView currentAlertView] setMessage:NSLocalizedString(@"unknow_error", @"") forType:AlertViewTypeFailed];
     }
     [[AlertView currentAlertView] delayDismissAlertView];
 }
 
+#pragma mark -
+#pragma mark Text View Delegate
+
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
     return range.location < 11;
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end

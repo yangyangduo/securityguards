@@ -10,6 +10,7 @@
 #import "BaseViewController.h"
 
 @interface LoginViewController : BaseViewController<UITextFieldDelegate>
-@property (assign,nonatomic) BOOL   hasLogin;
+
+@property (assign,nonatomic) BOOL hasLogin;
 
 @end

@@ -226,7 +226,6 @@
         
         UIImageView *imgView = (UIImageView *)[cell viewWithTag:888];
         UILabel *lblNewsTitle = (UILabel *)[[cell viewWithTag:889] viewWithTag:300];
-        
         [imgView setImageWithURL:[[NSURL alloc] initWithString:news.imageUrl] placeholderImage:[UIImage imageNamed:@"test"]];
         lblNewsTitle.text = news.title;
     } else {
