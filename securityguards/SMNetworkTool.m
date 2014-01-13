@@ -43,4 +43,12 @@
     return address;
 }
 
++ (NSString *)ssidForCurrentWifi {
+    CFArrayRef myArray = CNCopySupportedInterfaces();
+    CFDictionaryRef myDict = CNCopyCurrentNetworkInfo(CFArrayGetValueAtIndex(myArray, 0));
+    NSDictionary *myDictionary = (__bridge_transfer NSDictionary*)myDict;
+    NSString * ssid = [myDictionary objectForKey:@"SSID"];
+    return ssid;
+}
+
 @end

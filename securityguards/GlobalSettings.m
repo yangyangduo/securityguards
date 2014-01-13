@@ -108,4 +108,12 @@
     }
 }
 
+- (BOOL)hasLogin {
+    if(![XXStringUtils isBlank:[GlobalSettings defaultSettings].secretKey]
+       && ![XXStringUtils isBlank:[GlobalSettings defaultSettings].deviceCode]) {
+        return YES;
+    }
+    return NO;
+}
+
 @end

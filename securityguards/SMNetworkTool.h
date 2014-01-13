@@ -7,9 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <SystemConfiguration/CaptiveNetwork.h>
 
 @interface SMNetworkTool : NSObject
 
 + (NSString *)getLocalIp;
++ (NSString *)ssidForCurrentWifi;
 
 @end

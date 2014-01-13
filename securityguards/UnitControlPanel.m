@@ -14,9 +14,12 @@
 #import "DeviceOperationItem.h"
 #import "Shared.h"
 #import "DeviceUtils.h"
+#import "objc/runtime.h"
 
 #define DETAIL_TEXT_LABEL_TAG 888
 #define CONTROL_ITEM_HEIGHT 44
+
+static char f;
 
 @implementation UnitControlPanel {
     UITableView *tblControlItems;

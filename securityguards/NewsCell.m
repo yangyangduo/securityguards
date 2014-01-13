@@ -62,7 +62,7 @@
     imgSeperator.image = [UIImage imageNamed:@"line_news"];
     [self addSubview:imgSeperator];
     
-    lblContent = [[UILabel alloc] initWithFrame:CGRectMake(imgSeperator.frame.origin.x + 10, 9, 210, 42)];
+    lblContent = [[UILabel alloc] initWithFrame:CGRectMake(imgSeperator.frame.origin.x + 13, 9, 204, 42)];
     lblContent.numberOfLines = 2;
     lblContent.backgroundColor = [UIColor clearColor];
     lblContent.textColor = [UIColor darkGrayColor];

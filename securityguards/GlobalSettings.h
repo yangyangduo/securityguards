@@ -13,14 +13,15 @@
 
 @interface GlobalSettings : NSObject
 
-@property (strong, nonatomic) NSString *account;
-@property (strong, nonatomic) NSString *secretKey;
-@property (strong, nonatomic) NSString *deviceCode;
-@property (strong, atomic)    NSString *tcpAddress;
-@property (strong, nonatomic) NSString *restAddress;
-@property (assign, nonatomic) BOOL isVoice;
-@property (assign, nonatomic) BOOL isShake;
-@property (strong, nonatomic) NSString *deviceToken;
+@property (nonatomic) BOOL isVoice;
+@property (nonatomic) BOOL isShake;
+@property (strong)    NSString *tcpAddress;
+@property (nonatomic, strong) NSString *account;
+@property (nonatomic, strong) NSString *secretKey;
+@property (nonatomic, strong) NSString *deviceCode;
+@property (nonatomic, strong) NSString *restAddress;
+@property (nonatomic, strong) NSString *deviceToken;
+@property (nonatomic, readonly, getter = hasLogin) BOOL login;
 
 + (GlobalSettings *)defaultSettings;
 
