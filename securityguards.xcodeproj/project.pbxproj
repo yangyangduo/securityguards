@@ -1140,6 +1140,7 @@
 				6F6004BE186BD0290085B4BD /* commons */,
 				6F6005B0186C1ADB0085B4BD /* login_register */,
 				6FCEBCF8187C2734000CB911 /* account_settings */,
+				6FBFDE4118851FD7001E0BDA /* unit_finder */,
 				6F6005AD186C18D60085B4BD /* RootViewController.h */,
 				6F6005AE186C18D60085B4BD /* RootViewController.m */,
 				6F6005AA186C18C10085B4BD /* PortalViewController.h */,
@@ -1744,6 +1745,13 @@
 				6FA69115187FB6E8005D1415 /* logo_gold@2x.png */,
 			);
 			name = version;
+			sourceTree = "<group>";
+		};
+		6FBFDE4118851FD7001E0BDA /* unit_finder */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = unit_finder;
 			sourceTree = "<group>";
 		};
 		6FCEBCF8187C2734000CB911 /* account_settings */ = {
