@@ -66,7 +66,7 @@
 - (void)initUI{
     [super initUI];
     
-    self.topbarView.title = NSLocalizedString(@"register_title", @"");
+    self.topbarView.title = isModify?NSLocalizedString(@"modify_title", @""): NSLocalizedString(@"register_title", @"");
     
     UILabel *lblVerificationCode = [[UILabel alloc] initWithFrame:CGRectMake(5, self.topbarView.bounds.size.height + 5, 80, 44)];
     lblVerificationCode.text = [NSString stringWithFormat:@"%@ :", NSLocalizedString(@"verification_code", @"")];
