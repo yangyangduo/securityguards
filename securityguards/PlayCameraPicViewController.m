@@ -72,7 +72,7 @@
     
     if(data.cameraPicPaths != nil) {
         for (int i = 0; i<data.cameraPicPaths.count; i++) {
-            BlueButton *btnPlayCamera = [BlueButton blueButtonWithPoint:CGPointMake(5, self.topbarView.bounds.size.height + i * 54 + 245) resize:CGSizeMake(BLUE_BUTTON_DEFAULT_WIDTH, BLUE_BUTTON_DEFAULT_HEIGHT)];//[LongButton buttonWithPoint:CGPointMake(5, self.topbar.bounds.size.height + i * 54 + 245)];
+            BlueButton *btnPlayCamera = [BlueButton blueButtonWithPoint:CGPointMake(5, self.topbarView.bounds.size.height + i * 54 + 245) resize:CGSizeMake(311, BLUE_BUTTON_DEFAULT_HEIGHT)];//[LongButton buttonWithPoint:CGPointMake(5, self.topbar.bounds.size.height + i * 54 + 245)];
             CameraPicPath *path = [data.cameraPicPaths objectAtIndex:i];
             if (i == 0) {
                 btnPlayCamera.tag = FIRST_BUTTON_TAG;
@@ -95,12 +95,14 @@
     }
 }
 
-- (void)dismiss {
+- (void)popupViewController {
     if(provider != nil) {
         [provider stopDownload];
     }
     [self dismissViewControllerAnimated:NO completion:nil];
 }
+
+
 
 - (void)play:(id<ParameterAware>)source {
     if(isPlaying) {

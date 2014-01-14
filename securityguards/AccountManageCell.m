@@ -16,6 +16,7 @@
     UIImageView *imgUserRole;
     UILabel *lblUserInfo;
     UIImageView *imgAccessory;
+    UILabel *lblUserStatus;
 }
 @synthesize data;
 
@@ -77,7 +78,16 @@
         if (imgAccessory == nil) {
             imgAccessory = [[UIImageView alloc] initWithFrame:CGRectMake(CELL_WIDTH-40, 0, 71/2, 28/2)];
             imgAccessory.center = CGPointMake(imgAccessory.center.x, view.center.y);
+            
             [view addSubview:imgAccessory];
+            if (lblUserStatus == nil) {
+                lblUserStatus = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 71/2, 28/2)];
+                lblUserStatus.textColor = [UIColor lightTextColor];
+                lblUserStatus.font = [UIFont systemFontOfSize:12.f];
+                lblUserStatus.textAlignment = NSTextAlignmentCenter;
+                [imgAccessory addSubview:lblUserStatus];
+                
+            }
         }
 
     }
@@ -89,6 +99,7 @@
     if(user != nil) {
         lblUserInfo.text = [NSString stringWithFormat:@"%@(%@)" ,user.name,user.mobile];
         imgAccessory.image = [UIImage imageNamed:(user.userState == UserStateOnline?@"icon_online_accessory.png":@"icon_offline_accessory.png")];
+        lblUserStatus.text = user.userState == UserStateOnline? NSLocalizedString(@"user_online", @""):NSLocalizedString(@"user_offline", @"");
         if(user.isCurrentUser) {
             imgUserRole.image = [UIImage imageNamed:user.isOwner ? @"icon_me_owner.png" : @"icon_me.png"];
         } else {
