@@ -1161,8 +1161,6 @@
 				6F7CDBA4187277120036F912 /* CameraViewController.m */,
 				F20D6AC518729A8800FE6B6D /* NotificationDetailsViewController.h */,
 				F20D6AC618729A8800FE6B6D /* NotificationDetailsViewController.m */,
-				6F7CDBBE1872B30A0036F912 /* UnitFinderViewController.h */,
-				6F7CDBBF1872B30A0036F912 /* UnitFinderViewController.m */,
 				6F3485081875264D00EBB635 /* UnitRenameViewController.h */,
 				6F3485091875264D00EBB635 /* UnitRenameViewController.m */,
 				F2B6A640187515FE0020809D /* PlayCameraPicViewController.h */,
@@ -1750,6 +1748,8 @@
 		6FBFDE4118851FD7001E0BDA /* unit_finder */ = {
 			isa = PBXGroup;
 			children = (
+				6F7CDBBE1872B30A0036F912 /* UnitFinderViewController.h */,
+				6F7CDBBF1872B30A0036F912 /* UnitFinderViewController.m */,
 			);
 			name = unit_finder;
 			sourceTree = "<group>";
