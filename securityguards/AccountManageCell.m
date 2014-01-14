@@ -11,13 +11,13 @@
 #import "UIDevice+SystemVersion.h"
 #import "UIColor+MoreColor.h"
 
-
-@implementation AccountManageCell{
+@implementation AccountManageCell {
     UIImageView *imgUserRole;
     UILabel *lblUserInfo;
     UIImageView *imgAccessory;
     UILabel *lblUserStatus;
 }
+
 @synthesize data;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier withData:(AccountManageCellData *) cellData
@@ -27,11 +27,11 @@
         // Initialization code
         data = cellData;
         [self initUI];
-        
     }
     return self;
 }
-- (void) initUI{
+
+- (void)initUI {
     self.backgroundColor = [UIColor clearColor];
     self.backgroundView = [[UIView alloc] initWithFrame:self.bounds];
     self.selectedBackgroundView = [[UIView alloc] initWithFrame:self.bounds];
@@ -92,8 +92,7 @@
     }
 }
 
-- (void)loadData{
-
+- (void)loadData {
     User *user = data.user;
     if(user != nil) {
         lblUserInfo.text = [NSString stringWithFormat:@"%@(%@)" ,user.name,user.mobile];
@@ -105,9 +104,7 @@
             imgUserRole.image = [UIImage imageNamed:user.isOwner ? @"icon_owner.png" : @"transparent.png"];
         }
     }
-
 }
-
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
