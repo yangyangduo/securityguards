@@ -124,6 +124,7 @@
 /****************	Login && Register Strings	****************/
 
 "register_title"                   =   "账号注册";
+"modify_title"                     =   "修改用户名";
 "forget_password_title"            =   "忘记密码";
 "login"                            =   "登录";
 "register"                         =   "账号注册";

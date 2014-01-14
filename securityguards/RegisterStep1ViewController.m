@@ -46,7 +46,7 @@
 - (void)initUI{
     [super initUI];
 
-    self.topbarView.title = NSLocalizedString(@"register_title", @"");
+    self.topbarView.title = isModify?NSLocalizedString(@"modify_title", @""): NSLocalizedString(@"register_title", @"");
     
     UILabel *lblPhoneNumber = [[UILabel alloc] initWithFrame:CGRectMake(5, self.topbarView.bounds.size.height + 5, 80, 44)];
     lblPhoneNumber.text = [NSString stringWithFormat:@"%@ :", NSLocalizedString(@"phone_number", @"")];
@@ -54,7 +54,7 @@
     [self.view addSubview:lblPhoneNumber];
     
     txtPhoneNumber = [[UITextField alloc] initWithFrame:CGRectMake(85, self.topbarView.bounds.size.height + 7, 200, 44)];
-    txtPhoneNumber.placeholder = NSLocalizedString(@"phone_text_placeholder", @"");
+    txtPhoneNumber.placeholder = isModify?NSLocalizedString(@"phone_modify_placeholder", @""): NSLocalizedString(@"phone_text_placeholder", @"");
     txtPhoneNumber.clearButtonMode = UITextFieldViewModeWhileEditing;
     txtPhoneNumber.autocorrectionType = UITextAutocapitalizationTypeNone;
     txtPhoneNumber.keyboardType = UIKeyboardTypeNumberPad;
