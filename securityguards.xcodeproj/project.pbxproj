@@ -269,6 +269,11 @@
 		F2B6A642187515FE0020809D /* PlayCameraPicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2B6A641187515FE0020809D /* PlayCameraPicViewController.m */; };
 		F2C1DFF218764C3400DD66D7 /* ImageProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = F2C1DFF118764C3400DD66D7 /* ImageProvider.m */; };
 		F2C1DFF518764CF700DD66D7 /* CameraLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = F2C1DFF418764CF700DD66D7 /* CameraLoadingView.m */; };
+		F2CE673F18852284007FAC8B /* AddUnitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2CE673E18852284007FAC8B /* AddUnitViewController.m */; };
+		F2CE6742188522F2007FAC8B /* UnitSettingStep1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2CE6741188522F2007FAC8B /* UnitSettingStep1ViewController.m */; };
+		F2CE674518852314007FAC8B /* UnitSettingStep2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2CE674418852314007FAC8B /* UnitSettingStep2ViewController.m */; };
+		F2CE67481885232F007FAC8B /* UnitSettingStep3ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2CE67471885232F007FAC8B /* UnitSettingStep3ViewController.m */; };
+		F2CE674B18852381007FAC8B /* UnitSettingStep4ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2CE674A18852381007FAC8B /* UnitSettingStep4ViewController.m */; };
 		F2F3E19F187A3FD6006A9447 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F3E18F187A3FD6006A9447 /* EGORefreshTableHeaderView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F2F3E1A0187A3FD6006A9447 /* LoadMoreTableFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F3E191187A3FD6006A9447 /* LoadMoreTableFooterView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F2F3E1A1187A3FD6006A9447 /* MessageInterceptor.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F3E193187A3FD6006A9447 /* MessageInterceptor.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -741,6 +746,16 @@
 		F2C1DFF118764C3400DD66D7 /* ImageProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageProvider.m; sourceTree = "<group>"; };
 		F2C1DFF318764CF700DD66D7 /* CameraLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraLoadingView.h; sourceTree = "<group>"; };
 		F2C1DFF418764CF700DD66D7 /* CameraLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraLoadingView.m; sourceTree = "<group>"; };
+		F2CE673D18852284007FAC8B /* AddUnitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddUnitViewController.h; sourceTree = "<group>"; };
+		F2CE673E18852284007FAC8B /* AddUnitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddUnitViewController.m; sourceTree = "<group>"; };
+		F2CE6740188522F2007FAC8B /* UnitSettingStep1ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitSettingStep1ViewController.h; sourceTree = "<group>"; };
+		F2CE6741188522F2007FAC8B /* UnitSettingStep1ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnitSettingStep1ViewController.m; sourceTree = "<group>"; };
+		F2CE674318852314007FAC8B /* UnitSettingStep2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitSettingStep2ViewController.h; sourceTree = "<group>"; };
+		F2CE674418852314007FAC8B /* UnitSettingStep2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnitSettingStep2ViewController.m; sourceTree = "<group>"; };
+		F2CE67461885232F007FAC8B /* UnitSettingStep3ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitSettingStep3ViewController.h; sourceTree = "<group>"; };
+		F2CE67471885232F007FAC8B /* UnitSettingStep3ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnitSettingStep3ViewController.m; sourceTree = "<group>"; };
+		F2CE674918852381007FAC8B /* UnitSettingStep4ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitSettingStep4ViewController.h; sourceTree = "<group>"; };
+		F2CE674A18852381007FAC8B /* UnitSettingStep4ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnitSettingStep4ViewController.m; sourceTree = "<group>"; };
 		F2F3E18E187A3FD6006A9447 /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
 		F2F3E18F187A3FD6006A9447 /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
 		F2F3E190187A3FD6006A9447 /* LoadMoreTableFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadMoreTableFooterView.h; sourceTree = "<group>"; };
@@ -1750,6 +1765,16 @@
 			children = (
 				6F7CDBBE1872B30A0036F912 /* UnitFinderViewController.h */,
 				6F7CDBBF1872B30A0036F912 /* UnitFinderViewController.m */,
+				F2CE673D18852284007FAC8B /* AddUnitViewController.h */,
+				F2CE673E18852284007FAC8B /* AddUnitViewController.m */,
+				F2CE6740188522F2007FAC8B /* UnitSettingStep1ViewController.h */,
+				F2CE6741188522F2007FAC8B /* UnitSettingStep1ViewController.m */,
+				F2CE674318852314007FAC8B /* UnitSettingStep2ViewController.h */,
+				F2CE674418852314007FAC8B /* UnitSettingStep2ViewController.m */,
+				F2CE67461885232F007FAC8B /* UnitSettingStep3ViewController.h */,
+				F2CE67471885232F007FAC8B /* UnitSettingStep3ViewController.m */,
+				F2CE674918852381007FAC8B /* UnitSettingStep4ViewController.h */,
+				F2CE674A18852381007FAC8B /* UnitSettingStep4ViewController.m */,
 			);
 			name = unit_finder;
 			sourceTree = "<group>";
@@ -2090,6 +2115,7 @@
 			files = (
 				6F6005A7186C029F0085B4BD /* Shared.m in Sources */,
 				6F60055F186BF0710085B4BD /* Zone.m in Sources */,
+				F2CE6742188522F2007FAC8B /* UnitSettingStep1ViewController.m in Sources */,
 				6F7CDBA8187287BA0036F912 /* BaseView.m in Sources */,
 				6F60053B186BF0010085B4BD /* DeviceCommandGetNotificationsHandler.m in Sources */,
 				6F6005A1186C015B0085B4BD /* CameraService.m in Sources */,
@@ -2149,6 +2175,7 @@
 				6F60055B186BF0710085B4BD /* NotificationData.m in Sources */,
 				6FEC0FEA186C664200CB0D70 /* UserManagementViewController.m in Sources */,
 				6F203399187D4E2000BACFA5 /* SDWebImageManager.m in Sources */,
+				F2CE673F18852284007FAC8B /* AddUnitViewController.m in Sources */,
 				6F203393187D4E2000BACFA5 /* NSData+GIF.m in Sources */,
 				6FCCE92F187E551B007B42D2 /* News.m in Sources */,
 				6F7CDBA5187277120036F912 /* CameraViewController.m in Sources */,
@@ -2194,6 +2221,7 @@
 				6F0D803A187E6DA800DB5040 /* NewsService.m in Sources */,
 				F21512601871227C0039CC8A /* XXTextField.m in Sources */,
 				6F600572186BF3940085B4BD /* CurrentUnitChangedEvent.m in Sources */,
+				F2CE674B18852381007FAC8B /* UnitSettingStep4ViewController.m in Sources */,
 				6F600523186BE9890085B4BD /* DeviceCommandReceivedCameraServer.m in Sources */,
 				6F8F57C5187111B70033228F /* ConversationTextMessage.m in Sources */,
 				6F6004BB186BCFF40085B4BD /* UIColor+HexColor.m in Sources */,
@@ -2226,6 +2254,7 @@
 				6F732729186D430700A1276B /* SensorDisplayView.m in Sources */,
 				6F203397187D4E2000BACFA5 /* SDWebImageDownloader.m in Sources */,
 				6F60053F186BF0010085B4BD /* DeviceCommandUpdateDevicesHandler.m in Sources */,
+				F2CE67481885232F007FAC8B /* UnitSettingStep3ViewController.m in Sources */,
 				6FA3B2FF186E796000EBC7FD /* XXActionSheet.m in Sources */,
 				6F2AE0DF187059A900BEDB29 /* SpeechViewController.m in Sources */,
 				6F60052A186BE9890085B4BD /* DeviceCommandUpdateUnitName.m in Sources */,
@@ -2237,6 +2266,7 @@
 				6F600589186BF89E0085B4BD /* CommandQueue.m in Sources */,
 				6F6004CC186BD0A50085B4BD /* LeftNavView.m in Sources */,
 				6F600527186BE9890085B4BD /* DeviceCommandUpdateDeviceToken.m in Sources */,
+				F2CE674518852314007FAC8B /* UnitSettingStep2ViewController.m in Sources */,
 				6F600577186BF3940085B4BD /* UnitsListUpdatedEvent.m in Sources */,
 				6F6004A8186BCF7A0085B4BD /* TopbarView.m in Sources */,
 				6F6004E9186BD31A0085B4BD /* SMNetworkTool.m in Sources */,
