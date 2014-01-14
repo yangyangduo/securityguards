@@ -10,10 +10,10 @@
 #import "SMNotification.h"
 #import "UIColor+HexColor.h"
 
-#define MESSAGE_CELL_HEIGHT 65
-#define TYPE_IMAGE_TAG 1001
-#define TEXT_LABEL_TAG 1000
-#define CELL_VIEW_TAG 999
+#define MESSAGE_CELL_HEIGHT    75
+#define TYPE_IMAGE_TAG         1001
+#define TEXT_LABEL_TAG         1000
+#define CELL_VIEW_TAG          999
 
 @interface MessageCell : UITableViewCell
 

@@ -11,7 +11,7 @@
 #import "UIColor+MoreColor.h"
 
 @implementation MessageCell {
-    UIView  *view;
+//    UIView  *view;
     UIImageView *typeMessage;
     UILabel *textLabel;
     UILabel *lblTime;
@@ -29,7 +29,6 @@
 }
 
 - (void)initUI {
-    
     self.backgroundColor = [UIColor clearColor];
     self.backgroundView = [[UIView alloc] initWithFrame:self.bounds];
     self.selectedBackgroundView = [[UIView alloc] initWithFrame:self.bounds];
@@ -44,57 +43,42 @@
     selectedBackgroundView.backgroundColor = [UIColor appDarkGray];
     [self.selectedBackgroundView addSubview:selectedBackgroundView];
 
-    if (typeMessage == nil) {
-        typeMessage = [[UIImageView alloc] initWithFrame:CGRectMake(15, 10, 76/2, 64/2)];
-        typeMessage.backgroundColor = [UIColor clearColor];
-        typeMessage.tag = TYPE_IMAGE_TAG;
-    }
-    UIImageView *imgSeperator = [[UIImageView alloc] initWithFrame:CGRectMake(70, 0, 2, 65)];
+    typeMessage = [[UIImageView alloc] initWithFrame:CGRectMake(21, (33.f / 2) + 5, 76 / 2, 64 / 2)];
+    typeMessage.backgroundColor = [UIColor clearColor];
+    typeMessage.tag = TYPE_IMAGE_TAG;
+    [self addSubview:typeMessage];
+    
+    UIImageView *imgSeperator = [[UIImageView alloc] initWithFrame:CGRectMake(70, 5, 2, 65)];
     imgSeperator.image = [UIImage imageNamed:@"line_news"];
+    [self addSubview:imgSeperator];
+
+    textLabel = [[UILabel alloc] initWithFrame:CGRectMake(80, 7, 200, 42)];
+    textLabel.tag = TEXT_LABEL_TAG;
+    textLabel.font =[UIFont systemFontOfSize:13.f];
+    textLabel.textAlignment = NSTextAlignmentLeft;
+    textLabel.textColor = [UIColor darkGrayColor];
+    textLabel.numberOfLines = 2;
+    textLabel.backgroundColor = [UIColor clearColor];
+    [self addSubview:textLabel];
+
+    lblTime = [[UILabel alloc] initWithFrame:CGRectMake(80, 50, 200, 18)];
+    lblTime.backgroundColor = [UIColor clearColor];
+    lblTime.textColor = [UIColor darkGrayColor];
+    lblTime.font = [UIFont systemFontOfSize:11.f];
+    [self addSubview:lblTime];
     
-    if (textLabel == nil) {
-        textLabel = [[UILabel alloc] initWithFrame:CGRectMake(80, 3, 180, 42)];
-        textLabel.tag = TEXT_LABEL_TAG;
-        textLabel.font =[UIFont systemFontOfSize:14];
-        textLabel.textAlignment = NSTextAlignmentLeft;
-        textLabel.textColor = [UIColor darkGrayColor];
-        textLabel.numberOfLines = 2;
-        textLabel.backgroundColor = [UIColor clearColor];
-    }
-    
-    if (lblTime == nil) {
-        lblTime = [[UILabel alloc] initWithFrame:CGRectMake(80, 45, 240, 18)];
-        lblTime.backgroundColor = [UIColor clearColor];
-        lblTime.textColor = [UIColor darkGrayColor];
-        lblTime.font = [UIFont systemFontOfSize:11];
-    }
-    
-    if(view == nil) {
-        view = [[UIView alloc] initWithFrame:CGRectMake(10, 5, 300, MESSAGE_CELL_HEIGHT-5)];
-        view.backgroundColor = [UIColor colorWithHexString:@"fafafa"];
-        typeMessage.center = CGPointMake(typeMessage.center.x, view.center.y);
-        [view addSubview:typeMessage];
-        [view addSubview:imgSeperator];
-        [view addSubview:textLabel];
-        UIImageView *accessory = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_accessory.png"]];
-        accessory.backgroundColor = [UIColor clearColor];
-        accessory.frame = CGRectMake(view.frame.size.width-20, 28, 16/2, 41/2);
-        accessory.center = CGPointMake(accessory.center.x, view.center.y-5);
-        [view addSubview:accessory];
-        
-        [view addSubview:lblTime];
-        view.tag = CELL_VIEW_TAG;
-        [self addSubview:view];
-    }
-    
-    self.backgroundColor = [UIColor clearColor];
+    UIImageView *accessory = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_accessory"]];
+    accessory.backgroundColor = [UIColor clearColor];
+    accessory.frame = CGRectMake(backgroundView.frame.size.width - 8, 28, 16 / 2, 41 / 2);
+    accessory.center = CGPointMake(accessory.center.x, backgroundView.center.y);
+    [self addSubview:accessory];
 }
 
 - (void)loadWithMessage:(SMNotification *)message {
     if([@"MS" isEqualToString:message.type] || [@"AT" isEqualToString:message.type]) {
-        typeMessage.image = [UIImage imageNamed:@"icon_message.png"];
+        typeMessage.image = [UIImage imageNamed:@"icon_message"];
     } else if([@"CF" isEqualToString:message.type]) {
-        typeMessage.image = [UIImage imageNamed:@"icon_validation.png"];
+        typeMessage.image = [UIImage imageNamed:@"icon_validation"];
     } else if([@"AL" isEqualToString:message.type]){
         typeMessage.image = [UIImage imageNamed:@"icon_warning"];
     }
