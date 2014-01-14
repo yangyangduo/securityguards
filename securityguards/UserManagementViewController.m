@@ -81,7 +81,7 @@
     self.view.backgroundColor = [UIColor appGray];
     
     if(tblUnits == nil) {
-        tblUnits = [[PullTableView alloc] initWithFrame:CGRectMake(0, self.topbarView.bounds.size.height+10, self.view.bounds.size.width, self.view.frame.size.height - self.topbarView.bounds.size.height) style:UITableViewStylePlain];
+        tblUnits = [[PullTableView alloc] initWithFrame:CGRectMake(0, self.topbarView.bounds.size.height + 2, self.view.bounds.size.width, self.view.frame.size.height - self.topbarView.bounds.size.height - 2) style:UITableViewStylePlain];
         tblUnits.pullDelegate = self;
         tblUnits.center = CGPointMake(self.view.center.x, tblUnits.center.y);
         tblUnits.delegate = self;
@@ -183,23 +183,15 @@
         if (user.isOwner) {
             btnUnbinding.hidden = YES;
         }
-    }else{
+    } else {
         if (!currentIsOwner) {
             btnUnbinding.hidden = YES;
         }
     }
-        if (buttonPanelView.superview != nil) {
+    if (buttonPanelView.superview != nil) {
         [scPanel removeFromSuperview];
-        
     }
 }
-
-
-
-
-
-
-
 
 #pragma mark -
 #pragma mark Events
@@ -231,20 +223,21 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return CELL_HEIGHT;
 }
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *userCellIdentifier = @"userCellIdentifier";
     static NSString *panelCellIdentifier = @"panelIdentifier";
     
     AccountManageCellData *data = [unitBindingAccounts objectAtIndex:indexPath.row];
-    if(data == nil) return nil;
-    
     AccountManageCell *cell = [tableView dequeueReusableCellWithIdentifier:data.isPanel ? panelCellIdentifier : userCellIdentifier];
+    
+    if(data != nil) {
+        cell = [tableView dequeueReusableCellWithIdentifier:data.isPanel ? panelCellIdentifier : userCellIdentifier];
+    }
     if (cell == nil) {
         cell = [[AccountManageCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:data.isPanel ? panelCellIdentifier : userCellIdentifier withData:data];
         cell.backgroundView = [[UIView alloc] initWithFrame:cell.bounds];
-        
     }
-    
     if(data.isPanel) {
         [self showButtons];
         [cell addSubview:buttonPanelView];

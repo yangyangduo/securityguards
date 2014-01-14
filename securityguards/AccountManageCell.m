@@ -82,11 +82,10 @@
             [view addSubview:imgAccessory];
             if (lblUserStatus == nil) {
                 lblUserStatus = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 71/2, 28/2)];
-                lblUserStatus.textColor = [UIColor lightTextColor];
+                lblUserStatus.textColor = [UIColor whiteColor];
                 lblUserStatus.font = [UIFont systemFontOfSize:10.f];
                 lblUserStatus.textAlignment = NSTextAlignmentCenter;
                 [imgAccessory addSubview:lblUserStatus];
-                
             }
         }
 
