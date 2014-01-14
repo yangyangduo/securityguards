@@ -58,14 +58,14 @@
         
         if (imgUserRole == nil) {
             imgUserRole = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 44/2, 34/2)];
-            imgUserRole.center = CGPointMake(30, view.center.y);
+            imgUserRole.center = CGPointMake(30, view.center.y-5);
             imgUserRole.backgroundColor = [UIColor clearColor];
             [view addSubview:imgUserRole];
         }
         
         if (lblUserInfo == nil) {
             lblUserInfo = [[UILabel alloc] initWithFrame:CGRectMake(60, 0, 160, CELL_HEIGHT-5)];
-            lblUserInfo.center = CGPointMake(lblUserInfo.center.x, view.center.y);
+            lblUserInfo.center = CGPointMake(lblUserInfo.center.x, view.center.y-5);
             lblUserInfo.textColor = [UIColor darkGrayColor];
             lblUserInfo.backgroundColor = [UIColor clearColor];
             lblUserInfo.font = [UIFont systemFontOfSize:13.f];
@@ -76,14 +76,14 @@
         }
         
         if (imgAccessory == nil) {
-            imgAccessory = [[UIImageView alloc] initWithFrame:CGRectMake(CELL_WIDTH-40, 0, 71/2, 28/2)];
-            imgAccessory.center = CGPointMake(imgAccessory.center.x, view.center.y);
+            imgAccessory = [[UIImageView alloc] initWithFrame:CGRectMake(CELL_WIDTH-55.5, 0, 71/2, 28/2)];
+            imgAccessory.center = CGPointMake(imgAccessory.center.x, view.center.y-5);
             
             [view addSubview:imgAccessory];
             if (lblUserStatus == nil) {
                 lblUserStatus = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 71/2, 28/2)];
                 lblUserStatus.textColor = [UIColor lightTextColor];
-                lblUserStatus.font = [UIFont systemFontOfSize:12.f];
+                lblUserStatus.font = [UIFont systemFontOfSize:10.f];
                 lblUserStatus.textAlignment = NSTextAlignmentCenter;
                 [imgAccessory addSubview:lblUserStatus];
                 
