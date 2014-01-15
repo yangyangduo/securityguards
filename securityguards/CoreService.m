@@ -54,6 +54,7 @@
 #pragma mark -
 #pragma mark Initializations
 
+/*    Singleton    */
 + (CoreService *)defaultService {
     static CoreService *service = nil;
     static dispatch_once_t serviceOnceToken;
