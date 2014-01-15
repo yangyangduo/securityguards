@@ -9,15 +9,23 @@
 #import <UIKit/UIKit.h>
 #import "Device.h"
 
-typedef NS_ENUM(NSUInteger, SensorDisplayViewColor) {
-    SensorDisplayViewColorBlue,
-    SensorDisplayViewColorYellow,
-    SensorDisplayViewColorRed
+typedef NS_ENUM(NSUInteger, SensorDisplayViewState) {
+    SensorDisplayViewStateNormal,
+    SensorDisplayViewStateWarning,
+    SensorDisplayViewStateAlarm
+};
+
+typedef NS_ENUM(NSUInteger, SensorDisplayViewType) {
+    SensorDisplayViewTypeTempure,
+    SensorDisplayViewTypeHumidity,
+    SensorDisplayViewTypePM25,
+    SensorDisplayViewTypeVOC
 };
 
 @interface SensorDisplayView : UIView
 
-@property (nonatomic, assign) SensorDisplayViewColor sensorDisplayViewColor;
+@property (nonatomic) SensorDisplayViewState sensorDisplayViewState;
+@property (nonatomic) SensorDisplayViewType sensorDisplayViewType;
 @property (nonatomic, strong) Device *device;
 
 - (id)initWithPoint:(CGPoint)point andDevice:(Device *)device;

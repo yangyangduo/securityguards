@@ -17,7 +17,8 @@
 }
 
 @synthesize device = _device_;
-@synthesize sensorDisplayViewColor = _sensorDisplayViewColor_;
+@synthesize sensorDisplayViewState = _sensorDisplayViewState_;
+@synthesize sensorDisplayViewType = _sensorDisplayViewType_;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -60,18 +61,32 @@
     lblValue.text = @"28度";
     lblDescription.text = @"细微粉尘";
     
-    self.sensorDisplayViewColor = SensorDisplayViewColorBlue;
+    self.sensorDisplayViewType = SensorDisplayViewTypeTempure;
+    self.sensorDisplayViewColor = SensorDisplayViewStateWarning;
 }
 
-- (void)setSensorDisplayViewColor:(SensorDisplayViewColor)sensorDisplayViewColor {
-    _sensorDisplayViewColor_ = sensorDisplayViewColor;
-    if(_sensorDisplayViewColor_ == SensorDisplayViewColorBlue) {
+- (void)setSensorDisplayViewType:(SensorDisplayViewType)sensorDisplayViewType {
+    _sensorDisplayViewType_ = sensorDisplayViewType;
+    if(SensorDisplayViewTypeTempure == _sensorDisplayViewType_) {
+        imageView.image = [UIImage imageNamed:@"icon_temp_blue"];
+    } else if(SensorDisplayViewTypeHumidity == _sensorDisplayViewType_) {
+        imageView.image = [UIImage imageNamed:@"icon_temp_blue"];
+    } else if(SensorDisplayViewTypePM25 == _sensorDisplayViewType_) {
+        imageView.image = [UIImage imageNamed:@"icon_temp_blue"];
+    } else if(SensorDisplayViewTypeVOC == _sensorDisplayViewType_) {
+        imageView.image = [UIImage imageNamed:@"icon_temp_blue"];
+    }
+}
+
+- (void)setSensorDisplayViewColor:(SensorDisplayViewState)sensorDisplayViewState {
+    _sensorDisplayViewState_ = sensorDisplayViewState;
+    if(SensorDisplayViewStateNormal == _sensorDisplayViewState_) {
         imgDescBackground.image = [UIImage imageNamed:@"bg_label_gray"];
         lblValue.textColor = [UIColor appBlue];
-    } else if(_sensorDisplayViewColor_ == SensorDisplayViewColorRed) {
+    } else if(SensorDisplayViewStateAlarm == _sensorDisplayViewState_) {
         imgDescBackground.image = [UIImage imageNamed:@"bg_label_red"];
         lblValue.textColor = [UIColor appRed];
-    } else {
+    } else if(SensorDisplayViewStateWarning == _sensorDisplayViewState_) {
         imgDescBackground.image = [UIImage imageNamed:@"bg_label_yellow"];
         lblValue.textColor = [UIColor appDarkYellow];
     }

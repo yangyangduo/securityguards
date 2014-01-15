@@ -232,6 +232,7 @@
 		6FA69113187F9618005D1415 /* NewsFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FA69112187F9618005D1415 /* NewsFileManager.m */; };
 		6FA69116187FB6E8005D1415 /* logo_gold@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FA69115187FB6E8005D1415 /* logo_gold@2x.png */; };
 		6FA69118187FD54F005D1415 /* test@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FA69117187FD54F005D1415 /* test@2x.png */; };
+		6FBFDE4718852571001E0BDA /* iflyMSC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FBFDE4618852571001E0BDA /* iflyMSC.framework */; };
 		6FCCE92F187E551B007B42D2 /* News.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FCCE92E187E551B007B42D2 /* News.m */; };
 		6FCEBCFB187C2749000CB911 /* AccountSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FCEBCFA187C2749000CB911 /* AccountSettingsViewController.m */; };
 		6FE0484F1883968500C886E1 /* btn_nav@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FE0484E1883968500C886E1 /* btn_nav@2x.png */; };
@@ -251,7 +252,6 @@
 		F20D6ACA18729C9F00FE6B6D /* XXDateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = F20D6AC918729C9F00FE6B6D /* XXDateFormatter.m */; };
 		F215125D187105380039CC8A /* ForgetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F215125C187105380039CC8A /* ForgetPasswordViewController.m */; };
 		F21512601871227C0039CC8A /* XXTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = F215125F1871227C0039CC8A /* XXTextField.m */; };
-		F215126118715DF00039CC8A /* iflyMSC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F7247D2187141EA003B325F /* iflyMSC.framework */; };
 		F2209B38187F870000F5E833 /* icon_online_accessory@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2209B36187F870000F5E833 /* icon_online_accessory@2x.png */; };
 		F2209B39187F870000F5E833 /* icon_offline_accessory@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2209B37187F870000F5E833 /* icon_offline_accessory@2x.png */; };
 		F24E552C18702180000DB402 /* btn_gray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F24E552B18702180000DB402 /* btn_gray@2x.png */; };
@@ -613,7 +613,6 @@
 		6F7247CA18711CB5003B325F /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		6F7247CC18711CBC003B325F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		6F7247CE18711CC3003B325F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		6F7247D2187141EA003B325F /* iflyMSC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = iflyMSC.framework; sourceTree = "<group>"; };
 		6F7247D91871443B003B325F /* bubble_theirs@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bubble_theirs@2x.png"; sourceTree = "<group>"; };
 		6F7247DD18714D70003B325F /* SpeechStateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeechStateView.h; sourceTree = "<group>"; };
 		6F7247DE18714D70003B325F /* SpeechStateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeechStateView.m; sourceTree = "<group>"; };
@@ -697,6 +696,7 @@
 		6FA69112187F9618005D1415 /* NewsFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsFileManager.m; sourceTree = "<group>"; };
 		6FA69115187FB6E8005D1415 /* logo_gold@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo_gold@2x.png"; sourceTree = "<group>"; };
 		6FA69117187FD54F005D1415 /* test@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "test@2x.png"; sourceTree = "<group>"; };
+		6FBFDE4618852571001E0BDA /* iflyMSC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = iflyMSC.framework; sourceTree = "<group>"; };
 		6FCCE92D187E551B007B42D2 /* News.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = News.h; sourceTree = "<group>"; };
 		6FCCE92E187E551B007B42D2 /* News.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = News.m; sourceTree = "<group>"; };
 		6FCEBCF9187C2749000CB911 /* AccountSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountSettingsViewController.h; sourceTree = "<group>"; };
@@ -809,13 +809,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				6F2033A1187D4EB700BACFA5 /* ImageIO.framework in Frameworks */,
-				F215126118715DF00039CC8A /* iflyMSC.framework in Frameworks */,
 				6F7247CF18711CC3003B325F /* SystemConfiguration.framework in Frameworks */,
 				6F7247CD18711CBC003B325F /* QuartzCore.framework in Frameworks */,
 				6F7247CB18711CB5003B325F /* AVFoundation.framework in Frameworks */,
 				6F7247C918711CA0003B325F /* AudioToolbox.framework in Frameworks */,
 				6F7247C718711C78003B325F /* CoreMedia.framework in Frameworks */,
 				6F7247C518711C72003B325F /* CoreVideo.framework in Frameworks */,
+				6FBFDE4718852571001E0BDA /* iflyMSC.framework in Frameworks */,
 				6F600459186BCE210085B4BD /* CoreGraphics.framework in Frameworks */,
 				6F60045B186BCE210085B4BD /* UIKit.framework in Frameworks */,
 				6F600457186BCE210085B4BD /* Foundation.framework in Frameworks */,
@@ -969,8 +969,8 @@
 		6F600455186BCE210085B4BD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6FBFDE4618852571001E0BDA /* iflyMSC.framework */,
 				6F2033A0187D4EB700BACFA5 /* ImageIO.framework */,
-				6F7247D2187141EA003B325F /* iflyMSC.framework */,
 				6F7247CE18711CC3003B325F /* SystemConfiguration.framework */,
 				6F7247CC18711CBC003B325F /* QuartzCore.framework */,
 				6F7247CA18711CB5003B325F /* AVFoundation.framework */,
@@ -2447,6 +2447,7 @@
 					"$(inherited)",
 					/Users/young/Downloads/securityguards,
 					/Users/hadoop/securityguards,
+					/Users/young/Downloads/iOS_ui_1/lib,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "securityguards/securityguards-Prefix.pch";
@@ -2468,6 +2469,7 @@
 					"$(inherited)",
 					/Users/young/Downloads/securityguards,
 					/Users/hadoop/securityguards,
+					/Users/young/Downloads/iOS_ui_1/lib,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "securityguards/securityguards-Prefix.pch";

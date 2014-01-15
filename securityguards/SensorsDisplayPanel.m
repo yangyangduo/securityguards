@@ -39,11 +39,11 @@
     
     SensorDisplayView *sensor1 = [[SensorDisplayView alloc] initWithPoint:CGPointMake(170, 10) andDevice:nil];
     [self addSubview:sensor1];
-    sensor1.sensorDisplayViewColor = SensorDisplayViewColorRed;
+    sensor1.sensorDisplayViewState = SensorDisplayViewStateNormal;
     
     SensorDisplayView *sensor2 = [[SensorDisplayView alloc] initWithPoint:CGPointMake(10, 47) andDevice:nil];
     [self addSubview:sensor2];
-    sensor2.sensorDisplayViewColor = SensorDisplayViewColorYellow;
+    sensor2.sensorDisplayViewState = SensorDisplayViewStateWarning;
     
     SensorDisplayView *sensor3 = [[SensorDisplayView alloc] initWithPoint:CGPointMake(170, 47) andDevice:nil];
     [self addSubview:sensor3];
