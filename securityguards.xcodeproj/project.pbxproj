@@ -91,7 +91,6 @@
 		6F6004CB186BD0A50085B4BD /* XXDrawerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6004C8186BD0A50085B4BD /* XXDrawerViewController.m */; };
 		6F6004CC186BD0A50085B4BD /* LeftNavView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6004CA186BD0A50085B4BD /* LeftNavView.m */; };
 		6F6004D9186BD2430085B4BD /* AsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6004D8186BD2430085B4BD /* AsyncUdpSocket.m */; };
-		6F6004DE186BD2680085B4BD /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6004DD186BD2680085B4BD /* Reachability.m */; };
 		6F6004E4186BD29D0085B4BD /* BitUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6004E1186BD29D0085B4BD /* BitUtils.m */; };
 		6F6004E5186BD29D0085B4BD /* JsonUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6004E3186BD29D0085B4BD /* JsonUtils.m */; };
 		6F6004E9186BD31A0085B4BD /* SMNetworkTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6004E8186BD31A0085B4BD /* SMNetworkTool.m */; };
@@ -436,8 +435,6 @@
 		6F6004CE186BD1000085B4BD /* ParameterAware.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ParameterAware.h; sourceTree = "<group>"; };
 		6F6004D7186BD2430085B4BD /* AsyncUdpSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncUdpSocket.h; sourceTree = "<group>"; };
 		6F6004D8186BD2430085B4BD /* AsyncUdpSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncUdpSocket.m; sourceTree = "<group>"; };
-		6F6004DC186BD2680085B4BD /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
-		6F6004DD186BD2680085B4BD /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		6F6004E0186BD29D0085B4BD /* BitUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BitUtils.h; sourceTree = "<group>"; };
 		6F6004E1186BD29D0085B4BD /* BitUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BitUtils.m; sourceTree = "<group>"; };
 		6F6004E2186BD29D0085B4BD /* JsonUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JsonUtils.h; sourceTree = "<group>"; };
@@ -983,6 +980,8 @@
 				6F600486186BCEBE0085B4BD /* event_pub_sub */,
 				6F6004E0186BD29D0085B4BD /* BitUtils.h */,
 				6F6004E1186BD29D0085B4BD /* BitUtils.m */,
+				6F6004E7186BD31A0085B4BD /* SMNetworkTool.h */,
+				6F6004E8186BD31A0085B4BD /* SMNetworkTool.m */,
 				6F860F3318755C8400792DBB /* SystemAudio.h */,
 				6F860F3418755C8400792DBB /* SystemAudio.m */,
 				6F6005A5186C029E0085B4BD /* Shared.h */,
@@ -1209,8 +1208,6 @@
 			isa = PBXGroup;
 			children = (
 				F2F3E18C187A3FD6006A9447 /* EGOTableViewPullRefresh */,
-				6F6004E6186BD30B0085B4BD /* IPAddress */,
-				6F6004DB186BD25E0085B4BD /* Reachability */,
 				6F6004DA186BD24E0085B4BD /* AsyncUdpSocket */,
 			);
 			name = third;
@@ -1225,15 +1222,6 @@
 			name = AsyncUdpSocket;
 			sourceTree = "<group>";
 		};
-		6F6004DB186BD25E0085B4BD /* Reachability */ = {
-			isa = PBXGroup;
-			children = (
-				6F6004DC186BD2680085B4BD /* Reachability.h */,
-				6F6004DD186BD2680085B4BD /* Reachability.m */,
-			);
-			name = Reachability;
-			sourceTree = "<group>";
-		};
 		6F6004DF186BD27E0085B4BD /* json */ = {
 			isa = PBXGroup;
 			children = (
@@ -1241,15 +1229,6 @@
 				6F6004E3186BD29D0085B4BD /* JsonUtils.m */,
 			);
 			name = json;
-			sourceTree = "<group>";
-		};
-		6F6004E6186BD30B0085B4BD /* IPAddress */ = {
-			isa = PBXGroup;
-			children = (
-				6F6004E7186BD31A0085B4BD /* SMNetworkTool.h */,
-				6F6004E8186BD31A0085B4BD /* SMNetworkTool.m */,
-			);
-			name = IPAddress;
 			sourceTree = "<group>";
 		};
 		6F6004EA186BDA7E0085B4BD /* tcp */ = {
@@ -2157,7 +2136,6 @@
 				6F6005AC186C18C10085B4BD /* PortalViewController.m in Sources */,
 				6F6004F7186BDB8C0085B4BD /* TCPCommandService.m in Sources */,
 				6F203373187D46EC00BACFA5 /* NewsDetailViewController.m in Sources */,
-				6F6004DE186BD2680085B4BD /* Reachability.m in Sources */,
 				6FCEBCFB187C2749000CB911 /* AccountSettingsViewController.m in Sources */,
 				6F0CD5DF186DBD9E00B5A3EA /* UnitSelectionDrawerView.m in Sources */,
 				F2C1DFF518764CF700DD66D7 /* CameraLoadingView.m in Sources */,
