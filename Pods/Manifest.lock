@@ -1,1 +1,13 @@
+PODS:
+  - AFNetworking (1.3.3)
+  - AFNetworking-Synchronous (0.2.0):
+    - AFNetworking (~> 1.3.3)
+
+DEPENDENCIES:
+  - AFNetworking-Synchronous (~> 0.2.0)
+
+SPEC CHECKSUMS:
+  AFNetworking: 61fdd49e2ffe6380378df37b3b6e70630bb9dd66
+  AFNetworking-Synchronous: f6315630be2f63df41398359394dfdc898c9aab8
+
 COCOAPODS: 0.29.0
