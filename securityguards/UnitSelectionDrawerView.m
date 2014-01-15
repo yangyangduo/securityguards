@@ -10,7 +10,7 @@
 #import "UIColor+MoreColor.h"
 #import "UnitManager.h"
 #import "UIDevice+SystemVersion.h"
-#import "UnitFinderViewController.h"
+#import "AddUnitViewController.h"
 #import "Shared.h"
 
 @implementation UnitSelectionDrawerView {
@@ -75,7 +75,7 @@
 - (void)showUnitFinderView:(UITapGestureRecognizer *)tapGesture {
     UIViewController *topViewController = [[Shared shared].app topViewController];
     if(topViewController != nil) {
-        [topViewController presentViewController:[[UnitFinderViewController alloc] init] animated:YES completion:^{}];
+        [topViewController presentViewController:[[AddUnitViewController alloc] init] animated:YES completion:^{}];
     }
 }
 
