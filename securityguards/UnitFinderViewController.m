@@ -62,7 +62,8 @@
 }
 
 - (void)popupViewController {
-    [self dismissViewControllerAnimated:YES completion:^{}];
+//    [self dismissViewControllerAnimated:YES completion:^{}];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark -

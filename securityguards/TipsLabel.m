@@ -21,7 +21,11 @@
 }
 
 + (UILabel *)labelWithPoint:(CGPoint)point{
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(point.x,point.y ,5, 0)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(point.x,point.y ,5, 50)];
+    label.text = @"|";
+    label.font = [UIFont fontWithName:@"Helvetica-Bold" size:20];
+
+    label.textColor = [UIColor appLightBlue];
     return label;
 
 }

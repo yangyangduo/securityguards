@@ -7,7 +7,8 @@
 //
 
 #import "UnitSettingStep1ViewController.h"
-
+#import "TipsLabel.h"
+#define TOPBAR_HEIGHT self.topbarView.frame.size.height
 @interface UnitSettingStep1ViewController ()
 
 @end
@@ -30,6 +31,14 @@
 }
 
 - (void)initUI{
+    [super initUI];
+    UILabel *lblLine1 = [TipsLabel labelWithPoint:CGPointMake(60, 40+TOPBAR_HEIGHT)];
+    [self.view addSubview:lblLine1];
+    UILabel *lblLine1Content = [[UILabel alloc] initWithFrame:CGRectMake(70, lblLine1.frame.origin.y, 200, 50)];
+    lblLine1Content.text = NSLocalizedString(@"step1_line1", @"");
+    lblLine1Content.textColor = [UIColor darkGrayColor];
+    [self.view addSubview:lblLine1Content];
+    
     
 }
 

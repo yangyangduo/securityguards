@@ -75,7 +75,9 @@
 - (void)showUnitFinderView:(UITapGestureRecognizer *)tapGesture {
     UIViewController *topViewController = [[Shared shared].app topViewController];
     if(topViewController != nil) {
-        [topViewController presentViewController:[[AddUnitViewController alloc] init] animated:YES completion:^{}];
+        AddUnitViewController *addUnitViewController = [[AddUnitViewController alloc] init];
+//        [topViewController presentViewController:[[AddUnitViewController alloc] init] animated:YES completion:^{}];
+        [topViewController .navigationController pushViewController:addUnitViewController animated:YES];
     }
 }
 

@@ -16,7 +16,9 @@
 
 @end
 
-@implementation AddUnitViewController
+@implementation AddUnitViewController{
+
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -40,16 +42,19 @@
     btnSetting.center = CGPointMake(self.view.center.x, btnSetting.center.y);
     [btnSetting setBackgroundImage:[UIImage imageNamed:@"button_setting.png"] forState:UIControlStateNormal];
     [btnSetting setBackgroundImage:[UIImage imageNamed:@"button_highlighted_setting.png"] forState:UIControlStateHighlighted];
+    [btnSetting addTarget:self action:@selector(btnSettingPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btnSetting];
     
     UIButton *btnBind = [[UIButton alloc] initWithFrame:CGRectMake(0, btnSetting.frame.size.height+btnSetting.frame.origin.y+20, BTN_WIDTH, BTN_HEIGHT)];
     btnBind.center = CGPointMake(self.view.center.x, btnBind.center.y);
     [btnBind setBackgroundImage:[UIImage imageNamed:@"button_bind.png"] forState:UIControlStateNormal];
     [btnBind setBackgroundImage:[UIImage imageNamed:@"button_highlighted_bind.png"] forState:UIControlStateHighlighted];
+    [btnBind addTarget:self action:@selector(btnBindPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btnBind];
 }
 
 - (void)btnSettingPressed:(UIButton *)sender{
+    NSLog(@"%@",self.navigationController);
     [self.navigationController pushViewController:[[UnitSettingStep1ViewController alloc] init] animated:YES];
 }
 
@@ -57,7 +62,7 @@
     [self.navigationController pushViewController:[[UnitFinderViewController alloc] init] animated:YES];
 }
 - (void)popupViewController{
-    [self dismissViewControllerAnimated:YES completion:^{}];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning

@@ -254,6 +254,8 @@
 		F29DE700188665E900BCE93C /* button_highlighted_setting@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F29DE6FB188665E900BCE93C /* button_highlighted_setting@2x.png */; };
 		F29DE701188665E900BCE93C /* button_setting@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F29DE6FC188665E900BCE93C /* button_setting@2x.png */; };
 		F29DE7051886662100BCE93C /* TipsLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = F29DE7041886662100BCE93C /* TipsLabel.m */; };
+		F29DE7081886816600BCE93C /* ContactUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F29DE7071886816600BCE93C /* ContactUsViewController.m */; };
+		F29DE70B1886820B00BCE93C /* DeclareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F29DE70A1886820B00BCE93C /* DeclareViewController.m */; };
 		F2B6A6371874F8AF0020809D /* icon_message@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2B6A6341874F8AF0020809D /* icon_message@2x.png */; };
 		F2B6A6381874F8AF0020809D /* icon_validation@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2B6A6351874F8AF0020809D /* icon_validation@2x.png */; };
 		F2B6A6391874F8AF0020809D /* icon_warning@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2B6A6361874F8AF0020809D /* icon_warning@2x.png */; };
@@ -706,6 +708,10 @@
 		F29DE6FC188665E900BCE93C /* button_setting@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button_setting@2x.png"; sourceTree = "<group>"; };
 		F29DE7031886662100BCE93C /* TipsLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TipsLabel.h; sourceTree = "<group>"; };
 		F29DE7041886662100BCE93C /* TipsLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TipsLabel.m; sourceTree = "<group>"; };
+		F29DE7061886816600BCE93C /* ContactUsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactUsViewController.h; sourceTree = "<group>"; };
+		F29DE7071886816600BCE93C /* ContactUsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactUsViewController.m; sourceTree = "<group>"; };
+		F29DE7091886820B00BCE93C /* DeclareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeclareViewController.h; sourceTree = "<group>"; };
+		F29DE70A1886820B00BCE93C /* DeclareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeclareViewController.m; sourceTree = "<group>"; };
 		F2B6A6341874F8AF0020809D /* icon_message@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_message@2x.png"; sourceTree = "<group>"; };
 		F2B6A6351874F8AF0020809D /* icon_validation@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_validation@2x.png"; sourceTree = "<group>"; };
 		F2B6A6361874F8AF0020809D /* icon_warning@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_warning@2x.png"; sourceTree = "<group>"; };
@@ -1124,6 +1130,10 @@
 				6F3485091875264D00EBB635 /* UnitRenameViewController.m */,
 				F2B6A640187515FE0020809D /* PlayCameraPicViewController.h */,
 				F2B6A641187515FE0020809D /* PlayCameraPicViewController.m */,
+				F29DE7061886816600BCE93C /* ContactUsViewController.h */,
+				F29DE7071886816600BCE93C /* ContactUsViewController.m */,
+				F29DE7091886820B00BCE93C /* DeclareViewController.h */,
+				F29DE70A1886820B00BCE93C /* DeclareViewController.m */,
 			);
 			name = controllers;
 			sourceTree = "<group>";
@@ -2139,6 +2149,7 @@
 				6FCEBCFB187C2749000CB911 /* AccountSettingsViewController.m in Sources */,
 				6F0CD5DF186DBD9E00B5A3EA /* UnitSelectionDrawerView.m in Sources */,
 				F2C1DFF518764CF700DD66D7 /* CameraLoadingView.m in Sources */,
+				F29DE7081886816600BCE93C /* ContactUsViewController.m in Sources */,
 				6F600528186BE9890085B4BD /* DeviceCommandUpdateNotifications.m in Sources */,
 				6F6005B3186C1B160085B4BD /* LoginViewController.m in Sources */,
 				6F7CDBA21872738E0036F912 /* NotificationsViewController.m in Sources */,
@@ -2225,6 +2236,7 @@
 				6F7247C318711C4E003B325F /* SpeechSynthesizer.m in Sources */,
 				6F732729186D430700A1276B /* SensorDisplayView.m in Sources */,
 				6F60053F186BF0010085B4BD /* DeviceCommandUpdateDevicesHandler.m in Sources */,
+				F29DE70B1886820B00BCE93C /* DeclareViewController.m in Sources */,
 				F2CE67481885232F007FAC8B /* UnitSettingStep3ViewController.m in Sources */,
 				6FA3B2FF186E796000EBC7FD /* XXActionSheet.m in Sources */,
 				6F2AE0DF187059A900BEDB29 /* SpeechViewController.m in Sources */,

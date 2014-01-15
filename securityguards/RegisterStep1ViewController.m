@@ -16,6 +16,7 @@
 
 @implementation RegisterStep1ViewController{
     UITextField *txtPhoneNumber;
+    UIButton *btnAgree;
 }
 
 @synthesize isModify;
@@ -73,7 +74,6 @@
     lblTip.lineBreakMode = NSLineBreakByWordWrapping;
     lblTip.textColor = [UIColor lightGrayColor];
     lblTip.font = [UIFont systemFontOfSize:11.f];
-
     [self.view addSubview:lblTip];
 
 
@@ -96,6 +96,8 @@
     }else{
         lblTip.text = NSLocalizedString(@"register_tips1", @"");
         [btnGetVerificationCode setTitle:NSLocalizedString(@"get_verification_code", @"") forState:UIControlStateNormal];
+        btnAgree = [[UIButton alloc] initWithFrame:CGRectMake(150, btnGetVerificationCode.frame.origin.y+btnGetVerificationCode.frame.size.height+5, 44, 44)];
+        [self.view addSubview:btnAgree];
     
     }
 
