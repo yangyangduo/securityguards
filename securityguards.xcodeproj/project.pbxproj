@@ -202,6 +202,7 @@
 		6F73273C186D5E3600A1276B /* UnitControlPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F73273B186D5E3600A1276B /* UnitControlPanel.m */; };
 		6F732741186D672900A1276B /* line_dashed_h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F732740186D672900A1276B /* line_dashed_h@2x.png */; };
 		6F732747186D7BD200A1276B /* SensorsDisplayPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F732746186D7BD200A1276B /* SensorsDisplayPanel.m */; };
+		6F741D0C18862DE500B42293 /* iflyMSC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F741D0B18862DE500B42293 /* iflyMSC.framework */; };
 		6F7CDB9E18725BCE0036F912 /* alert_failed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F7CDB9C18725BCE0036F912 /* alert_failed@2x.png */; };
 		6F7CDB9F18725BCE0036F912 /* alert_success@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F7CDB9D18725BCE0036F912 /* alert_success@2x.png */; };
 		6F7CDBA21872738E0036F912 /* NotificationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7CDBA11872738E0036F912 /* NotificationsViewController.m */; };
@@ -228,12 +229,12 @@
 		6F8F57BE18710D940033228F /* TextContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F8F57BB18710D940033228F /* TextContainerView.m */; };
 		6F8F57C4187111B70033228F /* ConversationMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F8F57C1187111B70033228F /* ConversationMessage.m */; };
 		6F8F57C5187111B70033228F /* ConversationTextMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F8F57C3187111B70033228F /* ConversationTextMessage.m */; };
+		6F9C8ACC1886323D00289AEA /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F9C8ACB1886323D00289AEA /* AddressBook.framework */; };
 		6FA3B2FB186E73EC00EBC7FD /* line_dashed_v@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FA3B2FA186E73EC00EBC7FD /* line_dashed_v@2x.png */; };
 		6FA3B2FF186E796000EBC7FD /* XXActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FA3B2FE186E796000EBC7FD /* XXActionSheet.m */; };
 		6FA69113187F9618005D1415 /* NewsFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FA69112187F9618005D1415 /* NewsFileManager.m */; };
 		6FA69116187FB6E8005D1415 /* logo_gold@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FA69115187FB6E8005D1415 /* logo_gold@2x.png */; };
 		6FA69118187FD54F005D1415 /* test@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FA69117187FD54F005D1415 /* test@2x.png */; };
-		6FBFDE4718852571001E0BDA /* iflyMSC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FBFDE4618852571001E0BDA /* iflyMSC.framework */; };
 		6FCCE92F187E551B007B42D2 /* News.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FCCE92E187E551B007B42D2 /* News.m */; };
 		6FCEBCFB187C2749000CB911 /* AccountSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FCEBCFA187C2749000CB911 /* AccountSettingsViewController.m */; };
 		6FE0484F1883968500C886E1 /* btn_nav@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FE0484E1883968500C886E1 /* btn_nav@2x.png */; };
@@ -644,6 +645,7 @@
 		6F732740186D672900A1276B /* line_dashed_h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "line_dashed_h@2x.png"; sourceTree = "<group>"; };
 		6F732745186D7BD200A1276B /* SensorsDisplayPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SensorsDisplayPanel.h; sourceTree = "<group>"; };
 		6F732746186D7BD200A1276B /* SensorsDisplayPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SensorsDisplayPanel.m; sourceTree = "<group>"; };
+		6F741D0B18862DE500B42293 /* iflyMSC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = iflyMSC.framework; sourceTree = "<group>"; };
 		6F7CDB9C18725BCE0036F912 /* alert_failed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "alert_failed@2x.png"; sourceTree = "<group>"; };
 		6F7CDB9D18725BCE0036F912 /* alert_success@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "alert_success@2x.png"; sourceTree = "<group>"; };
 		6F7CDBA01872738E0036F912 /* NotificationsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationsViewController.h; sourceTree = "<group>"; };
@@ -687,6 +689,7 @@
 		6F8F57C1187111B70033228F /* ConversationMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConversationMessage.m; sourceTree = "<group>"; };
 		6F8F57C2187111B70033228F /* ConversationTextMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConversationTextMessage.h; sourceTree = "<group>"; };
 		6F8F57C3187111B70033228F /* ConversationTextMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConversationTextMessage.m; sourceTree = "<group>"; };
+		6F9C8ACB1886323D00289AEA /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		6FA3B2FA186E73EC00EBC7FD /* line_dashed_v@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "line_dashed_v@2x.png"; sourceTree = "<group>"; };
 		6FA3B2FD186E796000EBC7FD /* XXActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXActionSheet.h; sourceTree = "<group>"; };
 		6FA3B2FE186E796000EBC7FD /* XXActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXActionSheet.m; sourceTree = "<group>"; };
@@ -694,7 +697,6 @@
 		6FA69112187F9618005D1415 /* NewsFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsFileManager.m; sourceTree = "<group>"; };
 		6FA69115187FB6E8005D1415 /* logo_gold@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo_gold@2x.png"; sourceTree = "<group>"; };
 		6FA69117187FD54F005D1415 /* test@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "test@2x.png"; sourceTree = "<group>"; };
-		6FBFDE4618852571001E0BDA /* iflyMSC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = iflyMSC.framework; sourceTree = "<group>"; };
 		6FCCE92D187E551B007B42D2 /* News.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = News.h; sourceTree = "<group>"; };
 		6FCCE92E187E551B007B42D2 /* News.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = News.m; sourceTree = "<group>"; };
 		6FCEBCF9187C2749000CB911 /* AccountSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountSettingsViewController.h; sourceTree = "<group>"; };
@@ -803,6 +805,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6F9C8ACC1886323D00289AEA /* AddressBook.framework in Frameworks */,
+				6F741D0C18862DE500B42293 /* iflyMSC.framework in Frameworks */,
 				6F2033A1187D4EB700BACFA5 /* ImageIO.framework in Frameworks */,
 				6F7247CF18711CC3003B325F /* SystemConfiguration.framework in Frameworks */,
 				6F7247CD18711CBC003B325F /* QuartzCore.framework in Frameworks */,
@@ -810,7 +814,6 @@
 				6F7247C918711CA0003B325F /* AudioToolbox.framework in Frameworks */,
 				6F7247C718711C78003B325F /* CoreMedia.framework in Frameworks */,
 				6F7247C518711C72003B325F /* CoreVideo.framework in Frameworks */,
-				6FBFDE4718852571001E0BDA /* iflyMSC.framework in Frameworks */,
 				6F600459186BCE210085B4BD /* CoreGraphics.framework in Frameworks */,
 				6F60045B186BCE210085B4BD /* UIKit.framework in Frameworks */,
 				6F600457186BCE210085B4BD /* Foundation.framework in Frameworks */,
@@ -966,7 +969,8 @@
 		6F600455186BCE210085B4BD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				6FBFDE4618852571001E0BDA /* iflyMSC.framework */,
+				6F9C8ACB1886323D00289AEA /* AddressBook.framework */,
+				6F741D0B18862DE500B42293 /* iflyMSC.framework */,
 				6F2033A0187D4EB700BACFA5 /* ImageIO.framework */,
 				6F7247CE18711CC3003B325F /* SystemConfiguration.framework */,
 				6F7247CC18711CBC003B325F /* QuartzCore.framework */,
@@ -2464,7 +2468,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/young/Downloads/securityguards/**",
-					"$HOME/securityguards/**",
+					/Users/young/Downloads/securityguards,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "securityguards/securityguards-Prefix.pch";
@@ -2486,7 +2490,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/young/Downloads/securityguards/**",
-					"$HOME/securityguards/**",
+					/Users/young/Downloads/securityguards,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "securityguards/securityguards-Prefix.pch";
