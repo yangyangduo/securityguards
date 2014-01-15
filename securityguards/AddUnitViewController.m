@@ -7,6 +7,8 @@
 //
 
 #import "AddUnitViewController.h"
+#import "UnitSettingStep1ViewController.h"
+#import "UnitFinderViewController.h"
 #define BTN_WIDTH 300/2
 #define BTN_HEIGHT 306/2
 
@@ -47,6 +49,13 @@
     [self.view addSubview:btnBind];
 }
 
+- (void)btnSettingPressed:(UIButton *)sender{
+    [self.navigationController pushViewController:[[UnitSettingStep1ViewController alloc] init] animated:YES];
+}
+
+- (void)btnBindPressed:(UIButton *)sender{
+    [self.navigationController pushViewController:[[UnitFinderViewController alloc] init] animated:YES];
+}
 - (void)popupViewController{
     [self dismissViewControllerAnimated:YES completion:^{}];
 }

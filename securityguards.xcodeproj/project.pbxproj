@@ -10751,6 +10751,8 @@ fi
 		F20D6AC41872997400FE6B6D /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F20D6AC31872997400FE6B6D /* MessageCell.m */; };
 		F20D6AC718729A8800FE6B6D /* NotificationDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F20D6AC618729A8800FE6B6D /* NotificationDetailsViewController.m */; };
 		F20D6ACA18729C9F00FE6B6D /* XXDateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = F20D6AC918729C9F00FE6B6D /* XXDateFormatter.m */; };
+		F21001E81886198E00CE6C96 /* image_setting_step1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F21001E71886198E00CE6C96 /* image_setting_step1@2x.png */; };
+		F21001EC18861AB000CE6C96 /* TipsLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = F21001EB18861AB000CE6C96 /* TipsLabel.m */; };
 		F215125D187105380039CC8A /* ForgetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F215125C187105380039CC8A /* ForgetPasswordViewController.m */; };
 		F21512601871227C0039CC8A /* XXTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = F215125F1871227C0039CC8A /* XXTextField.m */; };
 		F2209B38187F870000F5E833 /* icon_online_accessory@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2209B36187F870000F5E833 /* icon_online_accessory@2x.png */; };
@@ -11226,6 +11228,9 @@ fi
 		F20D6AC618729A8800FE6B6D /* NotificationDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationDetailsViewController.m; sourceTree = "<group>"; };
 		F20D6AC818729C9F00FE6B6D /* XXDateFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXDateFormatter.h; sourceTree = "<group>"; };
 		F20D6AC918729C9F00FE6B6D /* XXDateFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXDateFormatter.m; sourceTree = "<group>"; };
+		F21001E71886198E00CE6C96 /* image_setting_step1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "image_setting_step1@2x.png"; sourceTree = "<group>"; };
+		F21001EA18861AB000CE6C96 /* TipsLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TipsLabel.h; sourceTree = "<group>"; };
+		F21001EB18861AB000CE6C96 /* TipsLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TipsLabel.m; sourceTree = "<group>"; };
 		F215125B187105380039CC8A /* ForgetPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetPasswordViewController.h; sourceTree = "<group>"; };
 		F215125C187105380039CC8A /* ForgetPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetPasswordViewController.m; sourceTree = "<group>"; };
 		F215125E1871227C0039CC8A /* XXTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXTextField.h; sourceTree = "<group>"; };
@@ -11593,6 +11598,7 @@ fi
 		6F6004A4186BCF500085B4BD /* components */ = {
 			isa = PBXGroup;
 			children = (
+				F21001E918861A8100CE6C96 /* label */,
 				6F45ADFF1876AF8200DC18CA /* camera_loading_view */,
 				F20D6AC11872992500FE6B6D /* cells */,
 				6F7247E018715768003B325F /* text_field */,
@@ -12343,6 +12349,15 @@ fi
 			name = cells;
 			sourceTree = "<group>";
 		};
+		F21001E918861A8100CE6C96 /* label */ = {
+			isa = PBXGroup;
+			children = (
+				F21001EA18861AB000CE6C96 /* TipsLabel.h */,
+				F21001EB18861AB000CE6C96 /* TipsLabel.m */,
+			);
+			name = label;
+			sourceTree = "<group>";
+		};
 		F2B6A63A1874F8C80020809D /* notifications */ = {
 			isa = PBXGroup;
 			children = (
@@ -12357,6 +12372,7 @@ fi
 		F2CE674C18852FAA007FAC8B /* unit_finder */ = {
 			isa = PBXGroup;
 			children = (
+				F21001E71886198E00CE6C96 /* image_setting_step1@2x.png */,
 				F2CE674D18852FC1007FAC8B /* button_bind@2x.png */,
 				F2CE674E18852FC1007FAC8B /* button_highlighted_bind@2x.png */,
 				F2CE674F18852FC1007FAC8B /* button_setting@2x.png */,
@@ -12602,6 +12618,7 @@ fi
 				6F860F2C187552C200792DBB /* btn_back@2x.png in Resources */,
 				6F45ADEF18765F2D00DC18CA /* btn_camera_right@2x.png in Resources */,
 				6F0CD5D3186DB93000B5A3EA /* icon_humidity_yellow@2x.png in Resources */,
+				F21001E81886198E00CE6C96 /* image_setting_step1@2x.png in Resources */,
 				6F73271F186D212700A1276B /* bg_label_gray@2x.png in Resources */,
 				F2F3E1A7187A3FD6006A9447 /* grayArrow.png in Resources */,
 				F2209B38187F870000F5E833 /* icon_online_accessory@2x.png in Resources */,
@@ -12740,6 +12757,7 @@ fi
 				6F6004C4186BD04D0085B4BD /* NavigationViewController.m in Sources */,
 				6F8F57BC18710D940033228F /* AttributedStringBuilder.m in Sources */,
 				6F6004A0186BCEF10085B4BD /* XXEventClassFilter.m in Sources */,
+				F21001EC18861AB000CE6C96 /* TipsLabel.m in Sources */,
 				6F600493186BCED60085B4BD /* XXStringUtils.m in Sources */,
 				6F8F57BD18710D940033228F /* ParagraphBuilder.m in Sources */,
 				6F600491186BCED60085B4BD /* XXEventSubscription.m in Sources */,

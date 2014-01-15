@@ -29,6 +29,10 @@
 	// Do any additional setup after loading the view.
 }
 
+- (void)initUI{
+    
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
