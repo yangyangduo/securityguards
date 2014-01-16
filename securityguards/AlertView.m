@@ -68,12 +68,12 @@
     }
 }
 
-+ (AlertView *)currentAlertView {
++ (instancetype)currentAlertView {
     static AlertView *currentAlertView;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
-        currentAlertView = [[AlertView alloc] initWithFrame:CGRectMake(0, 0, 140, 88)];
+        currentAlertView = [[[self class] alloc] initWithFrame:CGRectMake(0, 0, 140, 88)];
         currentAlertView.center = CGPointMake(keyWindow.center.x, keyWindow.center.y);
     });
     return currentAlertView;

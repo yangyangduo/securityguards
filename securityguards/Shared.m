@@ -10,11 +10,11 @@
 
 @implementation Shared
 
-+ (Shared *)shared {
++ (instancetype)shared {
     static Shared *shared;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        shared = [[Shared alloc] init];
+        shared = [[[self class] alloc] init];
     });
     return shared;
 }

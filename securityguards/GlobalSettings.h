@@ -23,7 +23,7 @@
 @property (nonatomic, strong) NSString *deviceToken;
 @property (nonatomic, readonly, getter = hasLogin) BOOL login;
 
-+ (GlobalSettings *)defaultSettings;
++ (instancetype)defaultSettings;
 
 - (NSDictionary *)toDictionary;
 - (void)saveSettings;

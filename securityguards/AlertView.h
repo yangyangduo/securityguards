@@ -27,7 +27,7 @@ typedef NS_ENUM(NSUInteger, AlertViewType) {
 @property (assign, nonatomic, readonly) AlertViewType alertViewType;
 @property (assign, nonatomic) AlertViewState alertViewState;
 
-+ (AlertView *)currentAlertView;
++ (instancetype)currentAlertView;
 
 - (void)setMessage:(NSString *)message forType:(AlertViewType)type;
 - (void)alertForLock:(BOOL)isLock autoDismiss:(BOOL)autoDismiss;

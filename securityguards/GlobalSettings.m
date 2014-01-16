@@ -32,11 +32,11 @@
 @synthesize isShake;
 @synthesize isVoice;
 
-+ (GlobalSettings *)defaultSettings {
++ (instancetype)defaultSettings {
     static GlobalSettings *settings;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        settings = [[GlobalSettings alloc] init];
+        settings = [[[self class] alloc] init];
     });
     return settings;
 }

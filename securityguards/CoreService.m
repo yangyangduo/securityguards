@@ -26,6 +26,15 @@
 #define UNIT_REFRESH_INTERVAL  10
 #define HEART_BEAT_TIMEOUT     1.f
 
+static dispatch_queue_t refreshQueue() {
+    static dispatch_queue_t serialQueue;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        serialQueue = dispatch_queue_create("com.hentre.familyguards.coreservice.refresh.queue", DISPATCH_QUEUE_SERIAL);
+    });
+    return serialQueue;
+}
+
 @implementation CoreService {
     Reachability* reachability;
     NSTimer *tcpConnectChecker;
@@ -33,8 +42,6 @@
     NSArray *mayUsingInternalNetworkCommands;
     
     NetworkMode networkMode;
-    
-    dispatch_queue_t serialQueue;
     
     /*
      * no            0
@@ -55,11 +62,11 @@
 #pragma mark Initializations
 
 /*    Singleton    */
-+ (CoreService *)defaultService {
++ (instancetype)defaultService {
     static CoreService *service = nil;
     static dispatch_once_t serviceOnceToken;
     dispatch_once(&serviceOnceToken, ^{
-        service = [[CoreService alloc] init];
+        service = [[[self class] alloc] init];
     });
     return service;
 }
@@ -80,8 +87,6 @@
     _needRefreshUnit_ = YES;
     
     mayUsingInternalNetworkCommands = [NSArray arrayWithObjects:COMMAND_KEY_CONTROL, COMMAND_GET_CAMERA_SERVER, nil];
-    
-    serialQueue = dispatch_queue_create("com.queue", DISPATCH_QUEUE_SERIAL);
     
     /* Network monitor */
     reachability = [Reachability reachabilityWithHostname:@"www.baidu.com"];
@@ -365,7 +370,7 @@
 }
 
 - (void)refreshUnit {
-    dispatch_async(serialQueue, ^{
+    dispatch_async(refreshQueue(), ^{
         Unit *unit = [UnitManager defaultManager].currentUnit;
         if(unit != nil) {
             // This is a sync method, not checkInternalOrNotInternalNetwork (async method)

@@ -20,11 +20,11 @@
 @synthesize units;
 @synthesize currentUnit;
 
-+ (UnitManager *)defaultManager {
++ (instancetype)defaultManager {
     static UnitManager *manager = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        manager = [[UnitManager alloc] init];
+        manager = [[[self class] alloc] init];
     });
     return manager;
 }

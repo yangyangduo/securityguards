@@ -45,7 +45,7 @@ typedef NS_ENUM(NSUInteger, NetworkMode) {
  */
 @property (assign, nonatomic) BOOL needRefreshUnit;
 
-+ (CoreService *)defaultService;
++ (instancetype)defaultService;
 
 /* Start or stop command delivery service */
 - (void)startService;

@@ -13,6 +13,6 @@
 
 @property (nonatomic, strong, readonly) AppDelegate *app;
 
-+ (Shared *)shared;
++ (instancetype)shared;
 
 @end

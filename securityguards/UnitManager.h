@@ -16,7 +16,7 @@
 @property (strong, atomic) NSMutableArray *units;
 @property (strong, atomic, readonly) Unit *currentUnit;
 
-+ (UnitManager *)defaultManager;
++ (instancetype)defaultManager;
 
 /*
  *  Update the new units to memory
