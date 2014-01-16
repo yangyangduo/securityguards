@@ -7,6 +7,8 @@
 //
 
 #import "ContactUsViewController.h"
+#import "SystemService.h"
+#import "DeclareViewController.h"
 #define TOPBAR_HEIGHT self.topbarView.frame.size.height
 #define LABEL_HEIGHT  30
 
@@ -33,7 +35,7 @@
 
 - (void)initUI{
     [super initUI];
-    self.topbarView.title = NSLocalizedString(@"contact_us_title", @"");
+    self.topbarView.title = NSLocalizedString(@"contact_us_drawer_title", @"");
     
     UILabel *lblAppName = [[UILabel alloc] initWithFrame:CGRectMake(10, 5+TOPBAR_HEIGHT, 200, LABEL_HEIGHT)];
     lblAppName.textColor = [UIColor darkGrayColor];
@@ -44,20 +46,21 @@
     UILabel *lblVersion = [[UILabel alloc] initWithFrame:CGRectMake(10, 5+LABEL_HEIGHT+TOPBAR_HEIGHT, 200, LABEL_HEIGHT)];
     lblVersion.textColor = [UIColor darkGrayColor];
     lblVersion.backgroundColor = [UIColor clearColor];
-    NSDictionary *dic = [NSBundle mainBundle].localizedInfoDictionary;
+    NSDictionary *dic = [NSBundle mainBundle].infoDictionary;
     NSString *versionStr = [dic objectForKey:@"CFBundleVersion"];
-    lblVersion.text = [NSString stringWithFormat:@"%@:%@",NSLocalizedString(@"app_version", @""),versionStr];
+    lblVersion.text = [NSString stringWithFormat:@"%@%@",NSLocalizedString(@"app_version", @""),versionStr];
     [self.view addSubview:lblVersion];
     
-    UILabel *lblPhoneNumber = [[UILabel alloc] initWithFrame:CGRectMake(10, 5+TOPBAR_HEIGHT+LABEL_HEIGHT*2, 80, LABEL_HEIGHT)];
+    UILabel *lblPhoneNumber = [[UILabel alloc] initWithFrame:CGRectMake(10, 5+TOPBAR_HEIGHT+LABEL_HEIGHT*2, 85, LABEL_HEIGHT)];
     lblPhoneNumber.text = NSLocalizedString(@"office_number", @"");
     lblPhoneNumber.textColor = [UIColor darkGrayColor];
     lblPhoneNumber.backgroundColor = [UIColor clearColor];
     [self.view addSubview:lblPhoneNumber];
     
-    UIButton *btnCallOfficeServer = [[UIButton alloc] initWithFrame:CGRectMake(95,5+TOPBAR_HEIGHT+LABEL_HEIGHT*2, 120, LABEL_HEIGHT)];
+    UIButton *btnCallOfficeServer = [[UIButton alloc] initWithFrame:CGRectMake(95,5+TOPBAR_HEIGHT+LABEL_HEIGHT*2, 200, LABEL_HEIGHT)];
     [btnCallOfficeServer setTitle:NSLocalizedString(@"office_phonenumber", @"") forState:UIControlStateNormal];
     btnCallOfficeServer.backgroundColor = [UIColor clearColor];
+    btnCallOfficeServer.titleEdgeInsets = UIEdgeInsetsMake(btnCallOfficeServer.titleEdgeInsets.top, -60, btnCallOfficeServer.titleEdgeInsets.bottom, btnCallOfficeServer.titleEdgeInsets.right);
     [btnCallOfficeServer setTitleColor:[UIColor appLightBlue] forState:UIControlStateHighlighted];
     [btnCallOfficeServer setTitleColor:[UIColor appBlue] forState:UIControlStateNormal];
     [self.view addSubview:btnCallOfficeServer];
@@ -68,31 +71,34 @@
     lblWeChatNum.backgroundColor = [UIColor clearColor];
     [self.view addSubview:lblWeChatNum];
     
-    UILabel *lblWebSite = [[UILabel alloc] initWithFrame:CGRectMake(10, 5+TOPBAR_HEIGHT+LABEL_HEIGHT*4, 80, LABEL_HEIGHT)];
+    UILabel *lblWebSite = [[UILabel alloc] initWithFrame:CGRectMake(10, 5+TOPBAR_HEIGHT+LABEL_HEIGHT*4, 85, LABEL_HEIGHT)];
     lblWebSite.backgroundColor = [UIColor clearColor];
     lblWebSite.text = NSLocalizedString(@"website", @"");
     lblWebSite.textColor = [UIColor darkGrayColor];
     [self.view addSubview:lblWebSite];
     
-    UIButton *btnOpenWebSite = [[UIButton alloc] initWithFrame:CGRectMake(95, 5+TOPBAR_HEIGHT+LABEL_HEIGHT*4, 120, LABEL_HEIGHT)];
+    UIButton *btnOpenWebSite = [[UIButton alloc] initWithFrame:CGRectMake(95, 5+TOPBAR_HEIGHT+LABEL_HEIGHT*4, 200, LABEL_HEIGHT)];
     btnOpenWebSite.backgroundColor = [UIColor clearColor];
     [btnOpenWebSite setTitle:NSLocalizedString(@"website_url", @"") forState:UIControlStateNormal];
     [btnOpenWebSite setTitleColor:[UIColor appBlue] forState:UIControlStateNormal];
     [btnOpenWebSite setTitleColor:[UIColor appLightBlue] forState:UIControlStateHighlighted];
+    btnOpenWebSite.titleEdgeInsets = UIEdgeInsetsMake(btnOpenWebSite.titleEdgeInsets.top,-60, btnOpenWebSite.titleEdgeInsets.bottom, btnOpenWebSite.titleEdgeInsets.right);
     [self.view addSubview:btnOpenWebSite];
     
     UILabel *lblCopyRight = [[UILabel alloc] initWithFrame:CGRectMake(10,  5+TOPBAR_HEIGHT+LABEL_HEIGHT*5, 300, LABEL_HEIGHT)];
     lblCopyRight.backgroundColor = [UIColor clearColor];
     lblCopyRight.textColor = [UIColor darkGrayColor];
-    lblCopyRight.text = NSLocalizedString(@"copy_right", @"");
-    lblCopyRight.font = [UIFont systemFontOfSize:12.f];
+    lblCopyRight.text = NSLocalizedString(@"copyright", @"");
+    lblCopyRight.font = [UIFont systemFontOfSize:11.f];
     [self.view addSubview:lblCopyRight];
     
     UIView *clickToDeclareView = [[UIView alloc] initWithFrame:CGRectMake(10, 5+TOPBAR_HEIGHT+LABEL_HEIGHT*6, 300, 50)];
     clickToDeclareView.backgroundColor = [UIColor appGray];
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickToDeclare:)];
+    [clickToDeclareView addGestureRecognizer:tapGesture];
     [self.view addSubview:clickToDeclareView];
     
-    UILabel *lblReadDeclare = [[UILabel alloc] initWithFrame:CGRectMake(10, 0,100, 50)];
+    UILabel *lblReadDeclare = [[UILabel alloc] initWithFrame:CGRectMake(10, 0,150, 50)];
     lblReadDeclare.backgroundColor = [UIColor clearColor];
     lblReadDeclare.text = NSLocalizedString(@"read_declare", @"");
     NSLog(@"%@",NSStringFromCGRect(lblReadDeclare.frame));
@@ -106,6 +112,13 @@
     
 }
 
+- (void)btnCallOfficeServerPressed:(UIButton *)sender{
+    [SystemService dialToMobile:NSLocalizedString(@"office_phonenumber", @"")];
+}
+
+- (void)clickToDeclare:(UITapGestureRecognizer *)gesture{
+    [self.navigationController pushViewController:[[DeclareViewController alloc] init] animated:YES];
+}
 
 - (void)didReceiveMemoryWarning
 {

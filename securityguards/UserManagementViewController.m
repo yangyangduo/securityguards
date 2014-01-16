@@ -346,8 +346,11 @@
 - (void)getUsersForUnitSuccess:(RestResponse *)resp {
     if (resp && resp.statusCode == 200) {
         [unitBindingAccounts removeAllObjects];
-        NSArray *usersJson = [JsonUtils createDictionaryFromJson:resp.body];
-        if(usersJson != nil) {
+        NSArray *usersJson = nil;
+        if([[JsonUtils createDictionaryFromJson:resp.body] isKindOfClass:[NSArray class]]){
+            usersJson = [JsonUtils createDictionaryFromJson:resp.body];
+        }
+        if(usersJson != nil&&usersJson.count>0) {
             Users *users = [[Users alloc] initWithJson:[NSDictionary dictionaryWithObject:usersJson forKey:@"users"]];
             for (User *user in users.users) {
                 AccountManageCellData *cellData = [[AccountManageCellData alloc] init];
