@@ -132,7 +132,7 @@
     // set device display image
     if(device.isAirPurifierPower) {
         cell.imageView.image = [UIImage imageNamed:@"icon_power"];
-        if(device.state == 1) {
+        if(device.status == 1) {
             detailTextLabel.textColor = [UIColor appBlue];
         }
     } else if(device.isAirPurifierLevel) {
@@ -140,7 +140,7 @@
     } else if(device.isAirPurifierModeControl) {
         cell.imageView.image = [UIImage imageNamed:@"icon_control_mode"];
     } else if(device.isAirPurifierSecurity) {
-        if(device.state == 0) {
+        if(device.status == 0) {
             detailTextLabel.textColor = [UIColor appBlue];
         }
         cell.imageView.image = [UIImage imageNamed:@"icon_security"];
@@ -181,7 +181,7 @@
             actionSheet.delegate = self;
             for(int i=0; i<operations.count; i++) {
                 DeviceOperationItem *item = [operations objectAtIndex:i];
-                if(device.state == item.deviceState) {
+                if(device.status == item.deviceState) {
                     actionSheet.destructiveButtonIndex = i;
                 }
                 [actionSheet addButtonWithTitle:item.displayName];

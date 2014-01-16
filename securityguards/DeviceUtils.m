@@ -75,26 +75,26 @@
 + (NSString *)stateAsStringFor:(Device *)device {
     if(device == nil) return [XXStringUtils emptyString];
     if(device.isAirPurifierPower) {
-        if(device.state == 0) {
+        if(device.status == 0) {
             return NSLocalizedString(@"device_open", @"");
-        } else if(device.state == 1) {
+        } else if(device.status == 1) {
             return NSLocalizedString(@"device_close", @"");
         }
     } else if(device.isAirPurifierLevel) {
-        if(device.state == 2) {
+        if(device.status == 2) {
             return NSLocalizedString(@"high_level", @"");
-        } else if(device.state == 1) {
+        } else if(device.status == 1) {
             return NSLocalizedString(@"medium_level", @"");
-        } else if(device.state == 0) {
+        } else if(device.status == 0) {
             return NSLocalizedString(@"low_level", @"");
         }
     } else if(device.isAirPurifierSecurity) {
         
         
     } else if(device.isAirPurifierModeControl) {
-        if(device.state == 1) {
+        if(device.status == 1) {
             return NSLocalizedString(@"device_manual", @"");
-        } else if(device.state == 0) {
+        } else if(device.status == 0) {
             return NSLocalizedString(@"device_automatic", @"");
         }
     }
