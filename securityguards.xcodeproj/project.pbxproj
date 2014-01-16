@@ -256,6 +256,8 @@
 		F29DE7051886662100BCE93C /* TipsLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = F29DE7041886662100BCE93C /* TipsLabel.m */; };
 		F29DE7081886816600BCE93C /* ContactUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F29DE7071886816600BCE93C /* ContactUsViewController.m */; };
 		F29DE70B1886820B00BCE93C /* DeclareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F29DE70A1886820B00BCE93C /* DeclareViewController.m */; };
+		F29DE70E18868A8000BCE93C /* checkbox_unselected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F29DE70C18868A8000BCE93C /* checkbox_unselected@2x.png */; };
+		F29DE70F18868A8000BCE93C /* checkbox_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F29DE70D18868A8000BCE93C /* checkbox_selected@2x.png */; };
 		F2B6A6371874F8AF0020809D /* icon_message@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2B6A6341874F8AF0020809D /* icon_message@2x.png */; };
 		F2B6A6381874F8AF0020809D /* icon_validation@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2B6A6351874F8AF0020809D /* icon_validation@2x.png */; };
 		F2B6A6391874F8AF0020809D /* icon_warning@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2B6A6361874F8AF0020809D /* icon_warning@2x.png */; };
@@ -712,6 +714,8 @@
 		F29DE7071886816600BCE93C /* ContactUsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactUsViewController.m; sourceTree = "<group>"; };
 		F29DE7091886820B00BCE93C /* DeclareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeclareViewController.h; sourceTree = "<group>"; };
 		F29DE70A1886820B00BCE93C /* DeclareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeclareViewController.m; sourceTree = "<group>"; };
+		F29DE70C18868A8000BCE93C /* checkbox_unselected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkbox_unselected@2x.png"; sourceTree = "<group>"; };
+		F29DE70D18868A8000BCE93C /* checkbox_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkbox_selected@2x.png"; sourceTree = "<group>"; };
 		F2B6A6341874F8AF0020809D /* icon_message@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_message@2x.png"; sourceTree = "<group>"; };
 		F2B6A6351874F8AF0020809D /* icon_validation@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_validation@2x.png"; sourceTree = "<group>"; };
 		F2B6A6361874F8AF0020809D /* icon_warning@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_warning@2x.png"; sourceTree = "<group>"; };
@@ -1501,6 +1505,8 @@
 		6F6005BC186C23920085B4BD /* ui_elements */ = {
 			isa = PBXGroup;
 			children = (
+				F29DE70C18868A8000BCE93C /* checkbox_unselected@2x.png */,
+				F29DE70D18868A8000BCE93C /* checkbox_selected@2x.png */,
 				F24E552B18702180000DB402 /* btn_gray@2x.png */,
 				F2F93694186D113E002F7904 /* btn_blue@2x.png */,
 				F2F93695186D113E002F7904 /* btn_blue_highlighted@2x.png */,
@@ -2016,6 +2022,7 @@
 				6F732738186D5DB100A1276B /* icon_power@2x.png in Resources */,
 				6F732733186D562900A1276B /* line_seperator_heavy_blue@2x.png in Resources */,
 				6F0CD5CE186DB93000B5A3EA /* icon_firegas_blue@2x.png in Resources */,
+				F29DE70E18868A8000BCE93C /* checkbox_unselected@2x.png in Resources */,
 				6F7CDBB91872A9E20036F912 /* icon_news@2x.png in Resources */,
 				6F732730186D4F4000A1276B /* btn_voice_gray@2x.png in Resources */,
 				F2F3E1AA187A3FD6006A9447 /* whiteArrow@2x.png in Resources */,
@@ -2023,6 +2030,7 @@
 				6F0CD5D1186DB93000B5A3EA /* icon_humidity_blue@2x.png in Resources */,
 				6F0CD5D9186DB93000B5A3EA /* icon_pm25_yellow@2x.png in Resources */,
 				6F203363187D1C2500BACFA5 /* bubble_mine@2x.png in Resources */,
+				F29DE70F18868A8000BCE93C /* checkbox_selected@2x.png in Resources */,
 				6F0CD5DB186DB93000B5A3EA /* icon_voc_red@2x.png in Resources */,
 				6F732719186D20C500A1276B /* icon_temp_yellow@2x.png in Resources */,
 				F29DE6FD188665E900BCE93C /* image_setting_step1@2x.png in Resources */,

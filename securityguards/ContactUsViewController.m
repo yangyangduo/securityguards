@@ -7,6 +7,8 @@
 //
 
 #import "ContactUsViewController.h"
+#define TOPBAR_HEIGHT self.topbarView.frame.size.height
+#define LABEL_HEIGHT  30
 
 @interface ContactUsViewController ()
 
@@ -31,8 +33,79 @@
 
 - (void)initUI{
     [super initUI];
-    UITextView *txtContactUs;
+    self.topbarView.title = NSLocalizedString(@"contact_us_title", @"");
+    
+    UILabel *lblAppName = [[UILabel alloc] initWithFrame:CGRectMake(10, 5+TOPBAR_HEIGHT, 200, LABEL_HEIGHT)];
+    lblAppName.textColor = [UIColor darkGrayColor];
+    lblAppName.backgroundColor = [ UIColor clearColor];
+    lblAppName.text = NSLocalizedString(@"app_name_label", @"");
+    [self.view addSubview:lblAppName];
+    
+    UILabel *lblVersion = [[UILabel alloc] initWithFrame:CGRectMake(10, 5+LABEL_HEIGHT+TOPBAR_HEIGHT, 200, LABEL_HEIGHT)];
+    lblVersion.textColor = [UIColor darkGrayColor];
+    lblVersion.backgroundColor = [UIColor clearColor];
+    NSDictionary *dic = [NSBundle mainBundle].localizedInfoDictionary;
+    NSString *versionStr = [dic objectForKey:@"CFBundleVersion"];
+    lblVersion.text = [NSString stringWithFormat:@"%@:%@",NSLocalizedString(@"app_version", @""),versionStr];
+    [self.view addSubview:lblVersion];
+    
+    UILabel *lblPhoneNumber = [[UILabel alloc] initWithFrame:CGRectMake(10, 5+TOPBAR_HEIGHT+LABEL_HEIGHT*2, 80, LABEL_HEIGHT)];
+    lblPhoneNumber.text = NSLocalizedString(@"office_number", @"");
+    lblPhoneNumber.textColor = [UIColor darkGrayColor];
+    lblPhoneNumber.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:lblPhoneNumber];
+    
+    UIButton *btnCallOfficeServer = [[UIButton alloc] initWithFrame:CGRectMake(95,5+TOPBAR_HEIGHT+LABEL_HEIGHT*2, 120, LABEL_HEIGHT)];
+    [btnCallOfficeServer setTitle:NSLocalizedString(@"office_phonenumber", @"") forState:UIControlStateNormal];
+    btnCallOfficeServer.backgroundColor = [UIColor clearColor];
+    [btnCallOfficeServer setTitleColor:[UIColor appLightBlue] forState:UIControlStateHighlighted];
+    [btnCallOfficeServer setTitleColor:[UIColor appBlue] forState:UIControlStateNormal];
+    [self.view addSubview:btnCallOfficeServer];
+    
+    UILabel *lblWeChatNum = [[UILabel alloc] initWithFrame:CGRectMake(10,5+TOPBAR_HEIGHT+LABEL_HEIGHT*3, 200, LABEL_HEIGHT)];
+    lblWeChatNum.textColor = [UIColor darkGrayColor];
+    lblWeChatNum.text = NSLocalizedString(@"we_chat_number", @"");
+    lblWeChatNum.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:lblWeChatNum];
+    
+    UILabel *lblWebSite = [[UILabel alloc] initWithFrame:CGRectMake(10, 5+TOPBAR_HEIGHT+LABEL_HEIGHT*4, 80, LABEL_HEIGHT)];
+    lblWebSite.backgroundColor = [UIColor clearColor];
+    lblWebSite.text = NSLocalizedString(@"website", @"");
+    lblWebSite.textColor = [UIColor darkGrayColor];
+    [self.view addSubview:lblWebSite];
+    
+    UIButton *btnOpenWebSite = [[UIButton alloc] initWithFrame:CGRectMake(95, 5+TOPBAR_HEIGHT+LABEL_HEIGHT*4, 120, LABEL_HEIGHT)];
+    btnOpenWebSite.backgroundColor = [UIColor clearColor];
+    [btnOpenWebSite setTitle:NSLocalizedString(@"website_url", @"") forState:UIControlStateNormal];
+    [btnOpenWebSite setTitleColor:[UIColor appBlue] forState:UIControlStateNormal];
+    [btnOpenWebSite setTitleColor:[UIColor appLightBlue] forState:UIControlStateHighlighted];
+    [self.view addSubview:btnOpenWebSite];
+    
+    UILabel *lblCopyRight = [[UILabel alloc] initWithFrame:CGRectMake(10,  5+TOPBAR_HEIGHT+LABEL_HEIGHT*5, 300, LABEL_HEIGHT)];
+    lblCopyRight.backgroundColor = [UIColor clearColor];
+    lblCopyRight.textColor = [UIColor darkGrayColor];
+    lblCopyRight.text = NSLocalizedString(@"copy_right", @"");
+    lblCopyRight.font = [UIFont systemFontOfSize:12.f];
+    [self.view addSubview:lblCopyRight];
+    
+    UIView *clickToDeclareView = [[UIView alloc] initWithFrame:CGRectMake(10, 5+TOPBAR_HEIGHT+LABEL_HEIGHT*6, 300, 50)];
+    clickToDeclareView.backgroundColor = [UIColor appGray];
+    [self.view addSubview:clickToDeclareView];
+    
+    UILabel *lblReadDeclare = [[UILabel alloc] initWithFrame:CGRectMake(10, 0,100, 50)];
+    lblReadDeclare.backgroundColor = [UIColor clearColor];
+    lblReadDeclare.text = NSLocalizedString(@"read_declare", @"");
+    NSLog(@"%@",NSStringFromCGRect(lblReadDeclare.frame));
+    lblReadDeclare.textColor = [UIColor darkGrayColor];
+    [clickToDeclareView addSubview:lblReadDeclare];
+    
+    UIImageView *accessoryView = [[UIImageView alloc] initWithFrame:CGRectMake(clickToDeclareView.frame.size.width-16, 15, 8, 41/2)];
+    accessoryView.backgroundColor = [UIColor clearColor];
+    accessoryView.image = [UIImage imageNamed:@"icon_accessory.png"];
+    [clickToDeclareView addSubview:accessoryView];
+    
 }
+
 
 - (void)didReceiveMemoryWarning
 {
