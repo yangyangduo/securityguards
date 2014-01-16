@@ -39,9 +39,9 @@
         itemMedium.displayName = NSLocalizedString(@"medium_level", @"");
         itemLow.displayName = NSLocalizedString(@"low_level", @"");
         
-        itemHigh.deviceState = 1;
-        itemMedium.deviceState = 2;
-        itemLow.deviceState = 3;
+        itemHigh.deviceState = 2;
+        itemMedium.deviceState = 1;
+        itemLow.deviceState = 0;
         
         [operations addObject:itemHigh];
         [operations addObject:itemMedium];
@@ -53,8 +53,8 @@
         itemManual.displayName = NSLocalizedString(@"device_manual", @"");
         itemAutomatic.displayName = NSLocalizedString(@"device_automatic", @"");
         
-        itemManual.deviceState = 0;
-        itemAutomatic.deviceState = 1;
+        itemAutomatic.deviceState = 0;
+        itemManual.deviceState = 1;
         
         [operations addObject:itemManual];
         [operations addObject:itemAutomatic];
@@ -81,20 +81,20 @@
             return NSLocalizedString(@"device_close", @"");
         }
     } else if(device.isAirPurifierLevel) {
-        if(device.state == 1) {
+        if(device.state == 2) {
             return NSLocalizedString(@"high_level", @"");
-        } else if(device.state == 2) {
+        } else if(device.state == 1) {
             return NSLocalizedString(@"medium_level", @"");
-        } else if(device.state == 3) {
+        } else if(device.state == 0) {
             return NSLocalizedString(@"low_level", @"");
         }
     } else if(device.isAirPurifierSecurity) {
         
         
     } else if(device.isAirPurifierModeControl) {
-        if(device.state == 0) {
+        if(device.state == 1) {
             return NSLocalizedString(@"device_manual", @"");
-        } else if(device.state == 1) {
+        } else if(device.state == 0) {
             return NSLocalizedString(@"device_automatic", @"");
         }
     }

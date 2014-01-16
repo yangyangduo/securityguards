@@ -15,6 +15,8 @@
 #import "AlertView.h"
 #import "UserLogoutEvent.h"
 
+#import "MyOperation.h"
+
 @implementation AppDelegate {
     RootViewController *_rootViewController_;
     BOOL logouting;
@@ -31,6 +33,12 @@
 
     self.window.rootViewController = navigationViewController;
     [self.window makeKeyAndVisible];
+    
+    
+    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+    
+    MyOperation *mo = [[MyOperation alloc] init];
+    [queue addOperation:mo];
     
     return YES;
 }

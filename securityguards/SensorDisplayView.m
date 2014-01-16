@@ -14,9 +14,10 @@
     UILabel *lblValue;
     UIImageView *imgDescBackground;
     UILabel *lblDescription;
+    
+    NSString *basicImageName;
 }
 
-@synthesize device = _device_;
 @synthesize sensorDisplayViewState = _sensorDisplayViewState_;
 @synthesize sensorDisplayViewType = _sensorDisplayViewType_;
 
@@ -30,10 +31,10 @@
     return self;
 }
 
-- (id)initWithPoint:(CGPoint)point andDevice:(Device *)device {
+- (instancetype)initWithPoint:(CGPoint)point sensorType:(SensorDisplayViewType)sensorType {
     self = [super initWithFrame:CGRectMake(point.x, point.y, 140, 27)];
     if(self){
-        _device_ = device;
+        _sensorDisplayViewType_ = sensorType;
         [self initUI];
     }
     return self;
@@ -59,37 +60,44 @@
     
     imageView.image = [UIImage imageNamed:@"icon_temp_blue"];
     lblValue.text = @"28度";
-    lblDescription.text = @"细微粉尘";
     
-    self.sensorDisplayViewType = SensorDisplayViewTypeTempure;
-    self.sensorDisplayViewColor = SensorDisplayViewStateWarning;
+    self.sensorDisplayViewType = _sensorDisplayViewType_;
+    self.sensorDisplayViewState = SensorDisplayViewStateNormal;
 }
 
 - (void)setSensorDisplayViewType:(SensorDisplayViewType)sensorDisplayViewType {
     _sensorDisplayViewType_ = sensorDisplayViewType;
     if(SensorDisplayViewTypeTempure == _sensorDisplayViewType_) {
-        imageView.image = [UIImage imageNamed:@"icon_temp_blue"];
+        lblDescription.text = NSLocalizedString(@"tempure", @"");
+        basicImageName = @"icon_temp";
     } else if(SensorDisplayViewTypeHumidity == _sensorDisplayViewType_) {
-        imageView.image = [UIImage imageNamed:@"icon_temp_blue"];
+        lblDescription.text = NSLocalizedString(@"humidity", @"");
+        basicImageName = @"icon_humidity";
     } else if(SensorDisplayViewTypePM25 == _sensorDisplayViewType_) {
-        imageView.image = [UIImage imageNamed:@"icon_temp_blue"];
+        lblDescription.text = NSLocalizedString(@"pm25", @"");
+        basicImageName = @"icon_pm25";
     } else if(SensorDisplayViewTypeVOC == _sensorDisplayViewType_) {
-        imageView.image = [UIImage imageNamed:@"icon_temp_blue"];
+        lblDescription.text = NSLocalizedString(@"voc", @"");
+        basicImageName = @"icon_voc";
     }
 }
 
-- (void)setSensorDisplayViewColor:(SensorDisplayViewState)sensorDisplayViewState {
+- (void)setSensorDisplayViewState:(SensorDisplayViewState)sensorDisplayViewState {
     _sensorDisplayViewState_ = sensorDisplayViewState;
+    NSString *stateImageExtension = @"blue";
     if(SensorDisplayViewStateNormal == _sensorDisplayViewState_) {
         imgDescBackground.image = [UIImage imageNamed:@"bg_label_gray"];
         lblValue.textColor = [UIColor appBlue];
     } else if(SensorDisplayViewStateAlarm == _sensorDisplayViewState_) {
+        stateImageExtension = @"red";
         imgDescBackground.image = [UIImage imageNamed:@"bg_label_red"];
         lblValue.textColor = [UIColor appRed];
     } else if(SensorDisplayViewStateWarning == _sensorDisplayViewState_) {
+        stateImageExtension = @"yellow";
         imgDescBackground.image = [UIImage imageNamed:@"bg_label_yellow"];
         lblValue.textColor = [UIColor appDarkYellow];
     }
+    imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@_%@", basicImageName, stateImageExtension]];
 }
 
 @end
