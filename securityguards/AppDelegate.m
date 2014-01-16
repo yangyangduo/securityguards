@@ -34,12 +34,6 @@
     self.window.rootViewController = navigationViewController;
     [self.window makeKeyAndVisible];
     
-    
-    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-    
-    MyOperation *mo = [[MyOperation alloc] init];
-    [queue addOperation:mo];
-    
     return YES;
 }
 
