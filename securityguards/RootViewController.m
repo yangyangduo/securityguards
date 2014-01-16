@@ -9,7 +9,7 @@
 #import "RootViewController.h"
 #import "NewsViewController.h"
 #import "UserManagementViewController.h"
-#import "CopyrightViewController.h"
+#import "ContactUsViewController.h"
 #import "UnitSelectionDrawerView.h"
 #import "NotificationsViewController.h"
 #import "UserLogoutEvent.h"
@@ -53,7 +53,7 @@
         [[LeftNavItem alloc] initWithIdentifier:@"newsItem" andDisplayName:NSLocalizedString(@"news_drawer_title", @"") andImageName:@"icon_news"],
         [[LeftNavItem alloc] initWithIdentifier:@"notificationsItem" andDisplayName:NSLocalizedString(@"notifications_drawer_title", @"") andImageName:@"icon_notifications"],
         [[LeftNavItem alloc] initWithIdentifier:@"accountManagerItem" andDisplayName:NSLocalizedString(@"user_mgr_drawer_title", @"") andImageName:@"icon_account"],
-        [[LeftNavItem alloc] initWithIdentifier:@"copyrightItem" andDisplayName:NSLocalizedString(@"copyright_drawer_title", @"") andImageName:@"icon_copyright"],
+        [[LeftNavItem alloc] initWithIdentifier:@"contactUsItem" andDisplayName:NSLocalizedString(@"contact_us_drawer_title", @"") andImageName:@"icon_copyright"],
         [[LeftNavItem alloc] initWithIdentifier:@"logoutItem" andDisplayName:NSLocalizedString(@"logout_drawer_title", @"") andImageName:@"icon_logout"], nil];
     LeftNavView *navView = [[LeftNavView alloc] initWithFrame:[UIScreen mainScreen].bounds andNavItems:navItems];
     navView.delegate = self;
@@ -108,8 +108,8 @@
             userManagementViewController = [[UserManagementViewController alloc] init];
         }
         centerViewController = userManagementViewController;
-    } else if([@"copyrightItem" isEqualToString:item.identifier]) {
-        centerViewController = [[CopyrightViewController alloc] init];
+    } else if([@"contactUsItem" isEqualToString:item.identifier]) {
+        centerViewController = [[ContactUsViewController alloc] init];
     }
     
     if(centerViewController == nil) return;
