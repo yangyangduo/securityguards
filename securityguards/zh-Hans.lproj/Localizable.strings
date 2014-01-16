@@ -110,6 +110,9 @@
 "device_automatic"               =      "自动";
 "device_manual"                  =      "手动";
 "view"                           =      "查看";
+"security_all_open"              =      "完全设防";
+"security_close"                 =      "关闭";
+"security_fireproof"             =      "仅防火";
 
 
 /****************	Unif Finder View Strings	****************/

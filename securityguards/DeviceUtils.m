@@ -59,7 +59,21 @@
         [operations addObject:itemManual];
         [operations addObject:itemAutomatic];
     } else if(device.isAirPurifierSecurity) {
-
+        DeviceOperationItem *itemAllOpen = [[DeviceOperationItem alloc] init];
+        DeviceOperationItem *itemClosed = [[DeviceOperationItem alloc] init];
+        DeviceOperationItem *itemFiresproof = [[DeviceOperationItem alloc] init];
+        
+        itemAllOpen.displayName = NSLocalizedString(@"security_all_open", @"");
+        itemClosed.displayName = NSLocalizedString(@"security_close", @"");
+        itemFiresproof.displayName = NSLocalizedString(@"security_fireproof", @"");
+        
+        itemAllOpen.deviceState = 0;
+        itemClosed.deviceState = 1;
+        itemFiresproof.deviceState = 2;
+        
+        [operations addObject:itemAllOpen];
+        [operations addObject:itemClosed];
+        [operations addObject:itemFiresproof];
     }
     
     // set command strings
@@ -89,8 +103,13 @@
             return NSLocalizedString(@"low_level", @"");
         }
     } else if(device.isAirPurifierSecurity) {
-        
-        
+        if(device.status == 0) {
+            return NSLocalizedString(@"security_all_open", @"");
+        } else if(device.status == 1) {
+            return NSLocalizedString(@"security_close", @"");
+        } else if(device.status == 2) {
+            return NSLocalizedString(@"security_fireproof", @"");
+        }
     } else if(device.isAirPurifierModeControl) {
         if(device.status == 1) {
             return NSLocalizedString(@"device_manual", @"");

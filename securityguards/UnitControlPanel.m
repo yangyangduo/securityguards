@@ -132,7 +132,7 @@
     // set device display image
     if(device.isAirPurifierPower) {
         cell.imageView.image = [UIImage imageNamed:@"icon_power"];
-        if(device.status == 1) {
+        if(device.status == 0) {
             detailTextLabel.textColor = [UIColor appBlue];
         }
     } else if(device.isAirPurifierLevel) {
@@ -140,7 +140,7 @@
     } else if(device.isAirPurifierModeControl) {
         cell.imageView.image = [UIImage imageNamed:@"icon_control_mode"];
     } else if(device.isAirPurifierSecurity) {
-        if(device.status == 0) {
+        if(device.status == 0 || device.status == 2) {
             detailTextLabel.textColor = [UIColor appBlue];
         }
         cell.imageView.image = [UIImage imageNamed:@"icon_security"];
