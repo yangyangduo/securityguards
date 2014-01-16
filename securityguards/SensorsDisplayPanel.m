@@ -39,21 +39,26 @@
     self.backgroundColor = [UIColor appGray];
     
     tempureSensor = [[SensorDisplayView alloc] initWithPoint:CGPointMake(10, 10) sensorType:SensorDisplayViewTypeTempure];
-    [self addSubview:tempureSensor];
-    
     humiditySensor = [[SensorDisplayView alloc] initWithPoint:CGPointMake(170, 10) sensorType:SensorDisplayViewTypeHumidity];
-    [self addSubview:humiditySensor];
-    
     pm25Sensor = [[SensorDisplayView alloc] initWithPoint:CGPointMake(10, 47) sensorType:SensorDisplayViewTypePM25];
-    [self addSubview:pm25Sensor];
-    pm25Sensor.sensorDisplayViewState = SensorDisplayViewStateWarning;
-    
     vocSensor = [[SensorDisplayView alloc] initWithPoint:CGPointMake(170, 47) sensorType:SensorDisplayViewTypeVOC];
+    
+    [self addSubview:tempureSensor];
+    [self addSubview:humiditySensor];
+    [self addSubview:pm25Sensor];
     [self addSubview:vocSensor];
 }
 
 - (void)setValue:(NSString *)value forSensorType:(SensorDisplayViewType)sensorType {
-    
+    if(SensorDisplayViewTypeTempure == sensorType) {
+        
+    } else if(SensorDisplayViewTypeHumidity == sensorType) {
+        
+    } else if(SensorDisplayViewTypePM25 == sensorType) {
+        
+    } else if(SensorDisplayViewTypeVOC == sensorType) {
+        
+    }
 }
 
 @end
