@@ -9,6 +9,8 @@
 #import "SensorDisplayView.h"
 #import "UIColor+MoreColor.h"
 
+#define NO_VALUE @"----"
+
 @implementation SensorDisplayView {
     UIImageView *imageView;
     UILabel *lblValue;
@@ -59,7 +61,7 @@
     [self addSubview:imgDescBackground];
     
     imageView.image = [UIImage imageNamed:@"icon_temp_blue"];
-    lblValue.text = @"28度";
+    lblValue.text = NO_VALUE;
     
     self.sensorDisplayViewType = _sensorDisplayViewType_;
     self.sensorDisplayViewState = SensorDisplayViewStateNormal;
