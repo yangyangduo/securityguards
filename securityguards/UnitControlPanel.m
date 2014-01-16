@@ -8,6 +8,7 @@
 
 #import "UnitControlPanel.h"
 #import "UIColor+MoreColor.h"
+#import "UIColor+HexColor.h"
 #import "UIDevice+SystemVersion.h"
 #import "CameraViewController.h"
 #import "UnitManager.h"
@@ -99,7 +100,6 @@
         
         UILabel *detailTextLabel = [[UILabel alloc] initWithFrame:CGRectMake(cell.bounds.size.width - 150, 7, 120, 29)];
         detailTextLabel.tag = DETAIL_TEXT_LABEL_TAG;
-        detailTextLabel.textColor = [UIColor appBlue];
         detailTextLabel.backgroundColor = [UIColor clearColor];
         detailTextLabel.textAlignment = NSTextAlignmentRight;
         detailTextLabel.font = [UIFont systemFontOfSize:16.f];
@@ -123,21 +123,31 @@
     Zone *zone = [_unit_.zones objectAtIndex:0];
     Device *device = [zone.devices objectAtIndex:indexPath.row];
     
+    UILabel *detailTextLabel = (UILabel *)[cell viewWithTag:DETAIL_TEXT_LABEL_TAG];
+    detailTextLabel.textColor = [UIColor colorWithHexString:@"666666"];
+    
     // set device display name
     cell.textLabel.text = device.name;
     
     // set device display image
     if(device.isAirPurifierPower) {
         cell.imageView.image = [UIImage imageNamed:@"icon_power"];
+        if(device.state == 1) {
+            detailTextLabel.textColor = [UIColor appBlue];
+        }
     } else if(device.isAirPurifierLevel) {
         cell.imageView.image = [UIImage imageNamed:@"icon_level"];
     } else if(device.isAirPurifierModeControl) {
         cell.imageView.image = [UIImage imageNamed:@"icon_control_mode"];
     } else if(device.isAirPurifierSecurity) {
+        if(device.state == 0) {
+            detailTextLabel.textColor = [UIColor appBlue];
+        }
         cell.imageView.image = [UIImage imageNamed:@"icon_security"];
     } else if(device.isCamera) {
         cell.imageView.image = [UIImage imageNamed:@"icon_camera"];
     } else {
+        
     }
     
     // set device state for detail text label

@@ -12,6 +12,7 @@
 @interface NewsDetailViewController : NavigationViewController<UIWebViewDelegate>
 
 @property (nonatomic, strong) News *news;
+@property (nonatomic, strong) UIWebView *newsWebView;
 
 - (id)initWithNews:(News *)news;
 

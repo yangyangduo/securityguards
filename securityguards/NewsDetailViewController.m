@@ -14,12 +14,11 @@
 @end
 
 @implementation NewsDetailViewController {
-    UIWebView *newsWebView;
-    RestClient *client;
     UITapGestureRecognizer *tapGesture;
 }
 
 @synthesize news = _news_;
+@synthesize newsWebView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -52,8 +51,6 @@
 
 - (void)initDefaults {
     [super initDefaults];
-    client = [[RestClient alloc] init];
-    client.timeoutInterval = 10.f;
 }
 
 - (void)initUI {
@@ -76,21 +73,30 @@
 - (void)loadPage {
     if(self.news == nil || [XXStringUtils isBlank:self.news.contentUrl]) return;
     [self showLoadingViewWithMessage:nil];
+    __weak NewsDetailViewController *wself = self;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        [client get:self.news.contentUrl acceptType:@"text/html"
+        if(wself == nil) return;
+        RestClient *client = [[RestClient alloc] init];
+        client.timeoutInterval = 10.f;
+        [client get:wself.news.contentUrl acceptType:@"text/html"
             success:^(RestResponse *resp) {
+                [NSThread sleepForTimeInterval:3];
                 dispatch_async(dispatch_get_main_queue(), ^{
+                    if(wself == nil) return;
+                    __strong NewsDetailViewController *sself = wself;
                     if(resp.statusCode == 200) {
                         NSString *htmlString = [[NSString alloc] initWithData:resp.body encoding:NSUTF8StringEncoding];
-                        [newsWebView loadHTMLString:htmlString baseURL:nil];
+                        [sself.newsWebView loadHTMLString:htmlString baseURL:nil];
                     } else {
-                        [self loadWasFailed];
+                        [sself loadWasFailed];
                     }
                 });
             }
             error:^(RestResponse *resp) {
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [self loadWasFailed];
+                    if(wself == nil) return;
+                    __strong NewsDetailViewController *sself = wself;
+                    [sself loadWasFailed];
                 });
             }];
     });

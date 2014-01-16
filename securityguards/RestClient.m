@@ -85,7 +85,7 @@ timeoutInterval=_timeoutInterval, auth=_auth;
 
 - (void)executeForUrl:(NSString *)u method:(NSString *)m headers:(NSDictionary *)h body : (NSData *) b success:(SEL)s error:(SEL)e for:(NSObject *)obj callback:(id)cb {
     @try {
-        NSMutableURLRequest *request =[[NSMutableURLRequest alloc] initWithURL: [self getFullUrl:u] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:self.timeoutInterval];
+        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL: [self getFullUrl:u] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:self.timeoutInterval];
         request.HTTPMethod = m;
         if(h != nil) {
             request.allHTTPHeaderFields = h;
@@ -98,12 +98,15 @@ timeoutInterval=_timeoutInterval, auth=_auth;
         }
         request.HTTPBody = b;
         NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+        
+        __weak __typeof(obj) wTarget = obj;
         [NSURLConnection sendAsynchronousRequest:request queue:queue
                                completionHandler:^(NSURLResponse *resp, NSData *data, NSError *error) {
                                    RestResponse *response = [[RestResponse alloc] init];
                                    if(error == nil) {
-                                       if(obj != nil && s != nil) {
-                                           if([obj respondsToSelector:s]) {
+                                       if(wTarget != nil && s != nil) {
+                                           __strong __typeof__(obj) sobj = wTarget;
+                                           if([sobj respondsToSelector:s]) {
                                                if([resp isMemberOfClass:[NSHTTPURLResponse class]]) {
                                                    NSHTTPURLResponse *rp = (NSHTTPURLResponse *)resp;
                                                    response.statusCode = rp.statusCode;
@@ -111,16 +114,17 @@ timeoutInterval=_timeoutInterval, auth=_auth;
                                                    response.callbackObject = cb;
                                                    response.contentType = [rp.allHeaderFields valueForKey:@"Content-Type"];
                                                    response.headers = rp.allHeaderFields;
-                                                   [obj performSelectorOnMainThread:s withObject:response waitUntilDone:NO];
+                                                   [sobj performSelectorOnMainThread:s withObject:response waitUntilDone:NO];
                                                }
                                            }
                                        }
                                    } else {
-                                       if(obj != nil && e != nil) {
-                                           if([obj respondsToSelector:e]) {
+                                       if(wTarget != nil && e != nil) {
+                                           __strong __typeof__(obj) sobj = wTarget;
+                                           if([sobj respondsToSelector:e]) {
                                                response.statusCode = error.code;
                                                response.failedReason = error.localizedFailureReason;
-                                               [obj performSelectorOnMainThread:e withObject:response waitUntilDone:NO];
+                                               [sobj performSelectorOnMainThread:e withObject:response waitUntilDone:NO];
                                            }
                                        }
                                    }
