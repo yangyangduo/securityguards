@@ -83,6 +83,7 @@
     [btnOpenWebSite setTitleColor:[UIColor appBlue] forState:UIControlStateNormal];
     [btnOpenWebSite setTitleColor:[UIColor appLightBlue] forState:UIControlStateHighlighted];
     btnOpenWebSite.titleEdgeInsets = UIEdgeInsetsMake(btnOpenWebSite.titleEdgeInsets.top,-60, btnOpenWebSite.titleEdgeInsets.bottom, btnOpenWebSite.titleEdgeInsets.right);
+    [btnOpenWebSite addTarget:self action:@selector(btnOpenWebSitePressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btnOpenWebSite];
     
     UILabel *lblCopyRight = [[UILabel alloc] initWithFrame:CGRectMake(10,  5+TOPBAR_HEIGHT+LABEL_HEIGHT*5, 300, LABEL_HEIGHT)];
@@ -116,6 +117,9 @@
     [SystemService dialToMobile:NSLocalizedString(@"office_phonenumber", @"")];
 }
 
+- (void)btnOpenWebSitePressed:(UIButton *)sender{
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.baidu.com"]];
+}
 - (void)clickToDeclare:(UITapGestureRecognizer *)gesture{
     [self.navigationController pushViewController:[[DeclareViewController alloc] init] animated:YES];
 }
