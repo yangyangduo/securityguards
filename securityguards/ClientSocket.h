@@ -15,7 +15,7 @@
 @property (strong, nonatomic, readonly) NSInputStream *inputStream;
 @property (strong, nonatomic, readonly) NSOutputStream *outputStream;
 
-- (id)initWithIPAddress:(NSString *)ip andPort:(NSInteger)portNumber;
+- (instancetype)initWithIPAddress:(NSString *)ip andPort:(NSInteger)portNumber;
 
 - (void)connect;
 - (void)close;

@@ -163,7 +163,6 @@
                         
                         // start service
                         [[CoreService defaultService] startService];
-                        [[CoreService defaultService] startRefreshCurrentUnit];
                         
                         [[AlertView currentAlertView] setMessage:NSLocalizedString(@"login_success", @"") forType:AlertViewTypeSuccess];
                         [[AlertView currentAlertView] delayDismissAlertView];

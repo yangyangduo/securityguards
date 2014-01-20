@@ -24,10 +24,13 @@
     
     /*
      * if device count has changed that
-     * we should to change the frame(height) tblControlItems
+     * we should to change the frame(height) of tblControlItems
      * and also need to change contentSize fo self.superView (UIScrollView)
+     *
+     * else we should not to do there.
      */
     int deviceCount;
+    
     BOOL deviceCountChanged;
 }
 
@@ -44,7 +47,7 @@
     return self;
 }
 
-- (id)initWithPoint:(CGPoint)point {
+- (instancetype)initWithPoint:(CGPoint)point {
     self = [super initWithFrame:CGRectMake(point.x, point.y, [UIScreen mainScreen].bounds.size.height, CONTROL_ITEM_HEIGHT * deviceCount)];
     if (self) {
         // Initialization code
@@ -54,7 +57,7 @@
     return self;
 }
 
-- (id)initWithPoint:(CGPoint)point andUnit:(Unit *)unit {
+- (instancetype)initWithPoint:(CGPoint)point andUnit:(Unit *)unit {
     [self calculateDeviceCountForUnit:unit];
     self = [self initWithPoint:point];
     if(self) {

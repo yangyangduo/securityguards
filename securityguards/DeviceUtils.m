@@ -76,10 +76,11 @@
         [operations addObject:itemFiresproof];
     }
     
-    // set command strings
+    // set command strings and unit identifier for each item
     
     for(int i=0; i<operations.count; i++) {
         DeviceOperationItem *item = [operations objectAtIndex:i];
+        item.unitIdentifier = device.zone.unit.identifier;
         item.commandString = [device commandStringForStatus:item.deviceState];
     }
     
@@ -121,10 +122,13 @@
 }
 
 + (void)executeOperationItem:(DeviceOperationItem *)operationItem {
-    if(operationItem == nil || [XXStringUtils isBlank:operationItem.commandString]) return;
+    if(operationItem == nil ||
+       [XXStringUtils isBlank:operationItem.unitIdentifier] ||
+       [XXStringUtils isBlank:operationItem.commandString]) return;
+    
     DeviceCommandUpdateDevice *updateDeviceCommand = (DeviceCommandUpdateDevice *)[CommandFactory commandForType:CommandTypeUpdateDevice];
-    updateDeviceCommand.masterDeviceCode = @"";
-    [updateDeviceCommand addCommandString:@""];
+    updateDeviceCommand.masterDeviceCode = operationItem.unitIdentifier;
+    [updateDeviceCommand addCommandString:operationItem.commandString];
     [[CoreService defaultService] executeDeviceCommand:updateDeviceCommand];
 }
 
