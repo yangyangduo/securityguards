@@ -20,17 +20,13 @@
 
 @synthesize data;
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier withData:(AccountManageCellData *) cellData
-{
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        // Initialization code
-        data = cellData;
         [self initUI];
     }
     return self;
 }
-
 - (void)initUI {
     self.backgroundColor = [UIColor clearColor];
     self.backgroundView = [[UIView alloc] initWithFrame:self.bounds];
@@ -51,48 +47,48 @@
     view.backgroundColor = [UIColor clearColor];
     [self addSubview:view];
     
-    if (!data.isPanel) {
-        view.backgroundColor = [UIColor colorWithHexString:@"fafafa"];
+    view.backgroundColor = [UIColor colorWithHexString:@"fafafa"];
 
-        self.selectionStyle = UITableViewCellSelectionStyleDefault;
-        
-        if (imgUserRole == nil) {
-            imgUserRole = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 44/2, 34/2)];
-            imgUserRole.center = CGPointMake(30, view.center.y-5);
-            imgUserRole.backgroundColor = [UIColor clearColor];
-            [view addSubview:imgUserRole];
-        }
-        
-        if (lblUserInfo == nil) {
-            lblUserInfo = [[UILabel alloc] initWithFrame:CGRectMake(60, 0, 160, CELL_HEIGHT-5)];
-            lblUserInfo.center = CGPointMake(lblUserInfo.center.x, view.center.y-5);
-            lblUserInfo.textColor = [UIColor darkGrayColor];
-            lblUserInfo.backgroundColor = [UIColor clearColor];
-            lblUserInfo.font = [UIFont systemFontOfSize:13.f];
-            if(![UIDevice systemVersionIsMoreThanOrEuqal7]) {
-                lblUserInfo.textColor = [UIColor lightGrayColor];
-            }
-            [view addSubview:lblUserInfo];
-        }
-        
-        if (imgAccessory == nil) {
-            imgAccessory = [[UIImageView alloc] initWithFrame:CGRectMake(CELL_WIDTH-55.5, 0, 71/2, 28/2)];
-            imgAccessory.center = CGPointMake(imgAccessory.center.x, view.center.y-5);
-            
-            [view addSubview:imgAccessory];
-            if (lblUserStatus == nil) {
-                lblUserStatus = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 71/2, 28/2)];
-                lblUserStatus.textColor = [UIColor whiteColor];
-                lblUserStatus.font = [UIFont systemFontOfSize:10.f];
-                lblUserStatus.textAlignment = NSTextAlignmentCenter;
-                [imgAccessory addSubview:lblUserStatus];
-            }
-        }
-
+    self.selectionStyle = UITableViewCellSelectionStyleDefault;
+    
+    if (imgUserRole == nil) {
+        imgUserRole = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 44/2, 34/2)];
+        imgUserRole.center = CGPointMake(30, view.center.y-5);
+        imgUserRole.backgroundColor = [UIColor clearColor];
+        [view addSubview:imgUserRole];
     }
+    
+    if (lblUserInfo == nil) {
+        lblUserInfo = [[UILabel alloc] initWithFrame:CGRectMake(60, 0, 160, CELL_HEIGHT-5)];
+        lblUserInfo.center = CGPointMake(lblUserInfo.center.x, view.center.y-5);
+        lblUserInfo.textColor = [UIColor darkGrayColor];
+        lblUserInfo.backgroundColor = [UIColor clearColor];
+        lblUserInfo.font = [UIFont systemFontOfSize:13.f];
+        if(![UIDevice systemVersionIsMoreThanOrEuqal7]) {
+            lblUserInfo.textColor = [UIColor lightGrayColor];
+        }
+        [view addSubview:lblUserInfo];
+    }
+    
+    if (imgAccessory == nil) {
+        imgAccessory = [[UIImageView alloc] initWithFrame:CGRectMake(CELL_WIDTH-55.5, 0, 71/2, 28/2)];
+        imgAccessory.center = CGPointMake(imgAccessory.center.x, view.center.y-5);
+        
+        [view addSubview:imgAccessory];
+        if (lblUserStatus == nil) {
+            lblUserStatus = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 71/2, 28/2)];
+            lblUserStatus.textColor = [UIColor whiteColor];
+            lblUserStatus.font = [UIFont systemFontOfSize:10.f];
+            lblUserStatus.textAlignment = NSTextAlignmentCenter;
+            [imgAccessory addSubview:lblUserStatus];
+        }
+    }
+
+    
 }
 
-- (void)loadData {
+- (void)loadData:(AccountManageCellData *) cellData {
+    data = cellData;
     User *user = data.user;
     if(user != nil) {
         lblUserInfo.text = [NSString stringWithFormat:@"%@(%@)" ,user.name,user.mobile];

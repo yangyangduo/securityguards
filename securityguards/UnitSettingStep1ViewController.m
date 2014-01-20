@@ -40,7 +40,7 @@
     lblLine1Content.text = NSLocalizedString(@"step1_line1", @"");
     lblLine1Content.textColor = [UIColor darkGrayColor];
     lblLine1Content.backgroundColor = [UIColor clearColor];
-    lblLine1Content.font = [UIFont systemFontOfSize:14.f];
+    lblLine1Content.font = [UIFont systemFontOfSize:12.f];
     [self.view addSubview:lblLine1Content];
     
     UILabel *lblLine2 = [TipsLabel labelWithPoint:CGPointMake(60, lblLine1.frame.origin.y+lblLine1.frame.size.height+5)];
@@ -51,7 +51,7 @@
     lblLine2Content.text = NSLocalizedString(@"step1_line2", @"");
     lblLine2Content.textColor = [UIColor darkGrayColor];
     lblLine2Content.backgroundColor = [UIColor clearColor];
-    lblLine2Content.font = [UIFont systemFontOfSize:14.f];
+    lblLine2Content.font = [UIFont systemFontOfSize:12.f];
     [self.view addSubview:lblLine2Content];
     
     UILabel *lblLine3 = [TipsLabel labelWithPoint:CGPointMake(60,lblLine2.frame.origin.y+lblLine2.frame.size.height+15)];
@@ -62,7 +62,7 @@
     lblLine3Content.textColor = [UIColor darkGrayColor];
     lblLine3Content.text  = NSLocalizedString(@"step1_line3", @"");
     lblLine3Content.backgroundColor = [UIColor clearColor];
-    lblLine3Content.font = [UIFont systemFontOfSize:14.f];
+    lblLine3Content.font = [UIFont systemFontOfSize:12.f];
     [self.view addSubview:lblLine3Content];
     
     UIImageView *imgTips = [[UIImageView alloc] initWithFrame:CGRectMake(0, lblLine3Content.frame.origin.y+lblLine3Content.frame.size.height +5, 431/2, 196/2)];

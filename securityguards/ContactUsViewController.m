@@ -63,6 +63,7 @@
     btnCallOfficeServer.titleEdgeInsets = UIEdgeInsetsMake(btnCallOfficeServer.titleEdgeInsets.top, -60, btnCallOfficeServer.titleEdgeInsets.bottom, btnCallOfficeServer.titleEdgeInsets.right);
     [btnCallOfficeServer setTitleColor:[UIColor appLightBlue] forState:UIControlStateHighlighted];
     [btnCallOfficeServer setTitleColor:[UIColor appBlue] forState:UIControlStateNormal];
+    [btnCallOfficeServer addTarget:self action:@selector(btnCallOfficeServerPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btnCallOfficeServer];
     
     UILabel *lblWeChatNum = [[UILabel alloc] initWithFrame:CGRectMake(10,5+TOPBAR_HEIGHT+LABEL_HEIGHT*3, 200, LABEL_HEIGHT)];
@@ -118,7 +119,7 @@
 }
 
 - (void)btnOpenWebSitePressed:(UIButton *)sender{
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.baidu.com"]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.365jws.com"]];
 }
 - (void)clickToDeclare:(UITapGestureRecognizer *)gesture{
     [self.navigationController pushViewController:[[DeclareViewController alloc] init] animated:YES];

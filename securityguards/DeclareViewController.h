@@ -8,6 +8,6 @@
 
 #import "NavigationViewController.h"
 
-@interface DeclareViewController : NavigationViewController
+@interface DeclareViewController : NavigationViewController<UIWebViewDelegate>
 
 @end

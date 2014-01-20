@@ -235,14 +235,18 @@
         cell = [tableView dequeueReusableCellWithIdentifier:data.isPanel ? panelCellIdentifier : userCellIdentifier];
     }
     if (cell == nil) {
-        cell = [[AccountManageCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:data.isPanel ? panelCellIdentifier : userCellIdentifier withData:data];
+        cell = [[AccountManageCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:data.isPanel ? panelCellIdentifier : userCellIdentifier];
         cell.backgroundView = [[UIView alloc] initWithFrame:cell.bounds];
     }
     if(data.isPanel) {
+        UIView *customView = (UIView *)[cell viewWithTag:CUSTOM_VIEW_TAG];
+        if (customView != nil) {
+            [customView removeFromSuperview];
+        }
         [self showButtons];
         [cell addSubview:buttonPanelView];
     } else {
-        [cell loadData];
+        [cell loadData:data];
     }
     return cell;
 }
