@@ -11,13 +11,12 @@
 
 #define CELL_HEIGHT                 45
 #define CELL_WIDTH                  300
+#define CUSTOM_VIEW_TAG             1889
 
 @interface AccountManageCell : UITableViewCell
 
 @property (nonatomic, strong) AccountManageCellData *data;
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier withData:(AccountManageCellData *) cellData;
-
-- (void)loadData;
+- (void)loadData:(AccountManageCellData *) cellData;
 
 @end
