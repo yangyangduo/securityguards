@@ -354,7 +354,8 @@
         if([[JsonUtils createDictionaryFromJson:resp.body] isKindOfClass:[NSArray class]]){
             usersJson = [JsonUtils createDictionaryFromJson:resp.body];
         }
-        if(usersJson != nil&&usersJson.count>0) {
+        if(usersJson != nil) {
+            [unitBindingAccounts removeAllObjects];
             Users *users = [[Users alloc] initWithJson:[NSDictionary dictionaryWithObject:usersJson forKey:@"users"]];
             for (User *user in users.users) {
                 AccountManageCellData *cellData = [[AccountManageCellData alloc] init];

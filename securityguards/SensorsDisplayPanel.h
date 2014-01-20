@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SensorDisplayView.h"
 
 @interface SensorsDisplayPanel : UIView
 
-- (id)initWithPoint:(CGPoint)point;
+- (instancetype)initWithPoint:(CGPoint)point;
+
+- (void)setValue:(NSString *)value forSensorType:(SensorDisplayViewType)sensorType;
 
 @end

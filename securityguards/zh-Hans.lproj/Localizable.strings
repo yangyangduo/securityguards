@@ -92,6 +92,14 @@
 "retry_loading"                  =      "加载失败,请点击屏幕重试";
 
 
+/****************	Sensor View Strings	****************/
+
+"tempure"                        =      "温度";
+"humidity"                       =      "湿度";
+"pm25"                           =      "细微粉尘";
+"voc"                            =      "化学气体";
+
+
 /****************	Device Strings	****************/
 
 "high_level"                     =      "超强";
@@ -102,6 +110,9 @@
 "device_automatic"               =      "自动";
 "device_manual"                  =      "手动";
 "view"                           =      "查看";
+"security_all_open"              =      "完全设防";
+"security_close"                 =      "关闭";
+"security_fireproof"             =      "仅防火";
 
 
 /****************	Unif Finder View Strings	****************/

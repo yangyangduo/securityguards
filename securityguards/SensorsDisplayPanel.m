@@ -7,10 +7,14 @@
 //
 
 #import "SensorsDisplayPanel.h"
-#import "SensorDisplayView.h"
 #import "UIColor+MoreColor.h"
 
-@implementation SensorsDisplayPanel
+@implementation SensorsDisplayPanel {
+    SensorDisplayView *tempureSensor;
+    SensorDisplayView *humiditySensor;
+    SensorDisplayView *pm25Sensor;
+    SensorDisplayView *vocSensor;
+}
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -22,7 +26,7 @@
     return self;
 }
 
-- (id)initWithPoint:(CGPoint)point {
+- (instancetype)initWithPoint:(CGPoint)point {
     self = [super initWithFrame:CGRectMake(point.x, point.y, [UIScreen mainScreen].bounds.size.width, 84)];
     if (self) {
         // Initialization code
@@ -34,19 +38,27 @@
 - (void)initUI {
     self.backgroundColor = [UIColor appGray];
     
-    SensorDisplayView *sensor = [[SensorDisplayView alloc] initWithPoint:CGPointMake(10, 10) andDevice:nil];
-    [self addSubview:sensor];
+    tempureSensor = [[SensorDisplayView alloc] initWithPoint:CGPointMake(10, 10) sensorType:SensorDisplayViewTypeTempure];
+    humiditySensor = [[SensorDisplayView alloc] initWithPoint:CGPointMake(170, 10) sensorType:SensorDisplayViewTypeHumidity];
+    pm25Sensor = [[SensorDisplayView alloc] initWithPoint:CGPointMake(10, 47) sensorType:SensorDisplayViewTypePM25];
+    vocSensor = [[SensorDisplayView alloc] initWithPoint:CGPointMake(170, 47) sensorType:SensorDisplayViewTypeVOC];
     
-    SensorDisplayView *sensor1 = [[SensorDisplayView alloc] initWithPoint:CGPointMake(170, 10) andDevice:nil];
-    [self addSubview:sensor1];
-    sensor1.sensorDisplayViewState = SensorDisplayViewStateNormal;
-    
-    SensorDisplayView *sensor2 = [[SensorDisplayView alloc] initWithPoint:CGPointMake(10, 47) andDevice:nil];
-    [self addSubview:sensor2];
-    sensor2.sensorDisplayViewState = SensorDisplayViewStateWarning;
-    
-    SensorDisplayView *sensor3 = [[SensorDisplayView alloc] initWithPoint:CGPointMake(170, 47) andDevice:nil];
-    [self addSubview:sensor3];
+    [self addSubview:tempureSensor];
+    [self addSubview:humiditySensor];
+    [self addSubview:pm25Sensor];
+    [self addSubview:vocSensor];
+}
+
+- (void)setValue:(NSString *)value forSensorType:(SensorDisplayViewType)sensorType {
+    if(SensorDisplayViewTypeTempure == sensorType) {
+        
+    } else if(SensorDisplayViewTypeHumidity == sensorType) {
+        
+    } else if(SensorDisplayViewTypePM25 == sensorType) {
+        
+    } else if(SensorDisplayViewTypeVOC == sensorType) {
+        
+    }
 }
 
 @end

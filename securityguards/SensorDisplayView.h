@@ -26,8 +26,7 @@ typedef NS_ENUM(NSUInteger, SensorDisplayViewType) {
 
 @property (nonatomic) SensorDisplayViewState sensorDisplayViewState;
 @property (nonatomic) SensorDisplayViewType sensorDisplayViewType;
-@property (nonatomic, strong) Device *device;
 
-- (id)initWithPoint:(CGPoint)point andDevice:(Device *)device;
+- (instancetype)initWithPoint:(CGPoint)point sensorType:(SensorDisplayViewType)sensorType;
 
 @end

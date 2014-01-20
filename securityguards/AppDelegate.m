@@ -15,6 +15,8 @@
 #import "AlertView.h"
 #import "UserLogoutEvent.h"
 
+#import "MyOperation.h"
+
 @implementation AppDelegate {
     RootViewController *_rootViewController_;
     BOOL logouting;
