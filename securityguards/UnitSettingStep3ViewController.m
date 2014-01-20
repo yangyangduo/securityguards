@@ -34,11 +34,13 @@
 
 - (void)initUI{
     [super initUI];
-    self.topbarView.title = NSLocalizedString(@"step2_title", @"");
+    self.topbarView.title = NSLocalizedString(@"step3_title", @"");
     UILabel *lblLine1 = [TipsLabel labelWithPoint:CGPointMake(60, 20+TOPBAR_HEIGHT)];
     [self.view addSubview:lblLine1];
-    UILabel *lblLine1Content = [[UILabel alloc] initWithFrame:CGRectMake(70, lblLine1.frame.origin.y, 220, 75)];
-    lblLine1Content.text = NSLocalizedString(@"step2_line1", @"");
+    UILabel *lblLine1Content = [[UILabel alloc] initWithFrame:CGRectMake(70, lblLine1.frame.origin.y, 200, 75)];
+    lblLine1Content.text = NSLocalizedString(@"step3_line1", @"");
+    lblLine1Content.numberOfLines = 3;
+    lblLine1Content.lineBreakMode = NSLineBreakByWordWrapping;
     lblLine1Content.textColor = [UIColor darkGrayColor];
     lblLine1Content.backgroundColor = [UIColor clearColor];
     lblLine1Content.font = [UIFont systemFontOfSize:12.f];
@@ -46,7 +48,7 @@
     
     UILabel *lblHotPoint = [[UILabel alloc] initWithFrame:CGRectMake(0, lblLine1Content.frame.origin.y+lblLine1Content.frame.size.height, 200, 30)];
     lblHotPoint.center = CGPointMake(self.view.center.x, lblHotPoint.center.y);
-    lblHotPoint.text = NSLocalizedString(@"hot_point_name", @"");
+    lblHotPoint.text = @"365jws.hentre.com";
     lblHotPoint.textColor = [UIColor appBlue];
     lblHotPoint.backgroundColor = [UIColor clearColor];
     lblHotPoint.font = [UIFont systemFontOfSize:12.f];
@@ -55,6 +57,7 @@
     UILabel *lblTips = [[UILabel alloc] initWithFrame:CGRectMake(0, lblHotPoint.frame.origin.y+lblHotPoint.frame.size.height, 200, 30)];
     lblTips.center = CGPointMake(self.view.center.x, lblTips.center.y);
     lblTips.text = NSLocalizedString(@"step3_tips", @"");
+    [self.view addSubview:lblTips];
     
 //    UIButton *btnNextStep = [[UIButton alloc] initWithFrame:CGRectMake(0, imgTips.frame.origin.y+imgTips.frame.size.height+10, 500/2, 53/2)];
 //    btnNextStep.center = CGPointMake(self.view.center.x, btnNextStep.center.y);
