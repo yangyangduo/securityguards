@@ -229,7 +229,6 @@
     BOOL hasLogin = ![[XXStringUtils emptyString] isEqualToString:[GlobalSettings defaultSettings].secretKey];
     if(hasLogin) {
         [[CoreService defaultService] startService];
-        [[CoreService defaultService] startRefreshCurrentUnit];
     } else {
         UINavigationController *loginNavController = [[UINavigationController alloc] initWithRootViewController:[[LoginViewController alloc] init]];
         loginNavController.navigationBarHidden = YES;

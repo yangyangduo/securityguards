@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface TipsLabel : UILabel
-+ (UILabel *)labelWithPoint:(CGPoint) point;
+
++ (instancetype)labelWithPoint:(CGPoint) point;
+
 @end

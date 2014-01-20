@@ -45,13 +45,19 @@ typedef NS_ENUM(NSUInteger, NetworkMode) {
  */
 @property (assign, nonatomic) BOOL needRefreshUnit;
 
+/*  A Thread Used For Core Service  */
+- (NSThread *)coreServiceThread;
+
+/*   Singleton  */
 + (instancetype)defaultService;
 
-/* Start or stop command delivery service */
+/*   Start Core Service   */
 - (void)startService;
+
+/*   Stop Core Service   */
 - (void)stopService;
 
-/* Execute device command */
+/* Execute Device Command */
 - (void)executeDeviceCommand:(DeviceCommand *)command;
 
 /*
@@ -62,16 +68,26 @@ typedef NS_ENUM(NSUInteger, NetworkMode) {
  */
 - (void)queueCommand:(DeviceCommand *)command;
 
-/* Network mode */
+/*
+ *
+ * Here is task timer to do:
+ *
+ * [ send heart beat message ]
+ * [ check network state (Interal or External) ]
+ * [ refresh unit list via device command]
+ * [ refresh sensors via rest api]
+ *
+ * This method is immediately to execute the timer
+ *
+ */
+- (void)fireTaskTimer;
 
+
+/* Network mode */
 - (NetworkMode)currentNetworkMode;
 - (void)setCurrentNetworkMode:(NetworkMode)mode;
 - (void)checkInternalOrNotInternalNetwork;
 
-/* Start and Stop refresh current unit */
-- (void)startRefreshCurrentUnit;
-- (void)stopRefreshCurrentUnit;
-- (void)fireRefreshUnit;
 
 - (void)notifyTcpConnectionOpened;
 - (void)notifyTcpConnectionClosed;

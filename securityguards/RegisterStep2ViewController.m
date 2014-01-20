@@ -338,7 +338,6 @@
                             }
                         }
                         [[CoreService defaultService] startService];
-                        [[CoreService defaultService] startRefreshCurrentUnit];
                         [self.navigationController popToViewController:loginViewController animated:NO];
                         [loginViewController dismissViewControllerAnimated:NO completion:^{}];
                         return;

@@ -20,24 +20,12 @@
     return self;
 }
 
-+ (UILabel *)labelWithPoint:(CGPoint)point{
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(point.x,point.y ,5, 25)];
++ (instancetype)labelWithPoint:(CGPoint)point {
+    TipsLabel *label = [[[self class] alloc] initWithFrame:CGRectMake(point.x, point.y ,5, 25)];
     label.text = @"|";
     label.font = [UIFont fontWithName:@"Helvetica-Bold" size:20];
-
     label.textColor = [UIColor appLightBlue];
     return label;
-
 }
-
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
 
 @end

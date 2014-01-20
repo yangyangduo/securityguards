@@ -16,7 +16,25 @@
 @synthesize inputStream;
 @synthesize outputStream;
 
-- (id)initWithIPAddress:(NSString *)ip andPort:(NSInteger)portNumber {
++ (NSThread *)socketThread {
+    static NSThread *_socketThread = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _socketThread = [[NSThread alloc] initWithTarget:self selector:@selector(socketEntryPoint) object:nil];
+        [_socketThread start];
+    });
+    return _socketThread;
+}
+
++ (void)socketEntryPoint {
+    [[NSThread currentThread] setName:@"ClientSocket"];
+        
+    NSRunLoop *runLoop = [NSRunLoop currentRunLoop];
+    [runLoop addPort:[NSMachPort port] forMode:NSDefaultRunLoopMode];
+    [runLoop run];
+}
+
+- (instancetype)initWithIPAddress:(NSString *)ip andPort:(NSInteger)portNumber {
     self = [super init];
     if(self) {
         self.ipAddress = ip;

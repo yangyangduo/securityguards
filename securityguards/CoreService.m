@@ -26,21 +26,24 @@
 #define UNIT_REFRESH_INTERVAL  10
 #define HEART_BEAT_TIMEOUT     1.f
 
-static dispatch_queue_t refreshQueue() {
+static dispatch_queue_t networkModeCheckTaskQueue() {
     static dispatch_queue_t serialQueue;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        serialQueue = dispatch_queue_create("com.hentre.familyguards.coreservice.refresh.queue", DISPATCH_QUEUE_SERIAL);
+        serialQueue = dispatch_queue_create("com.hentre.familyguards.coreservice.network", DISPATCH_QUEUE_SERIAL);
     });
     return serialQueue;
 }
 
 @implementation CoreService {
-    Reachability* reachability;
-    NSTimer *tcpConnectChecker;
-    NSTimer *unitRefresTimer;
+    
+    NSTimer *tcpSocketConnectionCheckTimer;
+    NSTimer *refreshTaskTimer;
+    
+    /* This array defined which command can executed in internal network */
     NSArray *mayUsingInternalNetworkCommands;
     
+    Reachability *reachability;
     NetworkMode networkMode;
     
     /*
@@ -58,10 +61,39 @@ static dispatch_queue_t refreshQueue() {
 @synthesize state = _state_;
 @synthesize needRefreshUnit = _needRefreshUnit_;
 
+- (NSThread *)coreServiceThread {
+    static NSThread *_coreServiceThread_ = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _coreServiceThread_ = [[NSThread alloc] initWithTarget:self selector:@selector(coreServiceThreadEntryPoint) object:nil];
+        [_coreServiceThread_ start];
+    });
+    return _coreServiceThread_;
+}
+
+- (void)coreServiceThreadEntryPoint {
+    [[NSThread currentThread] setName:@"CoreServiceThread"];
+
+    // Start a network checker timer
+    // Every 5 seconds to check the tcp is or not connectted
+    // If it was closed, then should open it again.
+    tcpSocketConnectionCheckTimer = [[NSTimer alloc] initWithFireDate:[NSDate date] interval:NETWORK_CHECK_INTERVAL target:self selector:@selector(checkTcp) userInfo:nil repeats:YES];
+    CFRunLoopAddTimer(CFRunLoopGetCurrent(), (__bridge CFRunLoopTimerRef)tcpSocketConnectionCheckTimer, kCFRunLoopDefaultMode);
+    
+    // Start a refresh timer
+    refreshTaskTimer = [[NSTimer alloc] initWithFireDate:[NSDate date] interval:UNIT_REFRESH_INTERVAL target:self selector:@selector(refreshUnit) userInfo:nil repeats:YES];
+    CFRunLoopAddTimer(CFRunLoopGetCurrent(), (__bridge CFRunLoopTimerRef)refreshTaskTimer, kCFRunLoopDefaultMode);
+    
+    CFRunLoopRun();
+    
+#ifdef DEBUG
+    NSLog(@"Core Service RunLoop Stopped. [you will never see this message]");
+#endif
+}
+
 #pragma mark -
 #pragma mark Initializations
 
-/*    Singleton    */
 + (instancetype)defaultService {
     static CoreService *service = nil;
     static dispatch_once_t serviceOnceToken;
@@ -84,8 +116,8 @@ static dispatch_queue_t refreshQueue() {
     
     _state_ = ServiceStateClosed;
     networkMode = NetworkModeNotChecked;
-    _needRefreshUnit_ = YES;
     
+    _needRefreshUnit_ = YES;
     mayUsingInternalNetworkCommands = [NSArray arrayWithObjects:COMMAND_KEY_CONTROL, COMMAND_GET_CAMERA_SERVER, nil];
     
     /* Network monitor */
@@ -108,12 +140,8 @@ static dispatch_queue_t refreshQueue() {
  */
 - (void)executeDeviceCommand:(DeviceCommand *)command {
     if(command == nil) return;
-    if(_state_ != ServiceStateOpenned) {
-#ifdef DEBUG
-        NSLog(@"[Core Service] Service is not ready, [%@] can't be executed.", command.commandName);
-#endif
-        return;
-    }
+    //    [self performSelector:@selector(executeDeviceCommandInternal:) onThread:[[self class] coreServiceThread] withObject:command waitUntilDone:NO];
+    
     // Execute command will never be executed in main thread
     if([NSThread currentThread].isMainThread) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -125,7 +153,15 @@ static dispatch_queue_t refreshQueue() {
 }
 
 - (void)executeDeviceCommandInternal:(DeviceCommand *)command {
-    /* Find the best command executor */
+    
+    if(_state_ != ServiceStateOpenned) {
+#ifdef DEBUG
+        NSLog(@"[Core Service] Service is not ready, [%@] can't be executed.", command.commandName);
+#endif
+        return;
+    }
+    
+    /* Find the best command executor for device command */
     id<CommandExecutor> executor = [self determineCommandExcutor:command];
     if(executor != nil) {
 //#ifdef DEBUG
@@ -262,6 +298,7 @@ static dispatch_queue_t refreshQueue() {
     if([event isKindOfClass:[DeviceCommandEvent class]]) {
         DeviceCommandEvent *commandReceivedEvent = (DeviceCommandEvent *)event;
         [self handleDeviceCommand:commandReceivedEvent.command];
+//        [self performSelector:@selector(handleDeviceCommand:) onThread:[[self class] coreServiceThread] withObject:commandReceivedEvent.command waitUntilDone:NO];
     }
 }
 
@@ -270,63 +307,68 @@ static dispatch_queue_t refreshQueue() {
 }
 
 #pragma mark -
-#pragma mark Open or stop delivery service
+#pragma mark Open or Stop Core Service
 
 - (void)startService {
+    [self performSelector:@selector(startServiceInternal) onThread:[self coreServiceThread] withObject:nil waitUntilDone:YES];
+}
+
+- (void)startServiceInternal {
     if(_state_ != ServiceStateOpenned && _state_ != ServiceStateOpenning) {
 #ifdef DEBUG
-        NSLog(@"[Core Service] Service starting.");
+        NSLog(@"[Core Service] Service starting on [%@].", [NSThread currentThread].name);
 #endif
+        // openning service ...
         _state_ = ServiceStateOpenning;
         
         // Load all units from disk
         [[UnitManager defaultManager] loadUnitsFromDisk];
-    
+        
         XXEventSubscription *subscription = [[XXEventSubscription alloc] initWithSubscriber:self eventFilter:[[XXEventNameFilter alloc] initWithSupportedEventName:EventDeviceCommand]];
         [[XXEventSubscriptionPublisher defaultPublisher] subscribeFor:subscription];
-
-        if(tcpConnectChecker != nil) {
-            [tcpConnectChecker invalidate];
-        }
-
-        // Start a network checker
-        // Every 5 seconds to check the tcp is connectted ?
-        // If it was closed, then should open it again.
-        tcpConnectChecker = [NSTimer scheduledTimerWithTimeInterval:NETWORK_CHECK_INTERVAL target:self selector:@selector(checkTcp) userInfo:nil repeats:YES];
-        [tcpConnectChecker fire];
         
+        // service was openned
         _state_ = ServiceStateOpenned;
         
 #ifdef DEBUG
-        NSLog(@"[Core Service] Service started.");
+        NSLog(@"[Core Service] Service started on [%@]", [NSThread currentThread].name);
 #endif
     }
 }
 
 - (void)stopService {
+    /*
+     * stop service should be executed in main thread
+     */
+    if([NSThread currentThread].isMainThread) {
+        [self stopServiceInternal];
+    } else {
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            [self stopServiceInternal];
+        });
+    }
+}
+
+- (void)stopServiceInternal {
     if(_state_ != ServiceStateClosed && _state_ != ServiceStateClosing) {
         _state_ = ServiceStateClosing;
+#ifdef DEBUG
+        NSLog(@"[Core Service] Service stopping on [%@].", [NSThread currentThread].name);
+#endif
         
         [[XXEventSubscriptionPublisher defaultPublisher] unSubscribeForSubscriber:self];
-        
-        [self stopRefreshCurrentUnit];
-        
-        // Stop TCP Connection checker
-        if(tcpConnectChecker != nil) {
-            [tcpConnectChecker invalidate];
-            tcpConnectChecker = nil;
-        }
         
         // Disconnect tcp connection
         [self.tcpService disconnect];
         
         // Synchronize memory units to disk
         [[UnitManager defaultManager] syncUnitsToDisk];
-        
-#ifdef DEBUG
-        NSLog(@"[Core Service] Service stopped.");
-#endif
+      
         _state_ = ServiceStateClosed;
+#ifdef DEBUG
+        NSLog(@"[Core Service] Service stopped on [%@].",
+              [NSThread currentThread].isMainThread ? @"Main Thread" : [NSThread currentThread].name);
+#endif
     }
 }
 
@@ -334,6 +376,12 @@ static dispatch_queue_t refreshQueue() {
 #pragma mark TCP Connection checker
 
 - (void)checkTcp {
+    if(self.state != ServiceStateOpenned) {
+#ifdef DEBUG
+        NSLog(@"[Core Service] Check tcp can't be executed, because core service is not openned.");
+#endif
+        return;
+    }
     [self startTcpIfNeed];
 }
 
@@ -353,47 +401,38 @@ static dispatch_queue_t refreshQueue() {
     [self notifyNetworkModeUpdate:NetworkModeNotChecked];
 }
 
-#pragma mark -
-#pragma mark Refresh current unit
-
-- (void)startRefreshCurrentUnit {
-    [self stopRefreshCurrentUnit];
-    unitRefresTimer = [NSTimer scheduledTimerWithTimeInterval:UNIT_REFRESH_INTERVAL target:self selector:@selector(refreshUnit) userInfo:nil repeats:YES];
-    [unitRefresTimer fire];
-}
-
-- (void)stopRefreshCurrentUnit {
-    if(unitRefresTimer != nil) {
-        [unitRefresTimer invalidate];
-        unitRefresTimer = nil;
+- (void)refreshUnit {
+    if(self.state != ServiceStateOpenned) {
+#ifdef DEBUG
+        NSLog(@"[Core Service] Refresh timer task can't be executed, because core service is not openned.");
+#endif
+        return;
+    }
+#ifdef DEBUG
+    NSLog(@"[Core Service] Refresh timer task On Thread [%@].", [NSThread currentThread].name);
+#endif
+    // Send heart beat command
+    [self executeDeviceCommand:[CommandFactory commandForType:CommandTypeSendHeartBeat]];
+    
+    Unit *unit = [UnitManager defaultManager].currentUnit;
+    if(unit != nil) {
+        // This is a sync method, not checkInternalOrNotInternalNetwork (async method)
+        // Here you must check net work sync, then continue execute command
+        [self checkIsReachableInternalUnit];
+        
+        if(self.needRefreshUnit) {
+            // Update current unit
+            DeviceCommand *command = [CommandFactory commandForType:CommandTypeGetUnits];
+            command.masterDeviceCode = unit.identifier;
+            command.hashCode = unit.hashCode;
+            [self executeDeviceCommand:command];
+        }
     }
 }
 
-- (void)refreshUnit {
-    dispatch_async(refreshQueue(), ^{
-        Unit *unit = [UnitManager defaultManager].currentUnit;
-        if(unit != nil) {
-            // This is a sync method, not checkInternalOrNotInternalNetwork (async method)
-            // Here you must check net work sync, then continue execute command
-            [self checkIsReachableInternalUnit];
-            
-            if(self.needRefreshUnit) {
-                // Update current unit
-                DeviceCommand *command = [CommandFactory commandForType:CommandTypeGetUnits];
-                command.masterDeviceCode = unit.identifier;
-                command.hashCode = unit.hashCode;
-                [self executeDeviceCommand:command];
-            }
-            
-            // Send heart beat command
-            [self executeDeviceCommand:[CommandFactory commandForType:CommandTypeSendHeartBeat]];
-        }
-    });
-}
-
-- (void)fireRefreshUnit {
-    if(unitRefresTimer != nil) {
-        [unitRefresTimer fire];
+- (void)fireTaskTimer {
+    if(refreshTaskTimer != nil) {
+        [refreshTaskTimer fire];
     }
 }
 
@@ -445,51 +484,49 @@ static dispatch_queue_t refreshQueue() {
 }
 
 - (void)checkInternalOrNotInternalNetwork {
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    dispatch_async(networkModeCheckTaskQueue(), ^{
         [self checkIsReachableInternalUnit];
     });
 }
 
 - (void)checkIsReachableInternalUnit {
-    @synchronized(self) {
-        if([UnitManager defaultManager].currentUnit == nil
-           || [Reachability reachabilityForLocalWiFi].currentReachabilityStatus == NotReachable) {
-            networkMode = self.tcpService.isConnectted ? NetworkModeExternal : NetworkModeNotChecked;
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self notifyNetworkModeUpdate:networkMode];
-            });
-            return;
-        }
-        
-        NSString *url = [NSString stringWithFormat:@"http://%@:%d/heartbeat", [UnitManager defaultManager].currentUnit.localIP, [UnitManager defaultManager].currentUnit.localPort];
-        
-        NSMutableURLRequest *request =[[NSMutableURLRequest alloc] initWithURL: [[NSURL alloc] initWithString:url] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:HEART_BEAT_TIMEOUT];
-        NSURLResponse *response;
-        NSError *error;
-        NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-        if(error == nil) {
-            if(response) {
-                NSHTTPURLResponse *rp = (NSHTTPURLResponse *)response;
-                if(rp.statusCode == 200 && data != nil) {
-                    NSString *unitIdentifier = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-                    if([UnitManager defaultManager].currentUnit != nil) {
-                        if([[UnitManager defaultManager].currentUnit.identifier isEqualToString:unitIdentifier]) {
-                            networkMode = NetworkModeInternal;
-                            dispatch_async(dispatch_get_main_queue(), ^{
-                                [self notifyNetworkModeUpdate:networkMode];
-                            });
-                            return;
-                        }
-                    }
-                }
-            }
-        }
-        
+    if([UnitManager defaultManager].currentUnit == nil
+       || [Reachability reachabilityForLocalWiFi].currentReachabilityStatus == NotReachable) {
         networkMode = self.tcpService.isConnectted ? NetworkModeExternal : NetworkModeNotChecked;
         dispatch_async(dispatch_get_main_queue(), ^{
             [self notifyNetworkModeUpdate:networkMode];
         });
+        return;
     }
+    
+    NSString *url = [NSString stringWithFormat:@"http://%@:%d/heartbeat", [UnitManager defaultManager].currentUnit.localIP, [UnitManager defaultManager].currentUnit.localPort];
+    
+    NSMutableURLRequest *request =[[NSMutableURLRequest alloc] initWithURL: [[NSURL alloc] initWithString:url] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:HEART_BEAT_TIMEOUT];
+    NSURLResponse *response;
+    NSError *error;
+    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    if(error == nil) {
+        if(response) {
+            NSHTTPURLResponse *rp = (NSHTTPURLResponse *)response;
+            if(rp.statusCode == 200 && data != nil) {
+                NSString *unitIdentifier = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                if([UnitManager defaultManager].currentUnit != nil) {
+                    if([[UnitManager defaultManager].currentUnit.identifier isEqualToString:unitIdentifier]) {
+                        networkMode = NetworkModeInternal;
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            [self notifyNetworkModeUpdate:networkMode];
+                        });
+                        return;
+                    }
+                }
+            }
+        }
+    }
+    
+    networkMode = self.tcpService.isConnectted ? NetworkModeExternal : NetworkModeNotChecked;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self notifyNetworkModeUpdate:networkMode];
+    });
 }
 
 - (void)setCurrentNetworkMode:(NetworkMode)mode {

@@ -17,8 +17,8 @@
 @property (nonatomic, weak) id<UnitControlPanelDelegate> delegate;
 @property (nonatomic, strong) Unit *unit;
 
-- (id)initWithPoint:(CGPoint)point;
-- (id)initWithPoint:(CGPoint)point andUnit:(Unit *)unit;
+- (instancetype)initWithPoint:(CGPoint)point;
+- (instancetype)initWithPoint:(CGPoint)point andUnit:(Unit *)unit;
 
 - (void)refreshWithUnit:(Unit *)unit;
 

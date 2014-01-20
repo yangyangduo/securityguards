@@ -13,5 +13,6 @@
 @synthesize displayName = _displayName_;
 @synthesize commandString = _commandString_;
 @synthesize deviceState;
+@synthesize unitIdentifier;
 
 @end
