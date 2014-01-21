@@ -363,8 +363,8 @@
 //        NSString *str = [[NSString alloc] initWithData:dd encoding:NSUTF8StringEncoding];
 //        NSLog(@"<--------------------------------- \r\n %@", str);
         
-        [sensorDisplayPanel setValue:@"18摄氏度" forSensorType:SensorDisplayViewTypeTempure];
-        [sensorDisplayPanel setValue:@"20%" forSensorType:SensorDisplayViewTypeHumidity];
+        [sensorDisplayPanel setValue:@"18.5(度)" forSensorType:SensorDisplayViewTypeTempure];
+        [sensorDisplayPanel setValue:@"20%(干)" forSensorType:SensorDisplayViewTypeHumidity];
         [sensorDisplayPanel setValue:@"3" forSensorType:SensorDisplayViewTypePM25];
         [sensorDisplayPanel setValue:@"5" forSensorType:SensorDisplayViewTypeVOC];
 
