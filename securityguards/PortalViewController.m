@@ -38,6 +38,7 @@
     UILabel *lblHealthIndex;
     UILabel *lblHealthIndexGreatThan;
     
+    SensorsDisplayPanel *sensorDisplayPanel;
     UnitControlPanel *controlPanelView;
     
     BOOL speechViewIsOpenning;
@@ -154,7 +155,7 @@
     
     lblHealthIndex = [[UILabel alloc] initWithFrame:CGRectMake(44, 34, 45, 50)];
     lblHealthIndex.backgroundColor = [UIColor clearColor];
-    lblHealthIndex.text = @"99";
+    lblHealthIndex.text = @"30";
     lblHealthIndex.textColor = [UIColor whiteColor];
     lblHealthIndex.font = [UIFont boldSystemFontOfSize:26.f];
     lblHealthIndex.textAlignment = NSTextAlignmentCenter;
@@ -182,7 +183,7 @@
     
     lblDescription1.text = NSLocalizedString(@"heath_index_desc1", @"");
     lblDescription2.text = NSLocalizedString(@"heath_index_desc2", @"");
-    lblHealthIndexGreatThan.text = @"81%";
+    lblHealthIndexGreatThan.text = @"21%";
     lblDescription3.text = NSLocalizedString(@"heath_index_desc3", @"");
     
     lblDescription1.backgroundColor = [UIColor clearColor];
@@ -195,7 +196,7 @@
     /*
      * Create sensors display view
      */
-    SensorsDisplayPanel *sensorDisplayPanel = [[SensorsDisplayPanel alloc] initWithPoint:CGPointMake(0, imgHeathIndex.frame.origin.y + imgHeathIndex.frame.size.height)];
+    sensorDisplayPanel = [[SensorsDisplayPanel alloc] initWithPoint:CGPointMake(0, imgHeathIndex.frame.origin.y + imgHeathIndex.frame.size.height)];
     [scrollView addSubview:sensorDisplayPanel];
     
     /*
@@ -361,6 +362,12 @@
 //        NSData *dd = [JsonUtils createJsonDataFromDictionary:[currentUnit toJson]];
 //        NSString *str = [[NSString alloc] initWithData:dd encoding:NSUTF8StringEncoding];
 //        NSLog(@"<--------------------------------- \r\n %@", str);
+        
+        [sensorDisplayPanel setValue:@"18摄氏度" forSensorType:SensorDisplayViewTypeTempure];
+        [sensorDisplayPanel setValue:@"20%" forSensorType:SensorDisplayViewTypeHumidity];
+        [sensorDisplayPanel setValue:@"3" forSensorType:SensorDisplayViewTypePM25];
+        [sensorDisplayPanel setValue:@"5" forSensorType:SensorDisplayViewTypeVOC];
+
     } else {
         self.topbarView.title = NSLocalizedString(@"app_name", @"");
     }

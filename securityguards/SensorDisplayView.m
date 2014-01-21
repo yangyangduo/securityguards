@@ -9,7 +9,7 @@
 #import "SensorDisplayView.h"
 #import "UIColor+MoreColor.h"
 
-#define NO_VALUE @"----"
+#define NO_VALUE @"------"
 
 @implementation SensorDisplayView {
     UIImageView *imageView;
@@ -34,7 +34,7 @@
 }
 
 - (instancetype)initWithPoint:(CGPoint)point sensorType:(SensorDisplayViewType)sensorType {
-    self = [super initWithFrame:CGRectMake(point.x, point.y, 140, 27)];
+    self = [super initWithFrame:CGRectMake(point.x, point.y, 150, 27)];
     if(self){
         _sensorDisplayViewType_ = sensorType;
         [self initUI];
@@ -45,12 +45,13 @@
 - (void)initUI {
     imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 54 / 2, 54 / 2)];
     
-    lblValue = [[UILabel alloc] initWithFrame:CGRectMake(29, 0, 40, 29)];
+    lblValue = [[UILabel alloc] initWithFrame:CGRectMake(31, 0, 65, 29)];
     lblValue.textAlignment = NSTextAlignmentCenter;
+    lblValue.font = [UIFont systemFontOfSize:15.f];
     lblValue.backgroundColor = [UIColor clearColor];
     
-    imgDescBackground = [[UIImageView alloc] initWithFrame:CGRectMake(70, 3.5f, 140 / 2, 40 / 2)];
-    lblDescription = [[UILabel alloc] initWithFrame:CGRectMake(14, 0, 56, 20)];
+    imgDescBackground = [[UIImageView alloc] initWithFrame:CGRectMake(100, 4.f, 100 / 2, 40 / 2)];
+    lblDescription = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, 56, 20)];
     lblDescription.textColor = [UIColor whiteColor];
     lblDescription.font = [UIFont systemFontOfSize:12.f];
     lblDescription.backgroundColor = [UIColor clearColor];
@@ -103,7 +104,7 @@
 }
 
 - (void)setDisplayValue:(NSString *)displayValue {
-    lblValue.text = [XXStringUtils isBlank:displayValue] ? [XXStringUtils emptyString] : displayValue;
+    lblValue.text = [XXStringUtils isBlank:displayValue] ? NO_VALUE : displayValue;
 }
 
 @end

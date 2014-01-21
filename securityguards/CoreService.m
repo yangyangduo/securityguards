@@ -391,6 +391,9 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
 - (void)notifyTcpConnectionOpened {
     [self executeDeviceCommand:[CommandFactory commandForType:CommandTypeGetUnits]];
     [self executeDeviceCommand:[CommandFactory commandForType:CommandTypeGetNotifications]];
+    
+    //
+    
     [self notifyNetworkModeUpdate:NetworkModeExternal];
 }
 
@@ -503,7 +506,7 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
     if([UnitManager defaultManager].currentUnit == nil
        || [Reachability reachabilityForLocalWiFi].currentReachabilityStatus == NotReachable) {
         networkMode = self.tcpService.isConnectted ? NetworkModeExternal : NetworkModeNotChecked;
-        [self notifyNetworkModeUpdate:networkMode];
+        [self setCurrentNetworkMode:networkMode];
         return;
     }
     
@@ -520,8 +523,7 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
                 NSString *unitIdentifier = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
                 if([UnitManager defaultManager].currentUnit != nil) {
                     if([[UnitManager defaultManager].currentUnit.identifier isEqualToString:unitIdentifier]) {
-                        networkMode = NetworkModeInternal;
-                        [self notifyNetworkModeUpdate:networkMode];
+                        [self setCurrentNetworkMode:NetworkModeInternal];
                         return;
                     }
                 }
@@ -530,7 +532,7 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
     }
     
     networkMode = self.tcpService.isConnectted ? NetworkModeExternal : NetworkModeNotChecked;
-    [self notifyNetworkModeUpdate:networkMode];
+    [self setCurrentNetworkMode:networkMode];
 }
 
 - (void)setCurrentNetworkMode:(NetworkMode)mode {
