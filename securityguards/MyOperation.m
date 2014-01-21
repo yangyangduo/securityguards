@@ -10,18 +10,8 @@
 
 @implementation MyOperation
 
-//- (void)start {
-//    BOOL isMainThread = [NSThread currentThread].isMainThread;
-//    NSLog(@"%@", isMainThread ? @"is main thread" : @"isn't main thread");
-//}
-
-- (void)main {
-    BOOL isMainThread = [NSThread currentThread].isMainThread;
-    NSLog(@"%@", isMainThread ? @"is main thread" : @"isn't main thread");
+- (void)start {
+    
 }
-
-//- (BOOL)isConcurrent {
-//    return YES;
-//}
 
 @end
