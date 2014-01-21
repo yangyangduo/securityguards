@@ -80,14 +80,14 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
     tcpSocketConnectionCheckTimer = [[NSTimer alloc] initWithFireDate:[NSDate date] interval:NETWORK_CHECK_INTERVAL target:self selector:@selector(checkTcp) userInfo:nil repeats:YES];
     CFRunLoopAddTimer(CFRunLoopGetCurrent(), (__bridge CFRunLoopTimerRef)tcpSocketConnectionCheckTimer, kCFRunLoopDefaultMode);
     
-    // Start a refresh timer
+    // Start a task refresh timer
     refreshTaskTimer = [[NSTimer alloc] initWithFireDate:[NSDate date] interval:UNIT_REFRESH_INTERVAL target:self selector:@selector(refreshUnit) userInfo:nil repeats:YES];
     CFRunLoopAddTimer(CFRunLoopGetCurrent(), (__bridge CFRunLoopTimerRef)refreshTaskTimer, kCFRunLoopDefaultMode);
     
     CFRunLoopRun();
     
 #ifdef DEBUG
-    NSLog(@"Core Service RunLoop Stopped. [you will never see this message]");
+    NSLog(@"Core Service RunLoop Stopped. [You will never see this message]");
 #endif
 }
 
@@ -111,9 +111,8 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
     return self;
 }
 
+/* default property set */
 - (void)initDefaults {
-    /* default property set */
-    
     _state_ = ServiceStateClosed;
     networkMode = NetworkModeNotChecked;
     
@@ -140,15 +139,10 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
  */
 - (void)executeDeviceCommand:(DeviceCommand *)command {
     if(command == nil) return;
-    //    [self performSelector:@selector(executeDeviceCommandInternal:) onThread:[[self class] coreServiceThread] withObject:command waitUntilDone:NO];
-    
-    // Execute command will never be executed in main thread
-    if([NSThread currentThread].isMainThread) {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            [self executeDeviceCommandInternal:command];
-        });
-    } else {
+    if([self coreServiceThread] == [NSThread currentThread]) {
         [self executeDeviceCommandInternal:command];
+    } else {
+        [self performSelector:@selector(executeDeviceCommandInternal:) onThread:[self coreServiceThread] withObject:command waitUntilDone:NO];
     }
 }
 
@@ -240,7 +234,6 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
 
 - (void)handleDeviceCommand:(DeviceCommand *)command {
     if(command == nil) return;
-    
 //#ifdef DEBUG
 //    NSString *networkModeString = [XXStringUtils emptyString];
 //    if(command.commmandNetworkMode == CommandNetworkModeExternal) {
@@ -250,7 +243,7 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
 //    }
 //    NSLog(@"[Core Service] Received [%@] From [%@]", command.commandName, networkModeString);
 //#endif
-
+    
     // Security key is invalid or expired
     if(command.resultID == -3000 || command.resultID == -2000 || command.resultID == -1000) {
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -310,7 +303,11 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
 #pragma mark Open or Stop Core Service
 
 - (void)startService {
-    [self performSelector:@selector(startServiceInternal) onThread:[self coreServiceThread] withObject:nil waitUntilDone:YES];
+    if([NSThread currentThread] == [self coreServiceThread]) {
+        [self startServiceInternal];
+    } else {
+        [self performSelector:@selector(startServiceInternal) onThread:[self coreServiceThread] withObject:nil waitUntilDone:YES];
+    }
 }
 
 - (void)startServiceInternal {
@@ -338,7 +335,7 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
 
 - (void)stopService {
     /*
-     * stop service should be executed in main thread
+     * stop service should be executed in main thread, we think that is better
      */
     if([NSThread currentThread].isMainThread) {
         [self stopServiceInternal];
@@ -408,9 +405,11 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
 #endif
         return;
     }
+    
 #ifdef DEBUG
     NSLog(@"[Core Service] Refresh timer task On Thread [%@].", [NSThread currentThread].name);
 #endif
+    
     // Send heart beat command
     [self executeDeviceCommand:[CommandFactory commandForType:CommandTypeSendHeartBeat]];
     
@@ -432,8 +431,16 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
 
 - (void)fireTaskTimer {
     if(refreshTaskTimer != nil) {
-        [refreshTaskTimer fire];
+        if([NSThread currentThread] == [self coreServiceThread]) {
+            [self fireTaskTimerInternal];
+        } else {
+            [self performSelector:@selector(fireTaskTimerInternal) onThread:[self coreServiceThread] withObject:nil waitUntilDone:NO];
+        }
     }
+}
+
+- (void)fireTaskTimerInternal {
+    [refreshTaskTimer fire];
 }
 
 #pragma mark -

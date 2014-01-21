@@ -10,7 +10,8 @@
 #import "XXStringUtils.h"
 
 #define AUTH_URL @"http://172.16.8.162:6868/FrontServer-1.0/auth"
-#define MD5_KEY  @"FFFF"
+
+static const NSString *MD5_KEY = @"FFFF";
 
 @implementation AccountService
 

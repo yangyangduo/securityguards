@@ -29,6 +29,9 @@ typedef NS_ENUM(NSUInteger, NetworkMode) {
     NetworkModeInternal
 };
 
+/*
+ * Core service in running in a background thread named "CoreServiceThread"
+ */
 @interface CoreService : NSObject<XXEventSubscriber>
 
 @property (strong, nonatomic, readonly) TCPCommandService *tcpService;
@@ -45,7 +48,7 @@ typedef NS_ENUM(NSUInteger, NetworkMode) {
  */
 @property (assign, nonatomic) BOOL needRefreshUnit;
 
-/*  A Thread Used For Core Service  */
+/*  A Thread Run Background Used For Core Service Around All App Life  */
 - (NSThread *)coreServiceThread;
 
 /*   Singleton  */
@@ -87,6 +90,7 @@ typedef NS_ENUM(NSUInteger, NetworkMode) {
 - (NetworkMode)currentNetworkMode;
 - (void)setCurrentNetworkMode:(NetworkMode)mode;
 - (void)checkInternalOrNotInternalNetwork;
+
 
 
 - (void)notifyTcpConnectionOpened;
