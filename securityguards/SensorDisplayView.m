@@ -102,4 +102,8 @@
     imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@_%@", basicImageName, stateImageExtension]];
 }
 
+- (void)setDisplayValue:(NSString *)displayValue {
+    lblValue.text = [XXStringUtils isBlank:displayValue] ? [XXStringUtils emptyString] : displayValue;
+}
+
 @end

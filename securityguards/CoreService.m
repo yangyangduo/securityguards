@@ -158,9 +158,9 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
     /* Find the best command executor for device command */
     id<CommandExecutor> executor = [self determineCommandExcutor:command];
     if(executor != nil) {
-//#ifdef DEBUG
-//        NSLog(@"[Core Service] Execute [%@] From [%@]", command.commandName, [executor executorName]);
-//#endif
+#ifdef DEBUG
+        NSLog(@"[Core Service] Execute [%@] From [%@]", command.commandName, [executor executorName]);
+#endif
         [executor executeCommand:command];
     } else {
 #ifdef DEBUG
@@ -318,7 +318,7 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
         // openning service ...
         _state_ = ServiceStateOpenning;
         
-        // Load all units from disk
+        // load all units from disk
         [[UnitManager defaultManager] loadUnitsFromDisk];
         
         XXEventSubscription *subscription = [[XXEventSubscription alloc] initWithSubscriber:self eventFilter:[[XXEventNameFilter alloc] initWithSupportedEventName:EventDeviceCommand]];
@@ -420,11 +420,14 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
         [self checkIsReachableInternalUnit];
         
         if(self.needRefreshUnit) {
-            // Update current unit
-            DeviceCommand *command = [CommandFactory commandForType:CommandTypeGetUnits];
-            command.masterDeviceCode = unit.identifier;
-            command.hashCode = unit.hashCode;
-            [self executeDeviceCommand:command];
+            if(networkMode == NetworkModeInternal) {
+                // Update current unit
+                DeviceCommand *command = [CommandFactory commandForType:CommandTypeGetUnits];
+                command.commmandNetworkMode = CommandNetworkModeInternal;
+                command.masterDeviceCode = unit.identifier;
+                command.hashCode = unit.hashCode;
+                [self executeDeviceCommand:command];
+            }
         }
     }
 }
@@ -500,9 +503,7 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
     if([UnitManager defaultManager].currentUnit == nil
        || [Reachability reachabilityForLocalWiFi].currentReachabilityStatus == NotReachable) {
         networkMode = self.tcpService.isConnectted ? NetworkModeExternal : NetworkModeNotChecked;
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self notifyNetworkModeUpdate:networkMode];
-        });
+        [self notifyNetworkModeUpdate:networkMode];
         return;
     }
     
@@ -520,9 +521,7 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
                 if([UnitManager defaultManager].currentUnit != nil) {
                     if([[UnitManager defaultManager].currentUnit.identifier isEqualToString:unitIdentifier]) {
                         networkMode = NetworkModeInternal;
-                        dispatch_async(dispatch_get_main_queue(), ^{
-                            [self notifyNetworkModeUpdate:networkMode];
-                        });
+                        [self notifyNetworkModeUpdate:networkMode];
                         return;
                     }
                 }
@@ -531,9 +530,7 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
     }
     
     networkMode = self.tcpService.isConnectted ? NetworkModeExternal : NetworkModeNotChecked;
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self notifyNetworkModeUpdate:networkMode];
-    });
+    [self notifyNetworkModeUpdate:networkMode];
 }
 
 - (void)setCurrentNetworkMode:(NetworkMode)mode {

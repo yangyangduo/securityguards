@@ -51,13 +51,13 @@
 
 - (void)setValue:(NSString *)value forSensorType:(SensorDisplayViewType)sensorType {
     if(SensorDisplayViewTypeTempure == sensorType) {
-        
+        [tempureSensor setDisplayValue:@""];
     } else if(SensorDisplayViewTypeHumidity == sensorType) {
-        
+        [tempureSensor setDisplayValue:@""];
     } else if(SensorDisplayViewTypePM25 == sensorType) {
-        
+        [tempureSensor setDisplayValue:@""];
     } else if(SensorDisplayViewTypeVOC == sensorType) {
-        
+        [tempureSensor setDisplayValue:@""];
     }
 }
 

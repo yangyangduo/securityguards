@@ -29,4 +29,6 @@ typedef NS_ENUM(NSUInteger, SensorDisplayViewType) {
 
 - (instancetype)initWithPoint:(CGPoint)point sensorType:(SensorDisplayViewType)sensorType;
 
+- (void)setDisplayValue:(NSString *)displayValue;
+
 @end

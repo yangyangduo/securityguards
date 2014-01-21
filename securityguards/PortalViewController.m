@@ -358,11 +358,9 @@
     Unit *currentUnit = [UnitManager defaultManager].currentUnit;
     if(currentUnit != nil) {
         self.topbarView.title = currentUnit.name;
-        
 //        NSData *dd = [JsonUtils createJsonDataFromDictionary:[currentUnit toJson]];
 //        NSString *str = [[NSString alloc] initWithData:dd encoding:NSUTF8StringEncoding];
 //        NSLog(@"<--------------------------------- \r\n %@", str);
-        
     } else {
         self.topbarView.title = NSLocalizedString(@"app_name", @"");
     }
