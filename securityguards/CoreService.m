@@ -6,13 +6,13 @@
 //  Copyright (c) 2013 hentre. All rights reserved.
 //
 
+#import "Shared.h"
 #import "CoreService.h"
+#import "UnitManager.h"
 #import "NetworkModeChangedEvent.h"
 #import "XXEventSubscriptionPublisher.h"
 #import "DeviceCommandEvent.h"
 #import "XXEventNameFilter.h"
-#import "Shared.h"
-#import "UnitManager.h"
 
 /*  Command Handler  */
 #import "DeviceCommandGetUnitsHandler.h"
@@ -234,6 +234,7 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
 
 - (void)handleDeviceCommand:(DeviceCommand *)command {
     if(command == nil) return;
+    
 //#ifdef DEBUG
 //    NSString *networkModeString = [XXStringUtils emptyString];
 //    if(command.commmandNetworkMode == CommandNetworkModeExternal) {
@@ -291,7 +292,6 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
     if([event isKindOfClass:[DeviceCommandEvent class]]) {
         DeviceCommandEvent *commandReceivedEvent = (DeviceCommandEvent *)event;
         [self handleDeviceCommand:commandReceivedEvent.command];
-//        [self performSelector:@selector(handleDeviceCommand:) onThread:[[self class] coreServiceThread] withObject:commandReceivedEvent.command waitUntilDone:NO];
     }
 }
 
@@ -324,7 +324,7 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
         XXEventSubscription *subscription = [[XXEventSubscription alloc] initWithSubscriber:self eventFilter:[[XXEventNameFilter alloc] initWithSupportedEventName:EventDeviceCommand]];
         [[XXEventSubscriptionPublisher defaultPublisher] subscribeFor:subscription];
         
-        // service was openned
+        // service was openned ...
         _state_ = ServiceStateOpenned;
         
 #ifdef DEBUG

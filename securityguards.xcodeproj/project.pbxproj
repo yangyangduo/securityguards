@@ -39,6 +39,13 @@
 		6F2033A1187D4EB700BACFA5 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F2033A0187D4EB700BACFA5 /* ImageIO.framework */; };
 		6F2AE0DF187059A900BEDB29 /* SpeechViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F2AE0DE187059A900BEDB29 /* SpeechViewController.m */; };
 		6F2AE0E51870653300BEDB29 /* UIImage+Rotate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F2AE0E41870653300BEDB29 /* UIImage+Rotate.m */; };
+		6F2AF5FE188E0FF5005C1EAF /* launch960@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F2AF5FC188E0FF5005C1EAF /* launch960@2x.png */; };
+		6F2AF5FF188E0FF5005C1EAF /* launch1136@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F2AF5FD188E0FF5005C1EAF /* launch1136@2x.png */; };
+		6F2AF601188E114F005C1EAF /* ios7icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F2AF600188E114F005C1EAF /* ios7icon@2x.png */; };
+		6F2AF604188E1177005C1EAF /* ios5_6icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F2AF602188E1177005C1EAF /* ios5_6icon.png */; };
+		6F2AF605188E1177005C1EAF /* ios5_6icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F2AF603188E1177005C1EAF /* ios5_6icon@2x.png */; };
+		6F2AF607188E11B6005C1EAF /* ios7spotlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F2AF606188E11B6005C1EAF /* ios7spotlight@2x.png */; };
+		6F2AF609188E11FB005C1EAF /* ios5_7settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F2AF608188E11FB005C1EAF /* ios5_7settings.png */; };
 		6F348507187519BB00EBB635 /* DeviceCommandNameEventFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F348506187519BB00EBB635 /* DeviceCommandNameEventFilter.m */; };
 		6F34850A1875264D00EBB635 /* UnitRenameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F3485091875264D00EBB635 /* UnitRenameViewController.m */; };
 		6F45ADEA18765F2D00DC18CA /* btn_camera_bottom_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F45ADE218765F2D00DC18CA /* btn_camera_bottom_selected@2x.png */; };
@@ -358,6 +365,13 @@
 		6F2AE0DE187059A900BEDB29 /* SpeechViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeechViewController.m; sourceTree = "<group>"; };
 		6F2AE0E31870653300BEDB29 /* UIImage+Rotate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Rotate.h"; sourceTree = "<group>"; };
 		6F2AE0E41870653300BEDB29 /* UIImage+Rotate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Rotate.m"; sourceTree = "<group>"; };
+		6F2AF5FC188E0FF5005C1EAF /* launch960@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "launch960@2x.png"; sourceTree = "<group>"; };
+		6F2AF5FD188E0FF5005C1EAF /* launch1136@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "launch1136@2x.png"; sourceTree = "<group>"; };
+		6F2AF600188E114F005C1EAF /* ios7icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ios7icon@2x.png"; sourceTree = "<group>"; };
+		6F2AF602188E1177005C1EAF /* ios5_6icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ios5_6icon.png; sourceTree = "<group>"; };
+		6F2AF603188E1177005C1EAF /* ios5_6icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ios5_6icon@2x.png"; sourceTree = "<group>"; };
+		6F2AF606188E11B6005C1EAF /* ios7spotlight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ios7spotlight@2x.png"; sourceTree = "<group>"; };
+		6F2AF608188E11FB005C1EAF /* ios5_7settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ios5_7settings.png; sourceTree = "<group>"; };
 		6F348505187519BB00EBB635 /* DeviceCommandNameEventFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceCommandNameEventFilter.h; sourceTree = "<group>"; };
 		6F348506187519BB00EBB635 /* DeviceCommandNameEventFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceCommandNameEventFilter.m; sourceTree = "<group>"; };
 		6F3485081875264D00EBB635 /* UnitRenameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitRenameViewController.h; sourceTree = "<group>"; };
@@ -837,6 +851,20 @@
 				6F0D8036187E6AAC00DB5040 /* icon_disclosure@2x.png */,
 			);
 			name = news;
+			sourceTree = "<group>";
+		};
+		6F2AF5FB188E0FD6005C1EAF /* app_images */ = {
+			isa = PBXGroup;
+			children = (
+				6F2AF5FC188E0FF5005C1EAF /* launch960@2x.png */,
+				6F2AF5FD188E0FF5005C1EAF /* launch1136@2x.png */,
+				6F2AF600188E114F005C1EAF /* ios7icon@2x.png */,
+				6F2AF602188E1177005C1EAF /* ios5_6icon.png */,
+				6F2AF603188E1177005C1EAF /* ios5_6icon@2x.png */,
+				6F2AF606188E11B6005C1EAF /* ios7spotlight@2x.png */,
+				6F2AF608188E11FB005C1EAF /* ios5_7settings.png */,
+			);
+			name = app_images;
 			sourceTree = "<group>";
 		};
 		6F348504187519A100EBB635 /* event_filters */ = {
@@ -1488,6 +1516,7 @@
 		6F6005BA186C234C0085B4BD /* images */ = {
 			isa = PBXGroup;
 			children = (
+				6F2AF5FB188E0FD6005C1EAF /* app_images */,
 				F29DE6F7188665BB00BCE93C /* unit_finder */,
 				6FA69114187FB6DD005D1415 /* version */,
 				6F203366187D329400BACFA5 /* test */,
@@ -1990,6 +2019,7 @@
 				6F732713186D1E4E00A1276B /* bg_health_index@2x.png in Resources */,
 				6F7CDBBD1872B2130036F912 /* icon_add_unt_red@2x.png in Resources */,
 				6F0CD5DA186DB93000B5A3EA /* icon_voc_blue@2x.png in Resources */,
+				6F2AF607188E11B6005C1EAF /* ios7spotlight@2x.png in Resources */,
 				6F7CDB9E18725BCE0036F912 /* alert_failed@2x.png in Resources */,
 				F29DE701188665E900BCE93C /* button_setting@2x.png in Resources */,
 				F2F3E1C7187A86E1006A9447 /* icon_owner@2x.png in Resources */,
@@ -2009,6 +2039,8 @@
 				6F45ADFE1876A39E00DC18CA /* line_seperator_camera@2x.png in Resources */,
 				6F45ADEA18765F2D00DC18CA /* btn_camera_bottom_selected@2x.png in Resources */,
 				F2F3E1A3187A3FD6006A9447 /* blackArrow.png in Resources */,
+				6F2AF5FE188E0FF5005C1EAF /* launch960@2x.png in Resources */,
+				6F2AF605188E1177005C1EAF /* ios5_6icon@2x.png in Resources */,
 				6FEC0FF3186C739700CB0D70 /* icon_logout@2x.png in Resources */,
 				6F45ADEB18765F2D00DC18CA /* btn_camera_bottom@2x.png in Resources */,
 				F2F3E1BF187A842F006A9447 /* transparent@2x.png in Resources */,
@@ -2053,6 +2085,7 @@
 				F2125FA31888C987002A7F49 /* declare.txt in Resources */,
 				F2F3E1C9187A86E1006A9447 /* icon_owner_offline@2x.png in Resources */,
 				6F732738186D5DB100A1276B /* icon_power@2x.png in Resources */,
+				6F2AF609188E11FB005C1EAF /* ios5_7settings.png in Resources */,
 				6F732733186D562900A1276B /* line_seperator_heavy_blue@2x.png in Resources */,
 				6F0CD5CE186DB93000B5A3EA /* icon_firegas_blue@2x.png in Resources */,
 				F29DE70E18868A8000BCE93C /* checkbox_unselected@2x.png in Resources */,
@@ -2068,6 +2101,7 @@
 				6F732719186D20C500A1276B /* icon_temp_yellow@2x.png in Resources */,
 				F29DE6FD188665E900BCE93C /* image_setting_step1@2x.png in Resources */,
 				6FA69118187FD54F005D1415 /* test@2x.png in Resources */,
+				6F2AF601188E114F005C1EAF /* ios7icon@2x.png in Resources */,
 				6F45ADEC18765F2D00DC18CA /* btn_camera_left_selected@2x.png in Resources */,
 				6F7247DB1871443B003B325F /* bubble_theirs@2x.png in Resources */,
 				F2F3E1D0187A933F006A9447 /* icon_dial_phone@2x.png in Resources */,
@@ -2079,6 +2113,7 @@
 				F2F93698186D113E002F7904 /* btn_blue_highlighted@2x.png in Resources */,
 				6F860F2C187552C200792DBB /* btn_back@2x.png in Resources */,
 				6F45ADEF18765F2D00DC18CA /* btn_camera_right@2x.png in Resources */,
+				6F2AF5FF188E0FF5005C1EAF /* launch1136@2x.png in Resources */,
 				6F0CD5D3186DB93000B5A3EA /* icon_humidity_yellow@2x.png in Resources */,
 				6F73271F186D212700A1276B /* bg_label_gray@2x.png in Resources */,
 				F2F3E1A7187A3FD6006A9447 /* grayArrow.png in Resources */,
@@ -2095,6 +2130,7 @@
 				6F732731186D4F4000A1276B /* btn_voice_blue@2x.png in Resources */,
 				6F9C8AD41887C62300289AEA /* logo_left_drawer@2x.png in Resources */,
 				F2B6A6381874F8AF0020809D /* icon_validation@2x.png in Resources */,
+				6F2AF604188E1177005C1EAF /* ios5_6icon.png in Resources */,
 				F2B6A6391874F8AF0020809D /* icon_warning@2x.png in Resources */,
 				F279E0091883C2B100E0547E /* icon_white_dial_phone@2x.png in Resources */,
 				F24E552C18702180000DB402 /* btn_gray@2x.png in Resources */,
