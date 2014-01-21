@@ -38,7 +38,7 @@
 - (void)initUI{
     [super initUI];
     self.topbarView.title = NSLocalizedString(@"add_unit", @"");
-    UIButton *btnSetting = [[UIButton alloc] initWithFrame:CGRectMake(0, self.topbarView.frame.size.height+100, BTN_WIDTH, BTN_HEIGHT)];
+    UIButton *btnSetting = [[UIButton alloc] initWithFrame:CGRectMake(0, self.topbarView.frame.size.height+40, BTN_WIDTH, BTN_HEIGHT)];
     btnSetting.center = CGPointMake(self.view.center.x, btnSetting.center.y);
     [btnSetting setBackgroundImage:[UIImage imageNamed:@"button_setting.png"] forState:UIControlStateNormal];
     [btnSetting setBackgroundImage:[UIImage imageNamed:@"button_highlighted_setting.png"] forState:UIControlStateHighlighted];

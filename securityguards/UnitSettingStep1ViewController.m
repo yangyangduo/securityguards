@@ -87,10 +87,10 @@
 }
 
 - (void)btnNextStepPressed:(UIButton *)sender{
-//    [Shared shared].currentWIFIName = [SMNetworkTool ssidForCurrentWifi];
-//    if ([Shared shared].currentWIFIName !=nil && ![[Shared shared].currentWIFIName isEqualToString:@""]) {
+    [Shared shared].currentWIFIName = [SMNetworkTool ssidForCurrentWifi];
+    if ([Shared shared].currentWIFIName !=nil && ![[Shared shared].currentWIFIName isEqualToString:@""]) {
         [self.navigationController pushViewController:[[UnitSettingStep2ViewController alloc] init] animated:YES];
-//    }
+    }
 }
 
 - (void)didReceiveMemoryWarning

@@ -65,9 +65,10 @@
     txtPassword.center = CGPointMake(self.view.center.x, txtPassword.center.y);
     txtPassword.placeholder = NSLocalizedString(@"wifi_password",@"");
     txtPassword.textColor = [UIColor darkGrayColor];
+    txtPassword.background = [UIImage imageNamed:@"light_gray_textbox.png"];
     [self.view addSubview:txtPassword];
     
-    UIButton *btnSendSettings = [[UIButton alloc] initWithFrame:CGRectMake(0, txtPassword.frame.origin.y+txtPassword.frame.size.height+10, 500/2, 53/2)];
+    UIButton *btnSendSettings = [[UIButton alloc] initWithFrame:CGRectMake(0, txtPassword.frame.origin.y+txtPassword.frame.size.height+10, 502/2, 56/2)];
     btnSendSettings.center = CGPointMake(self.view.center.x, btnSendSettings.center.y);
     [btnSendSettings setTitle:NSLocalizedString(@"send_settings", @"") forState:UIControlStateNormal];
     [btnSendSettings setBackgroundImage:[UIImage imageNamed:@"btn_blue.png"] forState:UIControlStateNormal];
