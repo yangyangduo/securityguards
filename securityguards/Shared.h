@@ -12,6 +12,7 @@
 @interface Shared : NSObject
 
 @property (nonatomic, strong, readonly) AppDelegate *app;
+@property (nonatomic, strong) NSString *currentWIFIName;
 
 + (instancetype)shared;
 

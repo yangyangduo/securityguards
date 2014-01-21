@@ -45,6 +45,7 @@
     
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(10, 5, CELL_WIDTH, CELL_HEIGHT-5)];
     view.backgroundColor = [UIColor clearColor];
+    view.tag = CUSTOM_VIEW_TAG;
     [self addSubview:view];
     
     view.backgroundColor = [UIColor colorWithHexString:@"fafafa"];

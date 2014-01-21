@@ -7,6 +7,10 @@
 //
 
 #import "UnitSettingStep4ViewController.h"
+#import "UnitSettingStep5ViewController.h"
+#import "TipsLabel.h"
+#import "Shared.h"
+#define TOPBAR_HEIGHT self.topbarView.frame.size.height
 
 @interface UnitSettingStep4ViewController ()
 
@@ -28,6 +32,56 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 }
+
+- (void)initUI{
+    [super initUI];
+    self.topbarView.title = NSLocalizedString(@"step4_title", @"");
+    UILabel *lblLine1 = [TipsLabel labelWithPoint:CGPointMake(60, 20+TOPBAR_HEIGHT)];
+    [self.view addSubview:lblLine1];
+    UILabel *lblLine1Content = [[UILabel alloc] initWithFrame:CGRectMake(70, lblLine1.frame.origin.y, 220, 25)];
+    lblLine1Content.text = NSLocalizedString(@"step4_line1_linking", @"");
+    lblLine1Content.textColor = [UIColor darkGrayColor];
+    lblLine1Content.backgroundColor = [UIColor clearColor];
+    lblLine1Content.font = [UIFont systemFontOfSize:12.f];
+    [self.view addSubview:lblLine1Content];
+    
+    UILabel *lblLine2 = [TipsLabel labelWithPoint:CGPointMake(60, lblLine1.frame.origin.y+lblLine1.frame.size.height+5)];
+    [self.view addSubview:lblLine2];
+    UILabel *lblLine2Content = [[UILabel alloc] initWithFrame:CGRectMake(70, lblLine2.frame.origin.y-5, 200, 25)];
+    lblLine2Content.numberOfLines = 2;
+    lblLine2Content.lineBreakMode = NSLineBreakByWordWrapping;
+    lblLine2Content.text = NSLocalizedString(@"step4_line2", @"");
+    lblLine2Content.textColor = [UIColor darkGrayColor];
+    lblLine2Content.backgroundColor = [UIColor clearColor];
+    lblLine2Content.font = [UIFont systemFontOfSize:12.f];
+    [self.view addSubview:lblLine2Content];
+    
+    UILabel *lblWIFIName = [[UILabel alloc] initWithFrame:CGRectMake(70, lblLine2Content.frame.origin.y+lblLine2Content.frame.size.height+5, 200, 50)];
+    lblWIFIName.text = [Shared shared].currentWIFIName;
+    lblWIFIName.textColor = [UIColor appBlue];
+    [self.view addSubview:lblWIFIName];
+    
+    UITextField *txtPassword = [[UITextField alloc] initWithFrame:CGRectMake(0, lblWIFIName.frame.size.height+lblWIFIName.frame.origin.y+5, 250, 53/2)];
+    txtPassword.center = CGPointMake(self.view.center.x, txtPassword.center.y);
+    txtPassword.placeholder = NSLocalizedString(@"wifi_password",@"");
+    txtPassword.textColor = [UIColor darkGrayColor];
+    [self.view addSubview:txtPassword];
+    
+    UIButton *btnSendSettings = [[UIButton alloc] initWithFrame:CGRectMake(0, txtPassword.frame.origin.y+txtPassword.frame.size.height+10, 500/2, 53/2)];
+    btnSendSettings.center = CGPointMake(self.view.center.x, btnSendSettings.center.y);
+    [btnSendSettings setTitle:NSLocalizedString(@"send_settings", @"") forState:UIControlStateNormal];
+    [btnSendSettings setBackgroundImage:[UIImage imageNamed:@"btn_blue.png"] forState:UIControlStateNormal];
+    [btnSendSettings setBackgroundImage:[UIImage imageNamed:@"btn_blue_highlighted.png"] forState:UIControlStateHighlighted];
+    [btnSendSettings setBackgroundImage:[UIImage imageNamed:@"btn_gray.png"] forState:UIControlStateDisabled];
+    [btnSendSettings addTarget:self action:@selector(btnSendSettingsPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:btnSendSettings];
+
+}
+
+- (void)btnSendSettingsPressed:(UIButton *)sender{
+    [self.navigationController pushViewController:[[UnitSettingStep5ViewController alloc] init] animated:YES];
+}
+
 
 - (void)didReceiveMemoryWarning
 {

@@ -9,6 +9,8 @@
 #import "UnitSettingStep1ViewController.h"
 #import "TipsLabel.h"
 #import "UnitSettingStep2ViewController.h"
+#import "SMNetworkTool.h"
+#import "Shared.h"
 #define TOPBAR_HEIGHT self.topbarView.frame.size.height
 @interface UnitSettingStep1ViewController ()
 
@@ -85,7 +87,10 @@
 }
 
 - (void)btnNextStepPressed:(UIButton *)sender{
-    [self.navigationController pushViewController:[[UnitSettingStep2ViewController alloc] init] animated:YES];
+//    [Shared shared].currentWIFIName = [SMNetworkTool ssidForCurrentWifi];
+//    if ([Shared shared].currentWIFIName !=nil && ![[Shared shared].currentWIFIName isEqualToString:@""]) {
+        [self.navigationController pushViewController:[[UnitSettingStep2ViewController alloc] init] animated:YES];
+//    }
 }
 
 - (void)didReceiveMemoryWarning
