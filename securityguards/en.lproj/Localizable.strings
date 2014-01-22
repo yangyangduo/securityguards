@@ -119,6 +119,10 @@
 "sensor_moderate_pollution"      =      "中度污染";
 "sensor_severe_pollution"        =      "重度污染";
 "sensor_very_severe_pollution"   =      "严重污染";
+"tempure_display"                =      "度";
+"humidity_low"                   =      "干";
+"humidity_middle"                =      "中";
+"humidity_high"                  =      "湿";
 
 
 /****************	Unif Finder View Strings	****************/
@@ -250,8 +254,8 @@
 
 "step2_title"                                 =  "第二步：设置前准备";
 "step2_line1"                                 =  "请将家卫士电源联通（如果已经打开请忽略这一步）；";
-"step2_line2"                                 =  "开机后30-60秒将听到“滴”一声";
-"step2_line3"                                 =  "请确保手机、摄像头以及即将接入网络的家卫士都在使用同一网络。";
+"step2_line2"                                 =  "开机后30-60秒将听到“嘀”一声,表示家卫士自检已完成；";
+"step2_line3"                                 =  "在自检声响起后，请按下面板上的对码键，并听到“嘀嘀”连续声后点击“下一步”继续配置过程。";
 
 "step3_title"                                 =  "第三步：连接家卫士";
 "step3_line1"                                 =  "请打开手机的“WIFI设置“，在热点列表中找到以下名称的热点网络并连接。";
@@ -268,6 +272,10 @@
 "step5_line1"                                 =  "已经完成家卫士配置";
 "step5_line2"                                 =  "正在绑定家卫士，请确保当前WIFI已正确切换到以下WIFI网络...";
 "reset"                                       =  "重新配置";
+
+"unit_finder_line1"                           =  "请确保家卫士已正确接入当前WIFI网格，并且处于开机状态";
+"unit_finder_line2"                           =  "正在绑定家卫士...";
+"rebind"                                      =  "重新绑定";
 
 
 /************ contact us Strings ***************/

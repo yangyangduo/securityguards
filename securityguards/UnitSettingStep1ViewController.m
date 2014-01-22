@@ -38,33 +38,33 @@
     self.topbarView.title = NSLocalizedString(@"step1_title", @"");
     UILabel *lblLine1 = [TipsLabel labelWithPoint:CGPointMake(60, 20+TOPBAR_HEIGHT)];
     [self.view addSubview:lblLine1];
-    UILabel *lblLine1Content = [[UILabel alloc] initWithFrame:CGRectMake(70, lblLine1.frame.origin.y, 220, 25)];
+    UILabel *lblLine1Content = [[UILabel alloc] initWithFrame:CGRectMake(65, lblLine1.frame.origin.y, 220, 25)];
     lblLine1Content.text = NSLocalizedString(@"step1_line1", @"");
     lblLine1Content.textColor = [UIColor darkGrayColor];
     lblLine1Content.backgroundColor = [UIColor clearColor];
-    lblLine1Content.font = [UIFont systemFontOfSize:12.f];
+    lblLine1Content.font = [UIFont systemFontOfSize:13.f];
     [self.view addSubview:lblLine1Content];
     
     UILabel *lblLine2 = [TipsLabel labelWithPoint:CGPointMake(60, lblLine1.frame.origin.y+lblLine1.frame.size.height+5)];
     [self.view addSubview:lblLine2];
-    UILabel *lblLine2Content = [[UILabel alloc] initWithFrame:CGRectMake(70, lblLine2.frame.origin.y-5, 200, 50)];
+    UILabel *lblLine2Content = [[UILabel alloc] initWithFrame:CGRectMake(65, lblLine2.frame.origin.y, 200, 40)];
     lblLine2Content.numberOfLines = 2;
     lblLine2Content.lineBreakMode = NSLineBreakByWordWrapping;
     lblLine2Content.text = NSLocalizedString(@"step1_line2", @"");
     lblLine2Content.textColor = [UIColor darkGrayColor];
     lblLine2Content.backgroundColor = [UIColor clearColor];
-    lblLine2Content.font = [UIFont systemFontOfSize:12.f];
+    lblLine2Content.font = [UIFont systemFontOfSize:13.f];
     [self.view addSubview:lblLine2Content];
     
     UILabel *lblLine3 = [TipsLabel labelWithPoint:CGPointMake(60,lblLine2.frame.origin.y+lblLine2.frame.size.height+15)];
     [self.view addSubview:lblLine3];
-    UILabel *lblLine3Content = [[UILabel alloc] initWithFrame:CGRectMake(70, lblLine3.frame.origin.y-5, 200, 50)];
+    UILabel *lblLine3Content = [[UILabel alloc] initWithFrame:CGRectMake(65, lblLine3.frame.origin.y-5, 200, 50)];
     lblLine3Content.numberOfLines = 2;
     lblLine3Content.lineBreakMode = NSLineBreakByWordWrapping;
     lblLine3Content.textColor = [UIColor darkGrayColor];
     lblLine3Content.text  = NSLocalizedString(@"step1_line3", @"");
     lblLine3Content.backgroundColor = [UIColor clearColor];
-    lblLine3Content.font = [UIFont systemFontOfSize:12.f];
+    lblLine3Content.font = [UIFont systemFontOfSize:13.f];
     [self.view addSubview:lblLine3Content];
     
     UIImageView *imgTips = [[UIImageView alloc] initWithFrame:CGRectMake(0, lblLine3Content.frame.origin.y+lblLine3Content.frame.size.height +5, 431/2, 196/2)];

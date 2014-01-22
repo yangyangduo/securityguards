@@ -37,13 +37,13 @@
     self.topbarView.title = NSLocalizedString(@"step3_title", @"");
     UILabel *lblLine1 = [TipsLabel labelWithPoint:CGPointMake(60, 20+TOPBAR_HEIGHT)];
     [self.view addSubview:lblLine1];
-    UILabel *lblLine1Content = [[UILabel alloc] initWithFrame:CGRectMake(70, lblLine1.frame.origin.y, 200, 50)];
+    UILabel *lblLine1Content = [[UILabel alloc] initWithFrame:CGRectMake(65, lblLine1.frame.origin.y+2, 200, 50)];
     lblLine1Content.text = NSLocalizedString(@"step3_line1", @"");
     lblLine1Content.numberOfLines = 3;
     lblLine1Content.lineBreakMode = NSLineBreakByWordWrapping;
     lblLine1Content.textColor = [UIColor darkGrayColor];
     lblLine1Content.backgroundColor = [UIColor clearColor];
-    lblLine1Content.font = [UIFont systemFontOfSize:12.f];
+    lblLine1Content.font = [UIFont systemFontOfSize:13.f];
     [self.view addSubview:lblLine1Content];
     
     UILabel *lblHotPoint = [[UILabel alloc] initWithFrame:CGRectMake(0, lblLine1Content.frame.origin.y+lblLine1Content.frame.size.height, 200, 30)];
@@ -52,13 +52,13 @@
     lblHotPoint.text = @"365jws.hentre.com";
     lblHotPoint.textColor = [UIColor appBlue];
     lblHotPoint.backgroundColor = [UIColor clearColor];
-    lblHotPoint.font = [UIFont systemFontOfSize:12.f];
+    lblHotPoint.font = [UIFont systemFontOfSize:13.f];
     [self.view addSubview:lblHotPoint];
     
     UILabel *lblTips = [[UILabel alloc] initWithFrame:CGRectMake(0, lblHotPoint.frame.origin.y+lblHotPoint.frame.size.height, 200, 30)];
     lblTips.center = CGPointMake(self.view.center.x, lblTips.center.y);
     lblTips.text = NSLocalizedString(@"step3_tips", @"");
-    lblTips.font = [UIFont systemFontOfSize:12.f];
+    lblTips.font = [UIFont systemFontOfSize:14.f];
     lblTips.textColor = [UIColor lightGrayColor];
     [self.view addSubview:lblTips];
     
