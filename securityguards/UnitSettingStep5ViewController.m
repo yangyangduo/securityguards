@@ -74,7 +74,11 @@
 }
 
 - (void)btnResetPressed:(UIButton *) sender{
-    [self.navigationController pushViewController:[[UnitSettingStep1ViewController alloc] init] animated:YES];
+    for (UIViewController *vc in self.navigationController.viewControllers) {
+        if ([vc isKindOfClass:[UnitSettingStep1ViewController class]]) {
+            [self.navigationController popToViewController:vc animated:YES];
+        }
+    }
 }
 - (void)didReceiveMemoryWarning
 {
