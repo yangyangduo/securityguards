@@ -119,6 +119,10 @@
 "sensor_moderate_pollution"      =      "中度污染";
 "sensor_severe_pollution"        =      "重度污染";
 "sensor_very_severe_pollution"   =      "严重污染";
+"tempure_display"                =      "度";
+"humidity_low"                   =      "干";
+"humidity_middle"                =      "中";
+"humidity_high"                  =      "湿";
 
 
 /****************	Unif Finder View Strings	****************/

@@ -13,6 +13,6 @@
 
 - (instancetype)initWithPoint:(CGPoint)point;
 
-- (void)setValue:(NSString *)value forSensorType:(SensorDisplayViewType)sensorType;
+- (void)setValue:(float)value forSensorType:(SensorDisplayViewType)sensorType;
 
 @end

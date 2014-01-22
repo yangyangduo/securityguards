@@ -49,12 +49,20 @@
     [self addSubview:vocSensor];   
 }
 
-- (void)setValue:(NSString *)value forSensorType:(SensorDisplayViewType)sensorType {
+- (void)setValue:(float)value forSensorType:(SensorDisplayViewType)sensorType {
     if(SensorDisplayViewTypeTempure == sensorType) {
-        [tempureSensor setDisplayValue:value];
+        [tempureSensor setDisplayValue:[NSString stringWithFormat:@"%.1f(%@)", value, NSLocalizedString(@"tempure_display", @"")]];
         tempureSensor.sensorDisplayViewState = SensorDisplayViewStateNormal;
     } else if(SensorDisplayViewTypeHumidity == sensorType) {
-        [humiditySensor setDisplayValue:value];
+        NSString *desc = [XXStringUtils emptyString];
+        if(value <= 20) {
+            desc = NSLocalizedString(@"humidity_low", @"");
+        } else if(value > 65) {
+            desc = NSLocalizedString(@"humidity_high", @"");
+        } else {
+            desc = NSLocalizedString(@"humidity_middle", @"");
+        }
+        [humiditySensor setDisplayValue:[NSString stringWithFormat:@"%.0f%%(%@)", value, desc]];
         humiditySensor.sensorDisplayViewState = SensorDisplayViewStateNormal;
     } else if(SensorDisplayViewTypePM25 == sensorType) {
         [pm25Sensor setDisplayValue:[self pm25OrVocStateStringAsReadableString:value]];
@@ -65,8 +73,8 @@
     }
 }
 
-- (NSString *)pm25OrVocStateStringAsReadableString:(NSString *)stateString {
-    int state = [stateString intValue];
+- (NSString *)pm25OrVocStateStringAsReadableString:(double)stateValue {
+    int state = stateValue;
     switch (state) {
         case 1:
             return NSLocalizedString(@"sensor_great", @"");

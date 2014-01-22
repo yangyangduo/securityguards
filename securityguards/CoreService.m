@@ -350,7 +350,8 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
     if(_state_ != ServiceStateClosed && _state_ != ServiceStateClosing) {
         _state_ = ServiceStateClosing;
 #ifdef DEBUG
-        NSLog(@"[Core Service] Service stopping on [%@].", [NSThread currentThread].name);
+        NSLog(@"[Core Service] Service stopping on [%@].",
+              [NSThread currentThread].isMainThread ? @"Main Thread" : [NSThread currentThread].name);
 #endif
         
         [[XXEventSubscriptionPublisher defaultPublisher] unSubscribeForSubscriber:self];
