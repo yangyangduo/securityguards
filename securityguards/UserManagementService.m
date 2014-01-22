@@ -21,7 +21,6 @@
 
 - (void)usersForUnit:(NSString *)unitIdentifier success:(SEL)s failed:(SEL)f target:(id)t callback:(id)cb {
     NSString *url = [NSString stringWithFormat:@"/list/%@?deviceCode=%@&appKey=%@&security=%@", unitIdentifier, [GlobalSettings defaultSettings].deviceCode, APP_KEY, [GlobalSettings defaultSettings].secretKey];
-    NSLog(@"userservice request url:%@",url);
     [self.client getForUrl:url acceptType:@"text/*" success:s error:f for:t callback:cb];
 }
 

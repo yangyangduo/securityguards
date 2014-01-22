@@ -9,7 +9,7 @@
 #import "AccountService.h"
 #import "XXStringUtils.h"
 
-#define AUTH_URL @"http://172.16.8.162:6868/FrontServer-1.0/auth"
+#define AUTH_URL @"http://hentre.f3322.org:6868/FrontServer-1.0/auth"
 
 static const NSString *MD5_KEY = @"FFFF";
 
@@ -62,7 +62,6 @@ static const NSString *MD5_KEY = @"FFFF";
 }
 
 - (void)logoutSync:(SEL)success failed:(SEL)failed target:(id)t callback:(id)cb {
-//    NSString *url = [NSString stringWithFormat:@"/phone/logout?deviceCode=%@&security=%@", [SMShared current].settings.deviceCode, [SMShared current].settings.secretKey];
 }
 
 @end

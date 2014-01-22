@@ -67,6 +67,13 @@
 }
 
 #pragma mark -
+#pragma mark Sensor's data
+
+- (void)getSensorsStateWithUnitIdentifier:(NSString *)unitIdentifier url:(NSString *)url {
+    
+}
+
+#pragma mark -
 #pragma mark Update devices from rest server
 
 - (void)updateDeviceWithAddress:(NSString *)address port:(int)port data:(NSData *)data {

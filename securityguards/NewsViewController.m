@@ -126,7 +126,7 @@
                 }
                 
                 NSMutableArray *indexPaths = [NSMutableArray array];
-                int lastIndex = allNews.count;
+                NSUInteger lastIndex = allNews.count;
                 if(arr == nil || arr.count == 0) {
                     [[AlertView currentAlertView] setMessage:NSLocalizedString(@"no_more", @"") forType:AlertViewTypeFailed];
                     [[AlertView currentAlertView] alertForLock:NO autoDismiss:YES];

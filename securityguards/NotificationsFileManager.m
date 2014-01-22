@@ -195,7 +195,7 @@
                             [notificationsToSave addObjectsFromArray:newNotifications];
                         } else {
                             // 需要删除的已读老消息数量
-                            int hasReadedNeedToDelCount = oldNotifications.count -  (MAX_NOTIFICATIONS_COUNT - hasReadCount - newNotifications.count);
+                            NSInteger hasReadedNeedToDelCount = oldNotifications.count -  (MAX_NOTIFICATIONS_COUNT - hasReadCount - newNotifications.count);
                             
                             int deletedCount = 0;
                             for(SMNotification *noti in oldNotifications) {
