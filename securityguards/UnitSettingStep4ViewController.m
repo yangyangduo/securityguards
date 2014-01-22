@@ -38,25 +38,25 @@
     self.topbarView.title = NSLocalizedString(@"step4_title", @"");
     UILabel *lblLine1 = [TipsLabel labelWithPoint:CGPointMake(60, 20+TOPBAR_HEIGHT)];
     [self.view addSubview:lblLine1];
-    UILabel *lblLine1Content = [[UILabel alloc] initWithFrame:CGRectMake(70, lblLine1.frame.origin.y, 220, 25)];
+    UILabel *lblLine1Content = [[UILabel alloc] initWithFrame:CGRectMake(65, lblLine1.frame.origin.y, 220, 25)];
     lblLine1Content.text = NSLocalizedString(@"step4_line1_linking", @"");
     lblLine1Content.textColor = [UIColor darkGrayColor];
     lblLine1Content.backgroundColor = [UIColor clearColor];
     lblLine1Content.font = [UIFont systemFontOfSize:12.f];
     [self.view addSubview:lblLine1Content];
     
-    UILabel *lblLine2 = [TipsLabel labelWithPoint:CGPointMake(60, lblLine1.frame.origin.y+lblLine1.frame.size.height+5)];
+    UILabel *lblLine2 = [TipsLabel labelWithPoint:CGPointMake(60, lblLine1.frame.origin.y+lblLine1.frame.size.height)];
     [self.view addSubview:lblLine2];
-    UILabel *lblLine2Content = [[UILabel alloc] initWithFrame:CGRectMake(70, lblLine2.frame.origin.y-5, 200, 25)];
+    UILabel *lblLine2Content = [[UILabel alloc] initWithFrame:CGRectMake(65, lblLine2.frame.origin.y, 200, 25)];
     lblLine2Content.numberOfLines = 2;
     lblLine2Content.lineBreakMode = NSLineBreakByWordWrapping;
     lblLine2Content.text = NSLocalizedString(@"step4_line2", @"");
     lblLine2Content.textColor = [UIColor darkGrayColor];
     lblLine2Content.backgroundColor = [UIColor clearColor];
-    lblLine2Content.font = [UIFont systemFontOfSize:12.f];
+    lblLine2Content.font = [UIFont systemFontOfSize:13.f];
     [self.view addSubview:lblLine2Content];
     
-    UILabel *lblWIFIName = [[UILabel alloc] initWithFrame:CGRectMake(70, lblLine2Content.frame.origin.y+lblLine2Content.frame.size.height+5, 200, 50)];
+    UILabel *lblWIFIName = [[UILabel alloc] initWithFrame:CGRectMake(65, lblLine2Content.frame.origin.y+lblLine2Content.frame.size.height+5, 200, 50)];
     lblWIFIName.text = [Shared shared].currentWIFIName;
     lblWIFIName.textColor = [UIColor appBlue];
     [self.view addSubview:lblWIFIName];

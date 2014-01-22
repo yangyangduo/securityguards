@@ -761,7 +761,7 @@
 		F2CE6740188522F2007FAC8B /* UnitSettingStep1ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitSettingStep1ViewController.h; sourceTree = "<group>"; };
 		F2CE6741188522F2007FAC8B /* UnitSettingStep1ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnitSettingStep1ViewController.m; sourceTree = "<group>"; };
 		F2CE674318852314007FAC8B /* UnitSettingStep2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitSettingStep2ViewController.h; sourceTree = "<group>"; };
-		F2CE674418852314007FAC8B /* UnitSettingStep2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnitSettingStep2ViewController.m; sourceTree = "<group>"; };
+		F2CE674418852314007FAC8B /* UnitSettingStep2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnitSettingStep2ViewController.m; sourceTree = "<group>"; wrapsLines = 1; };
 		F2CE67461885232F007FAC8B /* UnitSettingStep3ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitSettingStep3ViewController.h; sourceTree = "<group>"; };
 		F2CE67471885232F007FAC8B /* UnitSettingStep3ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnitSettingStep3ViewController.m; sourceTree = "<group>"; };
 		F2CE674918852381007FAC8B /* UnitSettingStep4ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitSettingStep4ViewController.h; sourceTree = "<group>"; };
