@@ -18,18 +18,18 @@
 - (void)handle:(DeviceCommand *)command {
     [super handle:command];
     if([command isKindOfClass:[DeviceCommandUpdateUnits class]]) {
-        
         DeviceCommandUpdateUnits *updateUnitsCommand = (DeviceCommandUpdateUnits *)command;
-        
-        // update units
         if([XXStringUtils isBlank:updateUnitsCommand.masterDeviceCode]) {
+            // update units
+            
             [[UnitManager defaultManager] replaceUnits:updateUnitsCommand.units];
             [[UnitManager defaultManager] syncUnitsToDisk];
 #ifdef DEBUG
             NSLog(@"[GET UNITS HANDLER] All of new units have saved to disk.");
-#endif
-        // update unit
+#endif      
         } else {
+            // update unit
+            
             if(updateUnitsCommand.resultID == -1) {
                 // this unit is has not binding before, need to remove it .
                 [[UnitManager defaultManager] removeUnitByIdentifier:updateUnitsCommand.masterDeviceCode];

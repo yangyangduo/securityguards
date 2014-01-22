@@ -21,6 +21,10 @@
         DeviceCommand *command = [[DeviceCommand alloc] init];
         command.commandName = COMMAND_GET_NOTIFICATIONS;
         return command;
+    } else if(type == CommandTypeGetSensors) {
+        DeviceCommand *command = [[DeviceCommand alloc] init];
+        command.commandName = COMMAND_GET_SENSORS;
+        return command;
     } else if(type == CommandTypeUpdateAccount) {
         DeviceCommandUpdateAccount *command = [[DeviceCommandUpdateAccount alloc] init];
         command.commandName = COMMAND_UPDATE_ACCOUNT;
@@ -40,7 +44,7 @@
     } else if(type == CommandTypeSendHeartBeat) {
         DeviceCommand *command = [[DeviceCommand alloc] init];
         command.commandName = COMMAND_SEND_HEART_BEAT;
-        command.commmandNetworkMode = CommandNetworkModeExternal;
+        command.commandNetworkMode = CommandNetworkModeExternalViaTcpSocket;
         return command;
     } else if(type == CommandTypeUpdateUnitName) {
         DeviceCommandUpdateUnitName *command = [[DeviceCommandUpdateUnitName alloc] init];
@@ -66,7 +70,7 @@
         DeviceCommandCheckVersion *command = [[DeviceCommandCheckVersion alloc] init];
         command.commandName = COMMAND_CHECK_VERSION;
         return command;
-    }
+    } 
     
     return nil;
 }
@@ -79,6 +83,8 @@
     DeviceCommand *command = nil;
     if([COMMAND_GET_UNITS isEqualToString:commandName]) {
         command = [[DeviceCommandUpdateUnits alloc] initWithDictionary:json];
+    } else if([COMMAND_GET_SENSORS isEqualToString:commandName]) {
+    
     } else if([COMMAND_UPDATE_ACCOUNT isEqualToString:commandName]) {
         command = [[DeviceCommand alloc] initWithDictionary:json];
     } else if([COMMAND_GET_ACCOUNT isEqualToString:commandName]) {

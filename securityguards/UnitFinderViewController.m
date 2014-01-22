@@ -131,7 +131,7 @@
                  [[CoreService defaultService] executeDeviceCommand:bindingUnitCommand];
                   
                  DeviceCommandGetUnit *refreshUnitsCommand = (DeviceCommandGetUnit *)[CommandFactory commandForType:CommandTypeGetUnits];
-                 refreshUnitsCommand.commmandNetworkMode = CommandNetworkModeInternal;
+                 refreshUnitsCommand.commandNetworkMode = CommandNetworkModeInternal;
                  refreshUnitsCommand.unitServerUrl = result.unitUrl;
                  [[CoreService defaultService] executeDeviceCommand:refreshUnitsCommand];
                  

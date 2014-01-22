@@ -14,7 +14,8 @@
 typedef NS_ENUM(NSUInteger, CommandNetworkMode) {
     CommandNetworkModeNone,
     CommandNetworkModeInternal,
-    CommandNetworkModeExternal,
+    CommandNetworkModeExternalViaTcpSocket,
+    CommandNetworkModeExternalViaRestful,
 };
 
 @interface DeviceCommand : NSObject
@@ -33,7 +34,7 @@ typedef NS_ENUM(NSUInteger, CommandNetworkMode) {
 
 @property (strong, nonatomic) NSString *restAddress;
 @property (assign, nonatomic) int restPort;
-@property (assign, nonatomic) CommandNetworkMode commmandNetworkMode;
+@property (assign, nonatomic) CommandNetworkMode commandNetworkMode;
 
 - (id)initWithDictionary:(NSDictionary *)json;
 - (NSMutableDictionary *)toDictionary;

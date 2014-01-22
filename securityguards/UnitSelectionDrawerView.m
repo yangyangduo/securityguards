@@ -140,15 +140,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     Unit *unit = [units objectAtIndex:indexPath.row];
     
-    BOOL unitReallyChanged = NO;
-    if(![unit.identifier isEqualToString:[UnitManager defaultManager].currentUnit.identifier]) {
-        unitReallyChanged = YES;
-    }
-    
     [[UnitManager defaultManager] changeCurrentUnitTo:unit.identifier];
-    if(unitReallyChanged) {
-        [[CoreService defaultService] fireTaskTimer];
-    }
     
     if(self.weakRootViewController != nil) {
         [self.weakRootViewController showCenterView:YES];

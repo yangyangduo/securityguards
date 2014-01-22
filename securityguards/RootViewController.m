@@ -45,8 +45,6 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-//    self.edgesForExtendedLayout = UIRectEdgeNone;
-
     // init left view
     NSArray *navItems = [NSArray arrayWithObjects:
         [[LeftNavItem alloc] initWithIdentifier:@"portalItem" andDisplayName:NSLocalizedString(@"portal_drawer_title", @"") andImageName:@"icon_portal"],

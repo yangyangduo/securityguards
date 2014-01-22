@@ -200,7 +200,7 @@
 //    NSLog(@"%@", [[NSString alloc] initWithData:messages encoding:NSUTF8StringEncoding]);
 //#endif
     DeviceCommand *command = [CommandFactory commandFromJson:[JsonUtils createDictionaryFromJson:messages]];
-    command.commmandNetworkMode = CommandNetworkModeExternal;
+    command.commandNetworkMode = CommandNetworkModeExternalViaTcpSocket;
     [[XXEventSubscriptionPublisher defaultPublisher] publishWithEvent:[[DeviceCommandEvent alloc] initWithDeviceCommand:command]];
 }
 

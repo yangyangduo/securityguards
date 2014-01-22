@@ -9,10 +9,17 @@
 #import "XXEvent.h"
 #import "EventNameContants.h"
 
+typedef NS_ENUM(NSUInteger, TriggeredBy) {
+    TriggeredByReadDisk,
+    TriggeredByGetUnitsCommand,
+    TriggeredByManual,
+};
+
 @interface CurrentUnitChangedEvent : XXEvent
 
 @property (strong, nonatomic, readonly) NSString *unitIdentifier;
+@property (nonatomic) TriggeredBy triggeredSource;
 
-- (id)initWithCurrentIdentifier:(NSString *)identifier;
+- (id)initWithCurrentIdentifier:(NSString *)identifier triggeredBy:(TriggeredBy)triggerdBy;
 
 @end

@@ -27,12 +27,12 @@
 
 @synthesize restAddress;
 @synthesize restPort;
-@synthesize commmandNetworkMode;
+@synthesize commandNetworkMode;
 
 - (id)init {
     self = [super init];
     if(self) {
-        self.commmandNetworkMode = CommandNetworkModeNone;
+        self.commandNetworkMode = CommandNetworkModeNone;
     }
     return self;
 }

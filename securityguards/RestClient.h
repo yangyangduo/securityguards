@@ -26,6 +26,8 @@ typedef NS_ENUM(NSInteger, AuthenticationType) {
 @property(nonatomic) AuthenticationType auth;
 @property(nonatomic) NSInteger timeoutInterval;
 
++ (NSOperationQueue *)restOperationQueue;
+
 #pragma mark -
 #pragma mark Initializations
 

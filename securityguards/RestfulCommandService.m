@@ -42,13 +42,26 @@
         DeviceCommandUpdateDevice *updateDevice = (DeviceCommandUpdateDevice *)command;
         NSData *data = [JsonUtils createJsonDataFromDictionary:[updateDevice toDictionary]];
         [self updateDeviceWithAddress:updateDevice.restAddress port:updateDevice.restPort data:data];
+    } else if([COMMAND_GET_SENSORS isEqualToString:command.commandName]) {
+        if([XXStringUtils isBlank:command.masterDeviceCode]) return;
+        NSString *url = nil;
+        if(CommandNetworkModeInternal == command.commandNetworkMode) {
+            url = [NSString stringWithFormat:@"http://%@:%d/sensor/%@%@",
+                   command.restAddress, command.restPort, command.masterDeviceCode, APP_KEY];
+        } else if(CommandNetworkModeExternalViaRestful == command.commandNetworkMode) {
+            url = [NSString stringWithFormat:@"%@/sensor/%@%@",
+                   [GlobalSettings defaultSettings].restAddress, command.masterDeviceCode, APP_KEY];
+        }
+        if(url) {
+            [self getSensorsStateWithUnitIdentifier:command.masterDeviceCode url:url];
+        }
     } else if([COMMAND_GET_CAMERA_SERVER isEqualToString:command.commandName]) {
         if([command isKindOfClass:[DeviceCommandGetCameraServer class]]) {
             DeviceCommandGetCameraServer *getCameraServerCmd = (DeviceCommandGetCameraServer *)command;
             DeviceCommandReceivedCameraServer *cmd = [[DeviceCommandReceivedCameraServer alloc] init];
             cmd.commandName = COMMAND_GET_CAMERA_SERVER;
             cmd.cameraId = getCameraServerCmd.cameraId;
-            cmd.commmandNetworkMode = CommandNetworkModeInternal;
+            cmd.commandNetworkMode = CommandNetworkModeInternal;
             [self publishCommand:cmd];
         }
     }
@@ -70,7 +83,17 @@
 #pragma mark Sensor's data
 
 - (void)getSensorsStateWithUnitIdentifier:(NSString *)unitIdentifier url:(NSString *)url {
-    
+    [self.client getForUrl:url acceptType:@"application/json" success:@selector(getSensorsStateSuccess:) error:@selector(getSensorsStateFailed:) for:self callback:nil];
+}
+
+- (void)getSensorsStateSuccess:(RestResponse *)resp {
+    if(resp.statusCode == 200) {
+        NSString *str = [[NSString alloc] initWithData:resp.body encoding:NSUTF8StringEncoding];
+        NSLog(str);
+    }
+}
+
+- (void)getSensorsStateFailed:(RestResponse *)resp {
 }
 
 #pragma mark -
@@ -84,7 +107,7 @@
 - (void)updateDeviceSuccess:(RestResponse *)resp {
     if(resp.statusCode == 200) {
         DeviceCommand *command = [CommandFactory commandFromJson:[JsonUtils createDictionaryFromJson:resp.body]];
-        command.commmandNetworkMode = CommandNetworkModeInternal;
+        command.commandNetworkMode = CommandNetworkModeInternal;
         [self publishCommand:command];
         return;
     }
@@ -119,7 +142,7 @@
                 DeviceCommandUpdateUnits *updateUnit = [[DeviceCommandUpdateUnits alloc] init];
                 updateUnit.commandName = COMMAND_GET_UNITS;
                 updateUnit.masterDeviceCode = unit.identifier;
-                updateUnit.commmandNetworkMode = CommandNetworkModeInternal;
+                updateUnit.commandNetworkMode = CommandNetworkModeInternal;
                 [updateUnit.units addObject:unit];
                 //Current network mode must be internal, because this callback is from rest service .
                 [[CoreService defaultService] setCurrentNetworkMode:NetworkModeInternal];

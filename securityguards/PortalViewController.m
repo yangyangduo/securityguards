@@ -63,11 +63,12 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    // update devices
-    [self updateUnitsView];
     
     // update network state display
     [self updateNetworkStateForView:[CoreService defaultService].currentNetworkMode];
+    
+    // update devices
+    [self updateUnitsView];
     
     XXEventNameFilter *eventNameFilter = [[XXEventNameFilter alloc] initWithSupportedEventNames:[NSArray arrayWithObjects:EventUnitsListUpdated, EventNetworkModeChanged, EventCurrentUnitChanged, EventUnitNameChanged, EventDeviceStatusChanged, nil]];
     
@@ -355,10 +356,13 @@
 #pragma mark -
 #pragma mark Events notifications
 
+// called on view will appear
+// called on event system (units list update event || current unit changed event)
 - (void)updateUnitsView {
     Unit *currentUnit = [UnitManager defaultManager].currentUnit;
     if(currentUnit != nil) {
         self.topbarView.title = currentUnit.name;
+        
 //        NSData *dd = [JsonUtils createJsonDataFromDictionary:[currentUnit toJson]];
 //        NSString *str = [[NSString alloc] initWithData:dd encoding:NSUTF8StringEncoding];
 //        NSLog(@"<--------------------------------- \r\n %@", str);
@@ -369,10 +373,15 @@
         [sensorDisplayPanel setValue:5.f forSensorType:SensorDisplayViewTypeVOC];
 
     } else {
+        // can't find any unit, so title displayed the app name
         self.topbarView.title = NSLocalizedString(@"app_name", @"");
     }
     
     [self updateUnitStatus:currentUnit];
+    
+    // current unit of 'unit selection view'
+    // is managed by this controller
+    // it's not like others which maintaince in event system
     [self updateUnitsSelectionView];
 }
 
@@ -380,6 +389,10 @@
     if(controlPanelView != nil) {
         [controlPanelView refreshWithUnit:unit];
     }
+}
+
+- (void)updateSensorsStatus {
+    
 }
 
 - (void)updateUnitsSelectionView {

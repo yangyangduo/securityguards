@@ -12,6 +12,7 @@
 #import "NetworkModeChangedEvent.h"
 #import "XXEventSubscriptionPublisher.h"
 #import "DeviceCommandEvent.h"
+#import "CurrentUnitChangedEvent.h"
 #import "XXEventNameFilter.h"
 
 /*  Command Handler  */
@@ -181,9 +182,10 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
      * If the device command has explicit specify the network mode
      * that of course we know which executor should to be used
      */
-    if(command.commmandNetworkMode == CommandNetworkModeInternal) {
+    if(CommandNetworkModeInternal == command.commandNetworkMode
+       || CommandNetworkModeExternalViaRestful == command.commandNetworkMode) {
         return self.restfulService;
-    } else if(command.commmandNetworkMode == CommandNetworkModeExternal) {
+    } else if(CommandNetworkModeExternalViaTcpSocket == command.commandNetworkMode) {
         return self.tcpService;
     }
     
@@ -292,6 +294,20 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
     if([event isKindOfClass:[DeviceCommandEvent class]]) {
         DeviceCommandEvent *commandReceivedEvent = (DeviceCommandEvent *)event;
         [self handleDeviceCommand:commandReceivedEvent.command];
+    } else if([event isKindOfClass:[CurrentUnitChangedEvent class]]) {
+        CurrentUnitChangedEvent *unitChangedEvent = (CurrentUnitChangedEvent *)event;
+#ifdef DEBUG
+        NSString *triggerSource = @"";
+        if(unitChangedEvent.triggeredSource == TriggeredByGetUnitsCommand) {
+            triggerSource = @"Device Command";
+        } else if(unitChangedEvent.triggeredSource == TriggeredByManual) {
+            triggerSource = @"User Manual";
+        } else if(unitChangedEvent.triggeredSource == TriggeredByReadDisk) {
+            triggerSource = @"Read Disk";
+        }
+        NSLog(@"[Core Service] Current Unit Changed to [%@] triggerd by [%@]", unitChangedEvent.unitIdentifier, triggerSource);
+#endif
+        [self fireTaskTimer];
     }
 }
 
@@ -318,11 +334,12 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
         // openning service ...
         _state_ = ServiceStateOpenning;
         
+        // subscribe events
+        XXEventSubscription *subscription = [[XXEventSubscription alloc] initWithSubscriber:self eventFilter:[[XXEventNameFilter alloc] initWithSupportedEventNames:[NSArray arrayWithObjects:EventDeviceCommand, EventCurrentUnitChanged, nil]]];
+        [[XXEventSubscriptionPublisher defaultPublisher] subscribeFor:subscription];
+        
         // load all units from disk
         [[UnitManager defaultManager] loadUnitsFromDisk];
-        
-        XXEventSubscription *subscription = [[XXEventSubscription alloc] initWithSubscriber:self eventFilter:[[XXEventNameFilter alloc] initWithSupportedEventName:EventDeviceCommand]];
-        [[XXEventSubscriptionPublisher defaultPublisher] subscribeFor:subscription];
         
         // service was openned ...
         _state_ = ServiceStateOpenned;
@@ -394,7 +411,6 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
     [self executeDeviceCommand:[CommandFactory commandForType:CommandTypeGetNotifications]];
     
     //
-    
     [self notifyNetworkModeUpdate:NetworkModeExternal];
 }
 
@@ -427,7 +443,7 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
             if(networkMode == NetworkModeInternal) {
                 // Update current unit
                 DeviceCommand *command = [CommandFactory commandForType:CommandTypeGetUnits];
-                command.commmandNetworkMode = CommandNetworkModeInternal;
+                command.commandNetworkMode = CommandNetworkModeInternal;
                 command.masterDeviceCode = unit.identifier;
                 command.hashCode = unit.hashCode;
                 [self executeDeviceCommand:command];

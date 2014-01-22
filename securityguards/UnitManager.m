@@ -76,8 +76,15 @@
             }
         }
         
-        // set the unit to current unit
-        currentUnitIdentifier = unit.identifier;
+        if([XXStringUtils isBlank:currentUnitIdentifier]
+           || ![currentUnitIdentifier isEqualToString:unit.identifier]) {
+            
+            // set the unit to current unit
+            currentUnitIdentifier = unit.identifier;
+            
+            [[XXEventSubscriptionPublisher defaultPublisher] publishWithEvent:[[CurrentUnitChangedEvent alloc] initWithCurrentIdentifier:currentUnitIdentifier triggeredBy:TriggeredByGetUnitsCommand]];
+        }
+        
         return self.units;
     }
 }
@@ -88,7 +95,14 @@
         if(newUnits != nil) {
             [self.units addObjectsFromArray:newUnits];    
         }
-        //currentUnitIdentifier = [NSString emptyString];
+        
+        if(self.units.count > 0) {
+            Unit *firstUnit = [self.units objectAtIndex:0];
+            [[XXEventSubscriptionPublisher defaultPublisher] publishWithEvent:[[CurrentUnitChangedEvent alloc] initWithCurrentIdentifier:firstUnit.identifier triggeredBy:TriggeredByGetUnitsCommand]];
+        } else {
+            [[XXEventSubscriptionPublisher defaultPublisher] publishWithEvent:[[CurrentUnitChangedEvent alloc] initWithCurrentIdentifier:[XXStringUtils emptyString] triggeredBy:TriggeredByGetUnitsCommand]];
+        }
+        
         return self.units;
     }
 }
@@ -149,6 +163,12 @@
         
         if([currentUnitIdentifier isEqualToString:identifier]) {
             currentUnitIdentifier = [XXStringUtils emptyString];
+            if(self.units.count > 0) {
+                Unit *firstUnit = [self.units objectAtIndex:0];
+                [[XXEventSubscriptionPublisher defaultPublisher] publishWithEvent:[[CurrentUnitChangedEvent alloc] initWithCurrentIdentifier:firstUnit.identifier triggeredBy:TriggeredByGetUnitsCommand]];
+            } else {
+                [[XXEventSubscriptionPublisher defaultPublisher] publishWithEvent:[[CurrentUnitChangedEvent alloc] initWithCurrentIdentifier:[XXStringUtils emptyString] triggeredBy:TriggeredByGetUnitsCommand]];
+            }
         }
     }
 }
@@ -204,9 +224,9 @@
             }
         }
         currentUnitIdentifier = unitIdentifier;
-        [[XXEventSubscriptionPublisher defaultPublisher] publishWithEvent:[[CurrentUnitChangedEvent alloc] initWithCurrentIdentifier:unitIdentifier]];
+        [[XXEventSubscriptionPublisher defaultPublisher] publishWithEvent:
+            [[CurrentUnitChangedEvent alloc] initWithCurrentIdentifier:unitIdentifier triggeredBy:TriggeredByManual]];
     }
-    [[CoreService defaultService] checkInternalOrNotInternalNetwork];
 }
 
 #pragma mark -
@@ -281,6 +301,15 @@
                 }
                 [self.units removeAllObjects];
                 [self.units addObjectsFromArray:newUnits];
+                
+                if(self.units.count > 0) {
+                    Unit *firstUnit = [self.units objectAtIndex:0];
+                    currentUnitIdentifier = firstUnit.identifier;
+                    [[XXEventSubscriptionPublisher defaultPublisher] publishWithEvent:[[CurrentUnitChangedEvent alloc] initWithCurrentIdentifier:currentUnitIdentifier triggeredBy:TriggeredByReadDisk]];
+                } else {
+                    [[XXEventSubscriptionPublisher defaultPublisher] publishWithEvent:[[CurrentUnitChangedEvent alloc] initWithCurrentIdentifier:[XXStringUtils emptyString] triggeredBy:TriggeredByReadDisk]];
+                }
+                
                 return;
             }
         }

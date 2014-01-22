@@ -9,13 +9,21 @@
 #import "RestClient.h"
 
 @implementation RestClient {
-    
-@private NSString *authKey;
-    
+    @private NSString *authKey;
 }
 
 @synthesize authName=_authName, authPassword=_authPassword, baseUrl=_baseUrl,
 timeoutInterval=_timeoutInterval, auth=_auth;
+
++ (NSOperationQueue *)restOperationQueue {
+    static NSOperationQueue *queue = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        queue = [[NSOperationQueue alloc] init];
+        queue.maxConcurrentOperationCount = 2;
+    });
+    return queue;
+}
 
 #pragma mark -
 #pragma mark Initializations
@@ -97,10 +105,9 @@ timeoutInterval=_timeoutInterval, auth=_auth;
             }
         }
         request.HTTPBody = b;
-        NSOperationQueue *queue = [[NSOperationQueue alloc] init];
         
         __weak __typeof(obj) wTarget = obj;
-        [NSURLConnection sendAsynchronousRequest:request queue:queue
+        [NSURLConnection sendAsynchronousRequest:request queue:[[self class] restOperationQueue]
                                completionHandler:^(NSURLResponse *resp, NSData *data, NSError *error) {
                                    RestResponse *response = [[RestResponse alloc] init];
                                    if(error == nil) {

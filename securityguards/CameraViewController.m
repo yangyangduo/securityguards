@@ -171,7 +171,7 @@
     if(self.cameraDevice == nil) return;
     if(![self.cameraDevice.identifier isEqualToString:command.cameraId]) return;
     
-    if(command.commmandNetworkMode == CommandNetworkModeInternal) {
+    if(command.commandNetworkMode == CommandNetworkModeInternal) {
         if(cameraService != nil && [cameraService isPlaying]) {
             [cameraService close];
             cameraService.delegate = nil;
