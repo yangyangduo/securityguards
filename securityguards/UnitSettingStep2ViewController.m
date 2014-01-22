@@ -9,6 +9,7 @@
 #import "UnitSettingStep2ViewController.h"
 #import "TipsLabel.h"
 #import "UnitSettingStep3ViewController.h"
+#import "TTTAttributedLabel.h"
 #define TOPBAR_HEIGHT self.topbarView.frame.size.height
 
 @interface UnitSettingStep2ViewController ()
@@ -49,24 +50,30 @@
     
     UILabel *lblLine2 = [TipsLabel labelWithPoint:CGPointMake(60, lblLine1.frame.origin.y+lblLine1.frame.size.height+10)];
     [self.view addSubview:lblLine2];
-    UILabel *lblLine2Content = [[UILabel alloc] initWithFrame:CGRectMake(65, lblLine2.frame.origin.y, 200, 40)];
+    TTTAttributedLabel *lblLine2Content = [[TTTAttributedLabel alloc] initWithFrame:CGRectMake(65, lblLine2.frame.origin.y, 200, 40)];
     lblLine2Content.numberOfLines = 2;
     lblLine2Content.lineBreakMode = NSLineBreakByWordWrapping;
-    lblLine2Content.text = NSLocalizedString(@"step2_line2", @"");
-    lblLine2Content.textColor = [UIColor darkGrayColor];
     lblLine2Content.backgroundColor = [UIColor clearColor];
-    lblLine2Content.font = [UIFont systemFontOfSize:13.f];
+    NSMutableAttributedString * tttstring = [[NSMutableAttributedString alloc] initWithString: NSLocalizedString(@"step2_line2", @"")];
+    UIFont *italicFont = [UIFont italicSystemFontOfSize:13.f];
+    CTFontRef italicCTFont = CTFontCreateWithName((CFStringRef)italicFont.fontName, italicFont.pointSize, NULL);
+    [tttstring addAttribute:(NSString *)kCTFontAttributeName value:(__bridge id)italicCTFont range:NSMakeRange(0, tttstring.length)];
+    [tttstring addAttribute:(NSString*)kCTForegroundColorAttributeName value:(id)[[UIColor darkGrayColor] CGColor] range:NSMakeRange(0,tttstring.length)];
+    [tttstring addAttribute:(NSString*)kCTForegroundColorAttributeName value:(id)[[UIColor appBlue] CGColor] range:NSMakeRange(13,3)];
+    lblLine2Content.text = tttstring;
     [self.view addSubview:lblLine2Content];
     
     UILabel *lblLine3 = [TipsLabel labelWithPoint:CGPointMake(60,lblLine2.frame.origin.y+lblLine2.frame.size.height+10)];
     [self.view addSubview:lblLine3];
-    UILabel *lblLine3Content = [[UILabel alloc] initWithFrame:CGRectMake(65, lblLine3.frame.origin.y+2, 200, 50)];
+    TTTAttributedLabel *lblLine3Content = [[TTTAttributedLabel alloc] initWithFrame:CGRectMake(65, lblLine3.frame.origin.y+2, 200, 50)];
+    lblLine3Content.backgroundColor = [UIColor clearColor];
     lblLine3Content.numberOfLines = 3;
     lblLine3Content.lineBreakMode = NSLineBreakByWordWrapping;
-    lblLine3Content.textColor = [UIColor darkGrayColor];
-    lblLine3Content.text  = NSLocalizedString(@"step2_line3", @"");
-    lblLine3Content.backgroundColor = [UIColor clearColor];
-    lblLine3Content.font = [UIFont systemFontOfSize:13.f];
+    NSMutableAttributedString * line3Text = [[NSMutableAttributedString alloc] initWithString: NSLocalizedString(@"step2_line3", @"")];
+    [line3Text addAttribute:(NSString *)kCTFontAttributeName value:(__bridge id)italicCTFont range:NSMakeRange(0, line3Text.length)];
+    [line3Text addAttribute:(NSString*)kCTForegroundColorAttributeName value:(id)[[UIColor darkGrayColor] CGColor] range:NSMakeRange(0,line3Text.length)];
+    [line3Text addAttribute:(NSString*)kCTForegroundColorAttributeName value:(id)[[UIColor appBlue] CGColor] range:NSMakeRange(23,4)];
+    lblLine3Content.text = line3Text;
     [self.view addSubview:lblLine3Content];
     
     UIImageView *imgTips = [[UIImageView alloc] initWithFrame:CGRectMake(0, lblLine3Content.frame.origin.y+lblLine3Content.frame.size.height +5, 524/2, 290/2)];

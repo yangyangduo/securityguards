@@ -8,6 +8,6 @@
 
 #import "NavigationViewController.h"
 
-@interface UnitSettingStep4ViewController : NavigationViewController
+@interface UnitSettingStep4ViewController : NavigationViewController<UITextFieldDelegate>
 
 @end

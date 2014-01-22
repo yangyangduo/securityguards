@@ -66,6 +66,12 @@
     txtPassword.placeholder = NSLocalizedString(@"wifi_password",@"");
     txtPassword.textColor = [UIColor darkGrayColor];
     txtPassword.background = [UIImage imageNamed:@"light_gray_textbox.png"];
+    txtPassword.clearButtonMode = UITextFieldViewModeWhileEditing;
+    txtPassword.autocorrectionType = UITextAutocapitalizationTypeNone;
+    txtPassword.font = [UIFont systemFontOfSize:14.f];
+    txtPassword.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 6, 0)];
+    txtPassword.leftViewMode = UITextFieldViewModeAlways;
+    txtPassword.contentVerticalAlignment  = UIControlContentVerticalAlignmentCenter;
     [self.view addSubview:txtPassword];
     
     UIButton *btnSendSettings = [[UIButton alloc] initWithFrame:CGRectMake(0, txtPassword.frame.origin.y+txtPassword.frame.size.height+10, 502/2, 56/2)];
@@ -83,6 +89,11 @@
     [self.navigationController pushViewController:[[UnitSettingStep5ViewController alloc] init] animated:YES];
 }
 
+#pragma mark - 
+#pragma mark textfield delegate
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    return YES;
+}
 
 - (void)didReceiveMemoryWarning
 {
