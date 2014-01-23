@@ -44,9 +44,6 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
     /* This array defined which command can executed in internal network */
     NSArray *mayUsingInternalNetworkCommands;
     
-    Reachability *reachability;
-    NetworkMode networkMode;
-    
     /*
      * no            0
      * wifi net      1
@@ -54,12 +51,16 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
      * 3g            3
      */
     NSUInteger flag;
+    Reachability *reachability;
+    
+    NSObject *netModeLockObject;
 }
 
 @synthesize tcpService;
 @synthesize restfulService;
 
 @synthesize state = _state_;
+@synthesize netMode = _netMode_;
 @synthesize needRefreshUnit = _needRefreshUnit_;
 
 - (NSThread *)coreServiceThread {
@@ -82,7 +83,7 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
     CFRunLoopAddTimer(CFRunLoopGetCurrent(), (__bridge CFRunLoopTimerRef)tcpSocketConnectionCheckTimer, kCFRunLoopDefaultMode);
     
     // Start a task refresh timer
-    refreshTaskTimer = [[NSTimer alloc] initWithFireDate:[NSDate date] interval:UNIT_REFRESH_INTERVAL target:self selector:@selector(refreshUnit) userInfo:nil repeats:YES];
+    refreshTaskTimer = [[NSTimer alloc] initWithFireDate:[NSDate date] interval:UNIT_REFRESH_INTERVAL target:self selector:@selector(doTimerTask) userInfo:nil repeats:YES];
     CFRunLoopAddTimer(CFRunLoopGetCurrent(), (__bridge CFRunLoopTimerRef)refreshTaskTimer, kCFRunLoopDefaultMode);
     
     CFRunLoopRun();
@@ -114,8 +115,10 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
 
 /* default property set */
 - (void)initDefaults {
+    netModeLockObject = [[NSObject alloc] init];
+    
     _state_ = ServiceStateClosed;
-    networkMode = NetworkModeNotChecked;
+    _netMode_ = NetModeNone;
     
     _needRefreshUnit_ = YES;
     mayUsingInternalNetworkCommands = [NSArray arrayWithObjects:COMMAND_KEY_CONTROL, COMMAND_GET_CAMERA_SERVER, nil];
@@ -160,7 +163,9 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
     id<CommandExecutor> executor = [self determineCommandExcutor:command];
     if(executor != nil) {
 #ifdef DEBUG
-        NSLog(@"[Core Service] Execute [%@] From [%@]", command.commandName, [executor executorName]);
+        if(![COMMAND_SEND_HEART_BEAT isEqualToString:command.commandName]) {
+            NSLog(@"[Core Service] Execute [%@] From [%@]", command.commandName, [executor executorName]);
+        }
 #endif
         [executor executeCommand:command];
     } else {
@@ -194,7 +199,7 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
      * Internal network commands list
      */
     if([self commandCanDeliveryInInternalNetwork:command]) {
-        if([self currentNetworkMode] == NetworkModeInternal) {
+        if((self.netMode & NetModeInternal) == NetModeInternal) {
             return self.restfulService;
         }
     }
@@ -297,7 +302,7 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
     } else if([event isKindOfClass:[CurrentUnitChangedEvent class]]) {
         CurrentUnitChangedEvent *unitChangedEvent = (CurrentUnitChangedEvent *)event;
 #ifdef DEBUG
-        NSString *triggerSource = @"";
+        NSString *triggerSource = [XXStringUtils emptyString];
         if(unitChangedEvent.triggeredSource == TriggeredByGetUnitsCommand) {
             triggerSource = @"Device Command";
         } else if(unitChangedEvent.triggeredSource == TriggeredByManual) {
@@ -307,7 +312,9 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
         }
         NSLog(@"[Core Service] Current Unit Changed to [%@] triggerd by [%@]", unitChangedEvent.unitIdentifier, triggerSource);
 #endif
-        [self fireTaskTimer];
+        if(![XXStringUtils isBlank:unitChangedEvent.unitIdentifier]) {
+            [self fireTaskTimer];
+        }
     }
 }
 
@@ -406,28 +413,16 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
     }
 }
 
-- (void)notifyTcpConnectionOpened {
-    [self executeDeviceCommand:[CommandFactory commandForType:CommandTypeGetUnits]];
-    [self executeDeviceCommand:[CommandFactory commandForType:CommandTypeGetNotifications]];
-    
-    //
-    [self notifyNetworkModeUpdate:NetworkModeExternal];
-}
-
-- (void)notifyTcpConnectionClosed {
-    [self notifyNetworkModeUpdate:NetworkModeNotChecked];
-}
-
-- (void)refreshUnit {
+- (void)doTimerTask {
     if(self.state != ServiceStateOpenned) {
 #ifdef DEBUG
-        NSLog(@"[Core Service] Refresh timer task can't be executed, because core service is not openned.");
+        NSLog(@"[Core Service] Timer task can't be executed, because core service is not openned.");
 #endif
         return;
     }
     
 #ifdef DEBUG
-    NSLog(@"[Core Service] Refresh timer task On Thread [%@].", [NSThread currentThread].name);
+    NSLog(@"[Core Service] Timer task On Thread [%@].", [NSThread currentThread].name);
 #endif
     
     // Send heart beat command
@@ -440,7 +435,9 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
         [self checkIsReachableInternalUnit];
         
         if(self.needRefreshUnit) {
-            if(networkMode == NetworkModeInternal) {
+            // if current network mode is internal , need refresh by rest api
+            // otherwise update it's by server's push notification on tcp socket
+            if((self.netMode & NetModeInternal) == NetModeInternal) {
                 // Update current unit
                 DeviceCommand *command = [CommandFactory commandForType:CommandTypeGetUnits];
                 command.commandNetworkMode = CommandNetworkModeInternal;
@@ -480,6 +477,7 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
 - (void)reachabilityChanged:(NSNotification *)notification {
     Reachability *reach = notification.object;
     if(reach == nil) return;
+    
     if(reach.isReachable) {
         if(reach.isReachableViaWiFi) {
             // WIFI &&   Network
@@ -488,7 +486,7 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
             // 3G   &&   Network
             flag = 3;
         } else {
-            // Else, ignore
+            // ignore else
         }
     } else {
         if([Reachability reachabilityForLocalWiFi].currentReachabilityStatus != NotReachable) {
@@ -504,13 +502,26 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
         [self checkInternalOrNotInternalNetwork];
     } else {
         if(flag == 0) {
-            [self setCurrentNetworkMode:NetworkModeNotChecked];
+            self.netMode = NetModeNone;
         } else {
-            if([self currentNetworkMode] != NetworkModeExternal) {
-                [self setCurrentNetworkMode:NetworkModeExternal];
+            if(self.tcpService.isConnectted) {
+                [self addNetMode:NetModeExtranet];
+            } else {
+                [self removeNetMode:NetModeExtranet];
             }
         }
     }
+}
+
+- (void)notifyTcpConnectionOpened {
+    [self executeDeviceCommand:[CommandFactory commandForType:CommandTypeGetUnits]];
+    [self executeDeviceCommand:[CommandFactory commandForType:CommandTypeGetNotifications]];
+    
+    [self addNetMode:NetModeExtranet];
+}
+
+- (void)notifyTcpConnectionClosed {
+    [self removeNetMode:NetModeExtranet];
 }
 
 - (void)checkInternalOrNotInternalNetwork {
@@ -520,15 +531,17 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
 }
 
 - (void)checkIsReachableInternalUnit {
-    if([UnitManager defaultManager].currentUnit == nil
-       || [Reachability reachabilityForLocalWiFi].currentReachabilityStatus == NotReachable) {
-        networkMode = self.tcpService.isConnectted ? NetworkModeExternal : NetworkModeNotChecked;
-        [self setCurrentNetworkMode:networkMode];
+    if([UnitManager defaultManager].currentUnit == nil) return;
+    if([Reachability reachabilityForLocalWiFi].currentReachabilityStatus == NotReachable) {
+        // no wifi
+        self.netMode = self.tcpService.isConnectted ? NetModeExtranet : NetModeNone;
         return;
     }
     
-    NSString *url = [NSString stringWithFormat:@"http://%@:%d/heartbeat", [UnitManager defaultManager].currentUnit.localIP, [UnitManager defaultManager].currentUnit.localPort];
+    // has wifi, check is reachbilityForInternal for current unit ?
     
+    NSString *url = [NSString stringWithFormat:@"http://%@:%d/heartbeat",
+                     [UnitManager defaultManager].currentUnit.localIP, [UnitManager defaultManager].currentUnit.localPort];
     NSMutableURLRequest *request =[[NSMutableURLRequest alloc] initWithURL: [[NSURL alloc] initWithString:url] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:HEART_BEAT_TIMEOUT];
     NSURLResponse *response;
     NSError *error;
@@ -538,9 +551,11 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
             NSHTTPURLResponse *rp = (NSHTTPURLResponse *)response;
             if(rp.statusCode == 200 && data != nil) {
                 NSString *unitIdentifier = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-                if([UnitManager defaultManager].currentUnit != nil) {
-                    if([[UnitManager defaultManager].currentUnit.identifier isEqualToString:unitIdentifier]) {
-                        [self setCurrentNetworkMode:NetworkModeInternal];
+                Unit *currentUnit = [UnitManager defaultManager].currentUnit;
+                if(currentUnit != nil) {
+                    if([currentUnit.identifier isEqualToString:unitIdentifier]) {
+                        // reachbility for internal
+                        [self addNetMode:NetModeInternal];
                         return;
                     }
                 }
@@ -548,25 +563,65 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
         }
     }
     
-    networkMode = self.tcpService.isConnectted ? NetworkModeExternal : NetworkModeNotChecked;
-    [self setCurrentNetworkMode:networkMode];
+    // not reachbility for internal
+    // delete NetModeInternal from _netMode_
+    [self removeNetMode:NetModeInternal];
 }
 
-- (void)setCurrentNetworkMode:(NetworkMode)mode {
-    @synchronized(self) {
-        if(networkMode != mode) {
-            networkMode = mode;
-            [self notifyNetworkModeUpdate:mode];
+- (void)addNetMode:(NetMode)netMode {
+    @synchronized(netModeLockObject) {
+        if((_netMode_ & netMode) == NetModeNone) {
+            // new netMode which will added doesn't exists
+            _netMode_ |= netMode;
+            [self notifyNetModeChanged];
         }
     }
 }
 
-- (NetworkMode)currentNetworkMode {
-    return networkMode;
+- (void)removeNetMode:(NetMode)netMode {
+    @synchronized(netModeLockObject) {
+        if((_netMode_ & netMode) == netMode) {
+            // new netMode which will removed has exists
+            _netMode_ = ~(~_netMode_ | NetModeInternal);
+            [self notifyNetModeChanged];
+        }
+    }
 }
 
-- (void)notifyNetworkModeUpdate:(NetworkMode)mode {
-    [[XXEventSubscriptionPublisher defaultPublisher] publishWithEvent:[[NetworkModeChangedEvent alloc] initWithNetworkMode:mode]];
+- (void)setNetMode:(NetMode)netMode {
+    @synchronized(netModeLockObject) {
+        if(_netMode_ != netMode) {
+            _netMode_ = netMode;
+            [self notifyNetModeChanged];
+        }
+    }
+}
+
+- (NetMode)netMode {
+    @synchronized(netModeLockObject) {
+        return _netMode_;
+    }
+}
+
+- (void)notifyNetModeChanged {
+    dispatch_async(dispatch_get_main_queue(), ^{
+#ifdef DEBUG
+        NSString *netModeString = [XXStringUtils emptyString];
+        NetMode nm = self.netMode;
+        if(nm == NetModeNone) {
+            netModeString = @"No net";
+        } else if(nm == NetModeExtranet) {
+            netModeString = @"Internal";
+        } else if(nm == NetModeInternal) {
+            netModeString = @"Extranet";
+        } else if(nm == NetModeAll) {
+            netModeString = @"Both (Internal & Extranet)";
+        }
+        NSLog(@"[Core Service] Net Mode Was Changed To [%@].", netModeString);
+#endif
+        [[XXEventSubscriptionPublisher defaultPublisher] publishWithEvent:
+            [[NetworkModeChangedEvent alloc] initWithNetMode:self.netMode]];
+    });
 }
 
 #pragma mark -

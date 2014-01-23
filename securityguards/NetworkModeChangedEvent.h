@@ -12,8 +12,8 @@
 
 @interface NetworkModeChangedEvent : XXEvent
 
-@property (assign, nonatomic, readonly) NetworkMode networkMode;
+@property (assign, nonatomic, readonly) NetMode netMode;
 
-- (id)initWithNetworkMode:(NetworkMode)networkMode;
+- (id)initWithNetMode:(NetMode)netMode;
 
 @end

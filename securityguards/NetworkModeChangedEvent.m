@@ -10,7 +10,7 @@
 
 @implementation NetworkModeChangedEvent
 
-@synthesize networkMode = _networkMode_;
+@synthesize netMode = _netMode_;
 
 - (id)init {
     self = [super init];
@@ -20,10 +20,10 @@
     return self;
 }
 
-- (id)initWithNetworkMode:(NetworkMode)networkMode {
+- (id)initWithNetMode:(NetMode)netMode {
     self = [self init];
     if(self) {
-        _networkMode_ = networkMode;
+        _netMode_ = netMode;
     }
     return self;
 }

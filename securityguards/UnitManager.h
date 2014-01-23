@@ -49,10 +49,6 @@
  */
 - (NSArray *)allUnitsIdentifierAsArray;
 
-/*
- *  clear all units from memory
- */
-- (void)clearUnits;
 
 /* 
  *  load units from disk file
@@ -72,7 +68,7 @@
 
 
 /*
- * clear both subscriptions and units
+ * clear
  */
 - (void)clear;
 

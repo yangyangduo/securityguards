@@ -114,12 +114,6 @@
     }
 }
 
-- (void)clearUnits {
-    @synchronized(self) {
-        [self.units removeAllObjects];
-    }
-}
-
 - (void)updateUnitDevices:(NSArray *)devicesStatus forUnit:(NSString *)identifier {
     @synchronized(self) {
         if(devicesStatus == nil || devicesStatus.count == 0) return;
@@ -319,9 +313,11 @@
 
 - (void)clear {
     @synchronized(self) {
-        if(self.units != nil) [self.units removeAllObjects];
         currentUnitIdentifier = nil;
         currentUnit = nil;
+        if(self.units != nil && self.units.count > 0) {
+            [self.units removeAllObjects];
+        }
 #ifdef DEBUG
         NSLog(@"[UNIT MANAGER] Clear units.");
 #endif

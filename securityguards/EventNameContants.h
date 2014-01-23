@@ -17,5 +17,6 @@
 #define EventDeviceCommand              @"DeviceCommand"
 #define EventUserLogout                 @"Logout"
 #define EventUnitNameChanged            @"UnitNameChanged"
+#define EventSensorStateChanged         @"SensorStateChanged"
 
 #endif

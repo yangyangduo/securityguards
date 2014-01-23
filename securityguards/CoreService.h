@@ -23,11 +23,13 @@ typedef NS_ENUM(NSUInteger, ServiceState) {
     ServiceStateClosing
 };
 
-typedef NS_ENUM(NSUInteger, NetworkMode) {
-    NetworkModeNotChecked,
-    NetworkModeExternal,
-    NetworkModeInternal
-};
+
+typedef enum {
+    NetModeNone     = 0,
+    NetModeExtranet = 1 << 0,
+    NetModeInternal = 1 << 1,
+    NetModeAll      = NetModeInternal | NetModeExtranet,
+} NetMode;
 
 /*
  * Core service in running in a background thread named "CoreServiceThread"
@@ -37,6 +39,8 @@ typedef NS_ENUM(NSUInteger, NetworkMode) {
 @property (strong, nonatomic, readonly) TCPCommandService *tcpService;
 @property (strong, nonatomic, readonly) RestfulCommandService *restfulService;
 @property (assign, nonatomic, readonly) ServiceState state;
+
+@property (nonatomic) NetMode netMode;
 
 /*
  
@@ -86,11 +90,11 @@ typedef NS_ENUM(NSUInteger, NetworkMode) {
 - (void)fireTaskTimer;
 
 
-/* Network mode */
-- (NetworkMode)currentNetworkMode;
-- (void)setCurrentNetworkMode:(NetworkMode)mode;
-- (void)checkInternalOrNotInternalNetwork;
+/* Net Mode */
 
+- (void)addNetMode:(NetMode)netMode;
+- (void)removeNetMode:(NetMode)netMode;
+- (void)checkInternalOrNotInternalNetwork;
 
 
 - (void)notifyTcpConnectionOpened;

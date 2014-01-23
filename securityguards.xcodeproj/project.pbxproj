@@ -230,6 +230,7 @@
 		6FA69118187FD54F005D1415 /* test@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FA69117187FD54F005D1415 /* test@2x.png */; };
 		6FCCE92F187E551B007B42D2 /* News.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FCCE92E187E551B007B42D2 /* News.m */; };
 		6FCEBCFB187C2749000CB911 /* AccountSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FCEBCFA187C2749000CB911 /* AccountSettingsViewController.m */; };
+		6FDA9AE6188FF4D5007D63DE /* SensorStateChangedEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FDA9AE5188FF4D5007D63DE /* SensorStateChangedEvent.m */; };
 		6FE0484F1883968500C886E1 /* btn_nav@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FE0484E1883968500C886E1 /* btn_nav@2x.png */; };
 		6FEC0FDB186C5B2B00CB0D70 /* bg_topbar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FEC0FDA186C5B2B00CB0D70 /* bg_topbar@2x.png */; };
 		6FEC0FDF186C5DD700CB0D70 /* DrawerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FEC0FDE186C5DD700CB0D70 /* DrawerViewController.m */; };
@@ -689,6 +690,8 @@
 		6FCCE92E187E551B007B42D2 /* News.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = News.m; sourceTree = "<group>"; };
 		6FCEBCF9187C2749000CB911 /* AccountSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountSettingsViewController.h; sourceTree = "<group>"; };
 		6FCEBCFA187C2749000CB911 /* AccountSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountSettingsViewController.m; sourceTree = "<group>"; };
+		6FDA9AE4188FF4D5007D63DE /* SensorStateChangedEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SensorStateChangedEvent.h; sourceTree = "<group>"; };
+		6FDA9AE5188FF4D5007D63DE /* SensorStateChangedEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SensorStateChangedEvent.m; sourceTree = "<group>"; };
 		6FE0484E1883968500C886E1 /* btn_nav@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_nav@2x.png"; sourceTree = "<group>"; };
 		6FEC0FDA186C5B2B00CB0D70 /* bg_topbar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_topbar@2x.png"; sourceTree = "<group>"; };
 		6FEC0FDD186C5DD700CB0D70 /* DrawerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawerViewController.h; sourceTree = "<group>"; };
@@ -1440,6 +1443,8 @@
 				6F7CDBB01872984A0036F912 /* UserLogoutEvent.m */,
 				6F860F2018753CB900792DBB /* UnitNameChangedEvent.h */,
 				6F860F2118753CB900792DBB /* UnitNameChangedEvent.m */,
+				6FDA9AE4188FF4D5007D63DE /* SensorStateChangedEvent.h */,
+				6FDA9AE5188FF4D5007D63DE /* SensorStateChangedEvent.m */,
 			);
 			name = events;
 			sourceTree = "<group>";
@@ -2347,6 +2352,7 @@
 				6F2AE0E51870653300BEDB29 /* UIImage+Rotate.m in Sources */,
 				6F60053E186BF0010085B4BD /* DeviceCommandHandler.m in Sources */,
 				6F203361187D035800BACFA5 /* PasswordTextViewController.m in Sources */,
+				6FDA9AE6188FF4D5007D63DE /* SensorStateChangedEvent.m in Sources */,
 				6F60052C186BE9890085B4BD /* DeviceCommandVoiceControl.m in Sources */,
 				6F600589186BF89E0085B4BD /* CommandQueue.m in Sources */,
 				6F6004CC186BD0A50085B4BD /* LeftNavView.m in Sources */,

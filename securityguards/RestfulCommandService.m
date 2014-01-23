@@ -145,7 +145,7 @@
                 updateUnit.commandNetworkMode = CommandNetworkModeInternal;
                 [updateUnit.units addObject:unit];
                 //Current network mode must be internal, because this callback is from rest service .
-                [[CoreService defaultService] setCurrentNetworkMode:NetworkModeInternal];
+                [[CoreService defaultService] addNetMode:NetModeInternal];
                 [self publishCommand:updateUnit];
             }
         }

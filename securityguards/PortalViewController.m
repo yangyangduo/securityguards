@@ -25,6 +25,7 @@
 #import "UnitsListUpdatedEvent.h"
 #import "CurrentUnitChangedEvent.h"
 #import "DeviceStatusChangedEvent.h"
+#import "SensorStateChangedEvent.h"
 
 #define IMAGE_VIEW_TAG 500
 
@@ -65,7 +66,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     
     // update network state display
-    [self updateNetworkStateForView:[CoreService defaultService].currentNetworkMode];
+    [self updateNetworkStateForView:[CoreService defaultService].netMode];
     
     // update devices
     [self updateUnitsView];
@@ -295,7 +296,7 @@
     }
 }
 
-- (void)showNetworkStateView:(BOOL)isNoAllNetwork {
+- (void)showNetworkStateView:(BOOL)reachbilityInternal {
     if(imgNetwork == nil) {
         imgNetwork = [[UIImageView alloc] initWithFrame:CGRectMake(0, self.topbarView.bounds.size.height, self.view.bounds.size.width, 30)];
         UILabel *lblDescription = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 26)];
@@ -308,7 +309,7 @@
     }
     
     UILabel *lblDescription = (UILabel *)[imgNetwork viewWithTag:100];
-    if(!isNoAllNetwork) {
+    if(reachbilityInternal) {
         imgNetwork.image = [UIImage imageNamed:@"bg_alert_green"];
         lblDescription.text = NSLocalizedString(@"no_extra_network", @"");
     } else {
@@ -337,12 +338,27 @@
 - (void)xxEventPublisherNotifyWithEvent:(XXEvent *)event {
     if([event isKindOfClass:[NetworkModeChangedEvent class]]) {
         NetworkModeChangedEvent *evt = (NetworkModeChangedEvent *)event;
-        [self updateNetworkStateForView:evt.networkMode];
+        [self updateNetworkStateForView:evt.netMode];
     } else if([event isKindOfClass:[UnitsListUpdatedEvent class]]
               || [event isKindOfClass:[CurrentUnitChangedEvent class]]) {
         [self updateUnitsView];
+    } else if([event isKindOfClass:[SensorStateChangedEvent class]]) {
+        Unit *currentUnit = [UnitManager defaultManager].currentUnit;
+        if(currentUnit != nil) {
+            SensorStateChangedEvent *ssevt = (SensorStateChangedEvent *)event;
+            
+            //        [self updateSensorsStatus:]
+        }
     } else if([event isKindOfClass:[DeviceStatusChangedEvent class]]) {
-        [self updateUnitStatus:[UnitManager defaultManager].currentUnit];
+        Unit *currentUnit = [UnitManager defaultManager].currentUnit;
+        if(currentUnit != nil) {
+            DeviceStatusChangedEvent *dsevt = (DeviceStatusChangedEvent *)event;
+            if(dsevt.command != nil && ![XXStringUtils isBlank:dsevt.command.masterDeviceCode]) {
+                if([dsevt.command.masterDeviceCode isEqualToString:currentUnit.identifier]) {
+                    [self updateUnitStatus:currentUnit];
+                }
+            }
+        }
     } else if([event isKindOfClass:[DeviceCommandEvent class]]) {
         DeviceCommandEvent *evt = (DeviceCommandEvent *)event;
         if([evt.command isKindOfClass:[DeviceCommandUpdateAccount class]]) {
@@ -360,23 +376,20 @@
 // called on event system (units list update event || current unit changed event)
 - (void)updateUnitsView {
     Unit *currentUnit = [UnitManager defaultManager].currentUnit;
+    
     if(currentUnit != nil) {
         self.topbarView.title = currentUnit.name;
         
 //        NSData *dd = [JsonUtils createJsonDataFromDictionary:[currentUnit toJson]];
 //        NSString *str = [[NSString alloc] initWithData:dd encoding:NSUTF8StringEncoding];
 //        NSLog(@"<--------------------------------- \r\n %@", str);
-        
-        [sensorDisplayPanel setValue:18.5f forSensorType:SensorDisplayViewTypeTempure];
-        [sensorDisplayPanel setValue:20.f forSensorType:SensorDisplayViewTypeHumidity];
-        [sensorDisplayPanel setValue:3.f forSensorType:SensorDisplayViewTypePM25];
-        [sensorDisplayPanel setValue:5.f forSensorType:SensorDisplayViewTypeVOC];
 
     } else {
         // can't find any unit, so title displayed the app name
         self.topbarView.title = NSLocalizedString(@"app_name", @"");
     }
     
+    [self updateSensorsStatus:currentUnit];
     [self updateUnitStatus:currentUnit];
     
     // current unit of 'unit selection view'
@@ -391,8 +404,13 @@
     }
 }
 
-- (void)updateSensorsStatus {
-    
+- (void)updateSensorsStatus:(Unit *)unit {
+    if(sensorDisplayPanel != nil) {
+        [sensorDisplayPanel setValue:18.5f forSensorType:SensorDisplayViewTypeTempure];
+        [sensorDisplayPanel setValue:20.f forSensorType:SensorDisplayViewTypeHumidity];
+        [sensorDisplayPanel setValue:3.f forSensorType:SensorDisplayViewTypePM25];
+        [sensorDisplayPanel setValue:5.f forSensorType:SensorDisplayViewTypeVOC];
+    }
 }
 
 - (void)updateUnitsSelectionView {
@@ -403,17 +421,11 @@
     }
 }
 
-- (void)updateNetworkStateForView:(NetworkMode)networkMode {
-    if(networkMode == NetworkModeExternal) {
-        if([CoreService defaultService].tcpService.isConnectted) {
-            [self hideNetworkStateView];
-        }
-    } else if(networkMode == NetworkModeInternal) {
-        [self showNetworkStateView:![CoreService defaultService].tcpService.isConnectted];
-    } else if(networkMode == NetworkModeNotChecked) {
-        [self showNetworkStateView:YES];
+- (void)updateNetworkStateForView:(NetMode)netMode {
+    if((netMode & NetModeExtranet) == NetModeExtranet) {
+        [self hideNetworkStateView];
     } else {
-        NSLog(@"[PORTAL VIEW] Unknow network mode.");
+        [self showNetworkStateView:(netMode & NetModeInternal) == NetModeInternal];
     }
 }
 
