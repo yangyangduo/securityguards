@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "Device.h"
+#import "Sensor.h"
+
+#define NO_VALUE @"------"
 
 typedef NS_ENUM(NSUInteger, SensorDisplayViewState) {
     SensorDisplayViewStateNormal,
@@ -15,19 +18,12 @@ typedef NS_ENUM(NSUInteger, SensorDisplayViewState) {
     SensorDisplayViewStateAlarm
 };
 
-typedef NS_ENUM(NSUInteger, SensorDisplayViewType) {
-    SensorDisplayViewTypeTempure,
-    SensorDisplayViewTypeHumidity,
-    SensorDisplayViewTypePM25,
-    SensorDisplayViewTypeVOC
-};
-
 @interface SensorDisplayView : UIView
 
 @property (nonatomic) SensorDisplayViewState sensorDisplayViewState;
-@property (nonatomic) SensorDisplayViewType sensorDisplayViewType;
+@property (nonatomic) SensorType sensorType;
 
-- (instancetype)initWithPoint:(CGPoint)point sensorType:(SensorDisplayViewType)sensorType;
+- (instancetype)initWithPoint:(CGPoint)point sensorType:(SensorType)sensorType;
 
 - (void)setDisplayValue:(NSString *)displayValue;
 

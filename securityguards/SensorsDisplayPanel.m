@@ -38,10 +38,10 @@
 - (void)initUI {
     self.backgroundColor = [UIColor appGray];
     
-    tempureSensor = [[SensorDisplayView alloc] initWithPoint:CGPointMake(5, 10) sensorType:SensorDisplayViewTypeTempure];
-    humiditySensor = [[SensorDisplayView alloc] initWithPoint:CGPointMake(165, 10) sensorType:SensorDisplayViewTypeHumidity];
-    pm25Sensor = [[SensorDisplayView alloc] initWithPoint:CGPointMake(5, 47) sensorType:SensorDisplayViewTypePM25];
-    vocSensor = [[SensorDisplayView alloc] initWithPoint:CGPointMake(165, 47) sensorType:SensorDisplayViewTypeVOC];
+    tempureSensor = [[SensorDisplayView alloc] initWithPoint:CGPointMake(5, 10) sensorType:SensorTypeTempure];
+    humiditySensor = [[SensorDisplayView alloc] initWithPoint:CGPointMake(165, 10) sensorType:SensorTypeHumidity];
+    pm25Sensor = [[SensorDisplayView alloc] initWithPoint:CGPointMake(5, 47) sensorType:SensorTypePM25];
+    vocSensor = [[SensorDisplayView alloc] initWithPoint:CGPointMake(165, 47) sensorType:SensorTypeVOC];
     
     [self addSubview:tempureSensor];
     [self addSubview:humiditySensor];
@@ -49,11 +49,27 @@
     [self addSubview:vocSensor];   
 }
 
-- (void)setValue:(float)value forSensorType:(SensorDisplayViewType)sensorType {
-    if(SensorDisplayViewTypeTempure == sensorType) {
+- (void)setNoDataForSensorType:(SensorType)sensorType {
+    if(SensorTypeTempure == sensorType) {
+        [tempureSensor setDisplayValue:NO_VALUE];
+        tempureSensor.sensorDisplayViewState = SensorDisplayViewStateNormal;
+    } else if(SensorTypeHumidity == sensorType) {
+        [humiditySensor setDisplayValue:NO_VALUE];
+        humiditySensor.sensorDisplayViewState = SensorDisplayViewStateNormal;
+    } else if(SensorTypePM25 == sensorType) {
+        [pm25Sensor setDisplayValue:NO_VALUE];
+        pm25Sensor.sensorDisplayViewState = SensorDisplayViewStateNormal;
+    } else if(SensorTypeVOC == sensorType) {
+        [vocSensor setDisplayValue:NO_VALUE];
+        vocSensor.sensorDisplayViewState = SensorDisplayViewStateNormal;
+    }
+}
+
+- (void)setValue:(float)value forSensorType:(SensorType)sensorType {
+    if(SensorTypeTempure == sensorType) {
         [tempureSensor setDisplayValue:[NSString stringWithFormat:@"%.1f(%@)", value, NSLocalizedString(@"tempure_display", @"")]];
         tempureSensor.sensorDisplayViewState = SensorDisplayViewStateNormal;
-    } else if(SensorDisplayViewTypeHumidity == sensorType) {
+    } else if(SensorTypeHumidity == sensorType) {
         NSString *desc = [XXStringUtils emptyString];
         if(value <= 20) {
             desc = NSLocalizedString(@"humidity_low", @"");
@@ -64,12 +80,24 @@
         }
         [humiditySensor setDisplayValue:[NSString stringWithFormat:@"%.0f%%(%@)", value, desc]];
         humiditySensor.sensorDisplayViewState = SensorDisplayViewStateNormal;
-    } else if(SensorDisplayViewTypePM25 == sensorType) {
+    } else if(SensorTypePM25 == sensorType) {
         [pm25Sensor setDisplayValue:[self pm25OrVocStateStringAsReadableString:value]];
-        pm25Sensor.sensorDisplayViewState = SensorDisplayViewStateWarning;
-    } else if(SensorDisplayViewTypeVOC == sensorType) {
+        if(value >= 1 && value <= 2) {
+            pm25Sensor.sensorDisplayViewState = SensorDisplayViewStateNormal;
+        } else if(value >=3 && value <= 4) {
+            pm25Sensor.sensorDisplayViewState = SensorDisplayViewStateWarning;
+        } else {
+            pm25Sensor.sensorDisplayViewState = SensorDisplayViewStateAlarm;
+        }
+    } else if(SensorTypeVOC == sensorType) {
         [vocSensor setDisplayValue:[self pm25OrVocStateStringAsReadableString:value]];
-        vocSensor.sensorDisplayViewState = SensorDisplayViewStateAlarm;
+        if(value >= 1 && value <= 2) {
+            vocSensor.sensorDisplayViewState = SensorDisplayViewStateNormal;
+        } else if(value >=3 && value <= 4) {
+            vocSensor.sensorDisplayViewState = SensorDisplayViewStateWarning;
+        } else {
+            vocSensor.sensorDisplayViewState = SensorDisplayViewStateAlarm;
+        }
     }
 }
 

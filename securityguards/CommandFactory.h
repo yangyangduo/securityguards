@@ -21,6 +21,8 @@
 #import "DeviceCommandAuthBinding.h"
 #import "DeviceCommandUpdateDeviceToken.h"
 #import "DeviceCommandCheckVersion.h"
+#import "DeviceCommandReceivedSensors.h"
+
 
 typedef NS_ENUM(NSUInteger, CommandType) {
     CommandTypeNone,
@@ -55,7 +57,7 @@ typedef NS_ENUM(NSUInteger, CommandType) {
 #define COMMAND_UPDATE_DEVICE_TOKEN  @"IOSSecretCommand"
 #define COMMAND_CHECK_VERSION        @"VersionUpgradeCommand"
 #define COMMAND_SEND_HEART_BEAT      @"HeartBeatCommand"
-#define COMMAND_GET_SENSORS          @"GetSensors"
+#define COMMAND_GET_SENSORS          @"FindSensorDataCommand"
 
 @interface CommandFactory : NSObject
 

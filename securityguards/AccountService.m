@@ -10,6 +10,7 @@
 #import "XXStringUtils.h"
 
 #define AUTH_URL @"http://hentre.f3322.org:6868/FrontServer-1.0/auth"
+//#define AUTH_URL @"http://172.16.8.16:6868/FrontServer-1.0/auth"
 
 static const NSString *MD5_KEY = @"FFFF";
 
@@ -42,7 +43,6 @@ static const NSString *MD5_KEY = @"FFFF";
 
 - (void)loginWithAccount:(NSString *)account password:(NSString *)pwd success:(SEL)s failed:(SEL)f target:(id)t callback:(id)cb {
     NSString *url = [NSString stringWithFormat:@"/login?mobileCode=%@&pwd=%@&appKey=%@&phoneType=%@",account, pwd,APP_KEY, PHONE_TYPE];
-    NSLog(@"login request url:%@",url);
     [self.client getForUrl:url acceptType:@"text/*" success:s error:f for:t callback:cb];
 }
 
@@ -59,9 +59,6 @@ static const NSString *MD5_KEY = @"FFFF";
 - (void)relogin:(SEL)s failed:(SEL)f target:(id)t callback:(id)cb {
     NSString *url = [NSString stringWithFormat:@"/login/reLogin?deviceCode=%@&securityKey=%@&appKey=%@", [GlobalSettings defaultSettings].deviceCode, [GlobalSettings defaultSettings].secretKey, APP_KEY];
     [self.client getForUrl:url acceptType:@"text/*" success:s error:f for:t callback:cb];
-}
-
-- (void)logoutSync:(SEL)success failed:(SEL)failed target:(id)t callback:(id)cb {
 }
 
 @end

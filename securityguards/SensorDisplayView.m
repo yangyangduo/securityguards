@@ -9,8 +9,6 @@
 #import "SensorDisplayView.h"
 #import "UIColor+MoreColor.h"
 
-#define NO_VALUE @"------"
-
 @implementation SensorDisplayView {
     UIImageView *imageView;
     UILabel *lblValue;
@@ -21,7 +19,7 @@
 }
 
 @synthesize sensorDisplayViewState = _sensorDisplayViewState_;
-@synthesize sensorDisplayViewType = _sensorDisplayViewType_;
+@synthesize sensorType = _sensorType_;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -33,10 +31,10 @@
     return self;
 }
 
-- (instancetype)initWithPoint:(CGPoint)point sensorType:(SensorDisplayViewType)sensorType {
+- (instancetype)initWithPoint:(CGPoint)point sensorType:(SensorType)sensorType {
     self = [super initWithFrame:CGRectMake(point.x, point.y, 150, 27)];
     if(self){
-        _sensorDisplayViewType_ = sensorType;
+        _sensorType_ = sensorType;
         [self initUI];
     }
     return self;
@@ -64,22 +62,22 @@
     imageView.image = [UIImage imageNamed:@"icon_temp_blue"];
     lblValue.text = NO_VALUE;
     
-    self.sensorDisplayViewType = _sensorDisplayViewType_;
+    self.sensorType = _sensorType_;
     self.sensorDisplayViewState = SensorDisplayViewStateNormal;
 }
 
-- (void)setSensorDisplayViewType:(SensorDisplayViewType)sensorDisplayViewType {
-    _sensorDisplayViewType_ = sensorDisplayViewType;
-    if(SensorDisplayViewTypeTempure == _sensorDisplayViewType_) {
+- (void)setSensorType:(SensorType)sensorType {
+    _sensorType_ = sensorType;
+    if(SensorTypeTempure == _sensorType_) {
         lblDescription.text = NSLocalizedString(@"tempure", @"");
         basicImageName = @"icon_temp";
-    } else if(SensorDisplayViewTypeHumidity == _sensorDisplayViewType_) {
+    } else if(SensorTypeHumidity == _sensorType_) {
         lblDescription.text = NSLocalizedString(@"humidity", @"");
         basicImageName = @"icon_humidity";
-    } else if(SensorDisplayViewTypePM25 == _sensorDisplayViewType_) {
+    } else if(SensorTypePM25 == _sensorType_) {
         lblDescription.text = NSLocalizedString(@"pm25", @"");
         basicImageName = @"icon_pm25";
-    } else if(SensorDisplayViewTypeVOC == _sensorDisplayViewType_) {
+    } else if(SensorTypeVOC == _sensorType_) {
         lblDescription.text = NSLocalizedString(@"voc", @"");
         basicImageName = @"icon_voc";
     }

@@ -21,6 +21,7 @@
 #import "DeviceCommandGetNotificationsHandler.h"
 #import "DeviceCommandUpdateDevicesHandler.h"
 #import "DeviceCommandUpdateUnitNameHandler.h"
+#import "DeviceCommandGetSensorsHandler.h"
 #import "AlertView.h"
 
 #define NETWORK_CHECK_INTERVAL 5
@@ -41,8 +42,12 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
     NSTimer *tcpSocketConnectionCheckTimer;
     NSTimer *refreshTaskTimer;
     
-    /* This array defined which command can executed in internal network */
-    NSArray *mayUsingInternalNetworkCommands;
+    /* This array defined which commands can executed in internal net mode */
+    NSArray *mayUsingInternalNetModeCommands;
+    
+    /* This array defined which commands execute using restful executor in any net modes */
+    NSArray *usingRestfulForAnyNetModeCommands;
+    
     
     /*
      * no            0
@@ -121,7 +126,9 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
     _netMode_ = NetModeNone;
     
     _needRefreshUnit_ = YES;
-    mayUsingInternalNetworkCommands = [NSArray arrayWithObjects:COMMAND_KEY_CONTROL, COMMAND_GET_CAMERA_SERVER, nil];
+    
+    mayUsingInternalNetModeCommands = [NSArray arrayWithObjects:COMMAND_KEY_CONTROL, COMMAND_GET_CAMERA_SERVER, nil];
+    usingRestfulForAnyNetModeCommands = [NSArray arrayWithObjects:COMMAND_GET_SENSORS, nil];
     
     /* Network monitor */
     reachability = [Reachability reachabilityWithHostname:@"www.baidu.com"];
@@ -146,7 +153,9 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
     if([self coreServiceThread] == [NSThread currentThread]) {
         [self executeDeviceCommandInternal:command];
     } else {
-        [self performSelector:@selector(executeDeviceCommandInternal:) onThread:[self coreServiceThread] withObject:command waitUntilDone:NO];
+        @synchronized(self) {
+            [self performSelector:@selector(executeDeviceCommandInternal:) onThread:[self coreServiceThread] withObject:command waitUntilDone:NO];
+        }
     }
 }
 
@@ -198,21 +207,31 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
      * At first , check the command wether has been defined in 
      * Internal network commands list
      */
-    if([self commandCanDeliveryInInternalNetwork:command]) {
+    if([self commandCanDeliveryInInternalNetMode:command]) {
+        // and also the current net mode is NetModeInternal
         if((self.netMode & NetModeInternal) == NetModeInternal) {
+            command.commandNetworkMode = CommandNetworkModeInternal;
             return self.restfulService;
         }
     }
     
-    if(self.tcpService.isConnectted) {
+    // Not in internal commands list or current net mode isn't Internal
+    // And command is restful command what ever
+    if([self isRestfulCommandInAnyNetModes:command]) {
+        command.commandNetworkMode = CommandNetworkModeExternalViaRestful;
+        return self.restfulService;
+    }
+    
+    if((self.netMode & NetModeExtranet) == NetModeExtranet) {
+        command.commandNetworkMode = CommandNetworkModeExternalViaTcpSocket;
         return self.tcpService;
     }
     
     return nil;
 }
 
-- (BOOL)commandCanDeliveryInInternalNetwork:(DeviceCommand *)command {
-    if(mayUsingInternalNetworkCommands == nil) return NO;
+- (BOOL)commandCanDeliveryInInternalNetMode:(DeviceCommand *)command {
+    if(mayUsingInternalNetModeCommands == nil) return NO;
     /* 
      * This is a special command
      * Get all units only execute from tcp (both master device code and unit server url is blank)
@@ -227,12 +246,25 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
         }
     }
     
-    for(int i=0; i<mayUsingInternalNetworkCommands.count; i++) {
-        NSString *cmdName = [mayUsingInternalNetworkCommands objectAtIndex:i];
+    for(int i=0; i<mayUsingInternalNetModeCommands.count; i++) {
+        NSString *cmdName = [mayUsingInternalNetModeCommands objectAtIndex:i];
         if([cmdName isEqualToString:command.commandName]) {
             return YES;
         }
     }
+    return NO;
+}
+
+- (BOOL)isRestfulCommandInAnyNetModes:(DeviceCommand *)command {
+    if(usingRestfulForAnyNetModeCommands == nil) return NO;
+    
+    for(int i=0; i<usingRestfulForAnyNetModeCommands.count; i++) {
+        NSString *cmdName = [usingRestfulForAnyNetModeCommands objectAtIndex:i];
+        if([cmdName isEqualToString:command.commandName]) {
+            return YES;
+        }
+    }
+    
     return NO;
 }
 
@@ -242,15 +274,16 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
 - (void)handleDeviceCommand:(DeviceCommand *)command {
     if(command == nil) return;
     
-//#ifdef DEBUG
-//    NSString *networkModeString = [XXStringUtils emptyString];
-//    if(command.commmandNetworkMode == CommandNetworkModeExternal) {
-//        networkModeString = @"External";
-//    } else if(command.commmandNetworkMode == CommandNetworkModeInternal) {
-//        networkModeString = @"Internal";
-//    }
-//    NSLog(@"[Core Service] Received [%@] From [%@]", command.commandName, networkModeString);
-//#endif
+#ifdef DEBUG
+    NSString *networkModeString = [XXStringUtils emptyString];
+    if(command.commandNetworkMode == CommandNetworkModeExternalViaRestful
+        || command.commandNetworkMode == CommandNetworkModeExternalViaTcpSocket) {
+        networkModeString = @"External";
+    } else if(command.commandNetworkMode == CommandNetworkModeInternal) {
+        networkModeString = @"Internal";
+    }
+    NSLog(@"[Core Service] Received [%@] From [%@]", command.commandName, networkModeString);
+#endif
     
     // Security key is invalid or expired
     if(command.resultID == -3000 || command.resultID == -2000 || command.resultID == -1000) {
@@ -277,16 +310,18 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
     
     if([COMMAND_GET_UNITS isEqualToString:command.commandName]) {
         handler = [[DeviceCommandGetUnitsHandler alloc] init];
+    } else if([COMMAND_GET_SENSORS isEqualToString:command.commandName]) {
+        handler = [[DeviceCommandGetSensorsHandler alloc] init];
+    } else if([COMMAND_PUSH_DEVICE_STATUS isEqualToString:command.commandName]) {
+        handler = [[DeviceCommandUpdateDevicesHandler alloc] init];
     } else if([COMMAND_GET_ACCOUNT isEqualToString:command.commandName]) {
         handler = [[DeviceCommandGetAccountHandler alloc] init];
     } else if([COMMAND_PUSH_NOTIFICATIONS isEqualToString:command.commandName] || [COMMAND_GET_NOTIFICATIONS isEqualToString:command.commandName]) {
         handler = [[DeviceCommandGetNotificationsHandler alloc] init];
-    } else if([COMMAND_PUSH_DEVICE_STATUS isEqualToString:command.commandName]) {
-        handler = [[DeviceCommandUpdateDevicesHandler alloc] init];
     } else if([COMMAND_CHANGE_UNIT_NAME isEqualToString:command.commandName]) {
         handler = [[DeviceCommandUpdateUnitNameHandler alloc] init];
     }
-        
+    
     if(handler != nil) {
         [handler handle:command];
     }
@@ -314,6 +349,10 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
 #endif
         if(![XXStringUtils isBlank:unitChangedEvent.unitIdentifier]) {
             [self fireTaskTimer];
+           
+            DeviceCommand *getSensorsCommand = [CommandFactory commandForType:CommandTypeGetSensors];
+            getSensorsCommand.masterDeviceCode = unitChangedEvent.unitIdentifier;
+            [self executeDeviceCommand:getSensorsCommand];
         }
     }
 }
@@ -513,17 +552,6 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
     }
 }
 
-- (void)notifyTcpConnectionOpened {
-    [self executeDeviceCommand:[CommandFactory commandForType:CommandTypeGetUnits]];
-    [self executeDeviceCommand:[CommandFactory commandForType:CommandTypeGetNotifications]];
-    
-    [self addNetMode:NetModeExtranet];
-}
-
-- (void)notifyTcpConnectionClosed {
-    [self removeNetMode:NetModeExtranet];
-}
-
 - (void)checkInternalOrNotInternalNetwork {
     dispatch_async(networkModeCheckTaskQueue(), ^{
         [self checkIsReachableInternalUnit];
@@ -582,7 +610,7 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
     @synchronized(netModeLockObject) {
         if((_netMode_ & netMode) == netMode) {
             // new netMode which will removed has exists
-            _netMode_ = ~(~_netMode_ | NetModeInternal);
+            _netMode_ = ~(~_netMode_ | netMode);
             [self notifyNetModeChanged];
         }
     }
@@ -611,9 +639,9 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
         if(nm == NetModeNone) {
             netModeString = @"No net";
         } else if(nm == NetModeExtranet) {
-            netModeString = @"Internal";
-        } else if(nm == NetModeInternal) {
             netModeString = @"Extranet";
+        } else if(nm == NetModeInternal) {
+            netModeString = @"Internal";
         } else if(nm == NetModeAll) {
             netModeString = @"Both (Internal & Extranet)";
         }
@@ -622,6 +650,17 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
         [[XXEventSubscriptionPublisher defaultPublisher] publishWithEvent:
             [[NetworkModeChangedEvent alloc] initWithNetMode:self.netMode]];
     });
+}
+
+- (void)notifyTcpConnectionOpened {
+    [self addNetMode:NetModeExtranet];
+    
+    [self executeDeviceCommand:[CommandFactory commandForType:CommandTypeGetUnits]];
+    [self executeDeviceCommand:[CommandFactory commandForType:CommandTypeGetNotifications]];
+}
+
+- (void)notifyTcpConnectionClosed {
+    [self removeNetMode:NetModeExtranet];
 }
 
 #pragma mark -

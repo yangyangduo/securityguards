@@ -53,7 +53,8 @@
 "portal_drawer_title"            =      "首页";
 "news_drawer_title"              =      "动态";
 "user_mgr_drawer_title"          =      "用户管理";
-"contact_us_drawer_title"         =      "联系我们";
+"task_timer_title"               =      "定时任务";
+"contact_us_drawer_title"        =      "联系我们";
 "logout_drawer_title"            =      "注销账号";
 "notifications_drawer_title"     =      "消息中心";
 "logouting"                      =      "注销中...";

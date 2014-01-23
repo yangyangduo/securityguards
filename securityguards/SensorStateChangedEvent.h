@@ -11,4 +11,8 @@
 
 @interface SensorStateChangedEvent : XXEvent
 
+@property (nonatomic, strong) NSString *unitIdentifier;
+
+- (instancetype)initWithUnitIdentifier:(NSString *)unitIdentifier;
+
 @end

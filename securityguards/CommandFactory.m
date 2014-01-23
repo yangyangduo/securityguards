@@ -83,8 +83,11 @@
     DeviceCommand *command = nil;
     if([COMMAND_GET_UNITS isEqualToString:commandName]) {
         command = [[DeviceCommandUpdateUnits alloc] initWithDictionary:json];
-    } else if([COMMAND_GET_SENSORS isEqualToString:commandName]) {
-    
+    } else if([COMMAND_GET_SENSORS isEqualToString:command.commandName]) {
+        if([json intForKey:@"resultId"] == 1) {
+            command = [[DeviceCommandReceivedSensors alloc] initWithDictionary:
+                       [NSDictionary dictionaryWithObject:[json arrayForKey:@"sensorData"] forKey:@"m"]];
+        }
     } else if([COMMAND_UPDATE_ACCOUNT isEqualToString:commandName]) {
         command = [[DeviceCommand alloc] initWithDictionary:json];
     } else if([COMMAND_GET_ACCOUNT isEqualToString:commandName]) {

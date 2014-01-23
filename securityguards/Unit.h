@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "Zone.h"
 #import "Entity.h"
+#import "Sensor.h"
 
 @interface Unit : Entity
 
@@ -25,6 +26,8 @@
 
 //
 @property (strong, nonatomic, readonly) NSArray *devices;
+
+@property (strong, nonatomic) NSArray *sensors;
 
 - (Zone *)zoneForId:(NSString *)_id_;
 - (Device *)deviceForId:(NSString *)_id_;

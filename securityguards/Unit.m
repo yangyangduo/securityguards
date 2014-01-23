@@ -25,6 +25,8 @@
 @synthesize devices;
 @synthesize hashCode;
 
+@synthesize sensors;
+
 @synthesize avalibleDevicesCount;
 
 - (id)initWithJson:(NSDictionary *)json {

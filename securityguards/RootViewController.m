@@ -11,6 +11,7 @@
 #import "UserManagementViewController.h"
 #import "ContactUsViewController.h"
 #import "UnitSelectionDrawerView.h"
+#import "TimerTaskPlansViewController.h"
 #import "NotificationsViewController.h"
 #import "UserLogoutEvent.h"
 
@@ -51,6 +52,7 @@
         [[LeftNavItem alloc] initWithIdentifier:@"newsItem" andDisplayName:NSLocalizedString(@"news_drawer_title", @"") andImageName:@"icon_news"],
         [[LeftNavItem alloc] initWithIdentifier:@"notificationsItem" andDisplayName:NSLocalizedString(@"notifications_drawer_title", @"") andImageName:@"icon_notifications"],
         [[LeftNavItem alloc] initWithIdentifier:@"accountManagerItem" andDisplayName:NSLocalizedString(@"user_mgr_drawer_title", @"") andImageName:@"icon_account"],
+        [[LeftNavItem alloc] initWithIdentifier:@"timerTaskItem" andDisplayName:NSLocalizedString(@"task_timer_title", @"") andImageName:@"icon_timer"],
         [[LeftNavItem alloc] initWithIdentifier:@"contactUsItem" andDisplayName:NSLocalizedString(@"contact_us_drawer_title", @"") andImageName:@"icon_copyright"],
         [[LeftNavItem alloc] initWithIdentifier:@"logoutItem" andDisplayName:NSLocalizedString(@"logout_drawer_title", @"") andImageName:@"icon_logout"], nil];
     LeftNavView *navView = [[LeftNavView alloc] initWithFrame:[UIScreen mainScreen].bounds andNavItems:navItems];
@@ -101,6 +103,8 @@
         centerViewController = [[NewsViewController alloc] init];
     } else if([@"notificationsItem" isEqualToString:item.identifier]) {
         centerViewController = [[NotificationsViewController alloc] init];
+    } else if([@"timerTaskItem" isEqualToString:item.identifier]) {
+        centerViewController = [[TimerTaskPlansViewController alloc] init];
     } else if([@"accountManagerItem" isEqualToString:item.identifier]) {
         if(userManagementViewController == nil) {
             userManagementViewController = [[UserManagementViewController alloc] init];

@@ -53,7 +53,7 @@
                    [GlobalSettings defaultSettings].restAddress, command.masterDeviceCode, APP_KEY];
         }
         if(url) {
-            [self getSensorsStateWithUnitIdentifier:command.masterDeviceCode url:url];
+            [self getSensorsStateWithUnitIdentifier:command.masterDeviceCode url:url callback:command];
         }
     } else if([COMMAND_GET_CAMERA_SERVER isEqualToString:command.commandName]) {
         if([command isKindOfClass:[DeviceCommandGetCameraServer class]]) {
@@ -82,18 +82,38 @@
 #pragma mark -
 #pragma mark Sensor's data
 
-- (void)getSensorsStateWithUnitIdentifier:(NSString *)unitIdentifier url:(NSString *)url {
-    [self.client getForUrl:url acceptType:@"application/json" success:@selector(getSensorsStateSuccess:) error:@selector(getSensorsStateFailed:) for:self callback:nil];
+- (void)getSensorsStateWithUnitIdentifier:(NSString *)unitIdentifier url:(NSString *)url callback:(id)cb {
+    [self.client getForUrl:url acceptType:@"text/*" success:@selector(getSensorsStateSuccess:) error:@selector(getSensorsStateFailed:) for:self callback:cb];
 }
 
 - (void)getSensorsStateSuccess:(RestResponse *)resp {
     if(resp.statusCode == 200) {
-        NSString *str = [[NSString alloc] initWithData:resp.body encoding:NSUTF8StringEncoding];
-        NSLog(str);
+        NSDictionary *json = [JsonUtils createDictionaryFromJson:resp.body];
+        if(json != nil) {
+            if([json intForKey:@"i"] == 1) {
+                DeviceCommandReceivedSensors *command = [[DeviceCommandReceivedSensors alloc] initWithDictionary:json];
+                if([@"i" isEqualToString:resp.callbackObject]) {
+                    command.commandNetworkMode = CommandNetworkModeInternal;
+                } else if([@"e" isEqualToString:resp.callbackObject]) {
+                    command.commandNetworkMode = CommandNetworkModeExternalViaRestful;
+                }
+                DeviceCommand *cmd = resp.callbackObject;
+                command.masterDeviceCode = cmd.masterDeviceCode;
+                command.commandNetworkMode = cmd.commandNetworkMode;
+                command.commandName = cmd.commandName;
+                
+                [[XXEventSubscriptionPublisher defaultPublisher] publishWithEvent:[[DeviceCommandEvent alloc] initWithDeviceCommand:command]];
+                return;
+            }
+        }
     }
+    [self getSensorsStateFailed:resp];
 }
 
 - (void)getSensorsStateFailed:(RestResponse *)resp {
+#ifdef DEBUG
+    NSLog(@"[RESTFUL COMMAND SERVICE] Get sensors failed, status code is %d", resp.statusCode);
+#endif
 }
 
 #pragma mark -
@@ -111,7 +131,6 @@
         [self publishCommand:command];
         return;
     }
-    
     [self updateDeviceFailed:resp];
 }
 

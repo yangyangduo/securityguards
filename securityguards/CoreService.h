@@ -55,13 +55,13 @@ typedef enum {
 /*  A Thread Run Background Used For Core Service Around All App Life  */
 - (NSThread *)coreServiceThread;
 
-/*   Singleton  */
+/*   Singleton   */
 + (instancetype)defaultService;
 
 /*   Start Core Service   */
 - (void)startService;
 
-/*   Stop Core Service   */
+/*   Stop  Core Service   */
 - (void)stopService;
 
 /* Execute Device Command */
@@ -80,7 +80,7 @@ typedef enum {
  * Here is task timer to do:
  *
  * [ send heart beat message ]
- * [ check network state (Interal or External) ]
+ * [ send asyn task on serial queue to check network state (Interal or External) ]
  * [ refresh unit list via device command]
  * [ refresh sensors via rest api]
  *
@@ -97,6 +97,7 @@ typedef enum {
 - (void)checkInternalOrNotInternalNetwork;
 
 
+/* Belows two method will move to our new event system later */
 - (void)notifyTcpConnectionOpened;
 - (void)notifyTcpConnectionClosed;
 

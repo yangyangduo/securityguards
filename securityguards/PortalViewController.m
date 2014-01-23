@@ -71,7 +71,7 @@
     // update devices
     [self updateUnitsView];
     
-    XXEventNameFilter *eventNameFilter = [[XXEventNameFilter alloc] initWithSupportedEventNames:[NSArray arrayWithObjects:EventUnitsListUpdated, EventNetworkModeChanged, EventCurrentUnitChanged, EventUnitNameChanged, EventDeviceStatusChanged, nil]];
+    XXEventNameFilter *eventNameFilter = [[XXEventNameFilter alloc] initWithSupportedEventNames:[NSArray arrayWithObjects:EventUnitsListUpdated, EventNetworkModeChanged, EventCurrentUnitChanged, EventUnitNameChanged, EventDeviceStatusChanged, EventSensorStateChanged, nil]];
     
     DeviceCommandNameEventFilter *commandNameFilter = [[DeviceCommandNameEventFilter alloc] init];
     [commandNameFilter.supportedCommandNames addObject:COMMAND_GET_ACCOUNT];
@@ -346,8 +346,9 @@
         Unit *currentUnit = [UnitManager defaultManager].currentUnit;
         if(currentUnit != nil) {
             SensorStateChangedEvent *ssevt = (SensorStateChangedEvent *)event;
-            
-            //        [self updateSensorsStatus:]
+            if([ssevt.unitIdentifier isEqualToString:currentUnit.identifier]) {
+                [self updateSensorsStatus:currentUnit];
+            }
         }
     } else if([event isKindOfClass:[DeviceStatusChangedEvent class]]) {
         Unit *currentUnit = [UnitManager defaultManager].currentUnit;
@@ -376,18 +377,7 @@
 // called on event system (units list update event || current unit changed event)
 - (void)updateUnitsView {
     Unit *currentUnit = [UnitManager defaultManager].currentUnit;
-    
-    if(currentUnit != nil) {
-        self.topbarView.title = currentUnit.name;
-        
-//        NSData *dd = [JsonUtils createJsonDataFromDictionary:[currentUnit toJson]];
-//        NSString *str = [[NSString alloc] initWithData:dd encoding:NSUTF8StringEncoding];
-//        NSLog(@"<--------------------------------- \r\n %@", str);
-
-    } else {
-        // can't find any unit, so title displayed the app name
-        self.topbarView.title = NSLocalizedString(@"app_name", @"");
-    }
+    self.topbarView.title = currentUnit != nil ? currentUnit.name : NSLocalizedString(@"app_name", @"");
     
     [self updateSensorsStatus:currentUnit];
     [self updateUnitStatus:currentUnit];
@@ -406,10 +396,24 @@
 
 - (void)updateSensorsStatus:(Unit *)unit {
     if(sensorDisplayPanel != nil) {
-        [sensorDisplayPanel setValue:18.5f forSensorType:SensorDisplayViewTypeTempure];
-        [sensorDisplayPanel setValue:20.f forSensorType:SensorDisplayViewTypeHumidity];
-        [sensorDisplayPanel setValue:3.f forSensorType:SensorDisplayViewTypePM25];
-        [sensorDisplayPanel setValue:5.f forSensorType:SensorDisplayViewTypeVOC];
+        [sensorDisplayPanel setNoDataForSensorType:SensorTypeTempure];
+        [sensorDisplayPanel setNoDataForSensorType:SensorTypeHumidity];
+        [sensorDisplayPanel setNoDataForSensorType:SensorTypePM25];
+        [sensorDisplayPanel setNoDataForSensorType:SensorTypeVOC];
+        if(unit != nil && unit.sensors != nil) {
+            for(int i=0; i<unit.sensors.count; i++) {
+                Sensor *sensor = [unit.sensors objectAtIndex:i];
+                if(sensor.isPM25Sensor) {
+                    [sensorDisplayPanel setValue:sensor.data.value forSensorType:SensorTypePM25];
+                } else if(sensor.isHumiditySensor) {
+                    [sensorDisplayPanel setValue:sensor.data.value forSensorType:SensorTypeHumidity];
+                } else if(sensor.isVOCSensor) {
+                    [sensorDisplayPanel setValue:sensor.data.value forSensorType:SensorTypeVOC];
+                } else if(sensor.isTempureSensor) {
+                    [sensorDisplayPanel setValue:sensor.data.value forSensorType:SensorTypeTempure];
+                }
+            }
+        }
     }
 }
 
