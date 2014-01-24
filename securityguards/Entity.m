@@ -10,7 +10,7 @@
 
 @implementation Entity
 
-- (id)initWithJson:(NSDictionary *)json {
+- (instancetype)initWithJson:(NSDictionary *)json {
     self = [super init];
     if(self) {
     }

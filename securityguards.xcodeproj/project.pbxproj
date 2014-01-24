@@ -238,6 +238,8 @@
 		6FA69118187FD54F005D1415 /* test@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FA69117187FD54F005D1415 /* test@2x.png */; };
 		6FCCE92F187E551B007B42D2 /* News.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FCCE92E187E551B007B42D2 /* News.m */; };
 		6FCEBCFB187C2749000CB911 /* AccountSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FCEBCFA187C2749000CB911 /* AccountSettingsViewController.m */; };
+		6FD7358A189203220033A09D /* TimerTaskCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FD73589189203220033A09D /* TimerTaskCell.m */; };
+		6FD7358D18920BD40033A09D /* TimerTaskPlan.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FD7358C18920BD40033A09D /* TimerTaskPlan.m */; };
 		6FDA9AE6188FF4D5007D63DE /* SensorStateChangedEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FDA9AE5188FF4D5007D63DE /* SensorStateChangedEvent.m */; };
 		6FE0484F1883968500C886E1 /* btn_nav@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FE0484E1883968500C886E1 /* btn_nav@2x.png */; };
 		6FEC0FDB186C5B2B00CB0D70 /* bg_topbar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FEC0FDA186C5B2B00CB0D70 /* bg_topbar@2x.png */; };
@@ -264,7 +266,6 @@
 		F21512601871227C0039CC8A /* XXTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = F215125F1871227C0039CC8A /* XXTextField.m */; };
 		F2209B38187F870000F5E833 /* icon_online_accessory@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2209B36187F870000F5E833 /* icon_online_accessory@2x.png */; };
 		F2209B39187F870000F5E833 /* icon_offline_accessory@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2209B37187F870000F5E833 /* icon_offline_accessory@2x.png */; };
-		F23E6688188F63E10043282C /* TTTAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = F23E6687188F63E10043282C /* TTTAttributedLabel.m */; };
 		F24E552C18702180000DB402 /* btn_gray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F24E552B18702180000DB402 /* btn_gray@2x.png */; };
 		F279E0041883C2B100E0547E /* icon_gray_msg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F279DFFE1883C2B100E0547E /* icon_gray_msg@2x.png */; };
 		F279E0051883C2B100E0547E /* icon_gray_unbind@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F279DFFF1883C2B100E0547E /* icon_gray_unbind@2x.png */; };
@@ -294,7 +295,7 @@
 		F2CE674518852314007FAC8B /* UnitSettingStep2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2CE674418852314007FAC8B /* UnitSettingStep2ViewController.m */; };
 		F2CE67481885232F007FAC8B /* UnitSettingStep3ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2CE67471885232F007FAC8B /* UnitSettingStep3ViewController.m */; };
 		F2CE674B18852381007FAC8B /* UnitSettingStep4ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2CE674A18852381007FAC8B /* UnitSettingStep4ViewController.m */; };
-		F2F3E19F187A3FD6006A9447 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F3E18F187A3FD6006A9447 /* EGORefreshTableHeaderView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F2F3E19F187A3FD6006A9447 /* OEGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F3E18F187A3FD6006A9447 /* OEGORefreshTableHeaderView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F2F3E1A0187A3FD6006A9447 /* LoadMoreTableFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F3E191187A3FD6006A9447 /* LoadMoreTableFooterView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F2F3E1A1187A3FD6006A9447 /* MessageInterceptor.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F3E193187A3FD6006A9447 /* MessageInterceptor.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F2F3E1A2187A3FD6006A9447 /* PullTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = F2F3E195187A3FD6006A9447 /* PullTableView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -713,6 +714,10 @@
 		6FCCE92E187E551B007B42D2 /* News.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = News.m; sourceTree = "<group>"; };
 		6FCEBCF9187C2749000CB911 /* AccountSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountSettingsViewController.h; sourceTree = "<group>"; };
 		6FCEBCFA187C2749000CB911 /* AccountSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountSettingsViewController.m; sourceTree = "<group>"; };
+		6FD73588189203220033A09D /* TimerTaskCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimerTaskCell.h; sourceTree = "<group>"; };
+		6FD73589189203220033A09D /* TimerTaskCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimerTaskCell.m; sourceTree = "<group>"; };
+		6FD7358B18920BD40033A09D /* TimerTaskPlan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimerTaskPlan.h; sourceTree = "<group>"; };
+		6FD7358C18920BD40033A09D /* TimerTaskPlan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimerTaskPlan.m; sourceTree = "<group>"; };
 		6FDA9AE4188FF4D5007D63DE /* SensorStateChangedEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SensorStateChangedEvent.h; sourceTree = "<group>"; };
 		6FDA9AE5188FF4D5007D63DE /* SensorStateChangedEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SensorStateChangedEvent.m; sourceTree = "<group>"; };
 		6FE0484E1883968500C886E1 /* btn_nav@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_nav@2x.png"; sourceTree = "<group>"; };
@@ -753,8 +758,6 @@
 		F215125F1871227C0039CC8A /* XXTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXTextField.m; sourceTree = "<group>"; };
 		F2209B36187F870000F5E833 /* icon_online_accessory@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_online_accessory@2x.png"; sourceTree = "<group>"; };
 		F2209B37187F870000F5E833 /* icon_offline_accessory@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_offline_accessory@2x.png"; sourceTree = "<group>"; };
-		F23E6686188F63E10043282C /* TTTAttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTAttributedLabel.h; sourceTree = "<group>"; };
-		F23E6687188F63E10043282C /* TTTAttributedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTAttributedLabel.m; sourceTree = "<group>"; };
 		F24E552B18702180000DB402 /* btn_gray@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_gray@2x.png"; sourceTree = "<group>"; };
 		F279DFFE1883C2B100E0547E /* icon_gray_msg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_gray_msg@2x.png"; sourceTree = "<group>"; };
 		F279DFFF1883C2B100E0547E /* icon_gray_unbind@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_gray_unbind@2x.png"; sourceTree = "<group>"; };
@@ -795,8 +798,8 @@
 		F2CE67471885232F007FAC8B /* UnitSettingStep3ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnitSettingStep3ViewController.m; sourceTree = "<group>"; };
 		F2CE674918852381007FAC8B /* UnitSettingStep4ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitSettingStep4ViewController.h; sourceTree = "<group>"; };
 		F2CE674A18852381007FAC8B /* UnitSettingStep4ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnitSettingStep4ViewController.m; sourceTree = "<group>"; };
-		F2F3E18E187A3FD6006A9447 /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
-		F2F3E18F187A3FD6006A9447 /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
+		F2F3E18E187A3FD6006A9447 /* OEGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OEGORefreshTableHeaderView.h; sourceTree = "<group>"; };
+		F2F3E18F187A3FD6006A9447 /* OEGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OEGORefreshTableHeaderView.m; sourceTree = "<group>"; };
 		F2F3E190187A3FD6006A9447 /* LoadMoreTableFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadMoreTableFooterView.h; sourceTree = "<group>"; };
 		F2F3E191187A3FD6006A9447 /* LoadMoreTableFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadMoreTableFooterView.m; sourceTree = "<group>"; };
 		F2F3E192187A3FD6006A9447 /* MessageInterceptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageInterceptor.h; sourceTree = "<group>"; };
@@ -1308,7 +1311,6 @@
 		6F6004D6186BD22F0085B4BD /* third */ = {
 			isa = PBXGroup;
 			children = (
-				F23E6689188F63F00043282C /* TTTLabel */,
 				F2F3E18C187A3FD6006A9447 /* EGOTableViewPullRefresh */,
 				6F6004DA186BD24E0085B4BD /* AsyncUdpSocket */,
 			);
@@ -1455,6 +1457,8 @@
 				6F41D2BA1890F0F70063E1BB /* Sensor.m */,
 				6F41D2BC1890F1A40063E1BB /* SensorData.h */,
 				6F41D2BD1890F1A40063E1BB /* SensorData.m */,
+				6FD7358B18920BD40033A09D /* TimerTaskPlan.h */,
+				6FD7358C18920BD40033A09D /* TimerTaskPlan.m */,
 			);
 			name = entities;
 			sourceTree = "<group>";
@@ -1881,6 +1885,8 @@
 				6F20336A187D33BD00BACFA5 /* NewsCell.m */,
 				F207BE34187E7D1300993A6F /* AccountManageCell.h */,
 				F207BE35187E7D1300993A6F /* AccountManageCell.m */,
+				6FD73588189203220033A09D /* TimerTaskCell.h */,
+				6FD73589189203220033A09D /* TimerTaskCell.m */,
 			);
 			name = cells;
 			sourceTree = "<group>";
@@ -1891,15 +1897,6 @@
 				F2125FA21888C987002A7F49 /* declare.txt */,
 			);
 			name = documents;
-			sourceTree = "<group>";
-		};
-		F23E6689188F63F00043282C /* TTTLabel */ = {
-			isa = PBXGroup;
-			children = (
-				F23E6686188F63E10043282C /* TTTAttributedLabel.h */,
-				F23E6687188F63E10043282C /* TTTAttributedLabel.m */,
-			);
-			name = TTTLabel;
 			sourceTree = "<group>";
 		};
 		F29DE6F7188665BB00BCE93C /* unit_finder */ = {
@@ -1948,8 +1945,8 @@
 		F2F3E18D187A3FD6006A9447 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				F2F3E18E187A3FD6006A9447 /* EGORefreshTableHeaderView.h */,
-				F2F3E18F187A3FD6006A9447 /* EGORefreshTableHeaderView.m */,
+				F2F3E18E187A3FD6006A9447 /* OEGORefreshTableHeaderView.h */,
+				F2F3E18F187A3FD6006A9447 /* OEGORefreshTableHeaderView.m */,
 				F2F3E190187A3FD6006A9447 /* LoadMoreTableFooterView.h */,
 				F2F3E191187A3FD6006A9447 /* LoadMoreTableFooterView.m */,
 				F2F3E192187A3FD6006A9447 /* MessageInterceptor.h */,
@@ -2288,7 +2285,7 @@
 				6F6005C0186C2E220085B4BD /* LeftNavItem.m in Sources */,
 				6F600526186BE9890085B4BD /* DeviceCommandUpdateDevices.m in Sources */,
 				6F600467186BCE210085B4BD /* AppDelegate.m in Sources */,
-				F2F3E19F187A3FD6006A9447 /* EGORefreshTableHeaderView.m in Sources */,
+				F2F3E19F187A3FD6006A9447 /* OEGORefreshTableHeaderView.m in Sources */,
 				6F6004FA186BE88A0085B4BD /* CommunicationMessage.m in Sources */,
 				6F600574186BF3940085B4BD /* DeviceStatusChangedEvent.m in Sources */,
 				6F60051F186BE9890085B4BD /* DeviceCommandAuthBinding.m in Sources */,
@@ -2332,7 +2329,6 @@
 				F2F3E1A1187A3FD6006A9447 /* MessageInterceptor.m in Sources */,
 				6F6005A4186C015B0085B4BD /* UserManagementService.m in Sources */,
 				6F6004BC186BCFF40085B4BD /* UIDevice+SystemVersion.m in Sources */,
-				F23E6688188F63E10043282C /* TTTAttributedLabel.m in Sources */,
 				6F0E244E187309F400F143F9 /* UnitFinderResult.m in Sources */,
 				6F6004B9186BCFF40085B4BD /* NSDictionary+Extension.m in Sources */,
 				6F4B4CD2187A5F5D004F1795 /* DeviceOperationItem.m in Sources */,
@@ -2360,6 +2356,7 @@
 				6F6004A0186BCEF10085B4BD /* XXEventClassFilter.m in Sources */,
 				F29DE7051886662100BCE93C /* TipsLabel.m in Sources */,
 				6F600493186BCED60085B4BD /* XXStringUtils.m in Sources */,
+				6FD7358D18920BD40033A09D /* TimerTaskPlan.m in Sources */,
 				6F8F57BD18710D940033228F /* ParagraphBuilder.m in Sources */,
 				6F600491186BCED60085B4BD /* XXEventSubscription.m in Sources */,
 				6F0D803A187E6DA800DB5040 /* NewsService.m in Sources */,
@@ -2395,6 +2392,7 @@
 				6F7247C318711C4E003B325F /* SpeechSynthesizer.m in Sources */,
 				6F732729186D430700A1276B /* SensorDisplayView.m in Sources */,
 				6F60053F186BF0010085B4BD /* DeviceCommandUpdateDevicesHandler.m in Sources */,
+				6FD7358A189203220033A09D /* TimerTaskCell.m in Sources */,
 				F29DE70B1886820B00BCE93C /* DeclareViewController.m in Sources */,
 				F2CE67481885232F007FAC8B /* UnitSettingStep3ViewController.m in Sources */,
 				6FA3B2FF186E796000EBC7FD /* XXActionSheet.m in Sources */,

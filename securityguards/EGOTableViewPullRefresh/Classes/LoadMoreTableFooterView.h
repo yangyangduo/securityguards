@@ -28,7 +28,7 @@
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
-#import "EGORefreshTableHeaderView.h"
+#import "OEGORefreshTableHeaderView.h"
 
 @protocol LoadMoreTableFooterDelegate;
 @interface LoadMoreTableFooterView : UIView {

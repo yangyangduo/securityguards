@@ -82,7 +82,7 @@
     pullTableIsLoadingMore = NO;
     
     /* Refresh View */
-    refreshView = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0, -self.bounds.size.height, self.bounds.size.width, self.bounds.size.height)];
+    refreshView = [[OEGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0, -self.bounds.size.height, self.bounds.size.width, self.bounds.size.height)];
     refreshView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin;
     refreshView.delegate = self;
     [self addSubview:refreshView];
@@ -254,13 +254,13 @@
 
 #pragma mark - EGORefreshTableHeaderDelegate
 
-- (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView*)view
+- (void)egoRefreshTableHeaderDidTriggerRefresh:(OEGORefreshTableHeaderView*)view
 {
     pullTableIsRefreshing = YES;
     [pullDelegate pullTableViewDidTriggerRefresh:self];
 }
 
-- (NSDate*)egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableHeaderView*)view {
+- (NSDate*)egoRefreshTableHeaderDataSourceLastUpdated:(OEGORefreshTableHeaderView*)view {
     return self.pullLastRefreshDate;
 }
 

@@ -100,20 +100,20 @@
     }else{
         lblTip.text = NSLocalizedString(@"register_tips1", @"");
         [btnGetVerificationCode setTitle:NSLocalizedString(@"get_verification_code", @"") forState:UIControlStateNormal];
-        btnAgree = [[UIButton alloc] initWithFrame:CGRectMake(60, btnGetVerificationCode.frame.origin.y+btnGetVerificationCode.frame.size.height+5, 44, 44)];
+        btnAgree = [[UIButton alloc] initWithFrame:CGRectMake(48, btnGetVerificationCode.frame.origin.y +btnGetVerificationCode.frame.size.height - 3, 44, 44)];
         [btnAgree setBackgroundImage:[UIImage imageNamed:@"checkbox_unselected.png"] forState:UIControlStateNormal];
         [btnAgree setBackgroundImage:[UIImage imageNamed:@"checkbox_selected.png"] forState:UIControlStateSelected];
         btnAgree.selected = YES;
         [btnAgree addTarget:self action:@selector(btnAgreePressed:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:btnAgree];
         
-        UILabel *lblAgree = [[UILabel alloc] initWithFrame:CGRectMake(104, btnAgree.frame.origin.y, 100, 44)];
+        UILabel *lblAgree = [[UILabel alloc] initWithFrame:CGRectMake(92, btnAgree.frame.origin.y, 100, 44)];
         lblAgree.textColor = [UIColor darkGrayColor];
         lblAgree.font = [UIFont systemFontOfSize:14.f];
         lblAgree.text = NSLocalizedString(@"read_and_agree", @"");
         [self.view addSubview:lblAgree];
         
-        UIButton *btnDeclare = [[UIButton alloc] initWithFrame:CGRectMake(210, btnAgree.frame.origin.y, 60, 44)];
+        UIButton *btnDeclare = [[UIButton alloc] initWithFrame:CGRectMake(200, btnAgree.frame.origin.y, 60, 44)];
         btnDeclare.backgroundColor = [UIColor clearColor];
         [btnDeclare setTitleColor:[UIColor appLightBlue] forState:UIControlStateNormal];
         [btnDeclare setTitleColor:[UIColor appBlue] forState:UIControlStateHighlighted];

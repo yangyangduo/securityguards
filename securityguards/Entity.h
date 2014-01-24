@@ -13,7 +13,7 @@
 
 @interface Entity : NSObject
 
-- (id)initWithJson:(NSDictionary *)json;
+- (instancetype)initWithJson:(NSDictionary *)json;
 - (NSMutableDictionary *)toJson;
 
 @end

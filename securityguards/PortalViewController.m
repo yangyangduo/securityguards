@@ -85,6 +85,7 @@
     
     [[XXEventSubscriptionPublisher defaultPublisher] subscribeFor:subscription];
     
+    // get account command only execute once
     if(!getAccountCommandHasSent) {
         getAccountCommandHasSent = YES;
         [[CoreService defaultService] queueCommand:[CommandFactory commandForType:CommandTypeGetAccount]];

@@ -11,9 +11,10 @@
 @interface UIColor (MoreColor)
 
 + (UIColor *)appBlue;
-+ (UIColor *)appGray;
 + (UIColor *)appLightBlue;
++ (UIColor *)appGray;
 + (UIColor *)appDarkGray;
++ (UIColor *)appDarkDarkGray;
 + (UIColor *)appYellow;
 + (UIColor *)appRed;
 + (UIColor *)appDarkYellow;

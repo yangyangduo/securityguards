@@ -26,6 +26,10 @@
     return [UIColor colorWithRed:245.f / 255.f green:245.f / 255.f blue:245.f / 255.f alpha:1.0f];
 }
 
++ (UIColor *)appDarkDarkGray {
+    return [UIColor colorWithRed:221.f / 255.f green:221.f / 255.f blue:221.f / 255.f alpha:1.0f];
+}
+
 + (UIColor *)appYellow {
     return [UIColor colorWithRed:1.0f green:241.f / 255.f blue:187.f / 255.f alpha:1.0f];
 }

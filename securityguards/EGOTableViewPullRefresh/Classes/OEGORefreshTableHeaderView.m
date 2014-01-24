@@ -24,14 +24,14 @@
 //  THE SOFTWARE.
 //
 
-#import "EGORefreshTableHeaderView.h"
+#import "OEGORefreshTableHeaderView.h"
 
 
-@interface EGORefreshTableHeaderView (Private)
+@interface OEGORefreshTableHeaderView (Private)
 - (void)setState:(EGOPullState)aState;
 @end
 
-@implementation EGORefreshTableHeaderView
+@implementation OEGORefreshTableHeaderView
 
 @synthesize delegate=_delegate;
 

@@ -7,6 +7,7 @@
 //
 
 #import "TimerTaskPlansViewController.h"
+#import "TimerTaskCell.h"
 
 @interface TimerTaskPlansViewController ()
 
@@ -54,21 +55,27 @@
 #pragma mark Table view deleagte
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return taskPlans == nil ? 0 : taskPlans.count;
+    return 3;
+//    return taskPlans == nil ? 0 : taskPlans.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 60.f;
+    return 52.f;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *cellIdentifier = @"cellIdentifier";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    TimerTaskCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if(cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        cell = [[TimerTaskCell alloc] initWithTimerTaskPlan:nil reuseIdentifier:cellIdentifier];
         
     }
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 @end

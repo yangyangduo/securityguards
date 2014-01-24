@@ -27,7 +27,7 @@
 
 #import <UIKit/UIKit.h>
 #import "MessageInterceptor.h"
-#import "EGORefreshTableHeaderView.h"
+#import "OEGORefreshTableHeaderView.h"
 #import "LoadMoreTableFooterView.h"
 
 @class PullTableView;
@@ -40,9 +40,9 @@
 @end
 
 
-@interface PullTableView : UITableView <EGORefreshTableHeaderDelegate, LoadMoreTableFooterDelegate>{
+@interface PullTableView : UITableView <OEGORefreshTableHeaderDelegate, LoadMoreTableFooterDelegate>{
     
-    EGORefreshTableHeaderView *refreshView;
+    OEGORefreshTableHeaderView *refreshView;
     LoadMoreTableFooterView *loadMoreView;
     
     // Since we use the contentInsets to manipulate the view we need to store the the content insets originally specified.
