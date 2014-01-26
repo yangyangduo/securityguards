@@ -42,7 +42,7 @@
     lblLine1Content.text = NSLocalizedString(@"step4_line1_linking", @"");
     lblLine1Content.textColor = [UIColor darkGrayColor];
     lblLine1Content.backgroundColor = [UIColor clearColor];
-    lblLine1Content.font = [UIFont systemFontOfSize:12.f];
+    lblLine1Content.font = [UIFont systemFontOfSize:13.f];
     [self.view addSubview:lblLine1Content];
     
     UILabel *lblLine2 = [TipsLabel labelWithPoint:CGPointMake(60, lblLine1.frame.origin.y+lblLine1.frame.size.height)];
