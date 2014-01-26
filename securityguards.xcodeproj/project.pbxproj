@@ -29,6 +29,8 @@
 		6F0D803A187E6DA800DB5040 /* NewsService.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0D8039187E6DA800DB5040 /* NewsService.m */; };
 		6F0E244B1873091600F143F9 /* UnitFinder.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0E244A1873091600F143F9 /* UnitFinder.m */; };
 		6F0E244E187309F400F143F9 /* UnitFinderResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0E244D187309F400F143F9 /* UnitFinderResult.m */; };
+		6F183F5F1893F789000F1974 /* ChineseUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F183F5E1893F789000F1974 /* ChineseUtils.m */; };
+		6F183F621894A55F000F1974 /* TimingTaskExecutionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F183F611894A55F000F1974 /* TimingTaskExecutionItem.m */; };
 		6F203361187D035800BACFA5 /* PasswordTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F203360187D035800BACFA5 /* PasswordTextViewController.m */; };
 		6F203363187D1C2500BACFA5 /* bubble_mine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F203362187D1C2500BACFA5 /* bubble_mine@2x.png */; };
 		6F203365187D1C7F00BACFA5 /* icon_header@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F203364187D1C7F00BACFA5 /* icon_header@2x.png */; };
@@ -48,9 +50,9 @@
 		6F2AF609188E11FB005C1EAF /* ios5_7settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F2AF608188E11FB005C1EAF /* ios5_7settings.png */; };
 		6F348507187519BB00EBB635 /* DeviceCommandNameEventFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F348506187519BB00EBB635 /* DeviceCommandNameEventFilter.m */; };
 		6F34850A1875264D00EBB635 /* UnitRenameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F3485091875264D00EBB635 /* UnitRenameViewController.m */; };
-		6F41D2B01890DFAE0063E1BB /* TimerTaskPlansViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F41D2AF1890DFAE0063E1BB /* TimerTaskPlansViewController.m */; };
-		6F41D2B31890DFDC0063E1BB /* TimerTaskPlanEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F41D2B21890DFDC0063E1BB /* TimerTaskPlanEditViewController.m */; };
-		6F41D2B61890E0070063E1BB /* TimerTaskDatePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F41D2B51890E0070063E1BB /* TimerTaskDatePickerViewController.m */; };
+		6F41D2B01890DFAE0063E1BB /* TimingTasksPlanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F41D2AF1890DFAE0063E1BB /* TimingTasksPlanViewController.m */; };
+		6F41D2B31890DFDC0063E1BB /* TimingTaskPlanEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F41D2B21890DFDC0063E1BB /* TimingTaskPlanEditViewController.m */; };
+		6F41D2B61890E0070063E1BB /* TimingTaskScheduleDateEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F41D2B51890E0070063E1BB /* TimingTaskScheduleDateEditViewController.m */; };
 		6F41D2B81890E0860063E1BB /* icon_timer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F41D2B71890E0860063E1BB /* icon_timer@2x.png */; };
 		6F41D2BB1890F0F70063E1BB /* Sensor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F41D2BA1890F0F70063E1BB /* Sensor.m */; };
 		6F41D2BE1890F1A40063E1BB /* SensorData.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F41D2BD1890F1A40063E1BB /* SensorData.m */; };
@@ -238,8 +240,8 @@
 		6FA69118187FD54F005D1415 /* test@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FA69117187FD54F005D1415 /* test@2x.png */; };
 		6FCCE92F187E551B007B42D2 /* News.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FCCE92E187E551B007B42D2 /* News.m */; };
 		6FCEBCFB187C2749000CB911 /* AccountSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FCEBCFA187C2749000CB911 /* AccountSettingsViewController.m */; };
-		6FD7358A189203220033A09D /* TimerTaskCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FD73589189203220033A09D /* TimerTaskCell.m */; };
-		6FD7358D18920BD40033A09D /* TimerTaskPlan.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FD7358C18920BD40033A09D /* TimerTaskPlan.m */; };
+		6FD7358A189203220033A09D /* TimingTasksCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FD73589189203220033A09D /* TimingTasksCell.m */; };
+		6FD7358D18920BD40033A09D /* TimingTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FD7358C18920BD40033A09D /* TimingTask.m */; };
 		6FDA9AE6188FF4D5007D63DE /* SensorStateChangedEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FDA9AE5188FF4D5007D63DE /* SensorStateChangedEvent.m */; };
 		6FE0484F1883968500C886E1 /* btn_nav@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FE0484E1883968500C886E1 /* btn_nav@2x.png */; };
 		6FEC0FDB186C5B2B00CB0D70 /* bg_topbar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FEC0FDA186C5B2B00CB0D70 /* bg_topbar@2x.png */; };
@@ -363,6 +365,10 @@
 		6F0E244A1873091600F143F9 /* UnitFinder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnitFinder.m; sourceTree = "<group>"; };
 		6F0E244C187309F400F143F9 /* UnitFinderResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitFinderResult.h; sourceTree = "<group>"; };
 		6F0E244D187309F400F143F9 /* UnitFinderResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnitFinderResult.m; sourceTree = "<group>"; };
+		6F183F5D1893F789000F1974 /* ChineseUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChineseUtils.h; sourceTree = "<group>"; };
+		6F183F5E1893F789000F1974 /* ChineseUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChineseUtils.m; sourceTree = "<group>"; };
+		6F183F601894A55F000F1974 /* TimingTaskExecutionItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimingTaskExecutionItem.h; sourceTree = "<group>"; };
+		6F183F611894A55F000F1974 /* TimingTaskExecutionItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimingTaskExecutionItem.m; sourceTree = "<group>"; };
 		6F20335F187D035800BACFA5 /* PasswordTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PasswordTextViewController.h; sourceTree = "<group>"; };
 		6F203360187D035800BACFA5 /* PasswordTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PasswordTextViewController.m; sourceTree = "<group>"; };
 		6F203362187D1C2500BACFA5 /* bubble_mine@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bubble_mine@2x.png"; sourceTree = "<group>"; };
@@ -389,12 +395,12 @@
 		6F348506187519BB00EBB635 /* DeviceCommandNameEventFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceCommandNameEventFilter.m; sourceTree = "<group>"; };
 		6F3485081875264D00EBB635 /* UnitRenameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitRenameViewController.h; sourceTree = "<group>"; };
 		6F3485091875264D00EBB635 /* UnitRenameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnitRenameViewController.m; sourceTree = "<group>"; };
-		6F41D2AE1890DFAE0063E1BB /* TimerTaskPlansViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimerTaskPlansViewController.h; sourceTree = "<group>"; };
-		6F41D2AF1890DFAE0063E1BB /* TimerTaskPlansViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimerTaskPlansViewController.m; sourceTree = "<group>"; };
-		6F41D2B11890DFDC0063E1BB /* TimerTaskPlanEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimerTaskPlanEditViewController.h; sourceTree = "<group>"; };
-		6F41D2B21890DFDC0063E1BB /* TimerTaskPlanEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimerTaskPlanEditViewController.m; sourceTree = "<group>"; };
-		6F41D2B41890E0070063E1BB /* TimerTaskDatePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimerTaskDatePickerViewController.h; sourceTree = "<group>"; };
-		6F41D2B51890E0070063E1BB /* TimerTaskDatePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimerTaskDatePickerViewController.m; sourceTree = "<group>"; };
+		6F41D2AE1890DFAE0063E1BB /* TimingTasksPlanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimingTasksPlanViewController.h; sourceTree = "<group>"; };
+		6F41D2AF1890DFAE0063E1BB /* TimingTasksPlanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimingTasksPlanViewController.m; sourceTree = "<group>"; };
+		6F41D2B11890DFDC0063E1BB /* TimingTaskPlanEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimingTaskPlanEditViewController.h; sourceTree = "<group>"; };
+		6F41D2B21890DFDC0063E1BB /* TimingTaskPlanEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimingTaskPlanEditViewController.m; sourceTree = "<group>"; };
+		6F41D2B41890E0070063E1BB /* TimingTaskScheduleDateEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimingTaskScheduleDateEditViewController.h; sourceTree = "<group>"; };
+		6F41D2B51890E0070063E1BB /* TimingTaskScheduleDateEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimingTaskScheduleDateEditViewController.m; sourceTree = "<group>"; };
 		6F41D2B71890E0860063E1BB /* icon_timer@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_timer@2x.png"; sourceTree = "<group>"; };
 		6F41D2B91890F0F70063E1BB /* Sensor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sensor.h; sourceTree = "<group>"; };
 		6F41D2BA1890F0F70063E1BB /* Sensor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sensor.m; sourceTree = "<group>"; };
@@ -714,10 +720,10 @@
 		6FCCE92E187E551B007B42D2 /* News.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = News.m; sourceTree = "<group>"; };
 		6FCEBCF9187C2749000CB911 /* AccountSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountSettingsViewController.h; sourceTree = "<group>"; };
 		6FCEBCFA187C2749000CB911 /* AccountSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountSettingsViewController.m; sourceTree = "<group>"; };
-		6FD73588189203220033A09D /* TimerTaskCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimerTaskCell.h; sourceTree = "<group>"; };
-		6FD73589189203220033A09D /* TimerTaskCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimerTaskCell.m; sourceTree = "<group>"; };
-		6FD7358B18920BD40033A09D /* TimerTaskPlan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimerTaskPlan.h; sourceTree = "<group>"; };
-		6FD7358C18920BD40033A09D /* TimerTaskPlan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimerTaskPlan.m; sourceTree = "<group>"; };
+		6FD73588189203220033A09D /* TimingTasksCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimingTasksCell.h; sourceTree = "<group>"; };
+		6FD73589189203220033A09D /* TimingTasksCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimingTasksCell.m; sourceTree = "<group>"; };
+		6FD7358B18920BD40033A09D /* TimingTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimingTask.h; sourceTree = "<group>"; };
+		6FD7358C18920BD40033A09D /* TimingTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimingTask.m; sourceTree = "<group>"; };
 		6FDA9AE4188FF4D5007D63DE /* SensorStateChangedEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SensorStateChangedEvent.h; sourceTree = "<group>"; };
 		6FDA9AE5188FF4D5007D63DE /* SensorStateChangedEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SensorStateChangedEvent.m; sourceTree = "<group>"; };
 		6FE0484E1883968500C886E1 /* btn_nav@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_nav@2x.png"; sourceTree = "<group>"; };
@@ -915,12 +921,12 @@
 		6F41D2AD1890DF7D0063E1BB /* timer_task */ = {
 			isa = PBXGroup;
 			children = (
-				6F41D2AE1890DFAE0063E1BB /* TimerTaskPlansViewController.h */,
-				6F41D2AF1890DFAE0063E1BB /* TimerTaskPlansViewController.m */,
-				6F41D2B11890DFDC0063E1BB /* TimerTaskPlanEditViewController.h */,
-				6F41D2B21890DFDC0063E1BB /* TimerTaskPlanEditViewController.m */,
-				6F41D2B41890E0070063E1BB /* TimerTaskDatePickerViewController.h */,
-				6F41D2B51890E0070063E1BB /* TimerTaskDatePickerViewController.m */,
+				6F41D2AE1890DFAE0063E1BB /* TimingTasksPlanViewController.h */,
+				6F41D2AF1890DFAE0063E1BB /* TimingTasksPlanViewController.m */,
+				6F41D2B11890DFDC0063E1BB /* TimingTaskPlanEditViewController.h */,
+				6F41D2B21890DFDC0063E1BB /* TimingTaskPlanEditViewController.m */,
+				6F41D2B41890E0070063E1BB /* TimingTaskScheduleDateEditViewController.h */,
+				6F41D2B51890E0070063E1BB /* TimingTaskScheduleDateEditViewController.m */,
 			);
 			name = timer_task;
 			sourceTree = "<group>";
@@ -1087,6 +1093,8 @@
 				6F6005A6186C029F0085B4BD /* Shared.m */,
 				6F600593186BFF7F0085B4BD /* GlobalSettings.h */,
 				6F600594186BFF7F0085B4BD /* GlobalSettings.m */,
+				6F183F5D1893F789000F1974 /* ChineseUtils.h */,
+				6F183F5E1893F789000F1974 /* ChineseUtils.m */,
 			);
 			name = commons;
 			sourceTree = "<group>";
@@ -1457,8 +1465,10 @@
 				6F41D2BA1890F0F70063E1BB /* Sensor.m */,
 				6F41D2BC1890F1A40063E1BB /* SensorData.h */,
 				6F41D2BD1890F1A40063E1BB /* SensorData.m */,
-				6FD7358B18920BD40033A09D /* TimerTaskPlan.h */,
-				6FD7358C18920BD40033A09D /* TimerTaskPlan.m */,
+				6FD7358B18920BD40033A09D /* TimingTask.h */,
+				6FD7358C18920BD40033A09D /* TimingTask.m */,
+				6F183F601894A55F000F1974 /* TimingTaskExecutionItem.h */,
+				6F183F611894A55F000F1974 /* TimingTaskExecutionItem.m */,
 			);
 			name = entities;
 			sourceTree = "<group>";
@@ -1885,8 +1895,8 @@
 				6F20336A187D33BD00BACFA5 /* NewsCell.m */,
 				F207BE34187E7D1300993A6F /* AccountManageCell.h */,
 				F207BE35187E7D1300993A6F /* AccountManageCell.m */,
-				6FD73588189203220033A09D /* TimerTaskCell.h */,
-				6FD73589189203220033A09D /* TimerTaskCell.m */,
+				6FD73588189203220033A09D /* TimingTasksCell.h */,
+				6FD73589189203220033A09D /* TimingTasksCell.m */,
 			);
 			name = cells;
 			sourceTree = "<group>";
@@ -2319,7 +2329,7 @@
 				6F7CDBB41872A2100036F912 /* NotificationsFileManager.m in Sources */,
 				6F6004EE186BDB480085B4BD /* ClientSocket.m in Sources */,
 				6FEC0FDF186C5DD700CB0D70 /* DrawerViewController.m in Sources */,
-				6F41D2B01890DFAE0063E1BB /* TimerTaskPlansViewController.m in Sources */,
+				6F41D2B01890DFAE0063E1BB /* TimingTasksPlanViewController.m in Sources */,
 				6F6004BA186BCFF40085B4BD /* NSMutableDictionary+Extension.m in Sources */,
 				6F9C8AD01887BBE500289AEA /* MyOperation.m in Sources */,
 				6F6004AC186BCFBF0085B4BD /* XXButton.m in Sources */,
@@ -2346,6 +2356,7 @@
 				F2125FA8188907D5002A7F49 /* UnitSettingStep5ViewController.m in Sources */,
 				6F6004A3186BCEF10085B4BD /* XXEventNameFilter.m in Sources */,
 				6F600557186BF0710085B4BD /* CameraPicPath.m in Sources */,
+				6F183F5F1893F789000F1974 /* ChineseUtils.m in Sources */,
 				F20D6AC718729A8800FE6B6D /* NotificationDetailsViewController.m in Sources */,
 				F215125D187105380039CC8A /* ForgetPasswordViewController.m in Sources */,
 				6F60053D186BF0010085B4BD /* DeviceCommandGetUnitsHandler.m in Sources */,
@@ -2356,7 +2367,7 @@
 				6F6004A0186BCEF10085B4BD /* XXEventClassFilter.m in Sources */,
 				F29DE7051886662100BCE93C /* TipsLabel.m in Sources */,
 				6F600493186BCED60085B4BD /* XXStringUtils.m in Sources */,
-				6FD7358D18920BD40033A09D /* TimerTaskPlan.m in Sources */,
+				6FD7358D18920BD40033A09D /* TimingTask.m in Sources */,
 				6F8F57BD18710D940033228F /* ParagraphBuilder.m in Sources */,
 				6F600491186BCED60085B4BD /* XXEventSubscription.m in Sources */,
 				6F0D803A187E6DA800DB5040 /* NewsService.m in Sources */,
@@ -2376,6 +2387,7 @@
 				6F6004FE186BE8C80085B4BD /* CommandFactory.m in Sources */,
 				6F60051E186BE9890085B4BD /* DeviceCommand.m in Sources */,
 				6F348507187519BB00EBB635 /* DeviceCommandNameEventFilter.m in Sources */,
+				6F183F621894A55F000F1974 /* TimingTaskExecutionItem.m in Sources */,
 				6F6004CB186BD0A50085B4BD /* XXDrawerViewController.m in Sources */,
 				6F600525186BE9890085B4BD /* DeviceCommandUpdateDevice.m in Sources */,
 				6F600595186BFF7F0085B4BD /* GlobalSettings.m in Sources */,
@@ -2392,7 +2404,7 @@
 				6F7247C318711C4E003B325F /* SpeechSynthesizer.m in Sources */,
 				6F732729186D430700A1276B /* SensorDisplayView.m in Sources */,
 				6F60053F186BF0010085B4BD /* DeviceCommandUpdateDevicesHandler.m in Sources */,
-				6FD7358A189203220033A09D /* TimerTaskCell.m in Sources */,
+				6FD7358A189203220033A09D /* TimingTasksCell.m in Sources */,
 				F29DE70B1886820B00BCE93C /* DeclareViewController.m in Sources */,
 				F2CE67481885232F007FAC8B /* UnitSettingStep3ViewController.m in Sources */,
 				6FA3B2FF186E796000EBC7FD /* XXActionSheet.m in Sources */,
@@ -2414,12 +2426,12 @@
 				6F60053A186BF0010085B4BD /* DeviceCommandGetAccountHandler.m in Sources */,
 				6F60057B186BF5420085B4BD /* ServiceBase.m in Sources */,
 				6F6005A0186C015B0085B4BD /* AccountService.m in Sources */,
-				6F41D2B61890E0070063E1BB /* TimerTaskDatePickerViewController.m in Sources */,
+				6F41D2B61890E0070063E1BB /* TimingTaskScheduleDateEditViewController.m in Sources */,
 				6F6005A3186C015B0085B4BD /* SmsService.m in Sources */,
 				F2F3E1B6187A5598006A9447 /* SystemService.m in Sources */,
 				6FEC0FE7186C663300CB0D70 /* NewsViewController.m in Sources */,
 				6F6004A1186BCEF10085B4BD /* XXEventFilter.m in Sources */,
-				6F41D2B31890DFDC0063E1BB /* TimerTaskPlanEditViewController.m in Sources */,
+				6F41D2B31890DFDC0063E1BB /* TimingTaskPlanEditViewController.m in Sources */,
 				6F732747186D7BD200A1276B /* SensorsDisplayPanel.m in Sources */,
 				6F7247C218711C4E003B325F /* SpeechRecognitionUtil.m in Sources */,
 				F2B6A642187515FE0020809D /* PlayCameraPicViewController.m in Sources */,

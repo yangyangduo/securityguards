@@ -11,9 +11,10 @@
 #import "UserManagementViewController.h"
 #import "ContactUsViewController.h"
 #import "UnitSelectionDrawerView.h"
-#import "TimerTaskPlansViewController.h"
+#import "TimingTasksPlanViewController.h"
 #import "NotificationsViewController.h"
 #import "UserLogoutEvent.h"
+#import "UnitManager.h"
 
 @interface RootViewController ()
 
@@ -104,7 +105,7 @@
     } else if([@"notificationsItem" isEqualToString:item.identifier]) {
         centerViewController = [[NotificationsViewController alloc] init];
     } else if([@"timerTaskItem" isEqualToString:item.identifier]) {
-        centerViewController = [[TimerTaskPlansViewController alloc] init];
+        centerViewController = [[TimingTasksPlanViewController alloc] initWithUnit:[UnitManager defaultManager].currentUnit];
     } else if([@"accountManagerItem" isEqualToString:item.identifier]) {
         if(userManagementViewController == nil) {
             userManagementViewController = [[UserManagementViewController alloc] init];

@@ -1,15 +1,15 @@
 //
-//  TimerTaskCell.m
+//  TimingTasksCell.m
 //  securityguards
 //
 //  Created by Zhao yang on 1/24/14.
 //  Copyright (c) 2014 hentre. All rights reserved.
 //
 
-#import "TimerTaskCell.h"
+#import "TimingTasksCell.h"
 #import "UIColor+MoreColor.h"
 
-@implementation TimerTaskCell {
+@implementation TimingTasksCell {
     UILabel *lblTaskPlanName;
     UILabel *lblTaskPlanSceduleTime;
     UILabel *lblTaskPlanSceduleDate;
@@ -18,7 +18,7 @@
     UISwitch *swhTaskPlanEnable;
 }
 
-@synthesize taskPlan = _taskPlan_;
+@synthesize timingTask = _timingTask_;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -29,11 +29,11 @@
     return self;
 }
 
-- (instancetype)initWithTimerTaskPlan:(TimerTaskPlan *)timerTaskPlan reuseIdentifier:(NSString *)reuseIdentifier {
+- (instancetype)initWithTimerTaskPlan:(TimingTask *)timingTask reuseIdentifier:(NSString *)reuseIdentifier {
     self = [self initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
     if(self) {
         [self initUI];
-        self.taskPlan = timerTaskPlan;
+        self.timingTask = timingTask;
     }
     return self;
 }
@@ -92,9 +92,9 @@
     // Configure the view for the selected state
 }
 
-- (void)setTaskPlan:(TimerTaskPlan *)taskPlan {
-    _taskPlan_ = taskPlan;
-    if(_taskPlan_ == nil) {
+- (void)setTasksPlan:(TimingTask *)timingTask {
+    _timingTask_ = timingTask;
+    if(_timingTask_ == nil) {
         return;
     } else {
         
