@@ -12,9 +12,7 @@
 #import "SMNetworkTool.h"
 #import "Shared.h"
 #define TOPBAR_HEIGHT self.topbarView.frame.size.height
-#if TARGET_OS_IPHONE
-    #define SIMULATOR 0
-#endif
+#define isSimulator (NSNotFound != [[[UIDevice currentDevice] model] rangeOfString:@"Simulator"].location)
 @interface UnitSettingStep1ViewController ()
 
 @end
@@ -90,14 +88,14 @@
 }
 
 - (void)btnNextStepPressed:(UIButton *)sender{
-//#ifdef SIMULATOR
-//    [Shared shared].currentWIFIName = [SMNetworkTool ssidForCurrentWifi];
-//    if ([Shared shared].currentWIFIName !=nil && ![[Shared shared].currentWIFIName isEqualToString:@""]) {
-//        [self.navigationController pushViewController:[[UnitSettingStep2ViewController alloc] init] animated:YES];
-//    }
-//#else
-    [self.navigationController pushViewController:[[UnitSettingStep2ViewController alloc] init] animated:YES];
-//#endif
+    if(!isSimulator){
+        [Shared shared].currentWIFIName = [SMNetworkTool ssidForCurrentWifi];
+        if ([Shared shared].currentWIFIName !=nil && ![[Shared shared].currentWIFIName isEqualToString:@""]) {
+            [self.navigationController pushViewController:[[UnitSettingStep2ViewController alloc] init] animated:YES];
+        }
+    }else{
+       [self.navigationController pushViewController:[[UnitSettingStep2ViewController alloc] init] animated:YES];
+    }
 }
 
 - (void)didReceiveMemoryWarning
