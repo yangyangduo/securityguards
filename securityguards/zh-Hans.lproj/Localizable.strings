@@ -138,6 +138,8 @@
 "timing_tasks_plan_default_name"      =      "定时执行";
 "timing_tasks_plan_name_not_blank"    =      "名称不能为空";
 "no_unit_found"                       =      "当前没有主控";
+"select_at_leat_one"                  =      "请至少选择一项";
+"can_not_select_multi"                =      "此模式不能多选";
 
 
 /****************	Camera View Strings	****************/

@@ -130,23 +130,75 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     if(indexPath.section == 0) {
-        _isScheduleOnce_ = !_isScheduleOnce_;
-        cell.accessoryType = _isScheduleOnce_ ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+        if(_isScheduleOnce_ || [self scheduleDatesIsOnlyOne]) {
+             _isScheduleOnce_ = !_isScheduleOnce_;
+            cell.accessoryType = _isScheduleOnce_ ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+        } else {
+            TaskScheduleDate firstScheduleDate = 0;
+            [self scheduleDatesIsOnlyOne:&firstScheduleDate];
+            _scheduleDates_ = firstScheduleDate;
+            _isScheduleOnce_ = !_isScheduleOnce_;
+            [tblScheduleDates reloadData];
+            return;
+        }
     } else {
         int bitPosition = indexPath.row;
         int bitConfigItem = 1 << bitPosition;
         BOOL configured = (_scheduleDates_ & bitConfigItem) == bitConfigItem;
-        if(configured) {
-            // remove this config item from bit configs
-            _scheduleDates_ = ~(~_scheduleDates_ | bitConfigItem);
-            cell.accessoryType = UITableViewCellAccessoryNone;
+        
+        // multi selected must selected at leat one
+        if(!_isScheduleOnce_
+            && [self scheduleDatesIsOnlyOne]
+            && configured) {
+            [tableView deselectRowAtIndexPath:indexPath animated:YES];
+            return;
+        }
+        
+        if(_isScheduleOnce_) {
+            if(!configured) {
+                _scheduleDates_ = bitConfigItem;
+                [tblScheduleDates reloadData];
+                return;
+            }
         } else {
-            // add this config item from bit configs
-            _scheduleDates_ |= bitConfigItem;
-            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            if(configured) {
+                // remove this config item from bit configs
+                _scheduleDates_ = ~(~_scheduleDates_ | bitConfigItem);
+                cell.accessoryType = UITableViewCellAccessoryNone;
+            } else {
+                // add this config item from bit configs
+                _scheduleDates_ |= bitConfigItem;
+                cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            }
         }
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+- (BOOL)scheduleDatesIsOnlyOne {
+    for(int i=0; i<7; i++) {
+        if(_scheduleDates_ == (1 << i)) {
+            return YES;
+        }
+    }
+    return NO;
+}
+
+- (BOOL)scheduleDatesIsOnlyOne:(TaskScheduleDate *)firstScheduleDate {
+    BOOL firstScheduleDateWasFound = NO;
+    for(int i=0; i<7; i++) {
+        if(_scheduleDates_ == (1 << i)) {
+            *firstScheduleDate = (1 << i);
+            return YES;
+        }
+        if(!firstScheduleDateWasFound) {
+            if((_scheduleDates_ & (1 << i)) == (1 << i)) {
+                *firstScheduleDate = (1 << i);
+                firstScheduleDateWasFound = YES;
+            }
+        }
+    }
+    return NO;
 }
 
 @end

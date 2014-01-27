@@ -22,7 +22,7 @@ typedef enum {
 
 @implementation TimingTaskPlanEditViewController {
     UITableView *tblTimerTaskPlans;
-    
+    UIDatePicker *datePicker;
     ControllerMode _mode_;
 }
 
@@ -82,9 +82,9 @@ typedef enum {
     [btnRight addTarget:self action:@selector(saveTimingTasksPlan:) forControlEvents:UIControlEventTouchUpInside];
     [self.topbarView addSubview:btnRight];
     
-    UIDatePicker *datePicker = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, self.topbarView.bounds.size.height, self.view.bounds.size.width, 120)];
+    datePicker = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, self.topbarView.bounds.size.height, self.view.bounds.size.width, 120)];
     datePicker.datePickerMode = UIDatePickerModeTime;
-    datePicker.minuteInterval = 10;
+    datePicker.minuteInterval = 5;
     [self.view addSubview:datePicker];
     
     tblTimerTaskPlans = [[UITableView alloc] initWithFrame:CGRectMake(0, datePicker.frame.origin.y + datePicker.frame.size.height, self.view.bounds.size.width, self.view.bounds.size.height - self.topbarView.bounds.size.height - datePicker.bounds.size.height) style:UITableViewStyleGrouped];

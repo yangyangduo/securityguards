@@ -10,15 +10,6 @@
 #import "ChineseUtils.h"
 #import "XXActionSheet.h"
 
-static NSArray * shortWeekStrings() {
-    static NSArray *shotWeekStrings = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        shotWeekStrings = [NSArray arrayWithObjects:@"mon", @"tue", @"wed", @"thu", @"fri", @"sat", @"sun", nil];
-    });
-    return shotWeekStrings;
-}
-
 @implementation TimingTask {
 
 }
@@ -26,6 +17,7 @@ static NSArray * shortWeekStrings() {
 @synthesize identifier;
 @synthesize name;
 @synthesize enable;
+@synthesize isOwner;
 @synthesize unitIdentifier;
 @synthesize scheduleDate;
 @synthesize scheduleTimeHour;
@@ -55,13 +47,12 @@ static NSArray * shortWeekStrings() {
         // set schedule dates
         NSDictionary *_schedule_dates_json_ = [json dictionaryForKey:@"schedule"];
         if(_schedule_dates_json_ != nil) {
-            for(int i=0; i<shortWeekStrings().count; i++) {
-                NSString *shotWeekString = [shortWeekStrings() objectAtIndex:i];
+            for(int i=1; i<=7; i++) {
+                NSString *shotWeekString = [NSString stringWithFormat:@"w%d", i];
                 if([_schedule_dates_json_ boolForKey:shotWeekString]) {
-                    self.scheduleDate |= (1 << i);
+                    self.scheduleDate |= (1 << (i - 1));
                 }
             }
-            
             self.scheduleTimeHour = [_schedule_dates_json_ intForKey:@"hour"];
             self.scheduleTimeMinute = [_schedule_dates_json_ intForKey:@"minute"];
         }
@@ -104,19 +95,15 @@ static NSArray * shortWeekStrings() {
     _unit_ = unit;
     if(self && _unit_) {
         // configure default value for this plan
-        
         NSDate *now = [NSDate date];
-
         NSDateComponents *dc = [[NSCalendar currentCalendar] components:
                                 (NSCalendarUnitWeekday | NSCalendarUnitHour | NSCalendarUnitMinute) fromDate:now];
-
-        NSLog(@"is -------  %d   %d   %d", dc.weekday, dc.hour, dc.minute);
         
         self.unitIdentifier = _unit_.identifier;
         self.name = NSLocalizedString(@"timing_tasks_plan_default_name", @"");
         self.enable = YES;
         self.scheduleMode = TaskScheduleModeNoRepeat;
-        self.scheduleDate = TaskScheduleDateMonday | TaskScheduleDateTuesday;
+        self.scheduleDate = (1 << (dc.weekday - 2));
         self.scheduleTimeHour = dc.hour;
         self.scheduleTimeMinute = dc.minute;
         
@@ -136,9 +123,7 @@ static NSArray * shortWeekStrings() {
 
 - (NSMutableDictionary *)toJson {
     NSMutableDictionary *json = [super toJson];
-    
-    
-    
+
     
     
     return json;
