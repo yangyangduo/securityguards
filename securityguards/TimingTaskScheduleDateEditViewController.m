@@ -15,16 +15,24 @@
 
 @implementation TimingTaskScheduleDateEditViewController {
     UITableView *tblScheduleDates;
+    
+    BOOL _isScheduleOnce_;
+    int _scheduleDates_;
 }
 
-@synthesize bitScheduleDates = _bitScheduleDates_;
-@synthesize isScheduleOnce = _isScheduleOnce_;
+@synthesize timingTask = _timingTask_;
 
-- (instancetype)initWithBitScheduleDate:(int)bitScheduleDates isScheduleOnce:(BOOL)isScheduleOnce {
+- (instancetype)initWithTimingTasks:(TimingTask *)timingTask {
     self = [super init];
     if(self) {
-        _isScheduleOnce_ = isScheduleOnce;
-        _bitScheduleDates_ = bitScheduleDates;
+        _timingTask_ = timingTask;
+        if(_timingTask_ != nil) {
+            _isScheduleOnce_ = _timingTask_.scheduleMode == TaskScheduleModeNoRepeat;
+            _scheduleDates_ = _timingTask_.scheduleDate;
+        } else {
+            _isScheduleOnce_ = YES;
+            _scheduleDates_ = 0;
+        }
     }
     return self;
 }
@@ -57,12 +65,27 @@
 - (void)initUI {
     [super initUI];
     
+    UIButton *btnRight = [[UIButton alloc] initWithFrame:CGRectMake(([UIScreen mainScreen].bounds.size.width - 88 / 2), [UIDevice systemVersionIsMoreThanOrEuqal7] ? 20 : 0, 88 / 2, 88 / 2)];
+    btnRight.titleLabel.font = [UIFont systemFontOfSize:14.f];
+    [btnRight setBackgroundImage:[UIImage imageNamed:@"icon_save"] forState:UIControlStateNormal];
+    [btnRight setTitle:[NSString stringWithFormat:@"  %@", NSLocalizedString(@"determine", @"")] forState:UIControlStateNormal];
+    [btnRight addTarget:self action:@selector(save:) forControlEvents:UIControlEventTouchUpInside];
+    [self.topbarView addSubview:btnRight];
+    
     tblScheduleDates = [[UITableView alloc] initWithFrame:CGRectMake(0, self.topbarView.bounds.size.height, self.view.bounds.size.width, self.view.bounds.size.height - self.topbarView.bounds.size.height) style:UITableViewStyleGrouped];
     
     tblScheduleDates.delegate = self;
     tblScheduleDates.dataSource = self;
     
     [self.view addSubview:tblScheduleDates];
+}
+
+- (void)save:(id)sender {
+    if(self.timingTask != nil) {
+        self.timingTask.scheduleDate = _scheduleDates_;
+        self.timingTask.scheduleMode = _isScheduleOnce_ ? TaskScheduleModeNoRepeat : TaskScheduleModeRepeat;
+    }
+    [self popupViewController];
 }
 
 #pragma mark -
@@ -94,10 +117,10 @@
     }
     
     if(indexPath.section == 0) {
-        cell.accessoryType = self.isScheduleOnce ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+        cell.accessoryType = _isScheduleOnce_ ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
     } else {
         int bitPosition = indexPath.row;
-        BOOL configured = (self.bitScheduleDates & (1 << bitPosition)) == 1 << bitPosition;
+        BOOL configured = (_scheduleDates_ & (1 << bitPosition)) == 1 << bitPosition;
         cell.accessoryType = configured ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
     }
     
@@ -107,19 +130,19 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     if(indexPath.section == 0) {
-        self.isScheduleOnce = !self.isScheduleOnce;
-        cell.accessoryType = self.isScheduleOnce ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+        _isScheduleOnce_ = !_isScheduleOnce_;
+        cell.accessoryType = _isScheduleOnce_ ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
     } else {
         int bitPosition = indexPath.row;
         int bitConfigItem = 1 << bitPosition;
-        BOOL configured = (self.bitScheduleDates & bitConfigItem) == bitConfigItem;
+        BOOL configured = (_scheduleDates_ & bitConfigItem) == bitConfigItem;
         if(configured) {
             // remove this config item from bit configs
-            self.bitScheduleDates = ~(~self.bitScheduleDates | bitConfigItem);
+            _scheduleDates_ = ~(~_scheduleDates_ | bitConfigItem);
             cell.accessoryType = UITableViewCellAccessoryNone;
         } else {
             // add this config item from bit configs
-            self.bitScheduleDates |= bitConfigItem;
+            _scheduleDates_ |= bitConfigItem;
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
         }
     }

@@ -204,7 +204,7 @@
     if([actionSheet isKindOfClass:[XXActionSheet class]]) {
         XXActionSheet *aSheet = (XXActionSheet *)actionSheet;
         NSArray *operations = [aSheet parameterForKey:@"deviceOperations"];
-        if(buttonIndex != operations.count) {
+        if(buttonIndex < operations.count) {
             DeviceOperationItem *item = [operations objectAtIndex:buttonIndex];
             NSLog(@"[%@] - [%@]", item.displayName, item.commandString);
 return;

@@ -7,7 +7,18 @@
 //
 
 #import "Entity.h"
+#import "Device.h"
+
+#define DEFAULT_STATUS -1000
 
 @interface TimingTaskExecutionItem : Entity
+
+@property (nonatomic, strong) NSString *deviceIdentifier;
+@property (nonatomic, strong) NSString *executionCommandString;
+@property (nonatomic) int status;
+@property (nonatomic, strong) Device *device;
+@property (nonatomic, readonly, getter = isAvailableItem) BOOL isAvailable;
+
+- (void)updateWithJson:(NSDictionary *)json;
 
 @end

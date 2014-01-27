@@ -7,6 +7,7 @@
 //
 
 #import "NavigationViewController.h"
+#import "TimingTask.h"
 
 @interface TimingTaskScheduleDateEditViewController : NavigationViewController<UITableViewDelegate, UITableViewDataSource>
 
@@ -22,9 +23,8 @@
  1000 0000
  
  */
-@property(nonatomic) int bitScheduleDates;
-@property(nonatomic) BOOL isScheduleOnce;
+@property(nonatomic, strong) TimingTask *timingTask;
 
-- (instancetype)initWithBitScheduleDate:(int)bitScheduleDates isScheduleOnce:(BOOL)isScheduleOnce;
+- (instancetype)initWithTimingTasks:(TimingTask *)timingTask;
 
 @end

@@ -34,12 +34,10 @@
 - (void)notifyWithEvent:(XXEvent *)event {
     if(_filter_ != nil && [_filter_ apply:event]) {
         if(self.subscriber != nil) {
-            if(self.notifyMustInMainThread && ![NSThread currentThread].isMainThread) {
-                dispatch_sync(dispatch_get_main_queue(), ^{
+            if(self.notifyMustInMainThread) {
+                dispatch_async(dispatch_get_main_queue(), ^{
                     [self.subscriber xxEventPublisherNotifyWithEvent:event];
                 });
-            } else {
-                [self.subscriber xxEventPublisherNotifyWithEvent:event];
             }
         }
     }

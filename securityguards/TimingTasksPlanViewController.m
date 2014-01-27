@@ -9,6 +9,7 @@
 #import "TimingTasksPlanViewController.h"
 #import "TimingTaskPlanEditViewController.h"
 #import "TimingTasksCell.h"
+#import "TimingTasksPlanService.h"
 
 @interface TimingTasksPlanViewController ()
 
@@ -16,7 +17,6 @@
 
 @implementation TimingTasksPlanViewController {
     UITableView *tblTaskPlans;
-    NSArray *taskPlans;
 }
 
 @synthesize unit = _unit_;
@@ -56,6 +56,11 @@
     self.topbarView.title =
         self.unit == nil ? NSLocalizedString(@"task_timer_title", @"") : self.unit.name;
     
+    UIButton *btnRight = [[UIButton alloc] initWithFrame:CGRectMake(([UIScreen mainScreen].bounds.size.width - 88 / 2), [UIDevice systemVersionIsMoreThanOrEuqal7] ? 20 : 0, 88 / 2, 88 / 2)];
+    [btnRight setBackgroundImage:[UIImage imageNamed:@"icon_add"] forState:UIControlStateNormal];
+    [btnRight addTarget:self action:@selector(showTimingTasksPlanEditViewController:) forControlEvents:UIControlEventTouchUpInside];
+    [self.topbarView addSubview:btnRight];
+    
     tblTaskPlans = [[UITableView alloc] initWithFrame:CGRectMake(0, self.topbarView.bounds.size.height, self.view.bounds.size.width, self.view.bounds.size.height - self.topbarView.bounds.size.height) style:UITableViewStylePlain];
     tblTaskPlans.delegate = self;
     tblTaskPlans.dataSource = self;
@@ -70,12 +75,63 @@
     [_refreshHeaderView refreshLastUpdatedDate];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    
+}
+
+- (void)showTimingTasksPlanEditViewController:(id)sender {
+    if(self.unit == nil) {
+        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"no_unit_found", @"") forType:AlertViewTypeFailed];
+        [[AlertView currentAlertView] alertForLock:NO autoDismiss:YES];
+        return;
+    }
+    [self.navigationController pushViewController:[[TimingTaskPlanEditViewController alloc] initWithUnit:self.unit timingTask:nil] animated:YES];
+}
+
+#pragma mark -
+#pragma mark Rest service call back
+
+- (void)getTimingTasksPlanSuccess:(RestResponse *)resp {
+    if(resp.statusCode == 200 && resp.body != nil) {
+        NSDictionary *json = [JsonUtils createDictionaryFromJson:resp.body];
+        if([json intForKey:@"i"] == 1) {
+            NSArray *_timing_tasks_json_ = [json arrayForKey:@"m"];
+            if(_timing_tasks_json_ == nil || _timing_tasks_json_.count == 0) {
+                [self.unit.timingTasksPlan removeAllObjects];
+            } else {
+                for(int i=0; i<_timing_tasks_json_.count; i++) {
+                    NSDictionary *_timing_task_json_ = [_timing_tasks_json_ objectAtIndex:i];
+                    [self.unit.timingTasksPlan addObject:
+                        [[TimingTask alloc] initWithJson:_timing_task_json_ forUnit:self.unit]];
+                }
+            }
+            [tblTaskPlans reloadData];
+        }
+        return;
+    }
+    
+    [self getTimingTasksPlanFailed:resp];
+}
+
+- (void)getTimingTasksPlanFailed:(RestResponse *)resp {
+    if(abs(resp.statusCode) == 1001) {
+        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"request_timeout", @"") forType:AlertViewTypeFailed];
+    } else if(abs(resp.statusCode) == 1004) {
+        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"network_error", @"") forType:AlertViewTypeFailed];
+    } else if(abs(resp.statusCode) == 403) {
+        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"verification_code_expire", @"") forType:AlertViewTypeFailed];
+    } else {
+        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"unknow_error", @"") forType:AlertViewTypeFailed];
+    }
+    [[AlertView currentAlertView] alertForLock:NO autoDismiss:YES];
+}
+
 #pragma mark -
 #pragma mark Table view deleagte
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 3;
-//    return taskPlans == nil ? 0 : taskPlans.count;
+    if(self.unit == nil || self.unit.timingTasksPlan == nil) return 0;
+    return self.unit.timingTasksPlan.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -102,8 +158,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    [self.navigationController pushViewController:[[TimingTaskPlanEditViewController alloc] initWithUnit:self.unit] animated:YES];
+    [self.navigationController pushViewController:[[TimingTaskPlanEditViewController alloc] initWithUnit:self.unit timingTask:nil] animated:YES];
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
@@ -112,13 +167,12 @@
 #pragma mark Data Source Loading / Reloading Methods
 
 - (void)reloadTableViewDataSource{
-	//  should be calling your tableviews data source model to reload
-	//  put here just for demo
+    TimingTasksPlanService *service = [[TimingTasksPlanService alloc] init];
+    [service timingTasksPlanForUnitIdentifier:self.unit.identifier success:@selector(getTimingTasksPlanSuccess:) failed:@selector(getTimingTasksPlanFailed:) target:self callback:nil];
 	_reloading = YES;
 }
 
 - (void)doneLoadingTableViewData{
-	//  model should call this when its done loading
 	_reloading = NO;
 	[_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:tblTaskPlans];
 }

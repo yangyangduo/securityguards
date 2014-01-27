@@ -49,8 +49,11 @@
             url = [NSString stringWithFormat:@"http://%@:%d/sensor/%@%@",
                    command.restAddress, command.restPort, command.masterDeviceCode, APP_KEY];
         } else if(CommandNetworkModeExternalViaRestful == command.commandNetworkMode) {
-            url = [NSString stringWithFormat:@"%@/sensor/%@%@",
-                   [GlobalSettings defaultSettings].restAddress, command.masterDeviceCode, APP_KEY];
+            url = [NSString stringWithFormat:@"%@/sensor/%@%@?deviceCode=%@&appKey=%@&security=%@",
+                   [GlobalSettings defaultSettings].restAddress, command.masterDeviceCode, APP_KEY,
+                   [GlobalSettings defaultSettings].deviceCode,
+                   APP_KEY,
+                   [GlobalSettings defaultSettings].secretKey];
         }
         if(url) {
             [self getSensorsStateWithUnitIdentifier:command.masterDeviceCode url:url callback:command];

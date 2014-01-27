@@ -36,6 +36,7 @@
 "ok"                             =      "好";
 "offline"                        =      "未连接云端";
 "next_step"                      =      "下一步";
+"default"                        =      "默认";
 
 
 /****************	Right Drawer View Strings	****************/
@@ -128,17 +129,15 @@
 
 /****************	Timer Task View Strings	****************/
 
-"change_plan_name"               =      "点击修改名称";
-"new_plan_name"                  =      "请输入新的名称:";
-"change_schedule_date"           =      "点击修改触发日期";
-"schedule_once"                  =      "是否只执行一次";
-"week"                           =      "周";
-
-
-/****************	Unif Finder View Strings	****************/
-
-"unit_binding_tips"      =      "将主控与手机处于同一Wifi下,按下\"自动发现\"按钮,主控与手机将自动绑定";
-"auto_find"              =      "自动发现";
+"change_plan_name"                    =      "点击修改名称";
+"new_plan_name"                       =      "请输入新的名称:";
+"change_schedule_date"                =      "点击修改触发日期";
+"schedule_once"                       =      "是否只执行一次";
+"week"                                =      "周";
+"per"                                 =      "每";
+"timing_tasks_plan_default_name"      =      "定时执行";
+"timing_tasks_plan_name_not_blank"    =      "名称不能为空";
+"no_unit_found"                       =      "当前没有主控";
 
 
 /****************	Camera View Strings	****************/
@@ -190,114 +189,117 @@
 
 /**************** Account Settings View Strings *************/
 
-"user_name"                                   =  "用户名";
-"nick_name"                                   =  "昵称";
-"mail"                                        =  "邮箱";
-"profile_modify"                              =  "账号修改";
-"enter_new_nick_name"                         =  "请输入新的昵称:";
-"enter_new_mail"                              =  "请输入新的邮箱:";
-"nick_name_not_blank"                         =  "昵称不能为空";
-"mail_not_blank"                              =  "邮箱不能为空";
-"modify_pwd"                                  =  "修改密码";
-"password_valid"                              =  "密码验证";
-"pwd_invalid"                                 =  "密码错误";
-"enter_old_pwd"                               =  "请输入旧密码";
-"enter_new_pwd"                               =  "输入新密码";
-"enter_pwd_again"                             =  "再次输入密码";
-"mail_name_blank"                             =  "昵称或邮箱为空!";
-"format_error"                                =  "请求格式错误!";
-"pwd_different"                               =  "两次输入不一致";
-"pwd_format_invalid"                          =  "密码格式错误";
-"modify_tip"                                  =  "此手机号将作为新的用户名使用";
-"enter_new_mobile"                            =  "请输入新手机号码";
-"profile_changed_tips"                        =  "修改的用户信息尚未提交,是否放弃更改?";
-"modify_account_tips"                         =  "点击修改用户登录账号";
-"modify_profile_tips"                         =  "除去修改用户登录账号之外的所有信息修改完成后,需要点击提交更改按钮进行提交";
-"forget_password_tips"                        =  "*确认后密码将会被重置，请在收到新密码后24小时内登录，否则将会失效！";
-"enter_register_phone_number"                 =  "请输入注册时的手机号";
-"get_new_password"                            =  "获取新密码";
+"user_name"                           =      "用户名";
+"nick_name"                           =      "昵称";
+"mail"                                =      "邮箱";
+"profile_modify"                      =      "账号修改";
+"enter_new_nick_name"                 =      "请输入新的昵称:";
+"enter_new_mail"                      =      "请输入新的邮箱:";
+"nick_name_not_blank"                 =      "昵称不能为空";
+"mail_not_blank"                      =      "邮箱不能为空";
+"modify_pwd"                          =      "修改密码";
+"password_valid"                      =      "密码验证";
+"pwd_invalid"                         =      "密码错误";
+"enter_old_pwd"                       =      "请输入旧密码";
+"enter_new_pwd"                       =      "输入新密码";
+"enter_pwd_again"                     =      "再次输入密码";
+"mail_name_blank"                     =      "昵称或邮箱为空!";
+"format_error"                        =      "请求格式错误!";
+"pwd_different"                       =      "两次输入不一致";
+"pwd_format_invalid"                  =      "密码格式错误";
+"modify_tip"                          =      "此手机号将作为新的用户名使用";
+"enter_new_mobile"                    =      "请输入新手机号码";
+"profile_changed_tips"                =      "修改的用户信息尚未提交,是否放弃更改?";
+"modify_account_tips"                 =      "点击修改用户登录账号";
+"modify_profile_tips"                 =      "除去修改用户登录账号之外的所有信息修改完成后,需要点击提交更改按钮进行提交";
+"forget_password_tips"                =      "*确认后密码将会被重置，请在收到新密码后24小时内登录，否则将会失效！";
+"enter_register_phone_number"         =      "请输入注册时的手机号";
+"get_new_password"                    =      "获取新密码";
 
 
 /**************** Notifications View Strings ****************/
 
-"cf"                                          = "验证消息";
-"at"                                          = "消息内容";
-"al"                                          = "警报内容";
-"empty_notifications"                         = "没有新的消息";
-"view_video"                                  = "查看视频";
+"cf"                       =          "验证消息";
+"at"                       =          "消息内容";
+"al"                       =          "警报内容";
+"empty_notifications"      =          "没有新的消息";
+"view_video"               =          "查看视频";
 
 
 /****************	User Management View Strings	****************/
 
-"account_management"                          =  "用户管理";
-"user_online"                                 =  "在线";
-"user_offline"                                =  "下线";
-"send.message"                                =  "发送短信";
-"call.phoneNumber"                            =  "拨打电话";
-"unbinding"                                   =  "解除绑定";
-"confirm.unbinding"                           =  "是否确定解除用户[%@]与主控[%@]的绑定关系？";
-"unbinding_success"                           =  "已解除绑定";
+"account_management"       =           "用户管理";
+"user_online"              =           "在线";
+"user_offline"             =           "下线";
+"send.message"             =           "发送短信";
+"call.phoneNumber"         =           "拨打电话";
+"unbinding"                =           "解除绑定";
+"confirm.unbinding"        =           "是否确定解除用户[%@]与主控[%@]的绑定关系？";
+"unbinding_success"        =           "已解除绑定";
 
 
 /*************** Refresh Table View Strings *************************/
 
-"pull.refresh"                                =  "下拉刷新";
-"pull.loadmore"                               =  "上拉加载更多";
-"release.pull.loadmore"                       =  "释放加载更多";
-"release.refresh"                             =  "释放立即刷新";
-"refreshing"                                  =  "刷新中...";
-"last.update"                                 =  "最后更新";
-"no_more"                                     =  "已经到底了";
-"ago"                                         =  "以前";
-"just_now"                                    =  "刚刚";
-"minute"                                      =  "分钟";
-"hour"                                        =  "小时";
-"day"                                         =  "天";
+"pull.refresh"             =           "下拉刷新";
+"pull.loadmore"            =           "上拉加载更多";
+"release.pull.loadmore"    =           "释放加载更多";
+"release.refresh"          =           "释放立即刷新";
+"refreshing"               =           "刷新中...";
+"last.update"              =           "最后更新";
+"no_more"                  =           "已经到底了";
+"ago"                      =           "以前";
+"just_now"                 =           "刚刚";
+"minute"                   =           "分钟";
+"hour"                     =           "小时";
+"day"                      =           "天";
 
 
-/************ unit finder  Strings**************/
+/****************	Unif Finder View Strings	****************/
 
-"step1_title"                                 =  "第一步：设置前准备";
-"step1_line1"                                 =  "请将摄像头用网线连接到路由器。";
-"step1_line2"                                 =  "将手机WIFI打开并连接到同一个路由器的WIFI热点上。";
-"step1_line3"                                 =  "请确保手机、摄像头以及即将接入网络的家卫士都在使用同一网络。";
+"unit_binding_tips"        =           "将主控与手机处于同一Wifi下,按下\"自动发现\"按钮,主控与手机将自动绑定";
+"auto_find"                =           "自动发现";
 
-"step2_title"                                 =  "第二步：设置前准备";
-"step2_line1"                                 =  "请将家卫士电源联通（如果已经打开请忽略这一步）；";
-"step2_line2"                                 =  "开机后30-60秒将听到 “嘀” 一声,表示家卫士自检已完成；";
-"step2_line3"                                 =  "在自检声响起后，请按下面板上的对码键，并听到 “嘀嘀” 连续声后点击“下一步”继续配置过程。";
+"step1_title"              =           "第一步：设置前准备";
+"step1_line1"              =           "请将摄像头用网线连接到路由器。";
+"step1_line2"              =           "将手机WIFI打开并连接到同一个路由器的WIFI热点上。";
+"step1_line3"              =           "请确保手机、摄像头以及即将接入网络的家卫士都在使用同一网络。";
 
-"step3_title"                                 =  "第三步：连接家卫士";
-"step3_line1"                                 =  "请打开手机的“WIFI设置”，在热点列表中找到以下名称的热点网络并连接。";
-"step3_tips"                                  =  "＊成功后请点击“下一步”继续";
+"step2_title"              =           "第二步：设置前准备";
+"step2_line1"              =           "请将家卫士电源联通（如果已经打开请忽略这一步）；";
+"step2_line2"              =           "开机后30-60秒将听到 “嘀” 一声,表示家卫士自检已完成；";
+"step2_line3"              =           "在自检声响起后，请按下面板上的对码键，并听到 “嘀嘀” 连续声后点击“下一步”继续配置过程。";
 
-"step4_title"                                 =  "第四步：配置家卫士";
-"step4_line1_linked"                          =  "已经连接到家卫士控制器。";
-"step4_line1_linking"                         =  "正在连接家卫士控制器...";
-"step4_line2"                                 =  "配置家卫士WIFI网络名称为：";
-"wifi_password"                               =  "WIFI密码";
-"send_settings"                               =  "发送配置";
+"step3_title"              =           "第三步：连接家卫士";
+"step3_line1"              =           "请打开手机的“WIFI设置”，在热点列表中找到以下名称的热点网络并连接。";
+"step3_tips"               =           "＊成功后请点击“下一步”继续";
 
-"step5_title"                                 =  "第五步：绑定家卫士";
-"step5_line1"                                 =  "已经完成家卫士配置";
-"step5_line2"                                 =  "正在绑定家卫士，请确保当前WIFI已正确切换到以下WIFI网络...";
-"reset"                                       =  "重新配置";
+"step4_title"              =           "第四步：配置家卫士";
+"step4_line1_linked"       =           "已经连接到家卫士控制器。";
+"step4_line1_linking"      =           "正在连接家卫士控制器...";
+"step4_line2"              =           "配置家卫士WIFI网络名称为：";
+"wifi_password"            =           "WIFI密码";
+"send_settings"            =           "发送配置";
 
-"unit_finder_line1"                           =  "请确保家卫士已正确接入当前WIFI网格，并且处于开机状态";
-"unit_finder_line2"                           =  "正在绑定家卫士...";
-"rebind"                                      =  "重新绑定";
+"step5_title"              =           "第五步：绑定家卫士";
+"step5_line1"              =           "已经完成家卫士配置";
+"step5_line2"              =           "正在绑定家卫士，请确保当前WIFI已正确切换到以下WIFI网络...";
+"reset"                    =           "重新配置";
+
+"unit_finder_line1"        =           "请确保家卫士已正确接入当前WIFI网格，并且处于开机状态";
+"unit_finder_line2"        =           "正在绑定家卫士...";
+"rebind"                   =           "重新绑定";
 
 
-/************ contact us Strings ***************/
+/************ Contact Us View Strings ***************/
 
-"declare_title"                               =  "免责说明";
-"read_and_agree"                              =  "我已阅读并同意";
-"read_declare"                                =  "阅读免责声明";
-"app_name_label"                              =  "软件名称：365家卫士";
-"app_version"                                 =  "软件版本：";
-"office_number"                               =  "客服电话：";
-"office_phonenumber"                          =  "400－0000-0000";
-"we_chat_number"                              =  "微信号码：000000000";
-"website"                                     =  "公司网址：";
-"website_url"                                 =  "www.365jws.com";
-"copyright"                                   =  "COPYRIGHT©2013-2015 湖南长沙汉拓信息技术有限公司";
+"declare_title"            =           "免责说明";
+"read_and_agree"           =           "我已阅读并同意";
+"read_declare"             =           "阅读免责声明";
+"app_name_label"           =           "软件名称：365家卫士";
+"app_version"              =           "软件版本：";
+"office_number"            =           "客服电话：";
+"office_phonenumber"       =           "400－0000-0000";
+"we_chat_number"           =           "微信号码：000000000";
+"website"                  =           "公司网址：";
+"website_url"              =           "www.365jws.com";
+"copyright"                =           "COPYRIGHT©2013-2015 湖南长沙汉拓信息技术有限公司";

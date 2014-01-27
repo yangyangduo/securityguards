@@ -7,6 +7,8 @@
 //
 
 #import "Entity.h"
+#import "Unit.h"
+#import "TimingTaskExecutionItem.h"
 
 typedef enum {
     TaskScheduleDateNone        =    0,
@@ -28,12 +30,20 @@ typedef enum {
 
 @interface TimingTask : Entity
 
+@property (nonatomic, strong) NSString *identifier;
 @property (nonatomic, strong) NSString *name;
-@property (nonatomic) TaskScheduleDate scheduleDate;
+@property (nonatomic, strong) NSString *unitIdentifier;
+@property (nonatomic) BOOL enable;
 @property (nonatomic) int scheduleTimeHour;
 @property (nonatomic) int scheduleTimeMinute;
+@property (nonatomic) TaskScheduleDate scheduleDate;
 @property (nonatomic) TaskScheduleMode scheduleMode;
+@property (nonatomic, strong, readonly) NSMutableArray *timingTaskExecutionItems;
+@property (nonatomic, readonly) Unit *unit;
 
 - (NSString *)stringForScheduleDate;
+
+- (instancetype)initWithUnit:(Unit *)unit;
+- (instancetype)initWithJson:(NSDictionary *)json forUnit:(Unit *)unit;
 
 @end

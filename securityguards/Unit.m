@@ -27,6 +27,9 @@
 
 @synthesize sensors;
 
+@synthesize timingTasksPlan = _timingTasksPlan_;
+@synthesize timingTasksPlanLastRefreshDate;
+
 @synthesize avalibleDevicesCount;
 
 - (id)initWithJson:(NSDictionary *)json {
@@ -134,6 +137,13 @@
         }
     }
     return count;
+}
+
+- (NSMutableArray *)timingTasksPlan {
+    if(_timingTasksPlan_ == nil) {
+        _timingTasksPlan_ = [NSMutableArray array];
+    }
+    return _timingTasksPlan_;
 }
 
 @end

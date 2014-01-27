@@ -120,7 +120,7 @@
     headView.backgroundColor = [UIColor appGray];
     
     UIImageView *img = [[UIImageView alloc] initWithFrame:CGRectMake(16, [UIDevice systemVersionIsMoreThanOrEuqal7] ? 33 : 13, 33 / 2, 34 / 2)];
-    img.image = [UIImage imageNamed:@"icon_add_unt_red"];
+    img.image = [UIImage imageNamed:@"icon_add_unit_red"];
     [headView addSubview:img];
     
     UILabel *lblTitle = [[UILabel alloc] initWithFrame:CGRectMake(47, [UIDevice systemVersionIsMoreThanOrEuqal7] ? 20 : 0, 110, 44)];

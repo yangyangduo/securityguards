@@ -13,5 +13,7 @@
 #import "CameraLoadingView.h"
 
 @interface PlayCameraPicViewController : NavigationViewController<ImageProviderDelegate>
+
 @property (strong, nonatomic) NotificationData *data;
+
 @end
