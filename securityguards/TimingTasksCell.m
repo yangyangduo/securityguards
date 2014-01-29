@@ -64,11 +64,6 @@
     lblTaskPlanSceduleTime.backgroundColor = [UIColor clearColor];
     lblTaskPlanSceduleDate.backgroundColor = [UIColor clearColor];
     lblScheduleMode.backgroundColor = [UIColor clearColor];
-
-    lblTaskPlanName.text = @"开启安防";
-    lblTaskPlanSceduleDate.text = @"周一、二、三、四、五、六、日";
-    lblTaskPlanSceduleTime.text = @"01 : 00";
-    lblScheduleMode.text = @"每周重复执行";
     
     [self addSubview:lblTaskPlanName];
     [self addSubview:lblTaskPlanSceduleTime];
@@ -95,9 +90,18 @@
 - (void)setTasksPlan:(TimingTask *)timingTask {
     _timingTask_ = timingTask;
     if(_timingTask_ == nil) {
+        
         return;
     } else {
-        
+        lblTaskPlanName.text = timingTask.name;
+        lblTaskPlanSceduleDate.text = [timingTask stringForScheduleDate];
+        lblTaskPlanSceduleTime.text = [NSString stringWithFormat:@"%@ : %@",
+                [self displayedStringForTimeInteger:timingTask.scheduleTimeHour],
+                [self displayedStringForTimeInteger:timingTask.scheduleTimeMinute]];
+        lblScheduleMode.text = (timingTask.scheduleMode == TaskScheduleModeNoRepeat) ?
+            NSLocalizedString(@"exe_no_repeat", @"") : NSLocalizedString(@"exe_repeat", @"");
+        swhTaskPlanEnable.on = timingTask.enable;
+        [self valueDidChanged:swhTaskPlanEnable];
     }
 }
 
@@ -107,7 +111,17 @@
     } else {
         self.backgroundColor = [UIColor appGray];
     }
-    NSLog(@"%@", switchView.isOn ? @" is on " : @" is off ");
+#ifdef DEBUG
+    NSLog(@"%@", switchView.isOn ? @"switch to on " : @"switch to off ");
+#endif
+}
+
+- (NSString *)displayedStringForTimeInteger:(int)t {
+    if(t > 9) {
+        return [NSString stringWithFormat:@"%d", t];
+    } else {
+        return [NSString stringWithFormat:@"0%d", t];
+    }
 }
 
 @end

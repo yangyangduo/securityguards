@@ -7,9 +7,12 @@
 //
 
 #import "ServiceBase.h"
+#import "TimingTask.h"
 
 @interface TimingTasksPlanService : ServiceBase
 
 - (void)timingTasksPlanForUnitIdentifier:(NSString *)unitIdentifier success:(SEL)s failed:(SEL)f target:(id)t callback:(id)cb;
+
+- (void)saveTimingTasksPlan:(TimingTask *)timingTask success:(SEL)s failed:(SEL)f target:(id)t callback:(id)cb;
 
 @end

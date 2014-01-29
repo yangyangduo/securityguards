@@ -26,6 +26,26 @@
 @synthesize timingTaskExecutionItems = _timingTaskExecutionItems_;
 @synthesize unit = _unit_;
 
+- (id)copy {
+    TimingTask *newTimingTask = [[TimingTask alloc] init];
+    newTimingTask.identifier = self.identifier;
+    newTimingTask.name = self.name;
+    newTimingTask.enable = self.enable;
+    newTimingTask.isOwner = self.isOwner;
+    newTimingTask.unitIdentifier = self.unitIdentifier;
+    newTimingTask.scheduleDate = self.scheduleDate;
+    newTimingTask.scheduleTimeHour = self.scheduleTimeHour;
+    newTimingTask.scheduleTimeMinute = self.scheduleTimeMinute;
+    newTimingTask.scheduleMode = self.scheduleMode;
+    newTimingTask.unit = _unit_;
+    
+    for(int i=0; i<self.timingTaskExecutionItems.count; i++) {
+        [newTimingTask.timingTaskExecutionItems addObject:[[self.timingTaskExecutionItems objectAtIndex:i] copy]];
+    }
+    
+    return newTimingTask;
+}
+
 - (instancetype)initWithJson:(NSDictionary *)json forUnit:(Unit *)unit {
     self = [super initWithJson:json];
     if(self && json) {
@@ -33,28 +53,28 @@
         self.identifier = [json noNilStringForKey:@"id"];
         
         // set unit identifier
-        self.unitIdentifier = [json noNilStringForKey:@"device"];
+        self.unitIdentifier = [json noNilStringForKey:@"dc"];
         
         // set name
-        self.name = [json noNilStringForKey:@"name"];
+        self.name = [json noNilStringForKey:@"na"];
         
         // set is enabled
-        self.enable = [json boolForKey:@"enabled"];
+        self.enable = [json booleanForKey:@"en"];
         
         // set schedule is or not repeat
-        self.scheduleMode = [json boolForKey:@"once"] ? TaskScheduleModeNoRepeat : TaskScheduleModeRepeat;
+        self.scheduleMode = [json booleanForKey:@"on"] ? TaskScheduleModeNoRepeat : TaskScheduleModeRepeat;
         
         // set schedule dates
-        NSDictionary *_schedule_dates_json_ = [json dictionaryForKey:@"schedule"];
+        NSDictionary *_schedule_dates_json_ = [json dictionaryForKey:@"sc"];
         if(_schedule_dates_json_ != nil) {
             for(int i=1; i<=7; i++) {
                 NSString *shotWeekString = [NSString stringWithFormat:@"w%d", i];
-                if([_schedule_dates_json_ boolForKey:shotWeekString]) {
+                if([_schedule_dates_json_ booleanForKey:shotWeekString]) {
                     self.scheduleDate |= (1 << (i - 1));
                 }
             }
-            self.scheduleTimeHour = [_schedule_dates_json_ intForKey:@"hour"];
-            self.scheduleTimeMinute = [_schedule_dates_json_ intForKey:@"minute"];
+            self.scheduleTimeHour = [_schedule_dates_json_ intForKey:@"hr"];
+            self.scheduleTimeMinute = [_schedule_dates_json_ intForKey:@"mi"];
         }
         
         // configure default executions list for the unit;
@@ -71,7 +91,7 @@
         }
         
         // update executions for default items list
-        NSArray *_executions_json_ = [json arrayForKey:@"executions"];
+        NSArray *_executions_json_ = [json arrayForKey:@"ex"];
         if(_executions_json_ != nil) {
             for(int i=0; i<_executions_json_.count; i++) {
                 NSDictionary *_execution_json_ = [_executions_json_ objectAtIndex:i];
@@ -123,8 +143,34 @@
 
 - (NSMutableDictionary *)toJson {
     NSMutableDictionary *json = [super toJson];
-
     
+    // set basic info
+    [json setNoBlankString:self.identifier forKey:@"id"];
+    [json setMayBlankString:self.unitIdentifier forKey:@"dc"];
+    [json setMayBlankString:self.name forKey:@"na"];
+    [json setBoolean:self.enable forKey:@"en"];
+    [json setBoolean:(self.scheduleMode == TaskScheduleModeNoRepeat) forKey:@"on"];
+
+    // set executions
+    NSMutableArray *_executions_ = [NSMutableArray array];
+    for(int i=0; i<self.timingTaskExecutionItems.count; i++) {
+        TimingTaskExecutionItem *executionItem = [self.timingTaskExecutionItems objectAtIndex:i];
+        if(executionItem.isAvailable) {
+            [_executions_ addObject:[executionItem toJson]];
+        }
+    }
+    [json setNoNilObject:_executions_ forKey:@"ex"];
+    
+    // set schedule dates
+    NSMutableDictionary *_schedule_dates_ = [NSMutableDictionary dictionary];
+    [_schedule_dates_ setInteger:self.scheduleTimeHour forKey:@"hr"];
+    [_schedule_dates_ setInteger:self.scheduleTimeMinute forKey:@"mi"];
+    for(int i=0; i<7; i++) {
+        BOOL containsThisDayOfWeek = (self.scheduleDate & (1 << i)) == (1 << i);
+        [_schedule_dates_ setBoolean:containsThisDayOfWeek forKey:[NSString stringWithFormat:@"w%d", (i + 1)]];
+    }
+    
+    [json setNoNilObject:_schedule_dates_ forKey:@"sc"];
     
     return json;
 }

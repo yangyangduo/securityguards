@@ -8,6 +8,7 @@
 
 #import "TimingTaskPlanEditViewController.h"
 #import "TimingTaskScheduleDateEditViewController.h"
+#import "TimingTasksPlanService.h"
 #import "DeviceUtils.h"
 #import "XXActionSheet.h"
 
@@ -101,8 +102,50 @@ typedef enum {
     }
 }
 
+#pragma mark -
+#pragma mark Timing task plan save service
+
 - (void)saveTimingTasksPlan:(id)sender {
-    NSLog(@"saving ...");
+    if(self.timingTask != nil) {
+        // set hour && minute
+        NSDateComponents *components = [[NSCalendar currentCalendar] components:(NSCalendarUnitHour | NSCalendarUnitMinute) fromDate:datePicker.date];
+        self.timingTask.scheduleTimeHour = components.hour;
+        self.timingTask.scheduleTimeMinute = components.minute;
+        
+        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"please_wait", @"") forType:AlertViewTypeWaitting];
+        [[AlertView currentAlertView] alertForLock:YES autoDismiss:NO];
+        
+        TimingTasksPlanService *service = [[TimingTasksPlanService alloc] init];
+        [service saveTimingTasksPlan:self.timingTask success:@selector(saveTimingTasksSuccess:) failed:@selector(saveTimingTasksFailed:) target:self callback:nil];
+    }
+}
+
+- (void)saveTimingTasksSuccess:(RestResponse *)resp {
+    if(resp.statusCode == 200) {
+        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"update_success", @"") forType:AlertViewTypeFailed];
+        [[AlertView currentAlertView] delayDismissAlertView];
+        return;
+    }
+    
+    [self saveTimingTasksFailed:resp];
+}
+
+- (void)saveTimingTasksFailed:(RestResponse *)resp {
+#ifdef DEBUG
+    NSLog(@"[Timing Task Plan Edit VC] Save timing task failed, status code is %d.", resp.statusCode);
+#endif
+    
+    if(abs(resp.statusCode) == 1001) {
+        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"request_timeout", @"") forType:AlertViewTypeFailed];
+    } else if(abs(resp.statusCode) == 1004) {
+        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"network_error", @"") forType:AlertViewTypeFailed];
+    } else if(abs(resp.statusCode) == 403) {
+        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"verification_code_expire", @"") forType:AlertViewTypeFailed];
+    } else {
+        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"unknow_error", @"") forType:AlertViewTypeFailed];
+    }
+    
+    [[AlertView currentAlertView] delayDismissAlertView];
 }
 
 #pragma mark -
@@ -275,7 +318,9 @@ typedef enum {
         TimingTaskExecutionItem *executeItem = [aSheet parameterForKey:@"executeItem"];
         if(buttonIndex < operations.count) {
             DeviceOperationItem *item = [operations objectAtIndex:buttonIndex];
+#ifdef DEBUG
             NSLog(@"[%@] - [%@]", item.displayName, item.commandString);
+#endif
             executeItem.status = item.deviceState;
             executeItem.executionCommandString = item.commandString;
             [tblTimerTaskPlans reloadData];

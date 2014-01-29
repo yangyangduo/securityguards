@@ -140,6 +140,8 @@
 "no_unit_found"                       =      "当前没有主控";
 "select_at_leat_one"                  =      "请至少选择一项";
 "can_not_select_multi"                =      "此模式不能多选";
+"exe_repeat"                          =      "每周重复执行";
+"exe_no_repeat"                       =      "仅仅执行一次";
 
 
 /****************	Camera View Strings	****************/

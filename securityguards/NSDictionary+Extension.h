@@ -13,7 +13,11 @@
 
 - (id)notNSNullObjectForKey:(id)key;
 
+// DEPRECATED
 - (BOOL)boolForKey:(id)key;
+
+- (BOOL)booleanForKey:(id)key;
+
 - (NSString *)stringForKey:(id)key;
 - (NSNumber *)numberForKey:(id)key;
 - (NSDate *)dateForKey:(id)key;

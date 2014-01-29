@@ -17,7 +17,12 @@
 - (void)setDateLongLongValue:(NSDate *)date forKey:(id<NSCopying>)key;
 - (void)setNoNilObject:(id)object forKey:(id<NSCopying>)key;
 - (void)setNoBlankString:(NSString *)string forKey:(id<NSCopying>)key;
+
+- (void)setBoolean:(BOOL)b forKey:(id<NSCopying>)key;
+
+// Deprecated , use setBoolean to instead it
 - (void)setBool:(BOOL)b forKey:(id<NSCopying>)key;
 - (void)setMayBlankString:(NSString *)string forKey:(id<NSCopying>)key;
+
 
 @end

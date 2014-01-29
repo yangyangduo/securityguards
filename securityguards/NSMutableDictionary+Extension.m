@@ -54,4 +54,8 @@
     [self setObject:boolStr forKey:key];
 }
 
+- (void)setBoolean:(BOOL)b forKey:(id<NSCopying>)key {
+    [self setObject:[NSNumber numberWithBool:b] forKey:key];
+}
+
 @end

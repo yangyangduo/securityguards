@@ -40,7 +40,7 @@ typedef enum {
 @property (nonatomic) TaskScheduleDate scheduleDate;
 @property (nonatomic) TaskScheduleMode scheduleMode;
 @property (nonatomic, strong, readonly) NSMutableArray *timingTaskExecutionItems;
-@property (nonatomic, readonly) Unit *unit;
+@property (nonatomic, strong) Unit *unit;
 
 - (NSString *)stringForScheduleDate;
 

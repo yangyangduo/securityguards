@@ -94,15 +94,17 @@
 - (void)getTimingTasksPlanSuccess:(RestResponse *)resp {
     if(resp.statusCode == 200 && resp.body != nil) {
         NSDictionary *json = [JsonUtils createDictionaryFromJson:resp.body];
-        if([json intForKey:@"i"] == 1) {
+        int resultId = [json intForKey:@"i"];
+        if(resultId == 1 || resultId == 2) {
             NSArray *_timing_tasks_json_ = [json arrayForKey:@"m"];
             if(_timing_tasks_json_ == nil || _timing_tasks_json_.count == 0) {
                 [self.unit.timingTasksPlan removeAllObjects];
             } else {
                 for(int i=0; i<_timing_tasks_json_.count; i++) {
                     NSDictionary *_timing_task_json_ = [_timing_tasks_json_ objectAtIndex:i];
-                    [self.unit.timingTasksPlan addObject:
-                        [[TimingTask alloc] initWithJson:_timing_task_json_ forUnit:self.unit]];
+                    TimingTask *tt = [[TimingTask alloc] initWithJson:_timing_task_json_ forUnit:self.unit];
+                    tt.isOwner = resultId == 1;
+                    [self.unit.timingTasksPlan addObject:tt];
                 }
             }
             [tblTaskPlans reloadData];
@@ -154,6 +156,9 @@
     if(cell == nil) {
         cell = [[TimingTasksCell alloc] initWithTimerTaskPlan:nil reuseIdentifier:cellIdentifier];
     }
+    
+
+    
     return cell;
 }
 

@@ -90,6 +90,17 @@
     return NO;
 }
 
+- (BOOL)booleanForKey:(id)key {
+    id _bool_ = [self notNSNullObjectForKey:key];
+    if(_bool_ != nil) {
+        if([_bool_ isKindOfClass:[NSNumber class]]) {
+            NSNumber *num = (NSNumber *)_bool_;
+            return num.boolValue;
+        }
+    }
+    return NO;
+}
+
 - (NSString *)noNilStringForKey:(id)key {
     NSString *_str_ = [self notNSNullObjectForKey:key];
     if(_str_ == nil) {
