@@ -87,22 +87,30 @@
     // Configure the view for the selected state
 }
 
-- (void)setTasksPlan:(TimingTask *)timingTask {
+- (void)setTimingTask:(TimingTask *)timingTask {
     _timingTask_ = timingTask;
     if(_timingTask_ == nil) {
-        
-        return;
+        lblTaskPlanName.text = [XXStringUtils emptyString];
+        lblTaskPlanSceduleDate.text = [XXStringUtils emptyString];
+        lblTaskPlanSceduleTime.text = [XXStringUtils emptyString];
+        lblScheduleMode.text = [XXStringUtils emptyString];
+        swhTaskPlanEnable.enabled = NO;
+        [self valueDidChanged:swhTaskPlanEnable];
     } else {
         lblTaskPlanName.text = timingTask.name;
         lblTaskPlanSceduleDate.text = [timingTask stringForScheduleDate];
         lblTaskPlanSceduleTime.text = [NSString stringWithFormat:@"%@ : %@",
-                [self displayedStringForTimeInteger:timingTask.scheduleTimeHour],
-                [self displayedStringForTimeInteger:timingTask.scheduleTimeMinute]];
+                                       [self displayedStringForTimeInteger:timingTask.scheduleTimeHour],
+                                       [self displayedStringForTimeInteger:timingTask.scheduleTimeMinute]];
         lblScheduleMode.text = (timingTask.scheduleMode == TaskScheduleModeNoRepeat) ?
-            NSLocalizedString(@"exe_no_repeat", @"") : NSLocalizedString(@"exe_repeat", @"");
+        NSLocalizedString(@"exe_no_repeat", @"") : NSLocalizedString(@"exe_repeat", @"");
         swhTaskPlanEnable.on = timingTask.enable;
         [self valueDidChanged:swhTaskPlanEnable];
     }
+}
+
+- (void)willTransitionToState:(UITableViewCellStateMask)state {
+    NSLog(@"hahahahahahaahhahahahahaahhaahahah");
 }
 
 - (void)valueDidChanged:(UISwitch *)switchView {

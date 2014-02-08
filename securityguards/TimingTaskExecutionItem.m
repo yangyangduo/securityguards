@@ -46,7 +46,8 @@
     if([XXStringUtils isBlank:self.deviceIdentifier]) return;
     
     NSString *code = [json noNilStringForKey:@"cd"];
-    if([XXStringUtils isBlank:code] || ![code isEqualToString:self.deviceIdentifier]) {
+    if([XXStringUtils isBlank:code]
+       || ![code isEqualToString:self.deviceIdentifier]) {
         return;
     }
     

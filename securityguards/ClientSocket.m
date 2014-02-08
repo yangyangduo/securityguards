@@ -11,34 +11,16 @@
 @implementation ClientSocket {
 }
 
-@synthesize ipAddress;
-@synthesize port;
-@synthesize inputStream;
-@synthesize outputStream;
+@synthesize portNumber = _portNumber_;
+@synthesize ipAddress = _ipAddress_;
+@synthesize inputStream = _inputStream_;
+@synthesize outputStream = _outputStream_;
 
-+ (NSThread *)socketThread {
-    static NSThread *_socketThread = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        _socketThread = [[NSThread alloc] initWithTarget:self selector:@selector(socketEntryPoint) object:nil];
-        [_socketThread start];
-    });
-    return _socketThread;
-}
-
-+ (void)socketEntryPoint {
-    [[NSThread currentThread] setName:@"ClientSocket"];
-        
-    NSRunLoop *runLoop = [NSRunLoop currentRunLoop];
-    [runLoop addPort:[NSMachPort port] forMode:NSDefaultRunLoopMode];
-    [runLoop run];
-}
-
-- (instancetype)initWithIPAddress:(NSString *)ip andPort:(NSInteger)portNumber {
+- (instancetype)initWithIPAddress:(NSString *)ipAddress portNumber:(NSInteger)portNumber {
     self = [super init];
     if(self) {
-        self.ipAddress = ip;
-        self.port = portNumber;
+        _ipAddress_ = ipAddress;
+        _portNumber_ = portNumber;
     }
     return self;
 }
@@ -47,37 +29,41 @@
     CFReadStreamRef readStream = NULL;
     CFWriteStreamRef writeStream = NULL;
 
-    CFStreamCreatePairWithSocketToHost(NULL, (__bridge CFStringRef)self.ipAddress, self.port, &readStream, &writeStream);
+    CFStreamCreatePairWithSocketToHost(NULL, (__bridge CFStringRef)self.ipAddress, self.portNumber, &readStream, &writeStream);
 
-    inputStream = CFBridgingRelease(readStream);
-    outputStream = CFBridgingRelease(writeStream);
+    _inputStream_ = CFBridgingRelease(readStream);
+    _outputStream_= CFBridgingRelease(writeStream);
 
-    inputStream.delegate = self;
-    outputStream.delegate = self;
+    _inputStream_.delegate = self;
+    _outputStream_.delegate = self;
     
-    [inputStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
-    [outputStream scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+    [_inputStream_ scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+    [_outputStream_ scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
     
-    [inputStream open];
-    [outputStream open];
+    [_inputStream_ open];
+    [_outputStream_ open];
     
     [[NSRunLoop currentRunLoop] run];
+    
+#ifdef DEBUG
+    NSLog(@"[CLIENT SOCKET] Run Loops Ended.");
+#endif
 }
 
 - (void)close {
-    if(inputStream != nil) {
-        [inputStream removeFromRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
-        if(inputStream.streamStatus != NSStreamStatusNotOpen && inputStream.streamStatus != NSStreamStatusClosed) {
-            [inputStream close];
+    if(_inputStream_ != nil) {
+        [_inputStream_ removeFromRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+        if(_inputStream_.streamStatus != NSStreamStatusNotOpen && _inputStream_.streamStatus != NSStreamStatusClosed) {
+            [_inputStream_ close];
         }
-        inputStream = nil;
+        _inputStream_ = nil;
     }
-    if(outputStream != nil) {
-        [outputStream removeFromRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
-        if(outputStream.streamStatus != NSStreamStatusNotOpen && outputStream.streamStatus != NSStreamStatusClosed) {
-            [outputStream close];
+    if(_outputStream_ != nil) {
+        [_outputStream_ removeFromRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+        if(_outputStream_.streamStatus != NSStreamStatusNotOpen && _outputStream_.streamStatus != NSStreamStatusClosed) {
+            [_outputStream_ close];
         }
-        outputStream = nil;
+        _outputStream_ = nil;
     }
 }
 

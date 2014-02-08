@@ -11,6 +11,8 @@
 #import "TimingTasksCell.h"
 #import "TimingTasksPlanService.h"
 
+#define RefreshInterval 60 * 5
+
 @interface TimingTasksPlanViewController ()
 
 @end
@@ -20,6 +22,7 @@
 }
 
 @synthesize unit = _unit_;
+@synthesize needRefresh;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -34,6 +37,7 @@
     self = [super init];
     if(self) {
         _unit_ = unit;
+        self.needRefresh = NO;
     }
     return self;
 }
@@ -71,12 +75,32 @@
     _refreshHeaderView.backgroundColor = [UIColor whiteColor];
     _refreshHeaderView.delegate = self;
     [tblTaskPlans addSubview:_refreshHeaderView];
-    
     [_refreshHeaderView refreshLastUpdatedDate];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
+- (void)viewDidAppear:(BOOL)animated {
+    if(self.needRefresh
+       || self.unit.timingTasksPlan == nil
+       || self.unit.timingTasksPlan.count == 0
+       || self.unit.timingTasksPlanLastRefreshDate == nil) {
+        [self autoTriggerRefresh];
+        self.needRefresh = NO;
+        return;
+    }
     
+    if(self.unit.timingTasksPlanLastRefreshDate.timeIntervalSinceNow >= RefreshInterval) {
+        [self autoTriggerRefresh];
+    }
+}
+
+- (void)autoTriggerRefresh {
+    [tblTaskPlans setContentOffset:CGPointMake(0, -70) animated:YES];
+    double delayInSeconds = 0.4f;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        [_refreshHeaderView egoRefreshScrollViewDidScroll:tblTaskPlans];
+        [_refreshHeaderView egoRefreshScrollViewDidEndDragging:tblTaskPlans];
+    });
 }
 
 - (void)showTimingTasksPlanEditViewController:(id)sender {
@@ -96,14 +120,14 @@
         NSDictionary *json = [JsonUtils createDictionaryFromJson:resp.body];
         int resultId = [json intForKey:@"i"];
         if(resultId == 1 || resultId == 2) {
+            [self.unit.timingTasksPlan removeAllObjects];
+            self.unit.timingTasksPlanLastRefreshDate = [NSDate date];
             NSArray *_timing_tasks_json_ = [json arrayForKey:@"m"];
-            if(_timing_tasks_json_ == nil || _timing_tasks_json_.count == 0) {
-                [self.unit.timingTasksPlan removeAllObjects];
-            } else {
+            if(_timing_tasks_json_ != nil) {
                 for(int i=0; i<_timing_tasks_json_.count; i++) {
                     NSDictionary *_timing_task_json_ = [_timing_tasks_json_ objectAtIndex:i];
                     TimingTask *tt = [[TimingTask alloc] initWithJson:_timing_task_json_ forUnit:self.unit];
-                    tt.isOwner = resultId == 1;
+                    tt.isOwner = (resultId == 1);
                     [self.unit.timingTasksPlan addObject:tt];
                 }
             }
@@ -153,31 +177,53 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *cellIdentifier = @"cellIdentifier";
     TimingTasksCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    TimingTask *timingTask = [self.unit.timingTasksPlan objectAtIndex:indexPath.row];
     if(cell == nil) {
-        cell = [[TimingTasksCell alloc] initWithTimerTaskPlan:nil reuseIdentifier:cellIdentifier];
+        cell = [[TimingTasksCell alloc] initWithTimerTaskPlan:timingTask reuseIdentifier:cellIdentifier];
+    } else {
+        cell.timingTask = timingTask;
     }
-    
-
-    
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self.navigationController pushViewController:[[TimingTaskPlanEditViewController alloc] initWithUnit:self.unit timingTask:nil] animated:YES];
-    
+    TimingTask *timingTask = [self.unit.timingTasksPlan objectAtIndex:indexPath.row];
+    [self.navigationController pushViewController:[[TimingTaskPlanEditViewController alloc] initWithUnit:self.unit timingTask:[timingTask copy]] animated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
+- (BOOL)tableView:(UITableView *)tableView shouldShowMenuForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return NO;
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return UITableViewCellEditingStyleDelete;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return @"删除";
+}
+
+//- (BOOL)tableView: (UITableView *)tableView shouldIndentWhileEditingRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    return NO;
+//}
+
 
 #pragma mark -
 #pragma mark Data Source Loading / Reloading Methods
 
-- (void)reloadTableViewDataSource{
+- (void)reloadTableViewDataSource {
     TimingTasksPlanService *service = [[TimingTasksPlanService alloc] init];
     [service timingTasksPlanForUnitIdentifier:self.unit.identifier success:@selector(getTimingTasksPlanSuccess:) failed:@selector(getTimingTasksPlanFailed:) target:self callback:nil];
 	_reloading = YES;
 }
 
-- (void)doneLoadingTableViewData{
+- (void)doneLoadingTableViewData {
 	_reloading = NO;
 	[_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:tblTaskPlans];
 }
@@ -185,12 +231,12 @@
 #pragma mark -
 #pragma mark EGORefreshTableHeaderDelegate Methods
 
-- (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView*)view{
+- (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView*)view {
 	[self reloadTableViewDataSource];
 	[self performSelector:@selector(doneLoadingTableViewData) withObject:nil afterDelay:1.0];
 }
 
-- (BOOL)egoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView*)view{
+- (BOOL)egoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView*)view {
 	return _reloading; // should return if data source model is reloading
 }
 
@@ -201,11 +247,11 @@
 #pragma mark -
 #pragma mark UIScrollViewDelegate Methods
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
 	[_refreshHeaderView egoRefreshScrollViewDidScroll:scrollView];
 }
 
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
 	[_refreshHeaderView egoRefreshScrollViewDidEndDragging:scrollView];
 }
 

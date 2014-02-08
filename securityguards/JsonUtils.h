@@ -13,4 +13,6 @@
 + (id)createDictionaryFromJson:(NSData *)json;
 + (NSData *)createJsonDataFromDictionary:(NSDictionary *)dictionary;
 
++ (void)printJsonData:(NSData *)data;
+
 @end

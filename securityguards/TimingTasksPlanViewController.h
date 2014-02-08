@@ -21,4 +21,6 @@
 
 @property (nonatomic, strong) Unit *unit;
 
+@property (nonatomic) BOOL needRefresh;
+
 @end

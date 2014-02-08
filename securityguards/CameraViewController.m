@@ -189,7 +189,7 @@
             if(socket != nil && [socket isConnectted]) {
                 [socket close];
             }
-            socket = [[CameraSocket alloc] initWithIPAddress:address andPort:port.integerValue];
+            socket = [[CameraSocket alloc] initWithIPAddress:address portNumber:port.integerValue];
             socket.delegate = self;
             socket.key = command.conStr;
             if(socket != nil) {

@@ -27,4 +27,11 @@
     return json;
 }
 
++ (void)printJsonData:(NSData *)data {
+    if(data != nil) {
+        NSString *json = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        NSLog(@"[Printer:] %@", json);
+    }
+}
+
 @end

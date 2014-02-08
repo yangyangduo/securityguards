@@ -13,6 +13,7 @@
 
 "unknow"                         =      "未知";
 "unknow_error"                   =      "网络错误";
+"system_error"                   =      "系统异常";
 "request_timeout"                =      "请求超时";
 "please_wait"                    =      "请稍后";
 "submit"                         =      "提交";
@@ -142,6 +143,8 @@
 "can_not_select_multi"                =      "此模式不能多选";
 "exe_repeat"                          =      "每周重复执行";
 "exe_no_repeat"                       =      "仅仅执行一次";
+"no_permissions"                      =      "权限错误";
+"no_unit_bind"                        =      "未绑定的主控";
 
 
 /****************	Camera View Strings	****************/

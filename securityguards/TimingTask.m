@@ -9,6 +9,7 @@
 #import "TimingTask.h"
 #import "ChineseUtils.h"
 #import "XXActionSheet.h"
+#import "GlobalSettings.h"
 
 @implementation TimingTask {
 
@@ -40,7 +41,8 @@
     newTimingTask.unit = _unit_;
     
     for(int i=0; i<self.timingTaskExecutionItems.count; i++) {
-        [newTimingTask.timingTaskExecutionItems addObject:[[self.timingTaskExecutionItems objectAtIndex:i] copy]];
+        [newTimingTask.timingTaskExecutionItems addObject:
+            [[self.timingTaskExecutionItems objectAtIndex:i] copy]];
     }
     
     return newTimingTask;
@@ -53,7 +55,12 @@
         self.identifier = [json noNilStringForKey:@"id"];
         
         // set unit identifier
-        self.unitIdentifier = [json noNilStringForKey:@"dc"];
+        NSString *_device_code_ = [json noNilStringForKey:@"dc"];
+        if(![XXStringUtils isBlank:_device_code_] && _device_code_.length > 4) {
+            self.unitIdentifier = [_device_code_ substringToIndex:_device_code_.length - 4];
+        } else {
+            self.unitIdentifier = _device_code_;
+        }
         
         // set name
         self.name = [json noNilStringForKey:@"na"];
@@ -84,6 +91,7 @@
                 Device *device = [_unit_.devices objectAtIndex:i];
                 if(device.isAirPurifier) {
                     TimingTaskExecutionItem *item = [[TimingTaskExecutionItem alloc] init];
+                    item.device = device;
                     item.deviceIdentifier = device.identifier;
                     [self.timingTaskExecutionItems addObject:item];
                 }
@@ -97,7 +105,7 @@
                 NSDictionary *_execution_json_ = [_executions_json_ objectAtIndex:i];
                 for(int j=0; j<self.timingTaskExecutionItems.count; j++) {
                     TimingTaskExecutionItem *item = [self.timingTaskExecutionItems objectAtIndex:j];
-                    if([item.deviceIdentifier isEqualToString:[_execution_json_ noNilStringForKey:@"code"]]) {
+                    if([item.deviceIdentifier isEqualToString:[_execution_json_ noNilStringForKey:@"cd"]]) {
                         [item updateWithJson:_execution_json_];
                         break;
                     }
@@ -146,7 +154,7 @@
     
     // set basic info
     [json setNoBlankString:self.identifier forKey:@"id"];
-    [json setMayBlankString:self.unitIdentifier forKey:@"dc"];
+    [json setMayBlankString:[NSString stringWithFormat:@"%@%@", self.unitIdentifier, APP_KEY] forKey:@"dc"];
     [json setMayBlankString:self.name forKey:@"na"];
     [json setBoolean:self.enable forKey:@"en"];
     [json setBoolean:(self.scheduleMode == TaskScheduleModeNoRepeat) forKey:@"on"];

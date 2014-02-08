@@ -17,6 +17,11 @@ typedef enum {
     ControllerModeEdit,
 } ControllerMode;
 
+typedef enum {
+    UserPermisionReadOnly,
+    UserPermisionReadWrite,
+} UserPermision;
+
 @interface TimingTaskPlanEditViewController ()
 
 @end
@@ -24,7 +29,9 @@ typedef enum {
 @implementation TimingTaskPlanEditViewController {
     UITableView *tblTimerTaskPlans;
     UIDatePicker *datePicker;
+    
     ControllerMode _mode_;
+    UserPermision _user_permision_;
 }
 
 @synthesize unit = _unit_;
@@ -97,6 +104,16 @@ typedef enum {
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    [self refresh];
+}
+
+- (void)refresh {
+    if(self.timingTask != nil) {
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        formatter.dateFormat = @"HH:mm";
+        datePicker.date = [formatter dateFromString:[NSString stringWithFormat:@"%d:%d", self.timingTask.scheduleTimeHour, self.timingTask.scheduleTimeMinute]];
+    }
+    
     if(tblTimerTaskPlans != nil) {
         [tblTimerTaskPlans reloadData];
     }
@@ -122,11 +139,25 @@ typedef enum {
 
 - (void)saveTimingTasksSuccess:(RestResponse *)resp {
     if(resp.statusCode == 200) {
-        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"update_success", @"") forType:AlertViewTypeFailed];
-        [[AlertView currentAlertView] delayDismissAlertView];
-        return;
+        NSDictionary *_json_ = [JsonUtils createDictionaryFromJson:resp.body];
+        if(_json_ != nil) {
+            int result = [_json_ intForKey:@"i"];
+            if(result == 1) {
+                [[AlertView currentAlertView] setMessage:NSLocalizedString(@"update_success", @"") forType:AlertViewTypeSuccess];
+                [[AlertView currentAlertView] delayDismissAlertView];
+            } else if(result == 0) {
+                [[AlertView currentAlertView] setMessage:NSLocalizedString(@"no_permissions", @"") forType:AlertViewTypeFailed];
+                [[AlertView currentAlertView] delayDismissAlertView];
+            } else if(result == -2) {
+                [[AlertView currentAlertView] setMessage:NSLocalizedString(@"no_unit_bind", @"") forType:AlertViewTypeFailed];
+                [[AlertView currentAlertView] delayDismissAlertView];
+            } else {
+                [[AlertView currentAlertView] setMessage:NSLocalizedString(@"system_error", @"") forType:AlertViewTypeFailed];
+                [[AlertView currentAlertView] delayDismissAlertView];
+            }
+            return;
+        }
     }
-    
     [self saveTimingTasksFailed:resp];
 }
 

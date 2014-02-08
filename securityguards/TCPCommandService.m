@@ -53,7 +53,7 @@
         
         NSString *addr = [addressSet objectAtIndex:0];
         NSString *port = [addressSet objectAtIndex:1];
-        socket = [[ExtranetClientSocket alloc] initWithIPAddress:addr andPort:port.integerValue];
+        socket = [[ExtranetClientSocket alloc] initWithIPAddress:addr portNumber:port.integerValue];
         socket.messageHandlerDelegate = self;
         
         [self performSelectorInBackground:@selector(connectInternal) withObject:nil];
