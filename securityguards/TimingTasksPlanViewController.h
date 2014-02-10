@@ -8,8 +8,9 @@
 
 #import "DrawerViewController.h"
 #import "EGORefreshTableHeaderView.h"
+#import "TimingTasksCell.h"
 
-@interface TimingTasksPlanViewController : DrawerViewController<UITableViewDataSource, UITableViewDelegate, EGORefreshTableHeaderDelegate> {
+@interface TimingTasksPlanViewController : DrawerViewController<UITableViewDataSource, UITableViewDelegate, EGORefreshTableHeaderDelegate, TimingTaskCellDelegate> {
     EGORefreshTableHeaderView *_refreshHeaderView;
 	
 	//  Reloading var should really be your tableviews datasource

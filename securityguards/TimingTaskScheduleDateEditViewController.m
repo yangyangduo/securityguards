@@ -73,7 +73,7 @@
     [self.topbarView addSubview:btnRight];
     
     tblScheduleDates = [[UITableView alloc] initWithFrame:CGRectMake(0, self.topbarView.bounds.size.height, self.view.bounds.size.width, self.view.bounds.size.height - self.topbarView.bounds.size.height) style:UITableViewStyleGrouped];
-    
+    tblScheduleDates.backgroundView = nil;
     tblScheduleDates.delegate = self;
     tblScheduleDates.dataSource = self;
     

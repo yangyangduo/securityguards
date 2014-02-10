@@ -164,7 +164,12 @@
 #pragma mark -
 #pragma mark Gesture
 
+- (UIPanGestureRecognizer *)getPanGesture {
+    return panGesture;
+}
+
 - (void)handlePanGestureForMainViewStateNormal:(UIPanGestureRecognizer *)gesture {
+    if(gesture !=  panGesture) return;
     CGPoint translation = [gesture translationInView:self.mainView];
     
     if(gesture.state == UIGestureRecognizerStateBegan) {

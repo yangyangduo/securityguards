@@ -39,4 +39,12 @@
     [self.client putForUrl:url acceptType:@"text/*" contentType:@"text/html" body:httpBody success:s error:f for:t callback:cb];
 }
 
+- (void)updateTimingTasksPlanEnabled:(TimingTask *)timingTask enable:(BOOL)enable success:(SEL)s failed:(SEL)f target:(id)t callback:(id)cb {
+    NSString *url = [NSString stringWithFormat:@"/update/%@%@/%@?deviceCode=%@&appKey=%@&security=%@&enable=%@",
+        timingTask.unitIdentifier, APP_KEY, timingTask.identifier,
+        [GlobalSettings defaultSettings].deviceCode, APP_KEY,
+        [GlobalSettings defaultSettings].secretKey, enable?@"true":@"false"];
+    [self.client putForUrl:url acceptType:@"text/*" contentType:@"text/html" body:nil success:s error:f for:t callback:cb];
+}
+
 @end

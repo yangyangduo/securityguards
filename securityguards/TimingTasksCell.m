@@ -19,6 +19,7 @@
 }
 
 @synthesize timingTask = _timingTask_;
+@synthesize delegte;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -40,13 +41,14 @@
 
 - (void)initUI {
     self.backgroundColor = [UIColor whiteColor];
+    self.backgroundView = [[UIView alloc] initWithFrame:self.bounds];
     self.selectedBackgroundView = [[UIView alloc] initWithFrame:self.bounds];
     self.selectedBackgroundView.backgroundColor = [UIColor appDarkGray];
     
-    lblTaskPlanName = [[UILabel alloc] initWithFrame:CGRectMake(10, 6, 160, 23)];
-    lblTaskPlanSceduleTime = [[UILabel alloc] initWithFrame:CGRectMake(169, 3, 70, 29)];
-    lblTaskPlanSceduleDate = [[UILabel alloc] initWithFrame:CGRectMake(10, 30, 150, 20)];
-    lblScheduleMode = [[UILabel alloc] initWithFrame:CGRectMake(174, 30, 60, 20)];
+    lblTaskPlanName = [[UILabel alloc] initWithFrame:CGRectMake(13, 6, 160, 23)];
+    lblTaskPlanSceduleTime = [[UILabel alloc] initWithFrame:CGRectMake(152, 3, 80, 29)];
+    lblTaskPlanSceduleDate = [[UILabel alloc] initWithFrame:CGRectMake(13, 30, 150, 20)];
+    lblScheduleMode = [[UILabel alloc] initWithFrame:CGRectMake(162, 30, 60, 20)];
     
     lblTaskPlanSceduleDate.font = [UIFont systemFontOfSize:10.f];
     lblTaskPlanSceduleDate.textColor = [UIColor darkGrayColor];
@@ -65,26 +67,41 @@
     lblTaskPlanSceduleDate.backgroundColor = [UIColor clearColor];
     lblScheduleMode.backgroundColor = [UIColor clearColor];
     
-    [self addSubview:lblTaskPlanName];
-    [self addSubview:lblTaskPlanSceduleTime];
-    [self addSubview:lblTaskPlanSceduleDate];
-    [self addSubview:lblScheduleMode];
+    [self.contentView addSubview:lblTaskPlanName];
+    [self.contentView addSubview:lblTaskPlanSceduleTime];
+    [self.contentView addSubview:lblTaskPlanSceduleDate];
+    [self.contentView addSubview:lblScheduleMode];
     
     swhTaskPlanEnable = [[UISwitch alloc] initWithFrame:CGRectZero];
-    swhTaskPlanEnable.center = CGPointMake(281, 26.f);
+    swhTaskPlanEnable.center = CGPointMake(280, 26.f);
     swhTaskPlanEnable.tintColor = [UIColor appDarkDarkGray];
     swhTaskPlanEnable.onTintColor = [UIColor appBlue];
     swhTaskPlanEnable.on = YES;
-    
     [swhTaskPlanEnable addTarget:self action:@selector(valueDidChanged:) forControlEvents:UIControlEventValueChanged];
-    
-    [self addSubview:swhTaskPlanEnable];
+    [swhTaskPlanEnable addTarget:self action:@selector(swhPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [self.contentView addSubview:swhTaskPlanEnable];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
     // Configure the view for the selected state
+}
+
+- (void)willTransitionToState:(UITableViewCellStateMask)state {
+    [super willTransitionToState:state];
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    for (UIView *subview in self.subviews) {
+        for (UIView *subview2 in subview.subviews) {
+            if ([NSStringFromClass([subview2 class]) isEqualToString:@"UITableViewCellDeleteConfirmationView"]) { // move delete confirmation view
+                [subview bringSubviewToFront:subview2];
+                return;
+            }
+        }
+    }
 }
 
 - (void)setTimingTask:(TimingTask *)timingTask {
@@ -109,19 +126,19 @@
     }
 }
 
-- (void)willTransitionToState:(UITableViewCellStateMask)state {
-    NSLog(@"hahahahahahaahhahahahahaahhaahahah");
-}
-
 - (void)valueDidChanged:(UISwitch *)switchView {
     if(switchView.isOn) {
         self.backgroundColor = [UIColor whiteColor];
     } else {
         self.backgroundColor = [UIColor appGray];
     }
-#ifdef DEBUG
-    NSLog(@"%@", switchView.isOn ? @"switch to on " : @"switch to off ");
-#endif
+}
+
+- (void)swhPressed:(id)sender {
+    if(self.timingTask != nil && self.delegte != nil
+       && [self.delegte respondsToSelector:@selector(timingTaskStateChanged:withState:)]) {
+        [self.delegte timingTaskStateChanged:self withState:swhTaskPlanEnable.isOn];
+    }
 }
 
 - (NSString *)displayedStringForTimeInteger:(int)t {
@@ -132,4 +149,18 @@
     }
 }
 
+- (void)revertSwitchButton {
+    [self performSelector:@selector(revertSwitchButtonInternal) withObject:nil afterDelay:1.5f];
+}
+
+- (void)revertSwitchButtonInternal {
+    [swhTaskPlanEnable setOn:self.timingTask.enable animated:YES];
+    [self valueDidChanged:swhTaskPlanEnable];
+}
+
+- (BOOL)valueForSwitchButton {
+    return swhTaskPlanEnable.isOn;
+}
+
 @end
+

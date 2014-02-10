@@ -38,6 +38,7 @@
 "offline"                        =      "未连接云端";
 "next_step"                      =      "下一步";
 "default"                        =      "默认";
+"everyday"                       =      "每天";
 
 
 /****************	Right Drawer View Strings	****************/
@@ -78,6 +79,7 @@
 "unit_name_not_blank"            =      "主控名不能为空";
 "unit_name_change_success"       =      "修改成功";
 "unit_name_change_failed"        =      "修改失败";
+"device_management"              =      "设备管理";
 
 
 /****************	Speech View Strings	****************/

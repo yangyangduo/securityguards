@@ -184,6 +184,10 @@
 }
 
 - (NSString *)stringForScheduleDate {
+    if(self.scheduleDate == (TaskScheduleDateMonday | TaskScheduleDateTuesday | TaskScheduleDateWednesday | TaskScheduleDateThursday | TaskScheduleDateFriday | TaskScheduleDateSaturday | TaskScheduleDateSunday)) {
+        return NSLocalizedString(@"everyday", @"");
+    }
+    
     NSMutableString *ms = [[NSMutableString alloc] init];
     if(self.scheduleMode == TaskScheduleModeRepeat) {
         [ms appendString:NSLocalizedString(@"per", @"")];

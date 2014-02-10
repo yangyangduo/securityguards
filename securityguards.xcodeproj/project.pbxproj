@@ -239,11 +239,12 @@
 		6FA3B2FF186E796000EBC7FD /* XXActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FA3B2FE186E796000EBC7FD /* XXActionSheet.m */; };
 		6FA69113187F9618005D1415 /* NewsFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FA69112187F9618005D1415 /* NewsFileManager.m */; };
 		6FA69118187FD54F005D1415 /* test@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FA69117187FD54F005D1415 /* test@2x.png */; };
+		6FB624FB18A60D1000B17010 /* TimingTasksCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FB624FA18A60D1000B17010 /* TimingTasksCell.m */; };
+		6FB624FE18A7C2F400B17010 /* UnitDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FB624FD18A7C2F400B17010 /* UnitDetailsViewController.m */; };
 		6FCC4A03189500B300A1E5CF /* icon_save@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FCC4A02189500B300A1E5CF /* icon_save@2x.png */; };
 		6FCC4A071896251500A1E5CF /* icon_add@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FCC4A061896251500A1E5CF /* icon_add@2x.png */; };
 		6FCCE92F187E551B007B42D2 /* News.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FCCE92E187E551B007B42D2 /* News.m */; };
 		6FCEBCFB187C2749000CB911 /* AccountSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FCEBCFA187C2749000CB911 /* AccountSettingsViewController.m */; };
-		6FD7358A189203220033A09D /* TimingTasksCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FD73589189203220033A09D /* TimingTasksCell.m */; };
 		6FD7358D18920BD40033A09D /* TimingTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FD7358C18920BD40033A09D /* TimingTask.m */; };
 		6FDA9AE6188FF4D5007D63DE /* SensorStateChangedEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FDA9AE5188FF4D5007D63DE /* SensorStateChangedEvent.m */; };
 		6FE0484F1883968500C886E1 /* btn_nav@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FE0484E1883968500C886E1 /* btn_nav@2x.png */; };
@@ -721,14 +722,16 @@
 		6FA69111187F9618005D1415 /* NewsFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsFileManager.h; sourceTree = "<group>"; };
 		6FA69112187F9618005D1415 /* NewsFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsFileManager.m; sourceTree = "<group>"; };
 		6FA69117187FD54F005D1415 /* test@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "test@2x.png"; sourceTree = "<group>"; };
+		6FB624F918A60D1000B17010 /* TimingTasksCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimingTasksCell.h; sourceTree = "<group>"; };
+		6FB624FA18A60D1000B17010 /* TimingTasksCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimingTasksCell.m; sourceTree = "<group>"; };
+		6FB624FC18A7C2F400B17010 /* UnitDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitDetailsViewController.h; sourceTree = "<group>"; };
+		6FB624FD18A7C2F400B17010 /* UnitDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnitDetailsViewController.m; sourceTree = "<group>"; };
 		6FCC4A02189500B300A1E5CF /* icon_save@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_save@2x.png"; sourceTree = "<group>"; };
 		6FCC4A061896251500A1E5CF /* icon_add@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_add@2x.png"; sourceTree = "<group>"; };
 		6FCCE92D187E551B007B42D2 /* News.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = News.h; sourceTree = "<group>"; };
 		6FCCE92E187E551B007B42D2 /* News.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = News.m; sourceTree = "<group>"; };
 		6FCEBCF9187C2749000CB911 /* AccountSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountSettingsViewController.h; sourceTree = "<group>"; };
 		6FCEBCFA187C2749000CB911 /* AccountSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountSettingsViewController.m; sourceTree = "<group>"; };
-		6FD73588189203220033A09D /* TimingTasksCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimingTasksCell.h; sourceTree = "<group>"; };
-		6FD73589189203220033A09D /* TimingTasksCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimingTasksCell.m; sourceTree = "<group>"; };
 		6FD7358B18920BD40033A09D /* TimingTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimingTask.h; sourceTree = "<group>"; };
 		6FD7358C18920BD40033A09D /* TimingTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimingTask.m; sourceTree = "<group>"; };
 		6FDA9AE4188FF4D5007D63DE /* SensorStateChangedEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SensorStateChangedEvent.h; sourceTree = "<group>"; };
@@ -1243,6 +1246,8 @@
 				F29DE7071886816600BCE93C /* ContactUsViewController.m */,
 				F29DE7091886820B00BCE93C /* DeclareViewController.h */,
 				F29DE70A1886820B00BCE93C /* DeclareViewController.m */,
+				6FB624FC18A7C2F400B17010 /* UnitDetailsViewController.h */,
+				6FB624FD18A7C2F400B17010 /* UnitDetailsViewController.m */,
 			);
 			name = controllers;
 			sourceTree = "<group>";
@@ -1906,8 +1911,8 @@
 				6F20336A187D33BD00BACFA5 /* NewsCell.m */,
 				F207BE34187E7D1300993A6F /* AccountManageCell.h */,
 				F207BE35187E7D1300993A6F /* AccountManageCell.m */,
-				6FD73588189203220033A09D /* TimingTasksCell.h */,
-				6FD73589189203220033A09D /* TimingTasksCell.m */,
+				6FB624F918A60D1000B17010 /* TimingTasksCell.h */,
+				6FB624FA18A60D1000B17010 /* TimingTasksCell.m */,
 			);
 			name = cells;
 			sourceTree = "<group>";
@@ -2349,6 +2354,7 @@
 				6F8F57BE18710D940033228F /* TextContainerView.m in Sources */,
 				6F600490186BCED60085B4BD /* XXEvent.m in Sources */,
 				6F6004E4186BD29D0085B4BD /* BitUtils.m in Sources */,
+				6FB624FE18A7C2F400B17010 /* UnitDetailsViewController.m in Sources */,
 				F2F3E1A1187A3FD6006A9447 /* MessageInterceptor.m in Sources */,
 				6F6005A4186C015B0085B4BD /* UserManagementService.m in Sources */,
 				6F6004BC186BCFF40085B4BD /* UIDevice+SystemVersion.m in Sources */,
@@ -2418,7 +2424,6 @@
 				6F7247C318711C4E003B325F /* SpeechSynthesizer.m in Sources */,
 				6F732729186D430700A1276B /* SensorDisplayView.m in Sources */,
 				6F60053F186BF0010085B4BD /* DeviceCommandUpdateDevicesHandler.m in Sources */,
-				6FD7358A189203220033A09D /* TimingTasksCell.m in Sources */,
 				F29DE70B1886820B00BCE93C /* DeclareViewController.m in Sources */,
 				F2CE67481885232F007FAC8B /* UnitSettingStep3ViewController.m in Sources */,
 				6FA3B2FF186E796000EBC7FD /* XXActionSheet.m in Sources */,
@@ -2452,6 +2457,7 @@
 				6F73272C186D4A1E00A1276B /* UIColor+MoreColor.m in Sources */,
 				6F860F2218753CB900792DBB /* UnitNameChangedEvent.m in Sources */,
 				6F60058E186BF8EC0085B4BD /* CameraSocket.m in Sources */,
+				6FB624FB18A60D1000B17010 /* TimingTasksCell.m in Sources */,
 				F2F3E1B3187A54D5006A9447 /* AccountManageCellData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

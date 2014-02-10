@@ -9,6 +9,7 @@
 #import "TimingTaskPlanEditViewController.h"
 #import "TimingTaskScheduleDateEditViewController.h"
 #import "TimingTasksPlanService.h"
+#import "TimingTasksPlanViewController.h"
 #import "DeviceUtils.h"
 #import "XXActionSheet.h"
 
@@ -36,6 +37,7 @@ typedef enum {
 
 @synthesize unit = _unit_;
 @synthesize timingTask = _timingTask_;
+@synthesize preViewController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -97,6 +99,7 @@ typedef enum {
     
     tblTimerTaskPlans = [[UITableView alloc] initWithFrame:CGRectMake(0, datePicker.frame.origin.y + datePicker.frame.size.height, self.view.bounds.size.width, self.view.bounds.size.height - self.topbarView.bounds.size.height - datePicker.bounds.size.height) style:UITableViewStyleGrouped];
     tblTimerTaskPlans.separatorStyle = UITableViewCellSeparatorStyleNone;
+    tblTimerTaskPlans.backgroundView = nil;
     tblTimerTaskPlans.delegate = self;
     tblTimerTaskPlans.dataSource = self;
     
@@ -145,6 +148,11 @@ typedef enum {
             if(result == 1) {
                 [[AlertView currentAlertView] setMessage:NSLocalizedString(@"update_success", @"") forType:AlertViewTypeSuccess];
                 [[AlertView currentAlertView] delayDismissAlertView];
+                if(self.preViewController != nil) {
+                    TimingTasksPlanViewController *controller = (TimingTasksPlanViewController *)self.preViewController;
+                    controller.needRefresh = YES;
+                }
+                [self.navigationController popViewControllerAnimated:YES];
             } else if(result == 0) {
                 [[AlertView currentAlertView] setMessage:NSLocalizedString(@"no_permissions", @"") forType:AlertViewTypeFailed];
                 [[AlertView currentAlertView] delayDismissAlertView];

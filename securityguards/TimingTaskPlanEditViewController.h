@@ -16,5 +16,6 @@
 
 @property (nonatomic, strong) Unit *unit;
 @property (nonatomic, strong) TimingTask *timingTask;
+@property (nonatomic, weak) UIViewController *preViewController;
 
 @end

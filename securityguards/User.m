@@ -9,8 +9,6 @@
 #import "User.h"
 #import "Shared.h"
 
-#import <AFNetworking/AFNetworking.h>
-
 @implementation User
 
 @synthesize identifier;
@@ -19,16 +17,6 @@
 @synthesize userState;
 @synthesize mobile;
 @synthesize stringForUserState;
-
-- (void)j {
-    AFHTTPRequestOperationManager *m = [AFHTTPRequestOperationManager manager];
-
-    [m GET:@"http://example.com/resources.json" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"JSON: %@", responseObject);
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
-    }];
-}
 
 - (id)initWithJson:(NSDictionary *)json {
     self = [super initWithJson:json];
