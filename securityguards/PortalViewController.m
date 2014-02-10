@@ -10,6 +10,7 @@
 #import "Shared.h"
 #import "XXDrawerViewController.h"
 #import "RootViewController.h"
+#import "UnitDetailsViewController.h"
 #import "UnitManager.h"
 
 /*     components      */
@@ -292,8 +293,8 @@
 - (void)btnRenameUnit:(id)sender {
     Unit *currentUnit = [UnitManager defaultManager].currentUnit;
     if(currentUnit != nil) {
-        UnitRenameViewController *unitRenameViewController = [[UnitRenameViewController alloc] initWithUnit:currentUnit];
-        [self presentViewController:unitRenameViewController animated:YES completion:^{}];
+        UnitDetailsViewController *unitDetailsViewController = [[UnitDetailsViewController alloc] initWithUnit:currentUnit];
+        [self.navigationController pushViewController:unitDetailsViewController animated:YES];
     }
 }
 

@@ -110,7 +110,7 @@
     }
     
     [[AlertView currentAlertView] setMessage:NSLocalizedString(@"please_wait", @"") forType:AlertViewTypeWaitting];
-    [[AlertView currentAlertView] alertForLock:YES timeout:10.f timeoutMessage:NSLocalizedString(@"", @"")];
+    [[AlertView currentAlertView] alertForLock:YES timeout:10.f timeoutMessage:NSLocalizedString(@"request_timeout", @"")];
     
     DeviceCommandUpdateUnitName *updateUnitNameCommand = (DeviceCommandUpdateUnitName *)[CommandFactory commandForType:CommandTypeUpdateUnitName];
     updateUnitNameCommand.masterDeviceCode = self.unit.identifier;

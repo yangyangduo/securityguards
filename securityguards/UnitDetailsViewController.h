@@ -7,7 +7,12 @@
 //
 
 #import "NavigationViewController.h"
+#import "UnitRenameViewController.h"
 
-@interface UnitDetailsViewController : NavigationViewController<UITableViewDataSource, UITableViewDelegate>
+@interface UnitDetailsViewController : NavigationViewController<UITableViewDataSource, UITableViewDelegate, TextViewDelegate>
+
+@property (nonatomic, strong) Unit *unit;
+
+- (instancetype)initWithUnit:(Unit *)unit;
 
 @end

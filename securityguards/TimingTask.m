@@ -12,7 +12,6 @@
 #import "GlobalSettings.h"
 
 @implementation TimingTask {
-
 }
 
 @synthesize identifier;

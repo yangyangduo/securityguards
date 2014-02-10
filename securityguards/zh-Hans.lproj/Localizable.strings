@@ -39,6 +39,7 @@
 "next_step"                      =      "下一步";
 "default"                        =      "默认";
 "everyday"                       =      "每天";
+"change_name"                    =      "请输入新的名称";
 
 
 /****************	Right Drawer View Strings	****************/
@@ -68,6 +69,7 @@
 /****************	Portal View Strings	****************/
 
 "btn_voice_title"                =      "点击开启语音模式";
+"change_unit_name"               =      "点击修改主控名称";
 "heath_index_desc1"              =      "您的健康安全指数已超";
 "heath_index_desc2"              =      "过";
 "heath_index_desc3"              =      "的同类用户";
@@ -80,6 +82,10 @@
 "unit_name_change_success"       =      "修改成功";
 "unit_name_change_failed"        =      "修改失败";
 "device_management"              =      "设备管理";
+"change_camera_name"             =      "修改摄像头名称";
+"camera_protection"              =      "隐私保护";
+"owner_access"                   =      "仅允许主账号互联网访问";
+"all_access"                     =      "允许所有账号互联网访问";
 
 
 /****************	Speech View Strings	****************/
@@ -158,6 +164,7 @@
 "play"                   =      "点击查看摄像头";
 "camera_connectting"     =      "正在连接摄像头...";
 "camera_error"           =      "连接已断开,请重试";
+"modify_camera_info"     =      "点击修改名称及隐私设置";
 
 
 /****************	Login && Register Strings	****************/

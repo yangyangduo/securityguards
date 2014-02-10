@@ -257,6 +257,7 @@
 		6FEC0FF3186C739700CB0D70 /* icon_logout@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FEC0FF2186C739700CB0D70 /* icon_logout@2x.png */; };
 		6FEC0FF5186C73A900CB0D70 /* icon_notifications@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FEC0FF4186C73A900CB0D70 /* icon_notifications@2x.png */; };
 		6FEC0FF7186C73B400CB0D70 /* icon_copyright@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FEC0FF6186C73B400CB0D70 /* icon_copyright@2x.png */; };
+		6FED0BB118A8D0AD00A7173A /* CameraInfoModifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FED0BB018A8D0AD00A7173A /* CameraInfoModifyViewController.m */; };
 		F207BE36187E7D1300993A6F /* AccountManageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F207BE35187E7D1300993A6F /* AccountManageCell.m */; };
 		F209B484188E44F10044C8C6 /* button_bind@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F209B481188E44F10044C8C6 /* button_bind@2x.png */; };
 		F209B485188E44F10044C8C6 /* button_highlighted_bind@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F209B482188E44F10044C8C6 /* button_highlighted_bind@2x.png */; };
@@ -751,6 +752,8 @@
 		6FEC0FF6186C73B400CB0D70 /* icon_copyright@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_copyright@2x.png"; sourceTree = "<group>"; };
 		6FEC0FF8186C75F500CB0D70 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		6FEC0FF9186C75F500CB0D70 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		6FED0BAF18A8D0AD00A7173A /* CameraInfoModifyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraInfoModifyViewController.h; sourceTree = "<group>"; };
+		6FED0BB018A8D0AD00A7173A /* CameraInfoModifyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraInfoModifyViewController.m; sourceTree = "<group>"; };
 		7D9356B8D7BD48649820A160 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F207BE34187E7D1300993A6F /* AccountManageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountManageCell.h; sourceTree = "<group>"; };
 		F207BE35187E7D1300993A6F /* AccountManageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountManageCell.m; sourceTree = "<group>"; };
@@ -1248,6 +1251,8 @@
 				F29DE70A1886820B00BCE93C /* DeclareViewController.m */,
 				6FB624FC18A7C2F400B17010 /* UnitDetailsViewController.h */,
 				6FB624FD18A7C2F400B17010 /* UnitDetailsViewController.m */,
+				6FED0BAF18A8D0AD00A7173A /* CameraInfoModifyViewController.h */,
+				6FED0BB018A8D0AD00A7173A /* CameraInfoModifyViewController.m */,
 			);
 			name = controllers;
 			sourceTree = "<group>";
@@ -2330,6 +2335,7 @@
 				6F600528186BE9890085B4BD /* DeviceCommandUpdateNotifications.m in Sources */,
 				6F6005B3186C1B160085B4BD /* LoginViewController.m in Sources */,
 				6F7CDBA21872738E0036F912 /* NotificationsViewController.m in Sources */,
+				6FED0BB118A8D0AD00A7173A /* CameraInfoModifyViewController.m in Sources */,
 				6F6005B6186C1B320085B4BD /* RegisterStep1ViewController.m in Sources */,
 				6F7247DF18714D70003B325F /* SpeechStateView.m in Sources */,
 				6F60058F186BF8EC0085B4BD /* ExtranetClientSocket.m in Sources */,
