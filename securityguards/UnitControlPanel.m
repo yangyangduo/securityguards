@@ -261,7 +261,12 @@ return;
         Zone *zone = [unit.zones objectAtIndex:i];
 //      begin if
         if(zone.isMasterZone) {
-            [displayedDevices addObjectsFromArray:zone.devices];
+            for(int j=0; j<zone.devices.count; j++) {
+                Device *device = [zone.devices objectAtIndex:j];
+                if(device.isAirPurifier) {
+                    [displayedDevices addObject:device];
+                }
+            }
         } else {
             for(int j=0; j<zone.devices.count; j++) {
                 Device *device = [zone.devices objectAtIndex:j];

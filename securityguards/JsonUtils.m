@@ -34,4 +34,19 @@
     }
 }
 
++ (void)printJsonDictionary:(NSDictionary *)dictionary {
+    if(dictionary != nil) {
+        NSData *_json_data_ = [[self class] createJsonDataFromDictionary:dictionary];
+        [[self class] printJsonData:_json_data_];
+    }
+}
+
++ (void)printJsonEntity:(Entity *)entity {
+    if(entity != nil) {
+        NSDictionary *_json_ = [entity toJson];
+        NSData *_json_data_ = [[self class] createJsonDataFromDictionary:_json_];
+        [[self class] printJsonData:_json_data_];
+    }
+}
+
 @end

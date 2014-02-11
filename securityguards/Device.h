@@ -55,8 +55,9 @@
 @property (nonatomic, readonly) BOOL isAirPurifierModeControl;   //空气净化器(自动，手动模式切换)
 @property (nonatomic, readonly) BOOL isAirPurifierSecurity;      //空气净化器安防
 
-@property (nonatomic, readonly) BOOL isAvailableDevice;
+@property (nonatomic, readonly) BOOL isSensor;
 
+@property (nonatomic, readonly) BOOL isAvailableDevice;
 
 // 获取执行命令的字符串
 - (NSString *)commandStringForStatus:(int)st;

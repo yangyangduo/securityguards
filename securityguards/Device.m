@@ -43,6 +43,8 @@
 @synthesize isBackgroundMusic;
 @synthesize isDVD;
 
+@synthesize isSensor;
+
 @synthesize isOnline;
 @synthesize isAvailableDevice;
 
@@ -109,7 +111,7 @@
 
 - (BOOL)isAvailableDevice {
     return
-    self.isAirPurifier || self.isCamera;
+    self.isAirPurifier || self.isCamera || self.isSensor;
 }
 
 - (BOOL)isLight {
@@ -174,6 +176,10 @@
 
 - (BOOL)isAirPurifier {
     return [@"airpurifier" isEqualToString:self.category];
+}
+
+- (BOOL)isSensor {
+    return [@"sensor" isEqualToString:self.category];
 }
 
 - (BOOL)isAirPurifierPower {

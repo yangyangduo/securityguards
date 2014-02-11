@@ -105,11 +105,11 @@
         cell.detailTextLabel.textColor = [UIColor darkGrayColor];
         
         UILabel *detailTextLabel2 = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 120, 32)];
-        detailTextLabel2.center = CGPointMake(230, cell.contentView.bounds.size.height / 2);
+        detailTextLabel2.center = CGPointMake([UIDevice systemVersionIsMoreThanOrEuqal7] ? 230 : 215, cell.contentView.bounds.size.height / 2);
         detailTextLabel2.textAlignment = NSTextAlignmentRight;
         detailTextLabel2.backgroundColor = [UIColor clearColor];
         detailTextLabel2.tag = 888;
-        detailTextLabel2.font = [UIFont systemFontOfSize:15.f];
+        detailTextLabel2.font = [UIFont systemFontOfSize:16.f];
         [cell.contentView addSubview:detailTextLabel2];
     }
     
@@ -177,12 +177,14 @@
         [[AlertView currentAlertView] alertForLock:NO autoDismiss:YES];
     } else {
         Device *device = [self.unit deviceForId:textView.identifier];
-        if([device.name isEqualToString:newText]) {
+        if([device.name isEqualToString:newText] || device == nil) {
             [textView popupViewController];
         } else {
+            [[AlertView currentAlertView] setMessage:NSLocalizedString(@"please_wait", @"") forType:AlertViewTypeWaitting];
+            [[AlertView currentAlertView] alertForLock:YES autoDismiss:NO];
             DeviceService *service = [[DeviceService alloc] init];
             // '-1000' tell the service that we doesn't need to update the property of 'status' for device
-            [service updateDeviceName:newText status:-1000 for:nil success:@selector(updateDeviceNameOrStatusSuccess:) failed:@selector(updateDeviceNameOrStatusFailed:) target:self callback:nil];
+            [service updateDeviceName:newText status:-1000 for:device success:@selector(updateDeviceNameOrStatusSuccess:) failed:@selector(updateDeviceNameOrStatusFailed:) target:self callback:textView];
         }
     }
 }
@@ -191,11 +193,44 @@
 #pragma mark Service Call Back
 
 - (void)updateDeviceNameOrStatusSuccess:(RestResponse *)resp {
-    
+    if(resp.statusCode == 200) {
+        NSDictionary *_json_ = [JsonUtils createDictionaryFromJson:resp.body];
+        if(_json_ != nil) {
+            int result = [_json_ intForKey:@"i"];
+            if(result == 1) {
+                [tblDevices reloadData];
+                TextViewController *textView = (TextViewController *)resp.callbackObject;
+                Device *device = [self.unit deviceForId:textView.identifier];
+                if(device != nil) {
+                    device.name = textView.value;
+                }
+                [textView popupViewController];
+                [[AlertView currentAlertView] setMessage:NSLocalizedString(@"update_success", @"") forType:AlertViewTypeSuccess];
+                [[AlertView currentAlertView] delayDismissAlertView];
+            } else if(result == -2) {
+                [[AlertView currentAlertView] setMessage:NSLocalizedString(@"no_unit_bind", @"") forType:AlertViewTypeFailed];
+                [[AlertView currentAlertView] delayDismissAlertView];
+            } else {
+                [[AlertView currentAlertView] setMessage:NSLocalizedString(@"system_error", @"") forType:AlertViewTypeFailed];
+                [[AlertView currentAlertView] delayDismissAlertView];
+            }
+            return;
+        }
+    }
+    [self updateDeviceNameOrStatusFailed:resp];
 }
 
 - (void)updateDeviceNameOrStatusFailed:(RestResponse *)resp {
-    
+    if(abs(resp.statusCode) == 1001) {
+        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"request_timeout", @"") forType:AlertViewTypeFailed];
+    } else if(abs(resp.statusCode) == 1004) {
+        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"network_error", @"") forType:AlertViewTypeFailed];
+    } else if(abs(resp.statusCode) == 403) {
+        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"verification_code_expire", @"") forType:AlertViewTypeFailed];
+    } else {
+        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"unknow_error", @"") forType:AlertViewTypeFailed];
+    }
+    [[AlertView currentAlertView] delayDismissAlertView];
 }
 
 @end

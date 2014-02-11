@@ -380,14 +380,7 @@
 - (void)updateUnitsView {
     Unit *currentUnit = [UnitManager defaultManager].currentUnit;
     
-    if(currentUnit != nil) {
-        
-        
-        [JsonUtils printJsonData:[JsonUtils createJsonDataFromDictionary:[currentUnit toJson]]];
-        
-
-        
-    }
+//    [JsonUtils printJsonEntity:currentUnit];
     
     self.topbarView.title = currentUnit != nil ? currentUnit.name : NSLocalizedString(@"app_name", @"");
     

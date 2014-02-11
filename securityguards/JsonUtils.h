@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Entity.h"
 
 @interface JsonUtils : NSObject
 
@@ -14,5 +15,7 @@
 + (NSData *)createJsonDataFromDictionary:(NSDictionary *)dictionary;
 
 + (void)printJsonData:(NSData *)data;
++ (void)printJsonEntity:(Entity *)entity;
++ (void)printJsonDictionary:(NSDictionary *)dictionary;
 
 @end

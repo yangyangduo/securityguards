@@ -77,6 +77,9 @@
 		6F4B4CCF187A4E1D004F1795 /* DeviceUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F4B4CCE187A4E1D004F1795 /* DeviceUtils.m */; };
 		6F4B4CD2187A5F5D004F1795 /* DeviceOperationItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F4B4CD1187A5F5D004F1795 /* DeviceOperationItem.m */; };
 		6F531B231877EBED0084AE93 /* BlueButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F531B221877EBED0084AE93 /* BlueButton.m */; };
+		6F5EBF1718A9FD2D00AF89E3 /* ShoppingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F5EBF1618A9FD2D00AF89E3 /* ShoppingViewController.m */; };
+		6F5EBF1A18A9FD3F00AF89E3 /* OrderConfirmViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F5EBF1918A9FD3F00AF89E3 /* OrderConfirmViewController.m */; };
+		6F5EBF1D18A9FD4D00AF89E3 /* ShoppingCompletedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F5EBF1C18A9FD4D00AF89E3 /* ShoppingCompletedViewController.m */; };
 		6F600457186BCE210085B4BD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F600456186BCE210085B4BD /* Foundation.framework */; };
 		6F600459186BCE210085B4BD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F600458186BCE210085B4BD /* CoreGraphics.framework */; };
 		6F60045B186BCE210085B4BD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F60045A186BCE210085B4BD /* UIKit.framework */; };
@@ -441,6 +444,12 @@
 		6F4B4CD1187A5F5D004F1795 /* DeviceOperationItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceOperationItem.m; sourceTree = "<group>"; };
 		6F531B211877EBED0084AE93 /* BlueButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlueButton.h; sourceTree = "<group>"; };
 		6F531B221877EBED0084AE93 /* BlueButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlueButton.m; sourceTree = "<group>"; };
+		6F5EBF1518A9FD2D00AF89E3 /* ShoppingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingViewController.h; sourceTree = "<group>"; };
+		6F5EBF1618A9FD2D00AF89E3 /* ShoppingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingViewController.m; sourceTree = "<group>"; };
+		6F5EBF1818A9FD3F00AF89E3 /* OrderConfirmViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderConfirmViewController.h; sourceTree = "<group>"; };
+		6F5EBF1918A9FD3F00AF89E3 /* OrderConfirmViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderConfirmViewController.m; sourceTree = "<group>"; };
+		6F5EBF1B18A9FD4D00AF89E3 /* ShoppingCompletedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingCompletedViewController.h; sourceTree = "<group>"; };
+		6F5EBF1C18A9FD4D00AF89E3 /* ShoppingCompletedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingCompletedViewController.m; sourceTree = "<group>"; };
 		6F600453186BCE210085B4BD /* securityguards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = securityguards.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F600456186BCE210085B4BD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6F600458186BCE210085B4BD /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -996,6 +1005,19 @@
 			name = devices;
 			sourceTree = "<group>";
 		};
+		6F5EBF1418A9FD1800AF89E3 /* shopping */ = {
+			isa = PBXGroup;
+			children = (
+				6F5EBF1518A9FD2D00AF89E3 /* ShoppingViewController.h */,
+				6F5EBF1618A9FD2D00AF89E3 /* ShoppingViewController.m */,
+				6F5EBF1818A9FD3F00AF89E3 /* OrderConfirmViewController.h */,
+				6F5EBF1918A9FD3F00AF89E3 /* OrderConfirmViewController.m */,
+				6F5EBF1B18A9FD4D00AF89E3 /* ShoppingCompletedViewController.h */,
+				6F5EBF1C18A9FD4D00AF89E3 /* ShoppingCompletedViewController.m */,
+			);
+			name = shopping;
+			sourceTree = "<group>";
+		};
 		6F60044A186BCE210085B4BD = {
 			isa = PBXGroup;
 			children = (
@@ -1220,6 +1242,7 @@
 			isa = PBXGroup;
 			children = (
 				6F6004BE186BD0290085B4BD /* commons */,
+				6F5EBF1418A9FD1800AF89E3 /* shopping */,
 				6F41D2AD1890DF7D0063E1BB /* timer_task */,
 				6F6005B0186C1ADB0085B4BD /* login_register */,
 				6FCEBCF8187C2734000CB911 /* account_settings */,
@@ -2420,6 +2443,7 @@
 				6F348507187519BB00EBB635 /* DeviceCommandNameEventFilter.m in Sources */,
 				6F183F621894A55F000F1974 /* TimingTaskExecutionItem.m in Sources */,
 				6F6004CB186BD0A50085B4BD /* XXDrawerViewController.m in Sources */,
+				6F5EBF1A18A9FD3F00AF89E3 /* OrderConfirmViewController.m in Sources */,
 				6F600525186BE9890085B4BD /* DeviceCommandUpdateDevice.m in Sources */,
 				6F600595186BFF7F0085B4BD /* GlobalSettings.m in Sources */,
 				F20D6ACA18729C9F00FE6B6D /* XXDateFormatter.m in Sources */,
@@ -2440,6 +2464,7 @@
 				F2CE67481885232F007FAC8B /* UnitSettingStep3ViewController.m in Sources */,
 				6FA3B2FF186E796000EBC7FD /* XXActionSheet.m in Sources */,
 				6F2AE0DF187059A900BEDB29 /* SpeechViewController.m in Sources */,
+				6F5EBF1718A9FD2D00AF89E3 /* ShoppingViewController.m in Sources */,
 				6F60052A186BE9890085B4BD /* DeviceCommandUpdateUnitName.m in Sources */,
 				6F732725186D274C00A1276B /* CopyrightViewController.m in Sources */,
 				6F2AE0E51870653300BEDB29 /* UIImage+Rotate.m in Sources */,
@@ -2456,6 +2481,7 @@
 				6F6004E9186BD31A0085B4BD /* SMNetworkTool.m in Sources */,
 				6F60053A186BF0010085B4BD /* DeviceCommandGetAccountHandler.m in Sources */,
 				6F60057B186BF5420085B4BD /* ServiceBase.m in Sources */,
+				6F5EBF1D18A9FD4D00AF89E3 /* ShoppingCompletedViewController.m in Sources */,
 				6F6005A0186C015B0085B4BD /* AccountService.m in Sources */,
 				6F41D2B61890E0070063E1BB /* TimingTaskScheduleDateEditViewController.m in Sources */,
 				6F6005A3186C015B0085B4BD /* SmsService.m in Sources */,
