@@ -7,6 +7,7 @@
 //
 
 #import "ShoppingCompletedViewController.h"
+#import "ShoppingStateView.h"
 
 @interface ShoppingCompletedViewController ()
 
@@ -33,6 +34,13 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)initUI {
+    [super initUI];
+    self.topbarView.title = NSLocalizedString(@"shopping_online", @"");
+    ShoppingStateView *shoppingStateView = [[ShoppingStateView alloc] initWithPoint:CGPointMake(0, self.topbarView.bounds.size.height) shoppingState:ShoppingStateCompleted];
+    [self.view addSubview:shoppingStateView];
 }
 
 @end

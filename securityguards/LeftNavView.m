@@ -43,11 +43,11 @@
 
 - (void)initUI {
     self.backgroundColor = [UIColor appGray];
-    UIImageView *imgLogo = [[UIImageView alloc] initWithFrame:CGRectMake(32, [UIDevice systemVersionIsMoreThanOrEuqal7] ? 34 : 14, 284 / 3, 94 / 3)];
+    UIImageView *imgLogo = [[UIImageView alloc] initWithFrame:CGRectMake(32, [UIDevice systemVersionIsMoreThanOrEuqal7] ? 26 : 6, 284 / 3, 94 / 3)];
     imgLogo.image = [UIImage imageNamed:@"logo_left_drawer"];
     [self addSubview:imgLogo];
     
-    UIButton *btnHeader = [[UIButton alloc] initWithFrame:CGRectMake(10, imgLogo.frame.origin.y + imgLogo.bounds.size.height + 20, 79.f / 2, 80 / 2)];
+    UIButton *btnHeader = [[UIButton alloc] initWithFrame:CGRectMake(10, imgLogo.frame.origin.y + imgLogo.bounds.size.height + 12, 79.f / 2, 80 / 2)];
     [btnHeader setBackgroundImage:[UIImage imageNamed:@"icon_header"] forState:UIControlStateNormal];
     [btnHeader addTarget:self action:@selector(showAccountSettingsViewController:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:btnHeader];
@@ -66,7 +66,7 @@
     lblAccountSetting.backgroundColor = [UIColor clearColor];
     [self addSubview:lblAccountSetting];
     
-    CGFloat height = btnHeader.frame.origin.y + btnHeader.bounds.size.height + 20;
+    CGFloat height = btnHeader.frame.origin.y + btnHeader.bounds.size.height + 10;
     tblItems = [[UITableView alloc] initWithFrame:CGRectMake(0, height, self.bounds.size.width, self.bounds.size.height - height) style:UITableViewStylePlain];
     tblItems.backgroundColor = [UIColor appBlue];
     tblItems.separatorStyle = UITableViewCellSeparatorStyleNone;

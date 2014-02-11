@@ -7,12 +7,15 @@
 //
 
 #import "ShoppingViewController.h"
+#import "ShoppingStateView.h"
 
 @interface ShoppingViewController ()
 
 @end
 
-@implementation ShoppingViewController
+@implementation ShoppingViewController {
+    
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -33,6 +36,13 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)initUI {
+    [super initUI];
+    self.topbarView.title = NSLocalizedString(@"shopping_online", @"");
+    ShoppingStateView *shoppingStateView = [[ShoppingStateView alloc] initWithPoint:CGPointMake(0, self.topbarView.bounds.size.height) shoppingState:ShoppingStateSelecting];
+    [self.view addSubview:shoppingStateView];
 }
 
 @end

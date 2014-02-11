@@ -15,6 +15,7 @@
 #import "NotificationsViewController.h"
 #import "UserLogoutEvent.h"
 #import "UnitManager.h"
+#import "ShoppingViewController.h"
 
 @interface RootViewController ()
 
@@ -50,6 +51,7 @@
     // init left view
     NSArray *navItems = [NSArray arrayWithObjects:
         [[LeftNavItem alloc] initWithIdentifier:@"portalItem" andDisplayName:NSLocalizedString(@"portal_drawer_title", @"") andImageName:@"icon_portal"],
+        [[LeftNavItem alloc] initWithIdentifier:@"shoppingItem" andDisplayName:NSLocalizedString(@"shopping_title", @"") andImageName:@"icon_shopping"],
         [[LeftNavItem alloc] initWithIdentifier:@"newsItem" andDisplayName:NSLocalizedString(@"news_drawer_title", @"") andImageName:@"icon_news"],
         [[LeftNavItem alloc] initWithIdentifier:@"notificationsItem" andDisplayName:NSLocalizedString(@"notifications_drawer_title", @"") andImageName:@"icon_notifications"],
         [[LeftNavItem alloc] initWithIdentifier:@"timerTaskItem" andDisplayName:NSLocalizedString(@"task_timer_title", @"") andImageName:@"icon_timer"],
@@ -100,6 +102,8 @@
             portalViewController = [[PortalViewController alloc] init];
         }
         centerViewController = portalViewController;
+    } else if([@"shoppingItem" isEqualToString:item.identifier]) {
+        centerViewController = [[ShoppingViewController alloc] init];
     } else if([@"newsItem" isEqualToString:item.identifier]) {
         centerViewController = [[NewsViewController alloc] init];
     } else if([@"notificationsItem" isEqualToString:item.identifier]) {

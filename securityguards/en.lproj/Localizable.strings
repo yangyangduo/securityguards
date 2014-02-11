@@ -55,6 +55,7 @@
 
 "profile_title"                  =      "个人信息";
 "portal_drawer_title"            =      "首页";
+"shopping_title"                 =      "商城";
 "news_drawer_title"              =      "动态";
 "user_mgr_drawer_title"          =      "用户管理";
 "task_timer_title"               =      "定时任务";
@@ -64,6 +65,7 @@
 "logouting"                      =      "注销中...";
 "logout_success"                 =      "注销成功";
 "account_settings"               =      "账号设置";
+"shopping_online"                =      "商城在线";
 
 
 /****************	Portal View Strings	****************/
@@ -323,3 +325,13 @@
 "website"                  =           "公司网址：";
 "website_url"              =           "www.365jws.com";
 "copyright"                =           "COPYRIGHT©2013-2015 湖南长沙汉拓信息技术有限公司";
+
+
+/****************	Shoppint View Strings	****************/
+
+"shopping_step1"           =           "第一步";
+"shopping_step2"           =           "第二步";
+"shopping_step3"           =           "第三步";
+"shopping_step1_title"     =           "选购商品";
+"shopping_step2_title"     =           "确认订单";
+"shopping_step3_title"     =           "完成订购";

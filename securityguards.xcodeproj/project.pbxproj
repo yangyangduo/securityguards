@@ -80,6 +80,8 @@
 		6F5EBF1718A9FD2D00AF89E3 /* ShoppingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F5EBF1618A9FD2D00AF89E3 /* ShoppingViewController.m */; };
 		6F5EBF1A18A9FD3F00AF89E3 /* OrderConfirmViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F5EBF1918A9FD3F00AF89E3 /* OrderConfirmViewController.m */; };
 		6F5EBF1D18A9FD4D00AF89E3 /* ShoppingCompletedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F5EBF1C18A9FD4D00AF89E3 /* ShoppingCompletedViewController.m */; };
+		6F5EBF1F18AA020600AF89E3 /* icon_shopping@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F5EBF1E18AA020600AF89E3 /* icon_shopping@2x.png */; };
+		6F5EBF2318AA02E500AF89E3 /* ShoppingStateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F5EBF2218AA02E500AF89E3 /* ShoppingStateView.m */; };
 		6F600457186BCE210085B4BD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F600456186BCE210085B4BD /* Foundation.framework */; };
 		6F600459186BCE210085B4BD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F600458186BCE210085B4BD /* CoreGraphics.framework */; };
 		6F60045B186BCE210085B4BD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F60045A186BCE210085B4BD /* UIKit.framework */; };
@@ -450,6 +452,9 @@
 		6F5EBF1918A9FD3F00AF89E3 /* OrderConfirmViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderConfirmViewController.m; sourceTree = "<group>"; };
 		6F5EBF1B18A9FD4D00AF89E3 /* ShoppingCompletedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingCompletedViewController.h; sourceTree = "<group>"; };
 		6F5EBF1C18A9FD4D00AF89E3 /* ShoppingCompletedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingCompletedViewController.m; sourceTree = "<group>"; };
+		6F5EBF1E18AA020600AF89E3 /* icon_shopping@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_shopping@2x.png"; sourceTree = "<group>"; };
+		6F5EBF2118AA02E500AF89E3 /* ShoppingStateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingStateView.h; sourceTree = "<group>"; };
+		6F5EBF2218AA02E500AF89E3 /* ShoppingStateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingStateView.m; sourceTree = "<group>"; };
 		6F600453186BCE210085B4BD /* securityguards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = securityguards.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F600456186BCE210085B4BD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6F600458186BCE210085B4BD /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -1018,6 +1023,15 @@
 			name = shopping;
 			sourceTree = "<group>";
 		};
+		6F5EBF2018AA02D100AF89E3 /* shopping */ = {
+			isa = PBXGroup;
+			children = (
+				6F5EBF2118AA02E500AF89E3 /* ShoppingStateView.h */,
+				6F5EBF2218AA02E500AF89E3 /* ShoppingStateView.m */,
+			);
+			name = shopping;
+			sourceTree = "<group>";
+		};
 		6F60044A186BCE210085B4BD = {
 			isa = PBXGroup;
 			children = (
@@ -1172,6 +1186,7 @@
 		6F6004A4186BCF500085B4BD /* components */ = {
 			isa = PBXGroup;
 			children = (
+				6F5EBF2018AA02D100AF89E3 /* shopping */,
 				F29DE7021886660A00BCE93C /* labels */,
 				6F45ADFF1876AF8200DC18CA /* camera_loading_view */,
 				F20D6AC11872992500FE6B6D /* cells */,
@@ -1918,6 +1933,7 @@
 			isa = PBXGroup;
 			children = (
 				6FCC4A061896251500A1E5CF /* icon_add@2x.png */,
+				6F5EBF1E18AA020600AF89E3 /* icon_shopping@2x.png */,
 				6FCC4A02189500B300A1E5CF /* icon_save@2x.png */,
 				6F9C8AD31887C62300289AEA /* logo_left_drawer@2x.png */,
 				6F0CD5E0186DC75F00B5A3EA /* icon_unit@2x.png */,
@@ -2261,6 +2277,7 @@
 				6F9C8AD41887C62300289AEA /* logo_left_drawer@2x.png in Resources */,
 				F2B6A6381874F8AF0020809D /* icon_validation@2x.png in Resources */,
 				6F2AF604188E1177005C1EAF /* ios5_6icon.png in Resources */,
+				6F5EBF1F18AA020600AF89E3 /* icon_shopping@2x.png in Resources */,
 				F2B6A6391874F8AF0020809D /* icon_warning@2x.png in Resources */,
 				F279E0091883C2B100E0547E /* icon_white_dial_phone@2x.png in Resources */,
 				F24E552C18702180000DB402 /* btn_gray@2x.png in Resources */,
@@ -2438,6 +2455,7 @@
 				F2B6A63D187500040020809D /* UIImage+ImageHandler.m in Sources */,
 				6F6004A2186BCEF10085B4BD /* XXEventFilterChain.m in Sources */,
 				6F0E244B1873091600F143F9 /* UnitFinder.m in Sources */,
+				6F5EBF2318AA02E500AF89E3 /* ShoppingStateView.m in Sources */,
 				6F6004FE186BE8C80085B4BD /* CommandFactory.m in Sources */,
 				6F60051E186BE9890085B4BD /* DeviceCommand.m in Sources */,
 				6F348507187519BB00EBB635 /* DeviceCommandNameEventFilter.m in Sources */,
