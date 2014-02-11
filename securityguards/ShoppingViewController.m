@@ -8,6 +8,7 @@
 
 #import "ShoppingViewController.h"
 #import "ShoppingStateView.h"
+#import "MerchandiseCell.h"
 
 @interface ShoppingViewController ()
 
@@ -17,6 +18,7 @@
     UITableView *tblMerchandises;
     
     UIView *bottomBar;
+    UIButton *btnSubmit;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -46,7 +48,19 @@
     ShoppingStateView *shoppingStateView = [[ShoppingStateView alloc] initWithPoint:CGPointMake(0, self.topbarView.bounds.size.height) shoppingState:ShoppingStateSelecting];
     [self.view addSubview:shoppingStateView];
     
-    tblMerchandises = [[UITableView alloc] initWithFrame:CGRectMake(0, shoppingStateView.frame.origin.y + shoppingStateView.bounds.size.height, self.view.bounds.size.width, self.view.bounds.size.height - self.topbarView.bounds.size.height - shoppingStateView.bounds.size.height) style:UITableViewStylePlain];
+    bottomBar = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height - 44, self.view.bounds.size.width, 44)];
+    bottomBar.backgroundColor = [UIColor appDarkDarkGray];
+    
+    btnSubmit = [[UIButton alloc] initWithFrame:CGRectMake(180, 0, 140, 44)];
+    [btnSubmit setTitle:NSLocalizedString(@"next_step", @"") forState:UIControlStateNormal];
+    btnSubmit.backgroundColor = [UIColor appBlue];
+    btnSubmit.enabled = NO;
+    [bottomBar addSubview:btnSubmit];
+    
+    [self.view addSubview:bottomBar];
+    
+    tblMerchandises = [[UITableView alloc] initWithFrame:CGRectMake(0, shoppingStateView.frame.origin.y + shoppingStateView.bounds.size.height, self.view.bounds.size.width, self.view.bounds.size.height - self.topbarView.bounds.size.height - shoppingStateView.bounds.size.height - bottomBar.bounds.size.height) style:UITableViewStylePlain];
+    tblMerchandises.separatorStyle = UITableViewCellSeparatorStyleNone;
     tblMerchandises.delegate = self;
     tblMerchandises.dataSource = self;
     [self.view addSubview:tblMerchandises];

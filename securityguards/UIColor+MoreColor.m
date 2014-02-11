@@ -14,6 +14,10 @@
    return [UIColor colorWithRed:0.f green:202.f / 255.f blue:1.f alpha:1.0f];
 }
 
++ (UIColor *)appLightBlueForButton {
+    return [UIColor colorWithRed:99.f / 255.f green:226.f / 255.f blue:1.f alpha:1.0f];
+}
+
 + (UIColor *)appGray {
     return [UIColor colorWithRed:238.f / 255.f green:238.f / 255.f blue:238.f / 255.f alpha:1.0f];
 }

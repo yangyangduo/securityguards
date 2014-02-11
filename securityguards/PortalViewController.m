@@ -66,9 +66,6 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     
-    // update network state display
-    [self updateNetworkStateForView:[CoreService defaultService].netMode];
-    
     // update devices
     [self updateUnitsView];
     
@@ -96,6 +93,11 @@
 - (void)viewWillDisappear:(BOOL)animated {
     // unsubscribe events
     [[XXEventSubscriptionPublisher defaultPublisher] unSubscribeForSubscriber:self];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    // update network state display
+    [self updateNetworkStateForView:[CoreService defaultService].netMode];
 }
 
 - (void)didReceiveMemoryWarning

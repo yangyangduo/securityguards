@@ -82,6 +82,8 @@
 		6F5EBF1D18A9FD4D00AF89E3 /* ShoppingCompletedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F5EBF1C18A9FD4D00AF89E3 /* ShoppingCompletedViewController.m */; };
 		6F5EBF1F18AA020600AF89E3 /* icon_shopping@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F5EBF1E18AA020600AF89E3 /* icon_shopping@2x.png */; };
 		6F5EBF2318AA02E500AF89E3 /* ShoppingStateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F5EBF2218AA02E500AF89E3 /* ShoppingStateView.m */; };
+		6F5EBF2618AA250B00AF89E3 /* MerchandiseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F5EBF2518AA250B00AF89E3 /* MerchandiseCell.m */; };
+		6F5EBF2918AA253400AF89E3 /* Merchandise.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F5EBF2818AA253400AF89E3 /* Merchandise.m */; };
 		6F600457186BCE210085B4BD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F600456186BCE210085B4BD /* Foundation.framework */; };
 		6F600459186BCE210085B4BD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F600458186BCE210085B4BD /* CoreGraphics.framework */; };
 		6F60045B186BCE210085B4BD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F60045A186BCE210085B4BD /* UIKit.framework */; };
@@ -455,6 +457,10 @@
 		6F5EBF1E18AA020600AF89E3 /* icon_shopping@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_shopping@2x.png"; sourceTree = "<group>"; };
 		6F5EBF2118AA02E500AF89E3 /* ShoppingStateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingStateView.h; sourceTree = "<group>"; };
 		6F5EBF2218AA02E500AF89E3 /* ShoppingStateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingStateView.m; sourceTree = "<group>"; };
+		6F5EBF2418AA250B00AF89E3 /* MerchandiseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MerchandiseCell.h; sourceTree = "<group>"; };
+		6F5EBF2518AA250B00AF89E3 /* MerchandiseCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MerchandiseCell.m; sourceTree = "<group>"; };
+		6F5EBF2718AA253400AF89E3 /* Merchandise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Merchandise.h; sourceTree = "<group>"; };
+		6F5EBF2818AA253400AF89E3 /* Merchandise.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Merchandise.m; sourceTree = "<group>"; };
 		6F600453186BCE210085B4BD /* securityguards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = securityguards.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F600456186BCE210085B4BD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6F600458186BCE210085B4BD /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -1527,6 +1533,8 @@
 				6FD7358C18920BD40033A09D /* TimingTask.m */,
 				6F183F601894A55F000F1974 /* TimingTaskExecutionItem.h */,
 				6F183F611894A55F000F1974 /* TimingTaskExecutionItem.m */,
+				6F5EBF2718AA253400AF89E3 /* Merchandise.h */,
+				6F5EBF2818AA253400AF89E3 /* Merchandise.m */,
 			);
 			name = entities;
 			sourceTree = "<group>";
@@ -1962,6 +1970,8 @@
 				F207BE35187E7D1300993A6F /* AccountManageCell.m */,
 				6FB624F918A60D1000B17010 /* TimingTasksCell.h */,
 				6FB624FA18A60D1000B17010 /* TimingTasksCell.m */,
+				6F5EBF2418AA250B00AF89E3 /* MerchandiseCell.h */,
+				6F5EBF2518AA250B00AF89E3 /* MerchandiseCell.m */,
 			);
 			name = cells;
 			sourceTree = "<group>";
@@ -2471,6 +2481,7 @@
 				F2F3E1A0187A3FD6006A9447 /* LoadMoreTableFooterView.m in Sources */,
 				6F45ADF418766AFC00DC18CA /* DirectionItemButton.m in Sources */,
 				6F600562186BF0B90085B4BD /* Entity.m in Sources */,
+				6F5EBF2918AA253400AF89E3 /* Merchandise.m in Sources */,
 				6F600573186BF3940085B4BD /* DeviceCommandEvent.m in Sources */,
 				F207BE36187E7D1300993A6F /* AccountManageCell.m in Sources */,
 				F2F3E1B0187A43EA006A9447 /* Users.m in Sources */,
@@ -2481,6 +2492,7 @@
 				F29DE70B1886820B00BCE93C /* DeclareViewController.m in Sources */,
 				F2CE67481885232F007FAC8B /* UnitSettingStep3ViewController.m in Sources */,
 				6FA3B2FF186E796000EBC7FD /* XXActionSheet.m in Sources */,
+				6F5EBF2618AA250B00AF89E3 /* MerchandiseCell.m in Sources */,
 				6F2AE0DF187059A900BEDB29 /* SpeechViewController.m in Sources */,
 				6F5EBF1718A9FD2D00AF89E3 /* ShoppingViewController.m in Sources */,
 				6F60052A186BE9890085B4BD /* DeviceCommandUpdateUnitName.m in Sources */,
