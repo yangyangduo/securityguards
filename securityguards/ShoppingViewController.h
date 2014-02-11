@@ -8,6 +8,6 @@
 
 #import "DrawerViewController.h"
 
-@interface ShoppingViewController : DrawerViewController
+@interface ShoppingViewController : DrawerViewController<UITableViewDataSource, UITableViewDelegate>
 
 @end
