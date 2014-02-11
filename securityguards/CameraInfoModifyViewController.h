@@ -7,7 +7,12 @@
 //
 
 #import "NavigationViewController.h"
+#import "TextViewController.h"
 
-@interface CameraInfoModifyViewController : NavigationViewController<UITableViewDataSource, UITableViewDelegate>
+@interface CameraInfoModifyViewController : NavigationViewController<UITableViewDataSource, UITableViewDelegate, TextViewDelegate>
+
+@property (nonatomic, strong) Device *cameraDevice;
+
+- (instancetype)initWithCameraDevice:(Device *)cameraDevice;
 
 @end

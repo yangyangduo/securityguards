@@ -104,7 +104,7 @@
 #pragma mark Device type or state
 
 - (BOOL)isOnline {
-    return self.state == 1;
+    return self.state != 0;
 }
 
 - (BOOL)isAvailableDevice {

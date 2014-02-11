@@ -68,4 +68,8 @@
     return nil;
 }
 
+- (BOOL)isMasterZone {
+    return [self.identifier isEqualToString:@"#MASTER"];
+}
+
 @end

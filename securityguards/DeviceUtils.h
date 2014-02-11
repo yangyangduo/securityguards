@@ -12,9 +12,10 @@
 
 @interface DeviceUtils : NSObject
 
-/*  state here is status of the device  */
-+ (NSString *)stateAsStringFor:(Device *)device;
-+ (NSString *)stateAsStringFor:(Device *)device state:(int)state;
++ (NSString *)statusAsStringFor:(Device *)device;
++ (NSString *)statusAsStringFor:(Device *)device status:(int)status;
+
++ (NSString *)stateAsString:(int)state;
 
 + (NSMutableArray *)operationsListFor:(Device *)device;
 + (void)executeOperationItem:(DeviceOperationItem *)operationItem;

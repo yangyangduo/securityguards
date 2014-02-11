@@ -34,4 +34,7 @@
 - (Zone *)zoneForId:(NSString *)_id_;
 - (Device *)deviceForId:(NSString *)_id_;
 
+- (Zone *)findMasterZone;
+- (Zone *)findSlaveZone;
+
 @end

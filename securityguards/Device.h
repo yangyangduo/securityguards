@@ -31,7 +31,7 @@
 @property (nonatomic) int status;
 @property (nonatomic) int type;
 
-@property (nonatomic) BOOL isOnline;
+@property (nonatomic, readonly) BOOL isOnline;
 
 @property (nonatomic, readonly) BOOL isLight;                    //灯
 @property (nonatomic, readonly) BOOL isInlight;                  //零火灯

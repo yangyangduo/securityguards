@@ -87,42 +87,50 @@
     return operations;
 }
 
-+ (NSString *)stateAsStringFor:(Device *)device {
-    return [[self class] stateAsStringFor:device state:device.status];
++ (NSString *)statusAsStringFor:(Device *)device {
+    return [[self class] statusAsStringFor:device status:device.status];
 }
 
-+ (NSString *)stateAsStringFor:(Device *)device state:(int)state {
++ (NSString *)statusAsStringFor:(Device *)device status:(int)status {
     if(device == nil) return [XXStringUtils emptyString];
     if(device.isAirPurifierPower) {
-        if(state == 0) {
+        if(status == 0) {
             return NSLocalizedString(@"device_open", @"");
-        } else if(state == 1) {
+        } else if(status == 1) {
             return NSLocalizedString(@"device_close", @"");
         }
     } else if(device.isAirPurifierLevel) {
-        if(state == 2) {
+        if(status == 2) {
             return NSLocalizedString(@"high_level", @"");
-        } else if(state == 1) {
+        } else if(status == 1) {
             return NSLocalizedString(@"medium_level", @"");
-        } else if(state == 0) {
+        } else if(status == 0) {
             return NSLocalizedString(@"low_level", @"");
         }
     } else if(device.isAirPurifierSecurity) {
-        if(state == 0) {
+        if(status == 0) {
             return NSLocalizedString(@"security_all_open", @"");
-        } else if(state == 1) {
+        } else if(status == 1) {
             return NSLocalizedString(@"security_close", @"");
-        } else if(state == 2) {
+        } else if(status == 2) {
             return NSLocalizedString(@"security_fireproof", @"");
         }
     } else if(device.isAirPurifierModeControl) {
-        if(state == 1) {
+        if(status == 1) {
             return NSLocalizedString(@"device_manual", @"");
-        } else if(state == 0) {
+        } else if(status == 0) {
             return NSLocalizedString(@"device_automatic", @"");
         }
     }
     return NSLocalizedString(@"unknow", @"");
+}
+
++ (NSString *)stateAsString:(int)state {
+    if(state == 0) {
+        return NSLocalizedString(@"device_offline", @"");
+    } else {
+        return NSLocalizedString(@"device_online", @"");
+    }
 }
 
 + (void)executeOperationItem:(DeviceOperationItem *)operationItem {

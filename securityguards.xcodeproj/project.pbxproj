@@ -51,6 +51,7 @@
 		6F2AF609188E11FB005C1EAF /* ios5_7settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F2AF608188E11FB005C1EAF /* ios5_7settings.png */; };
 		6F348507187519BB00EBB635 /* DeviceCommandNameEventFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F348506187519BB00EBB635 /* DeviceCommandNameEventFilter.m */; };
 		6F34850A1875264D00EBB635 /* UnitRenameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F3485091875264D00EBB635 /* UnitRenameViewController.m */; };
+		6F40FC4618A9BFF5000172EE /* DeviceService.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F40FC4518A9BFF5000172EE /* DeviceService.m */; };
 		6F41D2B01890DFAE0063E1BB /* TimingTasksPlanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F41D2AF1890DFAE0063E1BB /* TimingTasksPlanViewController.m */; };
 		6F41D2B31890DFDC0063E1BB /* TimingTaskPlanEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F41D2B21890DFDC0063E1BB /* TimingTaskPlanEditViewController.m */; };
 		6F41D2B61890E0070063E1BB /* TimingTaskScheduleDateEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F41D2B51890E0070063E1BB /* TimingTaskScheduleDateEditViewController.m */; };
@@ -402,6 +403,8 @@
 		6F348506187519BB00EBB635 /* DeviceCommandNameEventFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceCommandNameEventFilter.m; sourceTree = "<group>"; };
 		6F3485081875264D00EBB635 /* UnitRenameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitRenameViewController.h; sourceTree = "<group>"; };
 		6F3485091875264D00EBB635 /* UnitRenameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnitRenameViewController.m; sourceTree = "<group>"; };
+		6F40FC4418A9BFF5000172EE /* DeviceService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceService.h; sourceTree = "<group>"; };
+		6F40FC4518A9BFF5000172EE /* DeviceService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceService.m; sourceTree = "<group>"; };
 		6F41D2AE1890DFAE0063E1BB /* TimingTasksPlanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimingTasksPlanViewController.h; sourceTree = "<group>"; };
 		6F41D2AF1890DFAE0063E1BB /* TimingTasksPlanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimingTasksPlanViewController.m; sourceTree = "<group>"; };
 		6F41D2B11890DFDC0063E1BB /* TimingTaskPlanEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimingTaskPlanEditViewController.h; sourceTree = "<group>"; };
@@ -1543,6 +1546,8 @@
 				6F0D8039187E6DA800DB5040 /* NewsService.m */,
 				6F183F631894BD7C000F1974 /* TimingTasksPlanService.h */,
 				6F183F641894BD7C000F1974 /* TimingTasksPlanService.m */,
+				6F40FC4418A9BFF5000172EE /* DeviceService.h */,
+				6F40FC4518A9BFF5000172EE /* DeviceService.m */,
 			);
 			name = rest;
 			sourceTree = "<group>";
@@ -2348,6 +2353,7 @@
 				6F60055B186BF0710085B4BD /* NotificationData.m in Sources */,
 				6FEC0FEA186C664200CB0D70 /* UserManagementViewController.m in Sources */,
 				F2CE673F18852284007FAC8B /* AddUnitViewController.m in Sources */,
+				6F40FC4618A9BFF5000172EE /* DeviceService.m in Sources */,
 				6FCCE92F187E551B007B42D2 /* News.m in Sources */,
 				6F7CDBA5187277120036F912 /* CameraViewController.m in Sources */,
 				6F7CDBB41872A2100036F912 /* NotificationsFileManager.m in Sources */,

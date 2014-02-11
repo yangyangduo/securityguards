@@ -22,6 +22,8 @@
 @implementation UnitControlPanel {
     UITableView *tblControlItems;
     
+    NSMutableArray *displayedDevices;
+    
     /*
      * if device count has changed that
      * we should to change the frame(height) of tblControlItems
@@ -58,7 +60,8 @@
 }
 
 - (instancetype)initWithPoint:(CGPoint)point andUnit:(Unit *)unit {
-    [self calculateDeviceCountForUnit:unit];
+    [self setDisplayedDevicesForUnit:unit];
+    [self calculateDeviceCount];
     self = [self initWithPoint:point];
     if(self) {
         _unit_ = unit;
@@ -67,6 +70,7 @@
 }
 
 - (void)initDefaults {
+    displayedDevices = [NSMutableArray array];
 }
 
 - (void)initUI {
@@ -123,8 +127,7 @@
         cell.backgroundView.backgroundColor = (indexPath.row % 2 == 0) ? [UIColor whiteColor] : [UIColor appDarkGray];
     }
     
-    Zone *zone = [_unit_.zones objectAtIndex:0];
-    Device *device = [zone.devices objectAtIndex:indexPath.row];
+    Device *device = [displayedDevices objectAtIndex:indexPath.row];
     
     UILabel *detailTextLabel = (UILabel *)[cell viewWithTag:DETAIL_TEXT_LABEL_TAG];
     detailTextLabel.textColor = [UIColor colorWithHexString:@"666666"];
@@ -157,7 +160,7 @@
     if(device.isCamera) {
         [self detailTextLabelForCell:cell].text = NSLocalizedString(@"view", @"");
     } else {
-        [self detailTextLabelForCell:cell].text = [DeviceUtils stateAsStringFor:device];
+        [self detailTextLabelForCell:cell].text = [DeviceUtils statusAsStringFor:device];
     }
     
     return cell;
@@ -168,8 +171,7 @@
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
         return;
     }
-    Zone *zone = [self.unit.zones objectAtIndex:0];
-    Device *device = [zone.devices objectAtIndex:indexPath.row];
+    Device *device = [displayedDevices objectAtIndex:indexPath.row];
     if(device.isCamera) {
         CameraViewController *cameraViewController = [[CameraViewController alloc] init];
         cameraViewController.cameraDevice = device;
@@ -230,24 +232,16 @@ return;
     return nil;
 }
 
-- (void)calculateDeviceCountForUnit:(Unit *)unit {
+- (void)calculateDeviceCount {
     int oldDeviceCount = deviceCount;
-    if(unit == nil) {
-        deviceCount = 0;
-    } else {
-        if(unit.zones.count == 0) {
-            deviceCount = 0;
-        } else {
-            Zone *zone = [unit.zones objectAtIndex:0];
-            deviceCount = (int)zone.devices.count;
-        }
-    }
+    deviceCount = displayedDevices == nil ? 0 : displayedDevices.count;
     deviceCountChanged = oldDeviceCount != deviceCount;
 }
 
 - (void)setUnit:(Unit *)unit {
     _unit_ = unit;
-    [self calculateDeviceCountForUnit:_unit_];
+    [self setDisplayedDevicesForUnit:_unit_];
+    [self calculateDeviceCount];
     if(tblControlItems != nil) {
         CGRect frame = self.frame;
         self.frame = CGRectMake(frame.origin.x, frame.origin.y, [UIScreen mainScreen].bounds.size.width, CONTROL_ITEM_HEIGHT * deviceCount);
@@ -256,6 +250,27 @@ return;
         if(deviceCountChanged && self.delegate != nil && [self.delegate respondsToSelector:@selector(unitControlPanelSizeChanged:)] ) {
             [self.delegate unitControlPanelSizeChanged:self];
         }
+    }
+}
+
+- (void)setDisplayedDevicesForUnit:(Unit *)unit {
+    [displayedDevices removeAllObjects];
+    if(unit == nil) return;
+    
+    for(int i=0; i<unit.zones.count; i++) {
+        Zone *zone = [unit.zones objectAtIndex:i];
+//      begin if
+        if(zone.isMasterZone) {
+            [displayedDevices addObjectsFromArray:zone.devices];
+        } else {
+            for(int j=0; j<zone.devices.count; j++) {
+                Device *device = [zone.devices objectAtIndex:j];
+                if(device.isCamera) {
+                    [displayedDevices addObject:device];
+                }
+            }
+        }
+//      end if
     }
 }
 

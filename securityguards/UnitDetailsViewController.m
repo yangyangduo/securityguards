@@ -8,6 +8,8 @@
 
 #import "UnitDetailsViewController.h"
 #import "CameraInfoModifyViewController.h"
+#import "DeviceUtils.h"
+#import "DeviceService.h"
 
 @interface UnitDetailsViewController ()
 
@@ -15,6 +17,8 @@
 
 @implementation UnitDetailsViewController {
     UITableView *tblDevices;
+    
+    NSArray *_devices_;
 }
 
 @synthesize unit = _unit_;
@@ -23,6 +27,10 @@
     self = [super init];
     if(self) {
         self.unit = unit;
+        Zone *zone = [self.unit findSlaveZone];
+        if(zone != nil) {
+            _devices_ = zone.devices;
+        }
     }
     return self;
 }
@@ -75,13 +83,13 @@
 #pragma mark Table View Methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    if(self.unit == 0 || self.unit.devices.count == 0) return 1;
+    if(self.unit == nil || _devices_.count == 0) return 1;
     return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if(section == 0) return 1;
-    return self.unit.devices.count;
+    return _devices_.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -95,18 +103,43 @@
         cell.selectedBackgroundView.backgroundColor = [UIColor appDarkGray];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell.detailTextLabel.textColor = [UIColor darkGrayColor];
+        
+        UILabel *detailTextLabel2 = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 120, 32)];
+        detailTextLabel2.center = CGPointMake(230, cell.contentView.bounds.size.height / 2);
+        detailTextLabel2.textAlignment = NSTextAlignmentRight;
+        detailTextLabel2.backgroundColor = [UIColor clearColor];
+        detailTextLabel2.tag = 888;
+        detailTextLabel2.font = [UIFont systemFontOfSize:15.f];
+        [cell.contentView addSubview:detailTextLabel2];
     }
+    
+    UILabel *detailTextLabel2 = (UILabel *)[cell viewWithTag:888];
     
     if(indexPath.section == 0) {
         cell.textLabel.text = self.unit != nil ? self.unit.name : [XXStringUtils emptyString];
         cell.detailTextLabel.text = NSLocalizedString(@"change_unit_name", @"");
     } else {
-        Device *device = [self.unit.devices objectAtIndex:indexPath.row];
+
+        Device *device = [_devices_ objectAtIndex:indexPath.row];
         cell.textLabel.text = device.name;
+        
+        if(device.isOnline) {
+            detailTextLabel2.textColor = [UIColor lightGrayColor];
+        } else {
+            detailTextLabel2.textColor = [UIColor redColor];
+        }
+        
         if(device.isCamera) {
             cell.detailTextLabel.text = NSLocalizedString(@"modify_camera_info", @"");
         } else {
             cell.detailTextLabel.text = NSLocalizedString(@"change_plan_name", @"");
+        }
+
+        if(device.isCamera && device.isOnline) {
+            detailTextLabel2.text = device.status == 0 ?
+                NSLocalizedString(@"owner_access_short", @"") : NSLocalizedString(@"all_access_short", @"");
+        } else {
+            detailTextLabel2.text = [DeviceUtils stateAsString:device.state];
         }
     }
     
@@ -118,9 +151,9 @@
         UnitRenameViewController *unitRenameViewController = [[UnitRenameViewController alloc] initWithUnit:self.unit];
         [self presentViewController:unitRenameViewController animated:YES completion:^{}];
     } else {
-        Device *device = [self.unit.devices objectAtIndex:indexPath.row];
+        Device *device = [_devices_ objectAtIndex:indexPath.row];
         if(device.isCamera) {
-            CameraInfoModifyViewController *cameraMofifyViewController = [[CameraInfoModifyViewController alloc] init];
+            CameraInfoModifyViewController *cameraMofifyViewController = [[CameraInfoModifyViewController alloc] initWithCameraDevice:device];
             
             [self.navigationController pushViewController:cameraMofifyViewController animated:YES];
         } else {
@@ -147,9 +180,22 @@
         if([device.name isEqualToString:newText]) {
             [textView popupViewController];
         } else {
-            NSLog(newText);
+            DeviceService *service = [[DeviceService alloc] init];
+            // '-1000' tell the service that we doesn't need to update the property of 'status' for device
+            [service updateDeviceName:newText status:-1000 for:nil success:@selector(updateDeviceNameOrStatusSuccess:) failed:@selector(updateDeviceNameOrStatusFailed:) target:self callback:nil];
         }
     }
+}
+
+#pragma mark -
+#pragma mark Service Call Back
+
+- (void)updateDeviceNameOrStatusSuccess:(RestResponse *)resp {
+    
+}
+
+- (void)updateDeviceNameOrStatusFailed:(RestResponse *)resp {
+    
 }
 
 @end

@@ -129,6 +129,14 @@
     return _devices_;
 }
 
+- (Zone *)findMasterZone {
+    return [self zoneForId:@"#MASTER"];
+}
+
+- (Zone *)findSlaveZone {
+    return [self zoneForId:@"#SLAVE"];
+}
+
 - (NSUInteger)avalibleDevicesCount {
     int count = 0;
     for(Device *device in [self devices]) {

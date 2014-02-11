@@ -379,6 +379,16 @@
 // called on event system (units list update event || current unit changed event)
 - (void)updateUnitsView {
     Unit *currentUnit = [UnitManager defaultManager].currentUnit;
+    
+    if(currentUnit != nil) {
+        
+        
+        [JsonUtils printJsonData:[JsonUtils createJsonDataFromDictionary:[currentUnit toJson]]];
+        
+
+        
+    }
+    
     self.topbarView.title = currentUnit != nil ? currentUnit.name : NSLocalizedString(@"app_name", @"");
     
     [self updateSensorsStatus:currentUnit];

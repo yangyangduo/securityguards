@@ -291,7 +291,7 @@ typedef enum {
             // set text && detail text label
             cell.textLabel.text = eachItem.device.name;
             if(eachItem.isAvailable) {
-                detailTextLabel.text = [DeviceUtils stateAsStringFor:eachItem.device state:eachItem.status];
+                detailTextLabel.text = [DeviceUtils statusAsStringFor:eachItem.device status:eachItem.status];
                 detailTextLabel.textColor = [UIColor appBlue];
             } else {
                 detailTextLabel.text = NSLocalizedString(@"default", @"");

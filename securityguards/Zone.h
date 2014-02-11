@@ -19,6 +19,8 @@
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSString *identifier;
 
+@property (assign, nonatomic, readonly) BOOL isMasterZone;
+
 - (Device *)deviceForId:(NSString *)_id_;
 
 @end

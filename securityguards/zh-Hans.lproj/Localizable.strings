@@ -85,7 +85,9 @@
 "change_camera_name"             =      "修改摄像头名称";
 "camera_protection"              =      "隐私保护";
 "owner_access"                   =      "仅允许主账号互联网访问";
+"owner_access_short"             =      "仅主账号";
 "all_access"                     =      "允许所有账号互联网访问";
+"all_access_short"               =      "完全访问";
 
 
 /****************	Speech View Strings	****************/
@@ -134,6 +136,8 @@
 "humidity_low"                   =      "干";
 "humidity_middle"                =      "中";
 "humidity_high"                  =      "湿";
+"device_online"                  =      "在线";
+"device_offline"                 =      "离线";
 
 
 /****************	Timer Task View Strings	****************/
