@@ -54,4 +54,8 @@
     return [UIColor colorWithRed:250.f / 255.f green:250.f / 255.f blue:250.f / 255.f alpha:1.0f];
 }
 
++ (UIColor *)appDarkBlue {
+    return [UIColor colorWithRed:183.f / 255.f green:241.f / 255.f blue:1.f alpha:1.0f];
+}
+
 @end

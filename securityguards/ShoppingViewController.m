@@ -11,6 +11,7 @@
 #import "ShoppingStateView.h"
 #import "MerchandiseCell.h"
 #import "MerchandiseDetailSelectView.h"
+#import "ShoppingService.h"
 
 @interface ShoppingViewController ()
 
@@ -18,6 +19,7 @@
 
 @implementation ShoppingViewController {
     UITableView *tblMerchandises;
+    NSMutableArray *merchandises;
     
     UIView *bottomBar;
     UIButton *btnSubmit;
@@ -68,6 +70,39 @@
     [self.view addSubview:tblMerchandises];
 }
 
+- (void)getProductsSuccess:(RestResponse *)resp {
+    [JsonUtils printJsonData:resp.body];
+    if(resp.statusCode == 200) {
+        NSDictionary *_json_ = [JsonUtils createDictionaryFromJson:resp.body];
+        int result = [_json_ intForKey:@"i"];
+        if(result == 1) {
+            NSArray *_m_ = [_json_ arrayForKey:@"m"];
+            if(merchandises == nil) {
+                merchandises = [NSMutableArray array];
+            } else {
+                [merchandises removeAllObjects];
+            }
+            if(_m_ != nil) {
+                for(int i=0; i<_m_.count; i++) {
+                    [merchandises addObject:[[Merchandise alloc] initWithJson:[_m_ objectAtIndex:i]]];
+                }
+            }
+            [tblMerchandises reloadData];
+            return;
+        }
+    }
+    [self getProductsFailed:resp];
+}
+
+- (void)getProductsFailed:(RestResponse *)resp {
+    
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    ShoppingService *service = [[ShoppingService alloc] init];
+    [service getProductsSuccess:@selector(getProductsSuccess:) failed:@selector(getProductsFailed:) target:self callback:nil];
+}
+
 #pragma mark -
 #pragma mark UI Events
 
@@ -88,7 +123,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 3;
+    return merchandises == nil ? 0 : merchandises.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -97,6 +132,7 @@
     if(cell == nil) {
         cell = [[MerchandiseCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
+    cell.merchandise = [merchandises objectAtIndex:indexPath.row];
     return cell;
 }
 

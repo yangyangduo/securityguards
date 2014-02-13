@@ -7,6 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Merchandise.h"
+
+@class PriceRange;
 
 typedef enum {
     MerchandiseBarStateNormal,
@@ -15,11 +18,27 @@ typedef enum {
 
 @interface MerchandiseBar : UIView
 
-@property (nonatomic) float price;
+@property (nonatomic, strong) PriceRange *price;
 @property (nonatomic, strong) NSString *merchandiseDescriptions;
 
 - (instancetype)initWithPoint:(CGPoint)point;
 
-- (void)setMerchandiseBarState:(MerchandiseBarState)state merchandisePrice:(float)merchandisePrice merchandiseDescriptions:(NSString *)merchandiseDescriptions;
+- (void)setMerchandiseBarState:(MerchandiseBarState)state merchandisePrice:(PriceRange *)merchandisePrice merchandiseDescriptions:(NSString *)merchandiseDescriptions;
+
+@end
+
+
+@interface PriceRange : NSObject
+
+@property (nonatomic, assign) float minValue;
+@property (nonatomic, assign) float maxValue;
+@property (nonatomic, assign, readonly) BOOL isSingleValue;
+
+- (instancetype)initWithSingleValue:(float)singleValue;
+- (instancetype)initWithMaxValue:(float)maxValue minValue:(float)minValue;
+
+- (void)setValue:(Merchandise *)merchandise;
+- (void)setSingleValue:(float)singleValue;
+- (NSString *)stringForPrice;
 
 @end

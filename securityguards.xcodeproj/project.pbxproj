@@ -51,6 +51,10 @@
 		6F2AF605188E1177005C1EAF /* ios5_6icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F2AF603188E1177005C1EAF /* ios5_6icon@2x.png */; };
 		6F2AF607188E11B6005C1EAF /* ios7spotlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F2AF606188E11B6005C1EAF /* ios7spotlight@2x.png */; };
 		6F2AF609188E11FB005C1EAF /* ios5_7settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F2AF608188E11FB005C1EAF /* ios5_7settings.png */; };
+		6F33C48418AC60150070CB60 /* RadioRectButtonGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F33C48318AC60150070CB60 /* RadioRectButtonGroup.m */; };
+		6F33C48718ACA01B0070CB60 /* NumberPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F33C48618ACA01B0070CB60 /* NumberPicker.m */; };
+		6F33C48A18ACB1C80070CB60 /* ShoppingService.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F33C48918ACB1C80070CB60 /* ShoppingService.m */; };
+		6F33C48E18ACC85A0070CB60 /* ShoppingCart.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F33C48D18ACC85A0070CB60 /* ShoppingCart.m */; };
 		6F348507187519BB00EBB635 /* DeviceCommandNameEventFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F348506187519BB00EBB635 /* DeviceCommandNameEventFilter.m */; };
 		6F34850A1875264D00EBB635 /* UnitRenameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F3485091875264D00EBB635 /* UnitRenameViewController.m */; };
 		6F40FC4618A9BFF5000172EE /* DeviceService.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F40FC4518A9BFF5000172EE /* DeviceService.m */; };
@@ -412,6 +416,14 @@
 		6F2AF603188E1177005C1EAF /* ios5_6icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ios5_6icon@2x.png"; sourceTree = "<group>"; };
 		6F2AF606188E11B6005C1EAF /* ios7spotlight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ios7spotlight@2x.png"; sourceTree = "<group>"; };
 		6F2AF608188E11FB005C1EAF /* ios5_7settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ios5_7settings.png; sourceTree = "<group>"; };
+		6F33C48218AC60150070CB60 /* RadioRectButtonGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadioRectButtonGroup.h; sourceTree = "<group>"; };
+		6F33C48318AC60150070CB60 /* RadioRectButtonGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RadioRectButtonGroup.m; sourceTree = "<group>"; };
+		6F33C48518ACA01B0070CB60 /* NumberPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NumberPicker.h; sourceTree = "<group>"; };
+		6F33C48618ACA01B0070CB60 /* NumberPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NumberPicker.m; sourceTree = "<group>"; };
+		6F33C48818ACB1C80070CB60 /* ShoppingService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingService.h; sourceTree = "<group>"; };
+		6F33C48918ACB1C80070CB60 /* ShoppingService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingService.m; sourceTree = "<group>"; };
+		6F33C48C18ACC85A0070CB60 /* ShoppingCart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingCart.h; sourceTree = "<group>"; };
+		6F33C48D18ACC85A0070CB60 /* ShoppingCart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingCart.m; sourceTree = "<group>"; };
 		6F348505187519BB00EBB635 /* DeviceCommandNameEventFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceCommandNameEventFilter.h; sourceTree = "<group>"; };
 		6F348506187519BB00EBB635 /* DeviceCommandNameEventFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceCommandNameEventFilter.m; sourceTree = "<group>"; };
 		6F3485081875264D00EBB635 /* UnitRenameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitRenameViewController.h; sourceTree = "<group>"; };
@@ -951,6 +963,15 @@
 			name = app_images;
 			sourceTree = "<group>";
 		};
+		6F33C48B18ACC84C0070CB60 /* ui */ = {
+			isa = PBXGroup;
+			children = (
+				6F33C48C18ACC85A0070CB60 /* ShoppingCart.h */,
+				6F33C48D18ACC85A0070CB60 /* ShoppingCart.m */,
+			);
+			name = ui;
+			sourceTree = "<group>";
+		};
 		6F348504187519A100EBB635 /* event_filters */ = {
 			isa = PBXGroup;
 			children = (
@@ -1044,6 +1065,10 @@
 				6F0727B518AB18A5009FC8C4 /* MerchandiseBar.m */,
 				6F0727B718AB4A07009FC8C4 /* MerchandiseDetailSelectView.h */,
 				6F0727B818AB4A07009FC8C4 /* MerchandiseDetailSelectView.m */,
+				6F33C48218AC60150070CB60 /* RadioRectButtonGroup.h */,
+				6F33C48318AC60150070CB60 /* RadioRectButtonGroup.m */,
+				6F33C48518ACA01B0070CB60 /* NumberPicker.h */,
+				6F33C48618ACA01B0070CB60 /* NumberPicker.m */,
 			);
 			name = shopping;
 			sourceTree = "<group>";
@@ -1334,6 +1359,7 @@
 		6F6004C5186BD0680085B4BD /* core */ = {
 			isa = PBXGroup;
 			children = (
+				6F33C48B18ACC84C0070CB60 /* ui */,
 				6F6004D1186BD18D0085B4BD /* communications */,
 				6F6004EB186BDAA60085B4BD /* service */,
 				6F600564186BF3780085B4BD /* events */,
@@ -1604,6 +1630,8 @@
 				6F183F641894BD7C000F1974 /* TimingTasksPlanService.m */,
 				6F40FC4418A9BFF5000172EE /* DeviceService.h */,
 				6F40FC4518A9BFF5000172EE /* DeviceService.m */,
+				6F33C48818ACB1C80070CB60 /* ShoppingService.h */,
+				6F33C48918ACB1C80070CB60 /* ShoppingService.m */,
 			);
 			name = rest;
 			sourceTree = "<group>";
@@ -2377,6 +2405,7 @@
 				6F6005B9186C1B410085B4BD /* RegisterStep2ViewController.m in Sources */,
 				F2C1DFF218764C3400DD66D7 /* ImageProvider.m in Sources */,
 				6F6004B8186BCFF40085B4BD /* NSDate+Extension.m in Sources */,
+				6F33C48E18ACC85A0070CB60 /* ShoppingCart.m in Sources */,
 				6F860F3518755C8400792DBB /* SystemAudio.m in Sources */,
 				6F6004F6186BDB8C0085B4BD /* RestfulCommandService.m in Sources */,
 				6F600575186BF3940085B4BD /* NetworkModeChangedEvent.m in Sources */,
@@ -2441,6 +2470,7 @@
 				6F600463186BCE210085B4BD /* main.m in Sources */,
 				6F60049F186BCEF10085B4BD /* XXAllAllowedEventFilter.m in Sources */,
 				6F41D2BB1890F0F70063E1BB /* Sensor.m in Sources */,
+				6F33C48418AC60150070CB60 /* RadioRectButtonGroup.m in Sources */,
 				6F41D2C11890F9CF0063E1BB /* DeviceCommandReceivedSensors.m in Sources */,
 				6FA69113187F9618005D1415 /* NewsFileManager.m in Sources */,
 				6F60052B186BE9890085B4BD /* DeviceCommandUpdateUnits.m in Sources */,
@@ -2482,6 +2512,7 @@
 				6F348507187519BB00EBB635 /* DeviceCommandNameEventFilter.m in Sources */,
 				6F183F621894A55F000F1974 /* TimingTaskExecutionItem.m in Sources */,
 				6F6004CB186BD0A50085B4BD /* XXDrawerViewController.m in Sources */,
+				6F33C48A18ACB1C80070CB60 /* ShoppingService.m in Sources */,
 				6F5EBF1A18A9FD3F00AF89E3 /* OrderConfirmViewController.m in Sources */,
 				6F600525186BE9890085B4BD /* DeviceCommandUpdateDevice.m in Sources */,
 				6F600595186BFF7F0085B4BD /* GlobalSettings.m in Sources */,
@@ -2508,6 +2539,7 @@
 				6F5EBF1718A9FD2D00AF89E3 /* ShoppingViewController.m in Sources */,
 				6F60052A186BE9890085B4BD /* DeviceCommandUpdateUnitName.m in Sources */,
 				6F732725186D274C00A1276B /* CopyrightViewController.m in Sources */,
+				6F33C48718ACA01B0070CB60 /* NumberPicker.m in Sources */,
 				6F2AE0E51870653300BEDB29 /* UIImage+Rotate.m in Sources */,
 				6F60053E186BF0010085B4BD /* DeviceCommandHandler.m in Sources */,
 				6F203361187D035800BACFA5 /* PasswordTextViewController.m in Sources */,

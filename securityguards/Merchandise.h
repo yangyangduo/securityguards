@@ -10,4 +10,34 @@
 
 @interface Merchandise : Entity
 
+@property (nonatomic, strong) NSString *identifier;
+@property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong) NSString *shortIntroduce;
+@property (nonatomic, strong) NSString *htmlIntroduce;
+@property (nonatomic, strong) NSMutableArray *merchandiseModels;
+@property (nonatomic, strong) NSMutableArray *merchandiseColors;
+@property (nonatomic, strong) NSMutableArray *merchandisePictures;
+
+@end
+
+
+@interface MerchandiseColor : Entity
+
+@property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong) NSString *picture;
+
+@end
+
+@interface MerchandiseModel : Entity
+
+@property (nonatomic, strong) NSString *name;
+@property (nonatomic, assign) float price;
+
+@end
+
+@interface MerchandisePictures : Entity
+
+@property (nonatomic, strong) NSString *bigImage;
+@property (nonatomic, strong) NSString *smallImage;
+
 @end

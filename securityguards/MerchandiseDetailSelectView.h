@@ -8,12 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "Merchandise.h"
+#import "RadioRectButtonGroup.h"
+#import "NumberPicker.h"
 
 #define MerchandiseDetailSelectViewHeight 400
 
 @protocol MerchandiseDetailSelectViewDelegate;
 
-@interface MerchandiseDetailSelectView : UIView
+@interface MerchandiseDetailSelectView : UIView<RadioRectButtonGroupDelegate, NumberPickerDelegate>
 
 @property (nonatomic, weak) id<MerchandiseDetailSelectViewDelegate> delegate;
 @property (nonatomic, strong) Merchandise *merchandise;

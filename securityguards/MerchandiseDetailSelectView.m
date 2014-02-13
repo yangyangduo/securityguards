@@ -8,15 +8,18 @@
 
 #import "MerchandiseDetailSelectView.h"
 #import "BlueButton.h"
+#import "UIColor+MoreColor.h"
 
 @implementation MerchandiseDetailSelectView {
     /* ... for UI ... */
     
-    UILabel *lblTitle;
+    UILabel *lblMerchandiseName;
     UILabel *lblTotalPrice;
 
-
+    UIWebView *merchandiseIntroduce;
     
+    RadioRectButtonGroup *typeGroup;
+    RadioRectButtonGroup *colorGroup;
     
     /* ... for animations ... */
     
@@ -54,20 +57,34 @@
 - (void)initUI {
     /* ... for UI ... */
     
-    self.backgroundColor = [UIColor whiteColor];
+    self.backgroundColor = [UIColor appGray];
     self.alpha = 0.95f;
+    
+    lblMerchandiseName = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, 200, 30)];
+    lblMerchandiseName.backgroundColor = [UIColor clearColor];
+    lblMerchandiseName.font = [UIFont systemFontOfSize:20.f];
+    lblMerchandiseName.text = @"365家庭卫士主机";
+    [self addSubview:lblMerchandiseName];
+    
+    lblTotalPrice = [[UILabel alloc] initWithFrame:CGRectMake(220, 5, 80, 30)];
+    lblTotalPrice.backgroundColor = [UIColor clearColor];
+    lblTotalPrice.textColor = [UIColor orangeColor];
+    lblTotalPrice.textAlignment = NSTextAlignmentRight;
+    lblTotalPrice.font = [UIFont boldSystemFontOfSize:20.f];
+    lblTotalPrice.text = @"￥1999";
+    [self addSubview:lblTotalPrice];
 
     /*  layout from bottom to top  */
     
     UIButton *btnSubmit = [BlueButton blueButtonWithPoint:CGPointMake(0, self.bounds.size.height - 42) resize:CGSizeMake(280, 32)];
     btnSubmit.center = CGPointMake(self.center.x, btnSubmit.center.y);
     [btnSubmit setBackgroundImage:[UIImage imageNamed:@"btn_blue"] forState:UIControlStateNormal];
-    [btnSubmit setBackgroundImage:[UIImage imageNamed:@"btn_blue_highlighted"] forState:UIControlStateHighlighted];
+    [btnSubmit setBackgroundImage:[UIImage imageNamed:@"btn_blue_highlighted"] forState:UIControlStateHighlighted]
+    ;
     [btnSubmit setBackgroundImage:[UIImage imageNamed:@"btn_gray"] forState:UIControlStateDisabled];
 //    [btnSubmit addTarget:self action:@selector(btnSubmitPressed:) forControlEvents:UIControlEventTouchUpInside];
     [btnSubmit setTitle:NSLocalizedString(@"confirm_modify", @"") forState:UIControlStateNormal];
     [self addSubview:btnSubmit];
-
     
     UILabel *lblNumber = [[UILabel alloc] initWithFrame:CGRectMake(10, btnSubmit.frame.origin.y - 50, 40, 30)];
     UILabel *lblColor = [[UILabel alloc] initWithFrame:CGRectMake(10, lblNumber.frame.origin.y - 45, 40, 30)];
@@ -76,6 +93,10 @@
     lblNumber.text = [NSString stringWithFormat:@"%@:", NSLocalizedString(@"shopping_number", @"")];
     lblColor.text = [NSString stringWithFormat:@"%@:", NSLocalizedString(@"shopping_color", @"")];
     lblType.text = [NSString stringWithFormat:@"%@:", NSLocalizedString(@"shopping_type", @"")];
+    
+    lblNumber.font = [UIFont systemFontOfSize:13.f];
+    lblColor.font = [UIFont systemFontOfSize:13.f];
+    lblType.font = [UIFont systemFontOfSize:13.f];
     
     lblNumber.textColor = [UIColor darkGrayColor];
     lblColor.textColor = [UIColor darkGrayColor];
@@ -88,6 +109,29 @@
     [self addSubview:lblType];
     [self addSubview:lblColor];
     [self addSubview:lblNumber];
+    
+    typeGroup = [[RadioRectButtonGroup alloc] initWithFrame:CGRectMake(10 + 40 + 10, lblType.frame.origin.y, 250, 30)];
+    typeGroup.delegate = self;
+    typeGroup.identifier = @"typeGroup";
+    [typeGroup setSourceItems:[NSMutableArray arrayWithObjects:[[SourceItem alloc] initWithIdentifier:nil displayName:@"标准版"], [[SourceItem alloc] initWithIdentifier:nil displayName:@"高配版"], [[SourceItem alloc] initWithIdentifier:nil displayName:@"低配版"], nil]];
+    [self addSubview:typeGroup];
+    
+    colorGroup = [[RadioRectButtonGroup alloc] initWithFrame:CGRectMake(10 + 40 + 10, lblColor.frame.origin.y, 250, 30)];
+    colorGroup.delegate = self;
+    colorGroup.identifier = @"colorGroup";
+    [colorGroup setSourceItems:[NSMutableArray arrayWithObjects:[[SourceItem alloc] initWithIdentifier:nil displayName:@"红色"], [[SourceItem alloc] initWithIdentifier:nil displayName:@"白色"], nil]];
+    [self addSubview:colorGroup];
+    
+    merchandiseIntroduce = [[UIWebView alloc] initWithFrame:CGRectMake(0, lblMerchandiseName.frame.origin.y + lblMerchandiseName.bounds.size.height, self.bounds.size.width, typeGroup.frame.origin.y - lblMerchandiseName.bounds.size.height - 5 - 5)];
+    merchandiseIntroduce.backgroundColor = [UIColor whiteColor];
+    [self addSubview:merchandiseIntroduce];
+    
+    [colorGroup setSelectedSourceItemViaDisplayName:@"红色"];
+    [typeGroup setSelectedSourceItemViaDisplayName:@"高配版"];
+    
+    NumberPicker *numberPicker = [NumberPicker numberPickerWithPoint:CGPointMake(10 + 40 + 10, lblNumber.frame.origin.y)];
+    numberPicker.delegate = self;
+    [self addSubview:numberPicker];
     
     /* ... for animations ... */
     
@@ -151,7 +195,6 @@
         if(self.superview != nil) {
             [self removeFromSuperview];
         }
-
         _layer_ = nil;
         isOpened = NO;
     }
@@ -203,6 +246,20 @@
     layer.transform = toScaleTransform;
     maskView.layer.opacity = toOpacity;
     self.layer.position = toPosition;
+}
+
+#pragma mark -
+#pragma mark Radio Rect Button Group Delegate
+
+- (void)radioRectButtonGroup:(RadioRectButtonGroup *)radioRectButtonGroup selectedSourceItem:(SourceItem *)sourceItem {
+    NSLog(@"%@", sourceItem.displayName);
+}
+
+#pragma mark -
+#pragma mark Number Picker Delegate
+
+- (void)numberPickerDelegate:(NumberPicker *)numberPicker valueDidChangedTo:(int)number {
+    NSLog(@"%d", number);
 }
 
 - (void)setMerchandise:(Merchandise *)merchandise {

@@ -45,13 +45,11 @@
     [self.contentView addSubview:merchandiseBar];
     
     lblMerchandiseName = [[UILabel alloc] initWithFrame:CGRectMake(143, 3, 167, 25)];
-    lblMerchandiseName.text = @"365家卫士主机";
     
     lblMerchandiseDescriptions = [[UILabel alloc] initWithFrame:CGRectMake(143, 26, 172, 60)];
     lblMerchandiseDescriptions.numberOfLines = 3;
     lblMerchandiseDescriptions.font = [UIFont systemFontOfSize:12.f];
     lblMerchandiseDescriptions.textColor = [UIColor lightGrayColor];
-    lblMerchandiseDescriptions.text = @"大祭司噢房间是滴哦飞的司机欧风就的司机欧风度搜房间的司机欧风度搜房间哦";
     
     imgMerchandise = [[UIImageView alloc] initWithFrame:CGRectMake(10, 5, 128, 128)];
     imgMerchandise.backgroundColor = [UIColor lightGrayColor];
@@ -60,12 +58,24 @@
     [self.contentView addSubview:lblMerchandiseName];
     [self.contentView addSubview:lblMerchandiseDescriptions];
     
-    
-    [merchandiseBar setMerchandiseBarState:MerchandiseBarStateHighlighted merchandisePrice:1999.f merchandiseDescriptions:@"高配版, 白色 * 1"];
+    PriceRange *range = [[PriceRange alloc] init];
+    [range setSingleValue:0.f];
+    [merchandiseBar setMerchandiseBarState:MerchandiseBarStateNormal merchandisePrice:range merchandiseDescriptions:@""];
 }
 
 - (void)setMerchandise:(Merchandise *)merchandise {
     _merchandise_ = merchandise;
+    if(_merchandise_ != nil) {
+        lblMerchandiseName.text = merchandise.name;
+        lblMerchandiseDescriptions.text = merchandise.shortIntroduce;
+        PriceRange *range = [[PriceRange alloc] init];
+        [range setValue:merchandise];
+        [merchandiseBar setMerchandiseBarState:MerchandiseBarStateNormal merchandisePrice:range merchandiseDescriptions:@""];
+    } else {
+        lblMerchandiseName.text = [XXStringUtils emptyString];
+        lblMerchandiseDescriptions.text = [XXStringUtils emptyString];
+        [merchandiseBar setMerchandiseBarState:MerchandiseBarStateNormal merchandisePrice:[[PriceRange alloc] initWithSingleValue:0.f] merchandiseDescriptions:@""];
+    }
 }
 
 @end

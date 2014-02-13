@@ -21,5 +21,6 @@
 + (UIColor *)appYellowFont;
 + (UIColor *)appWhite;
 + (UIColor *)appLightBlueForButton;
++ (UIColor *)appDarkBlue;
 
 @end
