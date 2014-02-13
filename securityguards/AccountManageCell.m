@@ -27,6 +27,7 @@
     }
     return self;
 }
+
 - (void)initUI {
     self.backgroundColor = [UIColor clearColor];
     self.backgroundView = [[UIView alloc] initWithFrame:self.bounds];
@@ -84,8 +85,6 @@
             [imgAccessory addSubview:lblUserStatus];
         }
     }
-
-    
 }
 
 - (void)loadData:(AccountManageCellData *) cellData {
