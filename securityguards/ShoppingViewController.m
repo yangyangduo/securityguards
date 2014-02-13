@@ -7,8 +7,10 @@
 //
 
 #import "ShoppingViewController.h"
+#import "OrderConfirmViewController.h"
 #import "ShoppingStateView.h"
 #import "MerchandiseCell.h"
+#import "MerchandiseDetailSelectView.h"
 
 @interface ShoppingViewController ()
 
@@ -52,9 +54,9 @@
     bottomBar.backgroundColor = [UIColor appDarkDarkGray];
     
     btnSubmit = [[UIButton alloc] initWithFrame:CGRectMake(180, 0, 140, 44)];
+    [btnSubmit addTarget:self action:@selector(btnSubmitPressed:) forControlEvents:UIControlEventTouchUpInside];
     [btnSubmit setTitle:NSLocalizedString(@"next_step", @"") forState:UIControlStateNormal];
     btnSubmit.backgroundColor = [UIColor appBlue];
-    btnSubmit.enabled = NO;
     [bottomBar addSubview:btnSubmit];
     
     [self.view addSubview:bottomBar];
@@ -67,26 +69,40 @@
 }
 
 #pragma mark -
+#pragma mark UI Events
+
+- (void)btnSubmitPressed:(id)sender {
+    OrderConfirmViewController *orderConfirmViewController = [[OrderConfirmViewController alloc] init];
+    [self.navigationController pushViewController:orderConfirmViewController animated:YES];
+}
+
+#pragma mark -
 #pragma mark Table View
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return MerchandiseCellHeight;
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 0;
+    return 3;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *cellIdentifier = @"cellIdentifier";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    MerchandiseCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if(cell == nil) {
-        
+        cell = [[MerchandiseCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    MerchandiseDetailSelectView *selectView = [[MerchandiseDetailSelectView alloc] initWithMerchandise:nil];
+    [selectView showInView:self.view];
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }

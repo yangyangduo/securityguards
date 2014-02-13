@@ -18,7 +18,9 @@
     UITableView *tblCameraInfo;
     
     NSString *cameraName;
+    
     int status;
+    int type;
 }
 
 @synthesize cameraDevice = _cameraDevice_;
@@ -74,7 +76,7 @@
 #pragma mark Table View 
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -82,16 +84,22 @@
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return section == 0 ? NSLocalizedString(@"change_camera_name", @"") : NSLocalizedString(@"camera_protection", @"");
+    if(section == 0) {
+        return NSLocalizedString(@"change_camera_name", @"");
+    } else if(section == 1) {
+        return NSLocalizedString(@"camera_protection", @"");
+    } else {
+        return NSLocalizedString(@"install", @"");
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    if(section == 0) return 0;
+    if(section != 2) return 0;
     return 60.f;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-    if(section == 1) {
+    if(section == 2) {
         UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 60)];
         footerView.backgroundColor = [UIColor clearColor];
         
@@ -123,7 +131,7 @@
     if(indexPath.section == 0) {
         cell.textLabel.text = cameraName;
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    } else {
+    } else if(indexPath.section == 1) {
         if(indexPath.row == 0) {
             cell.textLabel.text = NSLocalizedString(@"owner_access", @"");
             if(self.cameraDevice != nil) {
@@ -147,18 +155,46 @@
                 cell.accessoryType = UITableViewCellAccessoryNone;
             }
         }
+    } else {
+        if(indexPath.row == 0) {
+            cell.textLabel.text = NSLocalizedString(@"install_tips", @"");
+            if(self.cameraDevice != nil) {
+                if(type == 0) {
+                    cell.accessoryType = UITableViewCellAccessoryCheckmark;
+                } else {
+                    cell.accessoryType = UITableViewCellAccessoryNone;
+                }
+            } else {
+                cell.accessoryType = UITableViewCellAccessoryNone;
+            }
+        } else {
+            cell.textLabel.text = NSLocalizedString(@"reverse_install_tips", @"");
+            if(self.cameraDevice != nil) {
+                if(type == 1) {
+                    cell.accessoryType = UITableViewCellAccessoryCheckmark;
+                } else {
+                    cell.accessoryType = UITableViewCellAccessoryNone;
+                }
+            } else {
+                cell.accessoryType = UITableViewCellAccessoryNone;
+            }
+        }
     }
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if(indexPath.section == 1) {
-        NSIndexPath *orginIndexPath = [NSIndexPath indexPathForRow:indexPath.row == 0 ? 1 : 0 inSection:1];
+    if(indexPath.section == 1 || indexPath.section == 2) {
+        NSIndexPath *orginIndexPath = [NSIndexPath indexPathForRow:indexPath.row == 0 ? 1 : 0 inSection:indexPath.section];
         UITableViewCell *orginCell = [tableView cellForRowAtIndexPath:orginIndexPath];
         orginCell.accessoryType = UITableViewCellAccessoryNone;
         UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
-        status = indexPath.row;
+        if(indexPath.section == 1) {
+            status = indexPath.row;
+        } else if(indexPath.section == 2) {
+            type = indexPath.row;
+        }
     } else {
         TextViewController *modifyCameraNameViewController = [[TextViewController alloc] init];
         modifyCameraNameViewController.delegate = self;
@@ -185,6 +221,7 @@
     _cameraDevice_ = cameraDevice;
     cameraName = _cameraDevice_.name;
     status = _cameraDevice_.status;
+    type = _cameraDevice_.type;
 }
 
 #pragma mark -
@@ -209,7 +246,7 @@
     [[AlertView currentAlertView] setMessage:NSLocalizedString(@"please_wait", @"") forType:AlertViewTypeWaitting];
     [[AlertView currentAlertView] alertForLock:YES autoDismiss:NO];
     DeviceService *service = [[DeviceService alloc] init];
-    [service updateDeviceName:cameraName status:status for:self.cameraDevice success:@selector(updateDeviceNameOrStatusSuccess:) failed:@selector(updateDeviceNameOrStatusFailed:) target:self callback:nil];
+    [service updateDeviceName:cameraName status:status type:type for:self.cameraDevice success:@selector(updateDeviceNameOrStatusSuccess:) failed:@selector(updateDeviceNameOrStatusFailed:) target:self callback:nil];
 }
 
 - (void)updateDeviceNameOrStatusSuccess:(RestResponse *)resp {
@@ -220,6 +257,7 @@
             if(result == 1) {
                 self.cameraDevice.name = cameraName;
                 self.cameraDevice.status = status;
+                self.cameraDevice.type = type;
                 [self popupViewController];
                 [[AlertView currentAlertView] setMessage:NSLocalizedString(@"update_success", @"") forType:AlertViewTypeSuccess];
                 [[AlertView currentAlertView] delayDismissAlertView];

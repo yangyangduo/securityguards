@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2D066F21FCAD4EC3BFEF59E2 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D9356B8D7BD48649820A160 /* libPods.a */; };
+		6F0727B618AB18A5009FC8C4 /* MerchandiseBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0727B518AB18A5009FC8C4 /* MerchandiseBar.m */; };
+		6F0727B918AB4A07009FC8C4 /* MerchandiseDetailSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0727B818AB4A07009FC8C4 /* MerchandiseDetailSelectView.m */; };
 		6F0CD5CE186DB93000B5A3EA /* icon_firegas_blue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F0CD5BF186DB93000B5A3EA /* icon_firegas_blue@2x.png */; };
 		6F0CD5CF186DB93000B5A3EA /* icon_firegas_red@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F0CD5C0186DB93000B5A3EA /* icon_firegas_red@2x.png */; };
 		6F0CD5D0186DB93000B5A3EA /* icon_firegas_yellow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F0CD5C1186DB93000B5A3EA /* icon_firegas_yellow@2x.png */; };
@@ -353,6 +355,10 @@
 
 /* Begin PBXFileReference section */
 		159C630CF2824E4CBB15F5E4 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		6F0727B418AB18A5009FC8C4 /* MerchandiseBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MerchandiseBar.h; sourceTree = "<group>"; };
+		6F0727B518AB18A5009FC8C4 /* MerchandiseBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MerchandiseBar.m; sourceTree = "<group>"; };
+		6F0727B718AB4A07009FC8C4 /* MerchandiseDetailSelectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MerchandiseDetailSelectView.h; sourceTree = "<group>"; };
+		6F0727B818AB4A07009FC8C4 /* MerchandiseDetailSelectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MerchandiseDetailSelectView.m; sourceTree = "<group>"; };
 		6F0CD5BF186DB93000B5A3EA /* icon_firegas_blue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_firegas_blue@2x.png"; sourceTree = "<group>"; };
 		6F0CD5C0186DB93000B5A3EA /* icon_firegas_red@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_firegas_red@2x.png"; sourceTree = "<group>"; };
 		6F0CD5C1186DB93000B5A3EA /* icon_firegas_yellow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_firegas_yellow@2x.png"; sourceTree = "<group>"; };
@@ -1034,6 +1040,10 @@
 			children = (
 				6F5EBF2118AA02E500AF89E3 /* ShoppingStateView.h */,
 				6F5EBF2218AA02E500AF89E3 /* ShoppingStateView.m */,
+				6F0727B418AB18A5009FC8C4 /* MerchandiseBar.h */,
+				6F0727B518AB18A5009FC8C4 /* MerchandiseBar.m */,
+				6F0727B718AB4A07009FC8C4 /* MerchandiseDetailSelectView.h */,
+				6F0727B818AB4A07009FC8C4 /* MerchandiseDetailSelectView.m */,
 			);
 			name = shopping;
 			sourceTree = "<group>";
@@ -2387,6 +2397,7 @@
 				6F0CD5DF186DBD9E00B5A3EA /* UnitSelectionDrawerView.m in Sources */,
 				F2C1DFF518764CF700DD66D7 /* CameraLoadingView.m in Sources */,
 				F29DE7081886816600BCE93C /* ContactUsViewController.m in Sources */,
+				6F0727B618AB18A5009FC8C4 /* MerchandiseBar.m in Sources */,
 				6F600528186BE9890085B4BD /* DeviceCommandUpdateNotifications.m in Sources */,
 				6F6005B3186C1B160085B4BD /* LoginViewController.m in Sources */,
 				6F7CDBA21872738E0036F912 /* NotificationsViewController.m in Sources */,
@@ -2515,6 +2526,7 @@
 				6F6005A0186C015B0085B4BD /* AccountService.m in Sources */,
 				6F41D2B61890E0070063E1BB /* TimingTaskScheduleDateEditViewController.m in Sources */,
 				6F6005A3186C015B0085B4BD /* SmsService.m in Sources */,
+				6F0727B918AB4A07009FC8C4 /* MerchandiseDetailSelectView.m in Sources */,
 				F2F3E1B6187A5598006A9447 /* SystemService.m in Sources */,
 				6FEC0FE7186C663300CB0D70 /* NewsViewController.m in Sources */,
 				6F6004A1186BCEF10085B4BD /* XXEventFilter.m in Sources */,

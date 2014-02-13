@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "Merchandise.h"
 
+#define MerchandiseCellHeight 138
+
 @interface MerchandiseCell : UITableViewCell
 
 @property (nonatomic, strong) Merchandise *merchandise;

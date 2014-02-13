@@ -184,7 +184,7 @@
             [[AlertView currentAlertView] alertForLock:YES autoDismiss:NO];
             DeviceService *service = [[DeviceService alloc] init];
             // '-1000' tell the service that we doesn't need to update the property of 'status' for device
-            [service updateDeviceName:newText status:-1000 for:device success:@selector(updateDeviceNameOrStatusSuccess:) failed:@selector(updateDeviceNameOrStatusFailed:) target:self callback:textView];
+            [service updateDeviceName:newText status:-1000 type:-1000 for:device success:@selector(updateDeviceNameOrStatusSuccess:) failed:@selector(updateDeviceNameOrStatusFailed:) target:self callback:textView];
         }
     }
 }

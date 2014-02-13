@@ -40,6 +40,8 @@
 "default"                        =      "默认";
 "everyday"                       =      "每天";
 "change_name"                    =      "请输入新的名称";
+"confirm_modify"                 =      "确认修改";
+"install"                        =      "安装";
 
 
 /****************	Right Drawer View Strings	****************/
@@ -171,6 +173,8 @@
 "camera_connectting"     =      "正在连接摄像头...";
 "camera_error"           =      "连接已断开,请重试";
 "modify_camera_info"     =      "点击修改名称及隐私设置";
+"install_tips"           =      "正置放在桌面";
+"reverse_install_tips"   =      "倒置安装在天花板";
 
 
 /****************	Login && Register Strings	****************/
@@ -327,7 +331,7 @@
 "copyright"                =           "COPYRIGHT©2013-2015 湖南长沙汉拓信息技术有限公司";
 
 
-/****************	Shoppint View Strings	****************/
+/****************	Shopping View Strings	****************/
 
 "shopping_step1"           =           "第一步";
 "shopping_step2"           =           "第二步";
@@ -335,4 +339,8 @@
 "shopping_step1_title"     =           "选购商品";
 "shopping_step2_title"     =           "确认订单";
 "shopping_step3_title"     =           "完成订购";
+"confirm_submit_order"     =           "确认并提交订单";
 "yuan"                     =           "元";
+"shopping_color"           =           "颜色";
+"shopping_type"            =           "型号";
+"shopping_number"          =           "数量";

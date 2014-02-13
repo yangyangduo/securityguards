@@ -11,6 +11,6 @@
 
 @interface DeviceService : ServiceBase
 
-- (void)updateDeviceName:(NSString *)name status:(int)status for:(Device *)deivce success:(SEL)s failed:(SEL)f target:(id)t callback:(id)cb;
+- (void)updateDeviceName:(NSString *)name status:(int)status type:(int)type for:(Device *)device success:(SEL)s failed:(SEL)f target:(id)t callback:(id)cb;
 
 @end
