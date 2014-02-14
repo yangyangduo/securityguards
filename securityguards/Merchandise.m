@@ -11,7 +11,7 @@
 @implementation Merchandise
 
 @synthesize identifier;
-@synthesize name;
+@synthesize name = _name_;
 @synthesize shortIntroduce;
 @synthesize htmlIntroduce;
 @synthesize merchandiseColors = _merchandiseColors_;
@@ -51,6 +51,40 @@
         
     }
     return self;
+}
+
+- (MerchandiseModel *)merchandiseModelForName:(NSString *)name {
+    if([XXStringUtils isBlank:name]) return nil;
+    if(self.merchandiseModels == nil) return nil;
+    for(int i=0; i<self.merchandiseModels.count; i++) {
+        MerchandiseModel *model = [self.merchandiseModels objectAtIndex:i];
+        if([name isEqualToString:model.name]) {
+            return model;
+        }
+    }
+    return nil;
+}
+
+- (MerchandiseColor *)merchandiseColorForName:(NSString *)color {
+    if([XXStringUtils isBlank:color]) return nil;
+    if(self.merchandiseColors == nil) return nil;
+    for(int i=0; i<self.merchandiseColors.count; i++) {
+        MerchandiseColor *mColor = [self.merchandiseColors objectAtIndex:i];
+        if([color isEqualToString:mColor.name]) {
+            return mColor;
+        }
+    }
+    return nil;
+}
+
+- (MerchandiseColor *)defaultMerchandiseColor {
+    if(self.merchandiseColors == nil || self.merchandiseColors.count == 0) return nil;
+    return [self.merchandiseColors objectAtIndex:0];
+}
+
+- (MerchandiseModel *)defaultMerchandiseModel {
+    if(self.merchandiseModels == nil || self.merchandiseModels.count == 0) return nil;
+    return [self.merchandiseModels objectAtIndex:0];
 }
 
 - (NSMutableDictionary *)toJson {

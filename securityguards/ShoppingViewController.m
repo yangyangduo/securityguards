@@ -10,8 +10,8 @@
 #import "OrderConfirmViewController.h"
 #import "ShoppingStateView.h"
 #import "MerchandiseCell.h"
-#import "MerchandiseDetailSelectView.h"
 #import "ShoppingService.h"
+#import "ShoppingCart.h"
 
 @interface ShoppingViewController ()
 
@@ -21,6 +21,7 @@
     UITableView *tblMerchandises;
     NSMutableArray *merchandises;
     
+    UILabel *lblTotalPrice;
     UIView *bottomBar;
     UIButton *btnSubmit;
 }
@@ -55,6 +56,18 @@
     bottomBar = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height - 44, self.view.bounds.size.width, 44)];
     bottomBar.backgroundColor = [UIColor appDarkDarkGray];
     
+    UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 6, 64.f / 2, 70.f / 2)];
+    imgView.image = [UIImage imageNamed:@"shopping_cart"];
+    [bottomBar addSubview:imgView];
+    
+    lblTotalPrice = [[UILabel alloc] initWithFrame:CGRectMake(58, 2, 115, 40)];
+    lblTotalPrice.backgroundColor = [UIColor clearColor];
+    lblTotalPrice.textAlignment = NSTextAlignmentLeft;
+    lblTotalPrice.font = [UIFont systemFontOfSize:24.f];
+    lblTotalPrice.textColor = [UIColor redColor];
+    [self calcShoppingCartTotalPriceForDisplay];
+    [bottomBar addSubview:lblTotalPrice];
+    
     btnSubmit = [[UIButton alloc] initWithFrame:CGRectMake(180, 0, 140, 44)];
     [btnSubmit addTarget:self action:@selector(btnSubmitPressed:) forControlEvents:UIControlEventTouchUpInside];
     [btnSubmit setTitle:NSLocalizedString(@"next_step", @"") forState:UIControlStateNormal];
@@ -71,7 +84,6 @@
 }
 
 - (void)getProductsSuccess:(RestResponse *)resp {
-    [JsonUtils printJsonData:resp.body];
     if(resp.statusCode == 200) {
         NSDictionary *_json_ = [JsonUtils createDictionaryFromJson:resp.body];
         int result = [_json_ intForKey:@"i"];
@@ -95,7 +107,7 @@
 }
 
 - (void)getProductsFailed:(RestResponse *)resp {
-    
+    NSLog(@"get products failed, code is %d", resp.statusCode);
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -137,10 +149,26 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    MerchandiseDetailSelectView *selectView = [[MerchandiseDetailSelectView alloc] initWithMerchandise:nil];
+    MerchandiseDetailSelectView *selectView = [[MerchandiseDetailSelectView alloc] initWithMerchandise:[merchandises objectAtIndex:indexPath.row]];
+    selectView.delegate = self;
     [selectView showInView:self.view];
-    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+- (void)calcShoppingCartTotalPriceForDisplay {
+    lblTotalPrice.text = [NSString stringWithFormat:@"%d %@", (int)[ShoppingCart shoppingCart].totalPrice, NSLocalizedString(@"yuan", @"")];
+}
+
+#pragma mark -
+#pragma mark Merchandise Detail Select View Delegate
+
+- (void)merchandiseDetailSelectView:(MerchandiseDetailSelectView *)merchandiseDetailSelectView willDismissedWithState:(MerchandiseDetailSelectViewDismissedBy)dismissedBy {
+    if(dismissedBy == MerchandiseDetailSelectViewDismissedByConfirmed) {
+        if(tblMerchandises != nil) {
+            [tblMerchandises reloadData];
+        }
+        [self calcShoppingCartTotalPriceForDisplay];
+    }
 }
 
 @end

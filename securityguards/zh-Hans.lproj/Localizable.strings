@@ -324,7 +324,7 @@
 "app_name_label"           =           "软件名称：365家卫士";
 "app_version"              =           "软件版本：";
 "office_number"            =           "客服电话：";
-"office_phonenumber"       =           "400－0000-0000";
+"office_phonenumber"       =           "400-0000-0000";
 "we_chat_number"           =           "微信号码：000000000";
 "website"                  =           "公司网址：";
 "website_url"              =           "www.365jws.com";
@@ -344,3 +344,6 @@
 "shopping_color"           =           "颜色";
 "shopping_type"            =           "型号";
 "shopping_number"          =           "数量";
+"continue_shopping"        =           "继续购物";
+"shopping_welcome_tips"    =           "非常感谢您的支持,您的订单已经确认,如有需要欢迎直接拨打下方热线号码。";
+"no_content_html"          =           "<html><body><p style='margin-top:5px; font-size:15px; color:gray;'>暂无商品详情详情</p></body></html>";

@@ -8,6 +8,9 @@
 
 #import "Entity.h"
 
+@class MerchandiseModel;
+@class MerchandiseColor;
+
 @interface Merchandise : Entity
 
 @property (nonatomic, strong) NSString *identifier;
@@ -17,6 +20,12 @@
 @property (nonatomic, strong) NSMutableArray *merchandiseModels;
 @property (nonatomic, strong) NSMutableArray *merchandiseColors;
 @property (nonatomic, strong) NSMutableArray *merchandisePictures;
+
+- (MerchandiseColor *)merchandiseColorForName:(NSString *)color;
+- (MerchandiseModel *)merchandiseModelForName:(NSString *)name;
+
+- (MerchandiseModel *)defaultMerchandiseModel;
+- (MerchandiseColor *)defaultMerchandiseColor;
 
 @end
 

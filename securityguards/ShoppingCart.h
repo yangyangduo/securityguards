@@ -18,9 +18,9 @@
 + (instancetype)shoppingCart;
 
 - (ShoppingEntry *)shoppingEntryForId:(NSString *)merchandiseIdentifier;
+- (void)clearShoppingCart;
 - (void)addShoppingEntry:(ShoppingEntry *)shoppingEntry;
 - (void)removeShoppoingEntryByMerchandiseIdentifier:(NSString *)merchandiseIdentifier;
-- (void)clearShoppingCart;
 
 @end
 
@@ -34,7 +34,6 @@
 @property (nonatomic, assign) unsigned int number;
 
 - (instancetype)initWithMerchandise:(Merchandise *)merchandise;
-
-- (NSString *)shoppingEntryDescriptions;
+- (NSString *)shoppingEntryDetailsAsString;
 
 @end

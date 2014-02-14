@@ -8,6 +8,7 @@
 
 #import "MerchandiseCell.h"
 #import "MerchandiseBar.h"
+#import "ShoppingCart.h"
 
 @implementation MerchandiseCell {
     UILabel *lblMerchandiseName;
@@ -68,9 +69,15 @@
     if(_merchandise_ != nil) {
         lblMerchandiseName.text = merchandise.name;
         lblMerchandiseDescriptions.text = merchandise.shortIntroduce;
-        PriceRange *range = [[PriceRange alloc] init];
-        [range setValue:merchandise];
-        [merchandiseBar setMerchandiseBarState:MerchandiseBarStateNormal merchandisePrice:range merchandiseDescriptions:@""];
+        ShoppingEntry *entry = [[ShoppingCart shoppingCart] shoppingEntryForId:merchandise.identifier];
+        if(entry == nil) {
+            PriceRange *range = [[PriceRange alloc] init];
+            [range setValue:merchandise];
+            [merchandiseBar setMerchandiseBarState:MerchandiseBarStateNormal merchandisePrice:range merchandiseDescriptions:@""];
+        } else {
+            PriceRange *range = [[PriceRange alloc] initWithSingleValue:entry.model == nil ? 0.f : entry.model.price];
+            [merchandiseBar setMerchandiseBarState:MerchandiseBarStateHighlighted merchandisePrice:range merchandiseDescriptions:[entry shoppingEntryDetailsAsString]];
+        }
     } else {
         lblMerchandiseName.text = [XXStringUtils emptyString];
         lblMerchandiseDescriptions.text = [XXStringUtils emptyString];

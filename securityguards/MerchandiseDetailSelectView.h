@@ -13,6 +13,11 @@
 
 #define MerchandiseDetailSelectViewHeight 400
 
+typedef enum {
+    MerchandiseDetailSelectViewDismissedByCancelled,
+    MerchandiseDetailSelectViewDismissedByConfirmed,
+} MerchandiseDetailSelectViewDismissedBy ;
+
 @protocol MerchandiseDetailSelectViewDelegate;
 
 @interface MerchandiseDetailSelectView : UIView<RadioRectButtonGroupDelegate, NumberPickerDelegate>
@@ -31,6 +36,6 @@
 
 @required
 
-- (void)merchandiseDetailSelectView:(MerchandiseDetailSelectView *)merchandiseDetailSelectView;
+- (void)merchandiseDetailSelectView:(MerchandiseDetailSelectView *)merchandiseDetailSelectView willDismissedWithState:(MerchandiseDetailSelectViewDismissedBy)dismissedBy;
 
 @end

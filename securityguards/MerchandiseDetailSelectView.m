@@ -9,8 +9,12 @@
 #import "MerchandiseDetailSelectView.h"
 #import "BlueButton.h"
 #import "UIColor+MoreColor.h"
+#import "ShoppingCart.h"
 
 @implementation MerchandiseDetailSelectView {
+    
+    ShoppingEntry *shoppingEntry;
+    
     /* ... for UI ... */
     
     UILabel *lblMerchandiseName;
@@ -20,6 +24,8 @@
     
     RadioRectButtonGroup *typeGroup;
     RadioRectButtonGroup *colorGroup;
+    
+    NumberPicker *numberPicker;
     
     /* ... for animations ... */
     
@@ -60,19 +66,22 @@
     self.backgroundColor = [UIColor appGray];
     self.alpha = 0.95f;
     
-    lblMerchandiseName = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, 200, 30)];
+    lblMerchandiseName = [[UILabel alloc] initWithFrame:CGRectMake(5, 3, 200, 30)];
     lblMerchandiseName.backgroundColor = [UIColor clearColor];
-    lblMerchandiseName.font = [UIFont systemFontOfSize:20.f];
-    lblMerchandiseName.text = @"365家庭卫士主机";
+    lblMerchandiseName.font = [UIFont systemFontOfSize:18.f];
     [self addSubview:lblMerchandiseName];
     
-    lblTotalPrice = [[UILabel alloc] initWithFrame:CGRectMake(220, 5, 80, 30)];
+    lblTotalPrice = [[UILabel alloc] initWithFrame:CGRectMake(205, 3, 80, 30)];
     lblTotalPrice.backgroundColor = [UIColor clearColor];
     lblTotalPrice.textColor = [UIColor orangeColor];
     lblTotalPrice.textAlignment = NSTextAlignmentRight;
-    lblTotalPrice.font = [UIFont boldSystemFontOfSize:20.f];
-    lblTotalPrice.text = @"￥1999";
+    lblTotalPrice.font = [UIFont boldSystemFontOfSize:18.f];
     [self addSubview:lblTotalPrice];
+    
+    UIButton *btnClose = [[UIButton alloc] initWithFrame:CGRectMake(self.bounds.size.width - 28, 4, 25, 25)];
+    [btnClose addTarget:self action:@selector(dismissView) forControlEvents:UIControlEventTouchUpInside];
+    [btnClose setImage:[UIImage imageNamed:@"icon_close_orange"] forState:UIControlStateNormal];
+    [self addSubview:btnClose];
 
     /*  layout from bottom to top  */
     
@@ -82,7 +91,7 @@
     [btnSubmit setBackgroundImage:[UIImage imageNamed:@"btn_blue_highlighted"] forState:UIControlStateHighlighted]
     ;
     [btnSubmit setBackgroundImage:[UIImage imageNamed:@"btn_gray"] forState:UIControlStateDisabled];
-//    [btnSubmit addTarget:self action:@selector(btnSubmitPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [btnSubmit addTarget:self action:@selector(btnSubmitPressed:) forControlEvents:UIControlEventTouchUpInside];
     [btnSubmit setTitle:NSLocalizedString(@"confirm_modify", @"") forState:UIControlStateNormal];
     [self addSubview:btnSubmit];
     
@@ -113,23 +122,20 @@
     typeGroup = [[RadioRectButtonGroup alloc] initWithFrame:CGRectMake(10 + 40 + 10, lblType.frame.origin.y, 250, 30)];
     typeGroup.delegate = self;
     typeGroup.identifier = @"typeGroup";
-    [typeGroup setSourceItems:[NSMutableArray arrayWithObjects:[[SourceItem alloc] initWithIdentifier:nil displayName:@"标准版"], [[SourceItem alloc] initWithIdentifier:nil displayName:@"高配版"], [[SourceItem alloc] initWithIdentifier:nil displayName:@"低配版"], nil]];
     [self addSubview:typeGroup];
     
     colorGroup = [[RadioRectButtonGroup alloc] initWithFrame:CGRectMake(10 + 40 + 10, lblColor.frame.origin.y, 250, 30)];
     colorGroup.delegate = self;
     colorGroup.identifier = @"colorGroup";
-    [colorGroup setSourceItems:[NSMutableArray arrayWithObjects:[[SourceItem alloc] initWithIdentifier:nil displayName:@"红色"], [[SourceItem alloc] initWithIdentifier:nil displayName:@"白色"], nil]];
     [self addSubview:colorGroup];
     
     merchandiseIntroduce = [[UIWebView alloc] initWithFrame:CGRectMake(0, lblMerchandiseName.frame.origin.y + lblMerchandiseName.bounds.size.height, self.bounds.size.width, typeGroup.frame.origin.y - lblMerchandiseName.bounds.size.height - 5 - 5)];
     merchandiseIntroduce.backgroundColor = [UIColor whiteColor];
     [self addSubview:merchandiseIntroduce];
     
-    [colorGroup setSelectedSourceItemViaDisplayName:@"红色"];
-    [typeGroup setSelectedSourceItemViaDisplayName:@"高配版"];
-    
-    NumberPicker *numberPicker = [NumberPicker numberPickerWithPoint:CGPointMake(10 + 40 + 10, lblNumber.frame.origin.y)];
+    numberPicker = [NumberPicker numberPickerWithPoint:CGPointMake(10 + 40 + 10, lblNumber.frame.origin.y)];
+    numberPicker.minValue = 0;
+    numberPicker.maxValue = 10;
     numberPicker.delegate = self;
     [self addSubview:numberPicker];
     
@@ -252,24 +258,92 @@
 #pragma mark Radio Rect Button Group Delegate
 
 - (void)radioRectButtonGroup:(RadioRectButtonGroup *)radioRectButtonGroup selectedSourceItem:(SourceItem *)sourceItem {
-    NSLog(@"%@", sourceItem.displayName);
+    if(shoppingEntry == nil || shoppingEntry.merchandise == nil) return;
+    if([@"typeGroup" isEqualToString:radioRectButtonGroup.identifier]) {
+        MerchandiseModel *model = [shoppingEntry.merchandise merchandiseModelForName:sourceItem.displayName];
+        if(model != nil) {
+            shoppingEntry.model = model;
+            [self setPrice:shoppingEntry.totalPrice];
+        }
+    } else if([@"colorGroup" isEqualToString:radioRectButtonGroup.identifier]) {
+        MerchandiseColor *color = [shoppingEntry.merchandise merchandiseColorForName:sourceItem.displayName];
+        if(color != nil) {
+            shoppingEntry.color = color;
+        }
+    }
 }
 
 #pragma mark -
 #pragma mark Number Picker Delegate
 
 - (void)numberPickerDelegate:(NumberPicker *)numberPicker valueDidChangedTo:(int)number {
-    NSLog(@"%d", number);
+    if(shoppingEntry == nil) return;
+    shoppingEntry.number = number;
+    [self setPrice:shoppingEntry.totalPrice];
 }
 
 - (void)setMerchandise:(Merchandise *)merchandise {
     _merchandise_ = merchandise;
-    
     if(_merchandise_ == nil) {
-        
+        shoppingEntry = nil;
+        lblMerchandiseName.text = [XXStringUtils emptyString];
+        lblTotalPrice.text = [XXStringUtils emptyString];
+        [self setPrice:0.f];
+        numberPicker.number = 1;
+        [merchandiseIntroduce loadHTMLString:NSLocalizedString(@"no_content_html", @"") baseURL:nil];
+        [typeGroup setSourceItems:nil];
+        [colorGroup setSourceItems:nil];
     } else {
+        lblMerchandiseName.text = merchandise.name;
+        if([XXStringUtils isBlank:merchandise.htmlIntroduce]) {
+            [merchandiseIntroduce loadHTMLString:NSLocalizedString(@"no_content_html", @"") baseURL:nil];
+        } else {
+            [merchandiseIntroduce loadHTMLString:merchandise.htmlIntroduce baseURL:nil];
+        }
+        NSMutableArray *modelSourcesItems = [NSMutableArray array];
+        for(int i=0; i<merchandise.merchandiseModels.count; i++) {
+            MerchandiseModel *model = [merchandise.merchandiseModels objectAtIndex:i];
+            [modelSourcesItems addObject:[[SourceItem alloc] initWithIdentifier:nil displayName:model.name]];
+        }
+        [typeGroup setSourceItems:modelSourcesItems];
         
+        NSMutableArray *colorSourcesItems = [NSMutableArray array];
+        for(int i=0; i<merchandise.merchandiseColors.count; i++) {
+            MerchandiseColor *color = [merchandise.merchandiseColors objectAtIndex:i];
+            [colorSourcesItems addObject:[[SourceItem alloc] initWithIdentifier:nil displayName:color.name]];
+        }
+        [colorGroup setSourceItems:colorSourcesItems];
+        
+        ShoppingEntry *_r_entry = [[ShoppingCart shoppingCart] shoppingEntryForId:merchandise.identifier];
+        if(_r_entry != nil) {
+            shoppingEntry = [_r_entry copy];
+            if(shoppingEntry.model != nil) {
+                [typeGroup setSelectedSourceItemViaDisplayName:shoppingEntry.model.name];
+            }
+            if(shoppingEntry.color != nil) {
+                [colorGroup setSelectedSourceItemViaDisplayName:shoppingEntry.color.name];
+            }
+        } else {
+            shoppingEntry = [[ShoppingEntry alloc] initWithMerchandise:merchandise];
+        }
+        numberPicker.number = shoppingEntry.number;
+        [self setPrice:shoppingEntry.totalPrice];
     }
+}
+
+- (void)setPrice:(float)price {
+    lblTotalPrice.text = [NSString stringWithFormat:@"￥%d", (int)price];
+}
+
+#pragma mark -
+#pragma mark Submit
+
+- (void)btnSubmitPressed:(id)sender {
+    [[ShoppingCart shoppingCart] addShoppingEntry:shoppingEntry];
+    if(self.delegate != nil && [self.delegate respondsToSelector:@selector(merchandiseDetailSelectView:willDismissedWithState:)]) {
+        [self.delegate merchandiseDetailSelectView:self willDismissedWithState:MerchandiseDetailSelectViewDismissedByConfirmed];
+    }
+    [self dismissView];
 }
 
 @end

@@ -7,7 +7,8 @@
 //
 
 #import "DrawerViewController.h"
+#import "MerchandiseDetailSelectView.h"
 
-@interface ShoppingViewController : DrawerViewController<UITableViewDataSource, UITableViewDelegate>
+@interface ShoppingViewController : DrawerViewController<UITableViewDataSource, UITableViewDelegate, MerchandiseDetailSelectViewDelegate>
 
 @end

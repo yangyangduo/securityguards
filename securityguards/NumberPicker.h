@@ -12,11 +12,14 @@
 
 @interface NumberPicker : UIView
 
-+ (instancetype)numberPickerWithPoint:(CGPoint)point;
-
+@property (nonatomic, assign) int maxValue;
+@property (nonatomic, assign) int minValue;
 @property (nonatomic, strong) NSString *identifier;
 @property (nonatomic, assign) int number;
 @property (nonatomic, weak) id<NumberPickerDelegate> delegate;
+
++ (instancetype)numberPickerWithPoint:(CGPoint)point;
++ (instancetype)numberPickerWithPoint:(CGPoint)point defaultValue:(int)defaultValue;
 
 @end
 

@@ -20,12 +20,20 @@
 
 @synthesize number = _number_;
 @synthesize identifier;
+@synthesize maxValue;
+@synthesize minValue;
 
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
+        
+        // min && max value
+        self.minValue = 1;
+        self.maxValue = 99;
+        
+        // default value
         self.number = 1;
         [self initUI];
     }
@@ -34,6 +42,12 @@
 
 + (instancetype)numberPickerWithPoint:(CGPoint)point {
     return [[NumberPicker alloc] initWithFrame:CGRectMake(point.x, point.y, WIDTH * 3 - 2, HEIGHT)];
+}
+
++ (instancetype)numberPickerWithPoint:(CGPoint)point defaultValue:(int)defaultValue {
+    NumberPicker *picker = [[self class] numberPickerWithPoint:point];
+    picker.number = defaultValue;
+    return picker;
 }
 
 - (void)initUI {
@@ -85,15 +99,15 @@
 
 - (void)btnPressed:(UIButton *)sender {
     if(sender.tag == 1) {
-        if(self.number + 1 <= 99) {
+        if(self.number + 1 <= self.maxValue) {
             self.number = self.number + 1;
         }
     } else if(sender.tag == 2) {
-        if(self.number - 1 >= 0) {
+        if(self.number - 1 >= self.minValue) {
             self.number = self.number - 1;
         }
     }
-    sender.backgroundColor = [UIColor whiteColor];
+    sender.backgroundColor = [UIColor clearColor];
 }
 
 - (void)btnTouchDown:(UIButton *)sender {
@@ -101,11 +115,11 @@
 }
 
 - (void)btnTouchUpOutside:(UIButton *)sender {
-    sender.backgroundColor = [UIColor whiteColor];
+    sender.backgroundColor = [UIColor clearColor];
 }
 
 - (void)setNumber:(int)number {
-    if(number < 0 || number > 99) return;
+    if(number < self.minValue || number > self.maxValue) return;
     if(number == _number_) return;
     _number_ = number;
     lblNumber.text = [NSString stringWithFormat:@"%d", number];

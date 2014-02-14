@@ -48,6 +48,8 @@
     
     [_groupButtons_ removeAllObjects];
     
+    if(_sourceItems_ == nil) return;
+    
     if(_sourceItems_.count < self.maxButtonCount) {
         self.maxButtonCount = _sourceItems_.count;
     }
