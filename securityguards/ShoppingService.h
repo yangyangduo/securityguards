@@ -11,5 +11,6 @@
 @interface ShoppingService : ServiceBase
 
 - (void)getProductsSuccess:(SEL)s failed:(SEL)f target:(id)t callback:(id)cb;
+- (void)getContactInfoSuccess:(SEL)s failed:(SEL)f target:(id)t callback:(id)cb;
 
 @end

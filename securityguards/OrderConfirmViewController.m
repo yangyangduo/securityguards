@@ -10,6 +10,9 @@
 #import "ShoppingCompletedViewController.h"
 #import "ShoppingStateView.h"
 #import "ShoppingCart.h"
+#import "ShoppingService.h"
+#import "Contact.h"
+#import "CheckBox.h"
 
 @interface OrderConfirmViewController ()
 
@@ -18,6 +21,10 @@
 @implementation OrderConfirmViewController {
     UITableView *tblOrder;
     UIButton *btnSubmitOrder;
+    UILabel *lblTotalPrice;
+    CheckBox *checkbox;
+    
+    Contact *contact;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -41,6 +48,15 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)initDefaults {
+    [super initDefaults];
+    contact = [ShoppingCart shoppingCart].contact;
+    if(contact == nil) {
+        [ShoppingCart shoppingCart].contact = [[Contact alloc] init];
+        contact = [ShoppingCart shoppingCart].contact;
+    }
+}
+
 - (void)initUI {
     [super initUI];
     self.topbarView.title = NSLocalizedString(@"shopping_online", @"");
@@ -61,6 +77,40 @@
     [self.view addSubview:tblOrder];
     
     [self.view addSubview:btnSubmitOrder];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+//    ShoppingService *service = [[ShoppingService alloc] init];
+//    [service getContactInfoSuccess:@selector(getContactSuccess:) failed:@selector(getContactFailed:) target:self callback:nil];
+}
+
+#pragma mark -
+#pragma mark Service callback
+
+- (void)getContactSuccess:(RestResponse *)resp {
+    [JsonUtils printJsonData:resp.body];
+    if(resp.statusCode == 200) {
+        NSDictionary *_json_ = [JsonUtils createDictionaryFromJson:resp.body];
+        if([_json_ intForKey:@"i"] == 1) {
+            NSDictionary *_json_contact_ = [_json_ dictionaryForKey:@"m"];
+            if(_json_contact_ != nil) {
+                [ShoppingCart shoppingCart].contact = [[Contact alloc] initWithJson:_json_contact_];
+            } else {
+                [ShoppingCart shoppingCart].contact = [[Contact alloc] init];
+            }
+            contact = [ShoppingCart shoppingCart].contact;
+            [tblOrder reloadData];
+            return;
+        }
+    }
+    [self getContactFailed:resp];
+}
+
+- (void)getContactFailed:(RestResponse *)resp {
+#ifdef DEBUG
+    NSLog(@"[ORDER CONFIRM VIEW CONTROLLER] Get contact failed, code is %d", resp.statusCode);
+#endif
 }
 
 #pragma mark -
@@ -119,9 +169,40 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     if(section == 0) {
-        
+        UIView *footView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 54)];
+        checkbox = [CheckBox checkBoxWithPoint:CGPointMake(10, 0)];
+        checkbox.center = CGPointMake(self.view.center.x, checkbox.center.y);
+        [footView addSubview:checkbox];
+        return footView;
     } else {
+        UIView *footView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 160)];
         
+        UIImageView *imgGrayLine = [[UIImageView alloc] initWithFrame:CGRectMake(0, 2, self.view.bounds.size.width, 1)];
+        imgGrayLine.image = [UIImage imageNamed:@"dotline_gray"];
+        [footView addSubview:imgGrayLine];
+        
+        UILabel *lblTotalPriceDescription = [[UILabel alloc] initWithFrame:CGRectMake(208, 10, 35, 30)];
+        lblTotalPriceDescription.font = [UIFont systemFontOfSize:14.f];
+        lblTotalPriceDescription.text = [NSString stringWithFormat:@"%@:", NSLocalizedString(@"total_price", @"")];
+        lblTotalPriceDescription.backgroundColor = [UIColor clearColor];
+        [footView addSubview:lblTotalPriceDescription];
+        
+        lblTotalPrice = [[UILabel alloc] initWithFrame:CGRectMake(240, 10, 70, 30)];
+        lblTotalPrice.backgroundColor = [UIColor clearColor];
+        lblTotalPrice.textColor = [UIColor orangeColor];
+        lblTotalPrice.textAlignment = NSTextAlignmentRight;
+        lblTotalPrice.font = [UIFont boldSystemFontOfSize:14.f];
+        lblTotalPrice.text = [NSString stringWithFormat:@"￥%d", (int)[ShoppingCart shoppingCart].totalPrice];
+        [footView addSubview:lblTotalPrice];
+        
+        UILabel *lblTips = [[UILabel alloc] initWithFrame:CGRectMake(0, lblTotalPrice.frame.origin.y + lblTotalPrice.bounds.size.height + 10, 280, 90)];
+        lblTips.center = CGPointMake(self.view.center.x, lblTips.center.y);
+        lblTips.textColor = [UIColor lightGrayColor];
+        lblTips.numberOfLines = 5;
+        lblTips.font = [UIFont systemFontOfSize:14.f];
+        lblTips.text = NSLocalizedString(@"shopping_completed_tips", @"");
+        [footView addSubview:lblTips];
+        return footView;
     }
     return nil;
 }
@@ -131,7 +212,8 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    return 10;
+    if(section == 0) return 44;
+    return 160;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -143,7 +225,7 @@
     static NSString *cellIdentifier2 = @"cellIdentifier2";
     UITableViewCell *cell = [tblOrder dequeueReusableCellWithIdentifier:indexPath.section == 0 ? cellIdentifier1 : cellIdentifier2];
     if(cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier1];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:indexPath.section == 0 ? cellIdentifier1 : cellIdentifier2];
         cell.backgroundView = [[UIView alloc] initWithFrame:cell.bounds];
         cell.selectedBackgroundView = [[UIView alloc] initWithFrame:cell.bounds];
         
@@ -158,7 +240,6 @@
             detailTextLabel.font = [UIFont systemFontOfSize:13.f];
             detailTextLabel.textColor = [UIColor lightGrayColor];
             detailTextLabel.backgroundColor = [UIColor clearColor];
-            detailTextLabel.text = @"度搜积分就豆腐机第三方第三方度搜房间是丹佛度积分搜";
             [cell addSubview:detailTextLabel];
             
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -168,20 +249,19 @@
         } else {
             cell.backgroundView.backgroundColor = [UIColor whiteColor];
             cell.selectedBackgroundView.backgroundColor = [UIColor appGray];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
             
             UILabel *lblMerchandiseDetail = [[UILabel alloc] initWithFrame:CGRectMake(125, 0, 120, 30)];
             lblMerchandiseDetail.backgroundColor = [UIColor clearColor];
             lblMerchandiseDetail.font = [UIFont systemFontOfSize:13.f];
             lblMerchandiseDetail.textAlignment = NSTextAlignmentCenter;
             lblMerchandiseDetail.tag = 8888;
-            lblMerchandiseDetail.text = @"高配版, 白色 X 20";
             
             UILabel *lblPrice = [[UILabel alloc] initWithFrame:CGRectMake(250, 0, 60, 30)];
             lblPrice.font = [UIFont boldSystemFontOfSize:14.f];
             lblPrice.textAlignment = NSTextAlignmentRight;
             lblPrice.backgroundColor = [UIColor clearColor];
             lblPrice.textColor = [UIColor orangeColor];
-            lblPrice.text = @"￥12222";
             lblPrice.tag = 7777;
             
             [cell addSubview:lblPrice];
@@ -190,29 +270,83 @@
     }
     
     if(indexPath.section == 0) {
+        UILabel *lblDetails = (UILabel *)[cell viewWithTag:9999];
         switch (indexPath.row) {
             case 0:
                 cell.textLabel.text = [NSString stringWithFormat:@"%@ :", NSLocalizedString(@"contact", @"")];
+                lblDetails.text = contact == nil ? [XXStringUtils emptyString] : contact.name;
                 break;
             case 1:
                 cell.textLabel.text = [NSString stringWithFormat:@"%@ :", NSLocalizedString(@"contact_phone", @"")];
+                lblDetails.text = lblDetails.text = contact == nil ? [XXStringUtils emptyString] : contact.phoneNumber;
                 break;
             case 2:
                 cell.textLabel.text = [NSString stringWithFormat:@"%@ :", NSLocalizedString(@"delivery_address", @"")];
+                lblDetails.text = lblDetails.text = contact == nil ? [XXStringUtils emptyString] : contact.address;
                 break;
             case 3:
                 cell.textLabel.text = [NSString stringWithFormat:@"%@ :", NSLocalizedString(@"remark", @"")];
+                lblDetails.text = lblDetails.text = contact == nil ? [XXStringUtils emptyString] : contact.remark;
                 break;
             default:
                 break;
         }
     } else {
+        UILabel *lblMerchandiseDetail = (UILabel *)[cell viewWithTag:8888];
+        UILabel *lblPrice = (UILabel *)[cell viewWithTag:7777];
         ShoppingEntry *entry = [[ShoppingCart shoppingCart].shoppingEntries objectAtIndex:indexPath.row];
         cell.textLabel.text = entry.merchandise.name;
+        lblMerchandiseDetail.text = [entry shoppingEntryDetailsAsString];
+        lblPrice.text = [NSString stringWithFormat:@"￥%d", (int)entry.totalPrice];
     }
     
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if(indexPath.section == 0) {
+        TextViewController *textView = [[TextViewController alloc] init];
+        textView.delegate = self;
+        textView.title = [NSString stringWithFormat:@"%@%@", NSLocalizedString(@"contact_info", @""), NSLocalizedString(@"modify", @"")];
+        if(indexPath.row == 0) {
+            textView.identifier = @"c_name";
+            textView.defaultValue = contact == nil ? [XXStringUtils emptyString] : contact.name;
+            textView.txtDescription = [NSString stringWithFormat:@"%@%@:", NSLocalizedString(@"please_enter", @""), NSLocalizedString(@"contact_name", @"")];
+        } else if(indexPath.row == 1) {
+            textView.identifier = @"c_phone";
+            textView.defaultValue = contact == nil ? [XXStringUtils emptyString] : contact.phoneNumber;
+            textView.txtDescription = [NSString stringWithFormat:@"%@%@:", NSLocalizedString(@"please_enter", @""), NSLocalizedString(@"contact_phone", @"")];
+        } else if(indexPath.row == 2) {
+            textView.identifier = @"c_address";
+            textView.defaultValue = contact == nil ? [XXStringUtils emptyString] : contact.address;
+            textView.txtDescription = [NSString stringWithFormat:@"%@%@:", NSLocalizedString(@"please_enter", @""), NSLocalizedString(@"delivery_address", @"")];
+        } else {
+            textView.identifier = @"c_remark";
+            textView.defaultValue = contact == nil ? [XXStringUtils emptyString] : contact.remark;
+            textView.txtDescription = [NSString stringWithFormat:@"%@%@:", NSLocalizedString(@"please_enter", @""), NSLocalizedString(@"remark_no_blank", @"")];
+        }
+        [self presentViewController:textView animated:YES completion:^{ }];
+    }
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+#pragma mark -
+#pragma mark Text View Delegate
+
+- (void)textView:(TextViewController *)textView newText:(NSString *)newText {
+    if([@"c_name" isEqualToString:textView.identifier]) {
+        contact.name = newText;
+    } else if([@"c_phone" isEqualToString:textView.identifier]) {
+        contact.phoneNumber = newText;
+    } else if([@"c_address" isEqualToString:textView.identifier]) {
+        contact.address = newText;
+    } else if([@"c_remark" isEqualToString:textView.identifier]) {
+        contact.remark = newText;
+    }
+    if(tblOrder != nil) {
+        [tblOrder reloadData];
+    }
+    [textView popupViewController];
+}
 
 @end

@@ -42,6 +42,8 @@
 "change_name"                    =      "请输入新的名称";
 "confirm_modify"                 =      "确认修改";
 "install"                        =      "安装";
+"modify"                         =      "修改";
+"please_enter"                   =      "请输入";
 
 
 /****************	Right Drawer View Strings	****************/
@@ -349,7 +351,10 @@
 "contact_info"             =           "联系人信息";
 "contact_phone"            =           "联系电话";
 "remark"                   =           "备       注";
+"remark_no_blank"          =           "备注";
 "delivery_address"         =           "送货地址";
+"contact_name"             =           "联系人名称";
+"contact_tips"             =           "是否保存为常用联系人";
 "total_price"              =           "总价";
 "my_shopping_cart"         =           "我的购物车";
 "shopping_welcome_tips"    =           "非常感谢您的支持,您的订单已经确认,如有需要欢迎直接拨打下方热线号码。";

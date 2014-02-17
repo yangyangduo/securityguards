@@ -13,6 +13,7 @@
 }
 
 @synthesize totalPrice = _totalPrice_;
+@synthesize contact;
 
 + (instancetype)shoppingCart {
     static ShoppingCart *shoppingCart = nil;

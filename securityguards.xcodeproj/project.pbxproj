@@ -66,6 +66,8 @@
 		6F41D2BE1890F1A40063E1BB /* SensorData.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F41D2BD1890F1A40063E1BB /* SensorData.m */; };
 		6F41D2C11890F9CF0063E1BB /* DeviceCommandReceivedSensors.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F41D2C01890F9CF0063E1BB /* DeviceCommandReceivedSensors.m */; };
 		6F41D2C41891020F0063E1BB /* DeviceCommandGetSensorsHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F41D2C31891020F0063E1BB /* DeviceCommandGetSensorsHandler.m */; };
+		6F42A00A18B1EFEF0099626E /* Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F42A00918B1EFEF0099626E /* Contact.m */; };
+		6F42A00D18B1FEE00099626E /* CheckBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F42A00C18B1FEE00099626E /* CheckBox.m */; };
 		6F45ADEA18765F2D00DC18CA /* btn_camera_bottom_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F45ADE218765F2D00DC18CA /* btn_camera_bottom_selected@2x.png */; };
 		6F45ADEB18765F2D00DC18CA /* btn_camera_bottom@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F45ADE318765F2D00DC18CA /* btn_camera_bottom@2x.png */; };
 		6F45ADEC18765F2D00DC18CA /* btn_camera_left_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F45ADE418765F2D00DC18CA /* btn_camera_left_selected@2x.png */; };
@@ -449,6 +451,10 @@
 		6F41D2C01890F9CF0063E1BB /* DeviceCommandReceivedSensors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceCommandReceivedSensors.m; sourceTree = "<group>"; };
 		6F41D2C21891020F0063E1BB /* DeviceCommandGetSensorsHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceCommandGetSensorsHandler.h; sourceTree = "<group>"; };
 		6F41D2C31891020F0063E1BB /* DeviceCommandGetSensorsHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceCommandGetSensorsHandler.m; sourceTree = "<group>"; };
+		6F42A00818B1EFEF0099626E /* Contact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Contact.h; sourceTree = "<group>"; };
+		6F42A00918B1EFEF0099626E /* Contact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Contact.m; sourceTree = "<group>"; };
+		6F42A00B18B1FEE00099626E /* CheckBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckBox.h; sourceTree = "<group>"; };
+		6F42A00C18B1FEE00099626E /* CheckBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckBox.m; sourceTree = "<group>"; };
 		6F45ADE218765F2D00DC18CA /* btn_camera_bottom_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_camera_bottom_selected@2x.png"; sourceTree = "<group>"; };
 		6F45ADE318765F2D00DC18CA /* btn_camera_bottom@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_camera_bottom@2x.png"; sourceTree = "<group>"; };
 		6F45ADE418765F2D00DC18CA /* btn_camera_left_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_camera_left_selected@2x.png"; sourceTree = "<group>"; };
@@ -1060,6 +1066,8 @@
 				6F5EBF1918A9FD3F00AF89E3 /* OrderConfirmViewController.m */,
 				6F5EBF1B18A9FD4D00AF89E3 /* ShoppingCompletedViewController.h */,
 				6F5EBF1C18A9FD4D00AF89E3 /* ShoppingCompletedViewController.m */,
+				6F42A00B18B1FEE00099626E /* CheckBox.h */,
+				6F42A00C18B1FEE00099626E /* CheckBox.m */,
 			);
 			name = shopping;
 			sourceTree = "<group>";
@@ -1579,6 +1587,8 @@
 				6F183F611894A55F000F1974 /* TimingTaskExecutionItem.m */,
 				6F5EBF2718AA253400AF89E3 /* Merchandise.h */,
 				6F5EBF2818AA253400AF89E3 /* Merchandise.m */,
+				6F42A00818B1EFEF0099626E /* Contact.h */,
+				6F42A00918B1EFEF0099626E /* Contact.m */,
 			);
 			name = entities;
 			sourceTree = "<group>";
@@ -2475,6 +2485,7 @@
 				6FEC0FDF186C5DD700CB0D70 /* DrawerViewController.m in Sources */,
 				6F41D2B01890DFAE0063E1BB /* TimingTasksPlanViewController.m in Sources */,
 				6F6004BA186BCFF40085B4BD /* NSMutableDictionary+Extension.m in Sources */,
+				6F42A00D18B1FEE00099626E /* CheckBox.m in Sources */,
 				6F9C8AD01887BBE500289AEA /* MyOperation.m in Sources */,
 				6F6004AC186BCFBF0085B4BD /* XXButton.m in Sources */,
 				6F8F57BE18710D940033228F /* TextContainerView.m in Sources */,
@@ -2538,6 +2549,7 @@
 				6F6004CB186BD0A50085B4BD /* XXDrawerViewController.m in Sources */,
 				6F33C48A18ACB1C80070CB60 /* ShoppingService.m in Sources */,
 				6F5EBF1A18A9FD3F00AF89E3 /* OrderConfirmViewController.m in Sources */,
+				6F42A00A18B1EFEF0099626E /* Contact.m in Sources */,
 				6F600525186BE9890085B4BD /* DeviceCommandUpdateDevice.m in Sources */,
 				6F600595186BFF7F0085B4BD /* GlobalSettings.m in Sources */,
 				F20D6ACA18729C9F00FE6B6D /* XXDateFormatter.m in Sources */,

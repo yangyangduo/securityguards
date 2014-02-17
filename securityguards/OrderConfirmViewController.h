@@ -7,7 +7,9 @@
 //
 
 #import "NavigationViewController.h"
+#import "TextViewController.h"
 
-@interface OrderConfirmViewController : NavigationViewController<UITableViewDataSource, UITableViewDelegate>
+@interface OrderConfirmViewController : NavigationViewController<UITableViewDataSource, UITableViewDelegate, TextViewDelegate> {
+}
 
 @end

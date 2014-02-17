@@ -8,7 +8,14 @@
 
 #import "DrawerViewController.h"
 #import "MerchandiseDetailSelectView.h"
+#import "EGORefreshTableHeaderView.h"
 
-@interface ShoppingViewController : DrawerViewController<UITableViewDataSource, UITableViewDelegate, MerchandiseDetailSelectViewDelegate>
+@interface ShoppingViewController : DrawerViewController<UITableViewDataSource, UITableViewDelegate, MerchandiseDetailSelectViewDelegate, EGORefreshTableHeaderDelegate> {
+    EGORefreshTableHeaderView *_refreshHeaderView;
+    
+    //  Reloading var should really be your tableviews datasource
+    //  Putting it here for demo purposes
+    BOOL _reloading;
+}
 
 @end

@@ -14,6 +14,7 @@
 #import "GlobalSettings.h"
 #import "AlertView.h"
 #import "UserLogoutEvent.h"
+#import "ShoppingCart.h"
 
 #import "MyOperation.h"
 
@@ -92,6 +93,7 @@
         [[XXEventSubscriptionPublisher defaultPublisher] unSubscribeAllSubscriptionsExceptSubscriberId:@"rootViewControllerSubscriber"];
         [[UnitManager defaultManager] clear];
         [[GlobalSettings defaultSettings] clearAuth];
+        [[ShoppingCart shoppingCart] clearShoppingCart];
         [self.rootViewController.portalViewController reset];
         [NSTimer scheduledTimerWithTimeInterval:0.8f target:self selector:@selector(delayLogout) userInfo:nil repeats:NO];
     }

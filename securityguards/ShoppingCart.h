@@ -8,12 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import "Merchandise.h"
+#import "Contact.h"
 
 @class ShoppingEntry;
 
 @interface ShoppingCart : NSObject
 
 @property (nonatomic, assign, readonly) float totalPrice;
+@property (nonatomic, strong) Contact *contact;
 
 + (instancetype)shoppingCart;
 

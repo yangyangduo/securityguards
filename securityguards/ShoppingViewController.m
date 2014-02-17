@@ -12,6 +12,7 @@
 #import "MerchandiseCell.h"
 #import "ShoppingService.h"
 #import "ShoppingCart.h"
+#import <UIImageView+WebCache.h>
 
 @interface ShoppingViewController ()
 
@@ -81,6 +82,12 @@
     tblMerchandises.delegate = self;
     tblMerchandises.dataSource = self;
     [self.view addSubview:tblMerchandises];
+    
+    _refreshHeaderView = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - tblMerchandises.bounds.size.height, tblMerchandises.frame.size.width, tblMerchandises.bounds.size.height) arrowImageName:@"grayArrow" textColor:[UIColor lightGrayColor]];
+    _refreshHeaderView.backgroundColor = [UIColor whiteColor];
+    _refreshHeaderView.delegate = self;
+    [tblMerchandises addSubview:_refreshHeaderView];
+    [_refreshHeaderView refreshLastUpdatedDate];
 }
 
 - (void)getProductsSuccess:(RestResponse *)resp {
@@ -110,9 +117,18 @@
     NSLog(@"get products failed, code is %d", resp.statusCode);
 }
 
+- (void)autoTriggerRefresh {
+    [tblMerchandises setContentOffset:CGPointMake(0, -70) animated:YES];
+    double delayInSeconds = 0.4f;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        [_refreshHeaderView egoRefreshScrollViewDidScroll:tblMerchandises];
+        [_refreshHeaderView egoRefreshScrollViewDidEndDragging:tblMerchandises];
+    });
+}
+
 - (void)viewDidAppear:(BOOL)animated {
-    ShoppingService *service = [[ShoppingService alloc] init];
-    [service getProductsSuccess:@selector(getProductsSuccess:) failed:@selector(getProductsFailed:) target:self callback:nil];
+//    [self autoTriggerRefresh];
 }
 
 #pragma mark -
@@ -169,6 +185,47 @@
         }
         [self calcShoppingCartTotalPriceForDisplay];
     }
+}
+
+#pragma mark -
+#pragma mark Data Source Loading / Reloading Methods
+
+- (void)reloadTableViewDataSource {
+    ShoppingService *service = [[ShoppingService alloc] init];
+    [service getProductsSuccess:@selector(getProductsSuccess:) failed:@selector(getProductsFailed:) target:self callback:nil];
+	_reloading = YES;
+}
+
+- (void)doneLoadingTableViewData {
+	_reloading = NO;
+	[_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:tblMerchandises];
+}
+
+#pragma mark -
+#pragma mark EGORefreshTableHeaderDelegate Methods
+
+- (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView*)view {
+	[self reloadTableViewDataSource];
+	[self performSelector:@selector(doneLoadingTableViewData) withObject:nil afterDelay:1.0];
+}
+
+- (BOOL)egoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView*)view {
+	return _reloading; // should return if data source model is reloading
+}
+
+- (NSDate*)egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableHeaderView*)view{
+	return [NSDate date]; // should return date data source was last changed
+}
+
+#pragma mark -
+#pragma mark UIScrollViewDelegate Methods
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+	[_refreshHeaderView egoRefreshScrollViewDidScroll:scrollView];
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+	[_refreshHeaderView egoRefreshScrollViewDidEndDragging:scrollView];
 }
 
 @end

@@ -79,6 +79,7 @@
     _refreshHeaderView.backgroundColor = [UIColor whiteColor];
     _refreshHeaderView.delegate = self;
     [tblTaskPlans addSubview:_refreshHeaderView];
+    
     [_refreshHeaderView refreshLastUpdatedDate];
 }
 
