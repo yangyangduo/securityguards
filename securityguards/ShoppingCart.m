@@ -31,6 +31,10 @@
     return self;
 }
 
+- (NSArray *)shoppingEntries {
+    return _shopping_entries_;
+}
+
 - (float)totalPrice {
     if(_shopping_entries_ == nil || _shopping_entries_.count == 0) {
         return 0;

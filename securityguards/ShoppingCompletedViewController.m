@@ -52,7 +52,7 @@
     imgLineBegin.image = [UIImage imageNamed:@"dotline_gray"];
     [self.view addSubview:imgLineBegin];
     
-    UILabel *lblThanks = [[UILabel alloc] initWithFrame:CGRectMake(0, imgLineBegin.frame.origin.y + imgLineBegin.bounds.size.height + 5, 230, 70)];
+    UILabel *lblThanks = [[UILabel alloc] initWithFrame:CGRectMake(0, imgLineBegin.frame.origin.y + imgLineBegin.bounds.size.height + 8, 230, 70)];
     lblThanks.center = CGPointMake(self.view.center.x, lblThanks.center.y);
     lblThanks.numberOfLines = 3;
     lblThanks.text = NSLocalizedString(@"shopping_welcome_tips", @"");
@@ -60,7 +60,7 @@
     lblThanks.backgroundColor = [UIColor clearColor];
     [self.view addSubview:lblThanks];
     
-    UILabel *lblPhone = [[UILabel alloc] initWithFrame:CGRectMake(0, lblThanks.frame.origin.y + lblThanks.bounds.size.height + 5, 300, 25)];
+    UILabel *lblPhone = [[UILabel alloc] initWithFrame:CGRectMake(0, lblThanks.frame.origin.y + lblThanks.bounds.size.height + 2, 300, 22)];
     lblPhone.backgroundColor = [UIColor clearColor];
     lblPhone.textColor = [UIColor darkGrayColor];
     lblPhone.textAlignment = NSTextAlignmentCenter;
@@ -68,7 +68,7 @@
     lblPhone.text = [NSString stringWithFormat:@"%@%@", NSLocalizedString(@"office_number", @""), NSLocalizedString(@"office_phonenumber", @"")];
     [self.view addSubview:lblPhone];
     
-    UILabel *lblWechat = [[UILabel alloc] initWithFrame:CGRectMake(0, lblPhone.frame.origin.y + lblPhone.bounds.size.height + 5, 300, 25)];
+    UILabel *lblWechat = [[UILabel alloc] initWithFrame:CGRectMake(0, lblPhone.frame.origin.y + lblPhone.bounds.size.height + 5, 300, 22)];
     lblWechat.backgroundColor = [UIColor clearColor];
     lblWechat.textAlignment = NSTextAlignmentCenter;
     lblWechat.textColor = [UIColor darkGrayColor];
@@ -76,11 +76,19 @@
     lblWechat.text = [NSString stringWithFormat:@"%@", NSLocalizedString(@"we_chat_number", @"")];
     [self.view addSubview:lblWechat];
     
-    UIImageView *imgLineEnd = [[UIImageView alloc] initWithFrame:CGRectMake(0, lblWechat.frame.origin.y + lblWechat.frame.size.height + 7, self.view.bounds.size.width, 2)];
+    UIImageView *imgLineEnd = [[UIImageView alloc] initWithFrame:CGRectMake(0, lblWechat.frame.origin.y + lblWechat.frame.size.height + 10, self.view.bounds.size.width, 2)];
     imgLineEnd.image = [UIImage imageNamed:@"dotline_gray"];
     [self.view addSubview:imgLineEnd];
     
-    UIButton *btnContinueShopping = [BlueButton blueButtonWithPoint:CGPointMake(0, imgLineEnd.frame.origin.y + imgLineEnd.bounds.size.height + 10) resize:CGSizeMake(260, 30)];
+    UILabel *lblTips = [[UILabel alloc] initWithFrame:CGRectMake(0, imgLineEnd.frame.origin.y + imgLineEnd.bounds.size.height + 8, 280, 90)];
+    lblTips.center = CGPointMake(self.view.center.x, lblTips.center.y);
+    lblTips.textColor = [UIColor lightGrayColor];
+    lblTips.numberOfLines = 5;
+    lblTips.font = [UIFont systemFontOfSize:14.f];
+    lblTips.text = NSLocalizedString(@"shopping_completed_tips", @"");
+    [self.view addSubview:lblTips];
+    
+    UIButton *btnContinueShopping = [BlueButton blueButtonWithPoint:CGPointMake(0, lblTips.frame.origin.y + lblTips.bounds.size.height + 12) resize:CGSizeMake(260, 30)];
     btnContinueShopping.center = CGPointMake(self.view.center.x, btnContinueShopping.center.y);
     [btnContinueShopping setBackgroundImage:[UIImage imageNamed:@"btn_blue"] forState:UIControlStateNormal];
     [btnContinueShopping setBackgroundImage:[UIImage imageNamed:@"btn_blue_highlighted"] forState:UIControlStateHighlighted];

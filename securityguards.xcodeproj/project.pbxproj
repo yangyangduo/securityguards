@@ -185,6 +185,7 @@
 		6F6005B6186C1B320085B4BD /* RegisterStep1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6005B5186C1B320085B4BD /* RegisterStep1ViewController.m */; };
 		6F6005B9186C1B410085B4BD /* RegisterStep2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6005B8186C1B410085B4BD /* RegisterStep2ViewController.m */; };
 		6F6005C0186C2E220085B4BD /* LeftNavItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F6005BF186C2E220085B4BD /* LeftNavItem.m */; };
+		6F6B140E18B1A0620071AC14 /* contact@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F6B140D18B1A0620071AC14 /* contact@2x.png */; };
 		6F6DFA0B187FE55700C50C40 /* icon_control_mode@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F6DFA0A187FE55700C50C40 /* icon_control_mode@2x.png */; };
 		6F7247C218711C4E003B325F /* SpeechRecognitionUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7247BF18711C4E003B325F /* SpeechRecognitionUtil.m */; };
 		6F7247C318711C4E003B325F /* SpeechSynthesizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7247C118711C4E003B325F /* SpeechSynthesizer.m */; };
@@ -668,6 +669,7 @@
 		6F6005B8186C1B410085B4BD /* RegisterStep2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterStep2ViewController.m; sourceTree = "<group>"; };
 		6F6005BE186C2E220085B4BD /* LeftNavItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftNavItem.h; sourceTree = "<group>"; };
 		6F6005BF186C2E220085B4BD /* LeftNavItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftNavItem.m; sourceTree = "<group>"; };
+		6F6B140D18B1A0620071AC14 /* contact@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "contact@2x.png"; sourceTree = "<group>"; };
 		6F6DFA0A187FE55700C50C40 /* icon_control_mode@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_control_mode@2x.png"; sourceTree = "<group>"; };
 		6F7247BE18711C4E003B325F /* SpeechRecognitionUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeechRecognitionUtil.h; sourceTree = "<group>"; };
 		6F7247BF18711C4E003B325F /* SpeechRecognitionUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeechRecognitionUtil.m; sourceTree = "<group>"; };
@@ -1974,6 +1976,7 @@
 			isa = PBXGroup;
 			children = (
 				6FDCCC3718ADF6DA00BBD12D /* shopping_cart@2x.png */,
+				6F6B140D18B1A0620071AC14 /* contact@2x.png */,
 				6FDCCC3918ADFC4200BBD12D /* icon_close_orange@2x.png */,
 				6FDCCC3B18AE0BA900BBD12D /* dotline_gray@2x.png */,
 			);
@@ -2329,6 +2332,7 @@
 				6F45ADEF18765F2D00DC18CA /* btn_camera_right@2x.png in Resources */,
 				6F2AF5FF188E0FF5005C1EAF /* launch1136@2x.png in Resources */,
 				6F0CD5D3186DB93000B5A3EA /* icon_humidity_yellow@2x.png in Resources */,
+				6F6B140E18B1A0620071AC14 /* contact@2x.png in Resources */,
 				6F73271F186D212700A1276B /* bg_label_gray@2x.png in Resources */,
 				F2F3E1A7187A3FD6006A9447 /* grayArrow.png in Resources */,
 				F2209B38187F870000F5E833 /* icon_online_accessory@2x.png in Resources */,

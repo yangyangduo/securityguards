@@ -345,5 +345,13 @@
 "shopping_type"            =           "型号";
 "shopping_number"          =           "数量";
 "continue_shopping"        =           "继续购物";
+"contact"                  =           "联系人";
+"contact_info"             =           "联系人信息";
+"contact_phone"            =           "联系电话";
+"remark"                   =           "备       注";
+"delivery_address"         =           "送货地址";
+"total_price"              =           "总价";
+"my_shopping_cart"         =           "我的购物车";
 "shopping_welcome_tips"    =           "非常感谢您的支持,您的订单已经确认,如有需要欢迎直接拨打下方热线号码。";
+"shopping_completed_tips"  =           "* 商城所售卖的所有货品均为顺风快递货到付款,当您的订单提交后,我们的工作人员将在24小时内与您取得联系,并约定送货时间。请您提交订单后保持电话的通畅状态,并准备现金或信用卡刷卡方式付款。";
 "no_content_html"          =           "<html><body><p style='margin-top:5px; font-size:15px; color:gray;'>暂无商品详情详情</p></body></html>";

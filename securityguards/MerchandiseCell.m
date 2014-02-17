@@ -9,6 +9,7 @@
 #import "MerchandiseCell.h"
 #import "MerchandiseBar.h"
 #import "ShoppingCart.h"
+#import "UIColor+MoreColor.h"
 
 @implementation MerchandiseCell {
     UILabel *lblMerchandiseName;
@@ -53,7 +54,7 @@
     lblMerchandiseDescriptions.textColor = [UIColor lightGrayColor];
     
     imgMerchandise = [[UIImageView alloc] initWithFrame:CGRectMake(10, 5, 128, 128)];
-    imgMerchandise.backgroundColor = [UIColor lightGrayColor];
+    imgMerchandise.backgroundColor = [UIColor appDarkDarkGray];
     
     [self.contentView addSubview:imgMerchandise];
     [self.contentView addSubview:lblMerchandiseName];

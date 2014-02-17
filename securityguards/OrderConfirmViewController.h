@@ -8,6 +8,6 @@
 
 #import "NavigationViewController.h"
 
-@interface OrderConfirmViewController : NavigationViewController
+@interface OrderConfirmViewController : NavigationViewController<UITableViewDataSource, UITableViewDelegate>
 
 @end
