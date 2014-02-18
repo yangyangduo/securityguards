@@ -10,6 +10,8 @@
 #import "MerchandiseBar.h"
 #import "ShoppingCart.h"
 #import "UIColor+MoreColor.h"
+#import "GlobalSettings.h"
+#import <UIImageView+WebCache.h>
 
 @implementation MerchandiseCell {
     UILabel *lblMerchandiseName;
@@ -68,6 +70,12 @@
 - (void)setMerchandise:(Merchandise *)merchandise {
     _merchandise_ = merchandise;
     if(_merchandise_ != nil) {
+        if(merchandise.merchandisePictures != nil && merchandise.merchandisePictures.count > 0) {
+            MerchandisePictures *pictures = [merchandise.merchandisePictures objectAtIndex:0];
+            [imgMerchandise setImageWithURL:[NSURL URLWithString:pictures.smallImage] placeholderImage:[UIImage imageNamed:@"merchandise_placeholder"]];
+        } else {
+            imgMerchandise.image = [UIImage imageNamed:@"merchandise_placeholder"];
+        }
         lblMerchandiseName.text = merchandise.name;
         lblMerchandiseDescriptions.text = merchandise.shortIntroduce;
         ShoppingEntry *entry = [[ShoppingCart shoppingCart] shoppingEntryForId:merchandise.identifier];
@@ -80,6 +88,7 @@
             [merchandiseBar setMerchandiseBarState:MerchandiseBarStateHighlighted merchandisePrice:range merchandiseDescriptions:[entry shoppingEntryDetailsAsString]];
         }
     } else {
+        imgMerchandise.image = [UIImage imageNamed:@"merchandise_placeholder"];
         lblMerchandiseName.text = [XXStringUtils emptyString];
         lblMerchandiseDescriptions.text = [XXStringUtils emptyString];
         [merchandiseBar setMerchandiseBarState:MerchandiseBarStateNormal merchandisePrice:[[PriceRange alloc] initWithSingleValue:0.f] merchandiseDescriptions:@""];

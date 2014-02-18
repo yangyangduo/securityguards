@@ -16,6 +16,8 @@
 @implementation TextViewController {
     UILabel *lblTextDescription;
     UITextField *textField;
+    
+    UIKeyboardType _keyboard_type_;
 }
 
 @synthesize identifier;
@@ -28,6 +30,14 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+    }
+    return self;
+}
+
+- (instancetype)initWithKeyboardType:(UIKeyboardType)keyboardType {
+    self = [self init];
+    if(self) {
+        _keyboard_type_ = keyboardType;
     }
     return self;
 }
@@ -63,6 +73,7 @@
     textField.clearButtonMode = UITextFieldViewModeWhileEditing;
     textField.contentVerticalAlignment  = UIControlContentVerticalAlignmentCenter;
     textField.returnKeyType = UIReturnKeyDone;
+    textField.keyboardType = _keyboard_type_;
     textField.delegate = self;
     textField.tag = TEXT_FIELD_TAG;
     [self.view addSubview:textField];
@@ -125,6 +136,10 @@
             lblTextDescription.text = _txtDescription_;
         }
     }
+}
+
+- (UITextField *)textField {
+    return textField;
 }
 
 #pragma mark -

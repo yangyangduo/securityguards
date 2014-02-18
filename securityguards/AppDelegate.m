@@ -14,6 +14,7 @@
 #import "GlobalSettings.h"
 #import "AlertView.h"
 #import "UserLogoutEvent.h"
+#import "Memory.h"
 #import "ShoppingCart.h"
 
 #import "MyOperation.h"
@@ -94,6 +95,7 @@
         [[UnitManager defaultManager] clear];
         [[GlobalSettings defaultSettings] clearAuth];
         [[ShoppingCart shoppingCart] clearShoppingCart];
+        [[Memory memory] clearAll];
         [self.rootViewController.portalViewController reset];
         [NSTimer scheduledTimerWithTimeInterval:0.8f target:self selector:@selector(delayLogout) userInfo:nil repeats:NO];
     }

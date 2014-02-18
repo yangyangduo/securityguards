@@ -25,6 +25,7 @@ typedef enum {
 @property (nonatomic, weak) id<MerchandiseDetailSelectViewDelegate> delegate;
 @property (nonatomic, strong) Merchandise *merchandise;
 
++ (instancetype)merchandiseDetailSelectViewWithMerchandise:(Merchandise *)merchandise;
 - (instancetype)initWithMerchandise:(Merchandise *)merchandise;
 
 - (void)showInView:(UIView *)view;

@@ -252,12 +252,14 @@
 		6F9C8AD01887BBE500289AEA /* MyOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F9C8ACF1887BBE500289AEA /* MyOperation.m */; };
 		6F9C8AD21887C5DA00289AEA /* logo_gold@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F9C8AD11887C5DA00289AEA /* logo_gold@2x.png */; };
 		6F9C8AD41887C62300289AEA /* logo_left_drawer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F9C8AD31887C62300289AEA /* logo_left_drawer@2x.png */; };
+		6F9E1EA818B32974004A5055 /* Memory.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F9E1EA718B32974004A5055 /* Memory.m */; };
 		6FA3B2FB186E73EC00EBC7FD /* line_dashed_v@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FA3B2FA186E73EC00EBC7FD /* line_dashed_v@2x.png */; };
 		6FA3B2FF186E796000EBC7FD /* XXActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FA3B2FE186E796000EBC7FD /* XXActionSheet.m */; };
 		6FA69113187F9618005D1415 /* NewsFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FA69112187F9618005D1415 /* NewsFileManager.m */; };
 		6FA69118187FD54F005D1415 /* test@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FA69117187FD54F005D1415 /* test@2x.png */; };
 		6FB624FB18A60D1000B17010 /* TimingTasksCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FB624FA18A60D1000B17010 /* TimingTasksCell.m */; };
 		6FB624FE18A7C2F400B17010 /* UnitDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FB624FD18A7C2F400B17010 /* UnitDetailsViewController.m */; };
+		6FB79EC718B33DDB00E02077 /* merchandise_placeholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FB79EC618B33DDB00E02077 /* merchandise_placeholder@2x.png */; };
 		6FCC4A03189500B300A1E5CF /* icon_save@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FCC4A02189500B300A1E5CF /* icon_save@2x.png */; };
 		6FCC4A071896251500A1E5CF /* icon_add@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FCC4A061896251500A1E5CF /* icon_add@2x.png */; };
 		6FCCE92F187E551B007B42D2 /* News.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FCCE92E187E551B007B42D2 /* News.m */; };
@@ -769,6 +771,8 @@
 		6F9C8ACF1887BBE500289AEA /* MyOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyOperation.m; sourceTree = "<group>"; };
 		6F9C8AD11887C5DA00289AEA /* logo_gold@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo_gold@2x.png"; sourceTree = "<group>"; };
 		6F9C8AD31887C62300289AEA /* logo_left_drawer@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo_left_drawer@2x.png"; sourceTree = "<group>"; };
+		6F9E1EA618B32974004A5055 /* Memory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Memory.h; sourceTree = "<group>"; };
+		6F9E1EA718B32974004A5055 /* Memory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Memory.m; sourceTree = "<group>"; };
 		6FA3B2FA186E73EC00EBC7FD /* line_dashed_v@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "line_dashed_v@2x.png"; sourceTree = "<group>"; };
 		6FA3B2FD186E796000EBC7FD /* XXActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXActionSheet.h; sourceTree = "<group>"; };
 		6FA3B2FE186E796000EBC7FD /* XXActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXActionSheet.m; sourceTree = "<group>"; };
@@ -779,6 +783,7 @@
 		6FB624FA18A60D1000B17010 /* TimingTasksCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimingTasksCell.m; sourceTree = "<group>"; };
 		6FB624FC18A7C2F400B17010 /* UnitDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitDetailsViewController.h; sourceTree = "<group>"; };
 		6FB624FD18A7C2F400B17010 /* UnitDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnitDetailsViewController.m; sourceTree = "<group>"; };
+		6FB79EC618B33DDB00E02077 /* merchandise_placeholder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "merchandise_placeholder@2x.png"; sourceTree = "<group>"; };
 		6FCC4A02189500B300A1E5CF /* icon_save@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_save@2x.png"; sourceTree = "<group>"; };
 		6FCC4A061896251500A1E5CF /* icon_add@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_add@2x.png"; sourceTree = "<group>"; };
 		6FCCE92D187E551B007B42D2 /* News.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = News.h; sourceTree = "<group>"; };
@@ -1385,6 +1390,8 @@
 				6F600582186BF5B30085B4BD /* command_executors */,
 				6F6004FF186BE90D0085B4BD /* command_handlers */,
 				6F6004FB186BE8A00085B4BD /* commands */,
+				6F9E1EA618B32974004A5055 /* Memory.h */,
+				6F9E1EA718B32974004A5055 /* Memory.m */,
 			);
 			name = core;
 			sourceTree = "<group>";
@@ -1985,6 +1992,7 @@
 		6FDCCC3618ADF6D100BBD12D /* shopping */ = {
 			isa = PBXGroup;
 			children = (
+				6FB79EC618B33DDB00E02077 /* merchandise_placeholder@2x.png */,
 				6FDCCC3718ADF6DA00BBD12D /* shopping_cart@2x.png */,
 				6F6B140D18B1A0620071AC14 /* contact@2x.png */,
 				6FDCCC3918ADFC4200BBD12D /* icon_close_orange@2x.png */,
@@ -2294,6 +2302,7 @@
 				F2B6A6371874F8AF0020809D /* icon_message@2x.png in Resources */,
 				6F860F2F1875580E00792DBB /* icon_camera@2x.png in Resources */,
 				F279E0061883C2B100E0547E /* icon_gray_dial_phone@2x.png in Resources */,
+				6FB79EC718B33DDB00E02077 /* merchandise_placeholder@2x.png in Resources */,
 				6F45ADFC1876A2E000DC18CA /* btn_play_selected@2x.png in Resources */,
 				6F0CD5D0186DB93000B5A3EA /* icon_firegas_yellow@2x.png in Resources */,
 				6FDCCC3818ADF6DA00BBD12D /* shopping_cart@2x.png in Resources */,
@@ -2444,6 +2453,7 @@
 				6F6004F6186BDB8C0085B4BD /* RestfulCommandService.m in Sources */,
 				6F600575186BF3940085B4BD /* NetworkModeChangedEvent.m in Sources */,
 				6F6005C0186C2E220085B4BD /* LeftNavItem.m in Sources */,
+				6F9E1EA818B32974004A5055 /* Memory.m in Sources */,
 				6F600526186BE9890085B4BD /* DeviceCommandUpdateDevices.m in Sources */,
 				6F600467186BCE210085B4BD /* AppDelegate.m in Sources */,
 				F2F3E19F187A3FD6006A9447 /* OEGORefreshTableHeaderView.m in Sources */,

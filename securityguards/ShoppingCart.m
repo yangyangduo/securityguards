@@ -7,6 +7,7 @@
 //
 
 #import "ShoppingCart.h"
+#import "GlobalSettings.h"
 
 @implementation ShoppingCart {
     NSMutableArray *_shopping_entries_;
@@ -104,6 +105,39 @@
     }
 }
 
+- (NSDictionary *)toDictionary {
+    if(self.contact == nil) return nil;
+    if(self.shoppingEntries == nil || self.shoppingEntries.count == 0) return nil;
+    
+    NSMutableArray *_json_arr_ = [NSMutableArray array];
+    for(int i=0; i<self.shoppingEntries.count; i++) {
+        ShoppingEntry *et = [self.shoppingEntries objectAtIndex:i];
+        if(et == nil) continue;
+        [_json_arr_ addObject:[et toDictionary]];
+    }
+    
+    if(_json_arr_.count == 0) return nil;
+    
+    NSString *accountId = [NSString stringWithFormat:@"%@%@", [GlobalSettings defaultSettings].account, APP_KEY];
+    
+    NSDictionary *json =
+    @{
+       @"ca"  : @{
+                    @"ci"  : _json_arr_
+               },
+       @"cr"  : @{ @"_id" : accountId },
+       @"co"  : @{
+               @"_id"  : accountId,
+               @"name" : [XXStringUtils noNilStringFor:self.contact.name],
+               @"tel"  : [XXStringUtils noNilStringFor:self.contact.phoneNumber],
+               @"del"  : [XXStringUtils noNilStringFor:self.contact.address]
+               },
+       @"rem" : [XXStringUtils noNilStringFor:self.contact.remark]
+    };
+    
+    return json;
+}
+
 @end
 
 @implementation ShoppingEntry
@@ -130,6 +164,17 @@
         self.merchandise = merchandise;
     }
     return self;
+}
+
+- (NSDictionary *)toDictionary {
+    if(self.merchandise == nil) return nil;
+    return
+    @{
+      @"pro" : @{@"id"  : self.merchandise.identifier, @"ti" : self.merchandise.name},
+      @"pri" : @{@"mod" : self.model.name},
+      @"col" : @{@"nam" : self.color.name},
+      @"nu"  : [NSNumber numberWithInteger:self.number]
+      };
 }
 
 - (void)setMerchandise:(Merchandise *)merchandise {

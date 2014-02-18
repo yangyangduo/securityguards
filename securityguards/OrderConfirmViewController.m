@@ -25,6 +25,8 @@
     CheckBox *checkbox;
     
     Contact *contact;
+    
+    BOOL contactWasLoaded;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -50,6 +52,7 @@
 
 - (void)initDefaults {
     [super initDefaults];
+    contactWasLoaded = NO;
     contact = [ShoppingCart shoppingCart].contact;
     if(contact == nil) {
         [ShoppingCart shoppingCart].contact = [[Contact alloc] init];
@@ -81,15 +84,15 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-//    ShoppingService *service = [[ShoppingService alloc] init];
-//    [service getContactInfoSuccess:@selector(getContactSuccess:) failed:@selector(getContactFailed:) target:self callback:nil];
+    if(contactWasLoaded) return;
+    ShoppingService *service = [[ShoppingService alloc] init];
+    [service getContactInfoSuccess:@selector(getContactSuccess:) failed:@selector(getContactFailed:) target:self callback:nil];
 }
 
 #pragma mark -
 #pragma mark Service callback
 
 - (void)getContactSuccess:(RestResponse *)resp {
-    [JsonUtils printJsonData:resp.body];
     if(resp.statusCode == 200) {
         NSDictionary *_json_ = [JsonUtils createDictionaryFromJson:resp.body];
         if([_json_ intForKey:@"i"] == 1) {
@@ -101,6 +104,7 @@
             }
             contact = [ShoppingCart shoppingCart].contact;
             [tblOrder reloadData];
+            contactWasLoaded = YES;
             return;
         }
     }
@@ -113,12 +117,85 @@
 #endif
 }
 
+- (void)postOrderSuccess:(RestResponse *)resp {
+    if(resp.statusCode == 200) {
+        NSDictionary *result = [JsonUtils createDictionaryFromJson:resp.body];
+        if(result != nil) {
+            if([result intForKey:@"i"] == 1) {
+                [[AlertView currentAlertView] setMessage:NSLocalizedString(@"order_submitted", @"") forType:AlertViewTypeSuccess];
+                [[AlertView currentAlertView] delayDismissAlertView];
+                
+                ShoppingCompletedViewController *shoppingCompletedViewController = [[ShoppingCompletedViewController alloc] init];
+                [self.navigationController pushViewController:shoppingCompletedViewController animated:YES];
+
+                [[ShoppingCart shoppingCart] clearShoppingCart];
+                return;
+            }
+        }
+    }
+    [self postOrderFailed:resp];
+}
+
+- (void)postOrderFailed:(RestResponse *)resp {
+    if(abs(resp.statusCode) == 1001) {
+        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"request_timeout", @"") forType:AlertViewTypeFailed];
+    } else if(abs(resp.statusCode) == 1004) {
+        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"network_error", @"") forType:AlertViewTypeFailed];
+    } else if(abs(resp.statusCode) == 403) {
+        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"verification_code_expire", @"") forType:AlertViewTypeFailed];
+    } else {
+        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"unknow_error", @"") forType:AlertViewTypeFailed];
+    }
+    [[AlertView currentAlertView] delayDismissAlertView];
+}
+
 #pragma mark -
 #pragma mark UI Events
 
 - (void)confirmAndSubmitOrder:(id)sender {
-    ShoppingCompletedViewController *shoppingCompletedViewController = [[ShoppingCompletedViewController alloc] init];
-    [self.navigationController pushViewController:shoppingCompletedViewController animated:YES];
+    if([XXStringUtils isBlank:contact.name]) {
+        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"contact_not_blank", @"") forType:AlertViewTypeFailed];
+        [[AlertView currentAlertView] alertForLock:NO autoDismiss:YES];
+        return;
+    }
+    
+    if([XXStringUtils isBlank:contact.phoneNumber]) {
+        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"phone_not_blank", @"") forType:AlertViewTypeFailed];
+        [[AlertView currentAlertView] alertForLock:NO autoDismiss:YES];
+        return;
+    }
+    
+    if([XXStringUtils isBlank:contact.address]) {
+        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"address_not_blank", @"") forType:AlertViewTypeFailed];
+        [[AlertView currentAlertView] alertForLock:NO autoDismiss:YES];
+        return;
+    }
+    
+//    、、phone_invalid
+    
+    NSDictionary *_shopping_info_json = [[ShoppingCart shoppingCart] toDictionary];
+    if(_shopping_info_json == nil) {
+#ifdef DEBUG
+        NSLog(@"[ORDER CONFIRM VIEW CONTROLLER] Post order shopping cart dictionary is empty.");
+#endif
+        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"system_error", @"") forType:AlertViewTypeFailed];
+        [[AlertView currentAlertView] alertForLock:NO autoDismiss:YES];
+        return;
+    }
+    NSData *body = [JsonUtils createJsonDataFromDictionary:_shopping_info_json];
+    if(body == nil) {
+#ifdef DEBUG
+        NSLog(@"[ORDER CONFIRM VIEW CONTROLLER] Post order body is empty.");
+#endif
+        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"system_error", @"") forType:AlertViewTypeFailed];
+        [[AlertView currentAlertView] alertForLock:NO autoDismiss:YES];
+        return;
+    }
+    
+    [[AlertView currentAlertView] setMessage:NSLocalizedString(@"please_wait", @"") forType:AlertViewTypeWaitting];
+    [[AlertView currentAlertView] alertForLock:YES autoDismiss:NO];
+    ShoppingService *service = [[ShoppingService alloc] init];
+    [service postOrder:body success:@selector(postOrderSuccess:) failed:@selector(postOrderFailed:) saveContact:checkbox.selected target:self callback:nil];
 }
 
 #pragma mark -
@@ -170,8 +247,10 @@
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     if(section == 0) {
         UIView *footView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 54)];
-        checkbox = [CheckBox checkBoxWithPoint:CGPointMake(10, 0)];
-        checkbox.center = CGPointMake(self.view.center.x, checkbox.center.y);
+        if(checkbox == nil) {
+            checkbox = [CheckBox checkBoxWithPoint:CGPointMake(10, 0)];
+            checkbox.center = CGPointMake(self.view.center.x, checkbox.center.y);
+        }
         [footView addSubview:checkbox];
         return footView;
     } else {
@@ -305,7 +384,12 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if(indexPath.section == 0) {
-        TextViewController *textView = [[TextViewController alloc] init];
+        TextViewController *textView = nil;
+        if(indexPath.row == 1) {
+            textView = [[TextViewController alloc] initWithKeyboardType:UIKeyboardTypeNumberPad];
+        } else {
+            textView = [[TextViewController alloc] init];
+        }
         textView.delegate = self;
         textView.title = [NSString stringWithFormat:@"%@%@", NSLocalizedString(@"contact_info", @""), NSLocalizedString(@"modify", @"")];
         if(indexPath.row == 0) {
@@ -314,6 +398,9 @@
             textView.txtDescription = [NSString stringWithFormat:@"%@%@:", NSLocalizedString(@"please_enter", @""), NSLocalizedString(@"contact_name", @"")];
         } else if(indexPath.row == 1) {
             textView.identifier = @"c_phone";
+            if(textView.textField != nil) {
+                textView.textField.keyboardType = UIKeyboardTypeNumberPad;
+            }
             textView.defaultValue = contact == nil ? [XXStringUtils emptyString] : contact.phoneNumber;
             textView.txtDescription = [NSString stringWithFormat:@"%@%@:", NSLocalizedString(@"please_enter", @""), NSLocalizedString(@"contact_phone", @"")];
         } else if(indexPath.row == 2) {

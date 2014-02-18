@@ -18,9 +18,16 @@
     return self;
 }
 
+- (void)postOrder:(NSData *)orderJsonData success:(SEL)s failed:(SEL)f saveContact:(BOOL)saveContact target:(id)t callback:(id)cb {
+    NSString *url = [NSString stringWithFormat:@"/order?deviceCode=%@&appKey=%@&security=%@&saveContact=%@",
+                     [GlobalSettings defaultSettings].deviceCode, APP_KEY,
+                     [GlobalSettings defaultSettings].secretKey, saveContact ? @"true" : @"false"];
+    [self.client postForUrl:url acceptType:@"text/html" contentType:@"text/html" body:orderJsonData success:s error:f for:t callback:cb];
+}
+
 - (void)getContactInfoSuccess:(SEL)s failed:(SEL)f target:(id)t callback:(id)cb {
     NSString *url = [NSString stringWithFormat:@"/contact/%@?deviceCode=%@&appKey=%@&security=%@",
-                     [NSString stringWithFormat:@"%@%@", [GlobalSettings defaultSettings].deviceCode, APP_KEY],
+                     [NSString stringWithFormat:@"%@%@", [GlobalSettings defaultSettings].account, APP_KEY],
                      [GlobalSettings defaultSettings].deviceCode, APP_KEY,
                      [GlobalSettings defaultSettings].secretKey];
     [self.client getForUrl:url acceptType:@"text/html" success:s error:f for:t callback:cb];

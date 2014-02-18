@@ -10,9 +10,13 @@
 #import "OrderConfirmViewController.h"
 #import "ShoppingStateView.h"
 #import "MerchandiseCell.h"
+#import "Memory.h"
 #import "ShoppingService.h"
 #import "ShoppingCart.h"
-#import <UIImageView+WebCache.h>
+
+#define MAX_REFRESH_INTERVAL 30
+
+const static NSString *MerchandiseLastRefreshDateKey = @"MerchandiseLastRefreshDate";
 
 @interface ShoppingViewController ()
 
@@ -46,6 +50,11 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)initDefaults {
+    [super initDefaults];
+    merchandises = [Memory memory].merchandises;
 }
 
 - (void)initUI {
@@ -106,6 +115,9 @@
                     [merchandises addObject:[[Merchandise alloc] initWithJson:[_m_ objectAtIndex:i]]];
                 }
             }
+            [[Memory memory].userInfo setObject:[NSDate date] forKey:MerchandiseLastRefreshDateKey];
+            [Memory memory].merchandises = merchandises;
+            [_refreshHeaderView refreshLastUpdatedDate];
             [tblMerchandises reloadData];
             return;
         }
@@ -114,7 +126,11 @@
 }
 
 - (void)getProductsFailed:(RestResponse *)resp {
-    NSLog(@"get products failed, code is %d", resp.statusCode);
+    [[AlertView currentAlertView] setMessage:NSLocalizedString(@"get_merchandises_failed", @"") forType:AlertViewTypeFailed];
+    [[AlertView currentAlertView] alertForLock:NO autoDismiss:YES];
+#ifdef DEBUG
+    NSLog(@"[SHOPPING VIEW CONTROLLER] Get products failed, code is %d", resp.statusCode);
+#endif
 }
 
 - (void)autoTriggerRefresh {
@@ -127,14 +143,33 @@
     });
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [tblMerchandises reloadData];
+    [self calcShoppingCartTotalPriceForDisplay];
+}
+
 - (void)viewDidAppear:(BOOL)animated {
-//    [self autoTriggerRefresh];
+    [super viewDidAppear:animated];
+    NSDate *lastRefreshDate = [[Memory memory].userInfo objectForKey:MerchandiseLastRefreshDateKey];
+    if(lastRefreshDate == nil) {
+        [self autoTriggerRefresh];
+    } else {
+        if(abs(lastRefreshDate.timeIntervalSinceNow) >= 60 * MAX_REFRESH_INTERVAL) {
+            [self autoTriggerRefresh];
+        }
+    }
 }
 
 #pragma mark -
 #pragma mark UI Events
 
 - (void)btnSubmitPressed:(id)sender {
+    if([ShoppingCart shoppingCart].shoppingEntries == nil
+       || [ShoppingCart shoppingCart].shoppingEntries.count == 0) {
+        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"no_merchandise", @"") forType:AlertViewTypeFailed];
+        [[AlertView currentAlertView] alertForLock:NO autoDismiss:YES];
+        return;
+    }
     OrderConfirmViewController *orderConfirmViewController = [[OrderConfirmViewController alloc] init];
     [self.navigationController pushViewController:orderConfirmViewController animated:YES];
 }
@@ -165,7 +200,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    MerchandiseDetailSelectView *selectView = [[MerchandiseDetailSelectView alloc] initWithMerchandise:[merchandises objectAtIndex:indexPath.row]];
+    MerchandiseDetailSelectView *selectView = [MerchandiseDetailSelectView merchandiseDetailSelectViewWithMerchandise:[merchandises objectAtIndex:indexPath.row]];
     selectView.delegate = self;
     [selectView showInView:self.view];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -213,7 +248,9 @@
 	return _reloading; // should return if data source model is reloading
 }
 
-- (NSDate*)egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableHeaderView*)view{
+- (NSDate*)egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableHeaderView*)view {
+    NSDate *date = [[Memory memory].userInfo objectForKey:MerchandiseLastRefreshDateKey];
+    if(date != nil) return date;
 	return [NSDate date]; // should return date data source was last changed
 }
 

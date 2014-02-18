@@ -19,6 +19,8 @@
 
 + (instancetype)shoppingCart;
 
+- (NSDictionary *)toDictionary;
+
 - (NSArray *)shoppingEntries;
 - (ShoppingEntry *)shoppingEntryForId:(NSString *)merchandiseIdentifier;
 - (void)clearShoppingCart;
@@ -38,5 +40,7 @@
 
 - (instancetype)initWithMerchandise:(Merchandise *)merchandise;
 - (NSString *)shoppingEntryDetailsAsString;
+
+- (NSDictionary *)toDictionary;
 
 @end

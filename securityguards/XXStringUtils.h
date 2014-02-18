@@ -13,6 +13,7 @@
 + (BOOL)isEmpty:(NSString *)str;
 + (BOOL)isBlank:(NSString *)str;
 
++ (NSString *)noNilStringFor:(NSString *)str;
 + (NSString *)emptyString;
 + (NSString *)trim:(NSString *)str;
 + (NSString *)stringEncodeWithBase64:(NSString *)str;

@@ -21,7 +21,10 @@
 @property (nonatomic, strong) NSString *txtDescription;
 @property (nonatomic, weak) id<TextViewDelegate> delegate;
 
+- (instancetype)initWithKeyboardType:(UIKeyboardType)keyboardType;
+
 - (void)btnSubmitPressed:(id)sender;
+- (UITextField *)textField;
 - (void)close;
 
 @end

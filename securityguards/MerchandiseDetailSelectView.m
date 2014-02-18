@@ -52,6 +52,16 @@
     return self;
 }
 
++ (instancetype)merchandiseDetailSelectViewWithMerchandise:(Merchandise *)merchandise {
+    static MerchandiseDetailSelectView *selectView = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        selectView = [[MerchandiseDetailSelectView alloc] initWithMerchandise:nil];
+    });
+    selectView.merchandise = merchandise;
+    return selectView;
+}
+
 - (instancetype)initWithMerchandise:(Merchandise *)merchandise {
     if((self = [self initWithFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height, [UIScreen mainScreen].bounds.size.width, MerchandiseDetailSelectViewHeight)])) {
         [self initUI];

@@ -11,6 +11,11 @@
 
 @implementation XXStringUtils
 
++ (NSString *)noNilStringFor:(NSString *)str {
+    if(str == nil) return @"";
+    return str;
+}
+
 + (BOOL)isEmpty:(NSString *)str {
     if(str == nil || [@"" isEqualToString:str]) return YES;
     return NO;
