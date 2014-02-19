@@ -676,6 +676,8 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
     if(locations == nil || locations.count == 0) return;
     CLLocation *location = [locations lastObject];
     
+    
+    
     [manager stopUpdatingLocation];
 }
 

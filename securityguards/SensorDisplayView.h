@@ -11,6 +11,7 @@
 #import "Sensor.h"
 
 #define NO_VALUE @"------"
+#define SENSOR_DISPLAY_VIEW_HEIGHT 27
 
 typedef NS_ENUM(NSUInteger, SensorDisplayViewState) {
     SensorDisplayViewStateNormal,

@@ -261,6 +261,7 @@
 		6FB624FE18A7C2F400B17010 /* UnitDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FB624FD18A7C2F400B17010 /* UnitDetailsViewController.m */; };
 		6FB79EC718B33DDB00E02077 /* merchandise_placeholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FB79EC618B33DDB00E02077 /* merchandise_placeholder@2x.png */; };
 		6FB79EC918B3563800E02077 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FB79EC818B3563800E02077 /* CoreLocation.framework */; };
+		6FB79ECD18B44FF200E02077 /* AQIPanelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FB79ECC18B44FF200E02077 /* AQIPanelView.m */; };
 		6FCC4A03189500B300A1E5CF /* icon_save@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FCC4A02189500B300A1E5CF /* icon_save@2x.png */; };
 		6FCC4A071896251500A1E5CF /* icon_add@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FCC4A061896251500A1E5CF /* icon_add@2x.png */; };
 		6FCCE92F187E551B007B42D2 /* News.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FCCE92E187E551B007B42D2 /* News.m */; };
@@ -786,6 +787,8 @@
 		6FB624FD18A7C2F400B17010 /* UnitDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnitDetailsViewController.m; sourceTree = "<group>"; };
 		6FB79EC618B33DDB00E02077 /* merchandise_placeholder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "merchandise_placeholder@2x.png"; sourceTree = "<group>"; };
 		6FB79EC818B3563800E02077 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		6FB79ECB18B44FF200E02077 /* AQIPanelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQIPanelView.h; sourceTree = "<group>"; };
+		6FB79ECC18B44FF200E02077 /* AQIPanelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQIPanelView.m; sourceTree = "<group>"; };
 		6FCC4A02189500B300A1E5CF /* icon_save@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_save@2x.png"; sourceTree = "<group>"; };
 		6FCC4A061896251500A1E5CF /* icon_add@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_add@2x.png"; sourceTree = "<group>"; };
 		6FCCE92D187E551B007B42D2 /* News.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = News.h; sourceTree = "<group>"; };
@@ -1252,6 +1255,7 @@
 		6F6004A4186BCF500085B4BD /* components */ = {
 			isa = PBXGroup;
 			children = (
+				6FB79ECA18B44FE600E02077 /* aqi */,
 				6F5EBF2018AA02D100AF89E3 /* shopping */,
 				F29DE7021886660A00BCE93C /* labels */,
 				6F45ADFF1876AF8200DC18CA /* camera_loading_view */,
@@ -1961,6 +1965,15 @@
 			name = version;
 			sourceTree = "<group>";
 		};
+		6FB79ECA18B44FE600E02077 /* aqi */ = {
+			isa = PBXGroup;
+			children = (
+				6FB79ECB18B44FF200E02077 /* AQIPanelView.h */,
+				6FB79ECC18B44FF200E02077 /* AQIPanelView.m */,
+			);
+			name = aqi;
+			sourceTree = "<group>";
+		};
 		6FBFDE4118851FD7001E0BDA /* unit_finder */ = {
 			isa = PBXGroup;
 			children = (
@@ -2532,6 +2545,7 @@
 				F215125D187105380039CC8A /* ForgetPasswordViewController.m in Sources */,
 				6F60053D186BF0010085B4BD /* DeviceCommandGetUnitsHandler.m in Sources */,
 				6F600576186BF3940085B4BD /* NotificationsFileUpdatedEvent.m in Sources */,
+				6FB79ECD18B44FF200E02077 /* AQIPanelView.m in Sources */,
 				6F6005AF186C18D60085B4BD /* RootViewController.m in Sources */,
 				6F6004C4186BD04D0085B4BD /* NavigationViewController.m in Sources */,
 				6F8F57BC18710D940033228F /* AttributedStringBuilder.m in Sources */,
@@ -2756,8 +2770,8 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: 阳 赵 (7BGAE3L9Q9)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: 阳 赵 (7BGAE3L9Q9)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SRCROOT)/**",
 					"/Users/young/Downloads/securityguards/**",
@@ -2766,7 +2780,7 @@
 				GCC_PREFIX_HEADER = "securityguards/securityguards-Prefix.pch";
 				INFOPLIST_FILE = "securityguards/securityguards-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "61D3FEE6-40D7-45CC-9194-8A895EC4C271";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -2778,8 +2792,8 @@
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: 阳 赵 (7BGAE3L9Q9)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: 阳 赵 (7BGAE3L9Q9)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SRCROOT)/**",
 					"/Users/young/Downloads/securityguards/**",
@@ -2788,7 +2802,7 @@
 				GCC_PREFIX_HEADER = "securityguards/securityguards-Prefix.pch";
 				INFOPLIST_FILE = "securityguards/securityguards-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "61D3FEE6-40D7-45CC-9194-8A895EC4C271";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

@@ -18,6 +18,7 @@
 #import "SpeechViewController.h"
 #import "UnitSelectionDrawerView.h"
 #import "UnitRenameViewController.h"
+#import "AQIPanelView.h"
 
 /*     events      */
 #import "DeviceCommandNameEventFilter.h"
@@ -42,6 +43,8 @@
     
     SensorsDisplayPanel *sensorDisplayPanel;
     UnitControlPanel *controlPanelView;
+    
+    AQIPanelView *aqiPanelView;
     
     BOOL speechViewIsOpenning;
     UIImageView *imgNetwork;
@@ -198,6 +201,12 @@
     lblDescription3.backgroundColor = [UIColor clearColor];
     
     [scrollView addSubview:imgHeathIndex];
+    
+    
+    /*
+     * Create AQI pannel view
+     */
+    aqiPanelView = [[AQIPanelView alloc] initWithPoint:CGPointMake(0, 0)];
     
     /*
      * Create sensors display view
@@ -381,7 +390,6 @@
 // called on event system (units list update event || current unit changed event)
 - (void)updateUnitsView {
     Unit *currentUnit = [UnitManager defaultManager].currentUnit;
-    
 //    [JsonUtils printJsonEntity:currentUnit];
     
     self.topbarView.title = currentUnit != nil ? currentUnit.name : NSLocalizedString(@"app_name", @"");
@@ -420,6 +428,17 @@
                     [sensorDisplayPanel setValue:sensor.data.value forSensorType:SensorTypeTempure];
                 }
             }
+        }
+    }
+}
+
+- (void)updateAQIPannelView {
+    if(aqiPanelView != nil) {
+        // view is already on screen
+        if(aqiPanelView.superview != nil) {
+            
+        } else {
+            
         }
     }
 }

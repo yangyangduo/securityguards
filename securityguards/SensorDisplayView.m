@@ -32,7 +32,7 @@
 }
 
 - (instancetype)initWithPoint:(CGPoint)point sensorType:(SensorType)sensorType {
-    self = [super initWithFrame:CGRectMake(point.x, point.y, 150, 27)];
+    self = [super initWithFrame:CGRectMake(point.x, point.y, 150, SENSOR_DISPLAY_VIEW_HEIGHT)];
     if(self){
         _sensorType_ = sensorType;
         [self initUI];

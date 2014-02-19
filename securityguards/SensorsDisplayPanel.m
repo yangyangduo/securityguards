@@ -27,7 +27,7 @@
 }
 
 - (instancetype)initWithPoint:(CGPoint)point {
-    self = [super initWithFrame:CGRectMake(point.x, point.y, [UIScreen mainScreen].bounds.size.width, 84)];
+    self = [super initWithFrame:CGRectMake(point.x, point.y, [UIScreen mainScreen].bounds.size.width, SENSOR_DISPLAY_PANEL_HEIGHT)];
     if (self) {
         // Initialization code
         [self initUI];

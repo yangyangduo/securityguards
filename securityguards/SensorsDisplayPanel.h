@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "SensorDisplayView.h"
 
+#define SENSOR_DISPLAY_PANEL_HEIGHT 84
+
 @interface SensorsDisplayPanel : UIView
 
 - (instancetype)initWithPoint:(CGPoint)point;
