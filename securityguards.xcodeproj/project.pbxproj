@@ -260,6 +260,7 @@
 		6FB624FB18A60D1000B17010 /* TimingTasksCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FB624FA18A60D1000B17010 /* TimingTasksCell.m */; };
 		6FB624FE18A7C2F400B17010 /* UnitDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FB624FD18A7C2F400B17010 /* UnitDetailsViewController.m */; };
 		6FB79EC718B33DDB00E02077 /* merchandise_placeholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FB79EC618B33DDB00E02077 /* merchandise_placeholder@2x.png */; };
+		6FB79EC918B3563800E02077 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FB79EC818B3563800E02077 /* CoreLocation.framework */; };
 		6FCC4A03189500B300A1E5CF /* icon_save@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FCC4A02189500B300A1E5CF /* icon_save@2x.png */; };
 		6FCC4A071896251500A1E5CF /* icon_add@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FCC4A061896251500A1E5CF /* icon_add@2x.png */; };
 		6FCCE92F187E551B007B42D2 /* News.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FCCE92E187E551B007B42D2 /* News.m */; };
@@ -784,6 +785,7 @@
 		6FB624FC18A7C2F400B17010 /* UnitDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitDetailsViewController.h; sourceTree = "<group>"; };
 		6FB624FD18A7C2F400B17010 /* UnitDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnitDetailsViewController.m; sourceTree = "<group>"; };
 		6FB79EC618B33DDB00E02077 /* merchandise_placeholder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "merchandise_placeholder@2x.png"; sourceTree = "<group>"; };
+		6FB79EC818B3563800E02077 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		6FCC4A02189500B300A1E5CF /* icon_save@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_save@2x.png"; sourceTree = "<group>"; };
 		6FCC4A061896251500A1E5CF /* icon_add@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_add@2x.png"; sourceTree = "<group>"; };
 		6FCCE92D187E551B007B42D2 /* News.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = News.h; sourceTree = "<group>"; };
@@ -921,6 +923,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6FB79EC918B3563800E02077 /* CoreLocation.framework in Frameworks */,
 				F29DE6F618863DE500BCE93C /* iflyMSC.framework in Frameworks */,
 				6F9C8ACC1886323D00289AEA /* AddressBook.framework in Frameworks */,
 				6F2033A1187D4EB700BACFA5 /* ImageIO.framework in Frameworks */,
@@ -1117,6 +1120,7 @@
 		6F600455186BCE210085B4BD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6FB79EC818B3563800E02077 /* CoreLocation.framework */,
 				6F9C8ACB1886323D00289AEA /* AddressBook.framework */,
 				6F741D0B18862DE500B42293 /* iflyMSC.framework */,
 				6F2033A0187D4EB700BACFA5 /* ImageIO.framework */,

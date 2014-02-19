@@ -17,7 +17,6 @@
 #import "Memory.h"
 #import "ShoppingCart.h"
 
-#import "MyOperation.h"
 
 @implementation AppDelegate {
     RootViewController *_rootViewController_;

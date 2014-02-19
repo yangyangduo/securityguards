@@ -16,6 +16,8 @@
 #import "XXEventSubscriber.h"
 #import "Reachability.h"
 
+#import <CoreLocation/CoreLocation.h>
+
 typedef NS_ENUM(NSUInteger, ServiceState) {
     ServiceStateClosed,
     ServiceStateOpenning,
@@ -34,7 +36,7 @@ typedef enum {
 /*
  * Core service in running in a background thread named "CoreServiceThread"
  */
-@interface CoreService : NSObject<XXEventSubscriber>
+@interface CoreService : NSObject<XXEventSubscriber, CLLocationManagerDelegate>
 
 @property (strong, nonatomic, readonly) TCPCommandService *tcpService;
 @property (strong, nonatomic, readonly) RestfulCommandService *restfulService;

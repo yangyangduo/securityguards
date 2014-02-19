@@ -101,4 +101,8 @@
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
+- (void)popupViewController {
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
 @end

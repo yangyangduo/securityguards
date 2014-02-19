@@ -38,7 +38,6 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
 }
 
 @implementation CoreService {
-    
     NSTimer *tcpSocketConnectionCheckTimer;
     NSTimer *refreshTaskTimer;
     
@@ -48,6 +47,7 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
     /* This array defined which commands execute using restful executor in any net modes */
     NSArray *usingRestfulForAnyNetModeCommands;
     
+    CLLocationManager *locationManager;
     
     /*
      * no            0
@@ -129,6 +129,10 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
     
     mayUsingInternalNetModeCommands = [NSArray arrayWithObjects:COMMAND_KEY_CONTROL, COMMAND_GET_CAMERA_SERVER, nil];
     usingRestfulForAnyNetModeCommands = [NSArray arrayWithObjects:COMMAND_GET_SENSORS, nil];
+    
+    locationManager = [[CLLocationManager alloc] init];
+    locationManager.delegate = self;
+    locationManager.desiredAccuracy = kCLLocationAccuracyKilometer;
     
     /* Network monitor */
     reachability = [Reachability reachabilityWithHostname:@"www.baidu.com"];
@@ -426,6 +430,8 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
         [[UnitManager defaultManager] syncUnitsToDisk];
       
         _state_ = ServiceStateClosed;
+        
+        [locationManager stopUpdatingLocation];
 #ifdef DEBUG
         NSLog(@"[Core Service] Service stopped on [%@].",
               [NSThread currentThread].isMainThread ? @"Main Thread" : [NSThread currentThread].name);
@@ -661,6 +667,22 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
 
 - (void)notifyTcpConnectionClosed {
     [self removeNetMode:NetModeExtranet];
+}
+
+#pragma mark -
+#pragma mark Core Location Delegate
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
+    if(locations == nil || locations.count == 0) return;
+    CLLocation *location = [locations lastObject];
+    
+    [manager stopUpdatingLocation];
+}
+
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
+#ifdef DEBUG
+    NSLog(@"[CORE SERVICE] Get location failed.");
+#endif
 }
 
 #pragma mark -
