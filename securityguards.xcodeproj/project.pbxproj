@@ -235,6 +235,7 @@
 		6F7CDBBB1872ACE50036F912 /* icon_add_unit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F7CDBBA1872ACE50036F912 /* icon_add_unit@2x.png */; };
 		6F7CDBBD1872B2130036F912 /* icon_add_unit_red@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F7CDBBC1872B2130036F912 /* icon_add_unit_red@2x.png */; };
 		6F7CDBC01872B30A0036F912 /* UnitFinderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7CDBBF1872B30A0036F912 /* UnitFinderViewController.m */; };
+		6F81EFDE18B6DCB3008AA51D /* CurrentLocationUpdatedEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F81EFDD18B6DCB3008AA51D /* CurrentLocationUpdatedEvent.m */; };
 		6F860F2218753CB900792DBB /* UnitNameChangedEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F860F2118753CB900792DBB /* UnitNameChangedEvent.m */; };
 		6F860F2518753D9C00792DBB /* DeviceCommandUpdateUnitNameHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F860F2418753D9C00792DBB /* DeviceCommandUpdateUnitNameHandler.m */; };
 		6F860F2B187552C200792DBB /* btn_drawer_right@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F860F27187552C200792DBB /* btn_drawer_right@2x.png */; };
@@ -266,6 +267,8 @@
 		6FCC4A071896251500A1E5CF /* icon_add@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FCC4A061896251500A1E5CF /* icon_add@2x.png */; };
 		6FCCE92F187E551B007B42D2 /* News.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FCCE92E187E551B007B42D2 /* News.m */; };
 		6FCEBCFB187C2749000CB911 /* AccountSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FCEBCFA187C2749000CB911 /* AccountSettingsViewController.m */; };
+		6FD42CED18B5CE7600BFCC74 /* AQIDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FD42CEC18B5CE7600BFCC74 /* AQIDetail.m */; };
+		6FD42CF018B5D13700BFCC74 /* AQIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FD42CEF18B5D13700BFCC74 /* AQIManager.m */; };
 		6FD7358D18920BD40033A09D /* TimingTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FD7358C18920BD40033A09D /* TimingTask.m */; };
 		6FDA9AE6188FF4D5007D63DE /* SensorStateChangedEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FDA9AE5188FF4D5007D63DE /* SensorStateChangedEvent.m */; };
 		6FDCCC3818ADF6DA00BBD12D /* shopping_cart@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FDCCC3718ADF6DA00BBD12D /* shopping_cart@2x.png */; };
@@ -746,6 +749,8 @@
 		6F7CDBBC1872B2130036F912 /* icon_add_unit_red@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_add_unit_red@2x.png"; sourceTree = "<group>"; };
 		6F7CDBBE1872B30A0036F912 /* UnitFinderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitFinderViewController.h; sourceTree = "<group>"; };
 		6F7CDBBF1872B30A0036F912 /* UnitFinderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnitFinderViewController.m; sourceTree = "<group>"; };
+		6F81EFDC18B6DCB3008AA51D /* CurrentLocationUpdatedEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrentLocationUpdatedEvent.h; sourceTree = "<group>"; };
+		6F81EFDD18B6DCB3008AA51D /* CurrentLocationUpdatedEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrentLocationUpdatedEvent.m; sourceTree = "<group>"; };
 		6F860F2018753CB900792DBB /* UnitNameChangedEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitNameChangedEvent.h; sourceTree = "<group>"; };
 		6F860F2118753CB900792DBB /* UnitNameChangedEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnitNameChangedEvent.m; sourceTree = "<group>"; };
 		6F860F2318753D9C00792DBB /* DeviceCommandUpdateUnitNameHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceCommandUpdateUnitNameHandler.h; sourceTree = "<group>"; };
@@ -795,6 +800,10 @@
 		6FCCE92E187E551B007B42D2 /* News.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = News.m; sourceTree = "<group>"; };
 		6FCEBCF9187C2749000CB911 /* AccountSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountSettingsViewController.h; sourceTree = "<group>"; };
 		6FCEBCFA187C2749000CB911 /* AccountSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountSettingsViewController.m; sourceTree = "<group>"; };
+		6FD42CEB18B5CE7600BFCC74 /* AQIDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQIDetail.h; sourceTree = "<group>"; };
+		6FD42CEC18B5CE7600BFCC74 /* AQIDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQIDetail.m; sourceTree = "<group>"; };
+		6FD42CEE18B5D13700BFCC74 /* AQIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQIManager.h; sourceTree = "<group>"; };
+		6FD42CEF18B5D13700BFCC74 /* AQIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQIManager.m; sourceTree = "<group>"; };
 		6FD7358B18920BD40033A09D /* TimingTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimingTask.h; sourceTree = "<group>"; };
 		6FD7358C18920BD40033A09D /* TimingTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimingTask.m; sourceTree = "<group>"; };
 		6FDA9AE4188FF4D5007D63DE /* SensorStateChangedEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SensorStateChangedEvent.h; sourceTree = "<group>"; };
@@ -1604,6 +1613,8 @@
 				6F5EBF2818AA253400AF89E3 /* Merchandise.m */,
 				6F42A00818B1EFEF0099626E /* Contact.h */,
 				6F42A00918B1EFEF0099626E /* Contact.m */,
+				6FD42CEB18B5CE7600BFCC74 /* AQIDetail.h */,
+				6FD42CEC18B5CE7600BFCC74 /* AQIDetail.m */,
 			);
 			name = entities;
 			sourceTree = "<group>";
@@ -1639,6 +1650,8 @@
 				6F860F2118753CB900792DBB /* UnitNameChangedEvent.m */,
 				6FDA9AE4188FF4D5007D63DE /* SensorStateChangedEvent.h */,
 				6FDA9AE5188FF4D5007D63DE /* SensorStateChangedEvent.m */,
+				6F81EFDC18B6DCB3008AA51D /* CurrentLocationUpdatedEvent.h */,
+				6F81EFDD18B6DCB3008AA51D /* CurrentLocationUpdatedEvent.m */,
 			);
 			name = events;
 			sourceTree = "<group>";
@@ -1874,6 +1887,8 @@
 				6F7CDBB31872A2100036F912 /* NotificationsFileManager.m */,
 				6FA69111187F9618005D1415 /* NewsFileManager.h */,
 				6FA69112187F9618005D1415 /* NewsFileManager.m */,
+				6FD42CEE18B5D13700BFCC74 /* AQIManager.h */,
+				6FD42CEF18B5D13700BFCC74 /* AQIManager.m */,
 			);
 			name = manager;
 			sourceTree = "<group>";
@@ -2451,6 +2466,7 @@
 				6F600580186BF57D0085B4BD /* RestClient.m in Sources */,
 				6F60055E186BF0710085B4BD /* Unit.m in Sources */,
 				6F7CDBB11872984A0036F912 /* UserLogoutEvent.m in Sources */,
+				6F81EFDE18B6DCB3008AA51D /* CurrentLocationUpdatedEvent.m in Sources */,
 				6F600543186BF0490085B4BD /* AlertView.m in Sources */,
 				6F7CDBB71872A4F40036F912 /* UIView+ViewController.m in Sources */,
 				6F600581186BF57D0085B4BD /* RestResponse.m in Sources */,
@@ -2534,6 +2550,7 @@
 				6F41D2BB1890F0F70063E1BB /* Sensor.m in Sources */,
 				6F33C48418AC60150070CB60 /* RadioRectButtonGroup.m in Sources */,
 				6F41D2C11890F9CF0063E1BB /* DeviceCommandReceivedSensors.m in Sources */,
+				6FD42CED18B5CE7600BFCC74 /* AQIDetail.m in Sources */,
 				6FA69113187F9618005D1415 /* NewsFileManager.m in Sources */,
 				6F60052B186BE9890085B4BD /* DeviceCommandUpdateUnits.m in Sources */,
 				6F600521186BE9890085B4BD /* DeviceCommandGetCameraServer.m in Sources */,
@@ -2571,6 +2588,7 @@
 				6F0E244B1873091600F143F9 /* UnitFinder.m in Sources */,
 				6F5EBF2318AA02E500AF89E3 /* ShoppingStateView.m in Sources */,
 				6F6004FE186BE8C80085B4BD /* CommandFactory.m in Sources */,
+				6FD42CF018B5D13700BFCC74 /* AQIManager.m in Sources */,
 				6F60051E186BE9890085B4BD /* DeviceCommand.m in Sources */,
 				6F348507187519BB00EBB635 /* DeviceCommandNameEventFilter.m in Sources */,
 				6F183F621894A55F000F1974 /* TimingTaskExecutionItem.m in Sources */,

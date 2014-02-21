@@ -18,5 +18,6 @@
 #define EventUserLogout                 @"Logout"
 #define EventUnitNameChanged            @"UnitNameChanged"
 #define EventSensorStateChanged         @"SensorStateChanged"
+#define EventCurrentLocationUpdated     @"CurrentLocationUpdated"
 
 #endif
