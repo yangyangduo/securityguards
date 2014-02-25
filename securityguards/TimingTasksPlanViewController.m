@@ -143,6 +143,22 @@
                     tt.isOwner = (resultId == 1);
                     [self.unit.timingTasksPlan addObject:tt];
                 }
+                
+                [self.unit.timingTasksPlan sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+                    TimingTask *tt1 = obj1;
+                    TimingTask *tt2 = obj2;
+                    
+                    // if enable is yes, bring it to front on which enable is no
+                    if(tt1.enable != tt2.enable) {
+                        return tt1.enable ? NSOrderedAscending : NSOrderedDescending;
+                    }
+                    
+                    // if enable is the same, compare it's date
+                    else {
+                        return NSOrderedAscending;
+                    }
+                }];
+            
             }
             [tblTaskPlans reloadData];
         }
