@@ -29,6 +29,8 @@
 //
 @property (strong, nonatomic, readonly) NSArray *devices;
 
+@property (assign, nonatomic, readonly) BOOL isOnline;
+
 @property (strong, nonatomic) NSArray *sensors;
 
 - (Zone *)zoneForId:(NSString *)_id_;

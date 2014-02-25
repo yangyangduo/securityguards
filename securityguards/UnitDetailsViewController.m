@@ -166,8 +166,8 @@
         cell.textLabel.text = self.unit != nil ? self.unit.name : [XXStringUtils emptyString];
         cell.detailTextLabel.text = NSLocalizedString(@"change_unit_name", @"");
         if(self.unit != nil) {
-            // 这种糟糕的判断方式 只能怪主控那边 ！！！  ----- young
-            if([self.unit.status isEqualToString:@"在线"]) {
+            // 这种糟糕的判断方式 只能怪主控那边 ！！！
+            if(self.unit.isOnline) {
                 detailTextLabel2.text = NSLocalizedString(@"device_online", @"");
                 detailTextLabel2.textColor = [UIColor lightGrayColor];
             } else {
@@ -178,7 +178,6 @@
             detailTextLabel2.text = [XXStringUtils emptyString];
         }
     } else {
-
         Device *device = [_devices_ objectAtIndex:indexPath.row];
         cell.textLabel.text = device.name;
         
@@ -201,7 +200,6 @@
             detailTextLabel2.text = [DeviceUtils stateAsString:device.state];
         }
     }
-    
     return cell;
 }
 

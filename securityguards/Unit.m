@@ -29,7 +29,7 @@
 
 @synthesize timingTasksPlan = _timingTasksPlan_;
 @synthesize timingTasksPlanLastRefreshDate;
-
+@synthesize isOnline;
 @synthesize avalibleDevicesCount;
 
 - (id)initWithJson:(NSDictionary *)json {
@@ -152,6 +152,10 @@
         _timingTasksPlan_ = [NSMutableArray array];
     }
     return _timingTasksPlan_;
+}
+
+- (BOOL)isOnline {
+    return [@"在线" isEqualToString:self.status];
 }
 
 @end
