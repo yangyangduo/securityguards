@@ -155,10 +155,21 @@
                     
                     // if enable is the same, compare it's date
                     else {
-                        return NSOrderedAscending;
+                        if(tt1.scheduleTimeHour > tt2.scheduleTimeHour) {
+                            return NSOrderedDescending;
+                        } else if(tt1.scheduleTimeHour < tt2.scheduleTimeHour) {
+                            return NSOrderedAscending;
+                        } else {
+                            if(tt1.scheduleTimeMinute > tt2.scheduleTimeMinute) {
+                                return NSOrderedDescending;
+                            } else if(tt1.scheduleTimeMinute < tt2.scheduleTimeMinute) {
+                                return NSOrderedAscending;
+                            } else {
+                                return NSOrderedSame;
+                            }
+                        }
                     }
                 }];
-            
             }
             [tblTaskPlans reloadData];
         }
