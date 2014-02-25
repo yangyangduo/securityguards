@@ -144,6 +144,9 @@
 "humidity_high"                  =      "湿";
 "device_online"                  =      "在线";
 "device_offline"                 =      "离线";
+"wifi_name"                      =      "WIFI名称";
+"internal_ip"                    =      "内网地址";
+"wifi_disconnectted"             =      "未连接WIFI";
 
 
 /****************	Timer Task View Strings	****************/
@@ -360,6 +363,8 @@
 "phone_not_blank"          =           "联系电话不能为空";
 "address_not_blank"        =           "送货地址不能为空";
 "my_shopping_cart"         =           "我的购物车";
+"aqi_today"                =           "今日空气质量";
+"aqi"                      =           "AQI指数";
 "order_submitted"          =           "订单已提交";
 "phone_invalid"            =           "电话格式错误";
 "no_merchandise"           =           "请先选择商品";

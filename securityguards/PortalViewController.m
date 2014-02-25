@@ -12,6 +12,7 @@
 #import "RootViewController.h"
 #import "UnitDetailsViewController.h"
 #import "UnitManager.h"
+#import "AQIManager.h"
 
 /*     components      */
 #import "SensorsDisplayPanel.h"
@@ -28,6 +29,7 @@
 #import "CurrentUnitChangedEvent.h"
 #import "DeviceStatusChangedEvent.h"
 #import "SensorStateChangedEvent.h"
+#import "CurrentLocationUpdatedEvent.h"
 
 #define IMAGE_VIEW_TAG 500
 
@@ -38,6 +40,7 @@
 @implementation PortalViewController {
     UIScrollView *scrollView;
     
+    UIImageView *imgHeathIndex;
     UILabel *lblHealthIndex;
     UILabel *lblHealthIndexGreatThan;
     
@@ -72,7 +75,7 @@
     // update devices
     [self updateUnitsView];
     
-    XXEventNameFilter *eventNameFilter = [[XXEventNameFilter alloc] initWithSupportedEventNames:[NSArray arrayWithObjects:EventUnitsListUpdated, EventNetworkModeChanged, EventCurrentUnitChanged, EventUnitNameChanged, EventDeviceStatusChanged, EventSensorStateChanged, nil]];
+    XXEventNameFilter *eventNameFilter = [[XXEventNameFilter alloc] initWithSupportedEventNames:[NSArray arrayWithObjects:EventUnitsListUpdated, EventNetworkModeChanged, EventCurrentUnitChanged, EventUnitNameChanged, EventDeviceStatusChanged, EventSensorStateChanged, EventCurrentLocationUpdated, nil]];
     
     DeviceCommandNameEventFilter *commandNameFilter = [[DeviceCommandNameEventFilter alloc] init];
     [commandNameFilter.supportedCommandNames addObject:COMMAND_GET_ACCOUNT];
@@ -158,7 +161,7 @@
     /*
      * Create heathIndex view
      */
-    UIImageView *imgHeathIndex = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 120)];
+    imgHeathIndex = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 120)];
     imgHeathIndex.tag = IMAGE_VIEW_TAG;
     imgHeathIndex.image = [UIImage imageNamed:@"bg_health_index"];
     
@@ -202,12 +205,6 @@
     
     [scrollView addSubview:imgHeathIndex];
     
-    
-    /*
-     * Create AQI pannel view
-     */
-    aqiPanelView = [[AQIPanelView alloc] initWithPoint:CGPointMake(0, 0)];
-    
     /*
      * Create sensors display view
      */
@@ -217,9 +214,9 @@
     /*
      * Add blue line
      */
-    UIImageView *imgLineBlue = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, sensorDisplayPanel.bounds.size.width, 11)];
+    UIImageView *imgLineBlue = [[UIImageView alloc] initWithFrame:CGRectMake(0, imgHeathIndex.frame.origin.y + imgHeathIndex.bounds.size.height, sensorDisplayPanel.bounds.size.width, 11)];
     imgLineBlue.image = [UIImage imageNamed:@"line_seperator_heavy_blue"];
-    [sensorDisplayPanel addSubview:imgLineBlue];
+    [scrollView addSubview:imgLineBlue];
     
     /*
      * Add separator line
@@ -236,7 +233,10 @@
     controlPanelView.delegate = self;
     [scrollView addSubview:controlPanelView];
     
-    [self resizeScrollView];
+    BOOL scrollViewHasBeenResized = [self updateAQIPannelViewWithAqi:[AQIManager manager].currentAqiInfo];
+    if(!scrollViewHasBeenResized) {
+        [self resizeScrollView];
+    }
 }
 
 - (void)setUp {
@@ -265,12 +265,25 @@
 #pragma mark UI Methods
 
 - (void)resizeScrollView {
+    [self resizeScrollViewWithFlag:0];
+}
+
+- (void)resizeScrollViewWithFlag:(int)flag {
     CGFloat totalHeight = 0.f;
     for(UIView *view in scrollView.subviews) {
         if([view isKindOfClass:[UIImageView class]] && view.tag != IMAGE_VIEW_TAG) {
             continue;
         }
         totalHeight += view.bounds.size.height;
+        if(flag == 1) {
+            if(view != aqiPanelView && view != imgHeathIndex) {
+                view.center = CGPointMake(view.center.x, view.center.y + AQI_PANEL_VIEW_HEIGHT);
+            }
+        } else if(flag == 2) {
+            if(view != aqiPanelView && view != imgHeathIndex) {
+                view.center = CGPointMake(view.center.x, view.center.y - AQI_PANEL_VIEW_HEIGHT);
+            }
+        }
     }
     scrollView.contentSize = CGSizeMake([UIScreen mainScreen].bounds.size.width, totalHeight);
 }
@@ -380,6 +393,9 @@
             LeftNavView *leftView = (LeftNavView *)[Shared shared].app.rootViewController.leftView;
             [leftView setScreenName:cmd.screenName];
         }
+    } else if([event isKindOfClass:[CurrentLocationUpdatedEvent class]]) {
+        CurrentLocationUpdatedEvent *evt = (CurrentLocationUpdatedEvent *)event;
+        [self updateAQIPannelViewWithAqi:evt.aqiDetail];
     }
 }
 
@@ -432,15 +448,32 @@
     }
 }
 
-- (void)updateAQIPannelView {
-    if(aqiPanelView != nil) {
+// bool which returned is tell you that scroll view is or not resized
+- (BOOL)updateAQIPannelViewWithAqi:(AQIDetail *)aqiDetail {
+    if(aqiPanelView == nil) {
+        aqiPanelView = [[AQIPanelView alloc] initWithPoint:CGPointMake(0, imgHeathIndex.frame.origin.y + imgHeathIndex.bounds.size.height)];
+    }
+    if(aqiDetail != nil) {
+        // view isn't already on screen
+        // because aqi is not empty
+        // so need to add this view
+        if(aqiPanelView.superview == nil) {
+            [aqiPanelView setCity:aqiDetail.area aqiNumber:aqiDetail.aqiNumber aqiText:aqiDetail.quality tips:aqiDetail.tips level:1];
+            [scrollView insertSubview:aqiPanelView aboveSubview:sensorDisplayPanel];
+            [self resizeScrollViewWithFlag:1];
+            return YES;
+        }
+    } else {
         // view is already on screen
+        // because aqi is nil
+        // so need to remove this view
         if(aqiPanelView.superview != nil) {
-            
-        } else {
-            
+            [aqiPanelView removeFromSuperview];
+            [self resizeScrollViewWithFlag:2];
+            return YES;
         }
     }
+    return NO;
 }
 
 - (void)updateUnitsSelectionView {

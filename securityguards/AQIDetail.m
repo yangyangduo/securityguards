@@ -44,4 +44,17 @@
     return json;
 }
 
+- (int)aqiLevel {
+    if([XXStringUtils isBlank:self.quality]) return -1;
+    
+    if([@"优" isEqualToString:self.quality] || [@"良" isEqualToString:self.quality]) {
+        return 1;
+    } else if([@"轻度污染" isEqualToString:self.quality] || [@"中度污染" isEqualToString:self.quality]) {
+        return 2;
+    } else if([@"重度污染" isEqualToString:self.quality]) {
+        return 3;
+    }
+    return -1;
+}
+
 @end

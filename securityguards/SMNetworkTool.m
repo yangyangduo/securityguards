@@ -44,11 +44,19 @@
 }
 
 + (NSString *)ssidForCurrentWifi {
-    CFArrayRef myArray = CNCopySupportedInterfaces();
-    CFDictionaryRef myDict = CNCopyCurrentNetworkInfo(CFArrayGetValueAtIndex(myArray, 0));
-    NSDictionary *myDictionary = (__bridge_transfer NSDictionary*)myDict;
-    NSString * ssid = [myDictionary objectForKey:@"SSID"];
-    return ssid;
+    @try {
+        CFArrayRef myArray = CNCopySupportedInterfaces();
+        CFDictionaryRef myDict = CNCopyCurrentNetworkInfo(CFArrayGetValueAtIndex(myArray, 0));
+        NSDictionary *myDictionary = (__bridge_transfer NSDictionary*)myDict;
+        NSString * ssid = [myDictionary objectForKey:@"SSID"];
+        return ssid;
+    }
+    @catch (NSException *exception) {
+        return [XXStringUtils emptyString];
+    }
+    @finally {
+        
+    }
 }
 
 @end

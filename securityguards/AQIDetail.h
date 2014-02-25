@@ -16,4 +16,6 @@
 @property (nonatomic, strong) NSString *area;
 @property (nonatomic, strong) NSString *tips;
 
+- (int)aqiLevel;
+
 @end

@@ -10,12 +10,16 @@
 #import "CameraInfoModifyViewController.h"
 #import "DeviceUtils.h"
 #import "DeviceService.h"
+#import "SMNetworkTool.h"
 
 @interface UnitDetailsViewController ()
 
 @end
 
 @implementation UnitDetailsViewController {
+    UIView *unitInfoDetailsView;
+    UILabel *lblWifiName;
+    UILabel *lblLocalIp;
     UITableView *tblDevices;
     
     NSArray *_devices_;
@@ -68,14 +72,57 @@
 
 - (void)initUI {
     [super initUI];
-    
+
     self.topbarView.title = NSLocalizedString(@"device_management", @"");
     
-    tblDevices = [[UITableView alloc] initWithFrame:CGRectMake(0, self.topbarView.bounds.size.height, self.view.bounds.size.width, self.view.bounds.size.height - self.topbarView.bounds.size.height) style:UITableViewStyleGrouped];
+    unitInfoDetailsView = [[UIView alloc] initWithFrame:CGRectMake(0, self.topbarView.bounds.size.height, self.view.bounds.size.width, 68)];
+    unitInfoDetailsView.backgroundColor = [UIColor whiteColor];
+    
+    UIImageView *imgWifi = [[UIImageView alloc] initWithFrame:CGRectMake(10, 4, 31, 26)];
+    imgWifi.image = [UIImage imageNamed:@"icon_wifi"];
+    [unitInfoDetailsView addSubview:imgWifi];
+    
+    UIImageView *imgLocalIp = [[UIImageView alloc] initWithFrame:CGRectMake(10, 38, 31, 26)];
+    imgLocalIp.image = [UIImage imageNamed:@"icon_local_ip"];
+    [unitInfoDetailsView addSubview:imgLocalIp];
+    
+    UILabel *lblWifiTitle = [[UILabel alloc] initWithFrame:CGRectMake(50, 4, 80, 26)];
+    lblWifiTitle.backgroundColor = [UIColor clearColor];
+    lblWifiTitle.text = [NSString stringWithFormat:@"%@:", NSLocalizedString(@"wifi_name", @"")];
+    [unitInfoDetailsView addSubview:lblWifiTitle];
+    
+    lblWifiName = [[UILabel alloc] initWithFrame:CGRectMake(140, 4, 165, 26)];
+    NSString *currentWifi = [SMNetworkTool ssidForCurrentWifi];
+    if([XXStringUtils isBlank:currentWifi]) {
+        lblWifiName.text = NSLocalizedString(@"wifi_disconnectted", @"");
+    } else {
+        lblWifiName.text = currentWifi;
+    }
+    lblWifiName.font = [UIFont systemFontOfSize:14.f];
+    lblWifiName.textColor = [UIColor lightGrayColor];
+    lblWifiName.textAlignment = NSTextAlignmentRight;
+    lblWifiName.backgroundColor = [UIColor clearColor];
+    [unitInfoDetailsView addSubview:lblWifiName];
+    
+    UILabel *lblLocalIpTitle = [[UILabel alloc] initWithFrame:CGRectMake(50, 38, 80, 26)];
+    lblLocalIpTitle.backgroundColor = [UIColor clearColor];
+    lblLocalIpTitle.text = [NSString stringWithFormat:@"%@:", NSLocalizedString(@"internal_ip", @"")];
+    [unitInfoDetailsView addSubview:lblLocalIpTitle];
+    
+    lblLocalIp = [[UILabel alloc] initWithFrame:CGRectMake(140, 38, 165, 26)];
+    lblLocalIp.text = self.unit != nil ? self.unit.localIP : [XXStringUtils emptyString];
+    lblLocalIp.font = [UIFont systemFontOfSize:14.f];
+    lblLocalIp.textColor = [UIColor lightGrayColor];
+    lblLocalIp.textAlignment = NSTextAlignmentRight;
+    lblLocalIp.backgroundColor = [UIColor clearColor];
+    [unitInfoDetailsView addSubview:lblLocalIp];
+    
+    [self.view addSubview:unitInfoDetailsView];
+    
+    tblDevices = [[UITableView alloc] initWithFrame:CGRectMake(0, unitInfoDetailsView.frame.origin.y + unitInfoDetailsView.bounds.size.height, self.view.bounds.size.width, self.view.bounds.size.height - self.topbarView.bounds.size.height) style:UITableViewStyleGrouped];
     tblDevices.backgroundView = nil;
     tblDevices.delegate = self;
     tblDevices.dataSource = self;
-    
     [self.view addSubview:tblDevices];
 }
 
@@ -118,6 +165,18 @@
     if(indexPath.section == 0) {
         cell.textLabel.text = self.unit != nil ? self.unit.name : [XXStringUtils emptyString];
         cell.detailTextLabel.text = NSLocalizedString(@"change_unit_name", @"");
+        if(self.unit != nil) {
+            // 这种糟糕的判断方式 只能怪主控那边 ！！！  ----- young
+            if([self.unit.status isEqualToString:@"在线"]) {
+                detailTextLabel2.text = NSLocalizedString(@"device_online", @"");
+                detailTextLabel2.textColor = [UIColor lightGrayColor];
+            } else {
+                detailTextLabel2.text = NSLocalizedString(@"device_offline", @"");
+                detailTextLabel2.textColor = [UIColor redColor];
+            }
+        } else {
+            detailTextLabel2.text = [XXStringUtils emptyString];
+        }
     } else {
 
         Device *device = [_devices_ objectAtIndex:indexPath.row];

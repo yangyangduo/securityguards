@@ -12,7 +12,7 @@
 #import "JsonUtils.h"
 #import "GlobalSettings.h"
 
-#define LOCATION_REFRESH_INTERVAL 4 * 60 * 60
+#define LOCATION_REFRESH_INTERVAL 1 * 60 * 60
 #define DIRECTORY [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:@"familyguards-aqi"]
 
 @implementation AQIManager {
@@ -80,7 +80,42 @@
 
 - (void)readFromDisk {
     @synchronized(self) {
-        // need to set current aqi info
+        NSString *filePath = [DIRECTORY stringByAppendingPathComponent:[NSString stringWithFormat:@"aqi.txt"]];
+        if([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+            NSData *data = [[NSData alloc] initWithContentsOfFile:filePath];
+            NSDictionary *json = [JsonUtils createDictionaryFromJson:data];
+            if(json != nil) {
+                // set refresh date
+                NSNumber *lastRefreshDate = [json objectForKey:@"locationLastRefreshDate"];
+                if(lastRefreshDate != nil) {
+                    self.locationLastRefreshDate = [NSDate dateWithTimeIntervalSince1970:lastRefreshDate.doubleValue];
+                }
+                
+                // set current area
+                NSString *currentArea = [json stringForKey:@"currentArea"];
+                if(currentArea != nil) {
+                    NSDictionary *allDetails = [json dictionaryForKey:@"aqiDetails"];
+                    if(allDetails != nil) {
+                        NSDictionary *aqiInfo_ = [allDetails dictionaryForKey:currentArea];
+                        if(aqiInfo_ != nil) {
+                            _currentAqiInfo_ = [[AQIDetail alloc] initWithJson:aqiInfo_];
+                        } else {
+                            self.locationLastRefreshDate = nil;
+                        }
+                    } else {
+                        self.locationLastRefreshDate = nil;
+                    }
+                } else {
+                    self.locationLastRefreshDate = nil;
+                }
+                
+                // set coordinate
+                CLLocationCoordinate2D coordinate;
+                coordinate.latitude = [json doubleForKey:@"longitude"];
+                coordinate.longitude = [json doubleForKey:@"latitude"];
+                self.locationCoordinate = coordinate;
+            }
+        }
     }
 }
 
@@ -126,16 +161,25 @@
         [shouldBeSaved setObject:aqiDetailsDictionary forKey:@"aqiDetails"];
         [shouldBeSaved setObject:[NSNumber numberWithDouble:locationCoordinate.latitude] forKey:@"latitude"];
         [shouldBeSaved setObject:[NSNumber numberWithDouble:locationCoordinate.longitude] forKey:@"longitude"];
-        if(self.locationLastRefreshDate != nil) {
-            [shouldBeSaved setObject:self.locationLastRefreshDate forKey:@"locationLastRefreshDate"];
+        
+        if(self.currentAqiInfo != nil) {
+            [shouldBeSaved setNoBlankString:self.currentAqiInfo.area forKey:@"currentArea"];
         }
         
+        if(self.locationLastRefreshDate != nil) {
+            [shouldBeSaved setObject:[NSNumber numberWithDouble:self.locationLastRefreshDate.timeIntervalSince1970] forKey:@"locationLastRefreshDate"];
+        }
+
         NSData *data = [JsonUtils createJsonDataFromDictionary:shouldBeSaved];
-        
+
         BOOL success = [data writeToFile:filePath atomically:YES];
         if(!success) {
 #ifdef DEBUG
             NSLog(@"[AQI MANAGER] Save aqi failed ...");
+#endif
+        } else {
+#ifdef DEBUG
+            NSLog(@"[AQI MANAGER] Save aqi successed ...");
 #endif
         }
     }
@@ -155,7 +199,6 @@
 #ifdef DEBUG
     NSLog(@"[AQI MANAGER] Location Updated (longitude=%f,latitude=%f)", locationCoordinate.longitude, locationCoordinate.latitude);
 #endif
-
     RestClient *client = [[RestClient alloc] initWithBaseUrl:[GlobalSettings defaultSettings].restAddress];
     NSString *url = [NSString stringWithFormat:@"/aqi/%f,%f?deviceCode=%@&appKey=%@&security=%@",
                      locationCoordinate.latitude, locationCoordinate.longitude,
@@ -177,7 +220,6 @@
 #pragma mark AQI Service Callback
 
 - (void)getAqiInfoSuccess:(RestResponse *)resp {
-    [JsonUtils printJsonData:resp.body];
     if(resp.statusCode == 200) {
         NSDictionary *json = [JsonUtils createDictionaryFromJson:resp.body];
         if(json != nil) {
@@ -185,9 +227,15 @@
             if(result == 1) {
                 AQIDetail *aqiDetail = [[AQIDetail alloc] initWithJson:json];
                 [self addAqiDetail:aqiDetail forArea:aqiDetail.area];
-                [self saveToDisk];
                 _currentAqiInfo_ = aqiDetail;
+                [self saveToDisk];
                 CurrentLocationUpdatedEvent *event = [[CurrentLocationUpdatedEvent alloc] initWithAqiDetail:aqiDetail];
+                [[XXEventSubscriptionPublisher defaultPublisher] publishWithEvent:event];
+                return;
+            } else if(result == 0) {
+                _currentAqiInfo_ = nil;
+                [self saveToDisk];
+                CurrentLocationUpdatedEvent *event = [[CurrentLocationUpdatedEvent alloc] initWithAqiDetail:nil];
                 [[XXEventSubscriptionPublisher defaultPublisher] publishWithEvent:event];
                 return;
             }
