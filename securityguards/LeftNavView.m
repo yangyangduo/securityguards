@@ -21,7 +21,7 @@
 
 @synthesize delegate;
 @synthesize navItems = _navItems_;
-@synthesize currentItem;
+@synthesize currentItem = _currentItem_;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -132,9 +132,9 @@
         [[Shared shared].app logout];
         return;
     } else {
-        if(![currentItem.identifier isEqualToString:selectedItem.identifier]) {
-            currentItem = selectedItem;
-            item = currentItem;
+        if(![_currentItem_.identifier isEqualToString:selectedItem.identifier]) {
+            _currentItem_ = selectedItem;
+            item = _currentItem_;
         }
     }
     if(self.delegate != nil && [self.delegate respondsToSelector:@selector(leftNavViewItemChanged:)]) {
@@ -158,6 +158,22 @@
         self.currentItem = [self.navItems objectAtIndex:0];
     }
     [tblItems reloadData];
+}
+
+- (void)setCurrentItem:(LeftNavItem *)currentItem {
+    LeftNavItem *found = nil;
+    if(_navItems_ == nil) return;
+    for(int i=0; i<_navItems_.count; i++) {
+        LeftNavItem *it = [_navItems_ objectAtIndex:i];
+        if([it isEqual:currentItem]) {
+            found = it;
+            break;
+        }
+    }
+    if(found != nil) {
+        _currentItem_ = found;
+        [tblItems reloadData];
+    }
 }
 
 @end

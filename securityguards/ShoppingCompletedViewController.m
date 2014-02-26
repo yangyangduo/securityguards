@@ -9,6 +9,7 @@
 #import "ShoppingCompletedViewController.h"
 #import "ShoppingStateView.h"
 #import "BlueButton.h"
+#import "Shared.h"
 
 @interface ShoppingCompletedViewController ()
 
@@ -40,6 +41,8 @@
 - (void)initUI {
     [super initUI];
     self.topbarView.title = NSLocalizedString(@"shopping_online", @"");
+    [self.leftButton setBackgroundImage:[UIImage imageNamed:@"icon_portal_view"] forState:UIControlStateNormal];
+    
     ShoppingStateView *shoppingStateView = [[ShoppingStateView alloc] initWithPoint:CGPointMake(0, self.topbarView.bounds.size.height) shoppingState:ShoppingStateCompleted];
     [self.view addSubview:shoppingStateView];
     
@@ -102,7 +105,8 @@
 }
 
 - (void)popupViewController {
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    [self.navigationController popToRootViewControllerAnimated:NO];
+    [[Shared shared].app.rootViewController changeViewControllerWithIdentifier:@"portalItem"];
 }
 
 @end

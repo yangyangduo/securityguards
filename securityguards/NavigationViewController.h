@@ -11,5 +11,6 @@
 @interface NavigationViewController : BaseViewController
 
 - (void)popupViewController;
+- (UIButton *)leftButton;
 
 @end

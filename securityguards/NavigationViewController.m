@@ -12,7 +12,9 @@
 
 @end
 
-@implementation NavigationViewController
+@implementation NavigationViewController {
+    UIButton *btnLeft;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -41,7 +43,7 @@
 
 - (void)initUI {
     [super initUI];
-    UIButton *btnLeft = [[UIButton alloc] initWithFrame:CGRectMake(0, [UIDevice systemVersionIsMoreThanOrEuqal7] ? 20 : 0, 88 / 2, 88 / 2)];
+    btnLeft = [[UIButton alloc] initWithFrame:CGRectMake(0, [UIDevice systemVersionIsMoreThanOrEuqal7] ? 20 : 0, 88 / 2, 88 / 2)];
     [btnLeft setBackgroundImage:[UIImage imageNamed:@"btn_back"] forState:UIControlStateNormal];
     [btnLeft addTarget:self action:@selector(popupViewController) forControlEvents:UIControlEventTouchUpInside];
     [self.topbarView addSubview:btnLeft];
@@ -55,6 +57,10 @@
     if(self.navigationController != nil) {
         [self.navigationController popViewControllerAnimated:YES];
     }
+}
+
+- (UIButton *)leftButton {
+    return btnLeft;
 }
 
 @end

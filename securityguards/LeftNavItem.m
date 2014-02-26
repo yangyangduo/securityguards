@@ -24,4 +24,12 @@
     return self;
 }
 
+- (BOOL)isEqual:(id)object {
+    if(object == nil) return NO;
+    if(![object isMemberOfClass:[LeftNavItem class]]) return NO;
+    LeftNavItem *it = object;
+    if(it.identifier == nil) return NO;
+    return [it.identifier isEqualToString:self.identifier];
+}
+
 @end

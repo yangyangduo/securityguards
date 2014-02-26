@@ -97,6 +97,7 @@
     
     UIViewController *centerViewController = nil;
     
+    // get CenterViewController
     if([@"portalItem" isEqualToString:item.identifier]) {
         if(portalViewController == nil) {
             portalViewController = [[PortalViewController alloc] init];
@@ -121,18 +122,26 @@
     
     if(centerViewController == nil) return;
     
+    // will add center view controller and remove last center view controller called (display view controller) here.
     [self addChildViewController:centerViewController];
     if(self.displayViewController != nil) {
         [self.displayViewController willMoveToParentViewController:nil];
     }
     
+    // did add center view controller and ...
+    
+    // why do this below
+    // in IOS7 Status bar will auto add 20px for orgin y in Navigation View Controller
     CGRect frame = centerViewController.view.frame;
     centerViewController.view.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
+    
     self.centerView = centerViewController.view;
     [centerViewController didMoveToParentViewController:self];
     if(self.displayViewController != nil) {
         [self.displayViewController removeFromParentViewController];
     }
+    
+    // set center view controller as display view controller
     self.displayViewController = centerViewController;
     [self showCenterView:YES];
     
@@ -143,6 +152,21 @@
     XXEventSubscription *subscription = [[XXEventSubscription alloc] initWithSubscriber:self eventFilter:[[XXEventNameFilter alloc] initWithSupportedEventName:EventUserLogout]];
     subscription.notifyMustInMainThread = YES;
     [[XXEventSubscriptionPublisher defaultPublisher] subscribeFor:subscription];
+}
+
+- (void)changeViewControllerWithIdentifier:(NSString *)identifier {
+    if(self.displayViewController == nil) return;
+    if(self.leftView == nil) return;
+    
+    LeftNavView *leftNavView = (LeftNavView *)self.leftView;
+    if(leftNavView.currentItem == nil) return;
+
+    // create will selected item
+    LeftNavItem *item = [[LeftNavItem alloc] init];
+    item.identifier = identifier;
+    
+    leftNavView.currentItem = item; 
+    [self leftNavViewItemChanged:leftNavView.currentItem];
 }
 
 #pragma mark -

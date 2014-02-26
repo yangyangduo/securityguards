@@ -16,5 +16,6 @@
 @property (nonatomic, strong) UIViewController *displayViewController;
 
 - (PortalViewController *)portalViewController;
+- (void)changeViewControllerWithIdentifier:(NSString *)identifier;
 
 @end
