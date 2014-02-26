@@ -118,7 +118,7 @@
     
     if(_json_arr_.count == 0) return nil;
     
-    NSString *accountId = [NSString stringWithFormat:@"%@%@", [GlobalSettings defaultSettings].account, APP_KEY];
+    NSString *accountId = [NSString stringWithFormat:@"%@%@", [GlobalSettings defaultSettings].deviceCode, APP_KEY];
     
     NSDictionary *json =
     @{

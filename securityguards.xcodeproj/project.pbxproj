@@ -51,6 +51,7 @@
 		6F2AF605188E1177005C1EAF /* ios5_6icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F2AF603188E1177005C1EAF /* ios5_6icon@2x.png */; };
 		6F2AF607188E11B6005C1EAF /* ios7spotlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F2AF606188E11B6005C1EAF /* ios7spotlight@2x.png */; };
 		6F2AF609188E11FB005C1EAF /* ios5_7settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F2AF608188E11FB005C1EAF /* ios5_7settings.png */; };
+		6F2CFC7818BD952200BAE962 /* trash@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F2CFC7718BD952200BAE962 /* trash@2x.png */; };
 		6F33C48418AC60150070CB60 /* RadioRectButtonGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F33C48318AC60150070CB60 /* RadioRectButtonGroup.m */; };
 		6F33C48718ACA01B0070CB60 /* NumberPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F33C48618ACA01B0070CB60 /* NumberPicker.m */; };
 		6F33C48A18ACB1C80070CB60 /* ShoppingService.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F33C48918ACB1C80070CB60 /* ShoppingService.m */; };
@@ -432,6 +433,7 @@
 		6F2AF603188E1177005C1EAF /* ios5_6icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ios5_6icon@2x.png"; sourceTree = "<group>"; };
 		6F2AF606188E11B6005C1EAF /* ios7spotlight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ios7spotlight@2x.png"; sourceTree = "<group>"; };
 		6F2AF608188E11FB005C1EAF /* ios5_7settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ios5_7settings.png; sourceTree = "<group>"; };
+		6F2CFC7718BD952200BAE962 /* trash@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "trash@2x.png"; sourceTree = "<group>"; };
 		6F33C48218AC60150070CB60 /* RadioRectButtonGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadioRectButtonGroup.h; sourceTree = "<group>"; };
 		6F33C48318AC60150070CB60 /* RadioRectButtonGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RadioRectButtonGroup.m; sourceTree = "<group>"; };
 		6F33C48518ACA01B0070CB60 /* NumberPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NumberPicker.h; sourceTree = "<group>"; };
@@ -1757,6 +1759,7 @@
 		6F6005BA186C234C0085B4BD /* images */ = {
 			isa = PBXGroup;
 			children = (
+				6F2CFC7718BD952200BAE962 /* trash@2x.png */,
 				6F4413E618BC2C0600314EBD /* device_management */,
 				6FDCCC3618ADF6D100BBD12D /* shopping */,
 				6F2AF5FB188E0FD6005C1EAF /* app_images */,
@@ -2374,6 +2377,7 @@
 				6F732738186D5DB100A1276B /* icon_power@2x.png in Resources */,
 				6F2AF609188E11FB005C1EAF /* ios5_7settings.png in Resources */,
 				6F732733186D562900A1276B /* line_seperator_heavy_blue@2x.png in Resources */,
+				6F2CFC7818BD952200BAE962 /* trash@2x.png in Resources */,
 				6F0CD5CE186DB93000B5A3EA /* icon_firegas_blue@2x.png in Resources */,
 				F29DE70E18868A8000BCE93C /* checkbox_unselected@2x.png in Resources */,
 				6F7CDBB91872A9E20036F912 /* icon_news@2x.png in Resources */,

@@ -21,6 +21,9 @@
 - (void)revertSwitchButton;
 - (BOOL)valueForSwitchButton;
 
+- (void)showSwitchButton;
+- (void)hideSwitchButton;
+
 @end
 
 @protocol TimingTaskCellDelegate <NSObject>

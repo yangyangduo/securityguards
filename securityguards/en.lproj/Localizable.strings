@@ -165,6 +165,7 @@
 "exe_repeat"                          =      "每周重复执行";
 "exe_no_repeat"                       =      "仅仅执行一次";
 "no_permissions"                      =      "权限错误";
+"has_no_permissions_del"              =      "您没有权限删除";
 "no_unit_bind"                        =      "未绑定的主控";
 
 

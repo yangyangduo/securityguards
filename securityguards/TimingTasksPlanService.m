@@ -47,4 +47,11 @@
     [self.client putForUrl:url acceptType:@"text/*" contentType:@"text/html" body:nil success:s error:f for:t callback:cb];
 }
 
+- (void)deleteTimingTask:(TimingTask *)timingTask success:(SEL)s failed:(SEL)f target:(id)t callback:(id)cb {
+    NSString *url = [NSString stringWithFormat:@"/%@%@/%@?deviceCode=%@&appKey=%@&security=%@",timingTask.unitIdentifier, APP_KEY, timingTask.identifier, [GlobalSettings defaultSettings].deviceCode, APP_KEY,
+                     [GlobalSettings defaultSettings].secretKey];
+    NSLog(@"%@",url);
+    [self.client deleteForUrl:url success:s error:f for:t callback:cb];
+}
+
 @end

@@ -72,11 +72,11 @@
     [self.contentView addSubview:lblTaskPlanSceduleDate];
     [self.contentView addSubview:lblScheduleMode];
     
-    swhTaskPlanEnable = [[UISwitch alloc] initWithFrame:CGRectZero];
-    swhTaskPlanEnable.center = CGPointMake(280, 26.f);
+    swhTaskPlanEnable = [[UISwitch alloc] initWithFrame:CGRectMake(lblScheduleMode.frame.origin.x + 95, 10, 30, 0)];
     swhTaskPlanEnable.tintColor = [UIColor appDarkDarkGray];
     swhTaskPlanEnable.onTintColor = [UIColor appBlue];
     swhTaskPlanEnable.on = YES;
+    swhTaskPlanEnable.hidden = NO;
     [swhTaskPlanEnable addTarget:self action:@selector(valueDidChanged:) forControlEvents:UIControlEventValueChanged];
     [swhTaskPlanEnable addTarget:self action:@selector(swhPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:swhTaskPlanEnable];
@@ -89,20 +89,26 @@
 }
 
 - (void)willTransitionToState:(UITableViewCellStateMask)state {
+    if(state == UITableViewCellStateShowingEditControlMask) {
+        swhTaskPlanEnable.hidden = YES;
+    } else {
+        swhTaskPlanEnable.hidden = NO;
+    }
     [super willTransitionToState:state];
 }
 
-- (void)layoutSubviews {
-    [super layoutSubviews];
-    for (UIView *subview in self.subviews) {
-        for (UIView *subview2 in subview.subviews) {
-            if ([NSStringFromClass([subview2 class]) isEqualToString:@"UITableViewCellDeleteConfirmationView"]) { // move delete confirmation view
-                [subview bringSubviewToFront:subview2];
-                return;
-            }
-        }
-    }
+- (void)showSwitchButton {
+    swhTaskPlanEnable.hidden = NO;
 }
+
+- (void)hideSwitchButton {
+    swhTaskPlanEnable.hidden = YES;
+}
+
+//- (void)setEditing:(BOOL)editing animated:(BOOL)animated {
+//    [super setEditing:editing animated:animated];
+//    swhTaskPlanEnable.hidden = editing;
+//}
 
 - (void)setTimingTask:(TimingTask *)timingTask {
     _timingTask_ = timingTask;
@@ -124,6 +130,7 @@
         swhTaskPlanEnable.on = timingTask.enable;
         [self valueDidChanged:swhTaskPlanEnable];
     }
+    swhTaskPlanEnable.hidden = self.isEditing;
 }
 
 - (void)valueDidChanged:(UISwitch *)switchView {

@@ -65,7 +65,7 @@
     [self.topbarView addSubview:btnRight];
     
     UIButton *btnEdit = [[UIButton alloc] initWithFrame:CGRectMake(([UIScreen mainScreen].bounds.size.width - 88), [UIDevice systemVersionIsMoreThanOrEuqal7] ? 20 : 0, 88 / 2, 88 / 2)];
-    [btnEdit setBackgroundImage:[UIImage imageNamed:@"btn_rename"] forState:UIControlStateNormal];
+    [btnEdit setBackgroundImage:[UIImage imageNamed:@"trash"] forState:UIControlStateNormal];
     [btnEdit addTarget:self action:@selector(btnEditTable:) forControlEvents:UIControlEventTouchUpInside];
     [self.topbarView addSubview:btnEdit];
     
@@ -233,6 +233,55 @@
     [self updateTimingTaskPlanStateFailed:resp];
 }
 
+- (void)deleteTimingTask:(TimingTask *)timingTask forIndexPath:(NSIndexPath *)indexPath {
+    if(timingTask == nil) return;
+    [[AlertView currentAlertView] setMessage:NSLocalizedString(@"deleting", @"") forType:AlertViewTypeWaitting];
+    [[AlertView currentAlertView] alertForLock:YES autoDismiss:NO];
+    TimingTasksPlanService *service = [[TimingTasksPlanService alloc] init];
+    [service deleteTimingTask:timingTask success:@selector(deleteTimingTaskSuccess:) failed:@selector(deleteTimingTaskFailed:) target:self callback:indexPath];
+}
+
+- (void)deleteTimingTaskSuccess:(RestResponse *)resp {
+    if(resp.statusCode == 200) {
+        NSDictionary *jsonResult = [JsonUtils createDictionaryFromJson:resp.body];
+        int result = [jsonResult intForKey:@"i"];
+        if(result == 1) {
+            [[AlertView currentAlertView] setMessage:NSLocalizedString(@"delete_success", @"") forType:AlertViewTypeSuccess];
+            [[AlertView currentAlertView] delayDismissAlertView];
+            NSIndexPath *indexPath = resp.callbackObject;
+            [tblTaskPlans beginUpdates];
+            [self.unit.timingTasksPlan removeObjectAtIndex:indexPath.row];
+            [tblTaskPlans deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            [tblTaskPlans endUpdates];
+            if(self.unit.timingTasksPlan.count == 0) {
+                tblTaskPlans.editing = NO;
+            }
+            return;
+        } else if(result == 0) {
+            [[AlertView currentAlertView] setMessage:NSLocalizedString(@"has_no_permissions_del", @"") forType:AlertViewTypeFailed];
+            [[AlertView currentAlertView] delayDismissAlertView];
+            return;
+        }
+    }
+    [self deleteTimingTaskFailed:resp];
+}
+
+- (void)deleteTimingTaskFailed:(RestResponse *)resp {
+    if(abs(resp.statusCode) == 1001) {
+        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"request_timeout", @"") forType:AlertViewTypeFailed];
+    } else if(abs(resp.statusCode) == 1004) {
+        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"network_error", @"") forType:AlertViewTypeFailed];
+    } else if(abs(resp.statusCode) == 403) {
+        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"verification_code_expire", @"") forType:AlertViewTypeFailed];
+    } else {
+        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"unknow_error", @"") forType:AlertViewTypeFailed];
+    }
+    [[AlertView currentAlertView] delayDismissAlertView];
+#ifdef DEBUG
+    NSLog(@"[TIMING TASK VC] Delete timing task failed, status code is %d", resp.statusCode);
+#endif
+}
+
 - (void)updateTimingTaskPlanStateFailed:(RestResponse *)resp {
     if(abs(resp.statusCode) == 1001) {
         [[AlertView currentAlertView] setMessage:NSLocalizedString(@"request_timeout", @"") forType:AlertViewTypeFailed];
@@ -279,9 +328,8 @@
     if(cell == nil) {
         cell = [[TimingTasksCell alloc] initWithTimerTaskPlan:timingTask reuseIdentifier:cellIdentifier];
         cell.delegte = self;
-    } else {
-        cell.timingTask = timingTask;
     }
+    cell.timingTask = timingTask;
     return cell;
 }
 
@@ -293,10 +341,6 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    return YES;
-}
-
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
     return UITableViewCellEditingStyleDelete;
 }
@@ -306,22 +350,17 @@
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-//    // delete method ...
-//    TimingTask *task = [self.unit.timingTasksPlan objectAtIndex:indexPath.row];
-//    [tableView beginUpdates];
-//    [self.unit.timingTasksPlan removeObjectAtIndex:indexPath.row];
-//    [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-//    [tableView endUpdates];
-//    
-//    if(self.unit.timingTasksPlan.count == 0) {
-//        tblTaskPlans.editing = NO;
-//    }
+    TimingTask *timingTask = [self.unit.timingTasksPlan objectAtIndex:indexPath.row];
+    [self deleteTimingTask:timingTask forIndexPath:indexPath];
 }
 
 #pragma mark -
 #pragma mark Data Source Loading / Reloading Methods
 
 - (void)reloadTableViewDataSource {
+    if(tblTaskPlans.isEditing) {
+        [tblTaskPlans setEditing:NO animated:NO];
+    }
     TimingTasksPlanService *service = [[TimingTasksPlanService alloc] init];
     [service timingTasksPlanForUnitIdentifier:self.unit.identifier success:@selector(getTimingTasksPlanSuccess:) failed:@selector(getTimingTasksPlanFailed:) target:self callback:nil];
 	_reloading = YES;

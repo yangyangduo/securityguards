@@ -17,4 +17,6 @@
 
 - (void)updateTimingTasksPlanEnabled:(TimingTask *)timingTask enable:(BOOL)enable success:(SEL)s failed:(SEL)f target:(id)t callback:(id)cb;
 
+- (void)deleteTimingTask:(TimingTask *)timingTask success:(SEL)s failed:(SEL)f target:(id)t callback:(id)cb;
+
 @end
