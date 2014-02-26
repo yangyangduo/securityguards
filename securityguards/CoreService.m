@@ -573,8 +573,8 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
     
     // has wifi, check is reachbilityForInternal for current unit ?
     
-    NSString *url = [NSString stringWithFormat:@"http://%@:%d/heartbeat",
-                     [UnitManager defaultManager].currentUnit.localIP, [UnitManager defaultManager].currentUnit.localPort];
+    NSString *url = [NSString stringWithFormat:@"http://%@/heartbeat",
+                     [UnitManager defaultManager].currentUnit.localIP];
     NSMutableURLRequest *request =[[NSMutableURLRequest alloc] initWithURL: [[NSURL alloc] initWithString:url] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:HEART_BEAT_TIMEOUT];
     NSURLResponse *response;
     NSError *error;
@@ -595,7 +595,6 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
             }
         }
     }
-    
     // not reachbility for internal
     // delete NetModeInternal from _netMode_
     [self removeNetMode:NetModeInternal];
