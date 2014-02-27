@@ -20,6 +20,6 @@
 @property (nonatomic, assign) CLLocationCoordinate2D locationCoordinate;
 
 + (instancetype)manager;
-- (void)updateAqiDontWorry;
+- (void)mayUpdateAqi;
 
 @end

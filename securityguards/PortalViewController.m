@@ -402,11 +402,10 @@
 #pragma mark -
 #pragma mark Events notifications
 
-// called on view will appear
-// called on event system (units list update event || current unit changed event)
+// called when view will appear
+// called when some events arrived (units list update event || current unit changed event)
 - (void)updateUnitsView {
     Unit *currentUnit = [UnitManager defaultManager].currentUnit;
-//    [JsonUtils printJsonEntity:currentUnit];
     
     self.topbarView.title = currentUnit != nil ? currentUnit.name : NSLocalizedString(@"app_name", @"");
     
@@ -448,7 +447,7 @@
     }
 }
 
-// bool which returned is tell you that scroll view is or not resized
+// BOOL means which that scroll view has or hasn't resized
 - (BOOL)updateAQIPannelViewWithAqi:(AQIDetail *)aqiDetail {
     if(aqiPanelView == nil) {
         aqiPanelView = [[AQIPanelView alloc] initWithPoint:CGPointMake(0, imgHeathIndex.frame.origin.y + imgHeathIndex.bounds.size.height)];

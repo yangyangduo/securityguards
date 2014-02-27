@@ -48,7 +48,7 @@
     return self;
 }
 
-- (void)updateAqiDontWorry {
+- (void)mayUpdateAqi {
     if(self.locationLastRefreshDate == nil
        || abs(self.locationLastRefreshDate.timeIntervalSinceNow) >= LOCATION_REFRESH_INTERVAL) {
         if(!self.locationIsUpdating) {

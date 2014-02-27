@@ -193,8 +193,8 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
 
 - (id<CommandExecutor>)determineCommandExcutor:(DeviceCommand *)command {
     /*
-     * If the device command has explicit specify the network mode
-     * that of course we know which executor should to be used
+     * If the device command has explicit specify the network mode,
+     * Of course that we know which executor should be used
      */
     if(CommandNetworkModeInternal == command.commandNetworkMode
        || CommandNetworkModeExternalViaRestful == command.commandNetworkMode) {
@@ -204,19 +204,18 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
     }
     
     /*
-     * At first , check the command wether has been defined in 
-     * Internal network commands list
+     * Check the command is in the [Internal network commands list] ?
      */
     if([self commandCanDeliveryInInternalNetMode:command]) {
-        // and also the current net mode is NetModeInternal
+        // And also the current net mode is NetModeInternal
         if((self.netMode & NetModeInternal) == NetModeInternal) {
             command.commandNetworkMode = CommandNetworkModeInternal;
             return self.restfulService;
         }
     }
     
-    // Not in internal commands list or current net mode isn't Internal
-    // And command is restful command what ever
+    // Hasn't in [internal commands list] or current net mode isn't Internal
+    // And command is restful command whatever
     if([self isRestfulCommandInAnyNetModes:command]) {
         command.commandNetworkMode = CommandNetworkModeExternalViaRestful;
         return self.restfulService;
@@ -489,8 +488,8 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
     }
     
     // update current location or aqi
-    // if update timerinterval <= 4'hours , it isn't work, don't worry
-    [[AQIManager manager] updateAqiDontWorry];
+    // if update timerinterval <= one hour, it isn't really work, don't worry to use this
+    [[AQIManager manager] mayUpdateAqi];
 }
 
 - (void)fireTaskTimer {

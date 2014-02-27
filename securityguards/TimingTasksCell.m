@@ -91,7 +91,7 @@
 - (void)willTransitionToState:(UITableViewCellStateMask)state {
     if(state == UITableViewCellStateShowingEditControlMask) {
         swhTaskPlanEnable.hidden = YES;
-    } else {
+    } else if(state == UITableViewCellStateDefaultMask) {
         swhTaskPlanEnable.hidden = NO;
     }
     [super willTransitionToState:state];
