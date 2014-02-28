@@ -94,6 +94,7 @@
 "owner_access_short"             =      "仅主账号";
 "all_access"                     =      "允许所有账号互联网访问";
 "all_access_short"               =      "完全访问";
+"evaluate_time"                  =      "评估时间";
 
 
 /****************	Speech View Strings	****************/

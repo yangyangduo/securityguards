@@ -100,7 +100,7 @@
     if(cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         cell.selectedBackgroundView = [[UIView alloc] initWithFrame:cell.bounds];
-        cell.selectedBackgroundView.backgroundColor = [UIColor appYellow];
+        cell.selectedBackgroundView.backgroundColor = [UIColor appGray];
         if(![UIDevice systemVersionIsMoreThanOrEuqal7]) {
             cell.backgroundView = [[UIView alloc] initWithFrame:cell.bounds];
         }

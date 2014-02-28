@@ -16,7 +16,6 @@
 
 @implementation CameraInfoModifyViewController {
     UITableView *tblCameraInfo;
-    
     NSString *cameraName;
     
     int status;
@@ -286,5 +285,6 @@
     }
     [[AlertView currentAlertView] delayDismissAlertView];
 }
+
 
 @end

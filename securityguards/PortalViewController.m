@@ -13,6 +13,7 @@
 #import "UnitDetailsViewController.h"
 #import "UnitManager.h"
 #import "AQIManager.h"
+#import "UIColor+HexColor.h"
 
 /*     components      */
 #import "SensorsDisplayPanel.h"
@@ -170,13 +171,15 @@
     lblHealthIndex.text = @"30";
     lblHealthIndex.textColor = [UIColor whiteColor];
     lblHealthIndex.font = [UIFont boldSystemFontOfSize:26.f];
+    lblHealthIndex.shadowColor = [UIColor colorWithHexString:@"c06161"];
     lblHealthIndex.textAlignment = NSTextAlignmentCenter;
+    lblHealthIndex.shadowOffset = CGSizeMake(1, 1);
     [imgHeathIndex addSubview:lblHealthIndex];
     
-    UILabel *lblDescription1 = [[UILabel alloc] initWithFrame:CGRectMake(130, 30, 190, 30)];
-    UILabel *lblDescription2 = [[UILabel alloc] initWithFrame:CGRectMake(130, 60, 20, 30)];
-    lblHealthIndexGreatThan = [[UILabel alloc] initWithFrame:CGRectMake(150, 52, 50, 40)];
-    UILabel *lblDescription3 = [[UILabel alloc] initWithFrame:CGRectMake(197, 60, 100, 30)];
+    UILabel *lblDescription1 = [[UILabel alloc] initWithFrame:CGRectMake(130, 20, 190, 30)];
+    UILabel *lblDescription2 = [[UILabel alloc] initWithFrame:CGRectMake(130, 46, 20, 30)];
+    lblHealthIndexGreatThan = [[UILabel alloc] initWithFrame:CGRectMake(150, 38, 50, 40)];
+    UILabel *lblDescription3 = [[UILabel alloc] initWithFrame:CGRectMake(197, 46, 100, 30)];
     
     [imgHeathIndex addSubview:lblDescription1];
     [imgHeathIndex addSubview:lblDescription2];
@@ -186,6 +189,17 @@
     lblDescription1.textColor = [UIColor whiteColor];
     lblDescription2.textColor = [UIColor whiteColor];
     lblDescription3.textColor = [UIColor whiteColor];
+    
+    lblDescription1.shadowColor = [UIColor colorWithHexString:@"80bac1"];
+    lblDescription2.shadowColor = [UIColor colorWithHexString:@"80bac1"];
+    lblDescription3.shadowColor = [UIColor colorWithHexString:@"80bac1"];
+    lblHealthIndexGreatThan.shadowColor = [UIColor colorWithHexString:@"80bac1"];
+    
+    lblDescription1.shadowOffset = CGSizeMake(1, 1);
+    lblDescription2.shadowOffset = CGSizeMake(1, 1);
+    lblDescription3.shadowOffset = CGSizeMake(1, 1);
+    lblHealthIndexGreatThan.shadowOffset = CGSizeMake(1, 1);
+    
     lblHealthIndexGreatThan.textColor = [UIColor yellowColor];
     
     lblDescription1.font = [UIFont systemFontOfSize:17.f];
@@ -196,12 +210,34 @@
     lblDescription1.text = NSLocalizedString(@"heath_index_desc1", @"");
     lblDescription2.text = NSLocalizedString(@"heath_index_desc2", @"");
     lblHealthIndexGreatThan.text = @"21%";
-    lblDescription3.text = NSLocalizedString(@"heath_index_desc3", @"");
     
+    lblDescription3.text = NSLocalizedString(@"heath_index_desc3", @"");
     lblDescription1.backgroundColor = [UIColor clearColor];
     lblDescription2.backgroundColor = [UIColor clearColor];
     lblHealthIndexGreatThan.backgroundColor = [UIColor clearColor];
     lblDescription3.backgroundColor = [UIColor clearColor];
+    
+    UIImageView *imgRefresh = [[UIImageView alloc] initWithFrame:CGRectMake(130, 83, 35.f / 2, 42.f / 2)];
+    imgRefresh.image = [UIImage imageNamed:@"icon_refresh_blue"];
+    [imgHeathIndex addSubview:imgRefresh];
+    
+    UILabel *lblEvaluate = [[UILabel alloc] initWithFrame:CGRectMake(150, 83, 65, 21)];
+    lblEvaluate.textColor = [UIColor colorWithHexString:@"2f8895"];
+    lblEvaluate.font = [UIFont systemFontOfSize:14.f];
+    lblEvaluate.shadowOffset = CGSizeMake(0.5f, 0.5f);
+    lblEvaluate.shadowColor = [UIColor whiteColor];
+    lblEvaluate.text = [NSString stringWithFormat:@"%@:", NSLocalizedString(@"evaluate_time", @"")];
+    lblEvaluate.backgroundColor = [UIColor clearColor];
+    [imgHeathIndex addSubview:lblEvaluate];
+    
+    UILabel *lblEvaluateTime = [[UILabel alloc] initWithFrame:CGRectMake(215, 83, 100, 21)];
+    lblEvaluateTime.textColor = [UIColor colorWithHexString:@"2f8895"];
+    lblEvaluateTime.font = [UIFont systemFontOfSize:14.f];
+    lblEvaluateTime.shadowOffset = CGSizeMake(0.5f, 0.5f);
+    lblEvaluateTime.shadowColor = [UIColor whiteColor];
+    lblEvaluateTime.text = @"14-02 15:33";
+    lblEvaluateTime.backgroundColor = [UIColor clearColor];
+    [imgHeathIndex addSubview:lblEvaluateTime];
     
     [scrollView addSubview:imgHeathIndex];
     
