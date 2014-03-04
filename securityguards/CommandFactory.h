@@ -22,6 +22,7 @@
 #import "DeviceCommandUpdateDeviceToken.h"
 #import "DeviceCommandCheckVersion.h"
 #import "DeviceCommandReceivedSensors.h"
+#import "DeviceCommandGetScore.h"
 
 
 typedef NS_ENUM(NSUInteger, CommandType) {
@@ -40,6 +41,7 @@ typedef NS_ENUM(NSUInteger, CommandType) {
     CommandTypeCheckVersion,
     CommandTypeSendHeartBeat,
     CommandTypeGetSensors,
+    CommandTypeGetScore,
 };
 
 #define COMMAND_UPDATE_ACCOUNT       @"AccountUpdateCommand"
@@ -58,6 +60,7 @@ typedef NS_ENUM(NSUInteger, CommandType) {
 #define COMMAND_CHECK_VERSION        @"VersionUpgradeCommand"
 #define COMMAND_SEND_HEART_BEAT      @"HeartBeatCommand"
 #define COMMAND_GET_SENSORS          @"FindSensorDataCommand"
+#define COMMAND_GET_SCORE            @"GetUnitScore"
 
 @interface CommandFactory : NSObject
 

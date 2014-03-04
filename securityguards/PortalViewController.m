@@ -31,6 +31,7 @@
 #import "DeviceStatusChangedEvent.h"
 #import "SensorStateChangedEvent.h"
 #import "CurrentLocationUpdatedEvent.h"
+#import "ScoreChangedEvent.h"
 
 #define IMAGE_VIEW_TAG 500
 
@@ -44,6 +45,7 @@
     UIImageView *imgHeathIndex;
     UILabel *lblHealthIndex;
     UILabel *lblHealthIndexGreatThan;
+    UILabel *lblEvaluateTime;
     
     SensorsDisplayPanel *sensorDisplayPanel;
     UnitControlPanel *controlPanelView;
@@ -75,8 +77,16 @@
     
     // update devices
     [self updateUnitsView];
+    if([UnitManager defaultManager].currentUnit != nil) {
+        [self updateUnitScoreViewWithScore:[UnitManager defaultManager].currentUnit.score];
+    }
     
-    XXEventNameFilter *eventNameFilter = [[XXEventNameFilter alloc] initWithSupportedEventNames:[NSArray arrayWithObjects:EventUnitsListUpdated, EventNetworkModeChanged, EventCurrentUnitChanged, EventUnitNameChanged, EventDeviceStatusChanged, EventSensorStateChanged, EventCurrentLocationUpdated, nil]];
+    XXEventNameFilter *eventNameFilter =
+            [[XXEventNameFilter alloc] initWithSupportedEventNames:
+                    [NSArray arrayWithObjects:
+                            EventUnitsListUpdated, EventNetworkModeChanged, EventCurrentUnitChanged,
+                            EventUnitNameChanged, EventDeviceStatusChanged, EventSensorStateChanged,
+                            EventCurrentLocationUpdated, EventScoreChanged, nil]];
     
     DeviceCommandNameEventFilter *commandNameFilter = [[DeviceCommandNameEventFilter alloc] init];
     [commandNameFilter.supportedCommandNames addObject:COMMAND_GET_ACCOUNT];
@@ -168,7 +178,7 @@
     
     lblHealthIndex = [[UILabel alloc] initWithFrame:CGRectMake(44, 34, 45, 50)];
     lblHealthIndex.backgroundColor = [UIColor clearColor];
-    lblHealthIndex.text = @"30";
+    lblHealthIndex.text = @"--";
     lblHealthIndex.textColor = [UIColor whiteColor];
     lblHealthIndex.font = [UIFont boldSystemFontOfSize:26.f];
     lblHealthIndex.shadowColor = [UIColor colorWithHexString:@"c06161"];
@@ -209,7 +219,7 @@
     
     lblDescription1.text = NSLocalizedString(@"heath_index_desc1", @"");
     lblDescription2.text = NSLocalizedString(@"heath_index_desc2", @"");
-    lblHealthIndexGreatThan.text = @"21%";
+    lblHealthIndexGreatThan.text = @" --%";
     
     lblDescription3.text = NSLocalizedString(@"heath_index_desc3", @"");
     lblDescription1.backgroundColor = [UIColor clearColor];
@@ -230,12 +240,12 @@
     lblEvaluate.backgroundColor = [UIColor clearColor];
     [imgHeathIndex addSubview:lblEvaluate];
     
-    UILabel *lblEvaluateTime = [[UILabel alloc] initWithFrame:CGRectMake(215, 83, 100, 21)];
+    lblEvaluateTime = [[UILabel alloc] initWithFrame:CGRectMake(215, 83, 100, 21)];
     lblEvaluateTime.textColor = [UIColor colorWithHexString:@"2f8895"];
     lblEvaluateTime.font = [UIFont systemFontOfSize:14.f];
     lblEvaluateTime.shadowOffset = CGSizeMake(0.5f, 0.5f);
     lblEvaluateTime.shadowColor = [UIColor whiteColor];
-    lblEvaluateTime.text = @"14-02 15:33";
+    lblEvaluateTime.text = NSLocalizedString(@"has_not_refresh", @"");
     lblEvaluateTime.backgroundColor = [UIColor clearColor];
     [imgHeathIndex addSubview:lblEvaluateTime];
     
@@ -432,6 +442,9 @@
     } else if([event isKindOfClass:[CurrentLocationUpdatedEvent class]]) {
         CurrentLocationUpdatedEvent *evt = (CurrentLocationUpdatedEvent *)event;
         [self updateAQIPannelViewWithAqi:evt.aqiDetail];
+    } else if([event isKindOfClass:[ScoreChangedEvent class]]) {
+        ScoreChangedEvent *evt = (ScoreChangedEvent *)event;
+        [self updateUnitScoreViewWithScore:evt.score];
     }
 }
 
@@ -509,6 +522,26 @@
         }
     }
     return NO;
+}
+
+- (void)updateUnitScoreViewWithScore:(Score *)score {
+    if(score == nil) {
+        lblHealthIndex.text = @"--";
+        lblHealthIndexGreatThan.text = @" --%";
+        lblEvaluateTime.text = NSLocalizedString(@"has_not_refresh", @"");
+    } else {
+        if(score.score != -1) {
+            lblHealthIndex.text = [NSString stringWithFormat:@"%d", score.score];
+        } else {
+            lblHealthIndex.text = @"--";
+        }
+        if(score.rankings != -1) {
+            lblHealthIndexGreatThan.text = [NSString stringWithFormat:@"%d%%", score.rankings];
+        } else {
+            lblHealthIndexGreatThan.text = @" --%";
+        }
+        lblEvaluateTime.text = score.scoreDate == nil ? NSLocalizedString(@"has_not_refresh", @"") : [score scoreDateAsFormattedString];
+    }
 }
 
 - (void)updateUnitsSelectionView {

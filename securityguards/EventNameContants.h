@@ -19,5 +19,6 @@
 #define EventUnitNameChanged            @"UnitNameChanged"
 #define EventSensorStateChanged         @"SensorStateChanged"
 #define EventCurrentLocationUpdated     @"CurrentLocationUpdated"
+#define EventScoreChanged               @"ScoreChangedEvent"
 
 #endif

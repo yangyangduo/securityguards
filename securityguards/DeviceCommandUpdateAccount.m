@@ -14,12 +14,14 @@
 @synthesize pwdToUpdate;
 @synthesize screenName;
 @synthesize email;
+@synthesize smsLimit;
 
 - (id)initWithDictionary:(NSDictionary *)json {
     self = [super initWithDictionary:json];
     if(self) {
         self.screenName = [json stringForKey:@"screenName"];
         self.email = [json stringForKey:@"email"];
+        self.smsLimit = [json intForKey:@"smsLimit"];
     }
     return self;
 }
@@ -30,6 +32,7 @@
     [json setMayBlankString:self.pwdToUpdate forKey:@"newPwd"];
     [json setMayBlankString:self.screenName forKey:@"screenName"];
     [json setMayBlankString:self.email forKey:@"email"];
+    [json setInteger:self.smsLimit forKey:@"smsLimit"];
     return json;
 }
 

@@ -14,5 +14,6 @@
 @property (strong, nonatomic) NSString *screenName;
 @property (strong, nonatomic) NSString *email;
 @property (strong, nonatomic) NSString *pwdToUpdate;
+@property (assign, nonatomic) int smsLimit;
 
 @end

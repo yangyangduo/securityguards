@@ -8,6 +8,9 @@
 
 #import "Unit.h"
 #import "GlobalSettings.h"
+#import "XXDateFormatter.h"
+
+#define SCORE_REFRESH_HOUR 4
 
 @interface Unit()
 
@@ -15,6 +18,7 @@
 
 @implementation Unit
 
+@synthesize score = _score_;
 @synthesize identifier;
 @synthesize localPort;
 @synthesize localIP;
@@ -156,6 +160,67 @@
 
 - (BOOL)isOnline {
     return [@"在线" isEqualToString:self.status];
+}
+
+- (Score *)score {
+    if(_score_ == nil) {
+        _score_ = [[Score alloc] init];
+    }
+    return _score_;
+}
+
+@end
+
+@implementation Score
+
+@synthesize score;
+@synthesize rankings;
+@synthesize scoreDate;
+
+- (id)init {
+    self = [super init];
+    if(self) {
+        self.score = -1;
+        self.rankings = -1;
+    }
+    return self;
+}
+
+- (id)initWithJson:(NSDictionary *)json {
+    self = [super initWithJson:json];
+    if(self && json) {
+
+    }
+    return self;
+}
+
+- (BOOL)needRefresh {
+    if(self.scoreDate == nil) return YES;
+
+    if(abs(self.scoreDate.timeIntervalSinceNow) >= SCORE_REFRESH_HOUR * 60 * 60) {
+        return YES;
+    }
+
+    return NO;
+}
+
+- (int)nextRefreshMinutes {
+    if(self.scoreDate == nil) return 0;
+    return SCORE_REFRESH_HOUR * 60 - abs(self.scoreDate.timeIntervalSinceNow) / 60;
+}
+
+- (NSMutableDictionary *)toJson {
+    NSMutableDictionary *json = [super toJson];
+
+
+
+    return json;
+}
+
+
+- (NSString *)scoreDateAsFormattedString {
+    if(self.scoreDate == nil) return [XXStringUtils emptyString];
+    return [XXDateFormatter dateToString:self.scoreDate format:@"MM-dd HH:mm"];
 }
 
 @end

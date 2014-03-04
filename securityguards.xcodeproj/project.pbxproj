@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		2D066F21FCAD4EC3BFEF59E2 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D9356B8D7BD48649820A160 /* libPods.a */; };
+		6DD563B035DE62F63721DD1A /* DeviceCommandGetScoreHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DD5671AEC878FE4F0419048 /* DeviceCommandGetScoreHandler.m */; };
+		6DD5696263FEA2BF37F9D752 /* icon_sms_orange@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DD56ED58C1A9427B318903C /* icon_sms_orange@2x.png */; };
+		6DD56A254A82F97DC51271D6 /* ScoreChangedEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DD5676544D8661405018319 /* ScoreChangedEvent.m */; };
+		6DD56ADA3D9E4D2EAD2D1AFF /* DeviceCommandGetScore.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DD56F5866BA59B2DC8E2C91 /* DeviceCommandGetScore.m */; };
+		6DD56F6E866EC14A3544F435 /* icon_binding_account@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DD56C97E488F1D8C4756A25 /* icon_binding_account@2x.png */; };
 		6F0727B618AB18A5009FC8C4 /* MerchandiseBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0727B518AB18A5009FC8C4 /* MerchandiseBar.m */; };
 		6F0727B918AB4A07009FC8C4 /* MerchandiseDetailSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F0727B818AB4A07009FC8C4 /* MerchandiseDetailSelectView.m */; };
 		6F0CD5CE186DB93000B5A3EA /* icon_firegas_blue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F0CD5BF186DB93000B5A3EA /* icon_firegas_blue@2x.png */; };
@@ -378,6 +383,14 @@
 
 /* Begin PBXFileReference section */
 		159C630CF2824E4CBB15F5E4 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		6DD56002EAD84869EB620FAA /* DeviceCommandGetScore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceCommandGetScore.h; sourceTree = "<group>"; };
+		6DD5671AEC878FE4F0419048 /* DeviceCommandGetScoreHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceCommandGetScoreHandler.m; sourceTree = "<group>"; };
+		6DD5676544D8661405018319 /* ScoreChangedEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreChangedEvent.m; sourceTree = "<group>"; };
+		6DD569626951B27AF6312831 /* DeviceCommandGetScoreHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceCommandGetScoreHandler.h; sourceTree = "<group>"; };
+		6DD56B81BEB846B63EB1686E /* ScoreChangedEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreChangedEvent.h; sourceTree = "<group>"; };
+		6DD56C97E488F1D8C4756A25 /* icon_binding_account@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_binding_account@2x.png"; sourceTree = "<group>"; };
+		6DD56ED58C1A9427B318903C /* icon_sms_orange@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_sms_orange@2x.png"; sourceTree = "<group>"; };
+		6DD56F5866BA59B2DC8E2C91 /* DeviceCommandGetScore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceCommandGetScore.m; sourceTree = "<group>"; };
 		6F0727B418AB18A5009FC8C4 /* MerchandiseBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MerchandiseBar.h; sourceTree = "<group>"; };
 		6F0727B518AB18A5009FC8C4 /* MerchandiseBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MerchandiseBar.m; sourceTree = "<group>"; };
 		6F0727B718AB4A07009FC8C4 /* MerchandiseDetailSelectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MerchandiseDetailSelectView.h; sourceTree = "<group>"; };
@@ -1570,6 +1583,8 @@
 				6F60051D186BE9890085B4BD /* DeviceCommandVoiceControl.m */,
 				6F41D2BF1890F9CF0063E1BB /* DeviceCommandReceivedSensors.h */,
 				6F41D2C01890F9CF0063E1BB /* DeviceCommandReceivedSensors.m */,
+				6DD56F5866BA59B2DC8E2C91 /* DeviceCommandGetScore.m */,
+				6DD56002EAD84869EB620FAA /* DeviceCommandGetScore.h */,
 			);
 			name = commands;
 			sourceTree = "<group>";
@@ -1591,6 +1606,8 @@
 				6F860F2418753D9C00792DBB /* DeviceCommandUpdateUnitNameHandler.m */,
 				6F41D2C21891020F0063E1BB /* DeviceCommandGetSensorsHandler.h */,
 				6F41D2C31891020F0063E1BB /* DeviceCommandGetSensorsHandler.m */,
+				6DD5671AEC878FE4F0419048 /* DeviceCommandGetScoreHandler.m */,
+				6DD569626951B27AF6312831 /* DeviceCommandGetScoreHandler.h */,
 			);
 			name = command_handlers;
 			sourceTree = "<group>";
@@ -1681,6 +1698,8 @@
 				6FDA9AE5188FF4D5007D63DE /* SensorStateChangedEvent.m */,
 				6F81EFDC18B6DCB3008AA51D /* CurrentLocationUpdatedEvent.h */,
 				6F81EFDD18B6DCB3008AA51D /* CurrentLocationUpdatedEvent.m */,
+				6DD5676544D8661405018319 /* ScoreChangedEvent.m */,
+				6DD56B81BEB846B63EB1686E /* ScoreChangedEvent.h */,
 			);
 			name = events;
 			sourceTree = "<group>";
@@ -2219,6 +2238,8 @@
 				F2F3E1C0187A84BA006A9447 /* icon_me_owner@2x.png */,
 				F2F3E1C1187A84BA006A9447 /* icon_me@2x.png */,
 				F2F3E1BE187A842F006A9447 /* transparent@2x.png */,
+				6DD56C97E488F1D8C4756A25 /* icon_binding_account@2x.png */,
+				6DD56ED58C1A9427B318903C /* icon_sms_orange@2x.png */,
 			);
 			name = user_management;
 			sourceTree = "<group>";
@@ -2446,6 +2467,8 @@
 				F24E552C18702180000DB402 /* btn_gray@2x.png in Resources */,
 				F279E0051883C2B100E0547E /* icon_gray_unbind@2x.png in Resources */,
 				F209B486188E44F10044C8C6 /* image.png in Resources */,
+				6DD56F6E866EC14A3544F435 /* icon_binding_account@2x.png in Resources */,
+				6DD5696263FEA2BF37F9D752 /* icon_sms_orange@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2693,6 +2716,9 @@
 				6F60058E186BF8EC0085B4BD /* CameraSocket.m in Sources */,
 				6FB624FB18A60D1000B17010 /* TimingTasksCell.m in Sources */,
 				F2F3E1B3187A54D5006A9447 /* AccountManageCellData.m in Sources */,
+				6DD563B035DE62F63721DD1A /* DeviceCommandGetScoreHandler.m in Sources */,
+				6DD56ADA3D9E4D2EAD2D1AFF /* DeviceCommandGetScore.m in Sources */,
+				6DD56A254A82F97DC51271D6 /* ScoreChangedEvent.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

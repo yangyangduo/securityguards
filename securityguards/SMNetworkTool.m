@@ -44,6 +44,9 @@
 }
 
 + (NSString *)ssidForCurrentWifi {
+#if TARGET_IPHONE_SIMULATOR
+    return [XXStringUtils emptyString];
+#elif TARGET_OS_IPHONE
     @try {
         CFArrayRef myArray = CNCopySupportedInterfaces();
         CFDictionaryRef myDict = CNCopyCurrentNetworkInfo(CFArrayGetValueAtIndex(myArray, 0));
@@ -55,8 +58,8 @@
         return [XXStringUtils emptyString];
     }
     @finally {
-        
     }
+#endif
 }
 
 @end

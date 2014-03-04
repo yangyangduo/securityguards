@@ -70,7 +70,12 @@
         DeviceCommandCheckVersion *command = [[DeviceCommandCheckVersion alloc] init];
         command.commandName = COMMAND_CHECK_VERSION;
         return command;
-    } 
+    } else if(type == CommandTypeGetScore) {
+        DeviceCommand *command = [[DeviceCommand alloc] init];
+        command.commandName = COMMAND_GET_SCORE;
+        command.commandNetworkMode = CommandNetworkModeExternalViaRestful;
+        return command;
+    }
     
     return nil;
 }

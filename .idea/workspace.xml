@@ -2,16 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e93c453b-47bc-4359-86d1-be37d44eae4c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/scopes/scope_settings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/securityguards.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/xcode.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/CameraInfoModifyViewController.m" afterPath="$PROJECT_DIR$/securityguards/CameraInfoModifyViewController.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/MerchandiseDetailSelectView.m" afterPath="$PROJECT_DIR$/securityguards/MerchandiseDetailSelectView.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/project.pbxproj" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/AccountSettingsViewController.m" afterPath="$PROJECT_DIR$/securityguards/AccountSettingsViewController.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/CommandFactory.h" afterPath="$PROJECT_DIR$/securityguards/CommandFactory.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/CommandFactory.m" afterPath="$PROJECT_DIR$/securityguards/CommandFactory.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/CoreService.m" afterPath="$PROJECT_DIR$/securityguards/CoreService.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/DeviceCommandUpdateAccount.h" afterPath="$PROJECT_DIR$/securityguards/DeviceCommandUpdateAccount.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/DeviceCommandUpdateAccount.m" afterPath="$PROJECT_DIR$/securityguards/DeviceCommandUpdateAccount.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/EventNameContants.h" afterPath="$PROJECT_DIR$/securityguards/EventNameContants.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/en.lproj/Localizable.strings" afterPath="$PROJECT_DIR$/securityguards/en.lproj/Localizable.strings" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/zh-Hans.lproj/Localizable.strings" afterPath="$PROJECT_DIR$/securityguards/zh-Hans.lproj/Localizable.strings" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/PortalViewController.m" afterPath="$PROJECT_DIR$/securityguards/PortalViewController.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/RestfulCommandService.m" afterPath="$PROJECT_DIR$/securityguards/RestfulCommandService.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/SMNetworkTool.m" afterPath="$PROJECT_DIR$/securityguards/SMNetworkTool.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/Unit.h" afterPath="$PROJECT_DIR$/securityguards/Unit.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/Unit.m" afterPath="$PROJECT_DIR$/securityguards/Unit.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/UserManagementViewController.m" afterPath="$PROJECT_DIR$/securityguards/UserManagementViewController.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/securityguards.xcodeproj/project.pbxproj" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="securityguards.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -28,35 +35,92 @@
   <component name="DaemonCodeAnalyzer">
     <disable_hints />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="iphonesimulator_iPhone_Retina__3_5_inch__7.0" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="iphonesimulator_iPhone_Retina__4_inch__7.0" />
   <component name="FavoritesManager">
     <favorites_list name="securityguards" />
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="CameraInfoModifyViewController.m" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/securityguards/CameraInfoModifyViewController.m">
+      <file leaf-file-name="CoreService.m" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/securityguards/CoreService.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="263" column="46" selection-start="9936" selection-end="9936" vertical-scroll-proportion="0.38538682" vertical-offset="3150" max-vertical-offset="3848">
+            <state line="520" column="40" selection-start="17998" selection-end="17998" vertical-scroll-proportion="0.6051402" vertical-offset="6410" max-vertical-offset="9217">
+              <folding>
+                <element signature="e#397#437#0" expanded="true" />
+                <element signature="e#1758#1781#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Unit.m" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/securityguards/Unit.m">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="209" column="1" selection-start="5321" selection-end="5321" vertical-scroll-proportion="0.0" vertical-offset="2250" max-vertical-offset="2808">
+              <folding>
+                <element signature="e#124#140#0" expanded="true" />
+                <element signature="e#4648#4666#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ScoreChangedEvent.m" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/securityguards/ScoreChangedEvent.m">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="14" column="24" selection-start="221" selection-end="221" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="351">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Shared.m" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/securityguards/Shared.m">
+      <file leaf-file-name="Unit.h" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/securityguards/Unit.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="416">
+            <state line="13" column="13" selection-start="227" selection-end="227" vertical-scroll-proportion="0.0" vertical-offset="66" max-vertical-offset="819">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BitUtils.m" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/securityguards/BitUtils.m">
+      <file leaf-file-name="Zone.h" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/securityguards/Zone.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="19" selection-start="169" selection-end="169" vertical-scroll-proportion="0.0" vertical-offset="130" max-vertical-offset="442">
+            <state line="12" column="10" selection-start="207" selection-end="207" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="390">
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PortalViewController.m" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/securityguards/PortalViewController.m">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="24" column="21" selection-start="588" selection-end="588" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="7306">
+              <folding>
+                <element signature="e#589#629#0" expanded="true" />
+                <element signature="e#5537#5579#0" expanded="true" />
+                <element signature="e#8790#8834#0" expanded="true" />
+                <element signature="e#8863#8907#0" expanded="true" />
+                <element signature="e#8985#9029#0" expanded="true" />
+                <element signature="e#9881#9921#1" expanded="true" />
+                <element signature="e#10386#10428#0" expanded="true" />
+                <element signature="e#16179#16222#0" expanded="true" />
+                <element signature="e#16335#16372#0" expanded="true" />
+                <element signature="e#19336#19371#0" expanded="true" />
+                <element signature="e#22241#22283#0" expanded="true" />
+                <element signature="e#22746#22788#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DeviceCommandGetScoreHandler.m" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/securityguards/DeviceCommandGetScoreHandler.m">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="16" column="62" selection-start="555" selection-end="555" vertical-scroll-proportion="0.0" vertical-offset="53" max-vertical-offset="520">
+              <folding>
+                <element signature="e#93#133#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -79,15 +143,64 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/securityguards/CameraInfoModifyViewController.m" />
+        <option value="$PROJECT_DIR$/securityguards/UserManagementViewController.m" />
+        <option value="$PROJECT_DIR$/securityguards/DeviceCommandGetScoreHandler.h" />
+        <option value="$PROJECT_DIR$/securityguards/CommandFactory.h" />
+        <option value="$PROJECT_DIR$/securityguards/DeviceCommandGetScore.h" />
+        <option value="$PROJECT_DIR$/securityguards/RestfulCommandService.m" />
+        <option value="$PROJECT_DIR$/securityguards/DeviceCommandGetScore.m" />
+        <option value="$PROJECT_DIR$/securityguards/EventNameContants.h" />
+        <option value="$PROJECT_DIR$/securityguards/ScoreChangedEvent.h" />
+        <option value="$PROJECT_DIR$/securityguards/ScoreChangedEvent.m" />
+        <option value="$PROJECT_DIR$/securityguards/zh-Hans.lproj/Localizable.strings" />
+        <option value="$PROJECT_DIR$/securityguards/en.lproj/Localizable.strings" />
+        <option value="$PROJECT_DIR$/securityguards/DeviceCommandGetScoreHandler.m" />
+        <option value="$PROJECT_DIR$/securityguards/PortalViewController.m" />
+        <option value="$PROJECT_DIR$/securityguards/Unit.h" />
+        <option value="$PROJECT_DIR$/securityguards/CoreService.m" />
+        <option value="$PROJECT_DIR$/securityguards/Unit.m" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="40" />
+    <option name="x" value="-2" />
     <option name="y" value="22" />
     <option name="width" value="1400" />
-    <option name="height" value="808" />
+    <option name="height" value="806" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+          <State>
+            <id>Code style issuesJavaScript</id>
+          </State>
+          <State>
+            <id>Data flow issuesJavaScript</id>
+          </State>
+          <State>
+            <id>GeneralJavaScript</id>
+          </State>
+          <State>
+            <id>JavaScript</id>
+          </State>
+          <State>
+            <id>Probable bugsJavaScript</id>
+          </State>
+          <State>
+            <id>XPath</id>
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>C/C++</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -96,7 +209,7 @@
     <OptionsSetting value="true" id="Update" />
     <OptionsSetting value="true" id="Status" />
     <OptionsSetting value="true" id="Edit" />
-    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="1" id="Add" />
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
   <component name="ProjectReloadState">
@@ -156,7 +269,171 @@
               <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="controllers" />
+              <option name="myItemId" value="Supporting Files" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="securityguards" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="securityguards" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Supporting Files" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Localizable.strings" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="securityguards" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="securityguards" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="images" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="securityguards" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="securityguards" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="images" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="user_management" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="securityguards" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="securityguards" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="securityguards" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="securityguards" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="events" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="securityguards" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="securityguards" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="commands" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="securityguards" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="securityguards" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="command_handlers" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="securityguards" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="securityguards" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="commons" />
               <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -171,12 +448,25 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="options.splitter.main.proportions" value="0.3" />
+    <property name="options.lastSelected" value="preferences.keymap" />
     <property name="recentsLimit" value="5" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../ideavim" />
     <property name="FullScreen" value="false" />
+    <property name="OBJC.PRESERVED_TARGET_SELECTION" value="securityguards" />
+    <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
   </component>
   <component name="RunManager" selected="Application.securityguards">
     <configuration default="true" type="AppleRunConfiguration" factoryName="Application" PROJECT_NAME="securityguards" TARGET_NAME="securityguards" CONFIG_NAME="Debug" PASS_PARENT_ENVS="FALSE" RUN_TARGET_PROJECT_NAME="securityguards" RUN_TARGET_NAME="securityguards" MAKE_ACTIVE="TRUE" WAIT_FOR="FALSE">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="OCUnitRunConfiguration" factoryName="XCTest/Kiwi" PROJECT_NAME="securityguards" TARGET_NAME="securityguardsTests" CONFIG_NAME="Debug" PASS_PARENT_ENVS="FALSE" TEST_MODE="SUITE_TEST">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="OCGoogleTestRunConfigurationType" factoryName="Google Test" PROJECT_NAME="securityguards" TARGET_NAME="securityguards" CONFIG_NAME="Debug" PASS_PARENT_ENVS="FALSE" TEST_MODE="SUITE_TEST">
       <envs />
       <method />
     </configuration>
@@ -242,23 +532,23 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="40" y="22" width="1400" height="808" extended-state="0" />
-    <editor active="false" />
+    <frame x="-2" y="22" width="1400" height="806" extended-state="0" />
+    <editor active="true" />
     <layout>
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32971507" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.67117727" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20142858" sideWeight="0.67164177" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32882273" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3283582" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -276,71 +566,140 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/securityguards/CameraInfoModifyViewController.m">
+    <entry file="file://$PROJECT_DIR$/securityguards/NSMutableDictionary+Extension.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="263" column="46" selection-start="9936" selection-end="9936" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3848">
+        <state line="46" column="8" selection-start="1364" selection-end="1364" vertical-scroll-proportion="0.41541755" vertical-offset="404" max-vertical-offset="871">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/securityguards/Shared.m">
+    <entry file="file://$PROJECT_DIR$/securityguards/NSDictionary+Extension.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="416">
+        <state line="35" column="12" selection-start="715" selection-end="715" vertical-scroll-proportion="0.5824411" vertical-offset="170" max-vertical-offset="1534">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/securityguards/BitUtils.m">
+    <entry file="file://$PROJECT_DIR$/securityguards/RestfulCommandService.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="19" selection-start="169" selection-end="169" vertical-scroll-proportion="0.0" vertical-offset="130" max-vertical-offset="442">
+        <state line="19" column="56" selection-start="443" selection-end="443" vertical-scroll-proportion="-1.4052863" vertical-offset="885" max-vertical-offset="2977">
+          <folding>
+            <element signature="e#140#173#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/securityguards/NotificationsFileUpdatedEvent.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="0" selection-start="240" selection-end="240" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="351">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/securityguards/BitUtils.m">
+    <entry file="file://$PROJECT_DIR$/securityguards/EventNameContants.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="19" selection-start="169" selection-end="169" vertical-scroll-proportion="0.0" vertical-offset="130" max-vertical-offset="442">
+        <state line="23" column="5" selection-start="891" selection-end="891" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="390">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/securityguards/Shared.m">
+    <entry file="file://$PROJECT_DIR$/securityguards/NotificationsFileUpdatedEvent.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="416">
+        <state line="9" column="25" selection-start="195" selection-end="195" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="260">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/securityguards/CameraInfoModifyViewController.m">
+    <entry file="file://$PROJECT_DIR$/securityguards/ScoreChangedEvent.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="288" column="0" selection-start="11170" selection-end="11170" vertical-scroll-proportion="0.0" vertical-offset="3380" max-vertical-offset="3848">
+        <state line="10" column="17" selection-start="212" selection-end="212" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="260">
+          <folding>
+            <element signature="e#93#126#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/securityguards/en.lproj/Localizable.strings">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="38" column="34" selection-start="1502" selection-end="1502" vertical-scroll-proportion="0.43046358" vertical-offset="299" max-vertical-offset="5044">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/securityguards/BitUtils.m">
+    <entry file="file://$PROJECT_DIR$/securityguards/zh-Hans.lproj/Localizable.strings">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="19" selection-start="169" selection-end="169" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="442">
+        <state line="38" column="46" selection-start="0" selection-end="16617" vertical-scroll-proportion="0.5739514" vertical-offset="234" max-vertical-offset="5044">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/securityguards/Shared.m">
+    <entry file="file://$PROJECT_DIR$/securityguards/ScoreChangedEvent.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="711">
+        <state line="14" column="24" selection-start="221" selection-end="221" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="351">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../ideavim/ideavim.iml">
+    <entry file="file://$PROJECT_DIR$/securityguards/DeviceCommandGetScoreHandler.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="468" />
+        <state line="16" column="62" selection-start="555" selection-end="555" vertical-scroll-proportion="0.0" vertical-offset="53" max-vertical-offset="520">
+          <folding>
+            <element signature="e#93#133#0" expanded="true" />
+          </folding>
+        </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/securityguards/CameraInfoModifyViewController.m">
+    <entry file="file://$PROJECT_DIR$/securityguards/PortalViewController.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="263" column="46" selection-start="9936" selection-end="9936" vertical-scroll-proportion="0.38538682" vertical-offset="3150" max-vertical-offset="3848">
+        <state line="24" column="21" selection-start="588" selection-end="588" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="7306">
+          <folding>
+            <element signature="e#589#629#0" expanded="true" />
+            <element signature="e#5537#5579#0" expanded="true" />
+            <element signature="e#8790#8834#0" expanded="true" />
+            <element signature="e#8863#8907#0" expanded="true" />
+            <element signature="e#8985#9029#0" expanded="true" />
+            <element signature="e#9881#9921#1" expanded="true" />
+            <element signature="e#10386#10428#0" expanded="true" />
+            <element signature="e#16179#16222#0" expanded="true" />
+            <element signature="e#16335#16372#0" expanded="true" />
+            <element signature="e#19336#19371#0" expanded="true" />
+            <element signature="e#22241#22283#0" expanded="true" />
+            <element signature="e#22746#22788#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/securityguards/Zone.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="10" selection-start="207" selection-end="207" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="390">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/securityguards/Unit.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="13" selection-start="227" selection-end="227" vertical-scroll-proportion="0.0" vertical-offset="66" max-vertical-offset="780">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/securityguards/Unit.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="209" column="1" selection-start="5321" selection-end="5321" vertical-scroll-proportion="0.0" vertical-offset="2250" max-vertical-offset="2808">
+          <folding>
+            <element signature="e#124#140#0" expanded="true" />
+            <element signature="e#4648#4666#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/securityguards/CoreService.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="520" column="40" selection-start="17998" selection-end="17998" vertical-scroll-proportion="0.6051402" vertical-offset="6410" max-vertical-offset="9217">
+          <folding>
+            <element signature="e#397#437#0" expanded="true" />
+            <element signature="e#1758#1781#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

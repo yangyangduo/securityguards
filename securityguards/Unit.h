@@ -11,6 +11,20 @@
 #import "Entity.h"
 #import "Sensor.h"
 
+@interface Score : Entity
+
+@property (nonatomic, assign) int score;
+@property (nonatomic, assign) int rankings;
+@property (nonatomic, strong) NSDate *scoreDate;
+
+- (BOOL)needRefresh;
+
+- (NSString *)scoreDateAsFormattedString;
+- (int)nextRefreshMinutes;
+
+@end
+
+
 @interface Unit : Entity
 
 @property (strong, nonatomic) NSString *identifier;
@@ -21,6 +35,8 @@
 @property (strong, nonatomic) NSDate *updateTime;
 @property (strong, nonatomic) NSNumber *hashCode;
 @property (strong, nonatomic) NSMutableArray *zones;
+
+@property (strong, nonatomic) Score *score;
 
 @property (strong, nonatomic) NSMutableArray *timingTasksPlan;
 @property (strong, nonatomic) NSDate *timingTasksPlanLastRefreshDate;
@@ -40,3 +56,5 @@
 - (Zone *)findSlaveZone;
 
 @end
+
+

@@ -22,6 +22,7 @@
 #import "DeviceCommandUpdateDevicesHandler.h"
 #import "DeviceCommandUpdateUnitNameHandler.h"
 #import "DeviceCommandGetSensorsHandler.h"
+#import "DeviceCommandGetScoreHandler.h"
 
 #import "AlertView.h"
 #import "AQIManager.h"
@@ -319,6 +320,8 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
         handler = [[DeviceCommandGetNotificationsHandler alloc] init];
     } else if([COMMAND_CHANGE_UNIT_NAME isEqualToString:command.commandName]) {
         handler = [[DeviceCommandUpdateUnitNameHandler alloc] init];
+    } else if([COMMAND_GET_SCORE isEqualToString:command.commandName]) {
+        handler = [[DeviceCommandGetScoreHandler alloc] init];
     }
     
     if(handler != nil) {
@@ -352,6 +355,8 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
             DeviceCommand *getSensorsCommand = [CommandFactory commandForType:CommandTypeGetSensors];
             getSensorsCommand.masterDeviceCode = unitChangedEvent.unitIdentifier;
             [self executeDeviceCommand:getSensorsCommand];
+
+            [self mayRefreshScoreForUnit:[[UnitManager defaultManager] findUnitByIdentifier:unitChangedEvent.unitIdentifier]];
         }
     }
 }
@@ -485,6 +490,8 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
                 [self executeDeviceCommand:command];
             }
         }
+
+        [self mayRefreshScoreForUnit:unit];
     }
     
     // update current location or aqi
@@ -653,6 +660,22 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
         [[XXEventSubscriptionPublisher defaultPublisher] publishWithEvent:
             [[NetworkModeChangedEvent alloc] initWithNetMode:self.netMode]];
     });
+}
+
+- (void)mayRefreshScoreForUnit:(Unit *)unit {
+    if(unit == nil) return;
+    if([unit.score needRefresh]) {
+#ifdef DEBUG
+        NSLog(@"[Core Service] Now start refresh core for %@", unit.identifier);
+#endif
+        DeviceCommand *getScoreCommand = [CommandFactory commandForType:CommandTypeGetScore];
+        getScoreCommand.masterDeviceCode = unit.identifier;
+        [self executeDeviceCommand:getScoreCommand];
+    } else {
+#ifdef DEBUG
+        NSLog(@"[Core Service] Don't need to refresh Core, after %d minute", unit.score.nextRefreshMinutes);
+#endif
+    }
 }
 
 - (void)notifyTcpConnectionOpened {

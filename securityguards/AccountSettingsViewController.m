@@ -23,6 +23,7 @@
 @property (nonatomic, strong) NSString *mail;
 @property (nonatomic, strong) NSString *password;
 @property (nonatomic, strong) NSString *oldPassword;
+@property (nonatomic, assign) int smsLimit;
 
 @end
 
@@ -32,6 +33,7 @@
 @synthesize mail;
 @synthesize oldPassword;
 @synthesize password;
+@synthesize smsLimit;
 
 @end
 
@@ -42,11 +44,13 @@
 
 @implementation AccountSettingsViewController {
     Profile *profile;
+
     BOOL profileChanged;
     BOOL once;
-    
+
     UIButton *btnSubmit;
     UITableView *tblAccountSettings;
+    UILabel *lblSmsCount;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -82,8 +86,45 @@
     
     self.topbarView.title = NSLocalizedString(@"profile_title", @"");
     self.view.backgroundColor = [UIColor appGray];
-    
-    tblAccountSettings = [[UITableView alloc] initWithFrame:CGRectMake(0, self.topbarView.bounds.size.height, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - self.topbarView.bounds.size.height) style:UITableViewStyleGrouped];
+
+    UIView *smsDetailView = [[UIView alloc] initWithFrame:CGRectMake(0, self.topbarView.bounds.size.height, self.view.bounds.size.width, 81)];
+    smsDetailView.backgroundColor = [UIColor whiteColor];
+
+    UIImageView *imgSms = [[UIImageView alloc] initWithFrame:CGRectMake(7, 10, 144 / 2, 122 / 2)];
+    imgSms.image = [UIImage imageNamed:@"icon_sms_orange"];
+    [smsDetailView addSubview:imgSms];
+
+    UILabel *lblSmsCountTitle = [[UILabel alloc] initWithFrame:CGRectMake(85, 10, 80, 21)];
+    lblSmsCountTitle.text = [NSString stringWithFormat:@"%@:", NSLocalizedString(@"sms_remain", @"")];
+    lblSmsCountTitle.font = [UIFont systemFontOfSize:14.f];
+    lblSmsCountTitle.backgroundColor = [UIColor clearColor];
+    [smsDetailView addSubview:lblSmsCountTitle];
+
+    lblSmsCount = [[UILabel alloc] initWithFrame:CGRectMake(164, 2, 45, 30)];
+    lblSmsCount.text = @"0";
+    lblSmsCount.textAlignment = NSTextAlignmentCenter;
+    lblSmsCount.textColor = [UIColor orangeColor];
+    lblSmsCount.backgroundColor = [UIColor clearColor];
+    lblSmsCount.font = [UIFont boldSystemFontOfSize:24.f];
+    [smsDetailView addSubview:lblSmsCount];
+
+    UILabel *lblSmsUnit = [[UILabel alloc] initWithFrame:CGRectMake(212, 10, 20, 21)];
+    lblSmsUnit.text = NSLocalizedString(@"entry", @"");
+    lblSmsUnit.font = [UIFont systemFontOfSize:14.f];
+    lblSmsUnit.backgroundColor = [UIColor clearColor];
+    [smsDetailView addSubview:lblSmsUnit];
+
+    UILabel *lblSmsTips = [[UILabel alloc] initWithFrame:CGRectMake(85, 35, 225, 40)];
+    lblSmsTips.numberOfLines = 2;
+    lblSmsTips.font = [UIFont systemFontOfSize:11.f];
+    lblSmsTips.backgroundColor = [UIColor clearColor];
+    lblSmsTips.textColor = [UIColor lightGrayColor];
+    lblSmsTips.text = NSLocalizedString(@"sms_tips", @"");
+    [smsDetailView addSubview:lblSmsTips];
+
+    [self.view addSubview:smsDetailView];
+
+    tblAccountSettings = [[UITableView alloc] initWithFrame:CGRectMake(0, smsDetailView.frame.origin.y + smsDetailView.bounds.size.height, self.view.bounds.size.width, [UIScreen mainScreen].bounds.size.height - self.topbarView.bounds.size.height - smsDetailView.bounds.size.height) style:UITableViewStyleGrouped];
     tblAccountSettings.delegate = self;
     tblAccountSettings.dataSource = self;
     tblAccountSettings.backgroundView = nil;
@@ -122,7 +163,8 @@
             DeviceCommandUpdateAccount *cmd = (DeviceCommandUpdateAccount *)evt.command;
             profile.nickName = cmd.screenName;
             profile.mail = cmd.email;
-            [tblAccountSettings reloadData];
+            profile.smsLimit = cmd.smsLimit;
+            [self refresh];
             [self notifyLeftNavViewScreenNameChanged:cmd.screenName];
         } else {
             [self updateAccountOnComplete:evt.command];
@@ -137,6 +179,11 @@
 - (void)notifyLeftNavViewScreenNameChanged:(NSString *)screenName {
     LeftNavView *leftView = (LeftNavView *)[Shared shared].app.rootViewController.leftView;
     [leftView setScreenName:screenName];
+}
+
+- (void)refresh {
+    lblSmsCount.text = [NSString stringWithFormat:@"%d", profile.smsLimit];
+    [tblAccountSettings reloadData];
 }
 
 #pragma mark -

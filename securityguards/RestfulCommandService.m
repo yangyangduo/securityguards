@@ -67,6 +67,11 @@
             cmd.commandNetworkMode = CommandNetworkModeInternal;
             [self publishCommand:cmd];
         }
+    } else if([COMMAND_GET_SCORE isEqualToString:command.commandName]) {
+        NSString *url = [NSString stringWithFormat:@"%@/score/%@%@?deviceCode=%@&appKey=%@&security=%@"
+                , [GlobalSettings defaultSettings].restAddress, command.masterDeviceCode, APP_KEY
+                , [GlobalSettings defaultSettings].deviceCode, APP_KEY, [GlobalSettings defaultSettings].secretKey];
+        [self getScoreWithUnitIdentifier:command.masterDeviceCode withUrl:url];
     }
 }
 
@@ -75,11 +80,42 @@
 }
 
 #pragma mark -
-#pragma mark 
+#pragma mark Publish Command
 
 - (void)publishCommand:(DeviceCommand *)command {
     DeviceCommandEvent *event = [[DeviceCommandEvent alloc] initWithDeviceCommand:command];
     [[XXEventSubscriptionPublisher defaultPublisher] publishWithEvent:event];
+}
+
+#pragma mark -
+#pragma mark Get Score
+
+- (void)getScoreWithUnitIdentifier:(NSString *)unitIdentifier withUrl:(NSString *)url {
+    [self.client getForUrl:url acceptType:@"text/html" success:@selector(getScoreSuccess:) error:@selector(getScoreFailed:) for:self callback:unitIdentifier];
+}
+
+- (void)getScoreSuccess:(RestResponse *)resp {
+    if(resp.statusCode == 200) {
+        NSDictionary *json = [JsonUtils createDictionaryFromJson:resp.body];
+        if(json != nil) {
+            int result = [json intForKey:@"i"];
+            if(result == 1) {
+                NSDictionary *_json_result_ = [json dictionaryForKey:@"m"];
+                DeviceCommandGetScore *getScoreCommand = [[DeviceCommandGetScore alloc] initWithDictionary:_json_result_];
+                getScoreCommand.commandNetworkMode = CommandNetworkModeExternalViaRestful;
+                getScoreCommand.masterDeviceCode = resp.callbackObject;
+                [self publishCommand:getScoreCommand];
+                return;
+            }
+        }
+    }
+    [self getScoreFailed:resp];
+}
+
+- (void)getScoreFailed:(RestResponse *)resp {
+#ifdef DEBUG
+    NSLog(@"[RESTFUL COMMAND SERVICE] Get score failed, status code is %d", resp.statusCode);
+#endif
 }
 
 #pragma mark -
@@ -104,8 +140,7 @@
                 command.masterDeviceCode = cmd.masterDeviceCode;
                 command.commandNetworkMode = cmd.commandNetworkMode;
                 command.commandName = cmd.commandName;
-                
-                [[XXEventSubscriptionPublisher defaultPublisher] publishWithEvent:[[DeviceCommandEvent alloc] initWithDeviceCommand:command]];
+                [self publishCommand:command];
                 return;
             }
         }
@@ -152,10 +187,10 @@
 }
 
 - (void)getUnitByUrl:(NSString *)url {
-    [self.client getForUrl:url acceptType:@"application/json" success:@selector(getUnitSucess:) error:@selector(getUnitFailed:) for:self callback:nil];
+    [self.client getForUrl:url acceptType:@"application/json" success:@selector(getUnitSuccess:) error:@selector(getUnitFailed:) for:self callback:nil];
 }
 
-- (void)getUnitSucess:(RestResponse *)resp {
+- (void)getUnitSuccess:(RestResponse *)resp {
     if(resp.statusCode == 200) {
         NSDictionary *json = [JsonUtils createDictionaryFromJson:resp.body];
         if(json != nil) {

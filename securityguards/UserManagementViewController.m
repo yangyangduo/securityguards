@@ -18,7 +18,7 @@
 #import "AccountManageCell.h"
 
 #define BTN_WIDTH                   100
-#define BTN_HEIGHT                  CELL_HEIGHT-5
+#define BTN_HEIGHT                  CELL_HEIGHT - 5
 #define REFRESH_AGAIN_DURATION      2
 #define ACCESSORY_TAG               1998
 
@@ -39,6 +39,7 @@
     UIButton *btnPhone;
     UIButton *btnUnbinding;
     UISegmentedControl *scPanel;
+    UILabel *lblUserBindingCount;
     
     BOOL buttonPanelViewIsVisable;
     BOOL currentIsOwner;
@@ -79,9 +80,46 @@
     
     self.topbarView.title = NSLocalizedString(@"user_mgr_drawer_title", @"");
     self.view.backgroundColor = [UIColor appGray];
-    
+
+    UIView *bindingDetailView = [[UIView alloc] initWithFrame:CGRectMake(0, self.topbarView.bounds.size.height, self.view.bounds.size.width, 81)];
+    bindingDetailView.backgroundColor = [UIColor whiteColor];
+
+    UIImageView *imgUserBinding = [[UIImageView alloc] initWithFrame:CGRectMake(7, 10, 150 / 2, 122 / 2)];
+    imgUserBinding.image = [UIImage imageNamed:@"icon_binding_account"];
+    [bindingDetailView addSubview:imgUserBinding];
+
+    UILabel *lblUserBindingTitle = [[UILabel alloc] initWithFrame:CGRectMake(85, 10, 80, 21)];
+    lblUserBindingTitle.text = [NSString stringWithFormat:@"%@:", NSLocalizedString(@"account_binding_count", @"")];
+    lblUserBindingTitle.font = [UIFont systemFontOfSize:14.f];
+    lblUserBindingTitle.backgroundColor = [UIColor clearColor];
+    [bindingDetailView addSubview:lblUserBindingTitle];
+
+    lblUserBindingCount = [[UILabel alloc] initWithFrame:CGRectMake(166, 2, 70, 30)];
+    lblUserBindingCount.text = @"0 / 0";
+    lblUserBindingCount.textAlignment = NSTextAlignmentCenter;
+    lblUserBindingCount.textColor = [UIColor orangeColor];
+    lblUserBindingCount.backgroundColor = [UIColor clearColor];
+    lblUserBindingCount.font = [UIFont boldSystemFontOfSize:24.f];
+    [bindingDetailView addSubview:lblUserBindingCount];
+
+    UILabel *lblUnit = [[UILabel alloc] initWithFrame:CGRectMake(239, 10, 20, 21)];
+    lblUnit.text = NSLocalizedString(@"user_unit", @"");
+    lblUnit.font = [UIFont systemFontOfSize:14.f];
+    lblUnit.backgroundColor = [UIColor clearColor];
+    [bindingDetailView addSubview:lblUnit];
+
+    UILabel *lblSmsTips = [[UILabel alloc] initWithFrame:CGRectMake(85, 35, 225, 40)];
+    lblSmsTips.numberOfLines = 2;
+    lblSmsTips.font = [UIFont systemFontOfSize:11.f];
+    lblSmsTips.backgroundColor = [UIColor clearColor];
+    lblSmsTips.textColor = [UIColor lightGrayColor];
+    lblSmsTips.text = NSLocalizedString(@"user_binding_tips", @"");
+    [bindingDetailView addSubview:lblSmsTips];
+
+    [self.view addSubview:bindingDetailView];
+
     if(tblUnits == nil) {
-        tblUnits = [[PullTableView alloc] initWithFrame:CGRectMake(0, self.topbarView.bounds.size.height + 2, self.view.bounds.size.width, self.view.frame.size.height - self.topbarView.bounds.size.height - 2) style:UITableViewStylePlain];
+        tblUnits = [[PullTableView alloc] initWithFrame:CGRectMake(0, bindingDetailView.frame.origin.y + bindingDetailView.bounds.size.height, self.view.bounds.size.width, self.view.frame.size.height - self.topbarView.bounds.size.height - bindingDetailView.bounds.size.height) style:UITableViewStylePlain];
         tblUnits.pullDelegate = self;
         tblUnits.center = CGPointMake(self.view.center.x, tblUnits.center.y);
         tblUnits.delegate = self;
@@ -350,32 +388,38 @@
 - (void)getUsersForUnitSuccess:(RestResponse *)resp {
     if (resp && resp.statusCode == 200) {
         [unitBindingAccounts removeAllObjects];
-        NSArray *usersJson = nil;
-        if([[JsonUtils createDictionaryFromJson:resp.body] isKindOfClass:[NSArray class]]){
-            usersJson = [JsonUtils createDictionaryFromJson:resp.body];
-        }
-        if(usersJson != nil) {
-            [unitBindingAccounts removeAllObjects];
-            Users *users = [[Users alloc] initWithJson:[NSDictionary dictionaryWithObject:usersJson forKey:@"users"]];
-            for (User *user in users.users) {
-                AccountManageCellData *cellData = [[AccountManageCellData alloc] init];
-                cellData.user = user;
-                cellData.isPanel = NO;
-                [unitBindingAccounts addObject:cellData];
-            }
-            currentIsOwner = NO;
-            for (AccountManageCellData *data in unitBindingAccounts) {
-                if (data.user.isOwner&&data.user.isCurrentUser) {
-                    currentIsOwner = YES;
-                    break;
+        NSDictionary *json = [JsonUtils createDictionaryFromJson:resp.body];
+        if(json != nil) {
+            int result = [json intForKey:@"i"];
+            if(result == 1) {
+                NSString *maxUsers = [json stringForKey:@"d"];
+                NSArray *usersJson = [json arrayForKey:@"m"];
+                if(usersJson != nil) {
+                    [unitBindingAccounts removeAllObjects];
+                    Users *users = [[Users alloc] initWithJson:[NSDictionary dictionaryWithObject:usersJson forKey:@"users"]];
+                    for (User *user in users.users) {
+                        AccountManageCellData *cellData = [[AccountManageCellData alloc] init];
+                        cellData.user = user;
+                        cellData.isPanel = NO;
+                        [unitBindingAccounts addObject:cellData];
+                    }
+                    currentIsOwner = NO;
+                    for (AccountManageCellData *data in unitBindingAccounts) {
+                        if (data.user.isOwner&&data.user.isCurrentUser) {
+                            currentIsOwner = YES;
+                            break;
+                        }
+                    }
+                    buttonPanelViewIsVisable = NO;
+                    [tblUnits reloadData];
+                    tblUnits.pullLastRefreshDate = [NSDate date];
+                    lblUserBindingCount.text = [NSString stringWithFormat:@"%d / %@", usersJson.count, maxUsers == nil ? @"0" : maxUsers];
+                    [self performSelector:@selector(refreshDataIsOk) withObject:nil afterDelay:0.5f];
+                    return;
+                } else {
+                    lblUserBindingCount.text = [NSString stringWithFormat:@"0 / 0"];
                 }
             }
-            buttonPanelViewIsVisable = NO;
-            [tblUnits reloadData];
-            tblUnits.pullLastRefreshDate = [NSDate date];
-            
-            [self performSelector:@selector(refreshDataIsOk) withObject:nil afterDelay:0.5f];
-            return;
         }
     }
     [self getUsersForUnitFailed:resp];
