@@ -63,6 +63,12 @@
                         // and also the status must be 'online'
                         unit.name = oldUnit.name;
                         unit.status = @"在线";
+
+                        // new unit doesn't contains info about score, timing task plan && refresh date
+                        unit.score = oldUnit.score;
+                        unit.timingTasksPlan = oldUnit.timingTasksPlan;
+                        unit.timingTasksPlanLastRefreshDate = oldUnit.timingTasksPlanLastRefreshDate;
+                        unit.sensors = oldUnit.sensors;
                     }
                     break;
                 }
@@ -91,6 +97,14 @@
 
 - (NSArray *)replaceUnits:(NSArray *)newUnits {
     @synchronized(self) {
+        // fill may lost info for each unit
+        if(newUnits != nil) {
+            for(int i=0; i<newUnits.count; i++) {
+                Unit *_new_unit_ = [newUnits objectAtIndex:i];
+                [self fillLostUnitInfoFromOldUnitForNewUnit:_new_unit_];
+            }
+        }
+
         [self.units removeAllObjects];
         if(newUnits != nil) {
             [self.units addObjectsFromArray:newUnits];    
@@ -104,6 +118,17 @@
         }
         
         return self.units;
+    }
+}
+
+- (void)fillLostUnitInfoFromOldUnitForNewUnit:(Unit *)newUnit {
+    if(newUnit == nil) return;
+    Unit *oldUnit = [self findUnitByIdentifierInternal:newUnit.identifier];
+    if(oldUnit != nil) {
+        newUnit.score = oldUnit.score;
+        newUnit.sensors = oldUnit.sensors;
+        newUnit.timingTasksPlan = oldUnit.timingTasksPlan;
+        newUnit.timingTasksPlanLastRefreshDate = oldUnit.timingTasksPlanLastRefreshDate;
     }
 }
 
@@ -295,7 +320,6 @@
                 }
                 [self.units removeAllObjects];
                 [self.units addObjectsFromArray:newUnits];
-                
                 if(self.units.count > 0) {
                     Unit *firstUnit = [self.units objectAtIndex:0];
                     currentUnitIdentifier = firstUnit.identifier;

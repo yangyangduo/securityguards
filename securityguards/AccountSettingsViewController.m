@@ -101,7 +101,7 @@
     [smsDetailView addSubview:lblSmsCountTitle];
 
     lblSmsCount = [[UILabel alloc] initWithFrame:CGRectMake(164, 2, 45, 30)];
-    lblSmsCount.text = @"0";
+    lblSmsCount.text = @"--";
     lblSmsCount.textAlignment = NSTextAlignmentCenter;
     lblSmsCount.textColor = [UIColor orangeColor];
     lblSmsCount.backgroundColor = [UIColor clearColor];

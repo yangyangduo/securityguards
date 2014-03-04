@@ -33,6 +33,12 @@
     return [self notNSNullObjectForKey:key];
 }
 
+- (NSDate *)dateWithTimeIntervalSince1970ForKey:(id)key {
+    NSNumber *_date_ = [self notNSNullObjectForKey:key];
+    if(_date_ == nil) return nil;
+    return [NSDate dateWithTimeIntervalSince1970:_date_.doubleValue];
+}
+
 - (NSDate *)dateForKey:(id)key {
     NSNumber *_date_ = [self notNSNullObjectForKey:key];
     if(_date_ == nil) return nil;

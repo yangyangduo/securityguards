@@ -17,6 +17,8 @@
 @property (nonatomic, assign) int rankings;
 @property (nonatomic, strong) NSDate *scoreDate;
 
+- (BOOL)hasValue;
+
 - (BOOL)needRefresh;
 
 - (NSString *)scoreDateAsFormattedString;
@@ -27,31 +29,41 @@
 
 @interface Unit : Entity
 
+// basic info
 @property (strong, nonatomic) NSString *identifier;
 @property (strong, nonatomic) NSString *localIP;
 @property (strong, nonatomic) NSString *name;
-@property (assign, nonatomic) unsigned int localPort;
 @property (strong, nonatomic) NSString *status;
 @property (strong, nonatomic) NSDate *updateTime;
 @property (strong, nonatomic) NSNumber *hashCode;
+@property (assign, nonatomic) unsigned int localPort;
+
+// zone's and device's
 @property (strong, nonatomic) NSMutableArray *zones;
 
-@property (strong, nonatomic) Score *score;
-
-@property (strong, nonatomic) NSMutableArray *timingTasksPlan;
-@property (strong, nonatomic) NSDate *timingTasksPlanLastRefreshDate;
-
+// readonly property
+@property (assign, nonatomic, readonly) BOOL isOnline;
 @property (assign, nonatomic, readonly) NSUInteger avalibleDevicesCount;
-//
 @property (strong, nonatomic, readonly) NSArray *devices;
 
-@property (assign, nonatomic, readonly) BOOL isOnline;
 
+// ... extensions below ...
+
+
+// persist to disk
+@property (strong, nonatomic) Score *score;
+
+
+// in memory only
+@property (strong, nonatomic) NSMutableArray *timingTasksPlan;
+@property (strong, nonatomic) NSDate *timingTasksPlanLastRefreshDate;
 @property (strong, nonatomic) NSArray *sensors;
+
+
+// methods
 
 - (Zone *)zoneForId:(NSString *)_id_;
 - (Device *)deviceForId:(NSString *)_id_;
-
 - (Zone *)findMasterZone;
 - (Zone *)findSlaveZone;
 

@@ -355,8 +355,6 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
             DeviceCommand *getSensorsCommand = [CommandFactory commandForType:CommandTypeGetSensors];
             getSensorsCommand.masterDeviceCode = unitChangedEvent.unitIdentifier;
             [self executeDeviceCommand:getSensorsCommand];
-
-            [self mayRefreshScoreForUnit:[[UnitManager defaultManager] findUnitByIdentifier:unitChangedEvent.unitIdentifier]];
         }
     }
 }

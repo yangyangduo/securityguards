@@ -40,19 +40,25 @@
     self = [super init];
     if(self) {
         if(json != nil) {
+            // init basic info
             self.identifier = [json stringForKey:@"_id"];
-            
             if(self.identifier != nil) {
-                self.identifier = [self.identifier substringToIndex:self.identifier.length-4];
+                self.identifier = [self.identifier substringToIndex:self.identifier.length - 4];
             }
-            
             self.localIP = [json stringForKey:@"localIp"];
             self.name = [json stringForKey:@"name"];
             self.localPort = [json intForKey:@"localPort"];
             self.status = [json stringForKey:@"status"];
             self.hashCode = [json numberForKey:@"hashCode"];
             self.updateTime = [json dateForKey:@"updateTime"];
-            
+
+            // init score's detail
+            NSDictionary *_score_json_ = [json notNSNullObjectForKey:@"score"];
+            if(_score_json_ != nil) {
+                self.score = [[Score alloc] initWithJson:_score_json_];
+            }
+
+            // init zones && devices
             NSArray *_zones_ = [json notNSNullObjectForKey:@"zones"];
             if(_zones_ != nil) {
                 for(int i=0; i<_zones_.count; i++) {
@@ -69,17 +75,23 @@
 
 - (NSDictionary *)toJson {
     NSMutableDictionary *json = [NSMutableDictionary dictionary];
-    [json setObject:([XXStringUtils isBlank:self.identifier] ? [XXStringUtils emptyString] : [NSString stringWithFormat:@"%@%@", self.identifier, APP_KEY]) forKey:@"_id"];
-    
+
+    // set basic info
+    [json setObject:([XXStringUtils isBlank:self.identifier] ?
+            [XXStringUtils emptyString] : [NSString stringWithFormat:@"%@%@", self.identifier, APP_KEY]) forKey:@"_id"];
     [json setMayBlankString:self.localIP forKey:@"localIp"];
     [json setMayBlankString:self.name forKey:@"name"];
     [json setInteger:self.localPort forKey:@"localPort"];
     [json setMayBlankString:self.status forKey:@"status"];
     [json setDateLongLongValue:self.updateTime forKey:@"updateTime"];
-    
     [json setObject:(self.hashCode == nil ? [NSNumber numberWithInteger:0] : self.hashCode) forKey:@"hashCode"];
-    
-    // zones ...
+
+    // set score ...
+    if([self.score hasValue]) {
+        [json setNoNilObject:[self.score toJson] forKey:@"score"];
+    }
+
+    // set zones device's ...
     NSMutableArray *_zones_ = [NSMutableArray array];
     for(int i=0; i<self.zones.count; i++) {
         Zone *zone = [self.zones objectAtIndex:i];
@@ -189,18 +201,31 @@
 - (id)initWithJson:(NSDictionary *)json {
     self = [super initWithJson:json];
     if(self && json) {
-
+        self.score = [json intForKey:@"score"];
+        self.rankings = [json intForKey:@"rankings"];
+        self.scoreDate = [json dateWithTimeIntervalSince1970ForKey:@"scoreDate"];
     }
     return self;
 }
 
+- (NSMutableDictionary *)toJson {
+    NSMutableDictionary *json = [super toJson];
+    [json setInteger:self.score forKey:@"score"];
+    [json setInteger:self.rankings forKey:@"rankings"];
+    [json setDateUsinghTimeIntervalSince1970:self.scoreDate forKey:@"scoreDate"];
+    return json;
+}
+
+- (BOOL)hasValue {
+    if(self.score == -1 && self.rankings == -1 && self.scoreDate == nil) return NO;
+    return YES;
+}
+
 - (BOOL)needRefresh {
     if(self.scoreDate == nil) return YES;
-
     if(abs(self.scoreDate.timeIntervalSinceNow) >= SCORE_REFRESH_HOUR * 60 * 60) {
         return YES;
     }
-
     return NO;
 }
 
@@ -208,15 +233,6 @@
     if(self.scoreDate == nil) return 0;
     return SCORE_REFRESH_HOUR * 60 - abs(self.scoreDate.timeIntervalSinceNow) / 60;
 }
-
-- (NSMutableDictionary *)toJson {
-    NSMutableDictionary *json = [super toJson];
-
-
-
-    return json;
-}
-
 
 - (NSString *)scoreDateAsFormattedString {
     if(self.scoreDate == nil) return [XXStringUtils emptyString];

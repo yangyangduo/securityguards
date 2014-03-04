@@ -460,7 +460,8 @@
     
     [self updateSensorsStatus:currentUnit];
     [self updateUnitStatus:currentUnit];
-    
+    [self updateUnitScoreViewWithScore:currentUnit.score];
+
     // current unit of 'unit selection view'
     // is managed by this controller
     // it's not like others which maintaince in event system
