@@ -206,7 +206,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if(section == 0) return 4;
+    if(section == 0) return 5;
     return [ShoppingCart shoppingCart].shoppingEntries == nil ? 0 : [ShoppingCart shoppingCart].shoppingEntries.count;
 }
 
@@ -367,6 +367,14 @@
                 cell.textLabel.text = [NSString stringWithFormat:@"%@ :", NSLocalizedString(@"remark", @"")];
                 lblDetails.text = lblDetails.text = contact == nil ? [XXStringUtils emptyString] : contact.remark;
                 break;
+            case 4:
+                cell.textLabel.text = [NSString stringWithFormat:@"%@ :", NSLocalizedString(@"suggest_user", @"")];
+                if(contact == nil || [XXStringUtils isBlank:contact.recommended]) {
+                    lblDetails.text = [NSString stringWithFormat:@"<%@>", NSLocalizedString(@"current_user", @"")];
+                } else {
+                    lblDetails.text = [NSString stringWithFormat:@"<%@>", contact.recommended];
+                }
+                break;
             default:
                 break;
         }
@@ -385,7 +393,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if(indexPath.section == 0) {
         TextViewController *textView = nil;
-        if(indexPath.row == 1) {
+        if(indexPath.row == 1 || indexPath.row == 4) {
             textView = [[TextViewController alloc] initWithKeyboardType:UIKeyboardTypeNumberPad];
         } else {
             textView = [[TextViewController alloc] init];
@@ -398,19 +406,24 @@
             textView.txtDescription = [NSString stringWithFormat:@"%@%@:", NSLocalizedString(@"please_enter", @""), NSLocalizedString(@"contact_name", @"")];
         } else if(indexPath.row == 1) {
             textView.identifier = @"c_phone";
-            if(textView.textField != nil) {
-                textView.textField.keyboardType = UIKeyboardTypeNumberPad;
-            }
             textView.defaultValue = contact == nil ? [XXStringUtils emptyString] : contact.phoneNumber;
             textView.txtDescription = [NSString stringWithFormat:@"%@%@:", NSLocalizedString(@"please_enter", @""), NSLocalizedString(@"contact_phone", @"")];
         } else if(indexPath.row == 2) {
             textView.identifier = @"c_address";
             textView.defaultValue = contact == nil ? [XXStringUtils emptyString] : contact.address;
             textView.txtDescription = [NSString stringWithFormat:@"%@%@:", NSLocalizedString(@"please_enter", @""), NSLocalizedString(@"delivery_address", @"")];
-        } else {
+        } else if(indexPath.row == 3) {
             textView.identifier = @"c_remark";
             textView.defaultValue = contact == nil ? [XXStringUtils emptyString] : contact.remark;
             textView.txtDescription = [NSString stringWithFormat:@"%@%@:", NSLocalizedString(@"please_enter", @""), NSLocalizedString(@"remark_no_blank", @"")];
+        } else if(indexPath.row == 4) {
+            textView.identifier = @"c_recommended";
+            textView.txtDescription = NSLocalizedString(@"change_recommended", @"");
+            if(contact == nil || [XXStringUtils isBlank:contact.recommended]) {
+                textView.defaultValue = [XXStringUtils emptyString];
+            } else {
+                textView.defaultValue = contact.recommended;
+            }
         }
         [self presentViewController:textView animated:YES completion:^{ }];
     }
@@ -429,6 +442,15 @@
         contact.address = newText;
     } else if([@"c_remark" isEqualToString:textView.identifier]) {
         contact.remark = newText;
+    } else if([@"c_recommended" isEqualToString:textView.identifier]) {
+
+        // do for the rest api ...
+        if(NO) {
+            // alert
+            return;
+        }
+
+        contact.recommended = newText;
     }
     if(tblOrder != nil) {
         [tblOrder reloadData];

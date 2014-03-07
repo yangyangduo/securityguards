@@ -25,7 +25,7 @@
 - (ShoppingEntry *)shoppingEntryForId:(NSString *)merchandiseIdentifier;
 - (void)clearShoppingCart;
 - (void)addShoppingEntry:(ShoppingEntry *)shoppingEntry;
-- (void)removeShoppoingEntryByMerchandiseIdentifier:(NSString *)merchandiseIdentifier;
+- (void)removeShoppingEntryByMerchandiseIdentifier:(NSString *)merchandiseIdentifier;
 
 @end
 

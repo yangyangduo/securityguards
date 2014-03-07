@@ -36,7 +36,7 @@
 }
 
 - (void)initUI {
-    self.backgroundColor = [UIColor appGray];
+    self.backgroundColor = [UIColor appDarkGray];
     
     tempureSensor = [[SensorDisplayView alloc] initWithPoint:CGPointMake(5, 10) sensorType:SensorTypeTempure];
     humiditySensor = [[SensorDisplayView alloc] initWithPoint:CGPointMake(165, 10) sensorType:SensorTypeHumidity];

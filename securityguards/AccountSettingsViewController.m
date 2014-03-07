@@ -8,14 +8,9 @@
 
 #import "AccountSettingsViewController.h"
 #import "RegisterStep1ViewController.h"
+#import "DeviceCommandNameEventFilter.h"
 #import "Shared.h"
 #import "BlueButton.h"
-
-#import "CommandFactory.h"
-#import "DeviceCommandUpdateAccount.h"
-
-#import "XXEventSubscriptionPublisher.h"
-#import "DeviceCommandNameEventFilter.h"
 
 @interface Profile : NSObject
 
@@ -404,16 +399,6 @@
         }
     }
 }
-
-//- (BOOL)checkExternalNetwork {
-//    if([[SMShared current].deliveryService.tcpService isConnectted]) {
-//        return YES;
-//    } else{
-//        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"offline", @"") forType:AlertViewTypeFailed];
-//        [[AlertView currentAlertView] delayDismissAlertView];
-//        return NO;
-//    }
-//}
 
 #pragma mark -
 #pragma mark - UI Alert View Delegate

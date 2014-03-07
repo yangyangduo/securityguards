@@ -84,7 +84,7 @@
                 if(!self.isDownloading) {
                     [self performSelectorOnMainThread:@selector(notifyImageStreamWasEnded) withObject:nil waitUntilDone:NO];
                 } else {
-                    [self performSelectorOnMainThread:@selector(notityImageWasAvailable:) withObject:image waitUntilDone:YES];
+                    [self performSelectorOnMainThread:@selector(notifyImageWasAvailable:) withObject:image waitUntilDone:YES];
                     index++;
                     [self startDownloaderInternal:url imageIndex:index];
                 }
@@ -110,7 +110,7 @@
     }
 }
 
-- (void)notityImageWasAvailable:(UIImage *)image {
+- (void)notifyImageWasAvailable:(UIImage *)image {
     if(self.delegate != nil && [self.delegate respondsToSelector:@selector(imageProviderNotifyImageAvailable:)]) {
         [self.delegate imageProviderNotifyImageAvailable:image];
     }

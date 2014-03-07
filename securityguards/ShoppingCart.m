@@ -91,7 +91,7 @@
     }
 }
 
-- (void)removeShoppoingEntryByMerchandiseIdentifier:(NSString *)merchandiseIdentifier {
+- (void)removeShoppingEntryByMerchandiseIdentifier:(NSString *)merchandiseIdentifier {
     ShoppingEntry *found = nil;
     for(int i=0; i<_shopping_entries_.count; i++) {
         ShoppingEntry *entry = [_shopping_entries_ objectAtIndex:i];

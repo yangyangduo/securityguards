@@ -14,6 +14,7 @@
 @synthesize area;
 @synthesize quality;
 @synthesize tips;
+@synthesize updateTime;
 
 - (id)initWithJson:(NSDictionary *)json {
     self = [super initWithJson:json];
@@ -23,10 +24,12 @@
             self.aqiNumber = [_m_ intForKey:@"aqi"];
             self.quality = [_m_ noNilStringForKey:@"quality"];
             self.area = [_m_ noNilStringForKey:@"area"];
+            self.updateTime = [_m_ dateForKey:@"time_point"];
         } else {
             self.aqiNumber = 0;
             self.quality = [XXStringUtils emptyString];
             self.area = [XXStringUtils emptyString];
+            self.updateTime = nil;
         }
         self.tips = [json noNilStringForKey:@"d"];
     }
@@ -35,11 +38,14 @@
 
 - (NSMutableDictionary *)toJson {
     NSMutableDictionary *json = [super toJson];
-    [json setObject:@{
-                      @"aqi"     : [NSNumber numberWithInt:self.aqiNumber],
-                      @"quality" : self.quality == nil ? @"" : self.quality,
-                      @"area"    : self.area == nil ? @"" : self.area
-                    } forKey:@"m"];
+
+    NSMutableDictionary *aqiBody = [NSMutableDictionary dictionary];
+    [aqiBody setInteger:self.aqiNumber forKey:@"aqi"];
+    [aqiBody setDateLongLongValue:self.updateTime forKey:@"time_point"];
+    [aqiBody setMayBlankString:self.quality forKey:@"quality"];
+    [aqiBody setMayBlankString:self.area forKey:@"area"];
+
+    [json setObject:aqiBody forKey:@"m"];
     [json setMayBlankString:self.tips forKey:@"d"];
     return json;
 }
@@ -55,6 +61,12 @@
         return 3;
     }
     return -1;
+}
+
+- (NSDateComponents *)dateComponentsForUpdateTime {
+    if(self.updateTime == nil) return nil;
+    NSDateComponents *dateComponents = [[NSCalendar currentCalendar] components:NSCalendarUnitDay | NSCalendarUnitMonth fromDate:self.updateTime];
+    return dateComponents;
 }
 
 @end

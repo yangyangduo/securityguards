@@ -279,7 +279,7 @@
     controlPanelView.delegate = self;
     [scrollView addSubview:controlPanelView];
     
-    BOOL scrollViewHasBeenResized = [self updateAQIPannelViewWithAqi:[AQIManager manager].currentAqiInfo];
+    BOOL scrollViewHasBeenResized = [self updateAQIPanelViewWithAqi:[AQIManager manager].currentAqiInfo];
     if(!scrollViewHasBeenResized) {
         [self resizeScrollView];
     }
@@ -441,7 +441,7 @@
         }
     } else if([event isKindOfClass:[CurrentLocationUpdatedEvent class]]) {
         CurrentLocationUpdatedEvent *evt = (CurrentLocationUpdatedEvent *)event;
-        [self updateAQIPannelViewWithAqi:evt.aqiDetail];
+        [self updateAQIPanelViewWithAqi:evt.aqiDetail];
     } else if([event isKindOfClass:[ScoreChangedEvent class]]) {
         ScoreChangedEvent *evt = (ScoreChangedEvent *)event;
         [self updateUnitScoreViewWithScore:evt.score];
@@ -498,7 +498,7 @@
 }
 
 // BOOL means which that scroll view has or hasn't resized
-- (BOOL)updateAQIPannelViewWithAqi:(AQIDetail *)aqiDetail {
+- (BOOL)updateAQIPanelViewWithAqi:(AQIDetail *)aqiDetail {
     if(aqiPanelView == nil) {
         aqiPanelView = [[AQIPanelView alloc] initWithPoint:CGPointMake(0, imgHeathIndex.frame.origin.y + imgHeathIndex.bounds.size.height)];
     }
@@ -506,8 +506,8 @@
         // view isn't already on screen
         // because aqi is not empty
         // so need to add this view
+        [aqiPanelView setCity:aqiDetail.area dateComponets:aqiDetail.dateComponentsForUpdateTime aqiNumber:aqiDetail.aqiNumber aqiText:aqiDetail.quality tips:aqiDetail.tips level:1];
         if(aqiPanelView.superview == nil) {
-            [aqiPanelView setCity:aqiDetail.area aqiNumber:aqiDetail.aqiNumber aqiText:aqiDetail.quality tips:aqiDetail.tips level:1];
             [scrollView insertSubview:aqiPanelView aboveSubview:sensorDisplayPanel];
             [self resizeScrollViewWithFlag:1];
             return YES;

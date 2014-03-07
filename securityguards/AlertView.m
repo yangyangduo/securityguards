@@ -193,7 +193,7 @@
 
 - (UIWindow *)lastWindow {
     NSArray *windows = [UIApplication sharedApplication].windows;
-    return [windows objectAtIndex:windows.count-1];
+    return [windows objectAtIndex:windows.count - 1];
 }
 
 @end

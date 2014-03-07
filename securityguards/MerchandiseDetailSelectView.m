@@ -238,7 +238,7 @@
     CABasicAnimation *scaleViewAnimation = [CABasicAnimation animationWithKeyPath:@"transform"];
     scaleViewAnimation.fromValue = [NSValue valueWithCATransform3D:fromScaleTransform];
     scaleViewAnimation.toValue = [NSValue valueWithCATransform3D:toScaleTransform];
-    scaleViewAnimation.duration = 0.4f;
+    scaleViewAnimation.duration = 0.3f;
     scaleViewAnimation.removedOnCompletion = YES;
     [layer addAnimation:scaleViewAnimation forKey:nil];
     
@@ -246,13 +246,13 @@
     CABasicAnimation *opacityAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
     opacityAnimation.fromValue = [NSNumber numberWithFloat:fromOpacity];
     opacityAnimation.toValue = [NSNumber numberWithFloat:toOpacity];
-    opacityAnimation.duration = 0.4f;
+    opacityAnimation.duration = 0.3f;
     opacityAnimation.removedOnCompletion = YES;
     [maskView.layer addAnimation:opacityAnimation forKey:nil];
     
     // create pop view's position animation
     CABasicAnimation *positionAnimation = [CABasicAnimation animationWithKeyPath:@"position"];
-    positionAnimation.duration = 0.4f;
+    positionAnimation.duration = 0.3f;
     positionAnimation.fromValue = [NSValue valueWithCGPoint:fromPosition];
     positionAnimation.toValue = [NSValue valueWithCGPoint:toPosition];
     positionAnimation.removedOnCompletion = YES;

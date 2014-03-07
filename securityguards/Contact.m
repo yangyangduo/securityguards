@@ -10,12 +10,6 @@
 
 @implementation Contact
 
-@synthesize identifier;
-@synthesize name;
-@synthesize phoneNumber;
-@synthesize address;
-@synthesize remark;
-
 - (id)initWithJson:(NSDictionary *)json {
     self = [super initWithJson:json];
     if(self && json) {

@@ -96,6 +96,8 @@
 "all_access"                     =      "允许所有账号互联网访问";
 "all_access_short"               =      "完全访问";
 "evaluate_time"                  =      "评估时间";
+"today"                          =      "今";
+"yesterday"                      =      "昨";
 
 
 /****************	Speech View Strings	****************/
@@ -294,7 +296,7 @@
 "day"                      =           "天";
 
 
-/****************	Unif Finder View Strings	****************/
+/****************	Unit Finder View Strings	****************/
 
 "unit_binding_tips"        =           "将主控与手机处于同一Wifi下,按下\"自动发现\"按钮,主控与手机将自动绑定";
 "auto_find"                =           "自动发现";
@@ -372,10 +374,13 @@
 "phone_not_blank"          =           "联系电话不能为空";
 "address_not_blank"        =           "送货地址不能为空";
 "my_shopping_cart"         =           "我的购物车";
-"aqi_today"                =           "今日空气质量";
+"aqi_today"                =           "日空气质量";
 "aqi"                      =           "AQI指数";
 "order_submitted"          =           "订单已提交";
+"current_user"             =           "当前用户";
+"change_recommended"       =           "修改推荐人(请输入推荐账户电话号码)";
 "phone_invalid"            =           "电话格式错误";
+"suggest_user"             =           "推荐用户";
 "no_merchandise"           =           "请先选择商品";
 "get_merchandises_failed"  =           "获取商品列表失败";
 "shopping_welcome_tips"    =           "非常感谢您的支持,您的订单已经确认,如有需要欢迎直接拨打下方热线号码。";

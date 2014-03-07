@@ -12,10 +12,12 @@
 @interface AQIDetail : Entity
 
 @property (nonatomic, assign) int aqiNumber;
+@property (nonatomic, strong) NSDate *updateTime;
 @property (nonatomic, strong) NSString *quality;
 @property (nonatomic, strong) NSString *area;
 @property (nonatomic, strong) NSString *tips;
 
 - (int)aqiLevel;
+- (NSDateComponents *)dateComponentsForUpdateTime;
 
 @end

@@ -15,7 +15,7 @@
 
 @property (nonatomic) BOOL isVoice;
 @property (nonatomic) BOOL isShake;
-@property (strong)    NSString *tcpAddress;
+@property (nonatomic, strong) NSString *tcpAddress;
 @property (nonatomic, strong) NSString *account;
 @property (nonatomic, strong) NSString *secretKey;
 @property (nonatomic, strong) NSString *deviceCode;
