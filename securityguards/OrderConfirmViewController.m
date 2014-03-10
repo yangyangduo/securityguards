@@ -25,7 +25,7 @@
     CheckBox *checkbox;
     
     Contact *contact;
-    
+
     BOOL contactWasLoaded;
 }
 
@@ -283,7 +283,6 @@
         [footView addSubview:lblTips];
         return footView;
     }
-    return nil;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
@@ -443,19 +442,54 @@
     } else if([@"c_remark" isEqualToString:textView.identifier]) {
         contact.remark = newText;
     } else if([@"c_recommended" isEqualToString:textView.identifier]) {
-
-        // do for the rest api ...
-        if(NO) {
-            // alert
+        if([XXStringUtils isBlank:newText]) {
+            contact.recommended = [XXStringUtils emptyString];
             return;
         }
-
-        contact.recommended = newText;
+        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"please_wait", @"") forType:AlertViewTypeWaitting];
+        [[AlertView currentAlertView] alertForLock:YES autoDismiss:NO];
+        ShoppingService *service = [[ShoppingService alloc] init];
+        [service checkContactExistsWithMobile:newText success:@selector(checkContactExistsSuccess:) failed:@selector(checkContactExistsFailed:) target:self callback:textView];
+        return;
     }
     if(tblOrder != nil) {
         [tblOrder reloadData];
     }
     [textView popupViewController];
+}
+
+- (void)checkContactExistsSuccess:(RestResponse *)resp {
+    if(resp.statusCode == 200) {
+        NSDictionary *jsonResult = [JsonUtils createDictionaryFromJson:resp.body];
+        if(jsonResult != nil) {
+            int result = [jsonResult intForKey:@"i"];
+            if(result == 1) {
+                [[AlertView currentAlertView] dismissAlertView];
+                if(resp.callbackObject != nil && [resp.callbackObject isKindOfClass:[TextViewController class]]) {
+                    TextViewController *textView = (TextViewController *)resp.callbackObject;
+                    contact.recommended = textView.value;
+                    if(tblOrder != nil) {
+                        [tblOrder reloadData];
+                    }
+                    [textView popupViewController];
+                }
+                return;
+            } else if(result == 0) {
+                [[AlertView currentAlertView] setMessage:NSLocalizedString(@"user_not_exists", @"") forType:AlertViewTypeSuccess];
+                [[AlertView currentAlertView] delayDismissAlertView];
+                return;
+            }
+        }
+    }
+    [self checkContactExistsFailed:resp];
+}
+
+- (void)checkContactExistsFailed:(RestResponse *)resp {
+    [[AlertView currentAlertView] setMessage:NSLocalizedString(@"network_error", @"") forType:AlertViewTypeSuccess];
+    [[AlertView currentAlertView] delayDismissAlertView];
+#ifdef DEBUG
+    NSLog(@"[Order Confirm View Controller] Check Contact Exists failed, status code is %d", resp.statusCode);
+#endif
 }
 
 @end

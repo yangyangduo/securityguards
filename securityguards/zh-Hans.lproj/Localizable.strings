@@ -98,6 +98,13 @@
 "evaluate_time"                  =      "评估时间";
 "today"                          =      "今";
 "yesterday"                      =      "昨";
+"scene"                          =      "情景";
+"select_scene_mode"              =      "请选择情景模式";
+"scene_get_up"                   =      "起床";
+"scene_return_home"              =      "回家";
+"scene_sleep"                    =      "睡觉";
+"scene_out"                      =      "出门";
+"user_not_exists"                =      "用户不存在";
 
 
 /****************	Speech View Strings	****************/

@@ -10,7 +10,7 @@
 #import "XXEventSubscriber.h"
 #import "UnitControlPanel.h"
 
-@interface PortalViewController : DrawerViewController<XXEventSubscriber, UnitControlPanelDelegate>
+@interface PortalViewController : DrawerViewController<XXEventSubscriber, UnitControlPanelDelegate, UIActionSheetDelegate>
 
 - (void)reset;
 

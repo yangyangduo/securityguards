@@ -8,18 +8,14 @@
 
 #import "PortalViewController.h"
 #import "Shared.h"
-#import "XXDrawerViewController.h"
-#import "RootViewController.h"
 #import "UnitDetailsViewController.h"
 #import "UnitManager.h"
 #import "AQIManager.h"
-#import "UIColor+HexColor.h"
 
 /*     components      */
 #import "SensorsDisplayPanel.h"
 #import "SpeechViewController.h"
 #import "UnitSelectionDrawerView.h"
-#import "UnitRenameViewController.h"
 #import "AQIPanelView.h"
 
 /*     events      */
@@ -32,6 +28,7 @@
 #import "SensorStateChangedEvent.h"
 #import "CurrentLocationUpdatedEvent.h"
 #import "ScoreChangedEvent.h"
+#import "ScenesTemplate.h"
 
 #define IMAGE_VIEW_TAG 500
 
@@ -52,7 +49,7 @@
     
     AQIPanelView *aqiPanelView;
     
-    BOOL speechViewIsOpenning;
+    BOOL speechViewIsOpening;
     UIImageView *imgNetwork;
     
     BOOL getAccountCommandHasSent;
@@ -124,7 +121,7 @@
 }
 
 - (void)initDefaults {
-    speechViewIsOpenning = NO;
+    speechViewIsOpening = NO;
     getAccountCommandHasSent = NO;
 }
 
@@ -150,15 +147,24 @@
     UIView *voiceBackgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height - 42, [UIScreen mainScreen].bounds.size.width, 42)];
     voiceBackgroundView.backgroundColor = [UIColor appGray];
     
-    UIButton *btnVoice = [[UIButton alloc] initWithFrame:CGRectMake(0, 5, 556 / 2, 64 / 2)];
-    [btnVoice setBackgroundImage:[UIImage imageNamed:@"btn_voice_gray"] forState:UIControlStateNormal];
-    [btnVoice setBackgroundImage:[UIImage imageNamed:@"btn_voice_blue"] forState:UIControlStateHighlighted];
+    UIButton *btnVoice = [[UIButton alloc] initWithFrame:CGRectMake(10, 5, 390 / 2, 64 / 2)];
+    [btnVoice setBackgroundImage:[UIImage imageNamed:@"btn_voice_short_gray"] forState:UIControlStateNormal];
+    [btnVoice setBackgroundImage:[UIImage imageNamed:@"btn_voice_short_blue"] forState:UIControlStateHighlighted];
     [btnVoice setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
     [btnVoice setTitle:NSLocalizedString(@"btn_voice_title", @"") forState:UIControlStateNormal];
-    btnVoice.center = CGPointMake(voiceBackgroundView.center.x, btnVoice.center.y);
-    [btnVoice addTarget:self action:@selector(showSpeechViewContoller:) forControlEvents:UIControlEventTouchUpInside];
-    
+    btnVoice.titleEdgeInsets = UIEdgeInsetsMake(0, 28, 0, 0);
+    [btnVoice addTarget:self action:@selector(showSpeechViewController:) forControlEvents:UIControlEventTouchUpInside];
+
+    UIButton *btnScene = [[UIButton alloc] initWithFrame:CGRectMake(215, 5, 190 / 2, 64 / 2)];
+    [btnScene setBackgroundImage:[UIImage imageNamed:@"btn_scene_gray"] forState:UIControlStateNormal];
+    [btnScene setBackgroundImage:[UIImage imageNamed:@"btn_scene_blue"] forState:UIControlStateHighlighted];
+    [btnScene setTitle:NSLocalizedString(@"scene", @"") forState:UIControlStateNormal];
+    [btnScene setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+    btnScene.titleEdgeInsets = UIEdgeInsetsMake(0, 25, 0, 0);
+    [btnScene addTarget:self action:@selector(btnScenePressed:) forControlEvents:UIControlEventTouchUpInside];
+
     [voiceBackgroundView addSubview:btnVoice];
+    [voiceBackgroundView addSubview:btnScene];
     [self.view addSubview:voiceBackgroundView];
     
     /*
@@ -310,6 +316,27 @@
 #pragma mark -
 #pragma mark UI Methods
 
+- (void)btnScenePressed:(id)sender {
+    XXActionSheet *actionSheet = [[XXActionSheet alloc] init];
+    actionSheet.title = NSLocalizedString(@"select_scene_mode", @"");
+
+    NSDictionary *templates = [ScenesTemplate defaultTemplates];
+    NSMutableArray *templateKeys = [NSMutableArray arrayWithCapacity:4];
+    [actionSheet addButtonWithTitle:[[templates dictionaryForKey:kSceneReturnHome] noNilStringForKey:kTemplateName]];
+    [templateKeys addObject:kSceneReturnHome];
+    [actionSheet addButtonWithTitle:[[templates dictionaryForKey:kSceneOut] noNilStringForKey:kTemplateName]];
+    [templateKeys addObject:kSceneOut];
+    [actionSheet addButtonWithTitle:[[templates dictionaryForKey:kSceneSleep] noNilStringForKey:kTemplateName]];
+    [templateKeys addObject:kSceneSleep];
+    [actionSheet addButtonWithTitle:[[templates dictionaryForKey:kSceneGetUp] noNilStringForKey:kTemplateName]];
+    [templateKeys addObject:kSceneGetUp];
+
+    [actionSheet setParameter:templateKeys forKey:@"templateKeys"];
+    actionSheet.cancelButtonIndex = [actionSheet addButtonWithTitle:NSLocalizedString(@"cancel", @"")];
+    actionSheet.delegate = self;
+    [actionSheet showInView:self.view];
+}
+
 - (void)resizeScrollView {
     [self resizeScrollViewWithFlag:0];
 }
@@ -338,10 +365,10 @@
     [[Shared shared].app.rootViewController showRightView];
 }
 
-- (void)showSpeechViewContoller:(id)sender {
-    if(speechViewIsOpenning) return;
+- (void)showSpeechViewController:(id)sender {
+    if(speechViewIsOpening) return;
     if(self.parentViewController != nil) {
-        speechViewIsOpenning = YES;
+        speechViewIsOpening = YES;
         SpeechViewController *speechViewController = [[SpeechViewController alloc] init];
         RootViewController *rootViewController = [Shared shared].app.rootViewController;
         [rootViewController addChildViewController:speechViewController];
@@ -355,7 +382,7 @@
                 [speechViewController didMoveToParentViewController:rootViewController];
                 [self removeFromParentViewController];
                 [rootViewController setDisplayViewController:speechViewController];
-                speechViewIsOpenning = NO;
+                speechViewIsOpening = NO;
             }];
     }
 }
@@ -397,6 +424,21 @@
 - (void)hideNetworkStateView {
     if(imgNetwork != nil && imgNetwork.superview != nil) {
         [imgNetwork removeFromSuperview];
+    }
+}
+
+#pragma mark -
+#pragma mark Action Sheet Delegate
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if(buttonIndex < 0 || buttonIndex > 3) {
+        return;
+    }
+    if([actionSheet isKindOfClass:[XXActionSheet class]]) {
+        XXActionSheet *st = (XXActionSheet *)actionSheet;
+        NSArray *keys = [st parameterForKey:@"templateKeys"];
+        NSString *templateId = [keys objectAtIndex:buttonIndex];
+        [ScenesTemplate executeDefaultTemplatesWithTemplateId:templateId forUnit:[UnitManager defaultManager].currentUnit];
     }
 }
 

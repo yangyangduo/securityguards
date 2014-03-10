@@ -132,7 +132,8 @@
                @"tel"  : [XXStringUtils noNilStringFor:self.contact.phoneNumber],
                @"del"  : [XXStringUtils noNilStringFor:self.contact.address]
                },
-       @"rem" : [XXStringUtils noNilStringFor:self.contact.remark]
+       @"rem" : [XXStringUtils noNilStringFor:self.contact.remark],
+       @"rc"  : @{ @"phoneNumber" : self.contact.recommended == nil ? [XXStringUtils emptyString] : self.contact.recommended }
     };
     
     return json;

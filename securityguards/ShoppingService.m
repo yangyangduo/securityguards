@@ -33,6 +33,12 @@
     [self.client getForUrl:url acceptType:@"text/html" success:s error:f for:t callback:cb];
 }
 
+- (void)checkContactExistsWithMobile:(NSString *)mobile success:(SEL)s failed:(SEL)f target:(id)t callback:(id)cb {
+    NSString *url = [[NSString alloc] initWithFormat:@"/check/%@?deviceCode=%@&appKey=%@&security=%@", mobile, [GlobalSettings defaultSettings].deviceCode, APP_KEY,
+                    [GlobalSettings defaultSettings].secretKey];
+    [self.client getForUrl:url acceptType:@"text/html" success:s error:f for:t callback:cb];
+}
+
 - (void)getProductsSuccess:(SEL)s failed:(SEL)f target:(id)t callback:(id)cb {
     NSString *url = [NSString stringWithFormat:@"/product/list?deviceCode=%@&appKey=%@&security=%@", [GlobalSettings defaultSettings].deviceCode, APP_KEY,
         [GlobalSettings defaultSettings].secretKey];

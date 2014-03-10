@@ -12,6 +12,17 @@
 
 @implementation DeviceUtils
 
++ (DeviceOperationItem *)operationItemFor:(Device *)device withState:(int)state {
+    NSMutableArray *operations = [[self class] operationsListFor:device];
+    if(operations.count == 0) return nil;
+    for(DeviceOperationItem *item in operations) {
+        if(state == item.deviceState) {
+            return item;
+        }
+    }
+    return nil;
+}
+
 + (NSMutableArray *)operationsListFor:(Device *)device {
     NSMutableArray *operations = [NSMutableArray array];
     if(device == nil) return operations;
@@ -25,8 +36,8 @@
         itemOn.displayName = NSLocalizedString(@"device_open", @"");
         itemOff.displayName = NSLocalizedString(@"device_close", @"");
         
-        itemOn.deviceState = 0;
-        itemOff.deviceState = 1;
+        itemOn.deviceState = kDeviceStateOpen;
+        itemOff.deviceState = kDeviceStateClose;
         
         [operations addObject:itemOn];
         [operations addObject:itemOff];
@@ -39,9 +50,9 @@
         itemMedium.displayName = NSLocalizedString(@"medium_level", @"");
         itemLow.displayName = NSLocalizedString(@"low_level", @"");
         
-        itemHigh.deviceState = 2;
-        itemMedium.deviceState = 1;
-        itemLow.deviceState = 0;
+        itemHigh.deviceState = kDeviceAirPurifierLevelHigh;
+        itemMedium.deviceState = kDeviceAirPurifierLevelMedium;
+        itemLow.deviceState = kDeviceAirPurifierLevelLow;
         
         [operations addObject:itemHigh];
         [operations addObject:itemMedium];
@@ -53,27 +64,27 @@
         itemManual.displayName = NSLocalizedString(@"device_manual", @"");
         itemAutomatic.displayName = NSLocalizedString(@"device_automatic", @"");
         
-        itemAutomatic.deviceState = 0;
-        itemManual.deviceState = 1;
+        itemAutomatic.deviceState = kDeviceAirPurifierControlModeAutomatic;
+        itemManual.deviceState = kDeviceAirPurifierControlModeManual;
         
         [operations addObject:itemManual];
         [operations addObject:itemAutomatic];
     } else if(device.isAirPurifierSecurity) {
         DeviceOperationItem *itemAllOpen = [[DeviceOperationItem alloc] init];
         DeviceOperationItem *itemClosed = [[DeviceOperationItem alloc] init];
-        DeviceOperationItem *itemFiresproof = [[DeviceOperationItem alloc] init];
+        DeviceOperationItem *itemFireproof = [[DeviceOperationItem alloc] init];
         
         itemAllOpen.displayName = NSLocalizedString(@"security_all_open", @"");
         itemClosed.displayName = NSLocalizedString(@"security_close", @"");
-        itemFiresproof.displayName = NSLocalizedString(@"security_fireproof", @"");
+        itemFireproof.displayName = NSLocalizedString(@"security_fireproof", @"");
         
-        itemAllOpen.deviceState = 0;
-        itemClosed.deviceState = 1;
-        itemFiresproof.deviceState = 2;
+        itemAllOpen.deviceState = kDeviceSecurityAllOpen;
+        itemClosed.deviceState = kDeviceSecurityClose;
+        itemFireproof.deviceState = kDeviceSecurityFireproof;
         
         [operations addObject:itemAllOpen];
         [operations addObject:itemClosed];
-        [operations addObject:itemFiresproof];
+        [operations addObject:itemFireproof];
     }
     
     // set command strings and unit identifier for each item
@@ -141,6 +152,33 @@
     DeviceCommandUpdateDevice *updateDeviceCommand = (DeviceCommandUpdateDevice *)[CommandFactory commandForType:CommandTypeUpdateDevice];
     updateDeviceCommand.masterDeviceCode = operationItem.unitIdentifier;
     [updateDeviceCommand addCommandString:operationItem.commandString];
+    [[CoreService defaultService] executeDeviceCommand:updateDeviceCommand];
+}
+
++ (void)executeOperationItems:(NSArray *)operationItems forUnit:(NSString *)unitIdentifier {
+    if(operationItems == nil || operationItems.count == 0) return;
+
+    BOOL needFindIdentifierAgain = NO;
+    NSString *_id_ = unitIdentifier;
+    if([XXStringUtils isBlank:_id_]) {
+        needFindIdentifierAgain = YES;
+    }
+
+    DeviceCommandUpdateDevice *updateDeviceCommand = (DeviceCommandUpdateDevice *)[CommandFactory commandForType:CommandTypeUpdateDevice];
+    for(int i=0; i<operationItems.count; i++) {
+        DeviceOperationItem *item = [operationItems objectAtIndex:i];
+        [updateDeviceCommand addCommandString:item.commandString];
+        if(needFindIdentifierAgain) {
+            _id_ = item.unitIdentifier;
+            needFindIdentifierAgain = [XXStringUtils isBlank:_id_];
+        }
+    }
+    updateDeviceCommand.masterDeviceCode = _id_;
+#ifdef DEBUG
+    NSLog(@"Execute scenes for [%@] with command strings -->  %@", updateDeviceCommand.masterDeviceCode, updateDeviceCommand.executions);
+#endif
+
+    return;
     [[CoreService defaultService] executeDeviceCommand:updateDeviceCommand];
 }
 

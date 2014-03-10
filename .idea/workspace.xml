@@ -2,27 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e93c453b-47bc-4359-86d1-be37d44eae4c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/AQIDetail.h" afterPath="$PROJECT_DIR$/securityguards/AQIDetail.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/AQIDetail.m" afterPath="$PROJECT_DIR$/securityguards/AQIDetail.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/AQIPanelView.h" afterPath="$PROJECT_DIR$/securityguards/AQIPanelView.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/AQIPanelView.m" afterPath="$PROJECT_DIR$/securityguards/AQIPanelView.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/AccountSettingsViewController.m" afterPath="$PROJECT_DIR$/securityguards/AccountSettingsViewController.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/AlertView.m" afterPath="$PROJECT_DIR$/securityguards/AlertView.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/Contact.h" afterPath="$PROJECT_DIR$/securityguards/Contact.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/Contact.m" afterPath="$PROJECT_DIR$/securityguards/Contact.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/CoreService.m" afterPath="$PROJECT_DIR$/securityguards/CoreService.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/GlobalSettings.h" afterPath="$PROJECT_DIR$/securityguards/GlobalSettings.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/ImageProvider.m" afterPath="$PROJECT_DIR$/securityguards/ImageProvider.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/Device.h" afterPath="$PROJECT_DIR$/securityguards/Device.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/DeviceUtils.h" afterPath="$PROJECT_DIR$/securityguards/DeviceUtils.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/DeviceUtils.m" afterPath="$PROJECT_DIR$/securityguards/DeviceUtils.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/en.lproj/Localizable.strings" afterPath="$PROJECT_DIR$/securityguards/en.lproj/Localizable.strings" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/zh-Hans.lproj/Localizable.strings" afterPath="$PROJECT_DIR$/securityguards/zh-Hans.lproj/Localizable.strings" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/MerchandiseDetailSelectView.m" afterPath="$PROJECT_DIR$/securityguards/MerchandiseDetailSelectView.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/OrderConfirmViewController.m" afterPath="$PROJECT_DIR$/securityguards/OrderConfirmViewController.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/PortalViewController.h" afterPath="$PROJECT_DIR$/securityguards/PortalViewController.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/PortalViewController.m" afterPath="$PROJECT_DIR$/securityguards/PortalViewController.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/RootViewController.m" afterPath="$PROJECT_DIR$/securityguards/RootViewController.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/SensorsDisplayPanel.m" afterPath="$PROJECT_DIR$/securityguards/SensorsDisplayPanel.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/ShoppingCart.h" afterPath="$PROJECT_DIR$/securityguards/ShoppingCart.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/ShoppingCart.m" afterPath="$PROJECT_DIR$/securityguards/ShoppingCart.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/declare.txt" afterPath="$PROJECT_DIR$/securityguards/declare.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/ShoppingService.h" afterPath="$PROJECT_DIR$/securityguards/ShoppingService.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/ShoppingService.m" afterPath="$PROJECT_DIR$/securityguards/ShoppingService.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/securityguards.xcodeproj/project.pbxproj" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -47,48 +37,37 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="AQIPanelView.h" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/securityguards/AQIPanelView.h">
+      <file leaf-file-name="Contact.h" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/securityguards/Contact.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="19" selection-start="245" selection-end="245" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="338">
-              <folding>
-                <element signature="e#137#160#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="NSDictionary+Extension.m" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/securityguards/NSDictionary+Extension.m">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="41" column="12" selection-start="937" selection-end="937" vertical-scroll-proportion="0.0" vertical-offset="747" max-vertical-offset="1612">
+            <state line="10" column="14" selection-start="166" selection-end="166" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="390">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="NSMutableDictionary+Extension.m" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/securityguards/NSMutableDictionary+Extension.m">
+      <file leaf-file-name="Contact.m" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/securityguards/Contact.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="51" column="8" selection-start="1569" selection-end="1569" vertical-scroll-proportion="0.0" vertical-offset="523" max-vertical-offset="936">
+            <state line="18" column="4" selection-start="455" selection-end="455" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="435">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CoreService.m" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/securityguards/CoreService.m">
+      <file leaf-file-name="ShoppingCart.m" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/securityguards/ShoppingCart.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="702" column="35" selection-start="23945" selection-end="23945" vertical-scroll-proportion="0.65562916" vertical-offset="8556" max-vertical-offset="9009">
+            <state line="140" column="0" selection-start="4194" selection-end="4194" vertical-scroll-proportion="0.64377683" vertical-offset="1770" max-vertical-offset="3165">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AQIDetail.m" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/securityguards/AQIDetail.m">
+      <file leaf-file-name="ShoppingService.m" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/securityguards/ShoppingService.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="66" column="41" selection-start="1996" selection-end="1996" vertical-scroll-proportion="0.0" vertical-offset="411" max-vertical-offset="962">
+            <state line="10" column="16" selection-start="185" selection-end="185" vertical-scroll-proportion="0.0" vertical-offset="117" max-vertical-offset="810">
               <folding />
             </state>
           </provider>
@@ -97,48 +76,29 @@
       <file leaf-file-name="PortalViewController.m" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/securityguards/PortalViewController.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="510" column="54" selection-start="21720" selection-end="21720" vertical-scroll-proportion="0.0" vertical-offset="6129" max-vertical-offset="7215">
+            <state line="524" column="39" selection-start="22587" selection-end="22587" vertical-scroll-proportion="0.0" vertical-offset="6041" max-vertical-offset="9000">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AQIDetail.h" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/securityguards/AQIDetail.h">
+      <file leaf-file-name="BitUtils.m" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/securityguards/BitUtils.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="0" selection-start="264" selection-end="264" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="364">
+            <state line="15" column="34" selection-start="338" selection-end="338" vertical-scroll-proportion="0.0" vertical-offset="57" max-vertical-offset="510">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Localizable.strings" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/securityguards/en.lproj/Localizable.strings">
+      <file leaf-file-name="OrderConfirmViewController.m" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/securityguards/OrderConfirmViewController.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="364" column="46" selection-start="15524" selection-end="15524" vertical-scroll-proportion="0.0" vertical-offset="4605" max-vertical-offset="5109">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Localizable.strings" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/securityguards/zh-Hans.lproj/Localizable.strings">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="98" column="44" selection-start="0" selection-end="16861" vertical-scroll-proportion="-8.0" vertical-offset="1066" max-vertical-offset="5109">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AQIPanelView.m" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/securityguards/AQIPanelView.m">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="106" column="0" selection-start="3944" selection-end="3944" vertical-scroll-proportion="0.0" vertical-offset="1196" max-vertical-offset="2080">
+            <state line="481" column="8" selection-start="22362" selection-end="22362" vertical-scroll-proportion="0.0" vertical-offset="6972" max-vertical-offset="7425">
               <folding>
-                <element signature="e#137#161#0" expanded="true" />
-                <element signature="e#4424#4456#0" expanded="true" />
-                <element signature="e#4569#4605#0" expanded="true" />
-                <element signature="e#5142#5178#1" expanded="true" />
+                <element signature="e#20742#20780#0" expanded="true" />
+                <element signature="e#22172#22214#0" expanded="true" />
+                <element signature="e#22516#22556#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -199,27 +159,26 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/securityguards/RootViewController.m" />
-        <option value="$PROJECT_DIR$/securityguards/ShoppingCart.h" />
-        <option value="$PROJECT_DIR$/securityguards/ShoppingCart.m" />
-        <option value="$PROJECT_DIR$/securityguards/MerchandiseDetailSelectView.m" />
-        <option value="$PROJECT_DIR$/securityguards/Contact.m" />
-        <option value="$PROJECT_DIR$/securityguards/Contact.h" />
-        <option value="$PROJECT_DIR$/securityguards/OrderConfirmViewController.m" />
-        <option value="$PROJECT_DIR$/securityguards/SensorsDisplayPanel.m" />
-        <option value="$PROJECT_DIR$/securityguards/AQIDetail.h" />
-        <option value="$PROJECT_DIR$/securityguards/AQIPanelView.h" />
+        <option value="$PROJECT_DIR$/securityguards/PortalViewController.h" />
+        <option value="$PROJECT_DIR$/securityguards/Memory.m" />
+        <option value="$PROJECT_DIR$/securityguards/SceneTemplate.m" />
+        <option value="$PROJECT_DIR$/securityguards/SceneTemplate.h" />
+        <option value="$PROJECT_DIR$/securityguards/DeviceUtils.h" />
+        <option value="$PROJECT_DIR$/securityguards/Device.h" />
+        <option value="$PROJECT_DIR$/securityguards/DeviceUtils.m" />
+        <option value="$PROJECT_DIR$/securityguards/ScenesTemplate.m" />
+        <option value="$PROJECT_DIR$/securityguards/ScenesTemplate.h" />
         <option value="$PROJECT_DIR$/securityguards/PortalViewController.m" />
+        <option value="$PROJECT_DIR$/securityguards/ShoppingService.h" />
+        <option value="$PROJECT_DIR$/securityguards/ShoppingService.m" />
         <option value="$PROJECT_DIR$/securityguards/zh-Hans.lproj/Localizable.strings" />
         <option value="$PROJECT_DIR$/securityguards/en.lproj/Localizable.strings" />
-        <option value="$PROJECT_DIR$/securityguards/AQIPanelView.m" />
-        <option value="$PROJECT_DIR$/securityguards/AQIDetail.m" />
-        <option value="$PROJECT_DIR$/securityguards/CoreService.m" />
+        <option value="$PROJECT_DIR$/securityguards/OrderConfirmViewController.m" />
+        <option value="$PROJECT_DIR$/securityguards/ShoppingCart.m" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="14" />
     <option name="y" value="22" />
     <option name="width" value="1400" />
     <option name="height" value="804" />
@@ -364,55 +323,7 @@
               <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="images" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="securityguards" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="securityguards" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="images" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="portal" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="securityguards" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="securityguards" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="images" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="portal" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="display" />
+              <option name="myItemId" value="core" />
               <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -440,20 +351,6 @@
               <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="securityguards" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Products" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="Pods" />
               <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
             </PATH_ELEMENT>
@@ -465,13 +362,13 @@
   </component>
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
-    <property name="recentsLimit" value="5" />
     <property name="options.lastSelected" value="preferences.keymap" />
+    <property name="recentsLimit" value="5" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../ideavim" />
     <property name="FullScreen" value="false" />
     <property name="OBJC.PRESERVED_TARGET_SELECTION" value="securityguards" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
   </component>
   <component name="RunManager" selected="Application.securityguards">
     <configuration default="true" type="AppleRunConfiguration" factoryName="Application" PROJECT_NAME="securityguards" TARGET_NAME="securityguards" CONFIG_NAME="Debug" PASS_PARENT_ENVS="FALSE" RUN_TARGET_PROJECT_NAME="securityguards" RUN_TARGET_NAME="securityguards" MAKE_ACTIVE="TRUE" WAIT_FOR="FALSE">
@@ -548,12 +445,13 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="14" y="22" width="1400" height="804" extended-state="0" />
+    <frame x="0" y="22" width="1400" height="804" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3292517" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3292517" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20142858" sideWeight="0.6721088" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -565,7 +463,6 @@
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3292517" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="REST Client" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32971507" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -586,121 +483,118 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/securityguards/SensorDisplayView.m">
+    <entry file="file://$PROJECT_DIR$/securityguards/Device.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="16" selection-start="220" selection-end="220" vertical-scroll-proportion="0.0" vertical-offset="65" max-vertical-offset="1456">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/securityguards/Entity.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="13" selection-start="250" selection-end="250" vertical-scroll-proportion="0.30686694" vertical-offset="0" max-vertical-offset="466">
+        <state line="53" column="24" selection-start="1007" selection-end="1007" vertical-scroll-proportion="0.47424892" vertical-offset="0" max-vertical-offset="2275">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/securityguards/Device.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="11" selection-start="171" selection-end="171" vertical-scroll-proportion="0.25107297" vertical-offset="0" max-vertical-offset="949">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/securityguards/SensorDisplayView.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="13" selection-start="180" selection-end="180" vertical-scroll-proportion="0.25107297" vertical-offset="0" max-vertical-offset="481">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/securityguards/CurrentLocationUpdatedEvent.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="33" selection-start="308" selection-end="308" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="299">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/securityguards/PortalViewController.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="510" column="54" selection-start="21720" selection-end="21720" vertical-scroll-proportion="0.0" vertical-offset="6129" max-vertical-offset="7215">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/securityguards/CurrentLocationUpdatedEvent.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="15" selection-start="253" selection-end="253" vertical-scroll-proportion="0.30322582" vertical-offset="15" max-vertical-offset="481">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/securityguards/zh-Hans.lproj/Localizable.strings">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="98" column="44" selection-start="0" selection-end="16861" vertical-scroll-proportion="-8.0" vertical-offset="1066" max-vertical-offset="5109">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/securityguards/en.lproj/Localizable.strings">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="364" column="46" selection-start="15524" selection-end="15524" vertical-scroll-proportion="0.0" vertical-offset="4605" max-vertical-offset="5109">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/securityguards/AQIPanelView.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="19" selection-start="245" selection-end="245" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="338">
-          <folding>
-            <element signature="e#137#160#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/securityguards/AQIPanelView.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="106" column="0" selection-start="3944" selection-end="3944" vertical-scroll-proportion="0.0" vertical-offset="1196" max-vertical-offset="2080">
-          <folding>
-            <element signature="e#137#161#0" expanded="true" />
-            <element signature="e#4424#4456#0" expanded="true" />
-            <element signature="e#4569#4605#0" expanded="true" />
-            <element signature="e#5142#5178#1" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/securityguards/AQIDetail.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="0" selection-start="264" selection-end="264" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="364">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/securityguards/NSDictionary+Extension.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="12" selection-start="937" selection-end="937" vertical-scroll-proportion="0.0" vertical-offset="747" max-vertical-offset="1612">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/securityguards/NSMutableDictionary+Extension.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="8" selection-start="1569" selection-end="1569" vertical-scroll-proportion="0.0" vertical-offset="523" max-vertical-offset="936">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/securityguards/AQIDetail.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="66" column="41" selection-start="1996" selection-end="1996" vertical-scroll-proportion="0.0" vertical-offset="411" max-vertical-offset="962">
+        <state line="27" column="13" selection-start="871" selection-end="871" vertical-scroll-proportion="0.47424892" vertical-offset="117" max-vertical-offset="1118">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/securityguards/CoreService.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="702" column="35" selection-start="23945" selection-end="23945" vertical-scroll-proportion="0.65562916" vertical-offset="8556" max-vertical-offset="9009">
+        <state line="151" column="8" selection-start="4543" selection-end="4543" vertical-scroll-proportion="-0.60264903" vertical-offset="1963" max-vertical-offset="9009">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/securityguards/UnitControlPanel.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="206" column="61" selection-start="7794" selection-end="7794" vertical-scroll-proportion="-0.25827813" vertical-offset="2678" max-vertical-offset="3627">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/securityguards/ShoppingService.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="0" selection-start="139" selection-end="139" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="312">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/securityguards/RootViewController.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="18" selection-start="584" selection-end="584" vertical-scroll-proportion="0.0" vertical-offset="60" max-vertical-offset="3075">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/securityguards/PortalViewController.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="26" selection-start="265" selection-end="265" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="315">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/securityguards/PortalViewController.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="524" column="39" selection-start="22587" selection-end="22587" vertical-scroll-proportion="0.0" vertical-offset="6971" max-vertical-offset="9000">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/securityguards/en.lproj/Localizable.strings">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="379" column="48" selection-start="16241" selection-end="16241" vertical-scroll-proportion="0.8366446" vertical-offset="5306" max-vertical-offset="6000">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/securityguards/zh-Hans.lproj/Localizable.strings">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="101" column="22" selection-start="0" selection-end="17191" vertical-scroll-proportion="0.7284768" vertical-offset="1185" max-vertical-offset="6000">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/securityguards/BitUtils.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="34" selection-start="338" selection-end="338" vertical-scroll-proportion="0.0" vertical-offset="57" max-vertical-offset="510">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/securityguards/OrderConfirmViewController.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="481" column="8" selection-start="22362" selection-end="22362" vertical-scroll-proportion="0.0" vertical-offset="6972" max-vertical-offset="7425">
+          <folding>
+            <element signature="e#20742#20780#0" expanded="true" />
+            <element signature="e#22172#22214#0" expanded="true" />
+            <element signature="e#22516#22556#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/securityguards/Contact.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="14" selection-start="166" selection-end="166" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="390">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/securityguards/Contact.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="4" selection-start="455" selection-end="455" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="435">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/securityguards/ShoppingService.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="16" selection-start="185" selection-end="185" vertical-scroll-proportion="0.0" vertical-offset="267" max-vertical-offset="810">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/securityguards/ShoppingCart.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="140" column="0" selection-start="4194" selection-end="4194" vertical-scroll-proportion="0.64377683" vertical-offset="1770" max-vertical-offset="3165">
           <folding />
         </state>
       </provider>
