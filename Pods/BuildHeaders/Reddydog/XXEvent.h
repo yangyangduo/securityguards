@@ -1,1 +1,1 @@
-../../../../Reddydog/Reddydog/Classes/event_pub_sub/XXEvent.h
+../../Reddydog/Classes/event_pub_sub/XXEvent.h
