@@ -13,6 +13,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Headers/Reddydog/UIApplication+TopViewController.h" afterPath="$PROJECT_DIR$/Pods/Headers/Reddydog/UIApplication+TopViewController.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/BuildHeaders/Reddydog/UIColor+HexColor.h" afterPath="$PROJECT_DIR$/Pods/BuildHeaders/Reddydog/UIColor+HexColor.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Headers/Reddydog/UIColor+HexColor.h" afterPath="$PROJECT_DIR$/Pods/Headers/Reddydog/UIColor+HexColor.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Reddydog/Classes/category/UIColor+HexColor.m" afterPath="$PROJECT_DIR$/Pods/Reddydog/Classes/category/UIColor+HexColor.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/BuildHeaders/Reddydog/UIDevice+SystemVersion.h" afterPath="$PROJECT_DIR$/Pods/BuildHeaders/Reddydog/UIDevice+SystemVersion.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Headers/Reddydog/UIDevice+SystemVersion.h" afterPath="$PROJECT_DIR$/Pods/Headers/Reddydog/UIDevice+SystemVersion.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/BuildHeaders/Reddydog/UIView+ViewController.h" afterPath="$PROJECT_DIR$/Pods/BuildHeaders/Reddydog/UIView+ViewController.h" />
@@ -54,6 +55,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/BuildHeaders/Reddydog/XXTopbarView.h" afterPath="$PROJECT_DIR$/Pods/BuildHeaders/Reddydog/XXTopbarView.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Headers/Reddydog/XXTopbarView.h" afterPath="$PROJECT_DIR$/Pods/Headers/Reddydog/XXTopbarView.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/project.pbxproj" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/securityguards.iml" afterPath="$PROJECT_DIR$/.idea/securityguards.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="securityguards.iws" />
@@ -86,10 +88,28 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UIColor+HexColor.m" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="UIColor+HexColor.h" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Pods/Reddydog/Classes/category/UIColor+HexColor.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="315">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NSDictionary+Extension.m" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Pods/Reddydog/Classes/category/NSDictionary+Extension.m">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="13" column="12" selection-start="262" selection-end="262" vertical-scroll-proportion="0.0" vertical-offset="1379" max-vertical-offset="1845">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UIColor+HexColor.m" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Pods/Reddydog/Classes/category/UIColor+HexColor.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="3" selection-start="529" selection-end="529" vertical-scroll-proportion="0.611588" vertical-offset="0" max-vertical-offset="900">
+            <state line="9" column="2" selection-start="115" selection-end="115" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="885">
               <folding />
             </state>
           </provider>
@@ -104,10 +124,19 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="UIColor+HexColor.m" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/../Reddydog/Reddydog/Classes/category/UIColor+HexColor.m">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="18" column="3" selection-start="477" selection-end="477" vertical-scroll-proportion="0.57939917" vertical-offset="0" max-vertical-offset="885">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="Podfile" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Podfile">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="1" selection-start="258" selection-end="258" vertical-scroll-proportion="-4.2" vertical-offset="0" max-vertical-offset="195">
+            <state line="7" column="35" selection-start="291" selection-end="291" vertical-scroll-proportion="-4.2" vertical-offset="0" max-vertical-offset="195">
               <folding />
             </state>
           </provider>
@@ -201,8 +230,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/securityguards/BaseViewController.m" />
-        <option value="$PROJECT_DIR$/securityguards/NavigationViewController.m" />
         <option value="$PROJECT_DIR$/securityguards/BaseView.m" />
         <option value="$PROJECT_DIR$/../Reddydog/Reddydog/Classes/ui/XXBaseViewController.m" />
         <option value="$PROJECT_DIR$/../Reddydog/Reddydog/Classes/utils/json/XXJsonUtils.h" />
@@ -216,7 +243,9 @@
         <option value="$PROJECT_DIR$/Pods/Headers/Reddydog/XXBaseViewController.h" />
         <option value="$PROJECT_DIR$/securityguards/MerchandiseDetailSelectView.m" />
         <option value="$PROJECT_DIR$/securityguards/LeftNavView.m" />
+        <option value="$PROJECT_DIR$/Pods/Reddydog/Classes/category/UIColor+HexColor.m" />
         <option value="$PROJECT_DIR$/Podfile" />
+        <option value="$PROJECT_DIR$/../Reddydog/Reddydog/Classes/category/UIColor+HexColor.m" />
       </list>
     </option>
   </component>
@@ -480,47 +509,7 @@
               <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Pods" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SDWebImage" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Support Files" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Pods" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Pods" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SDWebImage" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Pods" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Pods" />
+              <option name="myItemId" value="Development Pods" />
               <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -636,7 +625,7 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32789117" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32789117" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="100" y="122" width="1200" height="606" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -662,27 +651,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/securityguards/CameraLoadingView.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="707">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/securityguards/XXTextField.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="707">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/securityguards/XXTextField.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="707">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/securityguards/DirectionItemButton.m">
       <provider selected="true" editor-type-id="text-editor">
         <state line="30" column="0" selection-start="605" selection-end="605" vertical-scroll-proportion="0.9656652" vertical-offset="0" max-vertical-offset="540">
@@ -762,14 +730,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Podfile">
+    <entry file="file://$PROJECT_DIR$/Pods/Reddydog/Classes/category/UIApplication+TopViewController.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="1" selection-start="258" selection-end="258" vertical-scroll-proportion="-4.2" vertical-offset="0" max-vertical-offset="195">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="466">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Pods/Reddydog/Classes/category/UIApplication+TopViewController.h">
+    <entry file="file://$PROJECT_DIR$/Pods/Reddydog/Classes/category/NSDictionary+Extension.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="12" selection-start="262" selection-end="262" vertical-scroll-proportion="0.0" vertical-offset="1379" max-vertical-offset="1845">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pods/Reddydog/Classes/category/UIColor+HexColor.h">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="466">
           <folding />
@@ -778,7 +753,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Pods/Reddydog/Classes/category/UIColor+HexColor.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="3" selection-start="529" selection-end="529" vertical-scroll-proportion="0.611588" vertical-offset="0" max-vertical-offset="900">
+        <state line="9" column="2" selection-start="115" selection-end="115" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="885">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Podfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="35" selection-start="291" selection-end="291" vertical-scroll-proportion="-4.2" vertical-offset="0" max-vertical-offset="195">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Reddydog/Reddydog/Classes/category/UIColor+HexColor.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="3" selection-start="477" selection-end="477" vertical-scroll-proportion="0.57939917" vertical-offset="0" max-vertical-offset="885">
           <folding />
         </state>
       </provider>

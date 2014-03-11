@@ -1,1 +1,1 @@
-../../Reddydog/Classes/utils/strings/XXStringUtils.h
+../../../../Reddydog/Reddydog/Classes/utils/strings/XXStringUtils.h
