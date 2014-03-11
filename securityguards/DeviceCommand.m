@@ -51,7 +51,7 @@
             self.resultID = [json intForKey:@"resultId"];
             self.security = [json stringForKey:@"security"];
             self.restAddress = [json noNilStringForKey:@"rest"];
-            self.commandTime = [json dateForKey:@"commandTime"];
+            self.commandTime = [json dateWithMillisecondsForKey:@"commandTime"];
         }
     }
     return self;
@@ -67,7 +67,7 @@
     [json setNoBlankString:self.commandName forKey:@"_className"];
     [json setNoBlankString:self.masterDeviceCode forKey:@"masterDeviceCode"];
     [json setNoBlankString:self.describe forKey:@"describe"];
-    [json setDateLongLongValue:self.commandTime forKey:@"commandTime"];
+    [json setDateWithMilliseconds:self.commandTime forKey:@"commandTime"];
     
     if(([COMMAND_GET_UNITS isEqualToString:commandName] && ![XXStringUtils isBlank:self.masterDeviceCode])) {
         if(self.hashCode != nil) {

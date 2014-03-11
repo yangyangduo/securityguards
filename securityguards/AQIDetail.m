@@ -24,7 +24,7 @@
             self.aqiNumber = [_m_ intForKey:@"aqi"];
             self.quality = [_m_ noNilStringForKey:@"quality"];
             self.area = [_m_ noNilStringForKey:@"area"];
-            self.updateTime = [_m_ dateForKey:@"time_point"];
+            self.updateTime = [_m_ dateWithMillisecondsForKey:@"time_point"];
         } else {
             self.aqiNumber = 0;
             self.quality = [XXStringUtils emptyString];
@@ -41,7 +41,7 @@
 
     NSMutableDictionary *aqiBody = [NSMutableDictionary dictionary];
     [aqiBody setInteger:self.aqiNumber forKey:@"aqi"];
-    [aqiBody setDateLongLongValue:self.updateTime forKey:@"time_point"];
+    [aqiBody setDateWithMilliseconds:self.updateTime forKey:@"time_point"];
     [aqiBody setMayBlankString:self.quality forKey:@"quality"];
     [aqiBody setMayBlankString:self.area forKey:@"area"];
 

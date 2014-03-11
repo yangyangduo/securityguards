@@ -21,8 +21,9 @@
 - (NSString *)stringForKey:(id)key;
 - (NSNumber *)numberForKey:(id)key;
 - (NSDate *)dateWithTimeIntervalSince1970ForKey:(id)key;
+
 //
-- (NSDate *)dateForKey:(id)key;
+- (NSDate *)dateWithMillisecondsForKey:(id)key;
 - (int)intForKey:(id)key;
 - (long)longForKey:(id)key;
 - (long long)longlongForKey:(id)key;

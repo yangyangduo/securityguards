@@ -15,6 +15,7 @@
 #import "DeviceOperationItem.h"
 #import "Shared.h"
 #import "DeviceUtils.h"
+#import "UIView+ViewController.h"
 
 #define DETAIL_TEXT_LABEL_TAG 888
 #define CONTROL_ITEM_HEIGHT 44
@@ -167,6 +168,14 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+
+    UIViewController *controller = self.viewController;
+    if(controller != nil) {
+        NSLog(@"%@", [controller description]);
+    } else {
+        NSLog(@"super view controller is empty");
+    }
+
     if(self.unit == nil || self.delegate == nil) {
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
         return;

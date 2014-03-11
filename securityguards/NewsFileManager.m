@@ -39,7 +39,7 @@
         NSData *data = [[NSData alloc] initWithContentsOfFile:filePath];
         NSDictionary *json = [JsonUtils createDictionaryFromJson:data];
         if(json != nil) {
-            NSDate *date = [json dateForKey:@"lastUpdateTime"];
+            NSDate *date = [json dateWithMillisecondsForKey:@"lastUpdateTime"];
             if(date != nil) {
                 *lastUpdateTime = date;
             }
@@ -84,7 +84,7 @@
         
         NSMutableDictionary *json = [NSMutableDictionary dictionary];
         [json setObject:_news_ forKey:@"news"];
-        [json setDateLongLongValue:lastUpdateTime forKey:@"lastUpdateTime"];
+        [json setDateWithMilliseconds:lastUpdateTime forKey:@"lastUpdateTime"];
         
         NSData *data = [JsonUtils createJsonDataFromDictionary:json];
         

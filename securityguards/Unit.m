@@ -50,7 +50,7 @@
             self.localPort = [json intForKey:@"localPort"];
             self.status = [json stringForKey:@"status"];
             self.hashCode = [json numberForKey:@"hashCode"];
-            self.updateTime = [json dateForKey:@"updateTime"];
+            self.updateTime = [json dateWithMillisecondsForKey:@"updateTime"];
 
             // init score's detail
             NSDictionary *_score_json_ = [json notNSNullObjectForKey:@"score"];
@@ -83,7 +83,7 @@
     [json setMayBlankString:self.name forKey:@"name"];
     [json setInteger:self.localPort forKey:@"localPort"];
     [json setMayBlankString:self.status forKey:@"status"];
-    [json setDateLongLongValue:self.updateTime forKey:@"updateTime"];
+    [json setDateWithMilliseconds:self.updateTime forKey:@"updateTime"];
     [json setObject:(self.hashCode == nil ? [NSNumber numberWithInteger:0] : self.hashCode) forKey:@"hashCode"];
 
     // set score ...

@@ -18,7 +18,6 @@
     struct ifaddrs *interfaces = NULL;
     struct ifaddrs *temp_addr = NULL;
     int success = 0;
-    
     // retrieve the current interfaces - returns 0 on success
     success = getifaddrs(&interfaces);
     if (success == 0) {
@@ -32,11 +31,9 @@
                     address = [NSString stringWithUTF8String:inet_ntoa(((struct sockaddr_in *)temp_addr->ifa_addr)->sin_addr)];
                 }
             }
-            
             temp_addr = temp_addr->ifa_next;
         }
     }
-    
     // Free memory
     freeifaddrs(interfaces);
     
@@ -47,18 +44,10 @@
 #if TARGET_IPHONE_SIMULATOR
     return [XXStringUtils emptyString];
 #elif TARGET_OS_IPHONE
-    @try {
-        CFArrayRef myArray = CNCopySupportedInterfaces();
-        CFDictionaryRef myDict = CNCopyCurrentNetworkInfo(CFArrayGetValueAtIndex(myArray, 0));
-        NSDictionary *myDictionary = (__bridge_transfer NSDictionary*)myDict;
-        NSString * ssid = [myDictionary objectForKey:@"SSID"];
-        return ssid;
-    }
-    @catch (NSException *exception) {
-        return [XXStringUtils emptyString];
-    }
-    @finally {
-    }
+    CFArrayRef myArray = CNCopySupportedInterfaces();
+    CFDictionaryRef myDict = CNCopyCurrentNetworkInfo(CFArrayGetValueAtIndex(myArray, 0));
+    NSDictionary *myDictionary = (__bridge_transfer NSDictionary*)myDict;
+    return [myDictionary objectForKey:@"SSID"];
 #endif
 }
 

@@ -33,7 +33,7 @@
         self.text = [json stringForKey:@"text"];
         self.mac = [json stringForKey:@"mac"];
         self.type = [json stringForKey:@"type"];
-        self.createTime = [json dateForKey:@"createTime"];
+        self.createTime = [json dateWithMillisecondsForKey:@"createTime"];
         self.identifier = [json stringForKey:@"id"];
         self.hasRead = [json boolForKey:@"hasRead"];
         self.hasProcess = [json boolForKey:@"hasProcess"];
@@ -53,7 +53,7 @@
     [json setMayBlankString:self.identifier forKey:@"id"];
     [json setBool:self.hasProcess forKey:@"hasProcess"];
     [json setBool:self.hasRead forKey:@"hasRead"];
-    [json setDateLongLongValue:self.createTime forKey:@"createTime"];
+    [json setDateWithMilliseconds:self.createTime forKey:@"createTime"];
     
     if(self.data != nil) {
         [json setObject:[self.data toJson] forKey:@"data"];

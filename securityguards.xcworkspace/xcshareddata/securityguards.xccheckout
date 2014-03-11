@@ -12,6 +12,8 @@
 	<dict>
 		<key>C25B97FB-122E-42B2-9594-7BFCDFFDD639</key>
 		<string>https://github.com/yangyangduo/securityguards.git</string>
+		<key>FFBBD1C8-99E0-4781-B2D4-EFB559196944</key>
+		<string>https://github.com/yangyangduo/Reddydog.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>securityguards.xcworkspace</string>
@@ -19,6 +21,8 @@
 	<dict>
 		<key>C25B97FB-122E-42B2-9594-7BFCDFFDD639</key>
 		<string>..</string>
+		<key>FFBBD1C8-99E0-4781-B2D4-EFB559196944</key>
+		<string>../../Reddydog/Reddydog</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/yangyangduo/securityguards.git</string>
@@ -28,6 +32,14 @@
 	<string>C25B97FB-122E-42B2-9594-7BFCDFFDD639</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>FFBBD1C8-99E0-4781-B2D4-EFB559196944</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Reddydog</string>
+		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>

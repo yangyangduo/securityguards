@@ -49,7 +49,7 @@
 }
 
 /* if date is nil , return */
-- (void)setDateLongLongValue:(NSDate *)date forKey:(id<NSCopying>)key {
+- (void)setDateWithMilliseconds:(NSDate *)date forKey:(id<NSCopying>)key {
     if(date == nil) return;
     [self setObject:[NSNumber numberWithLongLong:date.timeIntervalSince1970 * 1000] forKey:key];
 }

@@ -7,7 +7,6 @@
 //
 
 #import "NSDictionary+Extension.h"
-#import "NSDate+Extension.h"
 
 @implementation NSDictionary (Extension)
 
@@ -39,7 +38,7 @@
     return [NSDate dateWithTimeIntervalSince1970:_date_.doubleValue];
 }
 
-- (NSDate *)dateForKey:(id)key {
+- (NSDate *)dateWithMillisecondsForKey:(id)key {
     NSNumber *_date_ = [self notNSNullObjectForKey:key];
     if(_date_ == nil) return nil;
     return [NSDate dateWithTimeIntervalSince1970:_date_.longLongValue / 1000];
@@ -114,6 +113,5 @@
     }
     return _str_;
 }
-
 
 @end

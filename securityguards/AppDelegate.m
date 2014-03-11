@@ -17,7 +17,6 @@
 #import "Memory.h"
 #import "ShoppingCart.h"
 
-
 @implementation AppDelegate {
     RootViewController *_rootViewController_;
     BOOL logouting;

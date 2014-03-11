@@ -128,11 +128,11 @@
        @"cr"  : @{ @"_id" : accountId },
        @"co"  : @{
                @"_id"  : accountId,
-               @"name" : [XXStringUtils noNilStringFor:self.contact.name],
-               @"tel"  : [XXStringUtils noNilStringFor:self.contact.phoneNumber],
-               @"del"  : [XXStringUtils noNilStringFor:self.contact.address]
+               @"name" : [XXStringUtils noNilStringWithString:self.contact.name],
+               @"tel"  : [XXStringUtils noNilStringWithString:self.contact.phoneNumber],
+               @"del"  : [XXStringUtils noNilStringWithString:self.contact.address]
                },
-       @"rem" : [XXStringUtils noNilStringFor:self.contact.remark],
+       @"rem" : [XXStringUtils noNilStringWithString:self.contact.remark],
        @"rc"  : @{ @"phoneNumber" : self.contact.recommended == nil ? [XXStringUtils emptyString] : self.contact.recommended }
     };
     

@@ -11,6 +11,12 @@
 @implementation UIView (ViewController)
 
 - (UIViewController *)viewController {
+    for(UIView *next = self ; next; next = next.superview) {
+        id nextResponder = next.nextResponder;
+        if([nextResponder isKindOfClass:[UIViewController class]]) {
+            return (UIViewController *)nextResponder;
+        }
+    }
     return nil;
 }
 

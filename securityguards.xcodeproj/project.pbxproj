@@ -126,7 +126,6 @@
 		6F600490186BCED60085B4BD /* XXEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F600488186BCED60085B4BD /* XXEvent.m */; };
 		6F600491186BCED60085B4BD /* XXEventSubscription.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F60048B186BCED60085B4BD /* XXEventSubscription.m */; };
 		6F600492186BCED60085B4BD /* XXEventSubscriptionPublisher.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F60048D186BCED60085B4BD /* XXEventSubscriptionPublisher.m */; };
-		6F600493186BCED60085B4BD /* XXStringUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F60048F186BCED60085B4BD /* XXStringUtils.m */; };
 		6F60049F186BCEF10085B4BD /* XXAllAllowedEventFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F600496186BCEF10085B4BD /* XXAllAllowedEventFilter.m */; };
 		6F6004A0186BCEF10085B4BD /* XXEventClassFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F600498186BCEF10085B4BD /* XXEventClassFilter.m */; };
 		6F6004A1186BCEF10085B4BD /* XXEventFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F60049A186BCEF10085B4BD /* XXEventFilter.m */; };
@@ -562,8 +561,6 @@
 		6F60048B186BCED60085B4BD /* XXEventSubscription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXEventSubscription.m; sourceTree = "<group>"; };
 		6F60048C186BCED60085B4BD /* XXEventSubscriptionPublisher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXEventSubscriptionPublisher.h; sourceTree = "<group>"; };
 		6F60048D186BCED60085B4BD /* XXEventSubscriptionPublisher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXEventSubscriptionPublisher.m; sourceTree = "<group>"; };
-		6F60048E186BCED60085B4BD /* XXStringUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXStringUtils.h; sourceTree = "<group>"; };
-		6F60048F186BCED60085B4BD /* XXStringUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXStringUtils.m; sourceTree = "<group>"; };
 		6F600495186BCEF10085B4BD /* XXAllAllowedEventFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXAllAllowedEventFilter.h; sourceTree = "<group>"; };
 		6F600496186BCEF10085B4BD /* XXAllAllowedEventFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXAllAllowedEventFilter.m; sourceTree = "<group>"; };
 		6F600497186BCEF10085B4BD /* XXEventClassFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XXEventClassFilter.h; sourceTree = "<group>"; };
@@ -1270,7 +1267,6 @@
 				6F8F57BF187111B10033228F /* speech */,
 				6F8F57B518710D8A0033228F /* core_text */,
 				6F600583186BF86F0085B4BD /* date */,
-				6F600563186BF12E0085B4BD /* strings */,
 				6F6004DF186BD27E0085B4BD /* json */,
 				6F6004AD186BCFD90085B4BD /* categories */,
 				6F600486186BCEBE0085B4BD /* event_pub_sub */,
@@ -1684,15 +1680,6 @@
 				6FD42CEC18B5CE7600BFCC74 /* AQIDetail.m */,
 			);
 			name = entities;
-			sourceTree = "<group>";
-		};
-		6F600563186BF12E0085B4BD /* strings */ = {
-			isa = PBXGroup;
-			children = (
-				6F60048E186BCED60085B4BD /* XXStringUtils.h */,
-				6F60048F186BCED60085B4BD /* XXStringUtils.m */,
-			);
-			name = strings;
 			sourceTree = "<group>";
 		};
 		6F600564186BF3780085B4BD /* events */ = {
@@ -2668,7 +2655,6 @@
 				6F8F57BC18710D940033228F /* AttributedStringBuilder.m in Sources */,
 				6F6004A0186BCEF10085B4BD /* XXEventClassFilter.m in Sources */,
 				F29DE7051886662100BCE93C /* TipsLabel.m in Sources */,
-				6F600493186BCED60085B4BD /* XXStringUtils.m in Sources */,
 				6FD7358D18920BD40033A09D /* TimingTask.m in Sources */,
 				6F8F57BD18710D940033228F /* ParagraphBuilder.m in Sources */,
 				6F600491186BCED60085B4BD /* XXEventSubscription.m in Sources */,
