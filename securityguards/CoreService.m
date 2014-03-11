@@ -24,7 +24,7 @@
 #import "DeviceCommandGetSensorsHandler.h"
 #import "DeviceCommandGetScoreHandler.h"
 
-#import "AlertView.h"
+#import "XXAlertView.h"
 #import "AQIManager.h"
 
 #define NETWORK_CHECK_INTERVAL 5

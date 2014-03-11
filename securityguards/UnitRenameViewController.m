@@ -76,14 +76,14 @@
     if([event isKindOfClass:[UnitNameChangedEvent class]]) {
         UnitNameChangedEvent *evt = (UnitNameChangedEvent *)event;
         if([XXStringUtils isBlank:evt.unitIdentifier]) {
-            if([AlertView currentAlertView].alertViewState == AlertViewStateDidAppear || [AlertView currentAlertView].alertViewState == AlertViewStateWillAppear) {
-                [[AlertView currentAlertView] setMessage:NSLocalizedString(@"unit_name_change_failed", @"") forType:AlertViewTypeFailed];
-                [[AlertView currentAlertView] delayDismissAlertView];
+            if([XXAlertView currentAlertView].alertViewState == AlertViewStateDidAppear || [XXAlertView currentAlertView].alertViewState == AlertViewStateWillAppear) {
+                [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"unit_name_change_failed", @"") forType:AlertViewTypeFailed];
+                [[XXAlertView currentAlertView] delayDismissAlertView];
             }
         } else {
-            if([AlertView currentAlertView].alertViewState == AlertViewStateDidAppear || [AlertView currentAlertView].alertViewState == AlertViewStateWillAppear) {
-                [[AlertView currentAlertView] setMessage:NSLocalizedString(@"unit_name_change_success", @"") forType:AlertViewTypeSuccess];
-                [[AlertView currentAlertView] delayDismissAlertView];
+            if([XXAlertView currentAlertView].alertViewState == AlertViewStateDidAppear || [XXAlertView currentAlertView].alertViewState == AlertViewStateWillAppear) {
+                [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"unit_name_change_success", @"") forType:AlertViewTypeSuccess];
+                [[XXAlertView currentAlertView] delayDismissAlertView];
                 [self popupViewController];
             }
         }
@@ -99,8 +99,8 @@
 
 - (void)btnSubmitPressed:(id)sender {
     if([XXStringUtils isBlank:self.value]) {
-        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"unit_name_not_blank", @"") forType:AlertViewTypeFailed];
-        [[AlertView currentAlertView] alertForLock:NO autoDismiss:YES];
+        [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"unit_name_not_blank", @"") forType:AlertViewTypeFailed];
+        [[XXAlertView currentAlertView] alertForLock:NO autoDismiss:YES];
         return;
     }
     
@@ -109,8 +109,8 @@
         return;
     }
     
-    [[AlertView currentAlertView] setMessage:NSLocalizedString(@"please_wait", @"") forType:AlertViewTypeWaitting];
-    [[AlertView currentAlertView] alertForLock:YES timeout:10.f timeoutMessage:NSLocalizedString(@"request_timeout", @"")];
+    [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"please_wait", @"") forType:AlertViewTypeWaitting];
+    [[XXAlertView currentAlertView] alertForLock:YES timeout:10.f timeoutMessage:NSLocalizedString(@"request_timeout", @"")];
     
     DeviceCommandUpdateUnitName *updateUnitNameCommand = (DeviceCommandUpdateUnitName *)[CommandFactory commandForType:CommandTypeUpdateUnitName];
     updateUnitNameCommand.masterDeviceCode = self.unit.identifier;

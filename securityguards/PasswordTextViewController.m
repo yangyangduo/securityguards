@@ -72,14 +72,14 @@
 - (void)btnSubmitPressed:(id)sender {
     
     if(![self.value isEqualToString:textField.text]) {
-        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"pwd_different", @"") forType:AlertViewTypeFailed];
-        [[AlertView currentAlertView] alertForLock:NO autoDismiss:YES];
+        [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"pwd_different", @"") forType:AlertViewTypeFailed];
+        [[XXAlertView currentAlertView] alertForLock:NO autoDismiss:YES];
         return;
     }
     
     if([XXStringUtils isBlank:self.value]) {
-        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"password_not_blank", @"") forType:AlertViewTypeFailed];
-        [[AlertView currentAlertView] alertForLock:NO autoDismiss:YES];
+        [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"password_not_blank", @"") forType:AlertViewTypeFailed];
+        [[XXAlertView currentAlertView] alertForLock:NO autoDismiss:YES];
         return;
     }
     

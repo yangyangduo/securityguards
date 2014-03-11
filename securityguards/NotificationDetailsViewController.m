@@ -163,8 +163,8 @@
 
 - (void)deleteBtnPressed:(UIButton *)sender {
     [[NotificationsFileManager fileManager] update:nil deleteList:[NSArray arrayWithObject:self.notification]];
-    [[AlertView currentAlertView] setMessage:NSLocalizedString(@"delete_success", @"") forType:AlertViewTypeSuccess];
-    [[AlertView currentAlertView] alertForLock:NO autoDismiss:YES];
+    [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"delete_success", @"") forType:AlertViewTypeSuccess];
+    [[XXAlertView currentAlertView] alertForLock:NO autoDismiss:YES];
     if(self.delegate != nil) {
         if([self.delegate respondsToSelector:@selector(smNotificationsWasUpdated)]) {
             [self.delegate smNotificationsWasUpdated];
@@ -186,8 +186,8 @@
     }
     self.notification.hasProcess = YES;
     [[NotificationsFileManager fileManager] update:[NSArray arrayWithObject:self.notification] deleteList:nil];
-    [[AlertView currentAlertView] setMessage:alertString forType:AlertViewTypeSuccess];
-    [[AlertView currentAlertView] alertForLock:NO autoDismiss:YES];
+    [[XXAlertView currentAlertView] setMessage:alertString forType:AlertViewTypeSuccess];
+    [[XXAlertView currentAlertView] alertForLock:NO autoDismiss:YES];
     if(self.delegate != nil) {
         if([self.delegate respondsToSelector:@selector(smNotificationsWasUpdated)]) {
             [self.delegate smNotificationsWasUpdated];

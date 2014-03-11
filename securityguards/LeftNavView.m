@@ -8,10 +8,7 @@
 
 #import "LeftNavView.h"
 #import "Shared.h"
-#import "UIDevice+SystemVersion.h"
-
 #import "AccountSettingsViewController.h"
-#import "Shared.h"
 
 @implementation LeftNavView {
     UITableView *tblItems;

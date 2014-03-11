@@ -132,8 +132,8 @@ typedef enum {
         self.timingTask.scheduleTimeHour = components.hour;
         self.timingTask.scheduleTimeMinute = components.minute;
         
-        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"please_wait", @"") forType:AlertViewTypeWaitting];
-        [[AlertView currentAlertView] alertForLock:YES autoDismiss:NO];
+        [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"please_wait", @"") forType:AlertViewTypeWaitting];
+        [[XXAlertView currentAlertView] alertForLock:YES autoDismiss:NO];
         
         TimingTasksPlanService *service = [[TimingTasksPlanService alloc] init];
         [service saveTimingTasksPlan:self.timingTask success:@selector(saveTimingTasksSuccess:) failed:@selector(saveTimingTasksFailed:) target:self callback:nil];
@@ -146,22 +146,22 @@ typedef enum {
         if(_json_ != nil) {
             int result = [_json_ intForKey:@"i"];
             if(result == 1) {
-                [[AlertView currentAlertView] setMessage:NSLocalizedString(@"update_success", @"") forType:AlertViewTypeSuccess];
-                [[AlertView currentAlertView] delayDismissAlertView];
+                [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"update_success", @"") forType:AlertViewTypeSuccess];
+                [[XXAlertView currentAlertView] delayDismissAlertView];
                 if(self.preViewController != nil) {
                     TimingTasksPlanViewController *controller = (TimingTasksPlanViewController *)self.preViewController;
                     controller.needRefresh = YES;
                 }
                 [self.navigationController popViewControllerAnimated:YES];
             } else if(result == 0) {
-                [[AlertView currentAlertView] setMessage:NSLocalizedString(@"no_permissions", @"") forType:AlertViewTypeFailed];
-                [[AlertView currentAlertView] delayDismissAlertView];
+                [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"no_permissions", @"") forType:AlertViewTypeFailed];
+                [[XXAlertView currentAlertView] delayDismissAlertView];
             } else if(result == -2) {
-                [[AlertView currentAlertView] setMessage:NSLocalizedString(@"no_unit_bind", @"") forType:AlertViewTypeFailed];
-                [[AlertView currentAlertView] delayDismissAlertView];
+                [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"no_unit_bind", @"") forType:AlertViewTypeFailed];
+                [[XXAlertView currentAlertView] delayDismissAlertView];
             } else {
-                [[AlertView currentAlertView] setMessage:NSLocalizedString(@"system_error", @"") forType:AlertViewTypeFailed];
-                [[AlertView currentAlertView] delayDismissAlertView];
+                [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"system_error", @"") forType:AlertViewTypeFailed];
+                [[XXAlertView currentAlertView] delayDismissAlertView];
             }
             return;
         }
@@ -175,16 +175,16 @@ typedef enum {
 #endif
     
     if(abs(resp.statusCode) == 1001) {
-        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"request_timeout", @"") forType:AlertViewTypeFailed];
+        [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"request_timeout", @"") forType:AlertViewTypeFailed];
     } else if(abs(resp.statusCode) == 1004) {
-        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"network_error", @"") forType:AlertViewTypeFailed];
+        [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"network_error", @"") forType:AlertViewTypeFailed];
     } else if(abs(resp.statusCode) == 403) {
-        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"verification_code_expire", @"") forType:AlertViewTypeFailed];
+        [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"verification_code_expire", @"") forType:AlertViewTypeFailed];
     } else {
-        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"unknow_error", @"") forType:AlertViewTypeFailed];
+        [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"unknow_error", @"") forType:AlertViewTypeFailed];
     }
     
-    [[AlertView currentAlertView] delayDismissAlertView];
+    [[XXAlertView currentAlertView] delayDismissAlertView];
 }
 
 #pragma mark -
@@ -192,8 +192,8 @@ typedef enum {
 
 - (void)textView:(TextViewController *)textView newText:(NSString *)newText {
     if([XXStringUtils isBlank:newText]) {
-        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"timing_tasks_plan_name_not_blank", @"") forType:AlertViewTypeFailed];
-        [[AlertView currentAlertView] alertForLock:NO autoDismiss:YES];
+        [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"timing_tasks_plan_name_not_blank", @"") forType:AlertViewTypeFailed];
+        [[XXAlertView currentAlertView] alertForLock:NO autoDismiss:YES];
         return;
     }
     self.timingTask.name = newText;

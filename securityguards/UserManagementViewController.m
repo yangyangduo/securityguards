@@ -364,8 +364,8 @@
 }
 
 - (void)delayProcess {
-    [[AlertView currentAlertView] setMessage:NSLocalizedString(@"processing", @"") forType:AlertViewTypeWaitting];
-    [[AlertView currentAlertView] alertForLock:YES autoDismiss:NO];
+    [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"processing", @"") forType:AlertViewTypeWaitting];
+    [[XXAlertView currentAlertView] alertForLock:YES autoDismiss:NO];
     UserManagementService *userManagementService = [[UserManagementService alloc] init];
     [userManagementService unBindUnit:curUnitIdentifier forUser:selectedUser.identifier success:@selector(unbindingSuccess:) failed:@selector(unbindingFailed:) target:self callback:nil];
 }
@@ -429,22 +429,22 @@
     tblUnits.pullTableIsRefreshing = NO;
     if(resp != nil && abs(resp.statusCode) == 1001) {
         // 超时处理
-        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"request_timeout", @"") forType:AlertViewTypeFailed];
-        [[AlertView currentAlertView] alertForLock:NO autoDismiss:YES];
+        [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"request_timeout", @"") forType:AlertViewTypeFailed];
+        [[XXAlertView currentAlertView] alertForLock:NO autoDismiss:YES];
         return;
     } else if(abs(resp.statusCode) == 1004) {
-        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"network_error", @"") forType:AlertViewTypeFailed];
+        [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"network_error", @"") forType:AlertViewTypeFailed];
     }  else {
         // Error
-        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"unknow_error", @"") forType:AlertViewTypeFailed];
-        [[AlertView currentAlertView] alertForLock:NO autoDismiss:YES];
+        [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"unknow_error", @"") forType:AlertViewTypeFailed];
+        [[XXAlertView currentAlertView] alertForLock:NO autoDismiss:YES];
     }
 }
 
 - (void)unbindingSuccess:(RestResponse *)resp {
     if (resp && resp.statusCode == 200) {
-        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"execution_success", @"") forType:AlertViewTypeSuccess];
-        [[AlertView currentAlertView] delayDismissAlertView];
+        [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"execution_success", @"") forType:AlertViewTypeSuccess];
+        [[XXAlertView currentAlertView] delayDismissAlertView];
         if (selectedUser.isCurrentUser) {
             [[CoreService defaultService] executeDeviceCommand:[CommandFactory commandForType:CommandTypeGetUnits]];
         }
@@ -456,15 +456,15 @@
 - (void)unbindingFailed:(RestResponse *) resp{
     if(resp != nil && abs(resp.statusCode) == 1001) {
         // 超时处理
-        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"request_timeout", @"") forType:AlertViewTypeFailed];
-        [[AlertView currentAlertView] delayDismissAlertView];
+        [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"request_timeout", @"") forType:AlertViewTypeFailed];
+        [[XXAlertView currentAlertView] delayDismissAlertView];
         return;
     } else if(abs(resp.statusCode) == 1004) {
-        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"network_error", @"") forType:AlertViewTypeFailed];
+        [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"network_error", @"") forType:AlertViewTypeFailed];
     }  else {
         // Error
-        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"unknow_error", @"") forType:AlertViewTypeFailed];
-        [[AlertView currentAlertView] delayDismissAlertView];
+        [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"unknow_error", @"") forType:AlertViewTypeFailed];
+        [[XXAlertView currentAlertView] delayDismissAlertView];
     }
 }
 

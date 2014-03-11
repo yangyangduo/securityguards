@@ -317,8 +317,8 @@
 - (void)textView:(TextViewController *)textView newText:(NSString *)newText {
     if([@"mail" isEqualToString:textView.identifier]) {
         if([XXStringUtils isBlank:newText]) {
-            [[AlertView currentAlertView] setMessage:NSLocalizedString(@"mail_not_blank", @"") forType:AlertViewTypeFailed];
-            [[AlertView currentAlertView] alertForLock:NO autoDismiss:YES];
+            [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"mail_not_blank", @"") forType:AlertViewTypeFailed];
+            [[XXAlertView currentAlertView] alertForLock:NO autoDismiss:YES];
             return;
         }
         if(![newText isEqualToString:profile.mail]) {
@@ -329,8 +329,8 @@
         }
     } else if([@"nickname" isEqualToString:textView.identifier]) {
         if([XXStringUtils isBlank:newText]) {
-            [[AlertView currentAlertView] setMessage:NSLocalizedString(@"nick_name_not_blank", @"") forType:AlertViewTypeFailed];
-            [[AlertView currentAlertView] alertForLock:NO autoDismiss:YES];
+            [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"nick_name_not_blank", @"") forType:AlertViewTypeFailed];
+            [[XXAlertView currentAlertView] alertForLock:NO autoDismiss:YES];
             return;
         }
         if(![newText isEqualToString:profile.nickName]) {
@@ -341,8 +341,8 @@
         }
     } else if([@"password" isEqualToString:textView.identifier]) {
         if([XXStringUtils isBlank:newText]) {
-            [[AlertView currentAlertView] setMessage:NSLocalizedString(@"password_not_blank", @"") forType:AlertViewTypeFailed];
-            [[AlertView currentAlertView] alertForLock:NO autoDismiss:YES];
+            [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"password_not_blank", @"") forType:AlertViewTypeFailed];
+            [[XXAlertView currentAlertView] alertForLock:NO autoDismiss:YES];
             return;
         }
         profile.password = newText;
@@ -365,34 +365,34 @@
 - (void)updateAccountOnComplete:(DeviceCommand *)command {
     @synchronized(self){
         if (command == nil) {
-            [[AlertView currentAlertView] setMessage:NSLocalizedString(@"unknow_error", @"") forType:AlertViewTypeFailed];
-            [[AlertView currentAlertView] delayDismissAlertView];
+            [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"unknow_error", @"") forType:AlertViewTypeFailed];
+            [[XXAlertView currentAlertView] delayDismissAlertView];
             return;
         }
 
         switch (command.resultID) {
             case 1:
-                [[AlertView currentAlertView] setMessage:NSLocalizedString(@"update_success", @"") forType:AlertViewTypeSuccess];
-                [[AlertView currentAlertView] delayDismissAlertView];
+                [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"update_success", @"") forType:AlertViewTypeSuccess];
+                [[XXAlertView currentAlertView] delayDismissAlertView];
                 profileChanged = NO;
                 btnSubmit.enabled = NO;
                 [self notifyLeftNavViewScreenNameChanged:profile.nickName];
                 break;
             case -1:
-                [[AlertView currentAlertView] setMessage:NSLocalizedString(@"pwd_invalid", @"") forType:AlertViewTypeFailed];
-                [[AlertView currentAlertView] delayDismissAlertView];
+                [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"pwd_invalid", @"") forType:AlertViewTypeFailed];
+                [[XXAlertView currentAlertView] delayDismissAlertView];
                 break;
             case -2:
-                [[AlertView currentAlertView] setMessage:NSLocalizedString(@"mail_name_blank", @"") forType:AlertViewTypeFailed];
-                [[AlertView currentAlertView] delayDismissAlertView];
+                [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"mail_name_blank", @"") forType:AlertViewTypeFailed];
+                [[XXAlertView currentAlertView] delayDismissAlertView];
                 break;
             case -3:
-                [[AlertView currentAlertView] setMessage:NSLocalizedString(@"format_error", @"") forType:AlertViewTypeFailed];
-                [[AlertView currentAlertView] delayDismissAlertView];
+                [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"format_error", @"") forType:AlertViewTypeFailed];
+                [[XXAlertView currentAlertView] delayDismissAlertView];
                 break;
             case -4:
-                [[AlertView currentAlertView] setMessage:NSLocalizedString(@"request_frequently", @"") forType:AlertViewTypeFailed];
-                [[AlertView currentAlertView] delayDismissAlertView];
+                [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"request_frequently", @"") forType:AlertViewTypeFailed];
+                [[XXAlertView currentAlertView] delayDismissAlertView];
                 break;
             default:
                 break;
@@ -418,13 +418,13 @@
 
 - (void)delaySubmit {
     if(![CoreService defaultService].tcpService.isConnectted) {
-        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"offline", @"") forType:AlertViewTypeFailed];
-        [[AlertView currentAlertView] alertForLock:NO autoDismiss:YES];
+        [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"offline", @"") forType:AlertViewTypeFailed];
+        [[XXAlertView currentAlertView] alertForLock:NO autoDismiss:YES];
         return;
     }
     
-    [[AlertView currentAlertView] setMessage:NSLocalizedString(@"processing", @"") forType:AlertViewTypeWaitting];
-    [[AlertView currentAlertView] alertForLock:YES timeout:10.f timeoutMessage:NSLocalizedString(@"request_timeout", @"")];
+    [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"processing", @"") forType:AlertViewTypeWaitting];
+    [[XXAlertView currentAlertView] alertForLock:YES timeout:10.f timeoutMessage:NSLocalizedString(@"request_timeout", @"")];
     DeviceCommandUpdateAccount *updateAccountCommand = (DeviceCommandUpdateAccount *)[CommandFactory commandForType:CommandTypeUpdateAccount];
     updateAccountCommand.email = profile.mail;
     updateAccountCommand.screenName = profile.nickName;

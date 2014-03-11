@@ -246,15 +246,15 @@
                 UIImageWriteToSavedPhotosAlbum(imgCameraShots.image, nil, nil, nil);
                 [SystemAudio photoShutter];
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [[AlertView currentAlertView] setMessage:NSLocalizedString(@"catch_screen_success", @"") forType:AlertViewTypeSuccess];
-                    [[AlertView currentAlertView] alertForLock:NO autoDismiss:YES];
+                    [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"catch_screen_success", @"") forType:AlertViewTypeSuccess];
+                    [[XXAlertView currentAlertView] alertForLock:NO autoDismiss:YES];
                     isCapture = NO;
                 });
             });
         }
     } else {
-        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"camera_is_not_running", @"") forType:AlertViewTypeSuccess];
-        [[AlertView currentAlertView] alertForLock:NO autoDismiss:YES];
+        [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"camera_is_not_running", @"") forType:AlertViewTypeSuccess];
+        [[XXAlertView currentAlertView] alertForLock:NO autoDismiss:YES];
         return;
     }
 }

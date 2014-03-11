@@ -113,19 +113,19 @@
     NSString *password = [XXStringUtils trim:txtPassword.text];
     
     if([XXStringUtils isBlank:userName]) {
-        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"username_not_blank", @"") forType:AlertViewTypeFailed];
-        [[AlertView currentAlertView] alertForLock:NO autoDismiss:YES];
+        [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"username_not_blank", @"") forType:AlertViewTypeFailed];
+        [[XXAlertView currentAlertView] alertForLock:NO autoDismiss:YES];
         return;
     }
     
     if([XXStringUtils isBlank:password]) {
-        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"password_not_blank", @"") forType:AlertViewTypeFailed];
-        [[AlertView currentAlertView] alertForLock:NO autoDismiss:YES];
+        [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"password_not_blank", @"") forType:AlertViewTypeFailed];
+        [[XXAlertView currentAlertView] alertForLock:NO autoDismiss:YES];
         return;
     }
     
-    [[AlertView currentAlertView] setMessage:NSLocalizedString(@"please_wait", @"") forType:AlertViewTypeWaitting];
-    [[AlertView currentAlertView] alertForLock:YES autoDismiss:NO];
+    [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"please_wait", @"") forType:AlertViewTypeWaitting];
+    [[XXAlertView currentAlertView] alertForLock:YES autoDismiss:NO];
     AccountService *accountService = [[AccountService alloc] init];
 
     [accountService loginWithAccount:txtPhoneNumber.text password:txtPassword.text success:@selector(loginSuccess:) failed:@selector(loginFailed:) target:self callback:nil];
@@ -164,19 +164,19 @@
                         // start service
                         [[CoreService defaultService] startService];
                         
-                        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"login_success", @"") forType:AlertViewTypeSuccess];
-                        [[AlertView currentAlertView] delayDismissAlertView];
+                        [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"login_success", @"") forType:AlertViewTypeSuccess];
+                        [[XXAlertView currentAlertView] delayDismissAlertView];
                         
                         [self dismissViewControllerAnimated:NO completion:^{}];
                         return;
                     }
                 } else if([@"-1" isEqualToString:command.result] || [@"-2" isEqualToString:command.result]) {
-                    [[AlertView currentAlertView] setMessage:NSLocalizedString(@"name_or_pwd_error", @"") forType:AlertViewTypeFailed];
-                    [[AlertView currentAlertView] delayDismissAlertView];
+                    [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"name_or_pwd_error", @"") forType:AlertViewTypeFailed];
+                    [[XXAlertView currentAlertView] delayDismissAlertView];
                     return;
                 } else if([@"-3" isEqualToString:command.result] || [@"-4" isEqualToString:command.result]) {
-                    [[AlertView currentAlertView] setMessage:NSLocalizedString(@"login_later", @"") forType:AlertViewTypeFailed];
-                    [[AlertView currentAlertView] delayDismissAlertView];
+                    [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"login_later", @"") forType:AlertViewTypeFailed];
+                    [[XXAlertView currentAlertView] delayDismissAlertView];
                     return;
                 }
             }
@@ -187,13 +187,13 @@
 
 - (void)loginFailed:(RestResponse *) resp{
     if(abs(resp.statusCode) == 1001) {
-        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"request_timeout", @"") forType:AlertViewTypeFailed];
+        [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"request_timeout", @"") forType:AlertViewTypeFailed];
     } else if(abs(resp.statusCode) == 1004) {
-        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"network_error", @"") forType:AlertViewTypeFailed];
+        [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"network_error", @"") forType:AlertViewTypeFailed];
     }  else {
-        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"network_error", @"") forType:AlertViewTypeFailed];
+        [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"network_error", @"") forType:AlertViewTypeFailed];
     }
-    [[AlertView currentAlertView] delayDismissAlertView];
+    [[XXAlertView currentAlertView] delayDismissAlertView];
 }
 
 #pragma mark -

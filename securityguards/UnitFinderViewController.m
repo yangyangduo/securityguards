@@ -110,8 +110,8 @@
 #pragma mark UI Methods
 
 - (void)findUnit {
-    [[AlertView currentAlertView] setMessage:NSLocalizedString(@"searching", @"") forType:AlertViewTypeWaitting];
-    [[AlertView currentAlertView] alertForLock:YES autoDismiss:NO];
+    [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"searching", @"") forType:AlertViewTypeWaitting];
+    [[XXAlertView currentAlertView] alertForLock:YES autoDismiss:NO];
     UnitFinder *finder = [[UnitFinder alloc] init];
     finder.delegate = self;
     [finder findUnit];
@@ -124,7 +124,7 @@
      if(result.resultType == UnitFinderResultTypeSuccess) {
          if(![XXStringUtils isBlank:result.unitIdentifier]) {
              if([[UnitManager defaultManager] findUnitByIdentifier:result.unitIdentifier] == nil) {
-                 [[AlertView currentAlertView] setMessage:NSLocalizedString(@"binding_unit", @"") forType:AlertViewTypeWaitting];
+                 [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"binding_unit", @"") forType:AlertViewTypeWaitting];
 
                  DeviceCommand *bindingUnitCommand = [CommandFactory commandForType:CommandTypeBindingUnit];
                  bindingUnitCommand.masterDeviceCode = result.unitIdentifier;
@@ -135,8 +135,8 @@
                  refreshUnitsCommand.unitServerUrl = result.unitUrl;
                  [[CoreService defaultService] executeDeviceCommand:refreshUnitsCommand];
                  
-                 [[AlertView currentAlertView] setMessage:NSLocalizedString(@"binding_unit_success", @"") forType:AlertViewTypeSuccess];
-                 [[AlertView currentAlertView] delayDismissAlertView];
+                 [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"binding_unit_success", @"") forType:AlertViewTypeSuccess];
+                 [[XXAlertView currentAlertView] delayDismissAlertView];
                  
                  [[Shared shared].app.rootViewController showCenterView:NO];
                  [self popupViewController];
@@ -145,8 +145,8 @@
              }
          }
     }
-    [[AlertView currentAlertView] setMessage:NSLocalizedString(@"no_unit_found", @"") forType:AlertViewTypeFailed];
-    [[AlertView currentAlertView] delayDismissAlertView];
+    [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"no_unit_found", @"") forType:AlertViewTypeFailed];
+    [[XXAlertView currentAlertView] delayDismissAlertView];
 }
 
 @end

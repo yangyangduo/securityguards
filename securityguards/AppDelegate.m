@@ -12,7 +12,7 @@
 #import "UIApplication+TopViewController.h"
 #import "UnitManager.h"
 #import "GlobalSettings.h"
-#import "AlertView.h"
+#import "XXAlertView.h"
 #import "UserLogoutEvent.h"
 #import "Memory.h"
 #import "ShoppingCart.h"
@@ -86,8 +86,8 @@
 - (void)logout {
     if(!logouting) {
         logouting = YES;
-        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"logouting", @"") forType:AlertViewTypeWaitting];
-        [[AlertView currentAlertView] alertForLock:YES autoDismiss:NO];
+        [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"logouting", @"") forType:AlertViewTypeWaitting];
+        [[XXAlertView currentAlertView] alertForLock:YES autoDismiss:NO];
         [[CoreService defaultService] stopService];
         [[XXEventSubscriptionPublisher defaultPublisher] unSubscribeAllSubscriptionsExceptSubscriberId:@"rootViewControllerSubscriber"];
         [[UnitManager defaultManager] clear];
@@ -104,8 +104,8 @@
     loginNavController.navigationBarHidden = YES;
     [[self topViewController] presentViewController:loginNavController animated:NO completion:^{}];
     [[XXEventSubscriptionPublisher defaultPublisher] publishWithEvent:[[UserLogoutEvent alloc] init]];
-    [[AlertView currentAlertView] setMessage:NSLocalizedString(@"logout_success", @"") forType:AlertViewTypeSuccess];
-    [[AlertView currentAlertView] delayDismissAlertView];
+    [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"logout_success", @"") forType:AlertViewTypeSuccess];
+    [[XXAlertView currentAlertView] delayDismissAlertView];
     logouting = NO;
 }
 

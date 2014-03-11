@@ -183,7 +183,7 @@
     CGPoint fromPosition = self.layer.position;
     CGPoint toPosition = CGPointMake(fromPosition.x, self.layer.position.y - MerchandiseDetailSelectViewHeight);
     
-    [self doAnimationsWithCompetionBlock:^{ isOpened = YES; } fromScaleTransform:fromScaleTransform toScaleTransform:toScaleTransform fromOpacity:fromOpacity toOpacity:toOpacity fromPosition:fromPosition toPosition:toPosition forLayer:_layer_];
+    [self doAnimationsWithCompletionBlock:^{ isOpened = YES; } fromScaleTransform:fromScaleTransform toScaleTransform:toScaleTransform fromOpacity:fromOpacity toOpacity:toOpacity fromPosition:fromPosition toPosition:toPosition forLayer:_layer_];
 }
 
 - (void)dismissView {
@@ -199,7 +199,7 @@
     CGPoint toPosition = CGPointMake(fromPosition.x, self.layer.position.y + MerchandiseDetailSelectViewHeight);
     
     // clean up after do animations
-    [self doAnimationsWithCompetionBlock:^{
+    [self doAnimationsWithCompletionBlock:^{
         if(maskView.superview != nil) {
             [maskView removeFromSuperview];
         }
@@ -219,7 +219,7 @@
     fromPosition:fromPosition toPosition:toPosition forLayer:_layer_];
 }
 
-- (void)doAnimationsWithCompetionBlock:(void (^)(void))competionBlock
+- (void)doAnimationsWithCompletionBlock:(void (^)(void))competionBlock
     fromScaleTransform:(CATransform3D)fromScaleTransform
     toScaleTransform:(CATransform3D)toScaleTransform
     fromOpacity:(float)fromOpacity toOpacity:(float)toOpacity

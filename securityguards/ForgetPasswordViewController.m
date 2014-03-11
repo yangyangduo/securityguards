@@ -85,13 +85,13 @@
     NSString *phoneNumber = [XXStringUtils trim:txtPhoneNumber.text];
     if([XXStringUtils isBlank:phoneNumber] || phoneNumber.length != 11) {
         [[[AccountService alloc] init] sendPasswordToMobile:phoneNumber success:@selector(sendPasswordSuccess:) failed:@selector(sendPasswordFailed:) target:self callback:nil];
-        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"phone_format_invalid", @"") forType:AlertViewTypeFailed];
-        [[AlertView currentAlertView] alertForLock:NO autoDismiss:YES];
+        [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"phone_format_invalid", @"") forType:AlertViewTypeFailed];
+        [[XXAlertView currentAlertView] alertForLock:NO autoDismiss:YES];
     }
     
     [[[AccountService alloc] init] sendPasswordToMobile:phoneNumber success:@selector(sendPasswordSuccess:) failed:@selector(sendPasswordFailed:) target:self callback:nil];
-    [[AlertView currentAlertView] setMessage:NSLocalizedString(@"please_wait", @"") forType:AlertViewTypeWaitting];
-    [[AlertView currentAlertView] alertForLock:YES autoDismiss:NO];
+    [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"please_wait", @"") forType:AlertViewTypeWaitting];
+    [[XXAlertView currentAlertView] alertForLock:YES autoDismiss:NO];
 }
 
 #pragma mark -
@@ -104,25 +104,25 @@
             NSString *result = [json stringForKey:@"id"];
             if(result != nil) {
                 if([@"1" isEqualToString:result]) {
-                    [[AlertView currentAlertView] setMessage:NSLocalizedString(@"send_success", @"") forType:AlertViewTypeSuccess];
-                    [[AlertView currentAlertView] delayDismissAlertView];
+                    [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"send_success", @"") forType:AlertViewTypeSuccess];
+                    [[XXAlertView currentAlertView] delayDismissAlertView];
                     [self.navigationController popViewControllerAnimated:YES];
                     return;
                 } else if([@"-1" isEqualToString:result]) {
-                    [[AlertView currentAlertView] setMessage:NSLocalizedString(@"phone_format_invalid", @"") forType:AlertViewTypeFailed];
-                    [[AlertView currentAlertView] delayDismissAlertView];
+                    [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"phone_format_invalid", @"") forType:AlertViewTypeFailed];
+                    [[XXAlertView currentAlertView] delayDismissAlertView];
                     return;
                 } else if([@"-2" isEqualToString:result]) {
-                    [[AlertView currentAlertView] setMessage:NSLocalizedString(@"phone_not_exists", @"") forType:AlertViewTypeFailed];
-                    [[AlertView currentAlertView] delayDismissAlertView];
+                    [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"phone_not_exists", @"") forType:AlertViewTypeFailed];
+                    [[XXAlertView currentAlertView] delayDismissAlertView];
                     return;
                 } else if([@"-3" isEqualToString:result] || [@"-4" isEqualToString:result]) {
-                    [[AlertView currentAlertView] setMessage:NSLocalizedString(@"delay_send", @"") forType:AlertViewTypeFailed];
-                    [[AlertView currentAlertView] delayDismissAlertView];
+                    [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"delay_send", @"") forType:AlertViewTypeFailed];
+                    [[XXAlertView currentAlertView] delayDismissAlertView];
                     return;
                 } else if([@"-5" isEqualToString:result] || [@"-6" isEqualToString:result]) {
-                    [[AlertView currentAlertView] setMessage:NSLocalizedString(@"send_failed", @"") forType:AlertViewTypeFailed];
-                    [[AlertView currentAlertView] delayDismissAlertView];
+                    [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"send_failed", @"") forType:AlertViewTypeFailed];
+                    [[XXAlertView currentAlertView] delayDismissAlertView];
                     return;
                 }
             }
@@ -133,13 +133,13 @@
 
 - (void)sendPasswordFailed:(RestResponse *)resp {
     if(abs(resp.statusCode) == 1001) {
-        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"request_timeout", @"") forType:AlertViewTypeSuccess];
+        [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"request_timeout", @"") forType:AlertViewTypeSuccess];
     } else if(abs(resp.statusCode) == 1004) {
-        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"network_error", @"") forType:AlertViewTypeSuccess];
+        [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"network_error", @"") forType:AlertViewTypeSuccess];
     } else {
-        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"unknow_error", @"") forType:AlertViewTypeSuccess];
+        [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"unknow_error", @"") forType:AlertViewTypeSuccess];
     }
-    [[AlertView currentAlertView] delayDismissAlertView];
+    [[XXAlertView currentAlertView] delayDismissAlertView];
 }
 
 #pragma mark -

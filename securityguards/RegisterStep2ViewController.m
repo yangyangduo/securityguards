@@ -174,12 +174,12 @@
     if (buttonIndex == 1) {
         NSString *oldPassword = [alertView textFieldAtIndex:0].text;
         if([XXStringUtils isBlank: oldPassword]) {
-            [[AlertView currentAlertView] setMessage:NSLocalizedString(@"verification_code_error", @"") forType:AlertViewTypeFailed];
-            [[AlertView currentAlertView] alertForLock:YES autoDismiss:YES];
+            [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"verification_code_error", @"") forType:AlertViewTypeFailed];
+            [[XXAlertView currentAlertView] alertForLock:YES autoDismiss:YES];
             return;
         }
-        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"please_wait", @"") forType:AlertViewTypeWaitting];
-        [[AlertView currentAlertView] alertForLock:YES autoDismiss:NO];
+        [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"please_wait", @"") forType:AlertViewTypeWaitting];
+        [[XXAlertView currentAlertView] alertForLock:YES autoDismiss:NO];
         [[[AccountService alloc] init] modifyUsernameByPhoneNumber:self.phoneNumber checkCode:txtVerificationCode.text oldPassword:oldPassword success:@selector(modifyUsernameSuccess:) failed:@selector(registerFailed:) target:self callback:nil
          ];
     }
@@ -192,8 +192,8 @@
             NSInteger resultID = [[json noNilStringForKey:@"id"] integerValue];
             switch (resultID) {
                 case 1:
-                    [[AlertView currentAlertView] setMessage:NSLocalizedString(@"update_success", @"") forType:AlertViewTypeSuccess];
-                    [[AlertView currentAlertView] delayDismissAlertView];
+                    [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"update_success", @"") forType:AlertViewTypeSuccess];
+                    [[XXAlertView currentAlertView] delayDismissAlertView];
                     [GlobalSettings defaultSettings].account = phoneNumber;
                     [[GlobalSettings defaultSettings] saveSettings];
                     
@@ -206,28 +206,28 @@
                     }
                     break;
                 case -1:
-                    [[AlertView currentAlertView] setMessage:NSLocalizedString(@"none_verification_code", @"") forType:AlertViewTypeSuccess];
-                    [[AlertView currentAlertView] delayDismissAlertView];
+                    [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"none_verification_code", @"") forType:AlertViewTypeSuccess];
+                    [[XXAlertView currentAlertView] delayDismissAlertView];
                     break;
                 case -2:
-                    [[AlertView currentAlertView] setMessage:NSLocalizedString(@"verification_code_expire", @"") forType:AlertViewTypeSuccess];
-                    [[AlertView currentAlertView] delayDismissAlertView];
+                    [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"verification_code_expire", @"") forType:AlertViewTypeSuccess];
+                    [[XXAlertView currentAlertView] delayDismissAlertView];
                     break;
                 case -3:
-                    [[AlertView currentAlertView] setMessage:NSLocalizedString(@"verification_code_error", @"") forType:AlertViewTypeSuccess];
-                    [[AlertView currentAlertView] delayDismissAlertView];
+                    [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"verification_code_error", @"") forType:AlertViewTypeSuccess];
+                    [[XXAlertView currentAlertView] delayDismissAlertView];
                     break;
                 case -4:
-                    [[AlertView currentAlertView] setMessage:NSLocalizedString(@"id_is_not_found", @"") forType:AlertViewTypeSuccess];
-                    [[AlertView currentAlertView] delayDismissAlertView];
+                    [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"id_is_not_found", @"") forType:AlertViewTypeSuccess];
+                    [[XXAlertView currentAlertView] delayDismissAlertView];
                     break;
                 case -5:
-                    [[AlertView currentAlertView] setMessage:NSLocalizedString(@"pwd_invalid", @"") forType:AlertViewTypeSuccess];
-                    [[AlertView currentAlertView] delayDismissAlertView];
+                    [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"pwd_invalid", @"") forType:AlertViewTypeSuccess];
+                    [[XXAlertView currentAlertView] delayDismissAlertView];
                     break;
                 case -6:
-                    [[AlertView currentAlertView] setMessage:NSLocalizedString(@"system_exception", @"") forType:AlertViewTypeSuccess];
-                    [[AlertView currentAlertView] delayDismissAlertView];
+                    [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"system_exception", @"") forType:AlertViewTypeSuccess];
+                    [[XXAlertView currentAlertView] delayDismissAlertView];
                     break;
                 default:
                     break;
@@ -267,8 +267,8 @@
 #pragma mark Services
 
 - (void)resendVerificationCode {
-    [[AlertView currentAlertView] setMessage:NSLocalizedString(@"please_wait", @"") forType:AlertViewTypeWaitting];
-    [[AlertView currentAlertView] alertForLock:YES autoDismiss:NO];
+    [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"please_wait", @"") forType:AlertViewTypeWaitting];
+    [[XXAlertView currentAlertView] alertForLock:YES autoDismiss:NO];
     [[[AccountService alloc] init] sendVerificationCodeFor:self.phoneNumber success:@selector(verificationCodeSendSuccess:) failed:@selector(verificationCodeSendError:) target:self callback:nil];
 }
 
@@ -279,8 +279,8 @@
             NSString *_id_ = [json notNSNullObjectForKey:@"id"];
             if(_id_ != nil) {
                 if([@"1" isEqualToString:_id_]) {
-                    [[AlertView currentAlertView] setMessage:NSLocalizedString(@"send_success", @"") forType:AlertViewTypeSuccess];
-                    [[AlertView currentAlertView] delayDismissAlertView];
+                    [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"send_success", @"") forType:AlertViewTypeSuccess];
+                    [[XXAlertView currentAlertView] delayDismissAlertView];
                     self.countDown = 60;
                     [btnResendVerificationCode setTitle:[NSString stringWithFormat:@"%@ (%i)",NSLocalizedString(@"resend_verification_code", @""),countDown] forState:UIControlStateDisabled];
                     btnResendVerificationCode.enabled = NO;
@@ -295,23 +295,23 @@
 
 - (void)verificationCodeSendError:(RestResponse *)resp {
     if(resp.statusCode == 1001) {
-        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"request_timeout", @"") forType:AlertViewTypeSuccess];
+        [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"request_timeout", @"") forType:AlertViewTypeSuccess];
     } else if(resp.statusCode == 1004) {
-        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"network_error", @"") forType:AlertViewTypeSuccess];
+        [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"network_error", @"") forType:AlertViewTypeSuccess];
     } else {
-        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"unknow_error", @"") forType:AlertViewTypeSuccess];
+        [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"unknow_error", @"") forType:AlertViewTypeSuccess];
     }
-    [[AlertView currentAlertView] delayDismissAlertView];
+    [[XXAlertView currentAlertView] delayDismissAlertView];
 }
 
 - (void)submitVerificationCode {
     if([XXStringUtils isBlank:txtVerificationCode.text] || txtVerificationCode.text.length != 6) {
-        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"verification_code_error", @"") forType:AlertViewTypeFailed];
-        [[AlertView currentAlertView] alertForLock:NO autoDismiss:YES];
+        [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"verification_code_error", @"") forType:AlertViewTypeFailed];
+        [[XXAlertView currentAlertView] alertForLock:NO autoDismiss:YES];
         return;
     }
-    [[AlertView currentAlertView] setMessage:NSLocalizedString(@"please_wait", @"") forType:AlertViewTypeWaitting];
-    [[AlertView currentAlertView] alertForLock:YES autoDismiss:NO];
+    [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"please_wait", @"") forType:AlertViewTypeWaitting];
+    [[XXAlertView currentAlertView] alertForLock:YES autoDismiss:NO];
     [[[AccountService alloc] init] registerWithPhoneNumber:self.phoneNumber checkCode:txtVerificationCode.text success:@selector(registerSuccessfully:) failed:@selector(registerFailed:) target:self callback:nil];
 }
 
@@ -323,7 +323,7 @@
             if(command != nil && ![XXStringUtils isBlank:command.result]) {
                 if([@"1" isEqualToString:command.result]) {
                     if(![XXStringUtils isBlank:command.security] && ![XXStringUtils isBlank:command.tcpAddress]) {
-                        [[AlertView currentAlertView] dismissAlertView];
+                        [[XXAlertView currentAlertView] dismissAlertView];
                         GlobalSettings *settings = [GlobalSettings defaultSettings];
                         settings.secretKey = command.security;
                         settings.account = self.phoneNumber;
@@ -343,16 +343,16 @@
                         return;
                     }
                 } else if([@"-1" isEqualToString:command.result]) {
-                    [[AlertView currentAlertView] setMessage:NSLocalizedString(@"none_verification_code", @"") forType:AlertViewTypeFailed];
-                    [[AlertView currentAlertView] delayDismissAlertView];
+                    [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"none_verification_code", @"") forType:AlertViewTypeFailed];
+                    [[XXAlertView currentAlertView] delayDismissAlertView];
                     return;
                 } else if([@"-2" isEqualToString:command.result]) {
-                    [[AlertView currentAlertView] setMessage:NSLocalizedString(@"verification_code_expire", @"") forType:AlertViewTypeFailed];
-                    [[AlertView currentAlertView] delayDismissAlertView];
+                    [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"verification_code_expire", @"") forType:AlertViewTypeFailed];
+                    [[XXAlertView currentAlertView] delayDismissAlertView];
                     return;
                 } else if([@"-3" isEqualToString:command.result]) {
-                    [[AlertView currentAlertView] setMessage:NSLocalizedString(@"verification_code_error", @"") forType:AlertViewTypeFailed];
-                    [[AlertView currentAlertView] delayDismissAlertView];
+                    [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"verification_code_error", @"") forType:AlertViewTypeFailed];
+                    [[XXAlertView currentAlertView] delayDismissAlertView];
                     return;
                 }
             }
@@ -363,13 +363,13 @@
 
 - (void)registerFailed:(RestResponse *)resp {
     if(abs(resp.statusCode) == 1001) {
-        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"request_timeout", @"") forType:AlertViewTypeFailed];
+        [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"request_timeout", @"") forType:AlertViewTypeFailed];
     } else if(abs(resp.statusCode) == 1004) {
-        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"network_error", @"") forType:AlertViewTypeFailed];
+        [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"network_error", @"") forType:AlertViewTypeFailed];
     } else {
-        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"unknow_error", @"") forType:AlertViewTypeFailed];
+        [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"unknow_error", @"") forType:AlertViewTypeFailed];
     }
-    [[AlertView currentAlertView] delayDismissAlertView];
+    [[XXAlertView currentAlertView] delayDismissAlertView];
 }
 
 #pragma mark -

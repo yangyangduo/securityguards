@@ -9,7 +9,7 @@
 #import "PlayCameraPicViewController.h"
 #import "BlueButton.h"
 #import "CameraPicPath.h"
-#import "ParameterAware.h"
+#import "XXParameterAware.h"
 
 #define FIRST_BUTTON_TAG 2000
 
@@ -104,7 +104,7 @@
 
 
 
-- (void)play:(id<ParameterAware>)source {
+- (void)play:(id<XXParameterAware>)source {
     if(isPlaying) {
         if(provider != nil && provider.isDownloading) {
             [provider stopDownload];

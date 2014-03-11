@@ -136,8 +136,8 @@
 #pragma mark UI Actions
 
 - (void)btnGetVerificationPressed:(id)sender {    
-    [[AlertView currentAlertView] setMessage:NSLocalizedString(@"please_wait", @"") forType:AlertViewTypeWaitting];
-    [[AlertView currentAlertView] alertForLock:YES autoDismiss:NO];
+    [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"please_wait", @"") forType:AlertViewTypeWaitting];
+    [[XXAlertView currentAlertView] alertForLock:YES autoDismiss:NO];
     AccountService *accountService = [[AccountService alloc] init];
     if(isModify) {
         [accountService sendModifyUsernameVerificationCodeFor:txtPhoneNumber.text success:@selector(sendVerificationCodeSuccess:) failed:@selector(sendVerificationCodeFailed:) target:self callback:nil];
@@ -165,8 +165,8 @@
             NSString *result = [json notNSNullObjectForKey:@"id"];
             if(result != nil) {
                 if([@"1" isEqualToString:result] || [@"-3" isEqualToString:result] || [@"-4" isEqualToString:result]) {
-                    [[AlertView currentAlertView] setMessage:NSLocalizedString(@"send_success", @"") forType:AlertViewTypeSuccess];
-                    [[AlertView currentAlertView] delayDismissAlertView];
+                    [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"send_success", @"") forType:AlertViewTypeSuccess];
+                    [[XXAlertView currentAlertView] delayDismissAlertView];
                     RegisterStep2ViewController *step2ViewController = [[RegisterStep2ViewController alloc] initAsModify:self.isModify];
                     step2ViewController.phoneNumber = txtPhoneNumber.text;
                     if([@"1" isEqualToString:result]) {
@@ -182,12 +182,12 @@
                     [self.navigationController pushViewController:step2ViewController animated:YES];
                     return;
                 } else if([@"-1" isEqualToString:result]) {
-                    [[AlertView currentAlertView] setMessage:NSLocalizedString(@"phone_format_invalid", @"") forType:AlertViewTypeSuccess];
-                    [[AlertView currentAlertView] delayDismissAlertView];
+                    [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"phone_format_invalid", @"") forType:AlertViewTypeSuccess];
+                    [[XXAlertView currentAlertView] delayDismissAlertView];
                     return;
                 } else if(([@"-2" isEqualToString:result] && !isModify)||([@"-7" isEqualToString:result] && isModify)) {
-                    [[AlertView currentAlertView] setMessage:NSLocalizedString(@"phone_has_been_register", @"") forType:AlertViewTypeSuccess];
-                    [[AlertView currentAlertView] delayDismissAlertView];
+                    [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"phone_has_been_register", @"") forType:AlertViewTypeSuccess];
+                    [[XXAlertView currentAlertView] delayDismissAlertView];
                     return;
                 }
             }
@@ -198,13 +198,13 @@
 
 - (void)sendVerificationCodeFailed:(RestResponse *)resp {
     if(abs(resp.statusCode) == 1001) {
-        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"request_timeout", @"") forType:AlertViewTypeFailed];
+        [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"request_timeout", @"") forType:AlertViewTypeFailed];
     } else if(abs(resp.statusCode) == 1004) {
-        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"network_error", @"") forType:AlertViewTypeFailed];
+        [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"network_error", @"") forType:AlertViewTypeFailed];
     } else {
-        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"unknow_error", @"") forType:AlertViewTypeFailed];
+        [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"unknow_error", @"") forType:AlertViewTypeFailed];
     }
-    [[AlertView currentAlertView] delayDismissAlertView];
+    [[XXAlertView currentAlertView] delayDismissAlertView];
 }
 
 #pragma mark -

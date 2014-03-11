@@ -126,8 +126,8 @@ const static NSString *MerchandiseLastRefreshDateKey = @"MerchandiseLastRefreshD
 }
 
 - (void)getProductsFailed:(RestResponse *)resp {
-    [[AlertView currentAlertView] setMessage:NSLocalizedString(@"get_merchandises_failed", @"") forType:AlertViewTypeFailed];
-    [[AlertView currentAlertView] alertForLock:NO autoDismiss:YES];
+    [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"get_merchandises_failed", @"") forType:AlertViewTypeFailed];
+    [[XXAlertView currentAlertView] alertForLock:NO autoDismiss:YES];
 #ifdef DEBUG
     NSLog(@"[SHOPPING VIEW CONTROLLER] Get products failed, code is %d", resp.statusCode);
 #endif
@@ -166,8 +166,8 @@ const static NSString *MerchandiseLastRefreshDateKey = @"MerchandiseLastRefreshD
 - (void)btnSubmitPressed:(id)sender {
     if([ShoppingCart shoppingCart].shoppingEntries == nil
        || [ShoppingCart shoppingCart].shoppingEntries.count == 0) {
-        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"no_merchandise", @"") forType:AlertViewTypeFailed];
-        [[AlertView currentAlertView] alertForLock:NO autoDismiss:YES];
+        [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"no_merchandise", @"") forType:AlertViewTypeFailed];
+        [[XXAlertView currentAlertView] alertForLock:NO autoDismiss:YES];
         return;
     }
     OrderConfirmViewController *orderConfirmViewController = [[OrderConfirmViewController alloc] init];

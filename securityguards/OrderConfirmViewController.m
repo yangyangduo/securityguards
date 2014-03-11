@@ -122,8 +122,8 @@
         NSDictionary *result = [JsonUtils createDictionaryFromJson:resp.body];
         if(result != nil) {
             if([result intForKey:@"i"] == 1) {
-                [[AlertView currentAlertView] setMessage:NSLocalizedString(@"order_submitted", @"") forType:AlertViewTypeSuccess];
-                [[AlertView currentAlertView] delayDismissAlertView];
+                [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"order_submitted", @"") forType:AlertViewTypeSuccess];
+                [[XXAlertView currentAlertView] delayDismissAlertView];
                 
                 ShoppingCompletedViewController *shoppingCompletedViewController = [[ShoppingCompletedViewController alloc] init];
                 [self.navigationController pushViewController:shoppingCompletedViewController animated:YES];
@@ -138,15 +138,15 @@
 
 - (void)postOrderFailed:(RestResponse *)resp {
     if(abs(resp.statusCode) == 1001) {
-        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"request_timeout", @"") forType:AlertViewTypeFailed];
+        [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"request_timeout", @"") forType:AlertViewTypeFailed];
     } else if(abs(resp.statusCode) == 1004) {
-        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"network_error", @"") forType:AlertViewTypeFailed];
+        [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"network_error", @"") forType:AlertViewTypeFailed];
     } else if(abs(resp.statusCode) == 403) {
-        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"verification_code_expire", @"") forType:AlertViewTypeFailed];
+        [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"verification_code_expire", @"") forType:AlertViewTypeFailed];
     } else {
-        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"unknow_error", @"") forType:AlertViewTypeFailed];
+        [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"unknow_error", @"") forType:AlertViewTypeFailed];
     }
-    [[AlertView currentAlertView] delayDismissAlertView];
+    [[XXAlertView currentAlertView] delayDismissAlertView];
 }
 
 #pragma mark -
@@ -154,20 +154,20 @@
 
 - (void)confirmAndSubmitOrder:(id)sender {
     if([XXStringUtils isBlank:contact.name]) {
-        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"contact_not_blank", @"") forType:AlertViewTypeFailed];
-        [[AlertView currentAlertView] alertForLock:NO autoDismiss:YES];
+        [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"contact_not_blank", @"") forType:AlertViewTypeFailed];
+        [[XXAlertView currentAlertView] alertForLock:NO autoDismiss:YES];
         return;
     }
     
     if([XXStringUtils isBlank:contact.phoneNumber]) {
-        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"phone_not_blank", @"") forType:AlertViewTypeFailed];
-        [[AlertView currentAlertView] alertForLock:NO autoDismiss:YES];
+        [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"phone_not_blank", @"") forType:AlertViewTypeFailed];
+        [[XXAlertView currentAlertView] alertForLock:NO autoDismiss:YES];
         return;
     }
     
     if([XXStringUtils isBlank:contact.address]) {
-        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"address_not_blank", @"") forType:AlertViewTypeFailed];
-        [[AlertView currentAlertView] alertForLock:NO autoDismiss:YES];
+        [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"address_not_blank", @"") forType:AlertViewTypeFailed];
+        [[XXAlertView currentAlertView] alertForLock:NO autoDismiss:YES];
         return;
     }
     
@@ -178,8 +178,8 @@
 #ifdef DEBUG
         NSLog(@"[ORDER CONFIRM VIEW CONTROLLER] Post order shopping cart dictionary is empty.");
 #endif
-        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"system_error", @"") forType:AlertViewTypeFailed];
-        [[AlertView currentAlertView] alertForLock:NO autoDismiss:YES];
+        [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"system_error", @"") forType:AlertViewTypeFailed];
+        [[XXAlertView currentAlertView] alertForLock:NO autoDismiss:YES];
         return;
     }
     NSData *body = [JsonUtils createJsonDataFromDictionary:_shopping_info_json];
@@ -187,13 +187,13 @@
 #ifdef DEBUG
         NSLog(@"[ORDER CONFIRM VIEW CONTROLLER] Post order body is empty.");
 #endif
-        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"system_error", @"") forType:AlertViewTypeFailed];
-        [[AlertView currentAlertView] alertForLock:NO autoDismiss:YES];
+        [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"system_error", @"") forType:AlertViewTypeFailed];
+        [[XXAlertView currentAlertView] alertForLock:NO autoDismiss:YES];
         return;
     }
     
-    [[AlertView currentAlertView] setMessage:NSLocalizedString(@"please_wait", @"") forType:AlertViewTypeWaitting];
-    [[AlertView currentAlertView] alertForLock:YES autoDismiss:NO];
+    [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"please_wait", @"") forType:AlertViewTypeWaitting];
+    [[XXAlertView currentAlertView] alertForLock:YES autoDismiss:NO];
     ShoppingService *service = [[ShoppingService alloc] init];
     [service postOrder:body success:@selector(postOrderSuccess:) failed:@selector(postOrderFailed:) saveContact:checkbox.selected target:self callback:nil];
 }
@@ -446,8 +446,8 @@
             contact.recommended = [XXStringUtils emptyString];
             return;
         }
-        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"please_wait", @"") forType:AlertViewTypeWaitting];
-        [[AlertView currentAlertView] alertForLock:YES autoDismiss:NO];
+        [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"please_wait", @"") forType:AlertViewTypeWaitting];
+        [[XXAlertView currentAlertView] alertForLock:YES autoDismiss:NO];
         ShoppingService *service = [[ShoppingService alloc] init];
         [service checkContactExistsWithMobile:newText success:@selector(checkContactExistsSuccess:) failed:@selector(checkContactExistsFailed:) target:self callback:textView];
         return;
@@ -464,7 +464,7 @@
         if(jsonResult != nil) {
             int result = [jsonResult intForKey:@"i"];
             if(result == 1) {
-                [[AlertView currentAlertView] dismissAlertView];
+                [[XXAlertView currentAlertView] dismissAlertView];
                 if(resp.callbackObject != nil && [resp.callbackObject isKindOfClass:[TextViewController class]]) {
                     TextViewController *textView = (TextViewController *)resp.callbackObject;
                     contact.recommended = textView.value;
@@ -475,8 +475,8 @@
                 }
                 return;
             } else if(result == 0) {
-                [[AlertView currentAlertView] setMessage:NSLocalizedString(@"user_not_exists", @"") forType:AlertViewTypeSuccess];
-                [[AlertView currentAlertView] delayDismissAlertView];
+                [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"user_not_exists", @"") forType:AlertViewTypeSuccess];
+                [[XXAlertView currentAlertView] delayDismissAlertView];
                 return;
             }
         }
@@ -485,8 +485,8 @@
 }
 
 - (void)checkContactExistsFailed:(RestResponse *)resp {
-    [[AlertView currentAlertView] setMessage:NSLocalizedString(@"network_error", @"") forType:AlertViewTypeSuccess];
-    [[AlertView currentAlertView] delayDismissAlertView];
+    [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"network_error", @"") forType:AlertViewTypeSuccess];
+    [[XXAlertView currentAlertView] delayDismissAlertView];
 #ifdef DEBUG
     NSLog(@"[Order Confirm View Controller] Check Contact Exists failed, status code is %d", resp.statusCode);
 #endif

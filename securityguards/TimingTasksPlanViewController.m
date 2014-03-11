@@ -116,8 +116,8 @@
 
 - (void)showTimingTasksPlanEditViewController:(id)sender {
     if(self.unit == nil) {
-        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"no_unit_found", @"") forType:AlertViewTypeFailed];
-        [[AlertView currentAlertView] alertForLock:NO autoDismiss:YES];
+        [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"no_unit_found", @"") forType:AlertViewTypeFailed];
+        [[XXAlertView currentAlertView] alertForLock:NO autoDismiss:YES];
         return;
     }
     TimingTaskPlanEditViewController *controller = [[TimingTaskPlanEditViewController alloc] initWithUnit:self.unit timingTask:nil];
@@ -180,23 +180,23 @@
 
 - (void)getTimingTasksPlanFailed:(RestResponse *)resp {
     if(abs(resp.statusCode) == 1001) {
-        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"request_timeout", @"") forType:AlertViewTypeFailed];
+        [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"request_timeout", @"") forType:AlertViewTypeFailed];
     } else if(abs(resp.statusCode) == 1004) {
-        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"network_error", @"") forType:AlertViewTypeFailed];
+        [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"network_error", @"") forType:AlertViewTypeFailed];
     } else if(abs(resp.statusCode) == 403) {
-        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"verification_code_expire", @"") forType:AlertViewTypeFailed];
+        [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"verification_code_expire", @"") forType:AlertViewTypeFailed];
     } else {
-        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"unknow_error", @"") forType:AlertViewTypeFailed];
+        [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"unknow_error", @"") forType:AlertViewTypeFailed];
     }
-    [[AlertView currentAlertView] alertForLock:NO autoDismiss:YES];
+    [[XXAlertView currentAlertView] alertForLock:NO autoDismiss:YES];
 }
 
 #pragma mark -
 #pragma mark Config Task Plan Enable
 
 - (void)timingTaskStateChanged:(TimingTasksCell *)timingTasksCell withState:(BOOL)isEnable {
-    [[AlertView currentAlertView] setMessage:NSLocalizedString(@"please_wait", @"") forType:AlertViewTypeWaitting];
-    [[AlertView currentAlertView] alertForLock:YES autoDismiss:NO];
+    [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"please_wait", @"") forType:AlertViewTypeWaitting];
+    [[XXAlertView currentAlertView] alertForLock:YES autoDismiss:NO];
     TimingTasksPlanService *service = [[TimingTasksPlanService alloc] init];
     [service updateTimingTasksPlanEnabled:timingTasksCell.timingTask enable:isEnable success:@selector(updateTimingTaskPlanStateSuccess:) failed:@selector(updateTimingTaskPlanStateFailed:) target:self callback:timingTasksCell];
 }
@@ -208,20 +208,20 @@
             TimingTasksCell *cell = resp.callbackObject;
             int result = [_json_ intForKey:@"i"];
             if(result == 1) {
-                [[AlertView currentAlertView] setMessage:NSLocalizedString(@"update_success", @"") forType:AlertViewTypeSuccess];
-                [[AlertView currentAlertView] delayDismissAlertView];
+                [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"update_success", @"") forType:AlertViewTypeSuccess];
+                [[XXAlertView currentAlertView] delayDismissAlertView];
                 TimingTasksCell *cell = resp.callbackObject;
                 cell.timingTask.enable = cell.valueForSwitchButton;
             } else {
                 if(result == -2) {
-                    [[AlertView currentAlertView] setMessage:NSLocalizedString(@"no_unit_bind", @"") forType:AlertViewTypeFailed];
-                    [[AlertView currentAlertView] delayDismissAlertView];
+                    [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"no_unit_bind", @"") forType:AlertViewTypeFailed];
+                    [[XXAlertView currentAlertView] delayDismissAlertView];
                 } else if(result == 0) {
-                    [[AlertView currentAlertView] setMessage:NSLocalizedString(@"no_permissions", @"") forType:AlertViewTypeFailed];
-                    [[AlertView currentAlertView] delayDismissAlertView];
+                    [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"no_permissions", @"") forType:AlertViewTypeFailed];
+                    [[XXAlertView currentAlertView] delayDismissAlertView];
                 } else {
-                    [[AlertView currentAlertView] setMessage:NSLocalizedString(@"system_error", @"") forType:AlertViewTypeFailed];
-                    [[AlertView currentAlertView] delayDismissAlertView];
+                    [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"system_error", @"") forType:AlertViewTypeFailed];
+                    [[XXAlertView currentAlertView] delayDismissAlertView];
                 }
                 if(cell != nil) {
                     [cell revertSwitchButton];
@@ -235,8 +235,8 @@
 
 - (void)deleteTimingTask:(TimingTask *)timingTask forIndexPath:(NSIndexPath *)indexPath {
     if(timingTask == nil) return;
-    [[AlertView currentAlertView] setMessage:NSLocalizedString(@"deleting", @"") forType:AlertViewTypeWaitting];
-    [[AlertView currentAlertView] alertForLock:YES autoDismiss:NO];
+    [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"deleting", @"") forType:AlertViewTypeWaitting];
+    [[XXAlertView currentAlertView] alertForLock:YES autoDismiss:NO];
     TimingTasksPlanService *service = [[TimingTasksPlanService alloc] init];
     [service deleteTimingTask:timingTask success:@selector(deleteTimingTaskSuccess:) failed:@selector(deleteTimingTaskFailed:) target:self callback:indexPath];
 }
@@ -246,8 +246,8 @@
         NSDictionary *jsonResult = [JsonUtils createDictionaryFromJson:resp.body];
         int result = [jsonResult intForKey:@"i"];
         if(result == 1) {
-            [[AlertView currentAlertView] setMessage:NSLocalizedString(@"delete_success", @"") forType:AlertViewTypeSuccess];
-            [[AlertView currentAlertView] delayDismissAlertView];
+            [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"delete_success", @"") forType:AlertViewTypeSuccess];
+            [[XXAlertView currentAlertView] delayDismissAlertView];
             NSIndexPath *indexPath = resp.callbackObject;
             [tblTaskPlans beginUpdates];
             [self.unit.timingTasksPlan removeObjectAtIndex:indexPath.row];
@@ -258,8 +258,8 @@
             }
             return;
         } else if(result == 0) {
-            [[AlertView currentAlertView] setMessage:NSLocalizedString(@"has_no_permissions_del", @"") forType:AlertViewTypeFailed];
-            [[AlertView currentAlertView] delayDismissAlertView];
+            [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"has_no_permissions_del", @"") forType:AlertViewTypeFailed];
+            [[XXAlertView currentAlertView] delayDismissAlertView];
             return;
         }
     }
@@ -268,15 +268,15 @@
 
 - (void)deleteTimingTaskFailed:(RestResponse *)resp {
     if(abs(resp.statusCode) == 1001) {
-        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"request_timeout", @"") forType:AlertViewTypeFailed];
+        [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"request_timeout", @"") forType:AlertViewTypeFailed];
     } else if(abs(resp.statusCode) == 1004) {
-        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"network_error", @"") forType:AlertViewTypeFailed];
+        [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"network_error", @"") forType:AlertViewTypeFailed];
     } else if(abs(resp.statusCode) == 403) {
-        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"verification_code_expire", @"") forType:AlertViewTypeFailed];
+        [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"verification_code_expire", @"") forType:AlertViewTypeFailed];
     } else {
-        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"unknow_error", @"") forType:AlertViewTypeFailed];
+        [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"unknow_error", @"") forType:AlertViewTypeFailed];
     }
-    [[AlertView currentAlertView] delayDismissAlertView];
+    [[XXAlertView currentAlertView] delayDismissAlertView];
 #ifdef DEBUG
     NSLog(@"[TIMING TASK VC] Delete timing task failed, status code is %d", resp.statusCode);
 #endif
@@ -284,15 +284,15 @@
 
 - (void)updateTimingTaskPlanStateFailed:(RestResponse *)resp {
     if(abs(resp.statusCode) == 1001) {
-        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"request_timeout", @"") forType:AlertViewTypeFailed];
+        [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"request_timeout", @"") forType:AlertViewTypeFailed];
     } else if(abs(resp.statusCode) == 1004) {
-        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"network_error", @"") forType:AlertViewTypeFailed];
+        [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"network_error", @"") forType:AlertViewTypeFailed];
     } else if(abs(resp.statusCode) == 403) {
-        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"verification_code_expire", @"") forType:AlertViewTypeFailed];
+        [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"verification_code_expire", @"") forType:AlertViewTypeFailed];
     } else {
-        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"unknow_error", @"") forType:AlertViewTypeFailed];
+        [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"unknow_error", @"") forType:AlertViewTypeFailed];
     }
-    [[AlertView currentAlertView] delayDismissAlertView];
+    [[XXAlertView currentAlertView] delayDismissAlertView];
     TimingTasksCell *cell = resp.callbackObject;
     if(cell != nil) {
         [cell revertSwitchButton];

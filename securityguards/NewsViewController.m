@@ -128,8 +128,8 @@
                 NSMutableArray *indexPaths = [NSMutableArray array];
                 NSUInteger lastIndex = allNews.count;
                 if(arr == nil || arr.count == 0) {
-                    [[AlertView currentAlertView] setMessage:NSLocalizedString(@"no_more", @"") forType:AlertViewTypeFailed];
-                    [[AlertView currentAlertView] alertForLock:NO autoDismiss:YES];
+                    [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"no_more", @"") forType:AlertViewTypeFailed];
+                    [[XXAlertView currentAlertView] alertForLock:NO autoDismiss:YES];
                 } else {
                     for(int i=0; i<arr.count; i++) {
                         NSDictionary *dic = [arr objectAtIndex:i];
@@ -164,13 +164,13 @@
     [self cancelRefresh];
     [self cancelLoadMore];
     if(abs(resp.statusCode) == 1001) {
-        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"request_timeout", @"") forType:AlertViewTypeFailed];
+        [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"request_timeout", @"") forType:AlertViewTypeFailed];
     } else if(abs(resp.statusCode == 1004)) {
-        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"network_error", @"") forType:AlertViewTypeFailed];
+        [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"network_error", @"") forType:AlertViewTypeFailed];
     } else {
-        [[AlertView currentAlertView] setMessage:NSLocalizedString(@"unknow_error", @"") forType:AlertViewTypeFailed];
+        [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"unknow_error", @"") forType:AlertViewTypeFailed];
     }
-    [[AlertView currentAlertView] alertForLock:NO autoDismiss:YES];
+    [[XXAlertView currentAlertView] alertForLock:NO autoDismiss:YES];
 }
 
 #pragma mark -
