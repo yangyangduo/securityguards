@@ -21,7 +21,7 @@
 }
 
 + (instancetype)labelWithPoint:(CGPoint)point {
-    TipsLabel *label = [[[self class] alloc] initWithFrame:CGRectMake(point.x, point.y ,5, 25)];
+    TipsLabel *label = [[[self class] alloc] initWithFrame:CGRectMake(point.x, point.y , 5, 30)];
     label.text = @"|";
     label.font = [UIFont fontWithName:@"Helvetica-Bold" size:20];
     label.textColor = [UIColor appLightBlue];

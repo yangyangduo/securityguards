@@ -45,6 +45,7 @@
 "modify"                         =      "修改";
 "please_enter"                   =      "请输入";
 "has_not_refresh"                =      "从未更新";
+"un_connectted_wifi"             =      "未连接WIFI";
 
 
 /****************	Right Drawer View Strings	****************/
@@ -308,34 +309,34 @@
 "unit_binding_tips"        =           "将主控与手机处于同一Wifi下,按下\"自动发现\"按钮,主控与手机将自动绑定";
 "auto_find"                =           "自动发现";
 
-"step1_title"              =           "第一步：设置前准备";
+"step1_title"              =           "第一步:设置前准备";
 "step1_line1"              =           "请将摄像头用网线连接到路由器。";
 "step1_line2"              =           "将手机WIFI打开并连接到同一个路由器的WIFI热点上。";
 "step1_line3"              =           "请确保手机、摄像头以及即将接入网络的家卫士都在使用同一网络。";
 
-"step2_title"              =           "第二步：设置前准备";
-"step2_line1"              =           "请将家卫士电源联通（如果已经打开请忽略这一步）；";
-"step2_line2"              =           "开机后30-60秒将听到 “嘀” 一声,表示家卫士自检已完成；";
-"step2_line3"              =           "在自检声响起后，请按下面板上的对码键，并听到 “嘀嘀” 连续声后点击“下一步”继续配置过程。";
+"step2_title"              =           "第二步:设置前准备";
+"step2_line1"              =           "请将家卫士电源连通(如果已经打开请忽略这一步);";
+"step2_line2"              =           "开机后30-60秒将听到\"嘀\"一声,表示家卫士自检已完成;";
+"step2_line3"              =           "在自检声响起后，请按下面板上的对码键，并听到\"嘀嘀\"连续声后点击\"下一步\"继续配置过程。";
 
-"step3_title"              =           "第三步：连接家卫士";
-"step3_line1"              =           "请打开手机的“WIFI设置”，在热点列表中找到以下名称的热点网络并连接。";
-"step3_tips"               =           "＊成功后请点击“下一步”继续";
+"step3_title"              =           "第三步:连接家卫士";
+"step3_line1"              =           "请打开手机的\"WIFI设置\"，在热点列表中找到以下名称的热点网络并连接。";
+"step3_tips"               =           "*成功后请点击“下一步\"继续\"";
 
-"step4_title"              =           "第四步：配置家卫士";
+"step4_title"              =           "第四步:配置家卫士";
 "step4_line1_linked"       =           "已经连接到家卫士控制器。";
-"step4_line1_linking"      =           "正在连接家卫士控制器...";
-"step4_line2"              =           "配置家卫士WIFI网络名称为：";
+"step4_line1_linking"      =           "正在连接家卫士控制器 ...";
+"step4_line2"              =           "配置家卫士WIFI网络名称为:";
 "wifi_password"            =           "WIFI密码";
 "send_settings"            =           "发送配置";
 
-"step5_title"              =           "第五步：绑定家卫士";
+"step5_title"              =           "第五步:绑定家卫士";
 "step5_line1"              =           "已经完成家卫士配置";
-"step5_line2"              =           "正在绑定家卫士，请确保当前WIFI已正确切换到以下WIFI网络...";
+"step5_line2"              =           "正在绑定家卫士,请确保当前WIFI已正确切换到以下WIFI网络 ...";
 "reset"                    =           "重新配置";
 
 "unit_finder_line1"        =           "请确保家卫士已正确接入当前WIFI网格，并且处于开机状态";
-"unit_finder_line2"        =           "正在绑定家卫士...";
+"unit_finder_line2"        =           "正在绑定家卫士 ...";
 "rebind"                   =           "重新绑定";
 
 
@@ -344,12 +345,12 @@
 "declare_title"            =           "免责说明";
 "read_and_agree"           =           "我已阅读并同意";
 "read_declare"             =           "阅读免责声明";
-"app_name_label"           =           "软件名称：365家卫士";
-"app_version"              =           "软件版本：";
-"office_number"            =           "客服电话：";
+"app_name_label"           =           "软件名称: 365家卫士";
+"app_version"              =           "软件版本: ";
+"office_number"            =           "客服电话: ";
 "office_phonenumber"       =           "400-0000-0000";
-"we_chat_number"           =           "微信号码：000000000";
-"website"                  =           "公司网址：";
+"we_chat_number"           =           "微信号码: 000000000";
+"website"                  =           "公司网址:";
 "website_url"              =           "www.365jws.com";
 "copyright"                =           "COPYRIGHT©2013-2015 湖南长沙汉拓信息技术有限公司";
 

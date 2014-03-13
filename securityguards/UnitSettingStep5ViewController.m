@@ -10,7 +10,6 @@
 #import "UnitSettingStep1ViewController.h"
 #import "TipsLabel.h"
 #import "Shared.h"
-#define TOPBAR_HEIGHT self.topbarView.frame.size.height
 
 @interface UnitSettingStep5ViewController ()
 
@@ -36,7 +35,7 @@
 - (void)initUI{
     [super initUI];
     self.topbarView.title = NSLocalizedString(@"step5_title", @"");
-    UILabel *lblLine1 = [TipsLabel labelWithPoint:CGPointMake(60, 20+TOPBAR_HEIGHT)];
+    UILabel *lblLine1 = [TipsLabel labelWithPoint:CGPointMake(60, 20 + self.topbarView.frame.size.height)];
     [self.view addSubview:lblLine1];
     UILabel *lblLine1Content = [[UILabel alloc] initWithFrame:CGRectMake(65, lblLine1.frame.origin.y, 220, 25)];
     lblLine1Content.text = NSLocalizedString(@"step5_line1", @"");
@@ -45,7 +44,7 @@
     lblLine1Content.font = [UIFont systemFontOfSize:13.f];
     [self.view addSubview:lblLine1Content];
     
-    UILabel *lblLine2 = [TipsLabel labelWithPoint:CGPointMake(60, lblLine1.frame.origin.y+lblLine1.frame.size.height+5)];
+    UILabel *lblLine2 = [TipsLabel labelWithPoint:CGPointMake(60, lblLine1.frame.origin.y+lblLine1.frame.size.height + 5)];
     [self.view addSubview:lblLine2];
     UILabel *lblLine2Content = [[UILabel alloc] initWithFrame:CGRectMake(65, lblLine2.frame.origin.y-5, 200, 50)];
     lblLine2Content.numberOfLines = 2;
@@ -56,13 +55,12 @@
     lblLine2Content.font = [UIFont systemFontOfSize:13.f];
     [self.view addSubview:lblLine2Content];
     
-    UILabel *lblWIFIName = [[UILabel alloc] initWithFrame:CGRectMake(65, lblLine2Content.frame.origin.y+lblLine2Content.frame.size.height+5, 200, 50)];
+    UILabel *lblWIFIName = [[UILabel alloc] initWithFrame:CGRectMake(65, lblLine2Content.frame.origin.y+lblLine2Content.frame.size.height + 5, 200, 50)];
     lblWIFIName.text = [Shared shared].currentWIFIName;
     lblWIFIName.textColor = [UIColor appBlue];
     [self.view addSubview:lblWIFIName];
     
-    
-    UIButton *btnReset = [[UIButton alloc] initWithFrame:CGRectMake(0, lblWIFIName.frame.origin.y+lblWIFIName.frame.size.height+10, 500/2, 53/2)];
+    UIButton *btnReset = [[UIButton alloc] initWithFrame:CGRectMake(0, lblWIFIName.frame.origin.y+lblWIFIName.frame.size.height + 10, 500/2, 66/2)];
     btnReset.center = CGPointMake(self.view.center.x, btnReset.center.y);
     [btnReset setTitle:NSLocalizedString(@"reset", @"") forState:UIControlStateNormal];
     [btnReset setBackgroundImage:[UIImage imageNamed:@"btn_blue.png"] forState:UIControlStateNormal];
@@ -70,7 +68,6 @@
     [btnReset setBackgroundImage:[UIImage imageNamed:@"btn_gray.png"] forState:UIControlStateDisabled];
     [btnReset addTarget:self action:@selector(btnResetPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btnReset];
-
 }
 
 - (void)btnResetPressed:(UIButton *) sender{

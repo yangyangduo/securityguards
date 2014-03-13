@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "RootViewController.h"
+#import "UnitSettingStep4ViewController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+@property (weak, nonatomic) UnitSettingStep4ViewController *wifiConfigViewController;
 
 - (UIViewController *)topViewController;
 - (RootViewController *)rootViewController;

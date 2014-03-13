@@ -8,6 +8,9 @@
 
 #import "NavigationViewController.h"
 
+
 @interface UnitSettingStep4ViewController : NavigationViewController<UITextFieldDelegate>
+
+- (BOOL)detectionFamilyGuardsWifiExists;
 
 @end

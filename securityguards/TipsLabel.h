@@ -10,6 +10,6 @@
 
 @interface TipsLabel : UILabel
 
-+ (instancetype)labelWithPoint:(CGPoint) point;
++ (instancetype)labelWithPoint:(CGPoint)point;
 
 @end

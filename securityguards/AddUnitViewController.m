@@ -9,8 +9,6 @@
 #import "AddUnitViewController.h"
 #import "UnitSettingStep1ViewController.h"
 #import "UnitFinderViewController.h"
-#define BTN_WIDTH 300/2
-#define BTN_HEIGHT 306/2
 
 @interface AddUnitViewController ()
 
@@ -38,37 +36,38 @@
 - (void)initUI{
     [super initUI];
     self.topbarView.title = NSLocalizedString(@"add_unit", @"");
-    UIButton *btnSetting = [[UIButton alloc] initWithFrame:CGRectMake(0, self.topbarView.frame.size.height+40, BTN_WIDTH, BTN_HEIGHT)];
-    btnSetting.center = CGPointMake(self.view.center.x, btnSetting.center.y);
-    [btnSetting setBackgroundImage:[UIImage imageNamed:@"button_setting.png"] forState:UIControlStateNormal];
-    [btnSetting setBackgroundImage:[UIImage imageNamed:@"button_highlighted_setting.png"] forState:UIControlStateHighlighted];
-    [btnSetting addTarget:self action:@selector(btnSettingPressed:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:btnSetting];
+
+    CGFloat widthOfButton = 300 / 2;
+    CGFloat heightOfButton = 306 / 2;
+
+    CGFloat heightOfWhiteSpace = [UIScreen mainScreen].bounds.size.height - self.topbarView.bounds.size.height;
+    CGFloat buttonVSpace = (heightOfWhiteSpace - 2 * heightOfButton) / 3.f;
+
+    UIButton *btnUnitSettings = [[UIButton alloc] initWithFrame:CGRectMake(0, self.topbarView.frame.size.height + buttonVSpace, widthOfButton, heightOfButton)];
+    btnUnitSettings.center = CGPointMake(self.view.center.x, btnUnitSettings.center.y);
+    [btnUnitSettings setBackgroundImage:[UIImage imageNamed:@"button_setting"] forState:UIControlStateNormal];
+    [btnUnitSettings setBackgroundImage:[UIImage imageNamed:@"button_highlighted_setting"] forState:UIControlStateHighlighted];
+    [btnUnitSettings addTarget:self action:@selector(btnUnitSettingsPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:btnUnitSettings];
     
-    UIButton *btnBind = [[UIButton alloc] initWithFrame:CGRectMake(0, btnSetting.frame.size.height+btnSetting.frame.origin.y+20, BTN_WIDTH, BTN_HEIGHT)];
-    btnBind.center = CGPointMake(self.view.center.x, btnBind.center.y);
-    [btnBind setBackgroundImage:[UIImage imageNamed:@"button_bind.png"] forState:UIControlStateNormal];
-    [btnBind setBackgroundImage:[UIImage imageNamed:@"button_highlighted_bind.png"] forState:UIControlStateHighlighted];
-    [btnBind addTarget:self action:@selector(btnBindPressed:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:btnBind];
+    UIButton *btnUnitBinding = [[UIButton alloc] initWithFrame:CGRectMake(0, btnUnitSettings.frame.size.height + btnUnitSettings.frame.origin.y + buttonVSpace, widthOfButton, heightOfButton)];
+    btnUnitBinding.center = CGPointMake(self.view.center.x, btnUnitBinding.center.y);
+    [btnUnitBinding setBackgroundImage:[UIImage imageNamed:@"button_bind"] forState:UIControlStateNormal];
+    [btnUnitBinding setBackgroundImage:[UIImage imageNamed:@"button_highlighted_bind"] forState:UIControlStateHighlighted];
+    [btnUnitBinding addTarget:self action:@selector(btnUnitBindingPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:btnUnitBinding];
 }
 
-- (void)btnSettingPressed:(UIButton *)sender{
-    NSLog(@"%@",self.navigationController);
+- (void)btnUnitSettingsPressed:(id)sender {
     [self.navigationController pushViewController:[[UnitSettingStep1ViewController alloc] init] animated:YES];
 }
 
-- (void)btnBindPressed:(UIButton *)sender{
+- (void)btnUnitBindingPressed:(id)sender {
     [self.navigationController pushViewController:[[UnitFinderViewController alloc] init] animated:YES];
 }
+
 - (void)popupViewController{
     [self.navigationController popViewControllerAnimated:YES];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end

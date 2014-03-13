@@ -2,60 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e93c453b-47bc-4359-86d1-be37d44eae4c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Manifest.lock" afterPath="$PROJECT_DIR$/Pods/Manifest.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/BuildHeaders/Reddydog/NSDictionary+Extension.h" afterPath="$PROJECT_DIR$/Pods/BuildHeaders/Reddydog/NSDictionary+Extension.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Headers/Reddydog/NSDictionary+Extension.h" afterPath="$PROJECT_DIR$/Pods/Headers/Reddydog/NSDictionary+Extension.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/BuildHeaders/Reddydog/NSMutableDictionary+Extension.h" afterPath="$PROJECT_DIR$/Pods/BuildHeaders/Reddydog/NSMutableDictionary+Extension.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Headers/Reddydog/NSMutableDictionary+Extension.h" afterPath="$PROJECT_DIR$/Pods/Headers/Reddydog/NSMutableDictionary+Extension.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Podfile.lock" afterPath="$PROJECT_DIR$/Podfile.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Podfile" afterPath="$PROJECT_DIR$/Podfile" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/BuildHeaders/Reddydog/UIApplication+TopViewController.h" afterPath="$PROJECT_DIR$/Pods/BuildHeaders/Reddydog/UIApplication+TopViewController.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Headers/Reddydog/UIApplication+TopViewController.h" afterPath="$PROJECT_DIR$/Pods/Headers/Reddydog/UIApplication+TopViewController.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/BuildHeaders/Reddydog/UIColor+HexColor.h" afterPath="$PROJECT_DIR$/Pods/BuildHeaders/Reddydog/UIColor+HexColor.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Headers/Reddydog/UIColor+HexColor.h" afterPath="$PROJECT_DIR$/Pods/Headers/Reddydog/UIColor+HexColor.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Reddydog/Classes/category/UIColor+HexColor.m" afterPath="$PROJECT_DIR$/Pods/Reddydog/Classes/category/UIColor+HexColor.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/BuildHeaders/Reddydog/UIDevice+SystemVersion.h" afterPath="$PROJECT_DIR$/Pods/BuildHeaders/Reddydog/UIDevice+SystemVersion.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Headers/Reddydog/UIDevice+SystemVersion.h" afterPath="$PROJECT_DIR$/Pods/Headers/Reddydog/UIDevice+SystemVersion.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/BuildHeaders/Reddydog/UIView+ViewController.h" afterPath="$PROJECT_DIR$/Pods/BuildHeaders/Reddydog/UIView+ViewController.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Headers/Reddydog/UIView+ViewController.h" afterPath="$PROJECT_DIR$/Pods/Headers/Reddydog/UIView+ViewController.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/BuildHeaders/Reddydog/XXActionSheet.h" afterPath="$PROJECT_DIR$/Pods/BuildHeaders/Reddydog/XXActionSheet.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Headers/Reddydog/XXActionSheet.h" afterPath="$PROJECT_DIR$/Pods/Headers/Reddydog/XXActionSheet.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/BuildHeaders/Reddydog/XXAlertView.h" afterPath="$PROJECT_DIR$/Pods/BuildHeaders/Reddydog/XXAlertView.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Headers/Reddydog/XXAlertView.h" afterPath="$PROJECT_DIR$/Pods/Headers/Reddydog/XXAlertView.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/BuildHeaders/Reddydog/XXAllAllowedEventFilter.h" afterPath="$PROJECT_DIR$/Pods/BuildHeaders/Reddydog/XXAllAllowedEventFilter.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Headers/Reddydog/XXAllAllowedEventFilter.h" afterPath="$PROJECT_DIR$/Pods/Headers/Reddydog/XXAllAllowedEventFilter.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/BuildHeaders/Reddydog/XXBaseViewController.h" afterPath="$PROJECT_DIR$/Pods/BuildHeaders/Reddydog/XXBaseViewController.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Headers/Reddydog/XXBaseViewController.h" afterPath="$PROJECT_DIR$/Pods/Headers/Reddydog/XXBaseViewController.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/BuildHeaders/Reddydog/XXButton.h" afterPath="$PROJECT_DIR$/Pods/BuildHeaders/Reddydog/XXButton.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Headers/Reddydog/XXButton.h" afterPath="$PROJECT_DIR$/Pods/Headers/Reddydog/XXButton.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/BuildHeaders/Reddydog/XXDrawerViewController.h" afterPath="$PROJECT_DIR$/Pods/BuildHeaders/Reddydog/XXDrawerViewController.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Headers/Reddydog/XXDrawerViewController.h" afterPath="$PROJECT_DIR$/Pods/Headers/Reddydog/XXDrawerViewController.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/BuildHeaders/Reddydog/XXEvent.h" afterPath="$PROJECT_DIR$/Pods/BuildHeaders/Reddydog/XXEvent.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Headers/Reddydog/XXEvent.h" afterPath="$PROJECT_DIR$/Pods/Headers/Reddydog/XXEvent.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/BuildHeaders/Reddydog/XXEventClassFilter.h" afterPath="$PROJECT_DIR$/Pods/BuildHeaders/Reddydog/XXEventClassFilter.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Headers/Reddydog/XXEventClassFilter.h" afterPath="$PROJECT_DIR$/Pods/Headers/Reddydog/XXEventClassFilter.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/BuildHeaders/Reddydog/XXEventFilter.h" afterPath="$PROJECT_DIR$/Pods/BuildHeaders/Reddydog/XXEventFilter.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Headers/Reddydog/XXEventFilter.h" afterPath="$PROJECT_DIR$/Pods/Headers/Reddydog/XXEventFilter.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/BuildHeaders/Reddydog/XXEventFilterChain.h" afterPath="$PROJECT_DIR$/Pods/BuildHeaders/Reddydog/XXEventFilterChain.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Headers/Reddydog/XXEventFilterChain.h" afterPath="$PROJECT_DIR$/Pods/Headers/Reddydog/XXEventFilterChain.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/BuildHeaders/Reddydog/XXEventNameFilter.h" afterPath="$PROJECT_DIR$/Pods/BuildHeaders/Reddydog/XXEventNameFilter.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Headers/Reddydog/XXEventNameFilter.h" afterPath="$PROJECT_DIR$/Pods/Headers/Reddydog/XXEventNameFilter.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/BuildHeaders/Reddydog/XXEventSubscriber.h" afterPath="$PROJECT_DIR$/Pods/BuildHeaders/Reddydog/XXEventSubscriber.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Headers/Reddydog/XXEventSubscriber.h" afterPath="$PROJECT_DIR$/Pods/Headers/Reddydog/XXEventSubscriber.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/BuildHeaders/Reddydog/XXEventSubscription.h" afterPath="$PROJECT_DIR$/Pods/BuildHeaders/Reddydog/XXEventSubscription.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Headers/Reddydog/XXEventSubscription.h" afterPath="$PROJECT_DIR$/Pods/Headers/Reddydog/XXEventSubscription.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/BuildHeaders/Reddydog/XXEventSubscriptionPublisher.h" afterPath="$PROJECT_DIR$/Pods/BuildHeaders/Reddydog/XXEventSubscriptionPublisher.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Headers/Reddydog/XXEventSubscriptionPublisher.h" afterPath="$PROJECT_DIR$/Pods/Headers/Reddydog/XXEventSubscriptionPublisher.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/BuildHeaders/Reddydog/XXJsonUtils.h" afterPath="$PROJECT_DIR$/Pods/BuildHeaders/Reddydog/XXJsonUtils.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Headers/Reddydog/XXJsonUtils.h" afterPath="$PROJECT_DIR$/Pods/Headers/Reddydog/XXJsonUtils.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/BuildHeaders/Reddydog/XXParameterAware.h" afterPath="$PROJECT_DIR$/Pods/BuildHeaders/Reddydog/XXParameterAware.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Headers/Reddydog/XXParameterAware.h" afterPath="$PROJECT_DIR$/Pods/Headers/Reddydog/XXParameterAware.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/BuildHeaders/Reddydog/XXStringUtils.h" afterPath="$PROJECT_DIR$/Pods/BuildHeaders/Reddydog/XXStringUtils.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Headers/Reddydog/XXStringUtils.h" afterPath="$PROJECT_DIR$/Pods/Headers/Reddydog/XXStringUtils.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/BuildHeaders/Reddydog/XXTopbarView.h" afterPath="$PROJECT_DIR$/Pods/BuildHeaders/Reddydog/XXTopbarView.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Headers/Reddydog/XXTopbarView.h" afterPath="$PROJECT_DIR$/Pods/Headers/Reddydog/XXTopbarView.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/project.pbxproj" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/securityguards.iml" afterPath="$PROJECT_DIR$/.idea/securityguards.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/AddUnitViewController.m" afterPath="$PROJECT_DIR$/securityguards/AddUnitViewController.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/AppDelegate.h" afterPath="$PROJECT_DIR$/securityguards/AppDelegate.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/AppDelegate.m" afterPath="$PROJECT_DIR$/securityguards/AppDelegate.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/en.lproj/Localizable.strings" afterPath="$PROJECT_DIR$/securityguards/en.lproj/Localizable.strings" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/zh-Hans.lproj/Localizable.strings" afterPath="$PROJECT_DIR$/securityguards/zh-Hans.lproj/Localizable.strings" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/TipsLabel.h" afterPath="$PROJECT_DIR$/securityguards/TipsLabel.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/TipsLabel.m" afterPath="$PROJECT_DIR$/securityguards/TipsLabel.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/UnitSettingStep1ViewController.m" afterPath="$PROJECT_DIR$/securityguards/UnitSettingStep1ViewController.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/UnitSettingStep2ViewController.m" afterPath="$PROJECT_DIR$/securityguards/UnitSettingStep2ViewController.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/UnitSettingStep3ViewController.m" afterPath="$PROJECT_DIR$/securityguards/UnitSettingStep3ViewController.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/UnitSettingStep4ViewController.h" afterPath="$PROJECT_DIR$/securityguards/UnitSettingStep4ViewController.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/UnitSettingStep4ViewController.m" afterPath="$PROJECT_DIR$/securityguards/UnitSettingStep4ViewController.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/UnitSettingStep5ViewController.m" afterPath="$PROJECT_DIR$/securityguards/UnitSettingStep5ViewController.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/securityguards.xcodeproj/project.pbxproj" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="securityguards.iws" />
@@ -73,103 +33,36 @@
   <component name="DaemonCodeAnalyzer">
     <disable_hints />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="iphonesimulator_iPhone_Retina__4_inch__7.0" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="iphonesimulator_iPhone_Retina__4_inch__7.1" />
   <component name="FavoritesManager">
     <favorites_list name="securityguards" />
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="GlobalSettings.h" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/securityguards/GlobalSettings.h">
+      <file leaf-file-name="Localizable.strings" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/securityguards/en.lproj/Localizable.strings">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="19" selection-start="243" selection-end="243" vertical-scroll-proportion="0.0" vertical-offset="104" max-vertical-offset="570">
+            <state line="43" column="32" selection-start="1738" selection-end="1738" vertical-scroll-proportion="0.0" vertical-offset="443" max-vertical-offset="6015">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UIColor+HexColor.h" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Pods/Reddydog/Classes/category/UIColor+HexColor.h">
+      <file leaf-file-name="UnitSettingStep4ViewController.m" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/securityguards/UnitSettingStep4ViewController.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="315">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="NSDictionary+Extension.m" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Pods/Reddydog/Classes/category/NSDictionary+Extension.m">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="12" selection-start="262" selection-end="262" vertical-scroll-proportion="0.0" vertical-offset="1379" max-vertical-offset="1845">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UIColor+HexColor.m" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Pods/Reddydog/Classes/category/UIColor+HexColor.m">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="2" selection-start="115" selection-end="115" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="885">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UIApplication+TopViewController.h" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Pods/Reddydog/Classes/category/UIApplication+TopViewController.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="315">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UIColor+HexColor.m" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/../Reddydog/Reddydog/Classes/category/UIColor+HexColor.m">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="3" selection-start="477" selection-end="477" vertical-scroll-proportion="0.57939917" vertical-offset="0" max-vertical-offset="885">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Podfile" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Podfile">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="35" selection-start="291" selection-end="291" vertical-scroll-proportion="-4.2" vertical-offset="0" max-vertical-offset="195">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LeftNavView.h" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/securityguards/LeftNavView.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="18" selection-start="328" selection-end="328" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="540">
+            <state line="107" column="33" selection-start="4948" selection-end="4948" vertical-scroll-proportion="-0.794702" vertical-offset="1905" max-vertical-offset="2490">
               <folding>
-                <element signature="e#130#153#0" expanded="true" />
+                <element signature="e#5659#5704#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LeftNavView.m" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/securityguards/LeftNavView.m">
+      <file leaf-file-name="Localizable.strings" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/securityguards/zh-Hans.lproj/Localizable.strings">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="0" selection-start="215" selection-end="215" vertical-scroll-proportion="0.0" vertical-offset="315" max-vertical-offset="2730">
-              <folding>
-                <element signature="e#306#327#0" expanded="true" />
-                <element signature="e#1995#2038#0" expanded="true" />
-                <marker date="1394524212000" expanded="true" signature="138:214" placeholder="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GlobalSettings.m" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/securityguards/GlobalSettings.m">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="107" column="4" selection-start="3912" selection-end="3912" vertical-scroll-proportion="0.0" vertical-offset="1259" max-vertical-offset="1725">
+            <state line="47" column="48" selection-start="1941" selection-end="1941" vertical-scroll-proportion="0.0" vertical-offset="480" max-vertical-offset="6015">
               <folding />
             </state>
           </provider>
@@ -230,28 +123,28 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/securityguards/BaseView.m" />
-        <option value="$PROJECT_DIR$/../Reddydog/Reddydog/Classes/ui/XXBaseViewController.m" />
-        <option value="$PROJECT_DIR$/../Reddydog/Reddydog/Classes/utils/json/XXJsonUtils.h" />
-        <option value="$PROJECT_DIR$/../Reddydog/Reddydog/Classes/utils/json/XXJsonUtils.m" />
-        <option value="$PROJECT_DIR$/securityguards/AlertView.h" />
-        <option value="$PROJECT_DIR$/securityguards/XXAlertView.h" />
-        <option value="$PROJECT_DIR$/securityguards/BaseViewController.h" />
-        <option value="$PROJECT_DIR$/../Reddydog/Reddydog/Classes/ui/XXBaseViewController.h" />
-        <option value="$PROJECT_DIR$/securityguards/XXParameterAware.h" />
-        <option value="$PROJECT_DIR$/../Reddydog/Reddydog/Classes/ui/XXButton.m" />
-        <option value="$PROJECT_DIR$/Pods/Headers/Reddydog/XXBaseViewController.h" />
-        <option value="$PROJECT_DIR$/securityguards/MerchandiseDetailSelectView.m" />
-        <option value="$PROJECT_DIR$/securityguards/LeftNavView.m" />
-        <option value="$PROJECT_DIR$/Pods/Reddydog/Classes/category/UIColor+HexColor.m" />
         <option value="$PROJECT_DIR$/Podfile" />
         <option value="$PROJECT_DIR$/../Reddydog/Reddydog/Classes/category/UIColor+HexColor.m" />
+        <option value="$PROJECT_DIR$/securityguards/UnitSettingStep3ViewController.h" />
+        <option value="$PROJECT_DIR$/securityguards/AppDelegate.h" />
+        <option value="$PROJECT_DIR$/securityguards/UnitSettingStep4ViewController.h" />
+        <option value="$PROJECT_DIR$/securityguards/AppDelegate.m" />
+        <option value="$PROJECT_DIR$/securityguards/TipsLabel.m" />
+        <option value="$PROJECT_DIR$/securityguards/UnitSettingStep5ViewController.m" />
+        <option value="$PROJECT_DIR$/securityguards/TipsLabel.h" />
+        <option value="$PROJECT_DIR$/securityguards/UnitSettingStep1ViewController.m" />
+        <option value="$PROJECT_DIR$/securityguards/UnitSettingStep2ViewController.m" />
+        <option value="$PROJECT_DIR$/securityguards/UnitSettingStep3ViewController.m" />
+        <option value="$PROJECT_DIR$/securityguards/AddUnitViewController.m" />
+        <option value="$PROJECT_DIR$/securityguards/zh-Hans.lproj/Localizable.strings" />
+        <option value="$PROJECT_DIR$/securityguards/en.lproj/Localizable.strings" />
+        <option value="$PROJECT_DIR$/securityguards/UnitSettingStep4ViewController.m" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="40" />
-    <option name="y" value="24" />
+    <option name="x" value="52" />
+    <option name="y" value="32" />
     <option name="width" value="1400" />
     <option name="height" value="804" />
   </component>
@@ -355,7 +248,69 @@
               <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="protocals" />
+              <option name="myItemId" value="Supporting Files" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="securityguards" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="securityguards" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Supporting Files" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Localizable.strings" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="securityguards" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="securityguards" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controllers" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="securityguards" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="securityguards" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controllers" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="unit_finder" />
               <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -376,145 +331,11 @@
               <option name="myItemId" value="components" />
               <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="text_field" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
               <option name="myItemId" />
               <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="securityguards" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="securityguards" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="components" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="securityguards" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="securityguards" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="components" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="shopping" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="securityguards" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="securityguards" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="components" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="drawer_nav" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="securityguards" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="securityguards" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="commons" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="securityguards" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Products" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Pods" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Pods" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Pods" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Pods" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Development Pods" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Reddydog" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -525,7 +346,7 @@
   <component name="PropertiesComponent">
     <property name="GoToFile.includeJavaFiles" value="false" />
     <property name="options.splitter.main.proportions" value="0.3" />
-    <property name="options.lastSelected" value="project.propVCSSupport.Mappings" />
+    <property name="options.lastSelected" value="preferences.pluginManager" />
     <property name="recentsLimit" value="5" />
     <property name="last_opened_file_path" value="$USER_HOME$/Documents/my_library/ios/reddy" />
     <property name="FullScreen" value="false" />
@@ -613,24 +434,24 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="40" y="24" width="1400" height="804" extended-state="0" />
+    <frame x="52" y="32" width="1400" height="804" extended-state="0" />
     <editor active="true" />
     <layout>
+      <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="100" y="122" width="1200" height="606" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3292517" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3292517" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22071429" sideWeight="0.6721088" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32789117" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32789117" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="100" y="122" width="1200" height="606" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3292517" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="REST Client" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32971507" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -647,128 +468,127 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="2" />
+      <option name="time" value="4" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/securityguards/DirectionItemButton.m">
+    <entry file="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/CoreGraphics.framework/Headers/CGGeometry.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="0" selection-start="605" selection-end="605" vertical-scroll-proportion="0.9656652" vertical-offset="0" max-vertical-offset="540">
+        <state line="271" column="0" selection-start="8385" selection-end="8385" vertical-scroll-proportion="0.33261803" vertical-offset="3895" max-vertical-offset="4785">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../Reddydog/Reddydog/Classes/ui/XXButton.m">
+    <entry file="file://$PROJECT_DIR$/securityguards/TipsLabel.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="31" selection-start="362" selection-end="362" vertical-scroll-proportion="0.49668875" vertical-offset="0" max-vertical-offset="960">
+        <state line="15" column="0" selection-start="257" selection-end="257" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="315">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../Reddydog/Reddydog/Classes/ui/XXBaseViewController.m">
+    <entry file="file://$PROJECT_DIR$/securityguards/TipsLabel.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="22" selection-start="270" selection-end="270" vertical-scroll-proportion="0.1986755" vertical-offset="105" max-vertical-offset="2265">
+        <state line="22" column="25" selection-start="401" selection-end="401" vertical-scroll-proportion="0.0" vertical-offset="74" max-vertical-offset="540">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Pods/Headers/Reddydog/XXBaseViewController.h">
+    <entry file="file://$PROJECT_DIR$/securityguards/UnitSettingStep1ViewController.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="32" selection-start="594" selection-end="594" vertical-scroll-proportion="0.90128756" vertical-offset="0" max-vertical-offset="840">
+        <state line="45" column="20" selection-start="1188" selection-end="1188" vertical-scroll-proportion="-0.5298013" vertical-offset="855" max-vertical-offset="1710">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/securityguards/AppDelegate.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="17" selection-start="253" selection-end="253" vertical-scroll-proportion="0.38626608" vertical-offset="0" max-vertical-offset="466">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/securityguards/AppDelegate.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="63" column="28" selection-start="2592" selection-end="2592" vertical-scroll-proportion="0.37086093" vertical-offset="777" max-vertical-offset="1800">
           <folding>
-            <element signature="e#178#202#0" expanded="false" />
-            <element signature="e#284#309#0" expanded="false" />
+            <element signature="e#137#160#0" expanded="true" />
+            <element signature="e#3428#3464#0" expanded="true" />
+            <element signature="e#4614#4655#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/securityguards/MerchandiseDetailSelectView.h">
+    <entry file="file://$PROJECT_DIR$/securityguards/UnitFinderViewController.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="31" selection-start="550" selection-end="550" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="660">
+        <state line="86" column="3" selection-start="3528" selection-end="3528" vertical-scroll-proportion="0.0" vertical-offset="927" max-vertical-offset="2325">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/securityguards/MerchandiseDetailSelectView.m">
+    <entry file="file://$PROJECT_DIR$/securityguards/AddUnitViewController.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="220" column="0" selection-start="8564" selection-end="8564" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5445">
+        <state line="37" column="64" selection-start="791" selection-end="791" vertical-scroll-proportion="0.0" vertical-offset="702" max-vertical-offset="1155">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/securityguards/GlobalSettings.h">
+    <entry file="file://$PROJECT_DIR$/securityguards/UnitSettingStep4ViewController.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="19" selection-start="243" selection-end="243" vertical-scroll-proportion="0.0" vertical-offset="104" max-vertical-offset="570">
+        <state line="9" column="0" selection-start="205" selection-end="205" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="330">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/securityguards/GlobalSettings.m">
+    <entry file="file://$PROJECT_DIR$/securityguards/UnitSettingStep2ViewController.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="107" column="4" selection-start="3912" selection-end="3912" vertical-scroll-proportion="0.0" vertical-offset="1259" max-vertical-offset="1725">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/securityguards/LeftNavView.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="18" selection-start="328" selection-end="328" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="540">
+        <state line="38" column="36" selection-start="880" selection-end="880" vertical-scroll-proportion="0.0" vertical-offset="375" max-vertical-offset="1710">
           <folding>
-            <element signature="e#130#153#0" expanded="true" />
+            <element signature="e#2272#2310#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/securityguards/LeftNavView.m">
+    <entry file="file://$PROJECT_DIR$/securityguards/UnitSettingStep5ViewController.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="0" selection-start="215" selection-end="215" vertical-scroll-proportion="0.0" vertical-offset="315" max-vertical-offset="2730">
-          <folding>
-            <element signature="e#306#327#0" expanded="true" />
-            <element signature="e#1995#2038#0" expanded="true" />
-            <marker date="1394524212000" expanded="true" signature="138:214" placeholder="..." />
-          </folding>
+        <state line="62" column="143" selection-start="2496" selection-end="2496" vertical-scroll-proportion="0.5960265" vertical-offset="615" max-vertical-offset="1335">
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Pods/Reddydog/Classes/category/UIApplication+TopViewController.h">
+    <entry file="file://$PROJECT_DIR$/securityguards/UnitSettingStep3ViewController.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="38" column="39" selection-start="889" selection-end="889" vertical-scroll-proportion="0.23620309" vertical-offset="433" max-vertical-offset="1425">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/securityguards/UnitFinderViewController.h">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="466">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Pods/Reddydog/Classes/category/NSDictionary+Extension.m">
+    <entry file="file://$PROJECT_DIR$/securityguards/zh-Hans.lproj/Localizable.strings">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="12" selection-start="262" selection-end="262" vertical-scroll-proportion="0.0" vertical-offset="1379" max-vertical-offset="1845">
+        <state line="47" column="48" selection-start="1941" selection-end="1941" vertical-scroll-proportion="0.0" vertical-offset="480" max-vertical-offset="6015">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Pods/Reddydog/Classes/category/UIColor+HexColor.h">
+    <entry file="file://$PROJECT_DIR$/securityguards/en.lproj/Localizable.strings">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="466">
+        <state line="43" column="32" selection-start="1738" selection-end="1738" vertical-scroll-proportion="0.0" vertical-offset="443" max-vertical-offset="6015">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Pods/Reddydog/Classes/category/UIColor+HexColor.m">
+    <entry file="file://$PROJECT_DIR$/securityguards/UnitSettingStep4ViewController.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="2" selection-start="115" selection-end="115" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="885">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Podfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="35" selection-start="291" selection-end="291" vertical-scroll-proportion="-4.2" vertical-offset="0" max-vertical-offset="195">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../Reddydog/Reddydog/Classes/category/UIColor+HexColor.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="3" selection-start="477" selection-end="477" vertical-scroll-proportion="0.57939917" vertical-offset="0" max-vertical-offset="885">
-          <folding />
+        <state line="107" column="33" selection-start="4948" selection-end="4948" vertical-scroll-proportion="-0.794702" vertical-offset="1905" max-vertical-offset="2490">
+          <folding>
+            <element signature="e#5659#5704#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

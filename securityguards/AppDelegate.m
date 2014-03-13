@@ -7,12 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "CoreService.h"
-#import "XXEventSubscriptionPublisher.h"
-#import "UIApplication+TopViewController.h"
 #import "UnitManager.h"
-#import "GlobalSettings.h"
-#import "XXAlertView.h"
 #import "UserLogoutEvent.h"
 #import "Memory.h"
 #import "ShoppingCart.h"
@@ -56,6 +51,13 @@
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     if([GlobalSettings defaultSettings].hasLogin) {
         [[CoreService defaultService] startService];
+    }
+
+    if(self.wifiConfigViewController != nil) {
+#ifdef DEBUG
+        NSLog(@"[APP] Wifi view controller is already exists. --------------------------->");
+#endif
+        [self.wifiConfigViewController detectionFamilyGuardsWifiExists];
     }
 }
 
