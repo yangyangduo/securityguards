@@ -2,16 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e93c453b-47bc-4359-86d1-be37d44eae4c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/AppDelegate.h" afterPath="$PROJECT_DIR$/securityguards/AppDelegate.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/AppDelegate.m" afterPath="$PROJECT_DIR$/securityguards/AppDelegate.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/en.lproj/Localizable.strings" afterPath="$PROJECT_DIR$/securityguards/en.lproj/Localizable.strings" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/zh-Hans.lproj/Localizable.strings" afterPath="$PROJECT_DIR$/securityguards/zh-Hans.lproj/Localizable.strings" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/UnitSelectionDrawerView.m" afterPath="$PROJECT_DIR$/securityguards/UnitSelectionDrawerView.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/UnitSettingStep3ViewController.m" afterPath="$PROJECT_DIR$/securityguards/UnitSettingStep3ViewController.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/UnitSettingStep4ViewController.h" afterPath="$PROJECT_DIR$/securityguards/UnitSettingStep4ViewController.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/UnitSettingStep4ViewController.m" afterPath="$PROJECT_DIR$/securityguards/UnitSettingStep4ViewController.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/UnitSettingStep5ViewController.m" afterPath="$PROJECT_DIR$/securityguards/UnitSettingStep5ViewController.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="securityguards.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -28,7 +22,7 @@
   <component name="DaemonCodeAnalyzer">
     <disable_hints />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="iphonesimulator_iPhone_Retina__4_inch__7.1" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="iphoneos_c5dca52e2dee0b54c96820d423012f382646694b" />
   <component name="FavoritesManager">
     <favorites_list name="securityguards" />
   </component>
@@ -37,7 +31,7 @@
       <file leaf-file-name="UnitSettingStep4ViewController.h" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/securityguards/UnitSettingStep4ViewController.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="4" selection-start="414" selection-end="414" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="345">
+            <state line="17" column="0" selection-start="414" selection-end="414" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="345">
               <folding />
             </state>
           </provider>
@@ -61,10 +55,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UnitSettingStep3ViewController.m" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="UnitSettingStep3ViewController.m" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/securityguards/UnitSettingStep3ViewController.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="58" column="50" selection-start="2084" selection-end="2084" vertical-scroll-proportion="0.0" vertical-offset="612" max-vertical-offset="1425">
+            <state line="87" column="0" selection-start="3820" selection-end="3820" vertical-scroll-proportion="1.4635762" vertical-offset="597" max-vertical-offset="1455">
               <folding />
             </state>
           </provider>
@@ -79,10 +73,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UnitSettingStep4ViewController.m" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="UnitSettingStep4ViewController.m" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/securityguards/UnitSettingStep4ViewController.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="132" column="41" selection-start="5579" selection-end="5579" vertical-scroll-proportion="0.397351" vertical-offset="1800" max-vertical-offset="2490">
+            <state line="13" column="30" selection-start="336" selection-end="336" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2490">
               <folding>
                 <element signature="e#171#213#0" expanded="true" />
                 <element signature="e#5432#5477#0" expanded="true" />
@@ -118,7 +112,7 @@
       <file leaf-file-name="Localizable.strings" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/securityguards/en.lproj/Localizable.strings">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="381" column="49" selection-start="16354" selection-end="16354" vertical-scroll-proportion="0.0" vertical-offset="5502" max-vertical-offset="6015">
+            <state line="328" column="57" selection-start="0" selection-end="17260" vertical-scroll-proportion="0.0" vertical-offset="4647" max-vertical-offset="6015">
               <folding />
             </state>
           </provider>
@@ -127,7 +121,7 @@
       <file leaf-file-name="Localizable.strings" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/securityguards/zh-Hans.lproj/Localizable.strings">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="336" column="0" selection-start="14382" selection-end="14382" vertical-scroll-proportion="-8.08" vertical-offset="4838" max-vertical-offset="6015">
+            <state line="385" column="47" selection-start="16557" selection-end="16557" vertical-scroll-proportion="-9.92" vertical-offset="5527" max-vertical-offset="6015">
               <folding />
             </state>
           </provider>
@@ -198,12 +192,12 @@
         <option value="$PROJECT_DIR$/../Reddydog/Reddydog/Classes/category/UIApplication+TopViewController.m" />
         <option value="$PROJECT_DIR$/securityguards/AppDelegate.m" />
         <option value="$PROJECT_DIR$/securityguards/AppDelegate.h" />
-        <option value="$PROJECT_DIR$/securityguards/zh-Hans.lproj/Localizable.strings" />
-        <option value="$PROJECT_DIR$/securityguards/en.lproj/Localizable.strings" />
         <option value="$PROJECT_DIR$/securityguards/UnitSettingStep5ViewController.m" />
+        <option value="$PROJECT_DIR$/securityguards/UnitSettingStep4ViewController.m" />
+        <option value="$PROJECT_DIR$/securityguards/en.lproj/Localizable.strings" />
+        <option value="$PROJECT_DIR$/securityguards/zh-Hans.lproj/Localizable.strings" />
         <option value="$PROJECT_DIR$/securityguards/UnitSettingStep4ViewController.h" />
         <option value="$PROJECT_DIR$/securityguards/UnitSettingStep3ViewController.m" />
-        <option value="$PROJECT_DIR$/securityguards/UnitSettingStep4ViewController.m" />
       </list>
     </option>
   </component>
@@ -627,20 +621,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/securityguards/zh-Hans.lproj/Localizable.strings">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="336" column="0" selection-start="14382" selection-end="14382" vertical-scroll-proportion="-8.08" vertical-offset="4838" max-vertical-offset="6015">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/securityguards/en.lproj/Localizable.strings">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="381" column="49" selection-start="16354" selection-end="16354" vertical-scroll-proportion="0.0" vertical-offset="5502" max-vertical-offset="6015">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/securityguards/UnitSettingStep5ViewController.m">
       <provider selected="true" editor-type-id="text-editor">
         <state line="57" column="66" selection-start="2062" selection-end="2062" vertical-scroll-proportion="0.0" vertical-offset="510" max-vertical-offset="1425">
@@ -648,27 +628,41 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/securityguards/UnitSettingStep4ViewController.h">
+    <entry file="file://$PROJECT_DIR$/securityguards/en.lproj/Localizable.strings">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="4" selection-start="414" selection-end="414" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="345">
+        <state line="328" column="57" selection-start="0" selection-end="17260" vertical-scroll-proportion="0.0" vertical-offset="4647" max-vertical-offset="6015">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/securityguards/UnitSettingStep3ViewController.m">
+    <entry file="file://$PROJECT_DIR$/securityguards/zh-Hans.lproj/Localizable.strings">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="58" column="50" selection-start="2084" selection-end="2084" vertical-scroll-proportion="0.0" vertical-offset="612" max-vertical-offset="1425">
+        <state line="385" column="47" selection-start="16557" selection-end="16557" vertical-scroll-proportion="-9.92" vertical-offset="5527" max-vertical-offset="6015">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/securityguards/UnitSettingStep4ViewController.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="132" column="41" selection-start="5579" selection-end="5579" vertical-scroll-proportion="0.397351" vertical-offset="1800" max-vertical-offset="2490">
+        <state line="13" column="30" selection-start="336" selection-end="336" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2490">
           <folding>
             <element signature="e#171#213#0" expanded="true" />
             <element signature="e#5432#5477#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/securityguards/UnitSettingStep4ViewController.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="0" selection-start="414" selection-end="414" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="345">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/securityguards/UnitSettingStep3ViewController.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="87" column="0" selection-start="3820" selection-end="3820" vertical-scroll-proportion="1.4635762" vertical-offset="597" max-vertical-offset="1455">
+          <folding />
         </state>
       </provider>
     </entry>

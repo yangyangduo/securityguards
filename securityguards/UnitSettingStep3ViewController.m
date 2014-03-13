@@ -9,6 +9,7 @@
 #import "UnitSettingStep3ViewController.h"
 #import "UnitSettingStep4ViewController.h"
 #import "TipsLabel.h"
+#import "SMNetworkTool.h"
 
 @interface UnitSettingStep3ViewController ()
 
@@ -74,18 +75,20 @@
     [btnNextStep setBackgroundImage:[UIImage imageNamed:@"btn_gray.png"] forState:UIControlStateDisabled];
     [btnNextStep addTarget:self action:@selector(btnNextStepPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btnNextStep];
-    
-
 }
 
-- (void)btnNextStepPressed:(UIButton *)sender{
-    [self.navigationController pushViewController:[[UnitSettingStep4ViewController alloc] init] animated:YES];
-}
+- (void)btnNextStepPressed:(UIButton *)sender {
+    // check current wifi is Family-Guard ?
+    NSString *currentWifiName = [SMNetworkTool ssidForCurrentWifi];
+    if(![XXStringUtils isBlank:currentWifiName]) {
+        if([FamilyGuardsHotSpotName isEqualToString:currentWifiName]) {
+            [self.navigationController pushViewController:[[UnitSettingStep4ViewController alloc] init] animated:YES];
+            return;
+        }
+    }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"", @"") forType:AlertViewTypeFailed];
+    [[XXAlertView currentAlertView] alertForLock:NO autoDismiss:YES];
 }
 
 @end
