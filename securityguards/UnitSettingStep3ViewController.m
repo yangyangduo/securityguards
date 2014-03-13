@@ -53,7 +53,7 @@
     UILabel *lblHotPoint = [[UILabel alloc] initWithFrame:CGRectMake(0, lblLine1Content.frame.origin.y + lblLine1Content.frame.size.height, 220, 30)];
     lblHotPoint.center = CGPointMake(self.view.center.x, lblHotPoint.center.y);
     lblHotPoint.textAlignment = NSTextAlignmentCenter;
-    lblHotPoint.text = @"Family-Guards";
+    lblHotPoint.text = FamilyGuardsHotSpotName;
     lblHotPoint.textColor = [UIColor appBlue];
     lblHotPoint.backgroundColor = [UIColor clearColor];
     lblHotPoint.font = [UIFont systemFontOfSize:16.f];

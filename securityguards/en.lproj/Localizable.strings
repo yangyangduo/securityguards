@@ -332,7 +332,7 @@
 
 "step5_title"              =           "第五步:绑定家卫士";
 "step5_line1"              =           "已经完成家卫士配置";
-"step5_line2"              =           "正在绑定家卫士,请确保当前WIFI已正确切换到以下WIFI网络 ...";
+"step5_line2"              =           "正在绑定家卫士,请确保当前WIFI已正确切换到以下WIFI网络:";
 "reset"                    =           "重新配置";
 
 "unit_finder_line1"        =           "请确保家卫士已正确接入当前WIFI网格，并且处于开机状态";

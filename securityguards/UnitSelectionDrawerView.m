@@ -73,12 +73,8 @@
 }
 
 - (void)showUnitFinderView:(UITapGestureRecognizer *)tapGesture {
-    UIViewController *topViewController = [[Shared shared].app topViewController];
-    if(topViewController != nil) {
-        AddUnitViewController *addUnitViewController = [[AddUnitViewController alloc] init];
-//        [topViewController presentViewController:[[AddUnitViewController alloc] init] animated:YES completion:^{}];
-        [topViewController .navigationController pushViewController:addUnitViewController animated:YES];
-    }
+    AddUnitViewController *addUnitViewController = [[AddUnitViewController alloc] init];
+    [[Shared shared].app.rootViewController.navigationController pushViewController:addUnitViewController animated:YES];
 }
 
 #pragma mark -

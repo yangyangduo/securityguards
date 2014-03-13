@@ -13,7 +13,6 @@
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-@property (weak, nonatomic) UnitSettingStep4ViewController *wifiConfigViewController;
 
 - (UIViewController *)topViewController;
 - (RootViewController *)rootViewController;

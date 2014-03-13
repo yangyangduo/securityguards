@@ -53,11 +53,13 @@
         [[CoreService defaultService] startService];
     }
 
-    if(self.wifiConfigViewController != nil) {
+    UIViewController *topVC = self.topViewController;
+    if(topVC != nil && [topVC isKindOfClass:[UnitSettingStep4ViewController class]]) {
+        UnitSettingStep4ViewController *unitStep4VC = (UnitSettingStep4ViewController *)topVC;
+        [unitStep4VC detectionFamilyGuardsWifiExists];
 #ifdef DEBUG
-        NSLog(@"[APP] Wifi view controller is already exists. --------------------------->");
+        NSLog(@"[APP] WIFI View Controller Is Already Exists. --------------------------->");
 #endif
-        [self.wifiConfigViewController detectionFamilyGuardsWifiExists];
     }
 }
 
@@ -75,7 +77,7 @@
 #pragma mark Top View Controller
 
 - (UIViewController *)topViewController {
-    return [[UIApplication sharedApplication] topViewController:_rootViewController_];
+    return [[UIApplication sharedApplication] topViewController:_rootViewController_.navigationController];
 }
 
 - (RootViewController *)rootViewController {

@@ -9,10 +9,10 @@
 #import "UnitSettingStep4ViewController.h"
 #import "UnitSettingStep5ViewController.h"
 #import "TipsLabel.h"
-#import "Shared.h"
 #import "SMNetworkTool.h"
 
 @interface UnitSettingStep4ViewController () {
+    UILabel *lblLine1Content;
     UILabel *lblWIFIName;
     UITextField *txtPassword;
     UIButton *btnSendSettings;
@@ -47,7 +47,7 @@
     UILabel *lblLine1 = [TipsLabel labelWithPoint:CGPointMake(offsetXOfTipsLabel, self.topbarView.frame.size.height + 14)];
     [self.view addSubview:lblLine1];
 
-    UILabel *lblLine1Content = [[UILabel alloc] initWithFrame:CGRectMake(offsetXOfContentLabel, self.topbarView.frame.size.height + 15, 220, 25)];
+    lblLine1Content = [[UILabel alloc] initWithFrame:CGRectMake(offsetXOfContentLabel, self.topbarView.frame.size.height + 15, 220, 25)];
     lblLine1Content.text = NSLocalizedString(@"step4_line1_linking", @"");
     lblLine1Content.textColor = [UIColor darkGrayColor];
     lblLine1Content.backgroundColor = [UIColor clearColor];
@@ -65,14 +65,12 @@
     lblLine2Content.font = [UIFont systemFontOfSize:15.f];
     [self.view addSubview:lblLine2Content];
     
-    lblWIFIName = [[UILabel alloc] initWithFrame:CGRectMake(0, lblLine2Content.frame.origin.y + lblLine2Content.frame.size.height + 25, 220, 25)];
-    lblWIFIName.center = CGPointMake(self.view.center.x, lblWIFIName.center.y);
-    lblWIFIName.textAlignment = NSTextAlignmentCenter;
-    lblWIFIName.font = [UIFont systemFontOfSize:16.f];
+    lblWIFIName = [[UILabel alloc] initWithFrame:CGRectMake(offsetXOfTipsLabel, lblLine2Content.frame.origin.y + lblLine2Content.frame.size.height + 8, 220, 25)];
+    lblWIFIName.font = [UIFont systemFontOfSize:15.f];
     lblWIFIName.textColor = [UIColor appBlue];
     [self.view addSubview:lblWIFIName];
     
-    txtPassword = [[UITextField alloc] initWithFrame:CGRectMake(0, lblWIFIName.frame.size.height + lblWIFIName.frame.origin.y + 25, 250, 58 / 2)];
+    txtPassword = [[UITextField alloc] initWithFrame:CGRectMake(0, lblWIFIName.frame.size.height + lblWIFIName.frame.origin.y + 10, 250, 58 / 2)];
     txtPassword.center = CGPointMake(self.view.center.x, txtPassword.center.y);
     txtPassword.placeholder = NSLocalizedString(@"wifi_password",@"");
     txtPassword.textColor = [UIColor darkGrayColor];
@@ -117,12 +115,10 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    [Shared shared].app.wifiConfigViewController = self;
     [self detectionFamilyGuardsWifiExists];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-    [Shared shared].app.wifiConfigViewController = nil;
 }
 
 - (void)setWifiNameForLabel:(NSString *)wifiName {
@@ -137,7 +133,7 @@
 - (BOOL)detectionFamilyGuardsWifiExists {
     NSString *wifiName = [SMNetworkTool ssidForCurrentWifi];
     [self setWifiNameForLabel:wifiName];
-    if(![XXStringUtils isBlank:wifiName] && [@"Hentre-ROS1" isEqualToString:wifiName]) {
+    if(![XXStringUtils isBlank:wifiName] && [FamilyGuardsHotSpotName isEqualToString:wifiName]) {
         [self enableContinue];
         return YES;
     } else {
