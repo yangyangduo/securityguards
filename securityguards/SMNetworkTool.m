@@ -19,6 +19,7 @@
     struct ifaddrs *temp_addr = NULL;
     int success = 0;
     // retrieve the current interfaces - returns 0 on success
+
     success = getifaddrs(&interfaces);
     if (success == 0) {
         // Loop through linked list of interfaces
@@ -45,6 +46,7 @@
     return [XXStringUtils emptyString];
 #elif TARGET_OS_IPHONE
     CFArrayRef myArray = CNCopySupportedInterfaces();
+
     CFDictionaryRef myDict = CNCopyCurrentNetworkInfo(CFArrayGetValueAtIndex(myArray, 0));
     NSDictionary *myDictionary = (__bridge_transfer NSDictionary*)myDict;
     return [myDictionary objectForKey:@"SSID"];

@@ -10,9 +10,10 @@
 #import "UnitSettingStep5ViewController.h"
 #import "TipsLabel.h"
 #import "SMNetworkTool.h"
+#import "Shared.h"
 
 @interface UnitSettingStep4ViewController () {
-    UILabel *lblLine1Content;
+//    UILabel *lblLine1Content;
     UILabel *lblWIFIName;
     UITextField *txtPassword;
     UIButton *btnSendSettings;
@@ -47,17 +48,17 @@
     UILabel *lblLine1 = [TipsLabel labelWithPoint:CGPointMake(offsetXOfTipsLabel, self.topbarView.frame.size.height + 14)];
     [self.view addSubview:lblLine1];
 
-    lblLine1Content = [[UILabel alloc] initWithFrame:CGRectMake(offsetXOfContentLabel, self.topbarView.frame.size.height + 15, 220, 25)];
-    lblLine1Content.text = NSLocalizedString(@"step4_line1_linking", @"");
-    lblLine1Content.textColor = [UIColor darkGrayColor];
-    lblLine1Content.backgroundColor = [UIColor clearColor];
-    lblLine1Content.font = [UIFont systemFontOfSize:15.f];
-    [self.view addSubview:lblLine1Content];
+//    lblLine1Content = [[UILabel alloc] initWithFrame:CGRectMake(offsetXOfContentLabel, self.topbarView.frame.size.height + 15, 220, 25)];
+//    lblLine1Content.text = NSLocalizedString(@"step4_line1_linking", @"");
+//    lblLine1Content.textColor = [UIColor darkGrayColor];
+//    lblLine1Content.backgroundColor = [UIColor clearColor];
+//    lblLine1Content.font = [UIFont systemFontOfSize:15.f];
+//    [self.view addSubview:lblLine1Content];
     
-    UILabel *lblLine2 = [TipsLabel labelWithPoint:CGPointMake(offsetXOfTipsLabel, lblLine1Content.frame.origin.y + lblLine1Content.frame.size.height + 8)];
+    UILabel *lblLine2 = [TipsLabel labelWithPoint:CGPointMake(offsetXOfTipsLabel, self.topbarView.frame.size.height + 15)];
     [self.view addSubview:lblLine2];
     UILabel *lblLine2Content = [[UILabel alloc] initWithFrame:
-            CGRectMake(offsetXOfContentLabel, lblLine1Content.frame.origin.y + lblLine1Content.frame.size.height + 10, 220, 25)];
+            CGRectMake(offsetXOfContentLabel, self.topbarView.frame.size.height + 15, 220, 25)];
     lblLine2Content.lineBreakMode = NSLineBreakByWordWrapping;
     lblLine2Content.text = NSLocalizedString(@"step4_line2", @"");
     lblLine2Content.textColor = [UIColor darkGrayColor];
@@ -77,6 +78,7 @@
     txtPassword.background = [UIImage imageNamed:@"light_gray_textbox"];
     txtPassword.clearButtonMode = UITextFieldViewModeWhileEditing;
     txtPassword.autocorrectionType = UITextAutocapitalizationTypeNone;
+    txtPassword.keyboardType = UIKeyboardTypeASCIICapable;
     txtPassword.font = [UIFont systemFontOfSize:13.f];
     txtPassword.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 6, 0)];
     txtPassword.leftViewMode = UITextFieldViewModeAlways;
@@ -98,13 +100,39 @@
 
 - (void)btnSendSettingsPressed:(UIButton *)sender {
     if(![self detectionFamilyGuardsWifiExists]) {
-        [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"", @"") forType:AlertViewTypeFailed];
+        [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"connect_365_first", @"") forType:AlertViewTypeFailed];
         [[XXAlertView currentAlertView] alertForLock:NO autoDismiss:YES];
         return;
     }
 
-    // send wifi and password ...
-    [self.navigationController pushViewController:[[UnitSettingStep5ViewController alloc] init] animated:YES];
+    NSString *localIp = [SMNetworkTool getLocalIp];
+    if(![XXStringUtils isBlank:localIp]) {
+        NSArray *components = [localIp componentsSeparatedByString:@"."];
+        NSString *url = [NSString stringWithFormat:@"http://%@.%@.%@.1:8778/wifihot", [components objectAtIndex:0], [components objectAtIndex:1], [components objectAtIndex:2]];
+
+        NSString *stringBody = [NSString stringWithFormat:@"wifiSSID=%@&wifiPwd=%@", [Shared shared].lastedContectionWifiName, [XXStringUtils trim:txtPassword.text]];
+        NSData *jsonData = [stringBody dataUsingEncoding:NSUTF8StringEncoding];
+
+        [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"please_wait", @"") forType:AlertViewTypeWaitting];
+        [[XXAlertView currentAlertView] alertForLock:YES autoDismiss:NO];
+        RestClient *client = [[RestClient alloc] init];
+        [client putForUrl:url acceptType:@"text/html" contentType:@"application/json" body:jsonData success:@selector(sendPasswordSuccess:) error:@selector(sendPasswordFailed:) for:self callback:nil];
+    }
+}
+
+- (void)sendPasswordSuccess:(RestResponse *)resp {
+    if(resp.statusCode == 200) {
+        [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"send_success", @"") forType:AlertViewTypeSuccess];
+        [[XXAlertView currentAlertView] delayDismissAlertView];
+        [self.navigationController pushViewController:[[UnitSettingStep5ViewController alloc] init] animated:YES];
+        return;
+    }
+    [self sendPasswordFailed:resp];
+}
+
+- (void)sendPasswordFailed:(RestResponse *)resp {
+    [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"send_failed", @"") forType:AlertViewTypeFailed];
+    [[XXAlertView currentAlertView] delayDismissAlertView];
 }
 
 #pragma mark - 
@@ -112,6 +140,10 @@
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
     return YES;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [txtPassword becomeFirstResponder];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -131,25 +163,23 @@
 }
 
 - (BOOL)detectionFamilyGuardsWifiExists {
+    [self setWifiNameForLabel:[Shared shared].lastedContectionWifiName];
     NSString *wifiName = [SMNetworkTool ssidForCurrentWifi];
-    [self setWifiNameForLabel:wifiName];
     if(![XXStringUtils isBlank:wifiName] && [FamilyGuardsHotSpotName isEqualToString:wifiName]) {
+//        lblLine1Content.text = NSLocalizedString(@"step4_line1_linked", @"");
         [self enableContinue];
         return YES;
     } else {
+//        lblLine1Content.text = NSLocalizedString(@"step4_line1_linking", @"");
         [self disableContinue];
         return NO;
     }
 }
 
 - (void)enableContinue {
-    txtPassword.enabled = YES;
-    btnSendSettings.enabled = YES;
 }
 
 - (void)disableContinue {
-    txtPassword.enabled = NO;
-    btnSendSettings.enabled = NO;
 }
 
 @end

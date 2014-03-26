@@ -164,7 +164,7 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
     
     if(_state_ != ServiceStateOpenned) {
 #ifdef DEBUG
-        NSLog(@"[Core Service] Service is not ready, [%@] can't be executed.", command.commandName);
+//        NSLog(@"[Core Service] Service is not ready, [%@] can't be executed.", command.commandName);
 #endif
         return;
     }
@@ -173,14 +173,14 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
     id<CommandExecutor> executor = [self determineCommandExcutor:command];
     if(executor != nil) {
 #ifdef DEBUG
-        if(![COMMAND_SEND_HEART_BEAT isEqualToString:command.commandName]) {
-            NSLog(@"[Core Service] Execute [%@] From [%@]", command.commandName, [executor executorName]);
-        }
+//        if(![COMMAND_SEND_HEART_BEAT isEqualToString:command.commandName]) {
+//            NSLog(@"[Core Service] Execute [%@] From [%@]", command.commandName, [executor executorName]);
+//        }
 #endif
         [executor executeCommand:command];
     } else {
 #ifdef DEBUG
-        NSLog(@"[Core Service] Executor not found, [%@] can't be executed.", command.commandName);
+//        NSLog(@"[Core Service] Executor not found, [%@] can't be executed.", command.commandName);
 #endif
     }
 }
@@ -458,13 +458,13 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
 - (void)doTimerTask {
     if(self.state != ServiceStateOpenned) {
 #ifdef DEBUG
-        NSLog(@"[Core Service] Timer task can't be executed, because core service is not openned.");
+//        NSLog(@"[Core Service] Timer task can't be executed, because core service is not openned.");
 #endif
         return;
     }
     
 #ifdef DEBUG
-    NSLog(@"[Core Service] Timer task On Thread [%@].", [NSThread currentThread].name);
+//    NSLog(@"[Core Service] Timer task On Thread [%@].", [NSThread currentThread].name);
 #endif
     
     // Send heart beat command
@@ -664,14 +664,14 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
     if(unit == nil) return;
     if([unit.score needRefresh]) {
 #ifdef DEBUG
-        NSLog(@"[Core Service] Now start refresh score for %@", unit.identifier);
+//        NSLog(@"[Core Service] Now start refresh score for %@", unit.identifier);
 #endif
         DeviceCommand *getScoreCommand = [CommandFactory commandForType:CommandTypeGetScore];
         getScoreCommand.masterDeviceCode = unit.identifier;
         [self executeDeviceCommand:getScoreCommand];
     } else {
 #ifdef DEBUG
-        NSLog(@"[Core Service] Don't need to refresh score, after %d minute", unit.score.nextRefreshMinutes);
+//        NSLog(@"[Core Service] Don't need to refresh score, after %d minute", unit.score.nextRefreshMinutes);
 #endif
     }
 }

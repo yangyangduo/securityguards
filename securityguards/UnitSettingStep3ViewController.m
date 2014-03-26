@@ -60,7 +60,7 @@
     lblHotPoint.font = [UIFont systemFontOfSize:16.f];
     [self.view addSubview:lblHotPoint];
     
-    UILabel *lblTips = [[UILabel alloc] initWithFrame:CGRectMake(0, lblHotPoint.frame.origin.y + lblHotPoint.frame.size.height, 200, 30)];
+    UILabel *lblTips = [[UILabel alloc] initWithFrame:CGRectMake(0, lblHotPoint.frame.origin.y + lblHotPoint.frame.size.height, 220, 30)];
     lblTips.center = CGPointMake(self.view.center.x, lblTips.center.y);
     lblTips.text = NSLocalizedString(@"step3_tips", @"");
     lblTips.font = [UIFont systemFontOfSize:15.f];
@@ -86,8 +86,7 @@
             return;
         }
     }
-
-    [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"", @"") forType:AlertViewTypeFailed];
+    [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"connect_365_first", @"") forType:AlertViewTypeFailed];
     [[XXAlertView currentAlertView] alertForLock:NO autoDismiss:YES];
 }
 

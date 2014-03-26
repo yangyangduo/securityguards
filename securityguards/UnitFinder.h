@@ -20,6 +20,6 @@
 
 @property (nonatomic, weak) id<UnitFinderDelegate> delegate;
 
-- (void)findUnit;
+- (void)startFinding;
 
 @end

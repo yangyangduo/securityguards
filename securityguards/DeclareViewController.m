@@ -7,7 +7,9 @@
 //
 
 #import "DeclareViewController.h"
+
 #define INDICATOR_TAG 2000
+
 @interface DeclareViewController ()
 
 @end

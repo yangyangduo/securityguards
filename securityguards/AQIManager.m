@@ -58,7 +58,7 @@
         }
     } else {
 #ifdef DEBUG
-        NSLog(@"[AQI MANAGER] Don't need to update current location .");
+//        NSLog(@"[AQI MANAGER] Don't need to update current location .");
 #endif
     }
 }

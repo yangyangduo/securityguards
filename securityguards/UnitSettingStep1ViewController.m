@@ -93,14 +93,13 @@
 }
 
 - (void)btnNextStepPressed:(UIButton *)sender{
-    if(!isSimulator){
-        [Shared shared].currentWIFIName = [SMNetworkTool ssidForCurrentWifi];
-        if ([Shared shared].currentWIFIName !=nil && ![[Shared shared].currentWIFIName isEqualToString:@""]) {
+        [Shared shared].lastedContectionWifiName = [SMNetworkTool ssidForCurrentWifi];
+        if(![XXStringUtils isBlank:[Shared shared].lastedContectionWifiName]) {
             [self.navigationController pushViewController:[[UnitSettingStep2ViewController alloc] init] animated:YES];
+        } else {
+            [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"connect_wifi_first", @"") forType:AlertViewTypeFailed];
+            [[XXAlertView currentAlertView] alertForLock:NO autoDismiss:YES];
         }
-    }else{
-       [self.navigationController pushViewController:[[UnitSettingStep2ViewController alloc] init] animated:YES];
-    }
 }
 
 - (void)didReceiveMemoryWarning

@@ -10,8 +10,6 @@
 #import "UnitManager.h"
 #import "Shared.h"
 #import "TipsLabel.h"
-#define TOPBAR_HEIGHT self.topbarView.frame.size.height
-
 
 @interface UnitFinderViewController ()
 
@@ -50,7 +48,7 @@
 //    [btnUnitFinder setTitle:NSLocalizedString(@"auto_find", @"") forState:UIControlStateNormal];
 //    [btnUnitFinder setBackgroundImage:[UIImage imageNamed:@"btn_blue"] forState:UIControlStateNormal];
 //    [btnUnitFinder setBackgroundImage:[UIImage imageNamed:@"btn_blue_highlighted"] forState:UIControlStateHighlighted];
-//    [btnUnitFinder addTarget:self action:@selector(findUnit) forControlEvents:UIControlEventTouchUpInside];
+//    [btnUnitFinder addTarget:self action:@selector(startFinding) forControlEvents:UIControlEventTouchUpInside];
 //    [self.view addSubview:btnUnitFinder];
 //    
 //    UILabel *lblDescription = [[UILabel alloc] initWithFrame:CGRectMake(0, 150, 260, 58)];
@@ -65,28 +63,34 @@
     
     [super initUI];
     self.topbarView.title = NSLocalizedString(@"add_unit", @"");
-    UILabel *lblLine1 = [TipsLabel labelWithPoint:CGPointMake(60, 20+TOPBAR_HEIGHT)];
+
+    CGFloat offsetXOfTipsLabel = 40;
+    CGFloat offsetXOfContentLabel = 50;
+
+    UILabel *lblLine1 = [TipsLabel labelWithPoint:CGPointMake(offsetXOfTipsLabel, self.topbarView.frame.size.height + 12)];
     [self.view addSubview:lblLine1];
-    UILabel *lblLine1Content = [[UILabel alloc] initWithFrame:CGRectMake(65, lblLine1.frame.origin.y, 200, 40)];
+
+    UILabel *lblLine1Content = [[UILabel alloc] initWithFrame:CGRectMake(offsetXOfContentLabel, self.topbarView.frame.size.height + 10, 220, 50)];
     lblLine1Content.text = NSLocalizedString(@"unit_finder_line1", @"");
     lblLine1Content.textColor = [UIColor darkGrayColor];
     lblLine1Content.numberOfLines = 2;
     lblLine1Content.lineBreakMode = NSLineBreakByWordWrapping;
     lblLine1Content.backgroundColor = [UIColor clearColor];
-    lblLine1Content.font = [UIFont systemFontOfSize:13.f];
+    lblLine1Content.font = [UIFont systemFontOfSize:15.f];
     [self.view addSubview:lblLine1Content];
     
-    UILabel *lblLine2 = [TipsLabel labelWithPoint:CGPointMake(60, lblLine1.frame.origin.y+lblLine1.frame.size.height+10)];
+    UILabel *lblLine2 = [TipsLabel labelWithPoint:
+            CGPointMake(offsetXOfTipsLabel, lblLine1Content.frame.origin.y + lblLine1Content.frame.size.height + 8)];
     [self.view addSubview:lblLine2];
-    UILabel *lblLine2Content = [[UILabel alloc] initWithFrame:CGRectMake(65, lblLine2.frame.origin.y, 220, 25)];
+
+    UILabel *lblLine2Content = [[UILabel alloc] initWithFrame:CGRectMake(offsetXOfContentLabel, lblLine1Content.frame.origin.y + lblLine1Content.frame.size.height + 10, 220, 25)];
     lblLine2Content.text = NSLocalizedString(@"unit_finder_line2", @"");
     lblLine2Content.textColor = [UIColor darkGrayColor];
     lblLine2Content.backgroundColor = [UIColor clearColor];
-    lblLine2Content.font = [UIFont systemFontOfSize:13.f];
+    lblLine2Content.font = [UIFont systemFontOfSize:15.f];
     [self.view addSubview:lblLine2Content];
     
-    
-    UIButton *btnRebind = [[UIButton alloc] initWithFrame:CGRectMake(0, lblLine2Content.frame.origin.y+lblLine2Content.frame.size.height+10, 500/2, 53/2)];
+    UIButton *btnRebind = [[UIButton alloc] initWithFrame:CGRectMake(0, lblLine2Content.frame.origin.y + lblLine2Content.frame.size.height + 20, 500 / 2, 66 / 2)];
     btnRebind.center = CGPointMake(self.view.center.x, btnRebind.center.y);
     [btnRebind setTitle:NSLocalizedString(@"rebind", @"") forState:UIControlStateNormal];
     [btnRebind setBackgroundImage:[UIImage imageNamed:@"btn_blue.png"] forState:UIControlStateNormal];
@@ -94,7 +98,6 @@
     [btnRebind setBackgroundImage:[UIImage imageNamed:@"btn_gray.png"] forState:UIControlStateDisabled];
     [btnRebind addTarget:self action:@selector(btnRebindPressed:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btnRebind];
-
 }
 
 - (void)popupViewController {
@@ -103,7 +106,7 @@
 }
 
 - (void)btnRebindPressed:(UIButton *)sender{
-    
+    [self findUnit];
 }
 
 #pragma mark -
@@ -114,7 +117,7 @@
     [[XXAlertView currentAlertView] alertForLock:YES autoDismiss:NO];
     UnitFinder *finder = [[UnitFinder alloc] init];
     finder.delegate = self;
-    [finder findUnit];
+    [finder startFinding];
 }
 
 #pragma mark -

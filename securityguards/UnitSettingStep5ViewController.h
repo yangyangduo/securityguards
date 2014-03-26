@@ -7,7 +7,8 @@
 //
 
 #import "NavigationViewController.h"
+#import "UnitFinder.h"
 
-@interface UnitSettingStep5ViewController : NavigationViewController
+@interface UnitSettingStep5ViewController : NavigationViewController<UnitFinderDelegate>
 
 @end

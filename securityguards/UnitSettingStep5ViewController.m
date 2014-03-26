@@ -10,6 +10,7 @@
 #import "UnitSettingStep1ViewController.h"
 #import "TipsLabel.h"
 #import "Shared.h"
+#import "SMNetworkTool.h"
 
 @interface UnitSettingStep5ViewController ()
 
@@ -62,11 +63,20 @@
     [self.view addSubview:lblLine2Content];
     
     UILabel *lblWIFIName = [[UILabel alloc] initWithFrame:CGRectMake(offsetXOfTipsLabel, lblLine2Content.frame.origin.y + lblLine2Content.frame.size.height + 6, 220, 25)];
-    lblWIFIName.text = @"我的wifi";
+    lblWIFIName.text = [Shared shared].lastedContectionWifiName;
     lblWIFIName.textColor = [UIColor appBlue];
     [self.view addSubview:lblWIFIName];
+
+    UIButton *btnStartBinding = [[UIButton alloc] initWithFrame:CGRectMake(0, lblWIFIName.frame.origin.y + lblWIFIName.frame.size.height + 15, 500 / 2, 66 / 2)];
+    btnStartBinding.center = CGPointMake(self.view.center.x, btnStartBinding.center.y);
+    [btnStartBinding setTitle:NSLocalizedString(@"start_binding", @"") forState:UIControlStateNormal];
+    [btnStartBinding setBackgroundImage:[UIImage imageNamed:@"btn_blue"] forState:UIControlStateNormal];
+    [btnStartBinding setBackgroundImage:[UIImage imageNamed:@"btn_blue_highlighted"] forState:UIControlStateHighlighted];
+    [btnStartBinding setBackgroundImage:[UIImage imageNamed:@"btn_gray"] forState:UIControlStateDisabled];
+    [btnStartBinding addTarget:self action:@selector(btnStartBindingPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:btnStartBinding];
     
-    UIButton *btnReset = [[UIButton alloc] initWithFrame:CGRectMake(0, lblWIFIName.frame.origin.y + lblWIFIName.frame.size.height + 15, 500 / 2, 66 / 2)];
+    UIButton *btnReset = [[UIButton alloc] initWithFrame:CGRectMake(0, btnStartBinding.frame.origin.y + btnStartBinding.bounds.size.height + 15, 500 / 2, 66 / 2)];
     btnReset.center = CGPointMake(self.view.center.x, btnReset.center.y);
     [btnReset setTitle:NSLocalizedString(@"reset", @"") forState:UIControlStateNormal];
     [btnReset setBackgroundImage:[UIImage imageNamed:@"btn_blue"] forState:UIControlStateNormal];
@@ -76,17 +86,41 @@
     [self.view addSubview:btnReset];
 }
 
-- (void)btnResetPressed:(UIButton *) sender{
+- (void)btnResetPressed:(UIButton *)sender {
+    [Shared shared].lastedContectionWifiName = nil;
     for (UIViewController *vc in self.navigationController.viewControllers) {
         if ([vc isKindOfClass:[UnitSettingStep1ViewController class]]) {
             [self.navigationController popToViewController:vc animated:YES];
         }
     }
 }
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+
+- (void)btnStartBindingPressed:(UIButton *)sender {
+    if(![[SMNetworkTool ssidForCurrentWifi] isEqualToString:[Shared shared].lastedContectionWifiName]) {
+        [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"change_wifi_to_lasted", @"") forType:AlertViewTypeFailed];
+        [[XXAlertView currentAlertView] alertForLock:NO autoDismiss:YES];
+        return;
+    }
+    [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"binding_unit", @"") forType:AlertViewTypeWaitting];
+    [[XXAlertView currentAlertView] alertForLock:YES autoDismiss:NO];
+    UnitFinder *finder = [[UnitFinder alloc] init];
+    finder.delegate = self;
+    [finder startFinding];
+}
+
+#pragma mark -
+#pragma mark Unit find delegate
+
+- (void)unitFinderOnResult:(UnitFinderResult *)result {
+    if(UnitFinderResultTypeSuccess == result.resultType) {
+        [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"binding_unit_success", @"") forType:AlertViewTypeSuccess];
+        [[XXAlertView currentAlertView] delayDismissAlertView];
+        NSLog(@"!!!!!!!!!!!!!!!!!!!!! ----   unit finder success ..... %@  -- %@  ", result.unitIdentifier, result.unitUrl);
+    } else {
+        [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"no_unit_found", @"") forType:AlertViewTypeFailed];
+        [[XXAlertView currentAlertView] delayDismissAlertView];
+        NSLog(@"!!!!!!!!!!!!!!!!!!!!! ------   unit finder failed  .... reason is  %@", result.failedReason);
+    }
 }
 
 @end

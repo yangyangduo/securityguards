@@ -13,8 +13,10 @@
 #import "CoreService.h"
 #import "JsonUtils.h"
 #import "XXDateFormatter.h"
+#import "XXTopbarView.h"
 
 @interface BaseViewController : XXBaseViewController
 
+@property (nonatomic, strong) XXTopbarView *topbarView;
 
 @end

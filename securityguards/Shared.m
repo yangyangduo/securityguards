@@ -10,6 +10,8 @@
 
 @implementation Shared
 
+@synthesize lastedContectionWifiName;
+
 + (instancetype)shared {
     static Shared *shared;
     static dispatch_once_t onceToken;
@@ -21,6 +23,10 @@
 
 - (AppDelegate *)app {
     return [UIApplication sharedApplication].delegate;
+}
+
+- (void)clear {
+    self.lastedContectionWifiName = nil;
 }
 
 @end

@@ -14,6 +14,8 @@
 
 @implementation BaseViewController
 
+@synthesize topbarView;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -31,6 +33,12 @@
 
 - (void)initUI {
     [super initUI];
+    self.topbarView = [XXTopbarView topbar];
+    [self.view addSubview:self.topbarView];
+    self.view.backgroundColor = [UIColor whiteColor];
+    if(![XXStringUtils isBlank:self.title]) {
+        self.topbarView.title = self.title;
+    }
     self.topbarView.backgroundImage =  [UIImage imageNamed:@"bg_topbar"];
 }
 

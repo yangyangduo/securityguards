@@ -2,10 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e93c453b-47bc-4359-86d1-be37d44eae4c" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/AQIManager.m" afterPath="$PROJECT_DIR$/securityguards/AQIManager.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/BaseViewController.h" afterPath="$PROJECT_DIR$/securityguards/BaseViewController.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/BaseViewController.m" afterPath="$PROJECT_DIR$/securityguards/BaseViewController.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/ContactUsViewController.m" afterPath="$PROJECT_DIR$/securityguards/ContactUsViewController.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/CoreService.m" afterPath="$PROJECT_DIR$/securityguards/CoreService.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/DeclareViewController.m" afterPath="$PROJECT_DIR$/securityguards/DeclareViewController.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/en.lproj/Localizable.strings" afterPath="$PROJECT_DIR$/securityguards/en.lproj/Localizable.strings" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/zh-Hans.lproj/Localizable.strings" afterPath="$PROJECT_DIR$/securityguards/zh-Hans.lproj/Localizable.strings" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/RestClient.m" afterPath="$PROJECT_DIR$/securityguards/RestClient.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/SMNetworkTool.m" afterPath="$PROJECT_DIR$/securityguards/SMNetworkTool.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/Shared.h" afterPath="$PROJECT_DIR$/securityguards/Shared.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/Shared.m" afterPath="$PROJECT_DIR$/securityguards/Shared.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/UnitFinder.h" afterPath="$PROJECT_DIR$/securityguards/UnitFinder.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/UnitFinder.m" afterPath="$PROJECT_DIR$/securityguards/UnitFinder.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/UnitFinderViewController.m" afterPath="$PROJECT_DIR$/securityguards/UnitFinderViewController.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/UnitSettingStep1ViewController.m" afterPath="$PROJECT_DIR$/securityguards/UnitSettingStep1ViewController.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/UnitSettingStep3ViewController.m" afterPath="$PROJECT_DIR$/securityguards/UnitSettingStep3ViewController.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/UnitSettingStep4ViewController.h" afterPath="$PROJECT_DIR$/securityguards/UnitSettingStep4ViewController.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/UnitSettingStep4ViewController.m" afterPath="$PROJECT_DIR$/securityguards/UnitSettingStep4ViewController.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/UnitSettingStep5ViewController.h" afterPath="$PROJECT_DIR$/securityguards/UnitSettingStep5ViewController.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/UnitSettingStep5ViewController.m" afterPath="$PROJECT_DIR$/securityguards/UnitSettingStep5ViewController.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="securityguards.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -22,106 +39,104 @@
   <component name="DaemonCodeAnalyzer">
     <disable_hints />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="iphoneos_c5dca52e2dee0b54c96820d423012f382646694b" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="iphonesimulator_iPhone_Retina__3_5_inch__7.1" />
   <component name="FavoritesManager">
     <favorites_list name="securityguards" />
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="UnitSettingStep4ViewController.h" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/securityguards/UnitSettingStep4ViewController.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="0" selection-start="414" selection-end="414" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="345">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UIApplication+TopViewController.m" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../Reddydog/Reddydog/Classes/category/UIApplication+TopViewController.m">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="80" selection-start="333" selection-end="333" vertical-scroll-proportion="0.0" vertical-offset="134" max-vertical-offset="645">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AppDelegate.h" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/securityguards/AppDelegate.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="0" selection-start="449" selection-end="449" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="390">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UnitSettingStep3ViewController.m" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/securityguards/UnitSettingStep3ViewController.m">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="87" column="0" selection-start="3820" selection-end="3820" vertical-scroll-proportion="1.4635762" vertical-offset="597" max-vertical-offset="1455">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="UnitSettingStep5ViewController.m" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/securityguards/UnitSettingStep5ViewController.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="57" column="66" selection-start="2062" selection-end="2062" vertical-scroll-proportion="0.0" vertical-offset="510" max-vertical-offset="1425">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UnitSettingStep4ViewController.m" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/securityguards/UnitSettingStep4ViewController.m">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="30" selection-start="336" selection-end="336" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2490">
+            <state line="107" column="21" selection-start="5307" selection-end="5307" vertical-scroll-proportion="0.0" vertical-offset="1080" max-vertical-offset="1980">
               <folding>
                 <element signature="e#171#213#0" expanded="true" />
-                <element signature="e#5432#5477#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UnitSelectionDrawerView.m" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/securityguards/UnitSelectionDrawerView.m">
+      <file leaf-file-name="UnitFinderViewController.m" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/securityguards/UnitFinderViewController.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="84" column="0" selection-start="2651" selection-end="2651" vertical-scroll-proportion="0.0" vertical-offset="927" max-vertical-offset="2265">
-              <folding>
-                <element signature="e#4782#4817#1" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AppDelegate.m" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/securityguards/AppDelegate.m">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="84" column="1" selection-start="3468" selection-end="3468" vertical-scroll-proportion="0.0" vertical-offset="824" max-vertical-offset="1830">
-              <folding>
-                <element signature="e#137#160#0" expanded="true" />
-                <element signature="e#3620#3656#0" expanded="true" />
-                <element signature="e#4806#4847#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Localizable.strings" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/securityguards/en.lproj/Localizable.strings">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="328" column="57" selection-start="0" selection-end="17260" vertical-scroll-proportion="0.0" vertical-offset="4647" max-vertical-offset="6015">
+            <state line="120" column="1" selection-start="5136" selection-end="5136" vertical-scroll-proportion="0.0" vertical-offset="1462" max-vertical-offset="2370">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Localizable.strings" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/securityguards/zh-Hans.lproj/Localizable.strings">
+      <file leaf-file-name="UnitFinder.m" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/securityguards/UnitFinder.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="385" column="47" selection-start="16557" selection-end="16557" vertical-scroll-proportion="-9.92" vertical-offset="5527" max-vertical-offset="6015">
+            <state line="156" column="70" selection-start="4245" selection-end="4245" vertical-scroll-proportion="0.3202417" vertical-offset="2234" max-vertical-offset="3195">
+              <folding>
+                <element signature="e#130#152#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RestClient.m" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/securityguards/RestClient.m">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="246" column="3" selection-start="10766" selection-end="10766" vertical-scroll-proportion="0.0" vertical-offset="3382" max-vertical-offset="4080">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AQIManager.m" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/securityguards/AQIManager.m">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="58" column="11" selection-start="1640" selection-end="1640" vertical-scroll-proportion="0.0" vertical-offset="195" max-vertical-offset="3765">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CoreService.m" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/securityguards/CoreService.m">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="496" column="33" selection-start="17268" selection-end="17268" vertical-scroll-proportion="-15.36" vertical-offset="6981" max-vertical-offset="10635">
+              <folding>
+                <element signature="e#131#149#0" expanded="true" />
+                <element signature="e#397#437#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MerchandiseDetailSelectView.m" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/securityguards/MerchandiseDetailSelectView.m">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="27" column="30" selection-start="605" selection-end="605" vertical-scroll-proportion="0.0" vertical-offset="2430" max-vertical-offset="5445">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="XXAlertView.m" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../Reddydog/Reddydog/Classes/ui/XXAlertView.m">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="20" column="24" selection-start="454" selection-end="454" vertical-scroll-proportion="0.0" vertical-offset="300" max-vertical-offset="3075">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UnitSettingStep4ViewController.h" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/securityguards/UnitSettingStep4ViewController.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="12" column="73" selection-start="349" selection-end="349" vertical-scroll-proportion="0.0" vertical-offset="180" max-vertical-offset="345">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AsyncUdpSocket.m" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/securityguards/AsyncUdpSocket.m">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="1272" column="8" selection-start="38134" selection-end="38134" vertical-scroll-proportion="0.0" vertical-offset="19080" max-vertical-offset="34545">
               <folding />
             </state>
           </provider>
@@ -182,30 +197,30 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/securityguards/UnitSettingStep1ViewController.h" />
+        <option value="$PROJECT_DIR$/Pods/Headers/Reddydog/XXBaseViewController.h" />
+        <option value="$PROJECT_DIR$/../Reddydog/Reddydog/Classes/ui/XXBaseViewController.m" />
         <option value="$PROJECT_DIR$/securityguards/UnitSettingStep1ViewController.m" />
-        <option value="$PROJECT_DIR$/securityguards/UnitSettingStep2ViewController.h" />
-        <option value="$PROJECT_DIR$/securityguards/UnitSettingStep2ViewController.m" />
-        <option value="$PROJECT_DIR$/securityguards/UnitSettingStep3ViewController.h" />
-        <option value="$PROJECT_DIR$/securityguards/UnitSettingStep5ViewController.h" />
-        <option value="$PROJECT_DIR$/securityguards/UnitSelectionDrawerView.m" />
-        <option value="$PROJECT_DIR$/../Reddydog/Reddydog/Classes/category/UIApplication+TopViewController.m" />
-        <option value="$PROJECT_DIR$/securityguards/AppDelegate.m" />
-        <option value="$PROJECT_DIR$/securityguards/AppDelegate.h" />
-        <option value="$PROJECT_DIR$/securityguards/UnitSettingStep5ViewController.m" />
-        <option value="$PROJECT_DIR$/securityguards/UnitSettingStep4ViewController.m" />
-        <option value="$PROJECT_DIR$/securityguards/en.lproj/Localizable.strings" />
-        <option value="$PROJECT_DIR$/securityguards/zh-Hans.lproj/Localizable.strings" />
-        <option value="$PROJECT_DIR$/securityguards/UnitSettingStep4ViewController.h" />
+        <option value="$PROJECT_DIR$/securityguards/SMNetworkTool.m" />
         <option value="$PROJECT_DIR$/securityguards/UnitSettingStep3ViewController.m" />
+        <option value="$PROJECT_DIR$/securityguards/UnitSettingStep5ViewController.h" />
+        <option value="$PROJECT_DIR$/securityguards/UnitFinder.h" />
+        <option value="$PROJECT_DIR$/securityguards/zh-Hans.lproj/Localizable.strings" />
+        <option value="$PROJECT_DIR$/securityguards/en.lproj/Localizable.strings" />
+        <option value="$PROJECT_DIR$/securityguards/UnitSettingStep4ViewController.m" />
+        <option value="$PROJECT_DIR$/securityguards/UnitSettingStep5ViewController.m" />
+        <option value="$PROJECT_DIR$/securityguards/UnitFinderViewController.m" />
+        <option value="$PROJECT_DIR$/securityguards/CoreService.m" />
+        <option value="$PROJECT_DIR$/securityguards/RestClient.m" />
+        <option value="$PROJECT_DIR$/securityguards/AQIManager.m" />
+        <option value="$PROJECT_DIR$/securityguards/UnitFinder.m" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="52" />
-    <option name="y" value="32" />
-    <option name="width" value="1400" />
-    <option name="height" value="804" />
+    <option name="x" value="12" />
+    <option name="y" value="45" />
+    <option name="width" value="1440" />
+    <option name="height" value="810" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -267,144 +282,9 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Cidr.FilesView" />
       <pane id="ProjectPane">
         <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="securityguards" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="securityguards" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="securityguards" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="securityguards" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="securityguards" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Supporting Files" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="securityguards" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="securityguards" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Supporting Files" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Localizable.strings" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="securityguards" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="securityguards" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="controllers" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="securityguards" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="securityguards" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="controllers" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="unit_finder" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="securityguards" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="securityguards" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="components" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="securityguards" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Frameworks" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-          </PATH>
           <PATH>
             <PATH_ELEMENT>
               <option name="myItemId" />
@@ -413,19 +293,18 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Cidr.FilesView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="GoToFile.includeJavaFiles" value="false" />
     <property name="options.splitter.main.proportions" value="0.3" />
-    <property name="options.lastSelected" value="preferences.pluginManager" />
     <property name="recentsLimit" value="5" />
+    <property name="options.lastSelected" value="preferences.pluginManager" />
     <property name="last_opened_file_path" value="$USER_HOME$/Documents/my_library/ios/reddy" />
     <property name="FullScreen" value="false" />
     <property name="OBJC.PRESERVED_TARGET_SELECTION" value="securityguards" />
-    <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="RunManager" selected="Application.securityguards">
     <configuration default="true" type="AppleRunConfiguration" factoryName="Application" PROJECT_NAME="securityguards" TARGET_NAME="securityguards" CONFIG_NAME="Debug" PASS_PARENT_ENVS="FALSE" RUN_TARGET_PROJECT_NAME="securityguards" RUN_TARGET_NAME="securityguards" MAKE_ACTIVE="TRUE" WAIT_FOR="FALSE">
@@ -507,20 +386,20 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="52" y="32" width="1400" height="804" extended-state="0" />
+    <frame x="12" y="45" width="1440" height="810" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="100" y="122" width="1200" height="606" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3292517" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32793522" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22071429" sideWeight="0.6721088" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22013889" sideWeight="0.5357625" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32789117" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4642375" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="100" y="122" width="1200" height="606" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -545,124 +424,118 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/securityguards/BaseViewController.h">
+    <entry file="file://$PROJECT_DIR$/securityguards/SMNetworkTool.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="40" selection-start="383" selection-end="383" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="300">
+        <state line="15" column="14" selection-start="276" selection-end="276" vertical-scroll-proportion="-0.16094421" vertical-offset="255" max-vertical-offset="885" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/securityguards/zh-Hans.lproj/Localizable.strings">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="56" column="20" selection-start="2228" selection-end="2228" vertical-scroll-proportion="0.36682242" vertical-offset="683" max-vertical-offset="6075" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/securityguards/XXDateFormatter.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="16" selection-start="224" selection-end="224" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="480">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Pods/Headers/Reddydog/XXBaseViewController.h">
+    <entry file="file://$PROJECT_DIR$/securityguards/AccountSettingsViewController.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="11" selection-start="652" selection-end="652" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="660">
+        <state line="59" column="18" selection-start="1249" selection-end="1249" vertical-scroll-proportion="0.0" vertical-offset="431" max-vertical-offset="6945">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/securityguards/main.m">
+    <entry file="file://$PROJECT_DIR$/securityguards/TextViewController.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="0" selection-start="179" selection-end="179" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="330">
+        <state line="100" column="0" selection-start="3551" selection-end="3551" vertical-scroll-proportion="0.0" vertical-offset="1095" max-vertical-offset="2385">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/securityguards/RootViewController.m">
+    <entry file="file://$PROJECT_DIR$/../Reddydog/Reddydog/Classes/ui/XXAlertView.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="25" selection-start="554" selection-end="554" vertical-scroll-proportion="0.0" vertical-offset="30" max-vertical-offset="3075">
+        <state line="20" column="24" selection-start="454" selection-end="454" vertical-scroll-proportion="0.0" vertical-offset="45" max-vertical-offset="3075">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/securityguards/RootViewController.h">
+    <entry file="file://$PROJECT_DIR$/securityguards/UnitSettingStep4ViewController.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="11" selection-start="278" selection-end="278" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="360">
+        <state line="12" column="73" selection-start="349" selection-end="349" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="345">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/securityguards/DrawerViewController.h">
+    <entry file="file://$PROJECT_DIR$/securityguards/AsyncUdpSocket.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="43" selection-start="253" selection-end="253" vertical-scroll-proportion="0.32188842" vertical-offset="0" max-vertical-offset="466">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/securityguards/UnitSelectionDrawerView.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="84" column="0" selection-start="2651" selection-end="2651" vertical-scroll-proportion="0.0" vertical-offset="927" max-vertical-offset="2265">
-          <folding>
-            <element signature="e#4782#4817#1" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../Reddydog/Reddydog/Classes/category/UIApplication+TopViewController.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="80" selection-start="333" selection-end="333" vertical-scroll-proportion="0.0" vertical-offset="134" max-vertical-offset="645">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/securityguards/AppDelegate.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="84" column="1" selection-start="3468" selection-end="3468" vertical-scroll-proportion="0.0" vertical-offset="824" max-vertical-offset="1830">
-          <folding>
-            <element signature="e#137#160#0" expanded="true" />
-            <element signature="e#3620#3656#0" expanded="true" />
-            <element signature="e#4806#4847#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/securityguards/AppDelegate.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="0" selection-start="449" selection-end="449" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="390">
+        <state line="1272" column="8" selection-start="38134" selection-end="38134" vertical-scroll-proportion="0.0" vertical-offset="18835" max-vertical-offset="34455">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/securityguards/UnitSettingStep5ViewController.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="57" column="66" selection-start="2062" selection-end="2062" vertical-scroll-proportion="0.0" vertical-offset="510" max-vertical-offset="1425">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/securityguards/en.lproj/Localizable.strings">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="328" column="57" selection-start="0" selection-end="17260" vertical-scroll-proportion="0.0" vertical-offset="4647" max-vertical-offset="6015">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/securityguards/zh-Hans.lproj/Localizable.strings">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="385" column="47" selection-start="16557" selection-end="16557" vertical-scroll-proportion="-9.92" vertical-offset="5527" max-vertical-offset="6015">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/securityguards/UnitSettingStep4ViewController.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="30" selection-start="336" selection-end="336" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2490">
+        <state line="107" column="21" selection-start="5307" selection-end="5307" vertical-scroll-proportion="0.0" vertical-offset="1080" max-vertical-offset="1980">
           <folding>
             <element signature="e#171#213#0" expanded="true" />
-            <element signature="e#5432#5477#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/securityguards/UnitSettingStep4ViewController.h">
+    <entry file="file://$PROJECT_DIR$/securityguards/AsyncUdpSocket.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="0" selection-start="414" selection-end="414" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="345">
+        <state line="351" column="8" selection-start="13707" selection-end="13707" vertical-scroll-proportion="0.4740533" vertical-offset="4927" max-vertical-offset="5640">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/securityguards/UnitSettingStep3ViewController.m">
+    <entry file="file://$PROJECT_DIR$/securityguards/UnitFinderViewController.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="87" column="0" selection-start="3820" selection-end="3820" vertical-scroll-proportion="1.4635762" vertical-offset="597" max-vertical-offset="1455">
+        <state line="120" column="1" selection-start="5136" selection-end="5136" vertical-scroll-proportion="0.0" vertical-offset="1462" max-vertical-offset="2370">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/securityguards/MerchandiseDetailSelectView.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="30" selection-start="605" selection-end="605" vertical-scroll-proportion="0.0" vertical-offset="2430" max-vertical-offset="5445">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/securityguards/RestClient.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="246" column="3" selection-start="10766" selection-end="10766" vertical-scroll-proportion="0.0" vertical-offset="3382" max-vertical-offset="4080">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/securityguards/CoreService.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="496" column="33" selection-start="17268" selection-end="17268" vertical-scroll-proportion="-15.36" vertical-offset="6981" max-vertical-offset="10635">
+          <folding>
+            <element signature="e#131#149#0" expanded="true" />
+            <element signature="e#397#437#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/securityguards/AQIManager.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="58" column="11" selection-start="1640" selection-end="1640" vertical-scroll-proportion="0.0" vertical-offset="195" max-vertical-offset="3765">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/securityguards/UnitFinder.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="156" column="70" selection-start="4245" selection-end="4245" vertical-scroll-proportion="0.3202417" vertical-offset="2234" max-vertical-offset="3195">
+          <folding>
+            <element signature="e#130#152#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
