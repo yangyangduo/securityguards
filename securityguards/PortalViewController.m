@@ -30,6 +30,10 @@
 #import "ScoreChangedEvent.h"
 #import "ScenesTemplate.h"
 
+/* baidu share kit */
+#import <Frontia/Frontia.h>
+
+
 #define IMAGE_VIEW_TAG 500
 
 @interface PortalViewController ()
@@ -60,6 +64,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+
     }
     return self;
 }
@@ -179,6 +184,7 @@
      * Create heathIndex view
      */
     imgHeathIndex = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 120)];
+    imgHeathIndex.userInteractionEnabled = YES;
     imgHeathIndex.tag = IMAGE_VIEW_TAG;
     imgHeathIndex.image = [UIImage imageNamed:@"bg_health_index"];
     
@@ -289,6 +295,29 @@
     if(!scrollViewHasBeenResized) {
         [self resizeScrollView];
     }
+    
+    /*  add test button  */
+    
+    UIButton *btnTest = [[UIButton alloc] initWithFrame:CGRectMake(50, 50, 120, 30)];
+    btnTest.backgroundColor = [UIColor blackColor];
+    [btnTest addTarget:self action:@selector(btnTestPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [btnTest setTitle:@"Test Share" forState:UIControlStateNormal];
+    [imgHeathIndex addSubview:btnTest];
+}
+
+- (void)btnTestPressed:(id)sender {
+    NSLog(@"test ...test ");
+    
+    FrontiaShare *share = [Frontia getShare];
+    
+    FrontiaShareContent *content = [[FrontiaShareContent alloc] init];
+    content.url = @"http://developer.baidu.com/frontia";
+    content.description = @"社会化分享模块。支持新浪微博，腾讯微博，QQ空间，人人网，开心网，微信，QQ好友等平台的分享，也包括邮件和短信发送功能，及复制链接功能等。";
+    content.title = @"百度社会化分享";
+    content.imageObj = [UIImage imageNamed:@"share_small.png"];
+    
+    [share showShareMenuWithShareContent:content displayPlatforms:[NSArray arrayWithObjects:FRONTIA_SOCIAL_SHARE_PLATFORM_SINAWEIBO, FRONTIA_SOCIAL_SHARE_PLATFORM_QQWEIBO, FRONTIA_SOCIAL_SHARE_PLATFORM_WEIXIN_SESSION, FRONTIA_SOCIAL_SHARE_PLATFORM_WEIXIN_TIMELINE, nil] supportedInterfaceOrientations:UIInterfaceOrientationMaskPortrait isStatusBarHidden:NO targetViewForPad:nil cancelListener:^{} failureListener:^(int code, NSString *str){ } resultListener:^(NSDictionary *response){ }];
+    
 }
 
 - (void)setUp {

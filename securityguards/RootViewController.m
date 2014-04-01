@@ -58,6 +58,7 @@
         [[LeftNavItem alloc] initWithIdentifier:@"accountManagerItem" andDisplayName:NSLocalizedString(@"user_mgr_drawer_title", @"") andImageName:@"icon_account"],
         [[LeftNavItem alloc] initWithIdentifier:@"contactUsItem" andDisplayName:NSLocalizedString(@"contact_us_drawer_title", @"") andImageName:@"icon_copyright"],
         [[LeftNavItem alloc] initWithIdentifier:@"logoutItem" andDisplayName:NSLocalizedString(@"logout_drawer_title", @"") andImageName:@"icon_logout"], nil];
+    
     LeftNavView *navView = [[LeftNavView alloc] initWithFrame:[UIScreen mainScreen].bounds andNavItems:navItems];
     navView.delegate = self;
     self.leftView = navView;
@@ -132,6 +133,8 @@
     
     // why do this below
     // in IOS7 Status bar will auto add 20px for orgin y in Navigation View Controller
+    // 这里还是来一段中文比较靠谱， 不然自己都看不懂，在IOS7 下面如果使用了Navigation View Controller
+    // 那么所有的View Controller 的frame.orgin.y 都会被设置成 20
     CGRect frame = centerViewController.view.frame;
     centerViewController.view.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
     

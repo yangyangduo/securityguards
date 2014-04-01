@@ -8,7 +8,7 @@
 
 #import "NavigationViewController.h"
 
-const static NSString *FamilyGuardsHotSpotName = @"Family-Guard";
+static NSString *FamilyGuardsHotSpotName = @"Family-Guard";
 
 @interface UnitSettingStep4ViewController : NavigationViewController<UITextFieldDelegate>
 

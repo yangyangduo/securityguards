@@ -12,6 +12,10 @@
 #import "Memory.h"
 #import "ShoppingCart.h"
 
+#import <Frontia/Frontia.h>
+
+#define Baidu_Frontia_App_Key @"COSnRdruKYA0g6c7RaWW2Yia"
+
 @implementation AppDelegate {
     RootViewController *_rootViewController_;
     BOOL logouting;
@@ -19,13 +23,16 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    // init baidu Frontia module
+    [Frontia initWithApiKey:Baidu_Frontia_App_Key];
+    
+    // init UI
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
     
     _rootViewController_ = [[RootViewController alloc] init];
     UINavigationController *navigationViewController = [[UINavigationController alloc] initWithRootViewController:_rootViewController_];
+    // use Custom Navigation Bar
     navigationViewController.navigationBarHidden = YES;
-
     self.window.rootViewController = navigationViewController;
     [self.window makeKeyAndVisible];
     
