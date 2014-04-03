@@ -7,9 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SecurityGuards.h"
 
-#define APP_KEY     @"A002"
-#define PHONE_TYPE  @"IOS"
 
 @interface GlobalSettings : NSObject
 

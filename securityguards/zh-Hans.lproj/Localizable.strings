@@ -106,6 +106,8 @@
 "scene_sleep"                    =      "睡觉";
 "scene_out"                      =      "出门";
 "user_not_exists"                =      "用户不存在";
+"share_success"                  =      "分享成功";
+"share_failed"                   =      "分享失败";
 
 
 /****************	Speech View Strings	****************/

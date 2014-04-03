@@ -163,7 +163,7 @@
     } else {
         [self detailTextLabelForCell:cell].text = [DeviceUtils statusAsStringFor:device];
     }
-    
+
     return cell;
 }
 

@@ -33,7 +33,6 @@
 /* baidu share kit */
 #import <Frontia/Frontia.h>
 
-
 #define IMAGE_VIEW_TAG 500
 
 @interface PortalViewController ()
@@ -239,9 +238,10 @@
     lblHealthIndexGreatThan.backgroundColor = [UIColor clearColor];
     lblDescription3.backgroundColor = [UIColor clearColor];
     
-    UIImageView *imgRefresh = [[UIImageView alloc] initWithFrame:CGRectMake(130, 83, 35.f / 2, 42.f / 2)];
-    imgRefresh.image = [UIImage imageNamed:@"icon_refresh_blue"];
-    [imgHeathIndex addSubview:imgRefresh];
+    UIButton *btnRefresh = [[UIButton alloc] initWithFrame:CGRectMake(130, 83, 35.f / 2, 42.f / 2)];
+    [btnRefresh setBackgroundImage:[UIImage imageNamed:@"icon_refresh_blue"] forState:UIControlStateNormal];
+    [btnRefresh addTarget:self action:@selector(btnRefreshPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [imgHeathIndex addSubview:btnRefresh];
     
     UILabel *lblEvaluate = [[UILabel alloc] initWithFrame:CGRectMake(150, 83, 65, 21)];
     lblEvaluate.textColor = [UIColor colorWithHexString:@"2f8895"];
@@ -295,29 +295,50 @@
     if(!scrollViewHasBeenResized) {
         [self resizeScrollView];
     }
-    
-    /*  add test button  */
-    
-    UIButton *btnTest = [[UIButton alloc] initWithFrame:CGRectMake(50, 50, 120, 30)];
-    btnTest.backgroundColor = [UIColor blackColor];
-    [btnTest addTarget:self action:@selector(btnTestPressed:) forControlEvents:UIControlEventTouchUpInside];
-    [btnTest setTitle:@"Test Share" forState:UIControlStateNormal];
-    [imgHeathIndex addSubview:btnTest];
 }
 
-- (void)btnTestPressed:(id)sender {
-    NSLog(@"test ...test ");
-    
-    FrontiaShare *share = [Frontia getShare];
-    
+- (void)btnRefreshPressed:(id)sender {
     FrontiaShareContent *content = [[FrontiaShareContent alloc] init];
-    content.url = @"http://developer.baidu.com/frontia";
-    content.description = @"社会化分享模块。支持新浪微博，腾讯微博，QQ空间，人人网，开心网，微信，QQ好友等平台的分享，也包括邮件和短信发送功能，及复制链接功能等。";
-    content.title = @"百度社会化分享";
-    content.imageObj = [UIImage imageNamed:@"share_small.png"];
+    content.url = @"http://www.365jws.com";
+    content.title = @"Test test test";
+    content.description = @"365家卫士 Test test";
     
-    [share showShareMenuWithShareContent:content displayPlatforms:[NSArray arrayWithObjects:FRONTIA_SOCIAL_SHARE_PLATFORM_SINAWEIBO, FRONTIA_SOCIAL_SHARE_PLATFORM_QQWEIBO, FRONTIA_SOCIAL_SHARE_PLATFORM_WEIXIN_SESSION, FRONTIA_SOCIAL_SHARE_PLATFORM_WEIXIN_TIMELINE, nil] supportedInterfaceOrientations:UIInterfaceOrientationMaskPortrait isStatusBarHidden:NO targetViewForPad:nil cancelListener:^{} failureListener:^(int code, NSString *str){ } resultListener:^(NSDictionary *response){ }];
-    
+    [[Frontia getShare] showShareMenuWithShareContent:content
+                        displayPlatforms:[NSArray arrayWithObjects:
+                                          FRONTIA_SOCIAL_SHARE_PLATFORM_SINAWEIBO,
+                                          FRONTIA_SOCIAL_SHARE_PLATFORM_WEIXIN_SESSION,
+                                          FRONTIA_SOCIAL_SHARE_PLATFORM_WEIXIN_TIMELINE,
+                                          FRONTIA_SOCIAL_SHARE_PLATFORM_QQ,
+                                          FRONTIA_SOCIAL_SHARE_PLATFORM_QQFRIEND,
+                                          FRONTIA_SOCIAL_SHARE_PLATFORM_QQWEIBO,
+                                          FRONTIA_SOCIAL_SHARE_PLATFORM_RENREN,
+                                          FRONTIA_SOCIAL_SHARE_PLATFORM_SMS,
+                                          FRONTIA_SOCIAL_SHARE_PLATFORM_EMAIL, nil]
+                        supportedInterfaceOrientations:UIInterfaceOrientationMaskPortrait
+                        isStatusBarHidden:NO targetViewForPad:nil
+                        cancelListener:^{
+#ifdef DEBUG
+                            NSLog(@"[PORTAL VIEW] Share Cancelled.");
+#endif
+                        }
+                        failureListener:^(int errorCode, NSString *errorMessage){
+#ifdef DEBUG
+                            NSLog(@"[PORTAL VIEW] Share failed, error code is %d error message is %@.", errorCode, errorMessage);
+#endif
+                            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.f * NSEC_PER_SEC), dispatch_get_main_queue(), ^(void){
+                                [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"share_failed", @"") forType:AlertViewTypeFailed];
+                                [[XXAlertView currentAlertView] alertForLock:NO autoDismiss:YES];
+                            });
+                        }
+                        resultListener:^(NSDictionary *response) {
+#ifdef DEBUG
+                            NSLog(@"[PORTAL VIEW] Share success result is %@.", response.description);
+#endif
+                            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.f * NSEC_PER_SEC), dispatch_get_main_queue(), ^(void){
+                                [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"share_success", @"") forType:AlertViewTypeSuccess];
+                                [[XXAlertView currentAlertView] alertForLock:NO autoDismiss:YES];
+                            });
+                        }];
 }
 
 - (void)setUp {

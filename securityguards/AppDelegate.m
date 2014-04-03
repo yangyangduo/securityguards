@@ -6,33 +6,37 @@
 //  Copyright (c) 2013 hentre. All rights reserved.
 //
 
+#import <Frontia/Frontia.h>
 #import "AppDelegate.h"
 #import "UnitManager.h"
 #import "UserLogoutEvent.h"
 #import "Memory.h"
+#import "SecurityGuards.h"
 #import "ShoppingCart.h"
-
-#import <Frontia/Frontia.h>
-
-#define Baidu_Frontia_App_Key @"COSnRdruKYA0g6c7RaWW2Yia"
+#import "UIColor+XXImage.h"
 
 @implementation AppDelegate {
+    // Not really root view controller (Really root view controller is it's super view controller UI Navigation View Controller).
     RootViewController *_rootViewController_;
+    
+    // Boolean value to flat app wether logouting
     BOOL logouting;
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // init baidu Frontia module
-    [Frontia initWithApiKey:Baidu_Frontia_App_Key];
-    
-    // init UI
+    // Init Baidu Frontia Module
+    [self initBaiduShareKits];
+
+    // Init UI
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     _rootViewController_ = [[RootViewController alloc] init];
     UINavigationController *navigationViewController = [[UINavigationController alloc] initWithRootViewController:_rootViewController_];
-    // use Custom Navigation Bar
+
+    // Use Custom Navigation Bar
     navigationViewController.navigationBarHidden = YES;
+    
     self.window.rootViewController = navigationViewController;
     [self.window makeKeyAndVisible];
     
@@ -41,13 +45,19 @@
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {
+#ifdef DEBUG
+    NSLog(@"[APP] Resign active.");
+#endif
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
+#ifdef DEBUG
+    NSLog(@"[APP] Did enter background.");
+#endif
+    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     
     [[CoreService defaultService] stopService];
@@ -55,17 +65,20 @@
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
+#ifdef DEBUG
+    NSLog(@"[APP] Will Enter foregroud");
+#endif
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     if([GlobalSettings defaultSettings].hasLogin) {
         [[CoreService defaultService] startService];
     }
 
-    UIViewController *topVC = self.topViewController;
-    if(topVC != nil && [topVC isKindOfClass:[UnitSettingStep4ViewController class]]) {
-        UnitSettingStep4ViewController *unitStep4VC = (UnitSettingStep4ViewController *)topVC;
-        [unitStep4VC detectionFamilyGuardsWifiExists];
+    UIViewController *topViewController = self.topViewController;
+    if(topViewController != nil && [topViewController isKindOfClass:[UnitSettingStep4ViewController class]]) {
+        UnitSettingStep4ViewController *unitStep4ViewController = (UnitSettingStep4ViewController *)topViewController;
+        [unitStep4ViewController detectionFamilyGuardsWifiExists];
 #ifdef DEBUG
-        NSLog(@"[APP] WIFI View Controller Is Already Exists. --------------------------->");
+        NSLog(@"[APP] UnitSettingStep4ViewController Is Already Exists.");
 #endif
     }
 }
@@ -77,7 +90,17 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
+#ifdef DEBUG
+    NSLog(@"[APP] Will terminate.");
+#endif
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+#ifdef DEBUG
+    NSLog(@"[APP] Open url [%@] --> source app [%@].", url.description, sourceApplication);
+#endif
+    return [[Frontia getShare] handleOpenURL:url];
 }
 
 #pragma mark -
@@ -92,20 +115,50 @@
 }
 
 #pragma mark -
+#pragma mark Baidu Share Kits
+
+- (void)initBaiduShareKits {
+    [Frontia initWithApiKey:BAIDU_FRONTIA_APP_KEY];
+    [[Frontia getShare] registerSinaweiboAppId:SINA_WEIBO_APP_KEY];
+    //    [[Frontia getShare] registerQQAppId:@"" enableSSO:YES];
+    //    [[frontia getShare] registerWeixinAppId:@""];
+}
+
+#pragma mark -
 #pragma mark Logout
 
 - (void)logout {
     if(!logouting) {
         logouting = YES;
+        
         [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"logouting", @"") forType:AlertViewTypeWaitting];
         [[XXAlertView currentAlertView] alertForLock:YES autoDismiss:NO];
+        
+        // Stop Core Service
         [[CoreService defaultService] stopService];
+        
+        // Remove All Subscriptions But 'rootViewControllerSubscriber'
         [[XXEventSubscriptionPublisher defaultPublisher] unSubscribeAllSubscriptionsExceptSubscriberId:@"rootViewControllerSubscriber"];
+        
+        // Clear Unit Manager (All zones, units and devices)
         [[UnitManager defaultManager] clear];
+        
+        // Clear User Auth (Login Security key, User name and so on)
         [[GlobalSettings defaultSettings] clearAuth];
+        
+        // Clear All Merchandises in Shopping cart
         [[ShoppingCart shoppingCart] clearShoppingCart];
+        
+        // Clear All Data in Memory
         [[Memory memory] clearAll];
+        
+        // Clear all Authorization for each Share Platform
+        [[Frontia getAuthorization] clearAllAuthorizationInfo];
+        
+        // Reset root view controller
         [self.rootViewController.portalViewController reset];
+        
+        // UI ...
         [NSTimer scheduledTimerWithTimeInterval:0.8f target:self selector:@selector(delayLogout) userInfo:nil repeats:NO];
     }
 }
