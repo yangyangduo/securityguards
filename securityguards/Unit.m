@@ -10,6 +10,8 @@
 #import "GlobalSettings.h"
 #import "XXDateFormatter.h"
 
+#import "JsonUtils.h"
+
 #define SCORE_REFRESH_HOUR 4
 
 @interface Unit()
@@ -68,6 +70,17 @@
                     [self.zones addObject:zone];
                 }
             }
+            
+            NSArray *_sensors = [json arrayForKey:@"sensors"];
+            NSMutableArray *newSensors = [NSMutableArray array];
+            if(_sensors != nil) {
+                for(int i=0; i<_sensors.count; i++) {
+                    NSDictionary *_sensor_ = [_sensors objectAtIndex:i];
+                    Sensor *sensor = [[Sensor alloc] initWithJson:_sensor_];
+                    [newSensors addObject:sensor];
+                }
+            }
+            self.sensors = newSensors;
         }
     }
     return self;
@@ -90,6 +103,16 @@
     if([self.score hasValue]) {
         [json setNoNilObject:[self.score toJson] forKey:@"score"];
     }
+    
+    // set sensor's data
+    NSMutableArray *_sensors_ = [NSMutableArray array];
+    if(self.sensors != nil && self.sensors.count != 0) {
+        for(int i=0; i<self.sensors.count; i++) {
+            Sensor *sensor = [self.sensors objectAtIndex:i];
+            [_sensors_ addObject:[sensor toJson]];
+        }
+    }
+    [json setObject:_sensors_ forKey:@"sensors"];
 
     // set zones device's ...
     NSMutableArray *_zones_ = [NSMutableArray array];
@@ -212,7 +235,7 @@
     NSMutableDictionary *json = [super toJson];
     [json setInteger:self.score forKey:@"score"];
     [json setInteger:self.rankings forKey:@"rankings"];
-    [json setDateUsinghTimeIntervalSince1970:self.scoreDate forKey:@"scoreDate"];
+    [json setDateUsingTimeIntervalSince1970:self.scoreDate forKey:@"scoreDate"];
     return json;
 }
 

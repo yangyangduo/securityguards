@@ -236,6 +236,8 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
      * This is a special command
      * Get all units only execute from tcp (both master device code and unit server url is blank)
      * Get one unit can execute in rest or tcp
+     * 
+     *
      */
     if([COMMAND_GET_UNITS isEqualToString:command.commandName]) {
         if([XXStringUtils isBlank:command.masterDeviceCode]) {
@@ -679,7 +681,14 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
 - (void)notifyTcpConnectionOpened {
     [self addNetMode:NetModeExtranet];
     
+    // 判断是否有必要发送 Get Units Command,
+    // 如果时间间隔不是很长就没必要发送
+    if([GlobalSettings defaultSettings].getUnitsCommandLastExecuteDate != nil) {
+        
+    }
     [self executeDeviceCommand:[CommandFactory commandForType:CommandTypeGetUnits]];
+    
+    
     [self executeDeviceCommand:[CommandFactory commandForType:CommandTypeGetNotifications]];
 }
 

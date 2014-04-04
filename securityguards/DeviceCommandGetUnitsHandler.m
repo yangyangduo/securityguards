@@ -43,6 +43,9 @@
         }
         
         [[XXEventSubscriptionPublisher defaultPublisher] publishWithEvent:[[UnitsListUpdatedEvent alloc] init]];
+        
+        [GlobalSettings defaultSettings].getUnitsCommandLastExecuteDate = [NSDate date];
+        [[GlobalSettings defaultSettings] saveSettings];
     }
 }
 

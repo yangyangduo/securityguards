@@ -12,6 +12,7 @@
 
 @interface GlobalSettings : NSObject
 
+
 @property (nonatomic) BOOL isVoice;
 @property (nonatomic) BOOL isShake;
 @property (nonatomic, strong) NSString *tcpAddress;
@@ -21,6 +22,8 @@
 @property (nonatomic, strong) NSString *restAddress;
 @property (nonatomic, strong) NSString *deviceToken;
 @property (nonatomic, readonly, getter = hasLogin) BOOL login;
+
+@property (nonatomic, strong) NSDate *getUnitsCommandLastExecuteDate;
 
 + (instancetype)defaultSettings;
 

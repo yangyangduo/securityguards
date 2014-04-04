@@ -97,6 +97,7 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+// ios4.2 以后就废除了
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
     return [[Frontia getShare] handleOpenURL:url];
 }
@@ -124,6 +125,7 @@
 
 - (void)initBaiduShareKits {
     [Frontia initWithApiKey:BAIDU_FRONTIA_APP_KEY];
+    [[Frontia getShare] registerQQAppId:TENCENT_QQ_APP_KEY enableSSO:YES];
     [[Frontia getShare] registerSinaweiboAppId:SINA_WEIBO_APP_KEY];
     [[Frontia getShare] registerWeixinAppId:WECHAT_APP_KEY];
 }

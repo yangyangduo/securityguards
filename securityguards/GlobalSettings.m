@@ -11,15 +11,16 @@
 #import "NSDictionary+Extension.h"
 #import "NSMutableDictionary+Extension.h"
 
-#define GLOBAL_SETTINGS_KEY       @"global_settings.key"
-#define ACCOUNT_KEY               @"account.key"
-#define SECRET_KEY_KEY            @"secret_key.key"
-#define TCP_ADDRESS_KEY           @"tcp_address.key"
-#define DEVICE_CODE_KEY           @"device_code.key"
-#define IS_VOICE_KEY              @"is_voice.key"
-#define IS_SHAKE_KEY              @"is_shake.key"
-#define DEVICE_TOKEN_KEY          @"device_token.key"
-#define REST_ADDRESS_KEY          @"rest_address.key"
+#define GLOBAL_SETTINGS_KEY                      @"global_settings.key"
+#define ACCOUNT_KEY                              @"account.key"
+#define SECRET_KEY_KEY                           @"secret_key.key"
+#define TCP_ADDRESS_KEY                          @"tcp_address.key"
+#define DEVICE_CODE_KEY                          @"device_code.key"
+#define IS_VOICE_KEY                             @"is_voice.key"
+#define IS_SHAKE_KEY                             @"is_shake.key"
+#define DEVICE_TOKEN_KEY                         @"device_token.key"
+#define REST_ADDRESS_KEY                         @"rest_address.key"
+#define GET_UNITS_COMMAND_LAST_EXECUTE_DATE      @"g_u_c_l_e_d.key"
 
 @implementation GlobalSettings
 
@@ -31,6 +32,8 @@
 @synthesize restAddress;
 @synthesize isShake;
 @synthesize isVoice;
+
+@synthesize getUnitsCommandLastExecuteDate;
 
 + (instancetype)defaultSettings {
     static GlobalSettings *settings;
@@ -54,6 +57,7 @@
             self.deviceCode = [XXStringUtils emptyString];
             self.restAddress = [XXStringUtils emptyString];
             self.deviceToken = [XXStringUtils emptyString];
+            self.getUnitsCommandLastExecuteDate = nil;
             self.isVoice = YES;
             self.isShake = NO;
         } else {
@@ -67,6 +71,7 @@
             self.isVoice = [settings boolForKey:IS_VOICE_KEY];
             self.deviceToken = [settings noNilStringForKey:DEVICE_TOKEN_KEY];
             self.restAddress = [settings noNilStringForKey:REST_ADDRESS_KEY];
+            self.getUnitsCommandLastExecuteDate = [settings dateWithTimeIntervalSince1970ForKey:GET_UNITS_COMMAND_LAST_EXECUTE_DATE];
         }
     }
     return self;
@@ -81,6 +86,9 @@
     [dictionary setMayBlankString:self.tcpAddress forKey:TCP_ADDRESS_KEY];
     [dictionary setMayBlankString:self.deviceCode forKey:DEVICE_CODE_KEY];
     [dictionary setMayBlankString:self.restAddress forKey:REST_ADDRESS_KEY];
+    if(self.getUnitsCommandLastExecuteDate != nil) {
+        [dictionary setDateUsingTimeIntervalSince1970:self.getUnitsCommandLastExecuteDate forKey:GET_UNITS_COMMAND_LAST_EXECUTE_DATE];
+    }
     [dictionary setBool:self.isShake forKey:IS_SHAKE_KEY];
     [dictionary setBool:self.isVoice forKey:IS_VOICE_KEY];
     return dictionary;

@@ -33,6 +33,12 @@
 
 - (NSMutableDictionary *)toJson {
     NSMutableDictionary *json = [super toJson];
+    
+    [json setMayBlankString:self.identifier forKey:@"si"];
+    [json setMayBlankString:self.sensorDataType forKey:@"st"];
+    [json setMayBlankString:self.sensorType forKey:@"ty"];
+    [json setNoNilObject:[self.data toJson] forKey:@"da"];
+    
     return json;
 }
 

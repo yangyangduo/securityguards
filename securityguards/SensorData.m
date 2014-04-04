@@ -26,7 +26,9 @@
 
 - (NSMutableDictionary *)toJson {
     NSMutableDictionary *json = [super toJson];
-    
+    [json setMayBlankString:self.unit forKey:@"un"];
+    [json setMayBlankString:self.unitSymbol forKey:@"us"];
+    [json setDouble:self.value forKey:@"vl"];
     return json;
 }
 
