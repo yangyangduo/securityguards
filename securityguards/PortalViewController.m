@@ -332,7 +332,7 @@
                         }
                         resultListener:^(NSDictionary *response) {
 #ifdef DEBUG
-                            NSLog(@"[PORTAL VIEW] Share success result is %@.", response.description);
+                            NSLog(@"[PORTAL VIEW] Share success result is %@.", (response == nil || response.description == nil) ? @"" : response.description);
 #endif
                             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.f * NSEC_PER_SEC), dispatch_get_main_queue(), ^(void){
                                 [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"share_success", @"") forType:AlertViewTypeSuccess];

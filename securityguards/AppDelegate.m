@@ -6,7 +6,6 @@
 //  Copyright (c) 2013 hentre. All rights reserved.
 //
 
-#import <Frontia/Frontia.h>
 #import "AppDelegate.h"
 #import "UnitManager.h"
 #import "UserLogoutEvent.h"
@@ -14,6 +13,8 @@
 #import "SecurityGuards.h"
 #import "ShoppingCart.h"
 #import "UIColor+XXImage.h"
+
+#import <Frontia/Frontia.h>
 
 @implementation AppDelegate {
     // Not really root view controller (Really root view controller is it's super view controller UI Navigation View Controller).
@@ -96,6 +97,10 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+    return [[Frontia getShare] handleOpenURL:url];
+}
+
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
 #ifdef DEBUG
     NSLog(@"[APP] Open url [%@] --> source app [%@].", url.description, sourceApplication);
@@ -120,8 +125,7 @@
 - (void)initBaiduShareKits {
     [Frontia initWithApiKey:BAIDU_FRONTIA_APP_KEY];
     [[Frontia getShare] registerSinaweiboAppId:SINA_WEIBO_APP_KEY];
-    //    [[Frontia getShare] registerQQAppId:@"" enableSSO:YES];
-    //    [[frontia getShare] registerWeixinAppId:@""];
+    [[Frontia getShare] registerWeixinAppId:WECHAT_APP_KEY];
 }
 
 #pragma mark -

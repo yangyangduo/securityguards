@@ -83,7 +83,7 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
     [[NSThread currentThread] setName:@"CoreServiceThread"];
 
     // Start a network checker timer
-    // Every 5 seconds to check the tcp is or not connectted
+    // Every 5 seconds to check the tcp is or not connected
     // If it was closed, then should open it again.
     tcpSocketConnectionCheckTimer = [[NSTimer alloc] initWithFireDate:[NSDate date] interval:NETWORK_CHECK_INTERVAL target:self selector:@selector(checkTcp) userInfo:nil repeats:YES];
     CFRunLoopAddTimer(CFRunLoopGetCurrent(), (__bridge CFRunLoopTimerRef)tcpSocketConnectionCheckTimer, kCFRunLoopDefaultMode);

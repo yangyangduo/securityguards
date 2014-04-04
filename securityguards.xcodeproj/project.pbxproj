@@ -284,8 +284,8 @@
 		6FEC0FF7186C73B400CB0D70 /* icon_copyright@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FEC0FF6186C73B400CB0D70 /* icon_copyright@2x.png */; };
 		6FEC757918ED2EE300416A8E /* XXObjectiveEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FEC757818ED2EE300416A8E /* XXObjectiveEngine.m */; };
 		6FED0BB118A8D0AD00A7173A /* CameraInfoModifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FED0BB018A8D0AD00A7173A /* CameraInfoModifyViewController.m */; };
+		6FF98FE318EE58840033E42F /* Frontia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FF98FE218EE58840033E42F /* Frontia.framework */; };
 		6FFA0FE818BB243C004D6A24 /* line_dashed_white@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FFA0FE718BB243C004D6A24 /* line_dashed_white@2x.png */; };
-		6FFE29BE18EA982A00A1A899 /* Frontia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FFE29BD18EA982A00A1A899 /* Frontia.framework */; };
 		6FFE29C018EA988000A1A899 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FFE29BF18EA988000A1A899 /* MessageUI.framework */; };
 		6FFE29C218EA98CC00A1A899 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FFE29C118EA98CC00A1A899 /* CoreTelephony.framework */; };
 		6FFE29C418EA98EE00A1A899 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FFE29C318EA98EE00A1A899 /* libsqlite3.dylib */; };
@@ -821,8 +821,8 @@
 		6FEC757818ED2EE300416A8E /* XXObjectiveEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXObjectiveEngine.m; sourceTree = "<group>"; };
 		6FED0BAF18A8D0AD00A7173A /* CameraInfoModifyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraInfoModifyViewController.h; sourceTree = "<group>"; };
 		6FED0BB018A8D0AD00A7173A /* CameraInfoModifyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraInfoModifyViewController.m; sourceTree = "<group>"; };
+		6FF98FE218EE58840033E42F /* Frontia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Frontia.framework; sourceTree = "<group>"; };
 		6FFA0FE718BB243C004D6A24 /* line_dashed_white@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "line_dashed_white@2x.png"; sourceTree = "<group>"; };
-		6FFE29BD18EA982A00A1A899 /* Frontia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Frontia.framework; path = "../../Desktop/Baidu-Frontia-iOS-2.0.2/libs/Frontia.framework"; sourceTree = "<group>"; };
 		6FFE29BF18EA988000A1A899 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		6FFE29C118EA98CC00A1A899 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		6FFE29C318EA98EE00A1A899 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
@@ -953,13 +953,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6FF98FE318EE58840033E42F /* Frontia.framework in Frameworks */,
 				6FFE29C818EA991F00A1A899 /* libz.dylib in Frameworks */,
 				6FFE29E018EA9BA600A1A899 /* TencentOpenAPI in Frameworks */,
 				6FFE29C618EA991200A1A899 /* libstdc++.dylib in Frameworks */,
 				6FFE29C418EA98EE00A1A899 /* libsqlite3.dylib in Frameworks */,
 				6FFE29C218EA98CC00A1A899 /* CoreTelephony.framework in Frameworks */,
 				6FFE29C018EA988000A1A899 /* MessageUI.framework in Frameworks */,
-				6FFE29BE18EA982A00A1A899 /* Frontia.framework in Frameworks */,
 				6FFE29E318EA9BA600A1A899 /* libWeChatSDK in Frameworks */,
 				6FB79EC918B3563800E02077 /* CoreLocation.framework in Frameworks */,
 				F29DE6F618863DE500BCE93C /* iflyMSC.framework in Frameworks */,
@@ -1176,12 +1176,12 @@
 		6F600455186BCE210085B4BD /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6FF98FE218EE58840033E42F /* Frontia.framework */,
 				6FFE29C718EA991F00A1A899 /* libz.dylib */,
 				6FFE29C518EA991200A1A899 /* libstdc++.dylib */,
 				6FFE29C318EA98EE00A1A899 /* libsqlite3.dylib */,
 				6FFE29C118EA98CC00A1A899 /* CoreTelephony.framework */,
 				6FFE29BF18EA988000A1A899 /* MessageUI.framework */,
-				6FFE29BD18EA982A00A1A899 /* Frontia.framework */,
 				6FB79EC818B3563800E02077 /* CoreLocation.framework */,
 				6F9C8ACB1886323D00289AEA /* AddressBook.framework */,
 				6F741D0B18862DE500B42293 /* iflyMSC.framework */,
@@ -2827,6 +2827,7 @@
 					"$(SRCROOT)/**",
 					"/Users/young/Downloads/securityguards/**",
 					"/Users/young/Desktop/Baidu-Frontia-iOS-2.0.2/libs",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "securityguards/securityguards-Prefix.pch";
@@ -2869,6 +2870,7 @@
 					"$(SRCROOT)/**",
 					"/Users/young/Downloads/securityguards/**",
 					"/Users/young/Desktop/Baidu-Frontia-iOS-2.0.2/libs",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "securityguards/securityguards-Prefix.pch";
