@@ -27,9 +27,10 @@
 #import "XXAlertView.h"
 #import "AQIManager.h"
 
-#define NETWORK_CHECK_INTERVAL 5
-#define UNIT_REFRESH_INTERVAL  10
-#define HEART_BEAT_TIMEOUT     1.f
+#define NETWORK_CHECK_INTERVAL     5
+#define UNIT_REFRESH_INTERVAL      10
+#define HEART_BEAT_TIMEOUT         1.f
+#define GETUNITS_MINITES_INTERVAL  60
 
 static dispatch_queue_t networkModeCheckTaskQueue() {
     static dispatch_queue_t serialQueue;
@@ -683,11 +684,18 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
     
     // 判断是否有必要发送 Get Units Command,
     // 如果时间间隔不是很长就没必要发送
-    if([GlobalSettings defaultSettings].getUnitsCommandLastExecuteDate != nil) {
-        
+    NSDate *lastExecuteDate = [GlobalSettings defaultSettings].getUnitsCommandLastExecuteDate;
+    if(lastExecuteDate != nil) {
+        NSTimeInterval lastExecuteMinutesSinceNow = abs(lastExecuteDate.timeIntervalSinceNow) / 60;
+#ifdef DEBUG
+        NSLog(@"[Core Service] Last execute get units command before %f minutes ago.", lastExecuteMinutesSinceNow);
+#endif
+        if(lastExecuteMinutesSinceNow >= GETUNITS_MINITES_INTERVAL) {
+            [self executeDeviceCommand:[CommandFactory commandForType:CommandTypeGetUnits]];
+        }
+    } else {
+        [self executeDeviceCommand:[CommandFactory commandForType:CommandTypeGetUnits]];
     }
-    [self executeDeviceCommand:[CommandFactory commandForType:CommandTypeGetUnits]];
-    
     
     [self executeDeviceCommand:[CommandFactory commandForType:CommandTypeGetNotifications]];
 }
