@@ -15,6 +15,7 @@
 /*     components      */
 #import "SensorsDisplayPanel.h"
 #import "SpeechViewController.h"
+#import "SceneVoiceView.h"
 #import "UnitSelectionDrawerView.h"
 #import "AQIPanelView.h"
 
@@ -44,9 +45,7 @@
     
     UIImageView *imgHeathIndex;
     UILabel *lblHealthIndex;
-    UILabel *lblHealthIndexGreatThan;
-    UILabel *lblEvaluateTime;
-    
+
     SensorsDisplayPanel *sensorDisplayPanel;
     UnitControlPanel *controlPanelView;
     
@@ -63,7 +62,6 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-
     }
     return self;
 }
@@ -109,7 +107,7 @@
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-    // unsubscribe events
+    // un subscribe events
     [[XXEventSubscriptionPublisher defaultPublisher] unSubscribeForSubscriber:self];
 }
 
@@ -146,35 +144,9 @@
     [self.topbarView addSubview:btnRename];
     
     /*
-     * Create voice button view
-     */
-    UIView *voiceBackgroundView = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height - 42, [UIScreen mainScreen].bounds.size.width, 42)];
-    voiceBackgroundView.backgroundColor = [UIColor appGray];
-    
-    UIButton *btnVoice = [[UIButton alloc] initWithFrame:CGRectMake(10, 5, 390 / 2, 64 / 2)];
-    [btnVoice setBackgroundImage:[UIImage imageNamed:@"btn_voice_short_gray"] forState:UIControlStateNormal];
-    [btnVoice setBackgroundImage:[UIImage imageNamed:@"btn_voice_short_blue"] forState:UIControlStateHighlighted];
-    [btnVoice setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-    [btnVoice setTitle:NSLocalizedString(@"btn_voice_title", @"") forState:UIControlStateNormal];
-    btnVoice.titleEdgeInsets = UIEdgeInsetsMake(0, 28, 0, 0);
-    [btnVoice addTarget:self action:@selector(showSpeechViewController:) forControlEvents:UIControlEventTouchUpInside];
-
-    UIButton *btnScene = [[UIButton alloc] initWithFrame:CGRectMake(215, 5, 190 / 2, 64 / 2)];
-    [btnScene setBackgroundImage:[UIImage imageNamed:@"btn_scene_gray"] forState:UIControlStateNormal];
-    [btnScene setBackgroundImage:[UIImage imageNamed:@"btn_scene_blue"] forState:UIControlStateHighlighted];
-    [btnScene setTitle:NSLocalizedString(@"scene", @"") forState:UIControlStateNormal];
-    [btnScene setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-    btnScene.titleEdgeInsets = UIEdgeInsetsMake(0, 25, 0, 0);
-    [btnScene addTarget:self action:@selector(btnScenePressed:) forControlEvents:UIControlEventTouchUpInside];
-
-    [voiceBackgroundView addSubview:btnVoice];
-    [voiceBackgroundView addSubview:btnScene];
-    [self.view addSubview:voiceBackgroundView];
-    
-    /*
      * Create scroll view
      */
-    scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, self.topbarView.bounds.size.height, [UIScreen mainScreen].bounds.size.width, self.view.bounds.size.height - self.topbarView.bounds.size.height - voiceBackgroundView.bounds.size.height)];
+    scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, self.topbarView.bounds.size.height, [UIScreen mainScreen].bounds.size.width, self.view.bounds.size.height - self.topbarView.bounds.size.height)];
     scrollView.backgroundColor = [UIColor whiteColor];
     scrollView.showsHorizontalScrollIndicator = NO;
     [self.view addSubview:scrollView];
@@ -182,122 +154,96 @@
     /*
      * Create heathIndex view
      */
-    imgHeathIndex = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 120)];
+    imgHeathIndex = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, SENSOR_DISPLAY_PANEL_HEIGHT)];
     imgHeathIndex.userInteractionEnabled = YES;
     imgHeathIndex.tag = IMAGE_VIEW_TAG;
-    imgHeathIndex.image = [UIImage imageNamed:@"bg_health_index"];
-    
-    lblHealthIndex = [[UILabel alloc] initWithFrame:CGRectMake(44, 34, 45, 50)];
+    imgHeathIndex.backgroundColor = [UIColor appWhite];
+    imgHeathIndex.image = [UIImage imageNamed:@"img_portal_header"];
+
+    UIImageView *imgCircleBackground = [[UIImageView alloc] initWithFrame:CGRectMake(25, 14, 177.f / 2, 177.f / 2)];
+    imgCircleBackground.image = [UIImage imageNamed:@"bg_circle"];
+    [imgHeathIndex addSubview:imgCircleBackground];
+
+    lblHealthIndex = [[UILabel alloc] initWithFrame:CGRectMake(20, 15, 100, 90)];
     lblHealthIndex.backgroundColor = [UIColor clearColor];
     lblHealthIndex.text = @"--";
-    lblHealthIndex.textColor = [UIColor whiteColor];
-    lblHealthIndex.font = [UIFont boldSystemFontOfSize:26.f];
-    lblHealthIndex.shadowColor = [UIColor colorWithHexString:@"c06161"];
+    lblHealthIndex.textColor = [UIColor colorWithRed:10.f / 255.f green:217.f / 255.f blue:1.f alpha:1.0];
+    lblHealthIndex.font = [UIFont systemFontOfSize:50.f];
+    lblHealthIndex.shadowColor = [UIColor whiteColor];
     lblHealthIndex.textAlignment = NSTextAlignmentCenter;
-    lblHealthIndex.shadowOffset = CGSizeMake(1, 1);
+    lblHealthIndex.shadowOffset = CGSizeMake(2, 2);
     [imgHeathIndex addSubview:lblHealthIndex];
-    
-    UILabel *lblDescription1 = [[UILabel alloc] initWithFrame:CGRectMake(130, 20, 190, 30)];
-    UILabel *lblDescription2 = [[UILabel alloc] initWithFrame:CGRectMake(130, 46, 20, 30)];
-    lblHealthIndexGreatThan = [[UILabel alloc] initWithFrame:CGRectMake(150, 38, 50, 40)];
-    UILabel *lblDescription3 = [[UILabel alloc] initWithFrame:CGRectMake(197, 46, 100, 30)];
-    
-    [imgHeathIndex addSubview:lblDescription1];
-    [imgHeathIndex addSubview:lblDescription2];
-    [imgHeathIndex addSubview:lblHealthIndexGreatThan];
-    [imgHeathIndex addSubview:lblDescription3];
-    
-    lblDescription1.textColor = [UIColor whiteColor];
-    lblDescription2.textColor = [UIColor whiteColor];
-    lblDescription3.textColor = [UIColor whiteColor];
-    
-    lblDescription1.shadowColor = [UIColor colorWithHexString:@"80bac1"];
-    lblDescription2.shadowColor = [UIColor colorWithHexString:@"80bac1"];
-    lblDescription3.shadowColor = [UIColor colorWithHexString:@"80bac1"];
-    lblHealthIndexGreatThan.shadowColor = [UIColor colorWithHexString:@"80bac1"];
-    
-    lblDescription1.shadowOffset = CGSizeMake(1, 1);
-    lblDescription2.shadowOffset = CGSizeMake(1, 1);
-    lblDescription3.shadowOffset = CGSizeMake(1, 1);
-    lblHealthIndexGreatThan.shadowOffset = CGSizeMake(1, 1);
-    
-    lblHealthIndexGreatThan.textColor = [UIColor yellowColor];
-    
-    lblDescription1.font = [UIFont systemFontOfSize:17.f];
-    lblDescription2.font = [UIFont systemFontOfSize:17.f];
-    lblDescription3.font = [UIFont systemFontOfSize:17.f];
-    lblHealthIndexGreatThan.font = [UIFont systemFontOfSize:22.f];
-    
-    lblDescription1.text = NSLocalizedString(@"heath_index_desc1", @"");
-    lblDescription2.text = NSLocalizedString(@"heath_index_desc2", @"");
-    lblHealthIndexGreatThan.text = @" --%";
-    
-    lblDescription3.text = NSLocalizedString(@"heath_index_desc3", @"");
-    lblDescription1.backgroundColor = [UIColor clearColor];
-    lblDescription2.backgroundColor = [UIColor clearColor];
-    lblHealthIndexGreatThan.backgroundColor = [UIColor clearColor];
-    lblDescription3.backgroundColor = [UIColor clearColor];
-    
-    UIButton *btnRefresh = [[UIButton alloc] initWithFrame:CGRectMake(130, 83, 35.f / 2, 42.f / 2)];
-    [btnRefresh setBackgroundImage:[UIImage imageNamed:@"icon_refresh_blue"] forState:UIControlStateNormal];
-    [btnRefresh addTarget:self action:@selector(btnRefreshPressed:) forControlEvents:UIControlEventTouchUpInside];
-    [imgHeathIndex addSubview:btnRefresh];
-    
-    UILabel *lblEvaluate = [[UILabel alloc] initWithFrame:CGRectMake(150, 83, 65, 21)];
-    lblEvaluate.textColor = [UIColor colorWithHexString:@"2f8895"];
-    lblEvaluate.font = [UIFont systemFontOfSize:14.f];
-    lblEvaluate.shadowOffset = CGSizeMake(0.5f, 0.5f);
-    lblEvaluate.shadowColor = [UIColor whiteColor];
-    lblEvaluate.text = [NSString stringWithFormat:@"%@:", NSLocalizedString(@"evaluate_time", @"")];
-    lblEvaluate.backgroundColor = [UIColor clearColor];
-    [imgHeathIndex addSubview:lblEvaluate];
-    
-    lblEvaluateTime = [[UILabel alloc] initWithFrame:CGRectMake(215, 83, 100, 21)];
-    lblEvaluateTime.textColor = [UIColor colorWithHexString:@"2f8895"];
-    lblEvaluateTime.font = [UIFont systemFontOfSize:14.f];
-    lblEvaluateTime.shadowOffset = CGSizeMake(0.5f, 0.5f);
-    lblEvaluateTime.shadowColor = [UIColor whiteColor];
-    lblEvaluateTime.text = NSLocalizedString(@"has_not_refresh", @"");
-    lblEvaluateTime.backgroundColor = [UIColor clearColor];
-    [imgHeathIndex addSubview:lblEvaluateTime];
-    
-    [scrollView addSubview:imgHeathIndex];
-    
+
+    UIImageView *imgSeparatorLine = [[UIImageView alloc] initWithFrame:CGRectMake(140, 0, 2, 150)];
+    imgSeparatorLine.center = CGPointMake(imgSeparatorLine.center.x, imgHeathIndex.bounds.size.height / 2);
+    imgSeparatorLine.image = [UIImage imageNamed:@"line_portal_blue_seperator"];
+    [imgHeathIndex addSubview:imgSeparatorLine];
+
+    UILabel *lblShareTips = [[UILabel alloc] initWithFrame:CGRectMake(37, 115, 90, 25)];
+    lblShareTips.text = NSLocalizedString(@"share_my_data", @"");
+    lblShareTips.textAlignment = NSTextAlignmentCenter;
+    lblShareTips.backgroundColor = [UIColor clearColor];
+    lblShareTips.font = [UIFont boldSystemFontOfSize:14.f];
+    lblShareTips.textColor = [UIColor colorWithRed:10.f / 255.f green:217.f / 255.f blue:1.f alpha:1.0];
+    UITapGestureRecognizer *shareTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(btnSharePressed:)];
+    [lblShareTips addGestureRecognizer:shareTapGestureRecognizer];
+    lblShareTips.userInteractionEnabled = YES;
+    [imgHeathIndex addSubview:lblShareTips];
+
+    UIButton *btnShare = [[UIButton alloc] initWithFrame:
+            CGRectMake(lblShareTips.frame.origin.x - 20, lblShareTips.frame.origin.y + 3, 29.f / 2, 37.f / 2)];
+    [btnShare addTarget:self action:@selector(btnSharePressed:) forControlEvents:UIControlEventTouchUpInside];
+    [btnShare setBackgroundImage:[UIImage imageNamed:@"btn_share"] forState:UIControlStateNormal];
+    [imgHeathIndex addSubview:btnShare];
+
     /*
      * Create sensors display view
      */
-    sensorDisplayPanel = [[SensorsDisplayPanel alloc] initWithPoint:CGPointMake(0, imgHeathIndex.frame.origin.y + imgHeathIndex.frame.size.height)];
-    [scrollView addSubview:sensorDisplayPanel];
-    
+    sensorDisplayPanel = [[SensorsDisplayPanel alloc] initWithPoint:CGPointMake([UIScreen mainScreen].bounds.size.width / 2 - 10, 0)];
+    [imgHeathIndex addSubview:sensorDisplayPanel];
+    [scrollView addSubview:imgHeathIndex];
+
     /*
-     * Add blue line
+     * -------------  Separator line ---------------
      */
-    UIImageView *imgLineBlue = [[UIImageView alloc] initWithFrame:CGRectMake(0, imgHeathIndex.frame.origin.y + imgHeathIndex.bounds.size.height, sensorDisplayPanel.bounds.size.width, 11)];
-    imgLineBlue.image = [UIImage imageNamed:@"line_seperator_heavy_blue"];
-    [scrollView addSubview:imgLineBlue];
-    
+    UIImageView *separatorLineForImgHealthIndex = [[UIImageView alloc] initWithFrame:CGRectMake(0, imgHeathIndex.bounds.size.height - 1, [UIScreen mainScreen].bounds.size.width, 1)];
+    separatorLineForImgHealthIndex.image = [UIImage imageNamed:@"line_dashed_white"];
+    [imgHeathIndex addSubview:separatorLineForImgHealthIndex];
+
     /*
-     * Add separator line
+     * Create scene and voice view
      */
-    UIImageView *imgLine = [[UIImageView alloc] initWithFrame:CGRectMake(0, sensorDisplayPanel.bounds.size.height - 2, sensorDisplayPanel.bounds.size.width, 2)];
+    SceneVoiceView *sceneVoiceView = [[SceneVoiceView alloc] initWithPoint:CGPointMake(0, imgHeathIndex.frame.origin.y + imgHeathIndex.bounds.size.height)];
+    [scrollView addSubview:sceneVoiceView];
+
+    /*
+     * Add separator line for scene voice view
+     */
+    UIImageView *imgLine = [[UIImageView alloc] initWithFrame:CGRectMake(0, sceneVoiceView.bounds.size.height - 2, sceneVoiceView.bounds.size.width, 2)];
     imgLine.image = [UIImage imageNamed:@"line_dashed_h"];
-    [sensorDisplayPanel addSubview:imgLine];
-    
+    [sceneVoiceView addSubview:imgLine];
+
     /*
      * Create unit control panel view
      */
-    controlPanelView = [[UnitControlPanel alloc] initWithPoint:CGPointMake(0, sensorDisplayPanel.frame.origin.y + sensorDisplayPanel.bounds.size.height)];
-    
+    controlPanelView = [[UnitControlPanel alloc] initWithPoint:CGPointMake(0, sceneVoiceView.frame.origin.y + sceneVoiceView.bounds.size.height)];
     controlPanelView.delegate = self;
     [scrollView addSubview:controlPanelView];
-    
-    BOOL scrollViewHasBeenResized = [self updateAQIPanelViewWithAqi:[AQIManager manager].currentAqiInfo];
-    if(!scrollViewHasBeenResized) {
+
+    //    /*
+//     * Add blue line
+//     */
+//    UIImageView *imgLineBlue = [[UIImageView alloc] initWithFrame:CGRectMake(0, imgHeathIndex.frame.origin.y + imgHeathIndex.bounds.size.height, sensorDisplayPanel.bounds.size.width, 11)];
+//    imgLineBlue.image = [UIImage imageNamed:@"line_seperator_heavy_blue"];
+//    [scrollView addSubview:imgLineBlue];
+
+    /* re-size scroll view */
+    if(![self updateAQIPanelViewWithAqi:[AQIManager manager].currentAqiInfo]) {
         [self resizeScrollView];
     }
 }
 
-- (void)btnRefreshPressed:(id)sender {
+- (void)btnSharePressed:(id)sender {
     FrontiaShareContent *content = [[FrontiaShareContent alloc] init];
     content.url = @"http://www.365jws.com";
     content.title = @"Test test test";
@@ -366,26 +312,26 @@
 #pragma mark -
 #pragma mark UI Methods
 
-- (void)btnScenePressed:(id)sender {
-    XXActionSheet *actionSheet = [[XXActionSheet alloc] init];
-    actionSheet.title = NSLocalizedString(@"select_scene_mode", @"");
-
-    NSDictionary *templates = [ScenesTemplate defaultTemplates];
-    NSMutableArray *templateKeys = [NSMutableArray arrayWithCapacity:4];
-    [actionSheet addButtonWithTitle:[[templates dictionaryForKey:kSceneReturnHome] noNilStringForKey:kTemplateName]];
-    [templateKeys addObject:kSceneReturnHome];
-    [actionSheet addButtonWithTitle:[[templates dictionaryForKey:kSceneOut] noNilStringForKey:kTemplateName]];
-    [templateKeys addObject:kSceneOut];
-    [actionSheet addButtonWithTitle:[[templates dictionaryForKey:kSceneSleep] noNilStringForKey:kTemplateName]];
-    [templateKeys addObject:kSceneSleep];
-    [actionSheet addButtonWithTitle:[[templates dictionaryForKey:kSceneGetUp] noNilStringForKey:kTemplateName]];
-    [templateKeys addObject:kSceneGetUp];
-
-    [actionSheet setParameter:templateKeys forKey:@"templateKeys"];
-    actionSheet.cancelButtonIndex = [actionSheet addButtonWithTitle:NSLocalizedString(@"cancel", @"")];
-    actionSheet.delegate = self;
-    [actionSheet showInView:self.view];
-}
+//- (void)btnScenePressed:(id)sender {
+//    XXActionSheet *actionSheet = [[XXActionSheet alloc] init];
+//    actionSheet.title = NSLocalizedString(@"select_scene_mode", @"");
+//
+//    NSDictionary *templates = [ScenesTemplate defaultTemplates];
+//    NSMutableArray *templateKeys = [NSMutableArray arrayWithCapacity:4];
+//    [actionSheet addButtonWithTitle:[[templates dictionaryForKey:kSceneReturnHome] noNilStringForKey:kTemplateName]];
+//    [templateKeys addObject:kSceneReturnHome];
+//    [actionSheet addButtonWithTitle:[[templates dictionaryForKey:kSceneOut] noNilStringForKey:kTemplateName]];
+//    [templateKeys addObject:kSceneOut];
+//    [actionSheet addButtonWithTitle:[[templates dictionaryForKey:kSceneSleep] noNilStringForKey:kTemplateName]];
+//    [templateKeys addObject:kSceneSleep];
+//    [actionSheet addButtonWithTitle:[[templates dictionaryForKey:kSceneGetUp] noNilStringForKey:kTemplateName]];
+//    [templateKeys addObject:kSceneGetUp];
+//
+//    [actionSheet setParameter:templateKeys forKey:@"templateKeys"];
+//    actionSheet.cancelButtonIndex = [actionSheet addButtonWithTitle:NSLocalizedString(@"cancel", @"")];
+//    actionSheet.delegate = self;
+//    [actionSheet showInView:self.view];
+//}
 
 - (void)resizeScrollView {
     [self resizeScrollViewWithFlag:0];
@@ -415,27 +361,27 @@
     [[Shared shared].app.rootViewController showRightView];
 }
 
-- (void)showSpeechViewController:(id)sender {
-    if(speechViewIsOpening) return;
-    if(self.parentViewController != nil) {
-        speechViewIsOpening = YES;
-        SpeechViewController *speechViewController = [[SpeechViewController alloc] init];
-        RootViewController *rootViewController = [Shared shared].app.rootViewController;
-        [rootViewController addChildViewController:speechViewController];
-        [self willMoveToParentViewController:nil];
-        CGRect frame = speechViewController.view.frame;
-        speechViewController.view.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
-        [rootViewController transitionFromViewController:self toViewController:speechViewController duration:0.8f options:UIViewAnimationOptionTransitionCrossDissolve
-            animations:^{
-            }
-            completion:^(BOOL finished) {
-                [speechViewController didMoveToParentViewController:rootViewController];
-                [self removeFromParentViewController];
-                [rootViewController setDisplayViewController:speechViewController];
-                speechViewIsOpening = NO;
-            }];
-    }
-}
+//- (void)showSpeechViewController:(id)sender {
+//    if(speechViewIsOpening) return;
+//    if(self.parentViewController != nil) {
+//        speechViewIsOpening = YES;
+//        SpeechViewController *speechViewController = [[SpeechViewController alloc] init];
+//        RootViewController *rootViewController = [Shared shared].app.rootViewController;
+//        [rootViewController addChildViewController:speechViewController];
+//        [self willMoveToParentViewController:nil];
+//        CGRect frame = speechViewController.view.frame;
+//        speechViewController.view.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
+//        [rootViewController transitionFromViewController:self toViewController:speechViewController duration:0.8f options:UIViewAnimationOptionTransitionCrossDissolve
+//            animations:^{
+//            }
+//            completion:^(BOOL finished) {
+//                [speechViewController didMoveToParentViewController:rootViewController];
+//                [self removeFromParentViewController];
+//                [rootViewController setDisplayViewController:speechViewController];
+//                speechViewIsOpening = NO;
+//            }];
+//    }
+//}
 
 - (void)btnRenameUnit:(id)sender {
     Unit *currentUnit = [UnitManager defaultManager].currentUnit;
@@ -477,20 +423,20 @@
     }
 }
 
-#pragma mark -
-#pragma mark Action Sheet Delegate
-
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if(buttonIndex < 0 || buttonIndex > 3) {
-        return;
-    }
-    if([actionSheet isKindOfClass:[XXActionSheet class]]) {
-        XXActionSheet *st = (XXActionSheet *)actionSheet;
-        NSArray *keys = [st parameterForKey:@"templateKeys"];
-        NSString *templateId = [keys objectAtIndex:buttonIndex];
-        [ScenesTemplate executeDefaultTemplatesWithTemplateId:templateId forUnit:[UnitManager defaultManager].currentUnit];
-    }
-}
+//#pragma mark -
+//#pragma mark Action Sheet Delegate
+//
+//- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+//    if(buttonIndex < 0 || buttonIndex > 3) {
+//        return;
+//    }
+//    if([actionSheet isKindOfClass:[XXActionSheet class]]) {
+//        XXActionSheet *st = (XXActionSheet *)actionSheet;
+//        NSArray *keys = [st parameterForKey:@"templateKeys"];
+//        NSString *templateId = [keys objectAtIndex:buttonIndex];
+//        [ScenesTemplate executeDefaultTemplatesWithTemplateId:templateId forUnit:[UnitManager defaultManager].currentUnit];
+//    }
+//}
 
 #pragma mark -
 #pragma mark Event Subscriber
@@ -618,22 +564,18 @@
 }
 
 - (void)updateUnitScoreViewWithScore:(Score *)score {
-    if(score == nil) {
+    if(score == nil || score.score == -1) {
         lblHealthIndex.text = @"--";
-        lblHealthIndexGreatThan.text = @" --%";
-        lblEvaluateTime.text = NSLocalizedString(@"has_not_refresh", @"");
+//        lblHealthIndexGreatThan.text = @" --%";
+//        lblEvaluateTime.text = NSLocalizedString(@"has_not_refresh", @"");
     } else {
-        if(score.score != -1) {
-            lblHealthIndex.text = [NSString stringWithFormat:@"%d", score.score];
-        } else {
-            lblHealthIndex.text = @"--";
-        }
-        if(score.rankings != -1) {
-            lblHealthIndexGreatThan.text = [NSString stringWithFormat:@"%d%%", score.rankings];
-        } else {
-            lblHealthIndexGreatThan.text = @" --%";
-        }
-        lblEvaluateTime.text = score.scoreDate == nil ? NSLocalizedString(@"has_not_refresh", @"") : [score scoreDateAsFormattedString];
+        lblHealthIndex.text = [NSString stringWithFormat:@"%d", score.score];
+//        if(score.rankings != -1) {
+//            lblHealthIndexGreatThan.text = [NSString stringWithFormat:@"%d%%", score.rankings];
+//        } else {
+//            lblHealthIndexGreatThan.text = @" --%";
+//        }
+//        lblEvaluateTime.text = score.scoreDate == nil ? NSLocalizedString(@"has_not_refresh", @"") : [score scoreDateAsFormattedString];
     }
 }
 

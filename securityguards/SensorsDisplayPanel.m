@@ -10,7 +10,7 @@
 #import "UIColor+MoreColor.h"
 
 @implementation SensorsDisplayPanel {
-    SensorDisplayView *tempureSensor;
+    SensorDisplayView *temperatureSensor;
     SensorDisplayView *humiditySensor;
     SensorDisplayView *pm25Sensor;
     SensorDisplayView *vocSensor;
@@ -27,7 +27,7 @@
 }
 
 - (instancetype)initWithPoint:(CGPoint)point {
-    self = [super initWithFrame:CGRectMake(point.x, point.y, [UIScreen mainScreen].bounds.size.width, SENSOR_DISPLAY_PANEL_HEIGHT)];
+    self = [super initWithFrame:CGRectMake(point.x, point.y, [UIScreen mainScreen].bounds.size.width / 2, SENSOR_DISPLAY_PANEL_HEIGHT)];
     if (self) {
         // Initialization code
         [self initUI];
@@ -36,14 +36,14 @@
 }
 
 - (void)initUI {
-    self.backgroundColor = [UIColor appDarkGray];
+    self.backgroundColor = [UIColor clearColor];
     
-    tempureSensor = [[SensorDisplayView alloc] initWithPoint:CGPointMake(5, 10) sensorType:SensorTypeTempure];
-    humiditySensor = [[SensorDisplayView alloc] initWithPoint:CGPointMake(165, 10) sensorType:SensorTypeHumidity];
-    pm25Sensor = [[SensorDisplayView alloc] initWithPoint:CGPointMake(5, 47) sensorType:SensorTypePM25];
-    vocSensor = [[SensorDisplayView alloc] initWithPoint:CGPointMake(165, 47) sensorType:SensorTypeVOC];
-    
-    [self addSubview:tempureSensor];
+    temperatureSensor = [[SensorDisplayView alloc] initWithPoint:CGPointMake(5, 10) sensorType:SensorTypeTempure];
+    humiditySensor = [[SensorDisplayView alloc] initWithPoint:CGPointMake(5, temperatureSensor.frame.origin.y + SENSOR_DISPLAY_VIEW_HEIGHT + 10) sensorType:SensorTypeHumidity];
+    pm25Sensor = [[SensorDisplayView alloc] initWithPoint:CGPointMake(5, humiditySensor.frame.origin.y + SENSOR_DISPLAY_VIEW_HEIGHT + 10) sensorType:SensorTypePM25];
+    vocSensor = [[SensorDisplayView alloc] initWithPoint:CGPointMake(5, pm25Sensor.frame.origin.y + SENSOR_DISPLAY_VIEW_HEIGHT + 10) sensorType:SensorTypeVOC];
+
+    [self addSubview:temperatureSensor];
     [self addSubview:humiditySensor];
     [self addSubview:pm25Sensor];
     [self addSubview:vocSensor];   
@@ -51,8 +51,8 @@
 
 - (void)setNoDataForSensorType:(SensorType)sensorType {
     if(SensorTypeTempure == sensorType) {
-        [tempureSensor setDisplayValue:NO_VALUE];
-        tempureSensor.sensorDisplayViewState = SensorDisplayViewStateNormal;
+        [temperatureSensor setDisplayValue:NO_VALUE];
+        temperatureSensor.sensorDisplayViewState = SensorDisplayViewStateNormal;
     } else if(SensorTypeHumidity == sensorType) {
         [humiditySensor setDisplayValue:NO_VALUE];
         humiditySensor.sensorDisplayViewState = SensorDisplayViewStateNormal;
@@ -67,10 +67,10 @@
 
 - (void)setValue:(float)value forSensorType:(SensorType)sensorType {
     if(SensorTypeTempure == sensorType) {
-        [tempureSensor setDisplayValue:[NSString stringWithFormat:@"%.1f(%@)", value, NSLocalizedString(@"tempure_display", @"")]];
-        tempureSensor.sensorDisplayViewState = SensorDisplayViewStateNormal;
+        [temperatureSensor setDisplayValue:[NSString stringWithFormat:@"%.1f(%@)", value, NSLocalizedString(@"tempure_display", @"")]];
+        temperatureSensor.sensorDisplayViewState = SensorDisplayViewStateNormal;
     } else if(SensorTypeHumidity == sensorType) {
-        NSString *desc = [XXStringUtils emptyString];
+        NSString *desc = nil;
         if(value <= 20) {
             desc = NSLocalizedString(@"humidity_low", @"");
         } else if(value > 65) {

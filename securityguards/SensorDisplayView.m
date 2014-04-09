@@ -41,14 +41,14 @@
 }
 
 - (void)initUI {
-    imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 54 / 2, 54 / 2)];
+    imageView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 0, 54 / 2, 54 / 2)];
     
-    lblValue = [[UILabel alloc] initWithFrame:CGRectMake(31, 0, 65, 29)];
+    lblValue = [[UILabel alloc] initWithFrame:CGRectMake(32, 0, 65, 27)];
     lblValue.textAlignment = NSTextAlignmentCenter;
     lblValue.font = [UIFont systemFontOfSize:15.f];
     lblValue.backgroundColor = [UIColor clearColor];
     
-    imgDescBackground = [[UIImageView alloc] initWithFrame:CGRectMake(100, 4.f, 100 / 2, 40 / 2)];
+    imgDescBackground = [[UIImageView alloc] initWithFrame:CGRectMake(97, 4.f, 100 / 2, 40 / 2)];
     lblDescription = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, 56, 20)];
     lblDescription.textColor = [UIColor whiteColor];
     lblDescription.font = [UIFont systemFontOfSize:12.f];

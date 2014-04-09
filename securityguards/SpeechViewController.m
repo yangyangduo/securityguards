@@ -368,23 +368,24 @@ typedef NS_ENUM(NSInteger, RecognizerState) {
 }
 
 - (void)popupViewController {
-    if(portalViewIsOpenning) return;
-    if(self.parentViewController != nil) {
-        portalViewIsOpenning = YES;
-        RootViewController *rootViewController = [Shared shared].app.rootViewController;
-        UIViewController *toViewController = rootViewController.portalViewController;
-        [self willMoveToParentViewController:nil];
-        [rootViewController addChildViewController:toViewController];
-        [rootViewController transitionFromViewController:self toViewController:toViewController duration:0.8f options:UIViewAnimationOptionTransitionCrossDissolve
-            animations:^{
-            }
-            completion:^(BOOL finished){
-                [toViewController didMoveToParentViewController:rootViewController];
-                [self removeFromParentViewController];
-                [rootViewController setDisplayViewController:toViewController];
-                portalViewIsOpenning = NO;
-            }];
-    }
+    [self dismissViewControllerAnimated:YES completion:^{}];
+//    if(portalViewIsOpenning) return;
+//    if(self.parentViewController != nil) {
+//        portalViewIsOpenning = YES;
+//        RootViewController *rootViewController = [Shared shared].app.rootViewController;
+//        UIViewController *toViewController = rootViewController.portalViewController;
+//        [self willMoveToParentViewController:nil];
+//        [rootViewController addChildViewController:toViewController];
+//        [rootViewController transitionFromViewController:self toViewController:toViewController duration:0.8f options:UIViewAnimationOptionTransitionCrossDissolve
+//            animations:^{
+//            }
+//            completion:^(BOOL finished){
+//                [toViewController didMoveToParentViewController:rootViewController];
+//                [self removeFromParentViewController];
+//                [rootViewController setDisplayViewController:toViewController];
+//                portalViewIsOpenning = NO;
+//            }];
+//    }
 }
 
 @end

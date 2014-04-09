@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "SensorDisplayView.h"
 
-#define SENSOR_DISPLAY_PANEL_HEIGHT 84
+// 4 is count of sensor display view
+#define SENSOR_DISPLAY_PANEL_HEIGHT SENSOR_DISPLAY_VIEW_HEIGHT * 4 + 10 * 4 + 10
 
 @interface SensorsDisplayPanel : UIView
 

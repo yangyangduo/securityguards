@@ -168,14 +168,6 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-
-    UIViewController *controller = self.viewController;
-    if(controller != nil) {
-        NSLog(@"%@", [controller description]);
-    } else {
-        NSLog(@"super view controller is empty");
-    }
-
     if(self.unit == nil || self.delegate == nil) {
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
         return;
@@ -280,7 +272,8 @@ return;
             for(int j=0; j<zone.devices.count; j++) {
                 Device *device = [zone.devices objectAtIndex:j];
                 if(device.isCamera) {
-                    [displayedDevices addObject:device];
+                    // if device is camera, need displayed in first row
+                    [displayedDevices insertObject:device atIndex:0];
                 }
             }
         }
