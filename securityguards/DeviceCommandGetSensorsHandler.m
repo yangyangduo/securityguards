@@ -25,6 +25,7 @@
     Unit *unit = [[UnitManager defaultManager] findUnitByIdentifier:cmd.masterDeviceCode];
     if(unit != nil) {
         unit.sensors = cmd.sensors;
+        [[UnitManager defaultManager] syncUnitsToDisk];
         [[XXEventSubscriptionPublisher defaultPublisher] publishWithEvent:[[SensorStateChangedEvent alloc] initWithUnitIdentifier:cmd.masterDeviceCode]];
     }
 }

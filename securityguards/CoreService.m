@@ -685,7 +685,7 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
     // 判断是否有必要发送 Get Units Command,
     // 如果时间间隔不是很长就没必要发送
     NSDate *lastExecuteDate = [GlobalSettings defaultSettings].getUnitsCommandLastExecuteDate;
-    if(lastExecuteDate != nil) {
+    if(lastExecuteDate != nil && [UnitManager defaultManager].units.count > 0) {
         NSTimeInterval lastExecuteMinutesSinceNow = abs(lastExecuteDate.timeIntervalSinceNow) / 60;
 #ifdef DEBUG
         NSLog(@"[Core Service] Last execute get units command before %f minutes ago.", lastExecuteMinutesSinceNow);
