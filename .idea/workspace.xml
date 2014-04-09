@@ -2,16 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e93c453b-47bc-4359-86d1-be37d44eae4c" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/securityguards/bg_health_index@2x.png" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/en.lproj/Localizable.strings" afterPath="$PROJECT_DIR$/securityguards/en.lproj/Localizable.strings" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/zh-Hans.lproj/Localizable.strings" afterPath="$PROJECT_DIR$/securityguards/zh-Hans.lproj/Localizable.strings" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/PortalViewController.m" afterPath="$PROJECT_DIR$/securityguards/PortalViewController.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/SensorDisplayView.m" afterPath="$PROJECT_DIR$/securityguards/SensorDisplayView.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/SensorsDisplayPanel.h" afterPath="$PROJECT_DIR$/securityguards/SensorsDisplayPanel.h" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/SensorsDisplayPanel.m" afterPath="$PROJECT_DIR$/securityguards/SensorsDisplayPanel.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/SpeechViewController.m" afterPath="$PROJECT_DIR$/securityguards/SpeechViewController.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/UnitControlPanel.m" afterPath="$PROJECT_DIR$/securityguards/UnitControlPanel.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/securityguards.xcodeproj/project.pbxproj" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="securityguards.iws" />
@@ -35,10 +26,29 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="SceneButton.h" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/securityguards/SceneButton.h">
+      <file leaf-file-name="PortalViewController.m" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/securityguards/PortalViewController.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="16" selection-start="144" selection-end="144" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="255">
+            <state line="31" column="0" selection-start="805" selection-end="805" vertical-scroll-proportion="0.3488372" vertical-offset="285" max-vertical-offset="9105">
+              <folding>
+                <element signature="e#144#176#0" expanded="true" />
+                <element signature="e#308#339#0" expanded="true" />
+                <element signature="e#484#524#0" expanded="true" />
+                <element signature="e#6773#6813#0" expanded="true" />
+                <element signature="e#11732#11771#0" expanded="true" />
+                <element signature="e#12413#12453#0" expanded="true" />
+                <element signature="e#18101#18144#0" expanded="true" />
+                <element signature="e#18257#18294#0" expanded="true" />
+                <element signature="e#21876#21911#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UnitControlPanel.m" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/securityguards/UnitControlPanel.m">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="2" column="18" selection-start="44" selection-end="44" vertical-scroll-proportion="0.0" vertical-offset="30" max-vertical-offset="4350">
               <folding />
             </state>
           </provider>
@@ -48,33 +58,16 @@
         <entry file="file://$PROJECT_DIR$/securityguards/SceneVoiceView.m">
           <provider selected="true" editor-type-id="text-editor">
             <state line="49" column="93" selection-start="2194" selection-end="2194" vertical-scroll-proportion="0.0" vertical-offset="294" max-vertical-offset="1290">
-              <folding>
-                <element signature="e#93#119#0" expanded="true" />
-                <element signature="e#846#890#0" expanded="true" />
-                <element signature="e#1281#1319#0" expanded="true" />
-                <element signature="e#1776#1815#0" expanded="true" />
-                <element signature="e#2268#2304#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UnitControlPanel.m" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/securityguards/UnitControlPanel.m">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="277" column="13" selection-start="10273" selection-end="10273" vertical-scroll-proportion="7.7616277" vertical-offset="0" max-vertical-offset="4200">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PortalViewController.m" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/securityguards/PortalViewController.m">
+      <file leaf-file-name="SceneButton.h" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/securityguards/SceneButton.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="228" column="54" selection-start="9204" selection-end="9204" vertical-scroll-proportion="-8.24" vertical-offset="2959" max-vertical-offset="8865">
-              <folding>
-                <element signature="e#6800#6840#0" expanded="true" />
-              </folding>
+            <state line="7" column="16" selection-start="144" selection-end="144" vertical-scroll-proportion="0.0" vertical-offset="105" max-vertical-offset="255">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -147,14 +140,13 @@
         <option value="$PROJECT_DIR$/securityguards/zh-Hans.lproj/Localizable.strings" />
         <option value="$PROJECT_DIR$/securityguards/en.lproj/Localizable.strings" />
         <option value="$PROJECT_DIR$/securityguards/SpeechViewController.m" />
-        <option value="$PROJECT_DIR$/securityguards/PortalViewController.m" />
         <option value="$PROJECT_DIR$/securityguards/SceneVoiceView.m" />
         <option value="$PROJECT_DIR$/securityguards/UnitControlPanel.m" />
+        <option value="$PROJECT_DIR$/securityguards/PortalViewController.m" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="4" />
     <option name="y" value="22" />
     <option name="width" value="1440" />
     <option name="height" value="806" />
@@ -236,228 +228,6 @@
               <option name="myItemId" />
               <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="securityguards" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="securityguards" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="securityguards" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="securityguards" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Supporting Files" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="securityguards" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="securityguards" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Supporting Files" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Localizable.strings" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="securityguards" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="securityguards" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="images" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="securityguards" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="securityguards" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="images" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="portal" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="securityguards" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="securityguards" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="images" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="portal" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="display" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="securityguards" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="securityguards" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="core" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="securityguards" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="securityguards" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="core" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="manager" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="securityguards" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="securityguards" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="components" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="securityguards" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="securityguards" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="components" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="scene_voice_view" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Pods" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Pods" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Frameworks" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="iOS" />
-              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
-            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
@@ -467,13 +237,13 @@
   <component name="PropertiesComponent">
     <property name="GoToFile.includeJavaFiles" value="false" />
     <property name="options.splitter.main.proportions" value="0.3" />
-    <property name="recentsLimit" value="5" />
     <property name="options.lastSelected" value="preferences.pluginManager" />
+    <property name="recentsLimit" value="5" />
     <property name="last_opened_file_path" value="$USER_HOME$/Documents/my_library/ios/reddy" />
     <property name="FullScreen" value="false" />
     <property name="OBJC.PRESERVED_TARGET_SELECTION" value="securityguards" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
   </component>
   <component name="RunManager" selected="Application.securityguards">
     <configuration default="true" type="AppleRunConfiguration" factoryName="Application" PROJECT_NAME="securityguards" TARGET_NAME="securityguards" CONFIG_NAME="Debug" PASS_PARENT_ENVS="FALSE" RUN_TARGET_PROJECT_NAME="securityguards" RUN_TARGET_NAME="securityguards" MAKE_ACTIVE="TRUE" WAIT_FOR="FALSE">
@@ -555,18 +325,18 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="4" y="22" width="1440" height="806" extended-state="0" />
-    <editor active="true" />
+    <frame x="0" y="22" width="1440" height="806" extended-state="0" />
+    <editor active="false" />
     <layout>
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32700136" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22013889" sideWeight="0.75576663" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22013889" sideWeight="0.75576663" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24423338" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24423338" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="100" y="122" width="1200" height="606" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -595,28 +365,12 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/securityguards/SensorsDisplayPanel.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="80" column="58" selection-start="3180" selection-end="3180" vertical-scroll-proportion="0.0" vertical-offset="936" max-vertical-offset="1950">
-          <folding>
-            <element signature="e#145#176#0" expanded="false" />
-            <element signature="e#2646#2688#1" expanded="false" />
-            <element signature="e#2898#2937#0" expanded="false" />
-            <element signature="e#2990#3030#0" expanded="false" />
-            <element signature="e#3068#3110#0" expanded="false" />
-            <element signature="e#4415#4454#0" expanded="false" />
-            <element signature="e#4491#4529#0" expanded="false" />
-            <element signature="e#4566#4615#0" expanded="false" />
-            <element signature="e#4652#4704#0" expanded="false" />
-            <element signature="e#4741#4791#0" expanded="false" />
-            <element signature="e#4828#4883#0" expanded="false" />
-          </folding>
-        </state>
+        <state line="80" column="58" selection-start="3180" selection-end="3180" vertical-scroll-proportion="0.0" vertical-offset="936" max-vertical-offset="1950" />
       </provider>
     </entry>
     <entry file="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIView.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="199" column="6" selection-start="9666" selection-end="9666" vertical-scroll-proportion="0.33333334" vertical-offset="2723" max-vertical-offset="8445">
-          <folding />
-        </state>
+        <state line="199" column="6" selection-start="9666" selection-end="9666" vertical-scroll-proportion="0.33333334" vertical-offset="2723" max-vertical-offset="8445" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/securityguards/btn_voice_new_highlighted@2x.png">
@@ -631,9 +385,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/securityguards/SceneVoiceView.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="20" selection-start="185" selection-end="185" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="285">
-          <folding />
-        </state>
+        <state line="9" column="20" selection-start="185" selection-end="185" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="285" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/securityguards/AQIPanelView.h">
@@ -685,37 +437,37 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/securityguards/SceneButton.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="39" selection-start="1332" selection-end="1332" vertical-scroll-proportion="0.0" vertical-offset="161" max-vertical-offset="690">
-          <folding />
-        </state>
+        <state line="37" column="39" selection-start="1332" selection-end="1332" vertical-scroll-proportion="0.0" vertical-offset="161" max-vertical-offset="690" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/securityguards/SceneVoiceView.m">
       <provider selected="true" editor-type-id="text-editor">
         <state line="49" column="93" selection-start="2194" selection-end="2194" vertical-scroll-proportion="0.0" vertical-offset="294" max-vertical-offset="1290">
-          <folding>
-            <element signature="e#93#119#0" expanded="true" />
-            <element signature="e#846#890#0" expanded="true" />
-            <element signature="e#1281#1319#0" expanded="true" />
-            <element signature="e#1776#1815#0" expanded="true" />
-            <element signature="e#2268#2304#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/securityguards/PortalViewController.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="228" column="54" selection-start="9204" selection-end="9204" vertical-scroll-proportion="-8.24" vertical-offset="2959" max-vertical-offset="8865">
-          <folding>
-            <element signature="e#6800#6840#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/securityguards/UnitControlPanel.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="277" column="13" selection-start="10273" selection-end="10273" vertical-scroll-proportion="7.7616277" vertical-offset="0" max-vertical-offset="4200">
+        <state line="2" column="18" selection-start="44" selection-end="44" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4200">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/securityguards/PortalViewController.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="31" column="0" selection-start="805" selection-end="805" vertical-scroll-proportion="0.3488372" vertical-offset="285" max-vertical-offset="9105">
+          <folding>
+            <element signature="e#144#176#0" expanded="true" />
+            <element signature="e#308#339#0" expanded="true" />
+            <element signature="e#484#524#0" expanded="true" />
+            <element signature="e#6773#6813#0" expanded="true" />
+            <element signature="e#11732#11771#0" expanded="true" />
+            <element signature="e#12413#12453#0" expanded="true" />
+            <element signature="e#18101#18144#0" expanded="true" />
+            <element signature="e#18257#18294#0" expanded="true" />
+            <element signature="e#21876#21911#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

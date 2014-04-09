@@ -29,7 +29,6 @@
 #import "SensorStateChangedEvent.h"
 #import "CurrentLocationUpdatedEvent.h"
 #import "ScoreChangedEvent.h"
-#import "ScenesTemplate.h"
 
 /* baidu share kit */
 #import <Frontia/Frontia.h>
@@ -296,7 +295,7 @@
     } else {
         UINavigationController *loginNavController = [[UINavigationController alloc] initWithRootViewController:[[LoginViewController alloc] init]];
         loginNavController.navigationBarHidden = YES;
-        [self presentViewController:loginNavController animated:NO completion:^{}];
+        [self presentViewController:loginNavController animated:NO completion:^{ }];
     }
     
     controlPanelView.unit = [UnitManager defaultManager].currentUnit;

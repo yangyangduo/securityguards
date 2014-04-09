@@ -7,16 +7,16 @@
 #import "Unit.h"
 #import "DeviceUtils.h"
 
-static const NSString *kSceneReturnHome         = @"SceneReturnHome";
-static const NSString *kSceneOut                = @"SceneOut";
-static const NSString *kSceneGetUp              = @"SceneGetUp";
-static const NSString *kSceneSleep              = @"SceneSleep";
+static NSString * const kSceneReturnHome         = @"SceneReturnHome";
+static NSString * const kSceneOut                = @"SceneOut";
+static NSString * const kSceneGetUp              = @"SceneGetUp";
+static NSString * const kSceneSleep              = @"SceneSleep";
 
-static const NSString *kTemplateName            = @"TemplateName";
-static const NSString *kAirPurifierPower        = @"AirPower";
-static const NSString *kAirPurifierLevel        = @"AirLevel";
-static const NSString *kAirPurifierModeControl  = @"AirModeControl";
-static const NSString *kAirPurifierSecurity     = @"AirSecurity";
+static NSString * const kTemplateName            = @"TemplateName";
+static NSString * const kAirPurifierPower        = @"AirPower";
+static NSString * const kAirPurifierLevel        = @"AirLevel";
+static NSString * const kAirPurifierModeControl  = @"AirModeControl";
+static NSString * const kAirPurifierSecurity     = @"AirSecurity";
 
 
 @interface SceneEntry : NSObject

@@ -36,7 +36,19 @@
 
 - (void)setHighlighted:(BOOL)highlighted {
     [super setHighlighted:highlighted];
-//    self.backgroundColor = (highlighted && iconIsOnLeft) ?  [UIColor appWhite] : [UIColor whiteColor];
+    if(self.tag == 1 || self.tag == 4) {
+        if(highlighted) {
+            self.backgroundColor = [UIColor appGray];
+        } else {
+            self.backgroundColor = [UIColor appWhite];
+        }
+    } else {
+        if(highlighted) {
+            self.backgroundColor = [UIColor appWhite];
+        } else {
+            self.backgroundColor = [UIColor appGray];
+        }
+    }
 }
 
 @end
