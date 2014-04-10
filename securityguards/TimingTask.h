@@ -33,6 +33,7 @@ typedef enum {
 @property (nonatomic, strong) NSString *identifier;
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *unitIdentifier;
+@property (nonatomic) BOOL isSystemTask;
 @property (nonatomic) BOOL enable;
 @property (nonatomic) BOOL isOwner;
 @property (nonatomic) int scheduleTimeHour;

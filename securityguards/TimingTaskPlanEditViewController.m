@@ -307,6 +307,12 @@ typedef enum {
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if(self.timingTask.isSystemTask) {
+        if(!(indexPath.section == 0 && indexPath.row == 1)) {
+            [tblTimerTaskPlans deselectRowAtIndexPath:indexPath animated:YES];
+            return;
+        }
+    }
     if(indexPath.section == 0) {
         if(indexPath.row == 0) {
             TextViewController *textViewController = [[TextViewController alloc] init];

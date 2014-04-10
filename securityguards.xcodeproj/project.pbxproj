@@ -73,11 +73,6 @@
 		6F2AE0E51870653300BEDB29 /* UIImage+Rotate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F2AE0E41870653300BEDB29 /* UIImage+Rotate.m */; };
 		6F2AF5FE188E0FF5005C1EAF /* launch960@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F2AF5FC188E0FF5005C1EAF /* launch960@2x.png */; };
 		6F2AF5FF188E0FF5005C1EAF /* launch1136@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F2AF5FD188E0FF5005C1EAF /* launch1136@2x.png */; };
-		6F2AF601188E114F005C1EAF /* ios7icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F2AF600188E114F005C1EAF /* ios7icon@2x.png */; };
-		6F2AF604188E1177005C1EAF /* ios5_6icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F2AF602188E1177005C1EAF /* ios5_6icon.png */; };
-		6F2AF605188E1177005C1EAF /* ios5_6icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F2AF603188E1177005C1EAF /* ios5_6icon@2x.png */; };
-		6F2AF607188E11B6005C1EAF /* ios7spotlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F2AF606188E11B6005C1EAF /* ios7spotlight@2x.png */; };
-		6F2AF609188E11FB005C1EAF /* ios5_7settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F2AF608188E11FB005C1EAF /* ios5_7settings.png */; };
 		6F2CFC7818BD952200BAE962 /* trash@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F2CFC7718BD952200BAE962 /* trash@2x.png */; };
 		6F33C48418AC60150070CB60 /* RadioRectButtonGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F33C48318AC60150070CB60 /* RadioRectButtonGroup.m */; };
 		6F33C48718ACA01B0070CB60 /* NumberPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F33C48618ACA01B0070CB60 /* NumberPicker.m */; };
@@ -295,6 +290,12 @@
 		6FEC0FF7186C73B400CB0D70 /* icon_copyright@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FEC0FF6186C73B400CB0D70 /* icon_copyright@2x.png */; };
 		6FEC757918ED2EE300416A8E /* XXObjectiveEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FEC757818ED2EE300416A8E /* XXObjectiveEngine.m */; };
 		6FED0BB118A8D0AD00A7173A /* CameraInfoModifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FED0BB018A8D0AD00A7173A /* CameraInfoModifyViewController.m */; };
+		6FF4CA1B18F647D7004BD32D /* app_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FF4CA1518F647D7004BD32D /* app_icon.png */; };
+		6FF4CA1C18F647D7004BD32D /* app_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FF4CA1618F647D7004BD32D /* app_icon@2x.png */; };
+		6FF4CA1D18F647D7004BD32D /* app_icon7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FF4CA1718F647D7004BD32D /* app_icon7@2x.png */; };
+		6FF4CA1E18F647D7004BD32D /* spotlight_settings.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FF4CA1818F647D7004BD32D /* spotlight_settings.png */; };
+		6FF4CA1F18F647D7004BD32D /* spotlight_settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FF4CA1918F647D7004BD32D /* spotlight_settings@2x.png */; };
+		6FF4CA2018F647D7004BD32D /* spotlight7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FF4CA1A18F647D7004BD32D /* spotlight7@2x.png */; };
 		6FF98FE318EE58840033E42F /* Frontia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FF98FE218EE58840033E42F /* Frontia.framework */; };
 		6FFA0FE818BB243C004D6A24 /* line_dashed_white@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FFA0FE718BB243C004D6A24 /* line_dashed_white@2x.png */; };
 		6FFE29C018EA988000A1A899 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FFE29BF18EA988000A1A899 /* MessageUI.framework */; };
@@ -479,11 +480,6 @@
 		6F2AE0E41870653300BEDB29 /* UIImage+Rotate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Rotate.m"; sourceTree = "<group>"; };
 		6F2AF5FC188E0FF5005C1EAF /* launch960@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "launch960@2x.png"; sourceTree = "<group>"; };
 		6F2AF5FD188E0FF5005C1EAF /* launch1136@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "launch1136@2x.png"; sourceTree = "<group>"; };
-		6F2AF600188E114F005C1EAF /* ios7icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ios7icon@2x.png"; sourceTree = "<group>"; };
-		6F2AF602188E1177005C1EAF /* ios5_6icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ios5_6icon.png; sourceTree = "<group>"; };
-		6F2AF603188E1177005C1EAF /* ios5_6icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ios5_6icon@2x.png"; sourceTree = "<group>"; };
-		6F2AF606188E11B6005C1EAF /* ios7spotlight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ios7spotlight@2x.png"; sourceTree = "<group>"; };
-		6F2AF608188E11FB005C1EAF /* ios5_7settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ios5_7settings.png; sourceTree = "<group>"; };
 		6F2CFC7718BD952200BAE962 /* trash@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "trash@2x.png"; sourceTree = "<group>"; };
 		6F33C48218AC60150070CB60 /* RadioRectButtonGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadioRectButtonGroup.h; sourceTree = "<group>"; };
 		6F33C48318AC60150070CB60 /* RadioRectButtonGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RadioRectButtonGroup.m; sourceTree = "<group>"; };
@@ -845,6 +841,12 @@
 		6FEC757818ED2EE300416A8E /* XXObjectiveEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XXObjectiveEngine.m; sourceTree = "<group>"; };
 		6FED0BAF18A8D0AD00A7173A /* CameraInfoModifyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraInfoModifyViewController.h; sourceTree = "<group>"; };
 		6FED0BB018A8D0AD00A7173A /* CameraInfoModifyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraInfoModifyViewController.m; sourceTree = "<group>"; };
+		6FF4CA1518F647D7004BD32D /* app_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app_icon.png; sourceTree = "<group>"; };
+		6FF4CA1618F647D7004BD32D /* app_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app_icon@2x.png"; sourceTree = "<group>"; };
+		6FF4CA1718F647D7004BD32D /* app_icon7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "app_icon7@2x.png"; sourceTree = "<group>"; };
+		6FF4CA1818F647D7004BD32D /* spotlight_settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spotlight_settings.png; sourceTree = "<group>"; };
+		6FF4CA1918F647D7004BD32D /* spotlight_settings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "spotlight_settings@2x.png"; sourceTree = "<group>"; };
+		6FF4CA1A18F647D7004BD32D /* spotlight7@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "spotlight7@2x.png"; sourceTree = "<group>"; };
 		6FF98FE218EE58840033E42F /* Frontia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Frontia.framework; sourceTree = "<group>"; };
 		6FFA0FE718BB243C004D6A24 /* line_dashed_white@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "line_dashed_white@2x.png"; sourceTree = "<group>"; };
 		6FFE29BF18EA988000A1A899 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
@@ -1056,13 +1058,14 @@
 		6F2AF5FB188E0FD6005C1EAF /* app_images */ = {
 			isa = PBXGroup;
 			children = (
+				6FF4CA1518F647D7004BD32D /* app_icon.png */,
+				6FF4CA1618F647D7004BD32D /* app_icon@2x.png */,
+				6FF4CA1718F647D7004BD32D /* app_icon7@2x.png */,
+				6FF4CA1818F647D7004BD32D /* spotlight_settings.png */,
+				6FF4CA1918F647D7004BD32D /* spotlight_settings@2x.png */,
+				6FF4CA1A18F647D7004BD32D /* spotlight7@2x.png */,
 				6F2AF5FC188E0FF5005C1EAF /* launch960@2x.png */,
 				6F2AF5FD188E0FF5005C1EAF /* launch1136@2x.png */,
-				6F2AF600188E114F005C1EAF /* ios7icon@2x.png */,
-				6F2AF602188E1177005C1EAF /* ios5_6icon.png */,
-				6F2AF603188E1177005C1EAF /* ios5_6icon@2x.png */,
-				6F2AF606188E11B6005C1EAF /* ios7spotlight@2x.png */,
-				6F2AF608188E11FB005C1EAF /* ios5_7settings.png */,
 			);
 			name = app_images;
 			sourceTree = "<group>";
@@ -2355,10 +2358,10 @@
 				6FEC0FF7186C73B400CB0D70 /* icon_copyright@2x.png in Resources */,
 				6F0CD5D7186DB93000B5A3EA /* icon_pm25_blue@2x.png in Resources */,
 				F209B484188E44F10044C8C6 /* button_bind@2x.png in Resources */,
+				6FF4CA1B18F647D7004BD32D /* app_icon.png in Resources */,
 				6F45ADF71876838300DC18CA /* btn_screenshots_selected@2x.png in Resources */,
 				6F7CDBBD1872B2130036F912 /* icon_add_unit_red@2x.png in Resources */,
 				6F0CD5DA186DB93000B5A3EA /* icon_voc_blue@2x.png in Resources */,
-				6F2AF607188E11B6005C1EAF /* ios7spotlight@2x.png in Resources */,
 				6F7CDB9E18725BCE0036F912 /* alert_failed@2x.png in Resources */,
 				F29DE701188665E900BCE93C /* button_setting@2x.png in Resources */,
 				F2F3E1C7187A86E1006A9447 /* icon_owner@2x.png in Resources */,
@@ -2370,6 +2373,7 @@
 				6F4413E918BC2C1400314EBD /* icon_local_ip@2x.png in Resources */,
 				6F0CD5D4186DB93000B5A3EA /* icon_pm10_blue@2x.png in Resources */,
 				6F732737186D5DB100A1276B /* icon_level@2x.png in Resources */,
+				6FF4CA1C18F647D7004BD32D /* app_icon@2x.png in Resources */,
 				6F41D2B81890E0860063E1BB /* icon_timer@2x.png in Resources */,
 				F279E0041883C2B100E0547E /* icon_gray_msg@2x.png in Resources */,
 				6FDCCC3A18ADFC4200BBD12D /* icon_close_orange@2x.png in Resources */,
@@ -2383,7 +2387,6 @@
 				F2F3E1A3187A3FD6006A9447 /* blackArrow.png in Resources */,
 				6F2AF5FE188E0FF5005C1EAF /* launch960@2x.png in Resources */,
 				6FFE29E518EAA84200A1A899 /* FrontiaSource.bundle in Resources */,
-				6F2AF605188E1177005C1EAF /* ios5_6icon@2x.png in Resources */,
 				6FEC0FF3186C739700CB0D70 /* icon_logout@2x.png in Resources */,
 				6F45ADEB18765F2D00DC18CA /* btn_camera_bottom@2x.png in Resources */,
 				F2F3E1BF187A842F006A9447 /* transparent@2x.png in Resources */,
@@ -2395,6 +2398,7 @@
 				F2125FA51889054E002A7F49 /* image_setting_step2@2x.png in Resources */,
 				F2F3E1A6187A3FD6006A9447 /* blueArrow@2x.png in Resources */,
 				6FE0484F1883968500C886E1 /* btn_nav@2x.png in Resources */,
+				6FF4CA1F18F647D7004BD32D /* spotlight_settings@2x.png in Resources */,
 				6F7247E718717344003B325F /* bg_alert_green@2x.png in Resources */,
 				6F0CD5D6186DB93000B5A3EA /* icon_pm10_yellow@2x.png in Resources */,
 				F2F93692186D10FA002F7904 /* bg_login@2x.png in Resources */,
@@ -2436,7 +2440,6 @@
 				6FFA0FE818BB243C004D6A24 /* line_dashed_white@2x.png in Resources */,
 				F2F3E1C9187A86E1006A9447 /* icon_owner_offline@2x.png in Resources */,
 				6F732738186D5DB100A1276B /* icon_power@2x.png in Resources */,
-				6F2AF609188E11FB005C1EAF /* ios5_7settings.png in Resources */,
 				6F732733186D562900A1276B /* line_seperator_heavy_blue@2x.png in Resources */,
 				6F2CFC7818BD952200BAE962 /* trash@2x.png in Resources */,
 				6F0CD5CE186DB93000B5A3EA /* icon_firegas_blue@2x.png in Resources */,
@@ -2454,7 +2457,6 @@
 				6F732719186D20C500A1276B /* icon_temp_yellow@2x.png in Resources */,
 				F29DE6FD188665E900BCE93C /* image_setting_step1@2x.png in Resources */,
 				6FA69118187FD54F005D1415 /* test@2x.png in Resources */,
-				6F2AF601188E114F005C1EAF /* ios7icon@2x.png in Resources */,
 				6F45ADEC18765F2D00DC18CA /* btn_camera_left_selected@2x.png in Resources */,
 				6F7247DB1871443B003B325F /* bubble_theirs@2x.png in Resources */,
 				F2F3E1D0187A933F006A9447 /* icon_dial_phone@2x.png in Resources */,
@@ -2465,6 +2467,7 @@
 				6F732720186D212700A1276B /* bg_label_red@2x.png in Resources */,
 				6F732721186D212700A1276B /* bg_label_yellow@2x.png in Resources */,
 				F2F93698186D113E002F7904 /* btn_blue_highlighted@2x.png in Resources */,
+				6FF4CA2018F647D7004BD32D /* spotlight7@2x.png in Resources */,
 				6F860F2C187552C200792DBB /* btn_back@2x.png in Resources */,
 				6F45ADEF18765F2D00DC18CA /* btn_camera_right@2x.png in Resources */,
 				6F2AF5FF188E0FF5005C1EAF /* launch1136@2x.png in Resources */,
@@ -2482,10 +2485,10 @@
 				6F732717186D20C500A1276B /* icon_temp_blue@2x.png in Resources */,
 				F2F3E1A5187A3FD6006A9447 /* blueArrow.png in Resources */,
 				6F45ADF81876838300DC18CA /* btn_screenshots@2x.png in Resources */,
+				6FF4CA1E18F647D7004BD32D /* spotlight_settings.png in Resources */,
 				6F732731186D4F4000A1276B /* btn_voice_blue@2x.png in Resources */,
 				6F9C8AD41887C62300289AEA /* logo_left_drawer@2x.png in Resources */,
 				F2B6A6381874F8AF0020809D /* icon_validation@2x.png in Resources */,
-				6F2AF604188E1177005C1EAF /* ios5_6icon.png in Resources */,
 				6F5EBF1F18AA020600AF89E3 /* icon_shopping@2x.png in Resources */,
 				F2B6A6391874F8AF0020809D /* icon_warning@2x.png in Resources */,
 				F279E0091883C2B100E0547E /* icon_white_dial_phone@2x.png in Resources */,
@@ -2501,6 +2504,7 @@
 				6DD56D4DA79688E49FCB72E3 /* btn_voice_short_gray@2x.png in Resources */,
 				6DD56594EDEE0370950428F4 /* btn_voice_short_blue@2x.png in Resources */,
 				6DD56F89563C69A0A2BE4585 /* btn_scene_blue@2x.png in Resources */,
+				6FF4CA1D18F647D7004BD32D /* app_icon7@2x.png in Resources */,
 				6DD566BBCEEF49C7C65D93AD /* btn_scene_gray@2x.png in Resources */,
 				6DD56EA5751AC53C8C72FFB0 /* img_portal_header@2x.png in Resources */,
 				6DD560D8D486E7280A3735B7 /* line_portal_blue_seperator@2x.png in Resources */,

@@ -58,8 +58,8 @@
             self.restAddress = [XXStringUtils emptyString];
             self.deviceToken = [XXStringUtils emptyString];
             self.getUnitsCommandLastExecuteDate = nil;
-            self.isVoice = YES;
-            self.isShake = NO;
+            self.isVoice = NO;
+            self.isShake = YES;
         } else {
             //already have a setting file
             //need to fill object property
@@ -67,8 +67,8 @@
             self.secretKey = [settings noNilStringForKey:SECRET_KEY_KEY];
             self.tcpAddress = [settings noNilStringForKey:TCP_ADDRESS_KEY];
             self.deviceCode = [settings noNilStringForKey:DEVICE_CODE_KEY];
-            self.isShake = [settings boolForKey:IS_SHAKE_KEY];
-            self.isVoice = [settings boolForKey:IS_VOICE_KEY];
+            self.isShake = [settings booleanForKey:IS_SHAKE_KEY];
+            self.isVoice = [settings booleanForKey:IS_VOICE_KEY];
             self.deviceToken = [settings noNilStringForKey:DEVICE_TOKEN_KEY];
             self.restAddress = [settings noNilStringForKey:REST_ADDRESS_KEY];
             self.getUnitsCommandLastExecuteDate = [settings dateWithTimeIntervalSince1970ForKey:GET_UNITS_COMMAND_LAST_EXECUTE_DATE];
@@ -89,8 +89,8 @@
     if(self.getUnitsCommandLastExecuteDate != nil) {
         [dictionary setDateUsingTimeIntervalSince1970:self.getUnitsCommandLastExecuteDate forKey:GET_UNITS_COMMAND_LAST_EXECUTE_DATE];
     }
-    [dictionary setBool:self.isShake forKey:IS_SHAKE_KEY];
-    [dictionary setBool:self.isVoice forKey:IS_VOICE_KEY];
+    [dictionary setBoolean:self.isShake forKey:IS_SHAKE_KEY];
+    [dictionary setBoolean:self.isVoice forKey:IS_VOICE_KEY];
     return dictionary;
 }
 
@@ -106,6 +106,7 @@
         self.account = [XXStringUtils emptyString];
         self.deviceCode = [XXStringUtils emptyString];
         self.deviceToken = [XXStringUtils emptyString];
+        self.getUnitsCommandLastExecuteDate = nil;
         [self saveSettingsInternal];
     }
 }

@@ -35,8 +35,8 @@
         self.type = [json stringForKey:@"type"];
         self.createTime = [json dateWithMillisecondsForKey:@"createTime"];
         self.identifier = [json stringForKey:@"id"];
-        self.hasRead = [json boolForKey:@"hasRead"];
-        self.hasProcess = [json boolForKey:@"hasProcess"];
+        self.hasRead = [json booleanForKey:@"hasRead"];
+        self.hasProcess = [json booleanForKey:@"hasProcess"];
         NSDictionary *_data_ = [json dictionaryForKey:@"data"];
         if(_data_ != nil) {
             self.data = [[NotificationData alloc] initWithJson:_data_];
@@ -51,8 +51,8 @@
     [json setMayBlankString:self.mac forKey:@"mac"];
     [json setMayBlankString:self.type forKey:@"type"];
     [json setMayBlankString:self.identifier forKey:@"id"];
-    [json setBool:self.hasProcess forKey:@"hasProcess"];
-    [json setBool:self.hasRead forKey:@"hasRead"];
+    [json setBoolean:self.hasProcess forKey:@"hasProcess"];
+    [json setBoolean:self.hasRead forKey:@"hasRead"];
     [json setDateWithMilliseconds:self.createTime forKey:@"createTime"];
     
     if(self.data != nil) {

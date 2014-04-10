@@ -2,7 +2,33 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e93c453b-47bc-4359-86d1-be37d44eae4c" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/securityguards/app_icon.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/securityguards/Images.xcassets/AppIcon.appiconset/app_icon.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/securityguards/app_icon7@2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/securityguards/Images.xcassets/AppIcon.appiconset/app_icon7@2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/securityguards/app_icon@2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/securityguards/Images.xcassets/AppIcon.appiconset/app_icon@2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/securityguards/spotlight7@2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/securityguards/Images.xcassets/AppIcon.appiconset/spotlight7@2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/securityguards/spotlight_settings.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/securityguards/Images.xcassets/AppIcon.appiconset/spotlight_settings.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/securityguards/spotlight_settings@2x.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/securityguards/Images.xcassets/AppIcon.appiconset/spotlight_settings@2x.png" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/securityguards/Images.xcassets/AppIcon.appiconset/ios5_6icon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/securityguards/Images.xcassets/AppIcon.appiconset/ios5_6icon@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/securityguards/Images.xcassets/AppIcon.appiconset/ios5_7settings.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/securityguards/Images.xcassets/AppIcon.appiconset/ios7icon@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/securityguards/Images.xcassets/AppIcon.appiconset/ios7spotlight@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/securityguards/ios5_6icon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/securityguards/ios5_6icon@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/securityguards/ios5_7settings.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/securityguards/ios7icon@2x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/securityguards/ios7spotlight@2x.png" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/Images.xcassets/AppIcon.appiconset/Contents.json" afterPath="$PROJECT_DIR$/securityguards/Images.xcassets/AppIcon.appiconset/Contents.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/GlobalSettings.m" afterPath="$PROJECT_DIR$/securityguards/GlobalSettings.m" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/PortalViewController.m" afterPath="$PROJECT_DIR$/securityguards/PortalViewController.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/TimingTasksPlanViewController.m" afterPath="$PROJECT_DIR$/securityguards/TimingTasksPlanViewController.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/securityguards.xcodeproj/project.pbxproj" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="securityguards.iws" />
@@ -20,53 +46,16 @@
   <component name="DaemonCodeAnalyzer">
     <disable_hints />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="iphoneos_c5dca52e2dee0b54c96820d423012f382646694b" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="iphonesimulator_iPhone_Retina__3_5_inch__7.1" />
   <component name="FavoritesManager">
     <favorites_list name="securityguards" />
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="PortalViewController.m" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/securityguards/PortalViewController.m">
+      <file leaf-file-name="TimingTasksPlanViewController.m" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/securityguards/TimingTasksPlanViewController.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="31" column="0" selection-start="805" selection-end="805" vertical-scroll-proportion="0.3488372" vertical-offset="285" max-vertical-offset="9105">
-              <folding>
-                <element signature="e#144#176#0" expanded="true" />
-                <element signature="e#308#339#0" expanded="true" />
-                <element signature="e#484#524#0" expanded="true" />
-                <element signature="e#6773#6813#0" expanded="true" />
-                <element signature="e#11732#11771#0" expanded="true" />
-                <element signature="e#12413#12453#0" expanded="true" />
-                <element signature="e#18101#18144#0" expanded="true" />
-                <element signature="e#18257#18294#0" expanded="true" />
-                <element signature="e#21876#21911#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UnitControlPanel.m" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/securityguards/UnitControlPanel.m">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="18" selection-start="44" selection-end="44" vertical-scroll-proportion="0.0" vertical-offset="30" max-vertical-offset="4350">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SceneVoiceView.m" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/securityguards/SceneVoiceView.m">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="49" column="93" selection-start="2194" selection-end="2194" vertical-scroll-proportion="0.0" vertical-offset="294" max-vertical-offset="1290">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SceneButton.h" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/securityguards/SceneButton.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="16" selection-start="144" selection-end="144" vertical-scroll-proportion="0.0" vertical-offset="105" max-vertical-offset="255">
+            <state line="150" column="42" selection-start="5790" selection-end="5791" vertical-scroll-proportion="0.8802817" vertical-offset="1830" max-vertical-offset="6105">
               <folding />
             </state>
           </provider>
@@ -127,9 +116,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/../Reddydog/Reddydog/XXPopupView.h" />
-        <option value="$PROJECT_DIR$/../Reddydog/Reddydog/XXPopupView.m" />
-        <option value="$PROJECT_DIR$/../Reddydog/Reddydog/Classes/ui/XXBaseViewController.m" />
         <option value="$PROJECT_DIR$/securityguards/CoreService.m" />
         <option value="$PROJECT_DIR$/securityguards/SensorsDisplayPanel.h" />
         <option value="$PROJECT_DIR$/securityguards/SensorDisplayView.m" />
@@ -142,12 +128,16 @@
         <option value="$PROJECT_DIR$/securityguards/SpeechViewController.m" />
         <option value="$PROJECT_DIR$/securityguards/SceneVoiceView.m" />
         <option value="$PROJECT_DIR$/securityguards/UnitControlPanel.m" />
+        <option value="$PROJECT_DIR$/../Reddydog/Reddydog/Classes/ui/XXDrawerViewController.m" />
         <option value="$PROJECT_DIR$/securityguards/PortalViewController.m" />
+        <option value="$PROJECT_DIR$/securityguards/GlobalSettings.m" />
+        <option value="$PROJECT_DIR$/securityguards/TimingTasksPlanViewController.m" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="y" value="22" />
+    <option name="x" value="-221" />
+    <option name="y" value="723" />
     <option name="width" value="1440" />
     <option name="height" value="806" />
   </component>
@@ -228,6 +218,20 @@
               <option name="myItemId" />
               <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="securityguards" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Frameworks" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
+            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
@@ -237,13 +241,13 @@
   <component name="PropertiesComponent">
     <property name="GoToFile.includeJavaFiles" value="false" />
     <property name="options.splitter.main.proportions" value="0.3" />
-    <property name="options.lastSelected" value="preferences.pluginManager" />
     <property name="recentsLimit" value="5" />
+    <property name="options.lastSelected" value="preferences.pluginManager" />
     <property name="last_opened_file_path" value="$USER_HOME$/Documents/my_library/ios/reddy" />
     <property name="FullScreen" value="false" />
     <property name="OBJC.PRESERVED_TARGET_SELECTION" value="securityguards" />
-    <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="RunManager" selected="Application.securityguards">
     <configuration default="true" type="AppleRunConfiguration" factoryName="Application" PROJECT_NAME="securityguards" TARGET_NAME="securityguards" CONFIG_NAME="Debug" PASS_PARENT_ENVS="FALSE" RUN_TARGET_PROJECT_NAME="securityguards" RUN_TARGET_NAME="securityguards" MAKE_ACTIVE="TRUE" WAIT_FOR="FALSE">
@@ -325,18 +329,18 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="22" width="1440" height="806" extended-state="0" />
+    <frame x="-221" y="723" width="1440" height="806" extended-state="6" />
     <editor active="false" />
     <layout>
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32700136" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22013889" sideWeight="0.75576663" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22013889" sideWeight="0.63364995" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24423338" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36635005" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="100" y="122" width="1200" height="606" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -363,50 +367,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/securityguards/SensorsDisplayPanel.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="80" column="58" selection-start="3180" selection-end="3180" vertical-scroll-proportion="0.0" vertical-offset="936" max-vertical-offset="1950" />
-      </provider>
-    </entry>
-    <entry file="file:///Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIView.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="199" column="6" selection-start="9666" selection-end="9666" vertical-scroll-proportion="0.33333334" vertical-offset="2723" max-vertical-offset="8445" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/securityguards/btn_voice_new_highlighted@2x.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/securityguards/btn_voice_new@2x.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/securityguards/SceneVoiceView.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="20" selection-start="185" selection-end="185" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="285" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/securityguards/AQIPanelView.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="17" selection-start="243" selection-end="243" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="375">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/securityguards/AQIPanelView.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="80" column="4" selection-start="2789" selection-end="2789" vertical-scroll-proportion="0.0" vertical-offset="930" max-vertical-offset="2385">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/securityguards/btn_share@2x.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/securityguards/en.lproj/Localizable.strings">
       <provider selected="true" editor-type-id="text-editor">
         <state line="383" column="32" selection-start="16452" selection-end="16452" vertical-scroll-proportion="0.3895349" vertical-offset="5544" max-vertical-offset="6120">
@@ -440,6 +400,57 @@
         <state line="37" column="39" selection-start="1332" selection-end="1332" vertical-scroll-proportion="0.0" vertical-offset="161" max-vertical-offset="690" />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/securityguards/UnitFinder.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="16" selection-start="317" selection-end="317" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3150">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/securityguards/UnitFinderViewController.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="42" column="5" selection-start="845" selection-end="845" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2370">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Reddydog/Reddydog/Classes/ui/XXDrawerViewController.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="532" column="0" selection-start="19665" selection-end="19665" vertical-scroll-proportion="0.0" vertical-offset="7751" max-vertical-offset="8310">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/securityguards/AppDelegate.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="152" column="47" selection-start="5726" selection-end="5726" vertical-scroll-proportion="0.0" vertical-offset="1944" max-vertical-offset="2700">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/securityguards/GlobalSettings.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="61" column="30" selection-start="2165" selection-end="2165" vertical-scroll-proportion="0.0" vertical-offset="615" max-vertical-offset="1875">
+          <folding>
+            <element signature="e#133#159#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/securityguards/UnitControlPanel.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="32" selection-start="565" selection-end="565" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4200">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/securityguards/DeviceCommandGetNotificationsHandler.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="48" selection-start="773" selection-end="773" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="585">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/securityguards/SceneVoiceView.m">
       <provider selected="true" editor-type-id="text-editor">
         <state line="49" column="93" selection-start="2194" selection-end="2194" vertical-scroll-proportion="0.0" vertical-offset="294" max-vertical-offset="1290">
@@ -447,16 +458,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/securityguards/UnitControlPanel.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="18" selection-start="44" selection-end="44" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4200">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/securityguards/PortalViewController.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="0" selection-start="805" selection-end="805" vertical-scroll-proportion="0.3488372" vertical-offset="285" max-vertical-offset="9105">
+        <state line="498" column="42" selection-start="21802" selection-end="21802" vertical-scroll-proportion="0.5561097" vertical-offset="7247" max-vertical-offset="8955">
           <folding>
             <element signature="e#144#176#0" expanded="true" />
             <element signature="e#308#339#0" expanded="true" />
@@ -464,10 +468,24 @@
             <element signature="e#6773#6813#0" expanded="true" />
             <element signature="e#11732#11771#0" expanded="true" />
             <element signature="e#12413#12453#0" expanded="true" />
-            <element signature="e#18101#18144#0" expanded="true" />
-            <element signature="e#18257#18294#0" expanded="true" />
-            <element signature="e#21876#21911#0" expanded="true" />
+            <element signature="e#18102#18145#0" expanded="true" />
+            <element signature="e#18258#18295#0" expanded="true" />
+            <element signature="e#21258#21293#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/securityguards/TimingTasksPlanService.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="16" selection-start="221" selection-end="221" vertical-scroll-proportion="0.15492958" vertical-offset="84" max-vertical-offset="930">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/securityguards/TimingTasksPlanViewController.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="150" column="42" selection-start="5790" selection-end="5791" vertical-scroll-proportion="0.8802817" vertical-offset="1830" max-vertical-offset="6105">
+          <folding />
         </state>
       </provider>
     </entry>

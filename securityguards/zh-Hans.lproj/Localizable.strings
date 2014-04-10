@@ -181,6 +181,7 @@
 "exe_no_repeat"                       =      "仅仅执行一次";
 "no_permissions"                      =      "权限错误";
 "has_no_permissions_del"              =      "您没有权限删除";
+"can_not_delete_system_task"          =      "不能删除系统任务";
 "no_unit_bind"                        =      "未绑定的主控";
 
 

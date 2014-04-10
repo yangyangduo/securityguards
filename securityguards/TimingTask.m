@@ -12,9 +12,11 @@
 #import "GlobalSettings.h"
 
 @implementation TimingTask {
+    
 }
 
 @synthesize identifier;
+@synthesize isSystemTask;
 @synthesize name;
 @synthesize enable;
 @synthesize isOwner;
@@ -37,6 +39,7 @@
     newTimingTask.scheduleTimeHour = self.scheduleTimeHour;
     newTimingTask.scheduleTimeMinute = self.scheduleTimeMinute;
     newTimingTask.scheduleMode = self.scheduleMode;
+    newTimingTask.isSystemTask = self.isSystemTask;
     newTimingTask.unit = _unit_;
     
     for(int i=0; i<self.timingTaskExecutionItems.count; i++) {
@@ -66,6 +69,9 @@
         
         // set is enabled
         self.enable = [json booleanForKey:@"en"];
+        
+        // set is or not system task
+        self.isSystemTask = [json booleanForKey:@"sy"];
         
         // set schedule is or not repeat
         self.scheduleMode = [json booleanForKey:@"on"] ? TaskScheduleModeNoRepeat : TaskScheduleModeRepeat;
@@ -157,6 +163,7 @@
     [json setMayBlankString:self.name forKey:@"na"];
     [json setBoolean:self.enable forKey:@"en"];
     [json setBoolean:(self.scheduleMode == TaskScheduleModeNoRepeat) forKey:@"on"];
+    [json setBoolean:self.isSystemTask forKey:@"sy"];
 
     // set executions
     NSMutableArray *_executions_ = [NSMutableArray array];

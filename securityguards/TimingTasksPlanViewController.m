@@ -235,6 +235,11 @@
 
 - (void)deleteTimingTask:(TimingTask *)timingTask forIndexPath:(NSIndexPath *)indexPath {
     if(timingTask == nil) return;
+    if(timingTask.isSystemTask) {
+        [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"can_not_delete_system_task", @"") forType:AlertViewTypeFailed];
+        [[XXAlertView currentAlertView] alertForLock:NO autoDismiss:YES];
+        return;
+    }
     [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"deleting", @"") forType:AlertViewTypeWaitting];
     [[XXAlertView currentAlertView] alertForLock:YES autoDismiss:NO];
     TimingTasksPlanService *service = [[TimingTasksPlanService alloc] init];

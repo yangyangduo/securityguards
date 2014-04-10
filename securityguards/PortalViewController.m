@@ -422,21 +422,6 @@
     }
 }
 
-//#pragma mark -
-//#pragma mark Action Sheet Delegate
-//
-//- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-//    if(buttonIndex < 0 || buttonIndex > 3) {
-//        return;
-//    }
-//    if([actionSheet isKindOfClass:[XXActionSheet class]]) {
-//        XXActionSheet *st = (XXActionSheet *)actionSheet;
-//        NSArray *keys = [st parameterForKey:@"templateKeys"];
-//        NSString *templateId = [keys objectAtIndex:buttonIndex];
-//        [ScenesTemplate executeDefaultTemplatesWithTemplateId:templateId forUnit:[UnitManager defaultManager].currentUnit];
-//    }
-//}
-
 #pragma mark -
 #pragma mark Event Subscriber
 
@@ -568,6 +553,11 @@
 //        lblHealthIndexGreatThan.text = @" --%";
 //        lblEvaluateTime.text = NSLocalizedString(@"has_not_refresh", @"");
     } else {
+        if(score.score == 100) {
+           lblHealthIndex.font = [UIFont systemFontOfSize:40];
+        } else {
+           lblHealthIndex.font = [UIFont systemFontOfSize:50];
+        }
         lblHealthIndex.text = [NSString stringWithFormat:@"%d", score.score];
 //        if(score.rankings != -1) {
 //            lblHealthIndexGreatThan.text = [NSString stringWithFormat:@"%d%%", score.rankings];
