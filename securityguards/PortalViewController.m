@@ -554,11 +554,12 @@
 //        lblEvaluateTime.text = NSLocalizedString(@"has_not_refresh", @"");
     } else {
         if(score.score == 100) {
-           lblHealthIndex.font = [UIFont systemFontOfSize:40];
+           lblHealthIndex.font = [UIFont systemFontOfSize:38];
+           lblHealthIndex.text = [NSString stringWithFormat:@"%d", score.score];
         } else {
            lblHealthIndex.font = [UIFont systemFontOfSize:50];
+           lblHealthIndex.text = [NSString stringWithFormat:@"%d", score.score];
         }
-        lblHealthIndex.text = [NSString stringWithFormat:@"%d", score.score];
 //        if(score.rankings != -1) {
 //            lblHealthIndexGreatThan.text = [NSString stringWithFormat:@"%d%%", score.rankings];
 //        } else {
