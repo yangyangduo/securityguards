@@ -46,6 +46,8 @@
 "please_enter"                   =      "请输入";
 "has_not_refresh"                =      "从未更新";
 "un_connectted_wifi"             =      "未连接WIFI";
+"cancelling"                     =      "正在取消";
+"success_cancelled"              =      "绑定已取消";
 
 
 /****************	Right Drawer View Strings	****************/

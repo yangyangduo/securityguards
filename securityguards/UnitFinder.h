@@ -21,5 +21,6 @@
 @property (nonatomic, weak) id<UnitFinderDelegate> delegate;
 
 - (void)startFinding;
+- (void)reset;
 
 @end

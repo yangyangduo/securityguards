@@ -58,7 +58,7 @@
     // init broadcast address
     _broadcastAddress_ = [ipArr componentsJoinedByString:@"."];
 #ifdef DEBUG
-    NSLog(@"[UDP UNIT FINDER] Local Ip is %@, Broadcast Address is %@", localIp, _broadcastAddress_);
+    NSLog(@"[UNIT FINDER] Local Ip is %@, Broadcast Address is %@", localIp, _broadcastAddress_);
 #endif
     
     // init udp socket
@@ -72,7 +72,7 @@
         if(error != nil) {
             NSString *errorMessage = [error.userInfo objectForKey:NSLocalizedDescriptionKey];
 #ifdef DEBUG
-            NSLog(@"[UDP UNIT FINDER] Broadcast failed, Reason is [%@]", [XXStringUtils isBlank:errorMessage] ? [XXStringUtils emptyString] : errorMessage);
+            NSLog(@"[UNIT FINDER] Broadcast failed, Reason is [%@]", [XXStringUtils isBlank:errorMessage] ? [XXStringUtils emptyString] : errorMessage);
 #endif
             [self findUnitOnError:[UnitFinderResult errorWithReason:errorMessage]];
         }
@@ -173,14 +173,14 @@
     [self reset];
     NSString *errorMessage = [error.userInfo objectForKey:NSLocalizedDescriptionKey];
 #ifdef DEBUG
-    NSLog(@"[UDP UNIT FINDER] Broadcast(on udp socket) message failed, Reason is [%@]", [XXStringUtils isBlank:errorMessage] ? [XXStringUtils emptyString] : errorMessage);
+    NSLog(@"[UNIT FINDER] Broadcast(on udp socket) message failed, Reason is [%@]", [XXStringUtils isBlank:errorMessage] ? [XXStringUtils emptyString] : errorMessage);
 #endif
     [self findUnitOnError:[UnitFinderResult errorWithReason:errorMessage]];
 }
 
 - (void)onUdpSocket:(AsyncUdpSocket *)sock didSendDataWithTag:(long)tag {
 #ifdef DEBUG
-    NSLog(@"[UDP UNIT FINDER] Broadcast message successfully.");
+    NSLog(@"[UNIT FINDER] Broadcast message successfully.");
 #endif
 }
 
@@ -189,7 +189,7 @@
         [self findUnitOnError:[UnitFinderResult errorWithReason:@"Udp socket closed."]];
     }
 #ifdef DEBUG
-    NSLog(@"[UDP UNIT FINDER] Closed.");
+    NSLog(@"[UNIT FINDER] Closed.");
 #endif
 }
 

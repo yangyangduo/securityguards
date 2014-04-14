@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 hentre. All rights reserved.
 //
 
-#import "NavigationViewController.h"
+#import "ToPortalViewController.h"
 
-@interface UnitSettingStep1ViewController : NavigationViewController
+@interface UnitSettingStep1ViewController : ToPortalViewController
 
 @end

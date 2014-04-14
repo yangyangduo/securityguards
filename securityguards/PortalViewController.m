@@ -11,6 +11,7 @@
 #import "UnitDetailsViewController.h"
 #import "UnitManager.h"
 #import "AQIManager.h"
+#import "NotificationsFileManager.h"
 
 /*     components      */
 #import "SensorsDisplayPanel.h"
@@ -28,6 +29,7 @@
 #import "DeviceStatusChangedEvent.h"
 #import "SensorStateChangedEvent.h"
 #import "CurrentLocationUpdatedEvent.h"
+#import "NotificationsFileUpdatedEvent.h"
 #import "ScoreChangedEvent.h"
 
 /* baidu share kit */
@@ -84,7 +86,7 @@
                     [NSArray arrayWithObjects:
                             EventUnitsListUpdated, EventNetworkModeChanged, EventCurrentUnitChanged,
                             EventUnitNameChanged, EventDeviceStatusChanged, EventSensorStateChanged,
-                            EventCurrentLocationUpdated, EventScoreChanged, nil]];
+                            EventCurrentLocationUpdated, EventScoreChanged, EventNotificationsFileUpdated, nil]];
     
     DeviceCommandNameEventFilter *commandNameFilter = [[DeviceCommandNameEventFilter alloc] init];
     [commandNameFilter.supportedCommandNames addObject:COMMAND_GET_ACCOUNT];
@@ -228,13 +230,6 @@
     controlPanelView = [[UnitControlPanel alloc] initWithPoint:CGPointMake(0, sceneVoiceView.frame.origin.y + sceneVoiceView.bounds.size.height)];
     controlPanelView.delegate = self;
     [scrollView addSubview:controlPanelView];
-
-    //    /*
-//     * Add blue line
-//     */
-//    UIImageView *imgLineBlue = [[UIImageView alloc] initWithFrame:CGRectMake(0, imgHeathIndex.frame.origin.y + imgHeathIndex.bounds.size.height, sensorDisplayPanel.bounds.size.width, 11)];
-//    imgLineBlue.image = [UIImage imageNamed:@"line_seperator_heavy_blue"];
-//    [scrollView addSubview:imgLineBlue];
 
     /* re-size scroll view */
     if(![self updateAQIPanelViewWithAqi:[AQIManager manager].currentAqiInfo]) {
@@ -467,6 +462,11 @@
     } else if([event isKindOfClass:[ScoreChangedEvent class]]) {
         ScoreChangedEvent *evt = (ScoreChangedEvent *)event;
         [self updateUnitScoreViewWithScore:evt.score];
+    } else if([event isKindOfClass:[NotificationsFileUpdatedEvent class]]) {
+#ifdef DEBUG
+        NSLog(@"[Portal View] Received Notifications");
+#endif
+        [self mayShowNotificationsInView];
     }
 }
 
@@ -582,6 +582,15 @@
     } else {
         [self showNetworkStateView:(netMode & NetModeInternal) == NetModeInternal];
     }
+}
+
+- (void)mayShowNotificationsInView {
+//    NSArray *notifications = [[NotificationsFileManager fileManager] readFromDisk];
+//    if(notifications != nil) {
+//        for(SMNotification *notification in notifications) {
+//        
+//        }
+//    }
 }
 
 - (void)reset {

@@ -16,7 +16,12 @@
 
 @end
 
-@implementation UnitSettingStep5ViewController
+@implementation UnitSettingStep5ViewController {
+    
+    BOOL isFinding;
+    BOOL cancelledByUser;
+    
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -101,12 +106,24 @@
         [[XXAlertView currentAlertView] alertForLock:NO autoDismiss:YES];
         return;
     }
-    [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"binding_unit", @"") forType:AlertViewTypeWaitting];
-    [[XXAlertView currentAlertView] alertForLock:YES autoDismiss:NO];
+    
+    
     UnitFinder *finder = [[UnitFinder alloc] init];
     finder.delegate = self;
     [finder startFinding];
+    isFinding = YES;
+    cancelledByUser = NO;
+    
+    [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"binding_unit", @"") forType:AlertViewTypeWaitting];
+    [[XXAlertView currentAlertView] alertForLock:YES autoDismiss:NO cancelledBlock:^{
+        if(!cancelledByUser && isFinding) {
+            cancelledByUser = YES;
+            [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"cancelling", @"") forType:AlertViewTypeWaitting];
+            [finder reset];
+        }
+    }];
 }
+
 
 #pragma mark -
 #pragma mark Unit find delegate
@@ -115,10 +132,19 @@
     if(UnitFinderResultTypeSuccess == result.resultType) {
         [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"binding_unit_success", @"") forType:AlertViewTypeSuccess];
         [[XXAlertView currentAlertView] delayDismissAlertView];
+        
         NSLog(@"!!!!!!!!!!!!!!!!!!!!! ----   unit finder success ..... %@  -- %@  ", result.unitIdentifier, result.unitUrl);
     } else {
-        [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"no_unit_found", @"") forType:AlertViewTypeFailed];
+        if(!cancelledByUser) {
+            [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"no_unit_found", @"") forType:AlertViewTypeFailed];
+        } else {
+            [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"success_cancelled", @"") forType:AlertViewTypeSuccess];
+        }
         [[XXAlertView currentAlertView] delayDismissAlertView];
+        
+        isFinding = NO;
+        cancelledByUser = NO;
+        
         NSLog(@"!!!!!!!!!!!!!!!!!!!!! ------   unit finder failed  .... reason is  %@", result.failedReason);
     }
 }

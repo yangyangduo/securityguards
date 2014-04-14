@@ -15,7 +15,13 @@
 
 @end
 
-@implementation UnitFinderViewController
+@implementation UnitFinderViewController {
+    
+    
+    BOOL isFinding;
+    BOOL cancelledByUser;
+    
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -24,6 +30,10 @@
         // Custom initialization
     }
     return self;
+}
+
+- (void)initDefaults {
+    [super initDefaults];
 }
 
 - (void)viewDidLoad
@@ -39,38 +49,13 @@
 }
 
 - (void)initUI {
-//    [super initUI];
-//    
-//    self.topbarView.title = NSLocalizedString(@"add_unit", @"");
-//    
-//    UIButton *btnUnitFinder = [[UIButton alloc] initWithFrame:CGRectMake(0, 120, 300 / 2, 53 / 2)];
-//    btnUnitFinder.center = CGPointMake(self.view.center.x, btnUnitFinder.center.y);
-//    [btnUnitFinder setTitle:NSLocalizedString(@"auto_find", @"") forState:UIControlStateNormal];
-//    [btnUnitFinder setBackgroundImage:[UIImage imageNamed:@"btn_blue"] forState:UIControlStateNormal];
-//    [btnUnitFinder setBackgroundImage:[UIImage imageNamed:@"btn_blue_highlighted"] forState:UIControlStateHighlighted];
-//    [btnUnitFinder addTarget:self action:@selector(startFinding) forControlEvents:UIControlEventTouchUpInside];
-//    [self.view addSubview:btnUnitFinder];
-//    
-//    UILabel *lblDescription = [[UILabel alloc] initWithFrame:CGRectMake(0, 150, 260, 58)];
-//    lblDescription.textAlignment = NSTextAlignmentCenter;
-//    lblDescription.backgroundColor = [UIColor clearColor];
-//    lblDescription.text = NSLocalizedString(@"unit_binding_tips", @"");
-//    lblDescription.center = CGPointMake(self.view.center.x, lblDescription.center.y);
-//    lblDescription.font = [UIFont systemFontOfSize:13.f];
-//    lblDescription.textColor = [UIColor lightGrayColor];
-//    lblDescription.numberOfLines = 2;
-//    [self.view addSubview:lblDescription];
-    
     [super initUI];
     self.topbarView.title = NSLocalizedString(@"add_unit", @"");
 
-    CGFloat offsetXOfTipsLabel = 40;
-    CGFloat offsetXOfContentLabel = 50;
-
-    UILabel *lblLine1 = [TipsLabel labelWithPoint:CGPointMake(offsetXOfTipsLabel, self.topbarView.frame.size.height + 12)];
+    UILabel *lblLine1 = [TipsLabel labelWithPoint:CGPointMake(55, self.topbarView.frame.size.height + 25)];
     [self.view addSubview:lblLine1];
 
-    UILabel *lblLine1Content = [[UILabel alloc] initWithFrame:CGRectMake(offsetXOfContentLabel, self.topbarView.frame.size.height + 10, 220, 50)];
+    UILabel *lblLine1Content = [[UILabel alloc] initWithFrame:CGRectMake(65, self.topbarView.frame.size.height + 23, 220, 50)];
     lblLine1Content.text = NSLocalizedString(@"unit_finder_line1", @"");
     lblLine1Content.textColor = [UIColor darkGrayColor];
     lblLine1Content.numberOfLines = 2;
@@ -79,20 +64,9 @@
     lblLine1Content.font = [UIFont systemFontOfSize:15.f];
     [self.view addSubview:lblLine1Content];
     
-    UILabel *lblLine2 = [TipsLabel labelWithPoint:
-            CGPointMake(offsetXOfTipsLabel, lblLine1Content.frame.origin.y + lblLine1Content.frame.size.height + 8)];
-    [self.view addSubview:lblLine2];
-
-    UILabel *lblLine2Content = [[UILabel alloc] initWithFrame:CGRectMake(offsetXOfContentLabel, lblLine1Content.frame.origin.y + lblLine1Content.frame.size.height + 10, 220, 25)];
-    lblLine2Content.text = NSLocalizedString(@"unit_finder_line2", @"");
-    lblLine2Content.textColor = [UIColor darkGrayColor];
-    lblLine2Content.backgroundColor = [UIColor clearColor];
-    lblLine2Content.font = [UIFont systemFontOfSize:15.f];
-    [self.view addSubview:lblLine2Content];
-    
-    UIButton *btnRebind = [[UIButton alloc] initWithFrame:CGRectMake(0, lblLine2Content.frame.origin.y + lblLine2Content.frame.size.height + 20, 500 / 2, 66 / 2)];
+    UIButton *btnRebind = [[UIButton alloc] initWithFrame:CGRectMake(0, lblLine1Content.frame.origin.y + lblLine1Content.frame.size.height + 20, 500 / 2, 66 / 2)];
     btnRebind.center = CGPointMake(self.view.center.x, btnRebind.center.y);
-    [btnRebind setTitle:NSLocalizedString(@"rebind", @"") forState:UIControlStateNormal];
+    [btnRebind setTitle:NSLocalizedString(@"start_binding", @"") forState:UIControlStateNormal];
     [btnRebind setBackgroundImage:[UIImage imageNamed:@"btn_blue.png"] forState:UIControlStateNormal];
     [btnRebind setBackgroundImage:[UIImage imageNamed:@"btn_blue_highlighted.png"] forState:UIControlStateHighlighted];
     [btnRebind setBackgroundImage:[UIImage imageNamed:@"btn_gray.png"] forState:UIControlStateDisabled];
@@ -101,7 +75,6 @@
 }
 
 - (void)popupViewController {
-//    [self dismissViewControllerAnimated:YES completion:^{}];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -113,11 +86,21 @@
 #pragma mark UI Methods
 
 - (void)findUnit {
-    [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"searching", @"") forType:AlertViewTypeWaitting];
-    [[XXAlertView currentAlertView] alertForLock:YES autoDismiss:NO];
+    if(isFinding) return;
+    isFinding = YES;
+    cancelledByUser = NO;
+    
     UnitFinder *finder = [[UnitFinder alloc] init];
     finder.delegate = self;
     [finder startFinding];
+    [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"binding_unit", @"") forType:AlertViewTypeWaitting];
+    [[XXAlertView currentAlertView] alertForLock:YES autoDismiss:NO cancelledBlock:^{
+        if(!cancelledByUser && isFinding) {
+            [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"cancelling", @"") forType:AlertViewTypeWaitting];
+            cancelledByUser = YES;
+            [finder reset];
+        }
+    }];
 }
 
 #pragma mark -
@@ -148,8 +131,16 @@
              }
          }
     }
-    [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"no_unit_found", @"") forType:AlertViewTypeFailed];
+    
+    if(!cancelledByUser) {
+        [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"no_unit_found", @"") forType:AlertViewTypeFailed];
+    } else {
+        [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"success_cancelled", @"") forType:AlertViewTypeSuccess];
+    }
     [[XXAlertView currentAlertView] delayDismissAlertView];
+    
+    isFinding = NO;
+    cancelledByUser = NO;
 }
 
 @end

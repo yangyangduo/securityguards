@@ -48,7 +48,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    // init left view
+    // Init left view
     NSArray *navItems = [NSArray arrayWithObjects:
         [[LeftNavItem alloc] initWithIdentifier:@"portalItem" andDisplayName:NSLocalizedString(@"portal_drawer_title", @"") andImageName:@"icon_portal"],
         [[LeftNavItem alloc] initWithIdentifier:@"shoppingItem" andDisplayName:NSLocalizedString(@"shopping_title", @"") andImageName:@"icon_shopping"],
@@ -131,9 +131,7 @@
     
     // did add center view controller and ...
     
-    // why do this below
-    // in IOS7 Status bar will auto add 20px for orgin y in Navigation View Controller
-    // 这里还是来一段中文比较靠谱， 不然自己都看不懂，在IOS7 下面如果使用了Navigation View Controller
+    // 在IOS7 下面如果使用了Navigation View Controller
     // 那么所有的View Controller 的frame.orgin.y 都会被设置成 20
     CGRect frame = centerViewController.view.frame;
     centerViewController.view.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);

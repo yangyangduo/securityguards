@@ -6,11 +6,11 @@
 //  Copyright (c) 2014 hentre. All rights reserved.
 //
 
-#import "NavigationViewController.h"
+#import "ToPortalViewController.h"
 
-static NSString *FamilyGuardsHotSpotName = @"Family-Guard";
+static NSString * const FamilyGuardsHotSpotName = @"Family-Guard";
 
-@interface UnitSettingStep4ViewController : NavigationViewController<UITextFieldDelegate>
+@interface UnitSettingStep4ViewController : ToPortalViewController<UITextFieldDelegate>
 
 - (BOOL)detectionFamilyGuardsWifiExists;
 

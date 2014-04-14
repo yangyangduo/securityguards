@@ -254,6 +254,8 @@
 		6F8F57BE18710D940033228F /* TextContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F8F57BB18710D940033228F /* TextContainerView.m */; };
 		6F8F57C4187111B70033228F /* ConversationMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F8F57C1187111B70033228F /* ConversationMessage.m */; };
 		6F8F57C5187111B70033228F /* ConversationTextMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F8F57C3187111B70033228F /* ConversationTextMessage.m */; };
+		6F90A40118FB8CD500574310 /* icon_cancel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F90A40018FB8CD500574310 /* icon_cancel@2x.png */; };
+		6F90A40418FBA35500574310 /* ToPortalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F90A40318FBA35500574310 /* ToPortalViewController.m */; };
 		6F9C8ACC1886323D00289AEA /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F9C8ACB1886323D00289AEA /* AddressBook.framework */; };
 		6F9C8AD21887C5DA00289AEA /* logo_gold@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F9C8AD11887C5DA00289AEA /* logo_gold@2x.png */; };
 		6F9C8AD41887C62300289AEA /* logo_left_drawer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F9C8AD31887C62300289AEA /* logo_left_drawer@2x.png */; };
@@ -785,6 +787,9 @@
 		6F8F57C1187111B70033228F /* ConversationMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConversationMessage.m; sourceTree = "<group>"; };
 		6F8F57C2187111B70033228F /* ConversationTextMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConversationTextMessage.h; sourceTree = "<group>"; };
 		6F8F57C3187111B70033228F /* ConversationTextMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConversationTextMessage.m; sourceTree = "<group>"; };
+		6F90A40018FB8CD500574310 /* icon_cancel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_cancel@2x.png"; sourceTree = "<group>"; };
+		6F90A40218FBA35500574310 /* ToPortalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToPortalViewController.h; sourceTree = "<group>"; };
+		6F90A40318FBA35500574310 /* ToPortalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToPortalViewController.m; sourceTree = "<group>"; };
 		6F9C8ACB1886323D00289AEA /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		6F9C8AD11887C5DA00289AEA /* logo_gold@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo_gold@2x.png"; sourceTree = "<group>"; };
 		6F9C8AD31887C62300289AEA /* logo_left_drawer@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo_left_drawer@2x.png"; sourceTree = "<group>"; };
@@ -1242,10 +1247,11 @@
 		6F60045C186BCE210085B4BD /* securityguards */ = {
 			isa = PBXGroup;
 			children = (
+				6F6005BD186C27A30085B4BD /* view_models */,
 				F2125FA11888C94A002A7F49 /* documents */,
 				6F9C8ACD1887BBD900289AEA /* test */,
 				6F6005BA186C234C0085B4BD /* images */,
-				6F600544186BF0500085B4BD /* entities */,
+				6F600544186BF0500085B4BD /* models */,
 				6F6004D6186BD22F0085B4BD /* third */,
 				6F6004CD186BD0D40085B4BD /* protocals */,
 				6F6004A4186BCF500085B4BD /* components */,
@@ -1420,6 +1426,8 @@
 				6F7247E21871655D003B325F /* TextViewController.m */,
 				6F7CDBA6187287BA0036F912 /* BaseView.h */,
 				6F7CDBA7187287BA0036F912 /* BaseView.m */,
+				6F90A40218FBA35500574310 /* ToPortalViewController.h */,
+				6F90A40318FBA35500574310 /* ToPortalViewController.m */,
 			);
 			name = commons;
 			sourceTree = "<group>";
@@ -1600,10 +1608,9 @@
 			name = command_handlers;
 			sourceTree = "<group>";
 		};
-		6F600544186BF0500085B4BD /* entities */ = {
+		6F600544186BF0500085B4BD /* models */ = {
 			isa = PBXGroup;
 			children = (
-				6F6005BD186C27A30085B4BD /* ui */,
 				F2F3E1AB187A43EA006A9447 /* User.h */,
 				F2F3E1AC187A43EA006A9447 /* User.m */,
 				F2F3E1AD187A43EA006A9447 /* Users.h */,
@@ -1641,7 +1648,7 @@
 				6FD42CEB18B5CE7600BFCC74 /* AQIDetail.h */,
 				6FD42CEC18B5CE7600BFCC74 /* AQIDetail.m */,
 			);
-			name = entities;
+			name = models;
 			sourceTree = "<group>";
 		};
 		6F600564186BF3780085B4BD /* events */ = {
@@ -1804,7 +1811,7 @@
 			name = ui_elements;
 			sourceTree = "<group>";
 		};
-		6F6005BD186C27A30085B4BD /* ui */ = {
+		6F6005BD186C27A30085B4BD /* view_models */ = {
 			isa = PBXGroup;
 			children = (
 				F2F3E1B1187A54D5006A9447 /* AccountManageCellData.h */,
@@ -1812,7 +1819,7 @@
 				6F6005BE186C2E220085B4BD /* LeftNavItem.h */,
 				6F6005BF186C2E220085B4BD /* LeftNavItem.m */,
 			);
-			name = ui;
+			name = view_models;
 			sourceTree = "<group>";
 		};
 		6F7247DC18714D60003B325F /* speech_state_view */ = {
@@ -1837,6 +1844,7 @@
 			isa = PBXGroup;
 			children = (
 				6F7247E518717344003B325F /* bg_alert_green@2x.png */,
+				6F90A40018FB8CD500574310 /* icon_cancel@2x.png */,
 				6F7247E618717344003B325F /* bg_alert_yellow@2x.png */,
 				6F7CDB9C18725BCE0036F912 /* alert_failed@2x.png */,
 				6F7CDB9D18725BCE0036F912 /* alert_success@2x.png */,
@@ -2420,6 +2428,7 @@
 				6FEC0FF5186C73A900CB0D70 /* icon_notifications@2x.png in Resources */,
 				F2B6A6371874F8AF0020809D /* icon_message@2x.png in Resources */,
 				6F860F2F1875580E00792DBB /* icon_camera@2x.png in Resources */,
+				6F90A40118FB8CD500574310 /* icon_cancel@2x.png in Resources */,
 				F279E0061883C2B100E0547E /* icon_gray_dial_phone@2x.png in Resources */,
 				6FB79EC718B33DDB00E02077 /* merchandise_placeholder@2x.png in Resources */,
 				6F45ADFC1876A2E000DC18CA /* btn_play_selected@2x.png in Resources */,
@@ -2719,6 +2728,7 @@
 				6F203361187D035800BACFA5 /* PasswordTextViewController.m in Sources */,
 				6FDA9AE6188FF4D5007D63DE /* SensorStateChangedEvent.m in Sources */,
 				6F60052C186BE9890085B4BD /* DeviceCommandVoiceControl.m in Sources */,
+				6F90A40418FBA35500574310 /* ToPortalViewController.m in Sources */,
 				6F600589186BF89E0085B4BD /* CommandQueue.m in Sources */,
 				6F6004CC186BD0A50085B4BD /* LeftNavView.m in Sources */,
 				6F600527186BE9890085B4BD /* DeviceCommandUpdateDeviceToken.m in Sources */,

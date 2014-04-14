@@ -80,7 +80,6 @@
         client.timeoutInterval = 10.f;
         [client get:wself.news.contentUrl acceptType:@"text/html"
             success:^(RestResponse *resp) {
-                [NSThread sleepForTimeInterval:3];
                 dispatch_async(dispatch_get_main_queue(), ^{
                     if(wself == nil) return;
                     __strong NewsDetailViewController *sself = wself;

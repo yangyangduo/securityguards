@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 hentre. All rights reserved.
 //
 
-#import "NavigationViewController.h"
+#import "ToPortalViewController.h"
 #import "UnitFinder.h"
 
-@interface UnitSettingStep5ViewController : NavigationViewController<UnitFinderDelegate>
+@interface UnitSettingStep5ViewController : ToPortalViewController<UnitFinderDelegate>
 
 @end
