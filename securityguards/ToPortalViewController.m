@@ -40,9 +40,13 @@
 }
 
 - (void)btnRightPressed:(id)sender {
+    [self toPortalView];
+}
+
+- (void)toPortalView {
     if(self.navigationController != nil) {
         [self.navigationController popToRootViewControllerAnimated:NO];
-        [[Shared shared].app.rootViewController changeViewControllerWithIdentifier:@"portalItem"];
+        [[Shared shared].app.rootViewController showCenterView:YES];
     }
 }
 

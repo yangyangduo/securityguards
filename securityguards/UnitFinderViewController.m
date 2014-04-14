@@ -92,7 +92,6 @@
     
     UnitFinder *finder = [[UnitFinder alloc] init];
     finder.delegate = self;
-    [finder startFinding];
     [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"binding_unit", @"") forType:AlertViewTypeWaitting];
     [[XXAlertView currentAlertView] alertForLock:YES autoDismiss:NO cancelledBlock:^{
         if(!cancelledByUser && isFinding) {
@@ -101,6 +100,7 @@
             [finder reset];
         }
     }];
+    [finder startFinding];
 }
 
 #pragma mark -
@@ -110,8 +110,6 @@
      if(result.resultType == UnitFinderResultTypeSuccess) {
          if(![XXStringUtils isBlank:result.unitIdentifier]) {
              if([[UnitManager defaultManager] findUnitByIdentifier:result.unitIdentifier] == nil) {
-                 [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"binding_unit", @"") forType:AlertViewTypeWaitting];
-
                  DeviceCommand *bindingUnitCommand = [CommandFactory commandForType:CommandTypeBindingUnit];
                  bindingUnitCommand.masterDeviceCode = result.unitIdentifier;
                  [[CoreService defaultService] executeDeviceCommand:bindingUnitCommand];

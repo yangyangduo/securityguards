@@ -107,12 +107,12 @@
         return;
     }
     
+    // reset flag
+    isFinding = YES;
+    cancelledByUser = NO;
     
     UnitFinder *finder = [[UnitFinder alloc] init];
     finder.delegate = self;
-    [finder startFinding];
-    isFinding = YES;
-    cancelledByUser = NO;
     
     [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"binding_unit", @"") forType:AlertViewTypeWaitting];
     [[XXAlertView currentAlertView] alertForLock:YES autoDismiss:NO cancelledBlock:^{
@@ -122,6 +122,9 @@
             [finder reset];
         }
     }];
+    
+    // start finding unit
+    [finder startFinding];
 }
 
 
@@ -130,10 +133,22 @@
 
 - (void)unitFinderOnResult:(UnitFinderResult *)result {
     if(UnitFinderResultTypeSuccess == result.resultType) {
+        DeviceCommand *bindingUnitCommand = [CommandFactory commandForType:CommandTypeBindingUnit];
+        bindingUnitCommand.masterDeviceCode = result.unitIdentifier;
+        [[CoreService defaultService] executeDeviceCommand:bindingUnitCommand];
+        
+        DeviceCommandGetUnit *refreshUnitsCommand = (DeviceCommandGetUnit *)[CommandFactory commandForType:CommandTypeGetUnits];
+        refreshUnitsCommand.commandNetworkMode = CommandNetworkModeInternal;
+        refreshUnitsCommand.unitServerUrl = result.unitUrl;
+        [[CoreService defaultService] executeDeviceCommand:refreshUnitsCommand];
+        
         [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"binding_unit_success", @"") forType:AlertViewTypeSuccess];
         [[XXAlertView currentAlertView] delayDismissAlertView];
         
-        NSLog(@"!!!!!!!!!!!!!!!!!!!!! ----   unit finder success ..... %@  -- %@  ", result.unitIdentifier, result.unitUrl);
+        [self toPortalView];
+#ifdef DEBUG
+        NSLog(@"[UNIT SETTING STEP 5] Find Unit Success, Unit ID [%@], Unit Url [%@]", result.unitIdentifier, result.unitUrl);
+#endif
     } else {
         if(!cancelledByUser) {
             [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"no_unit_found", @"") forType:AlertViewTypeFailed];
@@ -145,7 +160,9 @@
         isFinding = NO;
         cancelledByUser = NO;
         
-        NSLog(@"!!!!!!!!!!!!!!!!!!!!! ------   unit finder failed  .... reason is  %@", result.failedReason);
+#ifdef DEBUG
+        NSLog(@"[UNIT SETTING STEP 5] Find Unit Failed, Reason is [%@].", result.failedReason);
+#endif
     }
 }
 

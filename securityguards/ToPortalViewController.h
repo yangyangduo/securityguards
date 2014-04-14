@@ -10,4 +10,6 @@
 
 @interface ToPortalViewController : NavigationViewController
 
+- (void)toPortalView;
+
 @end
