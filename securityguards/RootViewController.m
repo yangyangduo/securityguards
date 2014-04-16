@@ -9,12 +9,12 @@
 #import "RootViewController.h"
 #import "NewsViewController.h"
 #import "UserManagementViewController.h"
-#import "ContactUsViewController.h"
 #import "UnitSelectionDrawerView.h"
 #import "TimingTasksPlanViewController.h"
 #import "NotificationsViewController.h"
 #import "UserLogoutEvent.h"
 #import "UnitManager.h"
+#import "ContactUsViewController.h"
 #import "ShoppingViewController.h"
 
 @interface RootViewController ()
@@ -118,7 +118,9 @@
         }
         centerViewController = userManagementViewController;
     } else if([@"contactUsItem" isEqualToString:item.identifier]) {
-        centerViewController = [[ContactUsViewController alloc] init];
+        ContactUsViewController *contactusViewController = [[ContactUsViewController alloc] initWithLocalHtmlFileName:@"contact_us"];
+        contactusViewController.title = NSLocalizedString(@"contact_us_drawer_title", @"");
+        centerViewController = contactusViewController;
     }
     
     if(centerViewController == nil) return;

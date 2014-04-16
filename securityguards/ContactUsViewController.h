@@ -7,7 +7,8 @@
 //
 
 #import "DrawerViewController.h"
+#import "WebViewController.h"
 
-@interface ContactUsViewController : DrawerViewController
+@interface ContactUsViewController : WebViewController
 
 @end

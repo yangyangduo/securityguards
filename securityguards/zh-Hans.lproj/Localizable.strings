@@ -67,7 +67,7 @@
 "news_drawer_title"              =      "动态";
 "user_mgr_drawer_title"          =      "用户管理";
 "task_timer_title"               =      "定时任务";
-"contact_us_drawer_title"        =      "联系我们";
+"contact_us_drawer_title"        =      "关于我们";
 "logout_drawer_title"            =      "注销账号";
 "notifications_drawer_title"     =      "消息中心";
 "logouting"                      =      "注销中...";
@@ -352,17 +352,9 @@
 
 /************ Contact Us View Strings ***************/
 
-"declare_title"            =           "免责说明";
+"disclaimer_title"         =           "免责声明";
 "read_and_agree"           =           "我已阅读并同意";
 "read_declare"             =           "阅读免责声明";
-"app_name_label"           =           "软件名称: 365家卫士";
-"app_version"              =           "软件版本: ";
-"office_number"            =           "客服电话: ";
-"office_phonenumber"       =           "400-0000-0000";
-"we_chat_number"           =           "微信号码: 000000000";
-"website"                  =           "公司网址:";
-"website_url"              =           "www.365jws.com";
-"copyright"                =           "COPYRIGHT©2013-2015 湖南长沙汉拓信息技术有限公司";
 
 
 /****************	Shopping View Strings	****************/

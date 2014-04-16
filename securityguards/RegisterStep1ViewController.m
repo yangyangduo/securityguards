@@ -9,7 +9,7 @@
 #import "RegisterStep1ViewController.h"
 #import "RegisterStep2ViewController.h"
 #import "AccountService.h"
-#import "DeclareViewController.h"
+#import "WebViewController.h"
 
 @interface RegisterStep1ViewController ()
 
@@ -51,7 +51,7 @@
 
     self.topbarView.title = isModify?NSLocalizedString(@"modify_title", @""): NSLocalizedString(@"register_title", @"");
     
-    UILabel *lblPhoneNumber = [[UILabel alloc] initWithFrame:CGRectMake(5, self.topbarView.bounds.size.height + 5, 80, 44)];
+    UILabel *lblPhoneNumber = [[UILabel alloc] initWithFrame:CGRectMake(10, self.topbarView.bounds.size.height + 7, 80, 44)];
     lblPhoneNumber.text = [NSString stringWithFormat:@"%@ :", NSLocalizedString(@"phone_number", @"")];
     lblPhoneNumber.font = [UIFont systemFontOfSize:16.0f];
     [self.view addSubview:lblPhoneNumber];
@@ -70,17 +70,16 @@
     seperatorView.backgroundColor = [UIColor lightGrayColor];
     [self.view addSubview:seperatorView];
     
-    UILabel *lblTip = [[UILabel alloc] initWithFrame:CGRectMake(0, seperatorView.frame.size.height+seperatorView.frame.origin.y + 10, 200, 60)];
+    UILabel *lblTip = [[UILabel alloc] initWithFrame:CGRectMake(0, seperatorView.frame.size.height+seperatorView.frame.origin.y + 10, 240, 60)];
     lblTip.numberOfLines = 2;
     lblTip.center = CGPointMake(self.view.center.x, lblTip.center.y);
     lblTip.lineBreakMode = NSLineBreakByWordWrapping;
     lblTip.textColor = [UIColor lightGrayColor];
-    lblTip.font = [UIFont systemFontOfSize:11.f];
+    lblTip.font = [UIFont systemFontOfSize:13.f];
     [self.view addSubview:lblTip];
 
     if (btnGetVerificationCode == nil) {
-        
-        btnGetVerificationCode= [[UIButton alloc] initWithFrame:CGRectMake(0, lblTip.frame.size.height+lblTip.frame.origin.y + 10, 460 / 2, 60 / 2)];
+        btnGetVerificationCode= [[UIButton alloc] initWithFrame:CGRectMake(0, lblTip.frame.size.height + lblTip.frame.origin.y, 460 / 2, 60 / 2)];
         [btnGetVerificationCode setTitle:NSLocalizedString(@"get_verification_code", @"") forState:UIControlStateNormal];
         [btnGetVerificationCode setBackgroundImage:[UIImage imageNamed:@"btn_blue"] forState:UIControlStateNormal];
         [btnGetVerificationCode setBackgroundImage:[UIImage imageNamed:@"btn_blue_highlighted"] forState:UIControlStateHighlighted];
@@ -89,18 +88,16 @@
         btnGetVerificationCode.center = CGPointMake(self.view.center.x, btnGetVerificationCode.center.y);
         [btnGetVerificationCode addTarget:self action:@selector(btnGetVerificationPressed:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:btnGetVerificationCode];
-
     }
 
     if(isModify) {
-        
         lblTip.text = NSLocalizedString(@"modify_tip", @"");
-        
         [btnGetVerificationCode setTitle:NSLocalizedString(@"next_step", @"") forState:UIControlStateNormal];
     }else{
         lblTip.text = NSLocalizedString(@"register_tips1", @"");
         [btnGetVerificationCode setTitle:NSLocalizedString(@"get_verification_code", @"") forState:UIControlStateNormal];
-        btnAgree = [[UIButton alloc] initWithFrame:CGRectMake(48, btnGetVerificationCode.frame.origin.y +btnGetVerificationCode.frame.size.height - 3, 44, 44)];
+        
+        btnAgree = [[UIButton alloc] initWithFrame:CGRectMake(48, btnGetVerificationCode.frame.origin.y +btnGetVerificationCode.frame.size.height, 44, 44)];
         [btnAgree setBackgroundImage:[UIImage imageNamed:@"checkbox_unselected.png"] forState:UIControlStateNormal];
         [btnAgree setBackgroundImage:[UIImage imageNamed:@"checkbox_selected.png"] forState:UIControlStateSelected];
         btnAgree.selected = YES;
@@ -113,17 +110,15 @@
         lblAgree.text = NSLocalizedString(@"read_and_agree", @"");
         [self.view addSubview:lblAgree];
         
-        UIButton *btnDeclare = [[UIButton alloc] initWithFrame:CGRectMake(200, btnAgree.frame.origin.y, 60, 44)];
-        btnDeclare.backgroundColor = [UIColor clearColor];
-        [btnDeclare setTitleColor:[UIColor appLightBlue] forState:UIControlStateNormal];
-        [btnDeclare setTitleColor:[UIColor appBlue] forState:UIControlStateHighlighted];
-        btnDeclare.titleLabel.font = [UIFont systemFontOfSize:14.f];
-        [btnDeclare setTitle:NSLocalizedString(@"declare_title", @"") forState:UIControlStateNormal];
-        [btnDeclare addTarget:self action:@selector(btnDeclarePressed:) forControlEvents:UIControlEventTouchUpInside];
-        [self.view addSubview:btnDeclare];
-    
+        UIButton *btnShowDisclaimer = [[UIButton alloc] initWithFrame:CGRectMake(200, btnAgree.frame.origin.y, 60, 44)];
+        btnShowDisclaimer.backgroundColor = [UIColor clearColor];
+        [btnShowDisclaimer setTitleColor:[UIColor appLightBlue] forState:UIControlStateNormal];
+        [btnShowDisclaimer setTitleColor:[UIColor appBlue] forState:UIControlStateHighlighted];
+        btnShowDisclaimer.titleLabel.font = [UIFont systemFontOfSize:14.f];
+        [btnShowDisclaimer setTitle:NSLocalizedString(@"disclaimer_title", @"") forState:UIControlStateNormal];
+        [btnShowDisclaimer addTarget:self action:@selector(btnShowDisclaimerPressed:) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:btnShowDisclaimer];
     }
-
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -151,8 +146,10 @@
     btnGetVerificationCode.enabled = btnAgree.selected;
 }
 
-- (void)btnDeclarePressed:(UIButton *)sender{
-    [self.navigationController pushViewController:[[DeclareViewController alloc] init] animated:YES];
+- (void)btnShowDisclaimerPressed:(UIButton *)sender{
+    WebViewController *webViewController = [[WebViewController alloc] initWithLocalHtmlFileName:@"disclaimer"];
+    webViewController.title = NSLocalizedString(@"disclaimer_title", @"");
+    [self.navigationController pushViewController:webViewController animated:YES];
 }
 
 #pragma mark -
