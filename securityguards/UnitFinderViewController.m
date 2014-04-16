@@ -95,7 +95,7 @@
     [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"binding_unit", @"") forType:AlertViewTypeWaitting];
     [[XXAlertView currentAlertView] alertForLock:YES autoDismiss:NO cancelledBlock:^{
         if(!cancelledByUser && isFinding) {
-            [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"cancelling", @"") forType:AlertViewTypeWaitting];
+            [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"cancelling", @"") forType:AlertViewTypeWaitting showCancellButton:NO];
             cancelledByUser = YES;
             [finder reset];
         }
