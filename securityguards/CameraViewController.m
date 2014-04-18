@@ -37,33 +37,6 @@
 
 @synthesize cameraDevice;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	// Do any additional setup after loading the view.
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    DeviceCommandNameEventFilter *filter = [[DeviceCommandNameEventFilter alloc] init];
-    [filter.supportedCommandNames addObject:COMMAND_GET_CAMERA_SERVER];
-    XXEventSubscription *subscription = [[XXEventSubscription alloc] initWithSubscriber:self eventFilter:filter];
-    subscription.notifyMustInMainThread = YES;
-    [[XXEventSubscriptionPublisher defaultPublisher] subscribeFor:subscription];
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-    [[XXEventSubscriptionPublisher defaultPublisher] unSubscribeForSubscriber:self];
-}
-
 #pragma mark -
 #pragma mark Initializations
 
@@ -96,7 +69,7 @@
     UIButton *btnCatchScreen = [[UIButton alloc] initWithFrame:CGRectMake(20, imgLine.frame.origin.y + imgLine.bounds.size.height + 23, 116 / 2, 85 / 2)];
     [btnCatchScreen setBackgroundImage:[UIImage imageNamed:@"btn_screenshots"] forState:UIControlStateNormal];
     [btnCatchScreen setBackgroundImage:[UIImage imageNamed:@"btn_screenshots_selected"] forState:UIControlStateHighlighted];
-//    [btnCatchScreen addTarget:self action:@selector(catchScreen) forControlEvents:UIControlEventTouchUpInside];
+    [btnCatchScreen addTarget:self action:@selector(catchScreen) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btnCatchScreen];
     
     UILabel *lblScreenshots = [[UILabel alloc] initWithFrame:CGRectMake(15, btnCatchScreen.frame.origin.y + btnCatchScreen.bounds.size.height + 1, 68, 30)];
@@ -112,10 +85,16 @@
     [self.view addSubview:btnDirection];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)viewWillAppear:(BOOL)animated {
+    DeviceCommandNameEventFilter *filter = [[DeviceCommandNameEventFilter alloc] init];
+    [filter.supportedCommandNames addObject:COMMAND_GET_CAMERA_SERVER];
+    XXEventSubscription *subscription = [[XXEventSubscription alloc] initWithSubscriber:self eventFilter:filter];
+    subscription.notifyMustInMainThread = YES;
+    [[XXEventSubscriptionPublisher defaultPublisher] subscribeFor:subscription];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [[XXEventSubscriptionPublisher defaultPublisher] unSubscribeForSubscriber:self];
 }
 
 - (void)popupViewController {
@@ -177,7 +156,7 @@
             cameraService.delegate = nil;
             cameraService = nil;
         }
-        NSString *cameraUrl = [NSString stringWithFormat:@"http://%@:%d/snapshot.cgi?user=%@&pwd=%@", self.cameraDevice.ip, self.cameraDevice.port, self.cameraDevice.user, self.cameraDevice.pwd];
+        NSString *cameraUrl = [NSString stringWithFormat:@"http://%@/snapshot.cgi?user=%@&pwd=%@", self.cameraDevice.nwkAddr, self.cameraDevice.user, self.cameraDevice.pwd];
         cameraService = [[CameraService alloc] initWithUrl:cameraUrl];
         cameraService.delegate = self;
         [cameraService open];

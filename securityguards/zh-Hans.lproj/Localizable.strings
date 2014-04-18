@@ -387,6 +387,8 @@
 "aqi_today"                =           "日空气质量";
 "aqi"                      =           "AQI指数";
 "order_submitted"          =           "订单已提交";
+"customer_service_phone"   =           "客户电话: 400-0000-0000";
+"wechat_account"           =           "微信号码: 00000000";
 "current_user"             =           "当前用户";
 "change_recommended"       =           "修改推荐人(请输入推荐账户电话号码)";
 "phone_invalid"            =           "电话格式错误";

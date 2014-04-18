@@ -63,20 +63,20 @@
     lblThanks.backgroundColor = [UIColor clearColor];
     [self.view addSubview:lblThanks];
     
-    UILabel *lblPhone = [[UILabel alloc] initWithFrame:CGRectMake(0, lblThanks.frame.origin.y + lblThanks.bounds.size.height + 2, 300, 22)];
+    UILabel *lblPhone = [[UILabel alloc] initWithFrame:CGRectMake(100, lblThanks.frame.origin.y + lblThanks.bounds.size.height + 2, 200, 22)];
     lblPhone.backgroundColor = [UIColor clearColor];
     lblPhone.textColor = [UIColor darkGrayColor];
-    lblPhone.textAlignment = NSTextAlignmentCenter;
+    lblPhone.textAlignment = NSTextAlignmentLeft;
     lblPhone.center = CGPointMake(self.view.center.x, lblPhone.center.y);
-    lblPhone.text = [NSString stringWithFormat:@"%@%@", NSLocalizedString(@"office_number", @""), NSLocalizedString(@"office_phonenumber", @"")];
+    lblPhone.text = [NSString stringWithFormat:@"%@", NSLocalizedString(@"customer_service_phone", @"")];
     [self.view addSubview:lblPhone];
     
-    UILabel *lblWechat = [[UILabel alloc] initWithFrame:CGRectMake(0, lblPhone.frame.origin.y + lblPhone.bounds.size.height + 5, 300, 22)];
+    UILabel *lblWechat = [[UILabel alloc] initWithFrame:CGRectMake(lblPhone.frame.origin.x, lblPhone.frame.origin.y + lblPhone.bounds.size.height + 5, 200, 22)];
     lblWechat.backgroundColor = [UIColor clearColor];
-    lblWechat.textAlignment = NSTextAlignmentCenter;
+    lblWechat.textAlignment = NSTextAlignmentLeft;
     lblWechat.textColor = [UIColor darkGrayColor];
     lblWechat.center = CGPointMake(self.view.center.x, lblWechat.center.y);
-    lblWechat.text = [NSString stringWithFormat:@"%@", NSLocalizedString(@"we_chat_number", @"")];
+    lblWechat.text = [NSString stringWithFormat:@"%@", NSLocalizedString(@"wechat_account", @"")];
     [self.view addSubview:lblWechat];
     
     UIImageView *imgLineEnd = [[UIImageView alloc] initWithFrame:CGRectMake(0, lblWechat.frame.origin.y + lblWechat.frame.size.height + 10, self.view.bounds.size.width, 2)];
