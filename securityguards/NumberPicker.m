@@ -41,7 +41,7 @@
 }
 
 + (instancetype)numberPickerWithPoint:(CGPoint)point {
-    return [[NumberPicker alloc] initWithFrame:CGRectMake(point.x, point.y, WIDTH * 3 - 2, HEIGHT)];
+    return [[NumberPicker alloc] initWithFrame:CGRectMake(point.x, point.y, WIDTH * 3 + 10, HEIGHT)];
 }
 
 + (instancetype)numberPickerWithPoint:(CGPoint)point defaultValue:(int)defaultValue {

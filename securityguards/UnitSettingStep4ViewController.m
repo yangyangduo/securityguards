@@ -108,15 +108,24 @@
     NSString *localIp = [SMNetworkTool getLocalIp];
     if(![XXStringUtils isBlank:localIp]) {
         NSArray *components = [localIp componentsSeparatedByString:@"."];
-        NSString *url = [NSString stringWithFormat:@"http://%@.%@.%@.1:8778/wifihot", [components objectAtIndex:0], [components objectAtIndex:1], [components objectAtIndex:2]];
+        NSString *url = [NSString stringWithFormat:@"http://%@.%@.%@.1:8777/wifi/connections", [components objectAtIndex:0], [components objectAtIndex:1], [components objectAtIndex:2]];
 
+        /*
         NSString *stringBody = [NSString stringWithFormat:@"wifiSSID=%@&wifiPwd=%@", [Shared shared].lastedContectionWifiName, [XXStringUtils trim:txtPassword.text]];
-        NSData *jsonData = [stringBody dataUsingEncoding:NSUTF8StringEncoding];
+        */
+        
+        NSDictionary *postJson = @{
+                                    @"ssid" : [Shared shared].lastedContectionWifiName,
+                                    @"preSharedKey" : [XXStringUtils trim:txtPassword.text],
+                                    @"ipAssignment" : @"DHCP"
+                                   };
+        
+        NSData *jsonData = [JsonUtils createJsonDataFromDictionary:postJson];
 
         [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"please_wait", @"") forType:AlertViewTypeWaitting];
         [[XXAlertView currentAlertView] alertForLock:YES autoDismiss:NO];
         RestClient *client = [[RestClient alloc] init];
-        [client putForUrl:url acceptType:@"text/html" contentType:@"application/json" body:jsonData success:@selector(sendPasswordSuccess:) error:@selector(sendPasswordFailed:) for:self callback:nil];
+        [client postForUrl:url acceptType:@"text/html" contentType:@"application/json" body:jsonData success:@selector(sendPasswordSuccess:) error:@selector(sendPasswordFailed:) for:self callback:nil];
     }
 }
 
@@ -165,7 +174,8 @@
 - (BOOL)detectionFamilyGuardsWifiExists {
     [self setWifiNameForLabel:[Shared shared].lastedContectionWifiName];
     NSString *wifiName = [SMNetworkTool ssidForCurrentWifi];
-    if(![XXStringUtils isBlank:wifiName] && [FamilyGuardsHotSpotName isEqualToString:wifiName]) {
+    if(![XXStringUtils isBlank:wifiName] && ([FamilyGuardsHotSpotName isEqualToString:wifiName]
+                                             || [DefaultFamilyGuardsHotSpotName isEqualToString:wifiName])) {
 //        lblLine1Content.text = NSLocalizedString(@"step4_line1_linked", @"");
         [self enableContinue];
         return YES;

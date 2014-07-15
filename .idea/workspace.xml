@@ -2,8 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e93c453b-47bc-4359-86d1-be37d44eae4c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards/PortalViewController.m" afterPath="$PROJECT_DIR$/securityguards/PortalViewController.m" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/securityguards.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/securityguards.xcodeproj/project.pbxproj" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/BuildHeaders/Reddydog/XXRestKit.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/BuildHeaders/Reddydog/XXRestKitResponse.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/Headers/Reddydog/XXRestKit.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Pods/Headers/Reddydog/XXRestKitResponse.h" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/EGOTableViewPullRefresh/EGOTableViewPullRefresh/Classes/View/EGORefreshTableHeaderView.m" afterPath="$PROJECT_DIR$/Pods/EGOTableViewPullRefresh/EGOTableViewPullRefresh/Classes/View/EGORefreshTableHeaderView.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Manifest.lock" afterPath="$PROJECT_DIR$/Pods/Manifest.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Podfile.lock" afterPath="$PROJECT_DIR$/Podfile.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Podfile" afterPath="$PROJECT_DIR$/Podfile" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Pods/Pods.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/Pods/Pods.xcodeproj/project.pbxproj" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="securityguards.iws" />
@@ -27,10 +34,91 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="TimingTasksPlanViewController.m" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/securityguards/TimingTasksPlanViewController.m">
+      <file leaf-file-name="AQIPanelView.m" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/securityguards/AQIPanelView.m">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="175" column="14" selection-start="7017" selection-end="7017" vertical-scroll-proportion="0.0" vertical-offset="2280" max-vertical-offset="6180">
+            <state line="25" column="4" selection-start="484" selection-end="484" vertical-scroll-proportion="0.0" vertical-offset="225" max-vertical-offset="2400">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="XXDrawerViewController.m" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../Reddydog/Reddydog/Classes/ui/XXDrawerViewController.m">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="17" column="21" selection-start="380" selection-end="380" vertical-scroll-proportion="0.0" vertical-offset="1035" max-vertical-offset="8475">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Podfile" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Podfile">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="8" column="51" selection-start="343" selection-end="343" vertical-scroll-proportion="0.17964073" vertical-offset="0" max-vertical-offset="668">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="XXDrawerViewController.h" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../Reddydog/Reddydog/Classes/ui/XXDrawerViewController.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="690">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="XXDrawerViewController.h" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Pods/Headers/Reddydog/XXDrawerViewController.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="14" column="32" selection-start="0" selection-end="1308" vertical-scroll-proportion="0.0" vertical-offset="210" max-vertical-offset="690">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UIDevice+SystemVersion.h" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../Reddydog/Reddydog/Classes/category/UIDevice+SystemVersion.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="12" column="14" selection-start="214" selection-end="214" vertical-scroll-proportion="0.0" vertical-offset="180" max-vertical-offset="315">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UIDevice+SystemVersion.m" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../Reddydog/Reddydog/Classes/category/UIDevice+SystemVersion.m">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="12" column="0" selection-start="216" selection-end="216" vertical-scroll-proportion="0.0" vertical-offset="180" max-vertical-offset="345">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="XXObjectiveEngine.h" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/securityguards/XXObjectiveEngine.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="480">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="XXObjectiveEngine.m" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/securityguards/XXObjectiveEngine.m">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="465">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="XXAlertView.m" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../Reddydog/Reddydog/Classes/ui/XXAlertView.m">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="14" column="35" selection-start="325" selection-end="325" vertical-scroll-proportion="0.0" vertical-offset="210" max-vertical-offset="3510">
               <folding />
             </state>
           </provider>
@@ -111,9 +199,10 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="y" value="22" />
+    <option name="x" value="48" />
+    <option name="y" value="131" />
     <option name="width" value="1440" />
-    <option name="height" value="808" />
+    <option name="height" value="790" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -207,6 +296,24 @@
               <option name="myItemId" />
               <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Pods" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeRootNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Pods" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Development Pods" />
+              <option name="myItemType" value="com.jetbrains.cidr.projectView.XcodeViewNode" />
+            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
@@ -217,7 +324,7 @@
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="recentsLimit" value="5" />
     <property name="options.lastSelected" value="preferences.pluginManager" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Documents/my_library/ios/reddy" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../private_share/private_share.xcworkspace" />
     <property name="FullScreen" value="false" />
     <property name="OBJC.PRESERVED_TARGET_SELECTION" value="securityguards" />
     <property name="options.splitter.details.proportions" value="0.2" />
@@ -303,24 +410,24 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="22" width="1440" height="808" extended-state="6" />
-    <editor active="false" />
+    <frame x="48" y="131" width="1440" height="790" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22013889" sideWeight="0.63364995" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22013889" sideWeight="0.6338419" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36635005" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36615813" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="100" y="122" width="1200" height="606" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3292517" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32700136" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3259362" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="REST Client" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32971507" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -341,66 +448,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/securityguards/en.lproj/Localizable.strings">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="383" column="32" selection-start="16452" selection-end="16452" vertical-scroll-proportion="0.3895349" vertical-offset="5544" max-vertical-offset="6120" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/securityguards/zh-Hans.lproj/Localizable.strings">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="89" column="47" selection-start="3617" selection-end="3617" vertical-scroll-proportion="0.11627907" vertical-offset="1275" max-vertical-offset="6120" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/securityguards/SpeechViewController.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="374" column="72" selection-start="13762" selection-end="13762" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5805" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/securityguards/SceneButton.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="16" selection-start="144" selection-end="144" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="255" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/securityguards/SceneButton.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="39" selection-start="1332" selection-end="1332" vertical-scroll-proportion="0.0" vertical-offset="161" max-vertical-offset="690" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/securityguards/UnitFinder.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="16" selection-start="317" selection-end="317" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3150" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/securityguards/UnitFinderViewController.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="5" selection-start="845" selection-end="845" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2370" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../Reddydog/Reddydog/Classes/ui/XXDrawerViewController.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="532" column="0" selection-start="19665" selection-end="19665" vertical-scroll-proportion="0.0" vertical-offset="7751" max-vertical-offset="8310" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/securityguards/AppDelegate.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="152" column="47" selection-start="5726" selection-end="5726" vertical-scroll-proportion="0.0" vertical-offset="1944" max-vertical-offset="2700" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/securityguards/GlobalSettings.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="61" column="30" selection-start="2165" selection-end="2165" vertical-scroll-proportion="0.0" vertical-offset="615" max-vertical-offset="1875" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/securityguards/UnitControlPanel.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="32" selection-start="565" selection-end="565" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4200" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/securityguards/DeviceCommandGetNotificationsHandler.m">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="48" selection-start="773" selection-end="773" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="585" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/securityguards/SceneVoiceView.m">
       <provider selected="true" editor-type-id="text-editor">
         <state line="49" column="93" selection-start="2194" selection-end="2194" vertical-scroll-proportion="0.0" vertical-offset="294" max-vertical-offset="1290" />
@@ -418,7 +465,85 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/securityguards/TimingTasksPlanViewController.m">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="175" column="14" selection-start="7017" selection-end="7017" vertical-scroll-proportion="0.0" vertical-offset="2280" max-vertical-offset="6180">
+        <state line="76" column="0" selection-start="2529" selection-end="2529" vertical-scroll-proportion="0.0" vertical-offset="735" max-vertical-offset="6180" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/securityguards/CoreService.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="294" column="3" selection-start="9646" selection-end="9646" vertical-scroll-proportion="0.0" vertical-offset="3820" max-vertical-offset="10650" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Reddydog/Reddydog/Classes/ui/XXPopupView.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="28" column="0" selection-start="803" selection-end="803" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2325" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Reddydog/Reddydog/Classes/ui/XXAlertView.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="35" selection-start="325" selection-end="325" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3465">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/securityguards/XXObjectiveEngine.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="465">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/securityguards/XXObjectiveEngine.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="480">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/securityguards/AQIPanelView.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="4" selection-start="484" selection-end="484" vertical-scroll-proportion="0.0" vertical-offset="225" max-vertical-offset="2400">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Pods/Headers/Reddydog/XXDrawerViewController.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="32" selection-start="0" selection-end="1308" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="690">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Reddydog/Reddydog/Classes/category/UIDevice+SystemVersion.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="14" selection-start="214" selection-end="214" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="315">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Reddydog/Reddydog/Classes/category/UIDevice+SystemVersion.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="0" selection-start="216" selection-end="216" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="345">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Reddydog/Reddydog/Classes/ui/XXDrawerViewController.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="693">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Reddydog/Reddydog/Classes/ui/XXDrawerViewController.m">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="21" selection-start="380" selection-end="380" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="8310">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Podfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="51" selection-start="343" selection-end="343" vertical-scroll-proportion="0.17964073" vertical-offset="0" max-vertical-offset="668">
           <folding />
         </state>
       </provider>

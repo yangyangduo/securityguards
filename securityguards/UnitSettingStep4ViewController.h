@@ -9,6 +9,7 @@
 #import "ToPortalViewController.h"
 
 static NSString * const FamilyGuardsHotSpotName = @"Family-Guard";
+static NSString * const DefaultFamilyGuardsHotSpotName = @"DIRECT-AW-MiniMax";
 
 @interface UnitSettingStep4ViewController : ToPortalViewController<UITextFieldDelegate>
 

@@ -81,7 +81,8 @@
     // check current wifi is Family-Guard ?
     NSString *currentWifiName = [SMNetworkTool ssidForCurrentWifi];
     if(![XXStringUtils isBlank:currentWifiName]) {
-        if([FamilyGuardsHotSpotName isEqualToString:currentWifiName]) {
+        if([FamilyGuardsHotSpotName isEqualToString:currentWifiName] || [DefaultFamilyGuardsHotSpotName isEqualToString:currentWifiName]
+        ) {
             [self.navigationController pushViewController:[[UnitSettingStep4ViewController alloc] init] animated:YES];
             return;
         }
