@@ -17,8 +17,6 @@
 
 @implementation XXBaseViewController
 
-@synthesize topbarView;
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -34,7 +32,7 @@
     [self initDefaults];
     [self initUI];
     [self setUp];
-	// Do any additional setup after loading the view.
+    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning
@@ -47,12 +45,7 @@
 }
 
 - (void)initUI {
-    self.topbarView = [XXTopbarView topbar];
-    [self.view addSubview:self.topbarView];
-    self.view.backgroundColor = [UIColor whiteColor];
-    if(![XXStringUtils isBlank:self.title]) {
-        self.topbarView.title = self.title;
-    }
+    
 }
 
 - (void)setUp {
@@ -84,13 +77,12 @@
 #pragma mark Empty Content View
 
 - (void)showLoadingViewWithMessage:(NSString *)message {
-    UIView *loadingView = [[UIView alloc] initWithFrame:CGRectMake(0, self.topbarView.bounds.size.height, self.view.bounds.size.width, self.view.bounds.size.height - self.topbarView.bounds.size.height)];
+    UIView *loadingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, [UIScreen mainScreen].bounds.size.height - self.standardTopbarHeight)];
     loadingView.tag = LOADING_VIEW_TAG;
     loadingView.backgroundColor = self.view.backgroundColor;
-    
     UIActivityIndicatorView *indicatorView = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
     indicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
-    indicatorView.center = CGPointMake(self.view.center.x - 35, self.view.bounds.size.height / 2 - self.topbarView.bounds.size.height);
+    indicatorView.center = CGPointMake(self.view.center.x - 35, self.view.bounds.size.height / 2 - self.standardTopbarHeight);
     [loadingView addSubview:indicatorView];
     
     UILabel *lbl = [[UILabel alloc] initWithFrame:CGRectMake(self.view.center.x - 15, 0, 120, 30)];
@@ -118,7 +110,7 @@
 }
 
 - (void)showEmptyContentViewWithMessage:(NSString *)message {
-    UIView *emptyContentView = [[UIView alloc] initWithFrame:CGRectMake(0, self.topbarView.bounds.size.height, self.view.bounds.size.width, self.view.bounds.size.height - self.topbarView.bounds.size.height)];
+    UIView *emptyContentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, [UIScreen mainScreen].bounds.size.height - self.standardTopbarHeight)];
     emptyContentView.tag = EMPTY_CONTENT_VIEW_TAG;
     emptyContentView.backgroundColor = self.view.backgroundColor;
     UILabel *lbl = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 220, 30)];
@@ -126,7 +118,7 @@
     lbl.textColor = [UIColor lightGrayColor];
     lbl.font = [UIFont systemFontOfSize:16.f];
     lbl.textAlignment = NSTextAlignmentCenter;
-    lbl.center = CGPointMake(self.view.center.x, self.view.bounds.size.height / 2 - self.topbarView.bounds.size.height);
+    lbl.center = CGPointMake(self.view.center.x, self.view.bounds.size.height / 2 - self.standardTopbarHeight);
     [emptyContentView addSubview:lbl];
     
     if([XXStringUtils isBlank:message]) {
@@ -140,6 +132,18 @@
 - (void)removeEmptyContentView {
     UIView *emptyContentView = [self.view viewWithTag:EMPTY_CONTENT_VIEW_TAG];
     if(emptyContentView != nil) [emptyContentView removeFromSuperview];
+}
+
+- (CGFloat)standardTopbarHeight {
+    if(self.navigationController != nil) {
+        if([UIDevice systemVersionIsMoreThanOrEuqal7]) {
+            return self.navigationController.navigationBar.bounds.size.height + STATUS_BAR_HEIGHT;
+        } else {
+            return self.navigationController.navigationBar.bounds.size.height;
+        }
+    } else {
+        return 0;
+    }
 }
 
 @end

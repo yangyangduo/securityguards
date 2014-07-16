@@ -12,18 +12,26 @@
 
 - (UIViewController *)topViewController:(UIViewController *)rootViewController {
     if(rootViewController == nil) return nil;
-    if(rootViewController.presentedViewController == nil) return rootViewController;
-    if([rootViewController.presentedViewController isKindOfClass:[UINavigationController class]]) {
-        UINavigationController *navigationViewController = (UINavigationController *)rootViewController.presentedViewController;
+
+    UIViewController *controller =
+            rootViewController.presentedViewController == nil ? rootViewController : rootViewController.presentedViewController;
+
+    if([controller isKindOfClass:[UINavigationController class]]) {
+        UINavigationController *navigationViewController = (UINavigationController *)controller;
         UIViewController *viewController = [navigationViewController.viewControllers lastObject];
         if(viewController == nil) return navigationViewController;
         return [self topViewController:viewController];
-    } else if([rootViewController.presentedViewController isKindOfClass:[UITabBarController class]]) {
-        UITabBarController *tabBarController = (UITabBarController *)rootViewController.presentedViewController;
+    } else if([controller isKindOfClass:[UITabBarController class]]) {
+        UITabBarController *tabBarController = (UITabBarController *)controller;
         if(tabBarController.selectedViewController == nil) return tabBarController;
         [self topViewController:tabBarController.selectedViewController];
     }
-    return [self topViewController:rootViewController.presentedViewController];
+
+    if(controller.presentedViewController == nil) {
+        return controller;
+    }
+
+    return [self topViewController:controller.presentedViewController];
 }
 
 @end

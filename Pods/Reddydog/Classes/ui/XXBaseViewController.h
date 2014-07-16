@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 
 // components
-#import "XXTopbarView.h"
 #import "XXAlertView.h"
 #import "XXButton.h"
 #import "XXActionSheet.h"
@@ -29,9 +28,9 @@
 #import "UIView+ViewController.h"
 #import "UIApplication+TopViewController.h"
 
-@interface XXBaseViewController : UIViewController
+#define STATUS_BAR_HEIGHT 20
 
-@property (nonatomic, strong) XXTopbarView *topbarView;
+@interface XXBaseViewController : UIViewController
 
 - (void)initDefaults;
 - (void)initUI;
@@ -46,5 +45,7 @@
 
 - (void)showLoadingViewWithMessage:(NSString *)message;
 - (void)removeLoadingView;
+
+- (CGFloat)standardTopbarHeight;
 
 @end
