@@ -140,13 +140,8 @@
 }
 
 - (void)sendPasswordFailed:(RestResponse *)resp {
-    [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"send_success", @"") forType:AlertViewTypeSuccess];
-    [[XXAlertView currentAlertView] delayDismissAlertView];
-    [self.navigationController pushViewController:[[UnitSettingStep5ViewController alloc] init] animated:YES];
-    return;
-    /*
     [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"send_failed", @"") forType:AlertViewTypeFailed];
-    [[XXAlertView currentAlertView] delayDismissAlertView];*/
+    [[XXAlertView currentAlertView] delayDismissAlertView];
 }
 
 #pragma mark - 
