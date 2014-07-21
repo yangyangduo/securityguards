@@ -1,1 +1,1 @@
-../../../../Reddydog/Reddydog/Classes/category/UIColor+XXImage.h
+../../Reddydog/Classes/category/UIColor+XXImage.h

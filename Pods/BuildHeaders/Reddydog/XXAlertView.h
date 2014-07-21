@@ -1,1 +1,1 @@
-../../../../Reddydog/Reddydog/Classes/ui/XXAlertView.h
+../../Reddydog/Classes/ui/XXAlertView.h

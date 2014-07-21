@@ -125,7 +125,7 @@
         [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"please_wait", @"") forType:AlertViewTypeWaitting];
         [[XXAlertView currentAlertView] alertForLock:YES autoDismiss:NO];
         RestClient *client = [[RestClient alloc] init];
-        [client postForUrl:url acceptType:@"text/html" contentType:@"application/json" body:jsonData success:@selector(sendPasswordSuccess:) error:@selector(sendPasswordFailed:) for:self callback:nil];
+        [client postForUrl:url acceptType:@"application/json" contentType:@"application/json" body:jsonData success:@selector(sendPasswordSuccess:) error:@selector(sendPasswordFailed:) for:self callback:nil];
     }
 }
 
