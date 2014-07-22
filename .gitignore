@@ -13,3 +13,4 @@ build/*
 xcuserdata
 profile
 *.moved-aside
+securityguards.xcodeproj/project.pbxproj
