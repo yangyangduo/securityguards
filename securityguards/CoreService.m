@@ -32,6 +32,9 @@
 #define HEART_BEAT_TIMEOUT         1.f
 #define GETUNITS_MINITES_INTERVAL  60
 
+
+// 执行网络状态检查任务的有序 队列
+// 此Queue必须按顺序执行
 static dispatch_queue_t networkModeCheckTaskQueue() {
     static dispatch_queue_t serialQueue;
     static dispatch_once_t onceToken;
@@ -45,10 +48,14 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
     NSTimer *tcpSocketConnectionCheckTimer;
     NSTimer *refreshTaskTimer;
     
-    /* This array defined which commands can executed in internal net mode */
+    /* 定义了哪些命令是可以在内网执行的 */
     NSArray *mayUsingInternalNetModeCommands;
     
-    /* This array defined which commands execute using restful executor in any net modes */
+    /* 
+     * 定义了必须使用 Restful Executor 的命令
+     * 内网只能用 rest 通讯
+     * 外网则有 socket 和 rest 两种通讯方式
+     */
     NSArray *usingRestfulForAnyNetModeCommands;
     
     /*
@@ -70,6 +77,8 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
 @synthesize netMode = _netMode_;
 @synthesize needRefreshUnit = _needRefreshUnit_;
 
+
+// 获取后台服务线程 (单例)
 - (NSThread *)coreServiceThread {
     static NSThread *_coreServiceThread_ = nil;
     static dispatch_once_t onceToken;
@@ -83,16 +92,15 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
 - (void)coreServiceThreadEntryPoint {
     [[NSThread currentThread] setName:@"CoreServiceThread"];
 
-    // Start a network checker timer
-    // Every 5 seconds to check the tcp is or not connected
-    // If it was closed, then should open it again.
+    // tcp 通讯检查定时器, 每5秒检查一次连接状态 如果断开了 就再打开
     tcpSocketConnectionCheckTimer = [[NSTimer alloc] initWithFireDate:[NSDate date] interval:NETWORK_CHECK_INTERVAL target:self selector:@selector(checkTcp) userInfo:nil repeats:YES];
     CFRunLoopAddTimer(CFRunLoopGetCurrent(), (__bridge CFRunLoopTimerRef)tcpSocketConnectionCheckTimer, kCFRunLoopDefaultMode);
     
-    // Start a task refresh timer
+    // 执行定时任务的定时器
     refreshTaskTimer = [[NSTimer alloc] initWithFireDate:[NSDate date] interval:UNIT_REFRESH_INTERVAL target:self selector:@selector(doTimerTask) userInfo:nil repeats:YES];
     CFRunLoopAddTimer(CFRunLoopGetCurrent(), (__bridge CFRunLoopTimerRef)refreshTaskTimer, kCFRunLoopDefaultMode);
     
+    // 开启 Runloop
     CFRunLoopRun();
     
 #ifdef DEBUG
@@ -142,12 +150,12 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
 
 /*
  *
- * Execute device command
+ * 执行Device Command
  *.
- * NO Network Environment  ---> RETURN
- * 3G                      ---> TCP CONNECTION
- * WIFI  WITH UNIT         ---> RESTFUL SERVICE
- * WIFI  WITH NO UNIT      ---> TCP CONNECTION
+ * 无网络                   ---> RETURN
+ * 3G                      ---> Using TCP CONNECTION
+ * WIFI  WITH UNIT         ---> Using RESTFUL SERVICE
+ * WIFI  WITH NO UNIT      ---> Using TCP CONNECTION
  *
  */
 - (void)executeDeviceCommand:(DeviceCommand *)command {
@@ -170,7 +178,7 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
         return;
     }
     
-    /* Find the best command executor for device command */
+    /* 找到最适合Device Command 的 Executor */
     id<CommandExecutor> executor = [self determineCommandExcutor:command];
     if(executor != nil) {
 #ifdef DEBUG
@@ -195,8 +203,8 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
 
 - (id<CommandExecutor>)determineCommandExcutor:(DeviceCommand *)command {
     /*
-     * If the device command has explicit specify the network mode,
-     * Of course that we know which executor should be used
+     * 如果Device Command 明确指定了其执行的网络模式
+     *
      */
     if(CommandNetworkModeInternal == command.commandNetworkMode
        || CommandNetworkModeExternalViaRestful == command.commandNetworkMode) {
@@ -206,23 +214,24 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
     }
     
     /*
-     * Check the command is in the [Internal network commands list] ?
+     * 检查Device Command 是不是一个内网命令
      */
     if([self commandCanDeliveryInInternalNetMode:command]) {
-        // And also the current net mode is NetModeInternal
+        // 并且当前同时有内网
         if((self.netMode & NetModeInternal) == NetModeInternal) {
             command.commandNetworkMode = CommandNetworkModeInternal;
             return self.restfulService;
         }
     }
     
-    // Hasn't in [internal commands list] or current net mode isn't Internal
-    // And command is restful command whatever
+    // 到这里说明了Device Command 不是一个内网命令 或者 当前没有内网
+    // 检查此 Command 是否要走 外网的 Rest
     if([self isRestfulCommandInAnyNetModes:command]) {
         command.commandNetworkMode = CommandNetworkModeExternalViaRestful;
         return self.restfulService;
     }
     
+    // 有外网Socket连接 那么就使用外网Socket 通讯
     if((self.netMode & NetModeExtranet) == NetModeExtranet) {
         command.commandNetworkMode = CommandNetworkModeExternalViaTcpSocket;
         return self.tcpService;
@@ -234,10 +243,10 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
 - (BOOL)commandCanDeliveryInInternalNetMode:(DeviceCommand *)command {
     if(mayUsingInternalNetModeCommands == nil) return NO;
     /* 
-     * This is a special command
-     * Get all units only execute from tcp (both master device code and unit server url is blank)
-     * Get one unit can execute in rest or tcp
-     * 
+     * 这是一个特殊的命令 要单独进行判断
+     * 获取当个主控信息可以内网 也可以是外网
+     * 获取所有的主控列表(也就是不传 masterDeviceCode) 只能走外网
+     * 但是还有一种情况不传 masterDeviceCode 但是要走内网 (自动发现的时候是没有masterDeviceCode的, 只有一个unitServerUrl)
      *
      */
     if([COMMAND_GET_UNITS isEqualToString:command.commandName]) {
@@ -288,7 +297,7 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
     NSLog(@"[Core Service] Received [%@] From [%@]", command.commandName, networkModeString);
 #endif
     
-    // Security key is invalid or expired
+    // Security key 错了或者过期了 必须踢出去
     if(command.resultID == -3000 || command.resultID == -2000 || command.resultID == -1000) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [[Shared shared].app logout];
@@ -296,12 +305,11 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
         });
     }
     
-    // If the resutID of command is equal -100
-    // that the command should be ignore,
-    // our client will never process this command.
+    // 如果Result ID == - 100 ,我们定义的意思是忽略这个 Command
+    // 不需要对齐做任何处理
     if(command.resultID == -100) return;
     
-    // If the service is not served
+    // 如果服务未打开 也忽略它
     if(_state_ != ServiceStateOpenned) {
 #ifdef DEBUG
         NSLog(@"[Core Service] Service is't opened, can't handle [%@].", command.commandName);
@@ -335,13 +343,19 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
 #pragma mark -
 #pragma mark Event Subscriber
 
+// 此Service 也是事件的订阅者
 - (void)xxEventPublisherNotifyWithEvent:(XXEvent *)event {
+    // 收到了命令
     if([event isKindOfClass:[DeviceCommandEvent class]]) {
         DeviceCommandEvent *commandReceivedEvent = (DeviceCommandEvent *)event;
         [self handleDeviceCommand:commandReceivedEvent.command];
+    
+    // 切换了当前主控
     } else if([event isKindOfClass:[CurrentUnitChangedEvent class]]) {
         CurrentUnitChangedEvent *unitChangedEvent = (CurrentUnitChangedEvent *)event;
 #ifdef DEBUG
+        // trigger source 代表以何种方式切换主控的
+        // 通过命令或者手动切换或者从硬盘读取
         NSString *triggerSource = [XXStringUtils emptyString];
         if(unitChangedEvent.triggeredSource == TriggeredByGetUnitsCommand) {
             triggerSource = @"Device Command";
@@ -362,6 +376,7 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
     }
 }
 
+//
 - (NSString *)xxEventSubscriberIdentifier {
     return @"deviceCommandDeliveryServiceSubscriber";
 }
@@ -424,10 +439,10 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
         
         [[XXEventSubscriptionPublisher defaultPublisher] unSubscribeForSubscriber:self];
         
-        // Disconnect tcp connection
+        // 断开TCP
         [self.tcpService disconnect];
         
-        // Synchronize memory units to disk
+        // 把内存数据写入硬盘
         [[UnitManager defaultManager] syncUnitsToDisk];
       
         _state_ = ServiceStateClosed;
@@ -475,13 +490,12 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
     
     Unit *unit = [UnitManager defaultManager].currentUnit;
     if(unit != nil) {
-        // This is a sync method, not checkInternalOrNotInternalNetwork (async method)
-        // Here you must check net work sync, then continue execute command
+        // 这是一个同步方法  必须先完成这步才能往下走  不同于 'checkInternalOrNotInternalNetwork' 异步的
         [self checkIsReachableInternalUnit];
         
         if(self.needRefreshUnit) {
-            // if current network mode is internal , need refresh by rest api
-            // otherwise update it's by server's push notification on tcp socket
+            // 如果现在的网络状态包含有内网  那么通过内网rest 去拿主控信息
+            // 否则不需要有任何操作 服务器会通过 Socket 推送最新信息过来
             if((self.netMode & NetModeInternal) == NetModeInternal) {
                 // Update current unit
                 DeviceCommand *command = [CommandFactory commandForType:CommandTypeGetUnits];
@@ -495,8 +509,8 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
         [self mayRefreshScoreForUnit:unit];
     }
     
-    // update current location or aqi
-    // if update timerinterval <= one hour, it isn't really work, don't worry to use this
+    // 更新当前location 以及 AQI 信息
+    // 可以放心的调用 因为时间间隔少于1小时 不会有真正的调用
     [[AQIManager manager] mayUpdateAqi];
 }
 
@@ -573,12 +587,12 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
 - (void)checkIsReachableInternalUnit {
     if([UnitManager defaultManager].currentUnit == nil) return;
     if([Reachability reachabilityForLocalWiFi].currentReachabilityStatus == NotReachable) {
-        // no wifi
+        // 没有WIFI
         self.netMode = self.tcpService.isConnectted ? NetModeExtranet : NetModeNone;
         return;
     }
     
-    // has wifi, check is reachbilityForInternal for current unit ?
+    // 有wifi, 检查当前主控是否在内网模式
     
     NSString *url = [NSString stringWithFormat:@"http://%@/heartbeat",
                      [UnitManager defaultManager].currentUnit.localIP];
@@ -594,7 +608,7 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
                 Unit *currentUnit = [UnitManager defaultManager].currentUnit;
                 if(currentUnit != nil) {
                     if([currentUnit.identifier isEqualToString:unitIdentifier]) {
-                        // reachbility for internal
+                        // 有内网, 给当前网络状态增加一个内网模式
                         [self addNetMode:NetModeInternal];
                         return;
                     }
@@ -602,8 +616,8 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
             }
         }
     }
-    // not reachbility for internal
-    // delete NetModeInternal from _netMode_
+    // 没有内网
+    // 当前网络状态需要把内网模式移出出去
     [self removeNetMode:NetModeInternal];
 }
 
