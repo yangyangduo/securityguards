@@ -397,17 +397,17 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
 #ifdef DEBUG
         NSLog(@"[Core Service] Service starting on [%@].", [NSThread currentThread].name);
 #endif
-        // openning service ...
+        // 正在打开服务
         _state_ = ServiceStateOpenning;
         
-        // subscribe events
+        // 订阅事件
         XXEventSubscription *subscription = [[XXEventSubscription alloc] initWithSubscriber:self eventFilter:[[XXEventNameFilter alloc] initWithSupportedEventNames:[NSArray arrayWithObjects:EventDeviceCommand, EventCurrentUnitChanged, nil]]];
         [[XXEventSubscriptionPublisher defaultPublisher] subscribeFor:subscription];
         
-        // load all units from disk
+        // 从硬盘加载所有Units
         [[UnitManager defaultManager] loadUnitsFromDisk];
         
-        // service was openned ...
+        // 服务已经启动
         _state_ = ServiceStateOpenned;
         
 #ifdef DEBUG
@@ -418,7 +418,7 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
 
 - (void)stopService {
     /*
-     * stop service should be executed in main thread, we think that is better
+     * 必须用主线程来关闭服务, why? no why
      */
     if([NSThread currentThread].isMainThread) {
         [self stopServiceInternal];
@@ -482,7 +482,7 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
     }
     
 #ifdef DEBUG
-    NSLog(@"[Core Service] Timer task On Thread [%@].", [NSThread currentThread].name);
+    //NSLog(@"[Core Service] Timer task On Thread [%@].", [NSThread currentThread].name);
 #endif
     
     // Send heart beat command
