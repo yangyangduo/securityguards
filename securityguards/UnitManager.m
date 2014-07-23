@@ -184,6 +184,7 @@
             currentUnitIdentifier = [XXStringUtils emptyString];
             if(self.units.count > 0) {
                 Unit *firstUnit = [self.units objectAtIndex:0];
+                currentUnitIdentifier = firstUnit.identifier;
                 [[XXEventSubscriptionPublisher defaultPublisher] publishWithEvent:[[CurrentUnitChangedEvent alloc] initWithCurrentIdentifier:firstUnit.identifier triggeredBy:TriggeredByGetUnitsCommand]];
             } else {
                 [[XXEventSubscriptionPublisher defaultPublisher] publishWithEvent:[[CurrentUnitChangedEvent alloc] initWithCurrentIdentifier:[XXStringUtils emptyString] triggeredBy:TriggeredByGetUnitsCommand]];
@@ -216,9 +217,15 @@
 
 - (Unit *)currentUnit {
     @synchronized(self) {
-        if(self.units.count == 0) return nil;
+        if(self.units.count == 0) {
+            currentUnitIdentifier = nil;
+            return nil;
+        }
+        
         if([XXStringUtils isBlank:currentUnitIdentifier]) {
-            return [self.units objectAtIndex:0];
+            Unit *firstUnit = [self.units objectAtIndex:0];
+            currentUnitIdentifier = firstUnit.identifier;
+            return firstUnit;
         }
         
         // current unit id is not empty
@@ -227,7 +234,9 @@
         
         Unit *u = [self findUnitByIdentifierInternal:currentUnitIdentifier];
         if(u == nil) {
-            u = [self.units objectAtIndex:0];
+            Unit *firstUnit = [self.units objectAtIndex:0];
+            currentUnitIdentifier = firstUnit.identifier;
+            u = firstUnit;
         }
         return u;
     }
@@ -287,7 +296,12 @@
                 [unitsToSave addObject:[unit toJson]];
             }
             
-            NSData *data = [JsonUtils createJsonDataFromDictionary:[NSDictionary dictionaryWithObject:unitsToSave forKey:@"units"]];
+            NSDictionary *json = @{
+                                   @"units" : unitsToSave,
+                                   @"currentUnitIdentifier" : currentUnitIdentifier
+                                   };
+            
+            NSData *data = [JsonUtils createJsonDataFromDictionary:json];
             
             BOOL success = [data writeToFile:filePath atomically:YES];
             if(!success) {
@@ -313,6 +327,8 @@
             NSData *data = [[NSData alloc] initWithContentsOfFile:filePath];
             NSDictionary *json = [JsonUtils createDictionaryFromJson:data];
             NSArray *_units_ = [json objectForKey:@"units"];
+            NSString *_currentUnitIdentifier = [json stringForKey:@"currentUnitIdentifier"];
+            
             if(_units_ != nil) {
                 NSMutableArray *newUnits = [NSMutableArray array];
                 for(NSDictionary *_unit in _units_) {
@@ -320,15 +336,32 @@
                 }
                 [self.units removeAllObjects];
                 [self.units addObjectsFromArray:newUnits];
+                
                 if(self.units.count > 0) {
-                    Unit *firstUnit = [self.units objectAtIndex:0];
-                    currentUnitIdentifier = firstUnit.identifier;
+                    Unit *selectedUnit;
+                    if(![XXStringUtils isBlank:_currentUnitIdentifier]) {
+                        for(Unit *u in self.units) {
+                            if([u.identifier isEqualToString:_currentUnitIdentifier]) {
+                                selectedUnit = u;
+                                currentUnitIdentifier = selectedUnit.identifier;
+                                break;
+                            }
+                        }
+                    }
+                    
+                    if(selectedUnit == nil) {
+                        selectedUnit = [self.units objectAtIndex:0];
+                        currentUnitIdentifier = selectedUnit.identifier;
+                    }
+
                     [[XXEventSubscriptionPublisher defaultPublisher] publishWithEvent:[[CurrentUnitChangedEvent alloc] initWithCurrentIdentifier:currentUnitIdentifier triggeredBy:TriggeredByReadDisk]];
                 } else {
+                    currentUnitIdentifier = nil;
                     [[XXEventSubscriptionPublisher defaultPublisher] publishWithEvent:[[CurrentUnitChangedEvent alloc] initWithCurrentIdentifier:[XXStringUtils emptyString] triggeredBy:TriggeredByReadDisk]];
                 }
-                
                 return;
+            } else {
+                currentUnitIdentifier = nil;
             }
         }
         [self.units removeAllObjects];
