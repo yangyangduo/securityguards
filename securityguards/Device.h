@@ -9,15 +9,15 @@
 #import <Foundation/Foundation.h>
 #import "Entity.h"
 
-static const int kDeviceStateOpen                         =    0;
-static const int kDeviceStateClose                        =    1;
+static const int kDeviceStateClose                        =    0;
+static const int kDeviceStateOpen                         =    1;
 
 static const int kDeviceAirPurifierLevelHigh              =    2;
 static const int kDeviceAirPurifierLevelMedium            =    1;
 static const int kDeviceAirPurifierLevelLow               =    0;
 
-static const int kDeviceSecurityAllOpen                   =    0;
-static const int kDeviceSecurityClose                     =    1;
+static const int kDeviceSecurityClose                     =    0;
+static const int kDeviceSecurityAllOpen                   =    1;
 static const int kDeviceSecurityFireproof                 =    2;
 
 static const int kDeviceAirPurifierControlModeAutomatic   =    0;
