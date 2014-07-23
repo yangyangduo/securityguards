@@ -110,8 +110,8 @@
 }
 
 - (BOOL)isAvailableDevice {
-    return
-    self.isAirPurifier || self.isCamera || self.isSensor;
+//    return true;
+    return self.isAirPurifier || self.isCamera || self.isSensor || self.isSocket;
 }
 
 - (BOOL)isLight {
