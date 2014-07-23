@@ -153,8 +153,8 @@
         cell.imageView.image = [UIImage imageNamed:@"icon_security"];
     } else if(device.isCamera) {
         cell.imageView.image = [UIImage imageNamed:@"icon_camera"];
-    } else {
-        
+    } else if(device.isSocket) {
+        cell.imageView.image = [UIImage imageNamed:@"icon_camera"];
     }
     
     // set device state for detail text label
@@ -209,8 +209,9 @@
         NSArray *operations = [aSheet parameterForKey:@"deviceOperations"];
         if(buttonIndex < operations.count) {
             DeviceOperationItem *item = [operations objectAtIndex:buttonIndex];
+#ifdef DEBUG
             NSLog(@"[%@] - [%@]", item.displayName, item.commandString);
-return;
+#endif
             [DeviceUtils executeOperationItem:item];
         }
     }

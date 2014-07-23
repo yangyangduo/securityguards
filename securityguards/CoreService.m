@@ -467,7 +467,7 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
     }
     
 #ifdef DEBUG
-//    NSLog(@"[Core Service] Timer task On Thread [%@].", [NSThread currentThread].name);
+    NSLog(@"[Core Service] Timer task On Thread [%@].", [NSThread currentThread].name);
 #endif
     
     // Send heart beat command
@@ -667,14 +667,14 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
     if(unit == nil) return;
     if([unit.score needRefresh]) {
 #ifdef DEBUG
-//        NSLog(@"[Core Service] Now start refresh score for %@", unit.identifier);
+        NSLog(@"[Core Service] Now start refresh score for %@", unit.identifier);
 #endif
         DeviceCommand *getScoreCommand = [CommandFactory commandForType:CommandTypeGetScore];
         getScoreCommand.masterDeviceCode = unit.identifier;
         [self executeDeviceCommand:getScoreCommand];
     } else {
 #ifdef DEBUG
-//        NSLog(@"[Core Service] Don't need to refresh score, after %d minute", unit.score.nextRefreshMinutes);
+        //NSLog(@"[Core Service] Don't need to refresh score, after %d minute", unit.score.nextRefreshMinutes);
 #endif
     }
 }

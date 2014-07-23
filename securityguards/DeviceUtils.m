@@ -85,6 +85,18 @@
         [operations addObject:itemAllOpen];
         [operations addObject:itemClosed];
         [operations addObject:itemFireproof];
+    } else if(device.isSocket) {
+        DeviceOperationItem *itemOn = [[DeviceOperationItem alloc] init];
+        DeviceOperationItem *itemOff = [[DeviceOperationItem alloc] init];
+        
+        itemOn.displayName = NSLocalizedString(@"device_open", @"");
+        itemOff.displayName = NSLocalizedString(@"device_close", @"");
+        
+        itemOn.deviceState = kDeviceStateOpen;
+        itemOff.deviceState = kDeviceStateClose;
+        
+        [operations addObject:itemOn];
+        [operations addObject:itemOff];
     }
     
     // set command strings and unit identifier for each item
@@ -132,6 +144,12 @@
         } else if(status == 0) {
             return NSLocalizedString(@"device_automatic", @"");
         }
+    } else if(device.isSocket) {
+        if(status == 0) {
+            return NSLocalizedString(@"device_open", @"");
+        } else if(status == 1) {
+            return NSLocalizedString(@"device_close", @"");
+        }
     }
     return NSLocalizedString(@"unknow", @"");
 }
@@ -148,7 +166,6 @@
     if(operationItem == nil ||
        [XXStringUtils isBlank:operationItem.unitIdentifier] ||
        [XXStringUtils isBlank:operationItem.commandString]) return;
-    
     DeviceCommandUpdateDevice *updateDeviceCommand = (DeviceCommandUpdateDevice *)[CommandFactory commandForType:CommandTypeUpdateDevice];
     updateDeviceCommand.masterDeviceCode = operationItem.unitIdentifier;
     [updateDeviceCommand addCommandString:operationItem.commandString];
@@ -177,8 +194,6 @@
 #ifdef DEBUG
     NSLog(@"Execute scenes for [%@] with command strings -->  %@", updateDeviceCommand.masterDeviceCode, updateDeviceCommand.executions);
 #endif
-
-    return;
     [[CoreService defaultService] executeDeviceCommand:updateDeviceCommand];
 }
 
