@@ -160,9 +160,14 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
  */
 - (void)executeDeviceCommand:(DeviceCommand *)command {
     if(command == nil) return;
+    // ******* 不能在主线程在执行命令
+    // 统一使用CoreService 所在的线程收发命令
+    
+    // 如果当前线程就是 CoreService 线程 直接执行
     if([self coreServiceThread] == [NSThread currentThread]) {
         [self executeDeviceCommandInternal:command];
     } else {
+        // 当前线程不是Core Service所在线程, 把其 丢到Core Service 的Runloop 中去
         @synchronized(self) {
             [self performSelector:@selector(executeDeviceCommandInternal:) onThread:[self coreServiceThread] withObject:command waitUntilDone:NO];
         }
