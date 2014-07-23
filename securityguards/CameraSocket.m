@@ -30,8 +30,8 @@
 
 @synthesize delegate;
 
-- (id)initWithIPAddress:(NSString *)ip andPort:(NSInteger)portNumber {
-    self = [super initWithIPAddress:ip portNumber:portNumber];
+- (id)initWithIPAddress:(NSString *)ipAddress portNumber:(NSInteger)portNumber {
+    self = [super initWithIPAddress:ipAddress portNumber:portNumber];
     if(self) {
 //        timeoutLock = [[NSLock alloc] init];
         hasRetryCount = 0;
