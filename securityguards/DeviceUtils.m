@@ -117,37 +117,37 @@
 + (NSString *)statusAsStringFor:(Device *)device status:(int)status {
     if(device == nil) return [XXStringUtils emptyString];
     if(device.isAirPurifierPower) {
-        if(status == 0) {
+        if(status == kDeviceStateOpen) {
             return NSLocalizedString(@"device_open", @"");
-        } else if(status == 1) {
+        } else if(status == kDeviceStateClose) {
             return NSLocalizedString(@"device_close", @"");
         }
     } else if(device.isAirPurifierLevel) {
-        if(status == 2) {
+        if(status == kDeviceAirPurifierLevelHigh) {
             return NSLocalizedString(@"high_level", @"");
-        } else if(status == 1) {
+        } else if(status == kDeviceAirPurifierLevelMedium) {
             return NSLocalizedString(@"medium_level", @"");
-        } else if(status == 0) {
+        } else if(status == kDeviceAirPurifierLevelLow) {
             return NSLocalizedString(@"low_level", @"");
         }
     } else if(device.isAirPurifierSecurity) {
-        if(status == 0) {
+        if(status == kDeviceSecurityAllOpen) {
             return NSLocalizedString(@"security_all_open", @"");
-        } else if(status == 1) {
+        } else if(status == kDeviceSecurityClose) {
             return NSLocalizedString(@"security_close", @"");
-        } else if(status == 2) {
+        } else if(status == kDeviceSecurityFireproof) {
             return NSLocalizedString(@"security_fireproof", @"");
         }
     } else if(device.isAirPurifierModeControl) {
-        if(status == 1) {
+        if(status == kDeviceAirPurifierControlModeManual) {
             return NSLocalizedString(@"device_manual", @"");
-        } else if(status == 0) {
+        } else if(status == kDeviceAirPurifierControlModeAutomatic) {
             return NSLocalizedString(@"device_automatic", @"");
         }
     } else if(device.isSocket) {
-        if(status == 0) {
+        if(status == kDeviceStateOpen) {
             return NSLocalizedString(@"device_open", @"");
-        } else if(status == 1) {
+        } else if(status == kDeviceStateClose) {
             return NSLocalizedString(@"device_close", @"");
         }
     }
