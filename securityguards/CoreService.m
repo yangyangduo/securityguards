@@ -174,9 +174,9 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
     id<CommandExecutor> executor = [self determineCommandExcutor:command];
     if(executor != nil) {
 #ifdef DEBUG
-//        if(![COMMAND_SEND_HEART_BEAT isEqualToString:command.commandName]) {
-//            NSLog(@"[Core Service] Execute [%@] From [%@]", command.commandName, [executor executorName]);
-//        }
+        if(![COMMAND_SEND_HEART_BEAT isEqualToString:command.commandName]) {
+            NSLog(@"[Core Service] Execute [%@] From [%@]", command.commandName, [executor executorName]);
+        }
 #endif
         [executor executeCommand:command];
     } else {
