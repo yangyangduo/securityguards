@@ -153,8 +153,8 @@
         cell.imageView.image = [UIImage imageNamed:@"icon_security"];
     } else if(device.isCamera) {
         cell.imageView.image = [UIImage imageNamed:@"icon_camera"];
-    } else if(device.isSocket){
-        cell.imageView.image = [UIImage imageNamed:@"icon_camera"];
+    } else {
+        
     }
     
     // set device state for detail text label
@@ -274,8 +274,6 @@ return;
                 if(device.isCamera) {
                     // if device is camera, need displayed in first row
                     [displayedDevices insertObject:device atIndex:0];
-                }else{
-                    [displayedDevices addObject:device];
                 }
             }
         }
