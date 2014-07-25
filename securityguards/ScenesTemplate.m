@@ -57,7 +57,7 @@
     NSDictionary *returnHomeTemplate = @{
             kTemplateName             : NSLocalizedString(@"scene_return_home", @""),
             kAirPurifierPower         : [NSNumber numberWithInt:kDeviceStateOpen],
-            kAirPurifierSecurity      : [NSNumber numberWithInt:kDeviceSecurityFireproof],
+            kAirPurifierSecurity      : [NSNumber numberWithInt:kDeviceSecurityClose],
             kAirPurifierModeControl   : [NSNumber numberWithInt:kDeviceAirPurifierControlModeAutomatic]
     };
 

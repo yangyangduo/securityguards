@@ -72,19 +72,15 @@
     } else if(device.isAirPurifierSecurity) {
         DeviceOperationItem *itemAllOpen = [[DeviceOperationItem alloc] init];
         DeviceOperationItem *itemClosed = [[DeviceOperationItem alloc] init];
-        DeviceOperationItem *itemFireproof = [[DeviceOperationItem alloc] init];
         
         itemAllOpen.displayName = NSLocalizedString(@"security_all_open", @"");
         itemClosed.displayName = NSLocalizedString(@"security_close", @"");
-        itemFireproof.displayName = NSLocalizedString(@"security_fireproof", @"");
         
         itemAllOpen.deviceState = kDeviceSecurityAllOpen;
         itemClosed.deviceState = kDeviceSecurityClose;
-        itemFireproof.deviceState = kDeviceSecurityFireproof;
         
         [operations addObject:itemAllOpen];
         [operations addObject:itemClosed];
-        [operations addObject:itemFireproof];
     } else if(device.isSocket) {
         DeviceOperationItem *itemOn = [[DeviceOperationItem alloc] init];
         DeviceOperationItem *itemOff = [[DeviceOperationItem alloc] init];
@@ -135,8 +131,6 @@
             return NSLocalizedString(@"security_all_open", @"");
         } else if(status == kDeviceSecurityClose) {
             return NSLocalizedString(@"security_close", @"");
-        } else if(status == kDeviceSecurityFireproof) {
-            return NSLocalizedString(@"security_fireproof", @"");
         }
     } else if(device.isAirPurifierModeControl) {
         if(status == kDeviceAirPurifierControlModeManual) {
@@ -166,6 +160,7 @@
     if(operationItem == nil ||
        [XXStringUtils isBlank:operationItem.unitIdentifier] ||
        [XXStringUtils isBlank:operationItem.commandString]) return;
+    
     DeviceCommandUpdateDevice *updateDeviceCommand = (DeviceCommandUpdateDevice *)[CommandFactory commandForType:CommandTypeUpdateDevice];
     updateDeviceCommand.masterDeviceCode = operationItem.unitIdentifier;
     [updateDeviceCommand addCommandString:operationItem.commandString];
