@@ -64,7 +64,7 @@
     NSDictionary *outTemplate = @{
             kTemplateName             : NSLocalizedString(@"scene_out", @""),
             kAirPurifierPower         : [NSNumber numberWithInt:kDeviceStateClose],
-            kAirPurifierSecurity      : [NSNumber numberWithInt:kDeviceSecurityAllOpen]
+            kAirPurifierSecurity      : [NSNumber numberWithInt:kDeviceSecurityOpen]
     };
 
     NSDictionary *getUpTemplate = @{
@@ -77,7 +77,7 @@
             kTemplateName             : NSLocalizedString(@"scene_sleep", @""),
             kAirPurifierLevel         : [NSNumber numberWithInt:kDeviceAirPurifierLevelLow],
             kAirPurifierPower         : [NSNumber numberWithInt:kDeviceStateOpen],
-            kAirPurifierSecurity      : [NSNumber numberWithInt:kDeviceSecurityAllOpen],
+            kAirPurifierSecurity      : [NSNumber numberWithInt:kDeviceSecurityOpen],
             kAirPurifierModeControl   : [NSNumber numberWithInt:kDeviceAirPurifierControlModeManual]
     };
 

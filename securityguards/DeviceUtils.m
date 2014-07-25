@@ -76,7 +76,7 @@
         itemAllOpen.displayName = NSLocalizedString(@"security_all_open", @"");
         itemClosed.displayName = NSLocalizedString(@"security_close", @"");
         
-        itemAllOpen.deviceState = kDeviceSecurityAllOpen;
+        itemAllOpen.deviceState = kDeviceSecurityOpen;
         itemClosed.deviceState = kDeviceSecurityClose;
         
         [operations addObject:itemAllOpen];
@@ -127,7 +127,7 @@
             return NSLocalizedString(@"low_level", @"");
         }
     } else if(device.isAirPurifierSecurity) {
-        if(status == kDeviceSecurityAllOpen) {
+        if(status == kDeviceSecurityOpen) {
             return NSLocalizedString(@"security_all_open", @"");
         } else if(status == kDeviceSecurityClose) {
             return NSLocalizedString(@"security_close", @"");

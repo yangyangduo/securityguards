@@ -17,7 +17,7 @@ static const int kDeviceAirPurifierLevelMedium            =    1;
 static const int kDeviceAirPurifierLevelLow               =    0;
 
 static const int kDeviceSecurityClose                     =    0;
-static const int kDeviceSecurityAllOpen                   =    1;
+static const int kDeviceSecurityOpen                      =    1;
 
 static const int kDeviceAirPurifierControlModeAutomatic   =    0;
 static const int kDeviceAirPurifierControlModeManual      =    1;
