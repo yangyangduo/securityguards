@@ -137,7 +137,7 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
     
     _needRefreshUnit_ = YES;
     
-    mayUsingInternalNetModeCommands = [NSArray arrayWithObjects:COMMAND_KEY_CONTROL, COMMAND_GET_CAMERA_SERVER, nil];
+    mayUsingInternalNetModeCommands = [NSArray arrayWithObjects:COMMAND_KEY_CONTROL, COMMAND_GET_CAMERA_SERVER, COMMAND_GET_SENSORS, nil];
     usingRestfulForAnyNetModeCommands = [NSArray arrayWithObjects:COMMAND_GET_SENSORS, nil];
         
     /* Network monitor */
@@ -373,10 +373,6 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
 #endif
         if(![XXStringUtils isBlank:unitChangedEvent.unitIdentifier]) {
             [self fireTaskTimer];
-           
-            DeviceCommand *getSensorsCommand = [CommandFactory commandForType:CommandTypeGetSensors];
-            getSensorsCommand.masterDeviceCode = unitChangedEvent.unitIdentifier;
-            [self executeDeviceCommand:getSensorsCommand];
         }
     }
 }
@@ -509,6 +505,11 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
                 command.hashCode = unit.hashCode;
                 [self executeDeviceCommand:command];
             }
+            
+            // 拿当前主控的传感器设备信息(pm2.5 等)
+            DeviceCommand *getSensorsCommand = [CommandFactory commandForType:CommandTypeGetSensors];
+            getSensorsCommand.masterDeviceCode = unit.identifier;
+            [self executeDeviceCommand:getSensorsCommand];
         }
 
         [self mayRefreshScoreForUnit:unit];

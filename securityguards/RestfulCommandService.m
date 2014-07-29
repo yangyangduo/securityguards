@@ -45,8 +45,8 @@
         if([XXStringUtils isBlank:command.masterDeviceCode]) return;
         NSString *url = nil;
         if(CommandNetworkModeInternal == command.commandNetworkMode) {
-            url = [NSString stringWithFormat:@"http://%@/sensor/%@%@",
-                   command.restAddress, command.masterDeviceCode, APP_KEY];
+            url = [NSString stringWithFormat:@"http://%@/sensor",
+                   command.restAddress];
         } else if(CommandNetworkModeExternalViaRestful == command.commandNetworkMode) {
             url = [NSString stringWithFormat:@"%@/sensor/%@%@?deviceCode=%@&appKey=%@&security=%@",
                    [GlobalSettings defaultSettings].restAddress, command.masterDeviceCode, APP_KEY,
