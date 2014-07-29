@@ -707,7 +707,7 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
     if(lastExecuteDate != nil && [UnitManager defaultManager].units.count > 0) {
         NSTimeInterval lastExecuteMinutesSinceNow = abs(lastExecuteDate.timeIntervalSinceNow) / 60;
 #ifdef DEBUG
-        NSLog(@"[Core Service] 在 %f 以前已经获取过所有主控列表了", lastExecuteMinutesSinceNow);
+        NSLog(@"[Core Service] 在 %.2f 分钟以前已经获取过所有主控列表了", lastExecuteMinutesSinceNow);
 #endif
         if(lastExecuteMinutesSinceNow >= GETUNITS_MINITES_INTERVAL) {
             [self executeDeviceCommand:[CommandFactory commandForType:CommandTypeGetUnits]];
