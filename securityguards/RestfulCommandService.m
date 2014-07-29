@@ -28,25 +28,26 @@
 
     if(unit != nil) {
         command.restAddress = unit.localIP;
+        command.restPort = unit.localPort;
     }
     
     if([COMMAND_GET_UNITS isEqualToString:command.commandName]) {
         DeviceCommandGetUnit *getUnitCommand = (DeviceCommandGetUnit *)command;
         if([XXStringUtils isBlank:getUnitCommand.unitServerUrl]) {
-            [self getUnitByIdentifier:getUnitCommand.masterDeviceCode address:getUnitCommand.restAddress hashCode:getUnitCommand.hashCode];
+            [self getUnitByIdentifier:getUnitCommand.masterDeviceCode address:getUnitCommand.restAddress port:getUnitCommand.restPort hashCode:getUnitCommand.hashCode];
         } else {
             [self getUnitByUrl:getUnitCommand.unitServerUrl];
         }
     } else if([COMMAND_KEY_CONTROL isEqualToString:command.commandName]) {
         DeviceCommandUpdateDevice *updateDevice = (DeviceCommandUpdateDevice *)command;
         NSData *data = [JsonUtils createJsonDataFromDictionary:[updateDevice toDictionary]];
-        [self updateDeviceWithAddress:updateDevice.restAddress data:data];
+        [self updateDeviceWithAddress:updateDevice.restAddress port:updateDevice.restPort data:data];
     } else if([COMMAND_GET_SENSORS isEqualToString:command.commandName]) {
         if([XXStringUtils isBlank:command.masterDeviceCode]) return;
         NSString *url = nil;
         if(CommandNetworkModeInternal == command.commandNetworkMode) {
-            url = [NSString stringWithFormat:@"http://%@/sensor/%@%@",
-                   command.restAddress, command.masterDeviceCode, APP_KEY];
+            url = [NSString stringWithFormat:@"http://%@:%d/sensor/%@%@",
+                   command.restAddress, command.restPort, command.masterDeviceCode, APP_KEY];
         } else if(CommandNetworkModeExternalViaRestful == command.commandNetworkMode) {
             url = [NSString stringWithFormat:@"%@/sensor/%@%@?deviceCode=%@&appKey=%@&security=%@",
                    [GlobalSettings defaultSettings].restAddress, command.masterDeviceCode, APP_KEY,
@@ -87,7 +88,7 @@
 }
 
 #pragma mark -
-#pragma mark Get Score [Extranet Rest]
+#pragma mark Get Score
 
 - (void)getScoreWithUnitIdentifier:(NSString *)unitIdentifier withUrl:(NSString *)url {
     [self.client getForUrl:url acceptType:@"text/html" success:@selector(getScoreSuccess:) error:@selector(getScoreFailed:) for:self callback:unitIdentifier];
@@ -113,15 +114,15 @@
 
 - (void)getScoreFailed:(RestResponse *)resp {
 #ifdef DEBUG
-    //NSLog(@"[RESTFUL COMMAND SERVICE] Get score failed, status code is %d", resp.statusCode);
+    NSLog(@"[RESTFUL COMMAND SERVICE] Get score failed, status code is %d", resp.statusCode);
 #endif
 }
 
 #pragma mark -
-#pragma mark Sensor's data [Internal or Extranet Rest]
+#pragma mark Sensor's data
 
 - (void)getSensorsStateWithUnitIdentifier:(NSString *)unitIdentifier url:(NSString *)url callback:(id)cb {
-    [self.client getForUrl:url acceptType:@"application/json" success:@selector(getSensorsStateSuccess:) error:@selector(getSensorsStateFailed:) for:self callback:cb];
+    [self.client getForUrl:url acceptType:@"text/*" success:@selector(getSensorsStateSuccess:) error:@selector(getSensorsStateFailed:) for:self callback:cb];
 }
 
 - (void)getSensorsStateSuccess:(RestResponse *)resp {
@@ -154,10 +155,10 @@
 }
 
 #pragma mark -
-#pragma mark Update devices [Internal Rest]
+#pragma mark Update devices from rest server
 
-- (void)updateDeviceWithAddress:(NSString *)address data:(NSData *)data {
-    NSString *url = [NSString stringWithFormat:@"http://%@/executor", address];
+- (void)updateDeviceWithAddress:(NSString *)address port:(int)port data:(NSData *)data {
+    NSString *url = [NSString stringWithFormat:@"http://%@:%d/executor", address, port];
     [self.client postForUrl:url acceptType:@"application/json" contentType:@"application/json" body:data success:@selector(updateDeviceSuccess:) error:@selector(updateDeviceFailed:) for:self callback:nil];
 }
 
@@ -178,10 +179,10 @@
 }
 
 #pragma mark -
-#pragma mark Get unit [Internal Rest]
+#pragma mark Get units from rest server
 
-- (void)getUnitByIdentifier:(NSString *)unitIdentifier address:(NSString *)addr hashCode:(NSNumber *)hashCode {
-        NSString *url = [NSString stringWithFormat:@"http://%@/gatewaycfg?hashCode=%d", addr, hashCode.intValue];
+- (void)getUnitByIdentifier:(NSString *)unitIdentifier address:(NSString *)addr port:(int)port hashCode:(NSNumber *)hashCode {
+        NSString *url = [NSString stringWithFormat:@"http://%@:%d/gatewaycfg?hashCode=%d", addr, port, hashCode.intValue];
         [self getUnitByUrl:url];
 }
 
@@ -207,7 +208,7 @@
         }
         return;
     } else if(resp.statusCode == 204) {
-        // ignore this;
+        // ignore this ... do not need to refresh local unit
         return;
     }
     [self getUnitFailed:resp];

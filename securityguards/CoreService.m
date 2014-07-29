@@ -188,7 +188,7 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
     if(executor != nil) {
 #ifdef DEBUG
         if(![COMMAND_SEND_HEART_BEAT isEqualToString:command.commandName]) {
-            NSLog(@"[Core Service] Execute [%@] Using [%@]", command.commandName, [executor executorName]);
+            NSLog(@"[Core Service] Execute [%@] From [%@]", command.commandName, [executor executorName]);
         }
 #endif
         [executor executeCommand:command];
@@ -686,7 +686,7 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
     if(unit == nil) return;
     if([unit.score needRefresh]) {
 #ifdef DEBUG
-        //NSLog(@"[Core Service] Now start refresh score for %@", unit.identifier);
+        NSLog(@"[Core Service] Now start refresh score for %@", unit.identifier);
 #endif
         DeviceCommand *getScoreCommand = [CommandFactory commandForType:CommandTypeGetScore];
         getScoreCommand.masterDeviceCode = unit.identifier;
