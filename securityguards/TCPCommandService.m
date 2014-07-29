@@ -46,7 +46,7 @@
         
         if(addressSet == nil || addressSet.count != 2) {
     #ifdef DEBUG
-            NSLog(@"[TCP COMMAND SOCKET] Server address error [ %@ ]", tcpAddress == nil ? [XXStringUtils emptyString] : tcpAddress);
+            NSLog(@"[TCP COMMAND SOCKET] TCP 地址错误 [ %@ ]", tcpAddress == nil ? [XXStringUtils emptyString] : tcpAddress);
     #endif
             return;
         }
@@ -153,7 +153,7 @@
                     NSString *tcp = [json stringForKey:@"tcp"];
                     if(![XXStringUtils isBlank:tcp]) {
 #ifdef DEBUG
-                        NSLog(@"[COMMAND SERVICE] Get new tcp address [%@].", tcp);
+                        NSLog(@"[COMMAND SERVICE] 获取到新的TCP 连接地址 [%@].", tcp);
 #endif
                         [GlobalSettings defaultSettings].tcpAddress = tcp;
                         [[GlobalSettings defaultSettings] saveSettings];
@@ -171,7 +171,7 @@
 
 - (void)reloginFailed:(RestResponse *)resp {
 #ifdef DEBUG
-    NSLog(@"[COMMAND SERVICE] Refresh tcp address failed, status code is %d", resp.statusCode);
+    NSLog(@"[COMMAND SERVICE] 刷新TCP连接地址错误, 状态码 [%d]", resp.statusCode);
 #endif
 }
 
@@ -185,13 +185,13 @@
 
 - (void)clientSocketMessageDiscard:(NSData *)discardMessage {
 #ifdef DEBUG
-    NSLog(@"[TCP COMMAND SOCKET] Some data will discard, the length is %lul", (unsigned long)discardMessage.length);
+    NSLog(@"[TCP COMMAND SOCKET] 有些数据被丢掉了, 总计长度 [%lul]", (unsigned long)discardMessage.length);
 #endif
 }
 
 - (void)clientSocketMessageReadError {
 #ifdef DEBUG
-    NSLog(@"[TCP COMMAND SOCKET] Socket data reading or format error");
+    NSLog(@"[TCP COMMAND SOCKET] 收到的 Socket 数据包有错误");
 #endif
 }
 
@@ -206,7 +206,7 @@
 
 - (void)notifyConnectionClosed {
 #ifdef DEBUG
-    NSLog(@"[TCP COMMAND SOCKET] Closed.");
+    NSLog(@"[TCP COMMAND SOCKET] TCP 连接已关闭");
 #endif
     [[CoreService defaultService] notifyTcpConnectionClosed];
 
@@ -214,14 +214,14 @@
 
 - (void)notifyConnectionOpened {
 #ifdef DEBUG
-    NSLog(@"[TCP COMMAND SOCKET] Opened.");
+    NSLog(@"[TCP COMMAND SOCKET] TCP 连接已开启");
 #endif
     [[CoreService defaultService] notifyTcpConnectionOpened];
 }
 
 - (void)notifyConnectionTimeout {
 #ifdef DEBUG
-    NSLog(@"[TCP COMMAND SOCKET] Connect timeout.");
+    NSLog(@"[TCP COMMAND SOCKET] TCP 连接超时");
 #endif
     [self refreshTcpAddress];
 }

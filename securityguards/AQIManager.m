@@ -128,7 +128,7 @@
             BOOL createDirSuccess = [[NSFileManager defaultManager] createDirectoryAtPath:DIRECTORY withIntermediateDirectories:YES attributes:nil error:&error];
             if(!createDirSuccess) {
 #ifdef DEBUG
-                NSLog(@"[AQI MANAGER] Create directory for aqi failed , error >>> %@", error.description);
+                NSLog(@"[AQI MANAGER] 创建AQI文件目录失败 [%@]", error.description);
 #endif
                 return;
             }
@@ -142,7 +142,7 @@
             [[NSFileManager defaultManager] removeItemAtPath:filePath error:&error];
 #ifdef DEBUG
             if(error) {
-                NSLog(@"[AQI MANAGER] Remove aqi file failed. error >>>>  %@", error.description);
+                NSLog(@"[AQI MANAGER] 删除AQI文件失败 [%@]", error.description);
             }
 #endif
         }
@@ -175,11 +175,11 @@
         BOOL success = [data writeToFile:filePath atomically:YES];
         if(!success) {
 #ifdef DEBUG
-            NSLog(@"[AQI MANAGER] Save aqi failed ...");
+            NSLog(@"[AQI MANAGER] 保存AQI信息失败");
 #endif
         } else {
 #ifdef DEBUG
-            NSLog(@"[AQI MANAGER] Save aqi successed ...");
+            NSLog(@"[AQI MANAGER] 保存AQI信息成功");
 #endif
         }
     }
@@ -197,7 +197,7 @@
     CLLocation *location = [locations lastObject];
     locationCoordinate = location.coordinate;
 #ifdef DEBUG
-    NSLog(@"[AQI MANAGER] Location Updated (longitude=%f,latitude=%f)", locationCoordinate.longitude, locationCoordinate.latitude);
+    NSLog(@"[AQI MANAGER] 地理位置已更新 (经度=%f,纬度=%f)", locationCoordinate.longitude, locationCoordinate.latitude);
 #endif
     RestClient *client = [[RestClient alloc] initWithBaseUrl:[GlobalSettings defaultSettings].restAddress];
     NSString *url = [NSString stringWithFormat:@"/aqi/%f,%f?deviceCode=%@&appKey=%@&security=%@",
@@ -210,7 +210,7 @@
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
 #ifdef DEBUG
-    NSLog(@"[AQI MANAGER] Get location failed.");
+    NSLog(@"[AQI MANAGER] 获取位置信息失败");
 #endif
     [manager stopUpdatingLocation];
     self.locationIsUpdating = NO;
@@ -246,7 +246,7 @@
 
 - (void)getAqiInfoFailed:(RestResponse *)resp {
 #ifdef DEBUG
-    NSLog(@"[AQI MANAGER] Get Aqi failed, status code is %d.", resp.statusCode);
+    NSLog(@"[AQI MANAGER] 获取AQI信息失败 [%d]", resp.statusCode);
 #endif
 }
 

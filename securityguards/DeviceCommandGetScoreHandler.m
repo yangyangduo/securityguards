@@ -26,7 +26,7 @@
             [[XXEventSubscriptionPublisher defaultPublisher] publishWithEvent:event];
         } else {
 #ifdef DEBUG
-            NSLog(@"[DEVICE COMMAND GET SCORE HANDLER] Can't find unit for %@", getScoreCommand.masterDeviceCode);
+            //NSLog(@"[DEVICE COMMAND GET SCORE HANDLER] Can't find unit for %@", getScoreCommand.masterDeviceCode);
 #endif
         }
     }

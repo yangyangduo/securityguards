@@ -188,7 +188,7 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
     if(executor != nil) {
 #ifdef DEBUG
         if(![COMMAND_SEND_HEART_BEAT isEqualToString:command.commandName]) {
-            NSLog(@"[Core Service] Execute [%@] From [%@]", command.commandName, [executor executorName]);
+            NSLog(@"[Core Service] 使用 [%@] 执行 [%@] 命令", [executor executorName], command.commandName);
         }
 #endif
         [executor executeCommand:command];
@@ -201,7 +201,7 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
 
 - (void)queueCommand:(DeviceCommand *)command {
 #ifdef DEBUG
-    NSLog(@"[Core Service] Queue command [%@].", command.commandName);
+    NSLog(@"[Core Service] [%@] 命令已加入队列", command.commandName);
 #endif
     [self.tcpService queueCommand:command];
 }
@@ -295,11 +295,11 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
     NSString *networkModeString = [XXStringUtils emptyString];
     if(command.commandNetworkMode == CommandNetworkModeExternalViaRestful
         || command.commandNetworkMode == CommandNetworkModeExternalViaTcpSocket) {
-        networkModeString = @"External";
+        networkModeString = @"外网";
     } else if(command.commandNetworkMode == CommandNetworkModeInternal) {
-        networkModeString = @"Internal";
+        networkModeString = @"内网";
     }
-    NSLog(@"[Core Service] Received [%@] From [%@]", command.commandName, networkModeString);
+    NSLog(@"[Core Service] 收到来自 [%@] 的 [%@]命令", networkModeString, command.commandName);
 #endif
     
     // Security key 错了或者过期了 必须踢出去
@@ -317,7 +317,7 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
     // 如果服务未打开 也忽略它
     if(_state_ != ServiceStateOpenned) {
 #ifdef DEBUG
-        NSLog(@"[Core Service] Service is't opened, can't handle [%@].", command.commandName);
+        NSLog(@"[Core Service] 服务未开启不能处理 [%@] 命令", command.commandName);
 #endif
         return;
     }
@@ -363,13 +363,13 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
         // 通过命令或者手动切换或者从硬盘读取
         NSString *triggerSource = [XXStringUtils emptyString];
         if(unitChangedEvent.triggeredSource == TriggeredByGetUnitsCommand) {
-            triggerSource = @"Device Command";
+            triggerSource = @"命令";
         } else if(unitChangedEvent.triggeredSource == TriggeredByManual) {
-            triggerSource = @"User Manual";
+            triggerSource = @"用户手动切换";
         } else if(unitChangedEvent.triggeredSource == TriggeredByReadDisk) {
-            triggerSource = @"Read Disk";
+            triggerSource = @"从手机硬盘读取文件";
         }
-        NSLog(@"[Core Service] Current Unit Changed to [%@] triggerd by [%@]", unitChangedEvent.unitIdentifier, triggerSource);
+        NSLog(@"[Core Service] 当前主控切换到 [%@] 通过 [%@] 方式触发的", unitChangedEvent.unitIdentifier, triggerSource);
 #endif
         if(![XXStringUtils isBlank:unitChangedEvent.unitIdentifier]) {
             [self fireTaskTimer];
@@ -400,7 +400,7 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
 - (void)startServiceInternal {
     if(_state_ != ServiceStateOpenned && _state_ != ServiceStateOpenning) {
 #ifdef DEBUG
-        NSLog(@"[Core Service] Service starting on [%@].", [NSThread currentThread].name);
+        NSLog(@"[Core Service] 服务在 [%@] 线程上准备开启", [NSThread currentThread].name);
 #endif
         // 正在打开服务
         _state_ = ServiceStateOpenning;
@@ -416,7 +416,7 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
         _state_ = ServiceStateOpenned;
         
 #ifdef DEBUG
-        NSLog(@"[Core Service] Service started on [%@]", [NSThread currentThread].name);
+        NSLog(@"[Core Service] 服务在 [%@] 线程上已启动", [NSThread currentThread].name);
 #endif
     }
 }
@@ -438,7 +438,7 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
     if(_state_ != ServiceStateClosed && _state_ != ServiceStateClosing) {
         _state_ = ServiceStateClosing;
 #ifdef DEBUG
-        NSLog(@"[Core Service] Service stopping on [%@].",
+        NSLog(@"[Core Service] 服务准备在 [%@] 线程上关闭",
               [NSThread currentThread].isMainThread ? @"Main Thread" : [NSThread currentThread].name);
 #endif
         
@@ -453,7 +453,7 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
         _state_ = ServiceStateClosed;
         
 #ifdef DEBUG
-        NSLog(@"[Core Service] Service stopped on [%@].",
+        NSLog(@"[Core Service] 服务关闭于 [%@] 线程",
               [NSThread currentThread].isMainThread ? @"Main Thread" : [NSThread currentThread].name);
 #endif
     }
@@ -465,7 +465,7 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
 - (void)checkTcp {
     if(self.state != ServiceStateOpenned) {
 #ifdef DEBUG
-        NSLog(@"[Core Service] Check tcp can't be executed, because core service is not openned.");
+        NSLog(@"[Core Service] 服务未开启不能检查 TCP 连接");
 #endif
         return;
     }
@@ -667,15 +667,15 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
         NSString *netModeString = [XXStringUtils emptyString];
         NetMode nm = self.netMode;
         if(nm == NetModeNone) {
-            netModeString = @"No net";
+            netModeString = @"没有网络模式";
         } else if(nm == NetModeExtranet) {
-            netModeString = @"Extranet";
+            netModeString = @"外网模式";
         } else if(nm == NetModeInternal) {
-            netModeString = @"Internal";
+            netModeString = @"内网模式";
         } else if(nm == NetModeAll) {
-            netModeString = @"Both (Internal & Extranet)";
+            netModeString = @"内外网共存模式";
         }
-        NSLog(@"[Core Service] Net Mode Was Changed To [%@].", netModeString);
+        NSLog(@"[Core Service] 当前网络模式切换到 [%@]", netModeString);
 #endif
         [[XXEventSubscriptionPublisher defaultPublisher] publishWithEvent:
             [[NetworkModeChangedEvent alloc] initWithNetMode:self.netMode]];
@@ -686,7 +686,7 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
     if(unit == nil) return;
     if([unit.score needRefresh]) {
 #ifdef DEBUG
-        NSLog(@"[Core Service] Now start refresh score for %@", unit.identifier);
+        //NSLog(@"[Core Service] Now start refresh score for %@", unit.identifier);
 #endif
         DeviceCommand *getScoreCommand = [CommandFactory commandForType:CommandTypeGetScore];
         getScoreCommand.masterDeviceCode = unit.identifier;
@@ -707,7 +707,7 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
     if(lastExecuteDate != nil && [UnitManager defaultManager].units.count > 0) {
         NSTimeInterval lastExecuteMinutesSinceNow = abs(lastExecuteDate.timeIntervalSinceNow) / 60;
 #ifdef DEBUG
-        NSLog(@"[Core Service] Last execute get units command before %f minutes ago.", lastExecuteMinutesSinceNow);
+        NSLog(@"[Core Service] 在 %f 以前已经获取过所有主控列表了", lastExecuteMinutesSinceNow);
 #endif
         if(lastExecuteMinutesSinceNow >= GETUNITS_MINITES_INTERVAL) {
             [self executeDeviceCommand:[CommandFactory commandForType:CommandTypeGetUnits]];

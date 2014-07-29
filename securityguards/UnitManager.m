@@ -269,7 +269,7 @@
                 BOOL createDirSuccess = [[NSFileManager defaultManager] createDirectoryAtPath:DIRECTORY withIntermediateDirectories:YES attributes:nil error:&error];
                 if(!createDirSuccess) {
 #ifdef DEBUG
-                    NSLog(@"[UNIT MANAGER] Create directory for units failed , error >>> %@", error.description);
+                    NSLog(@"[UNIT MANAGER] 创建主控文件目录失败 [%@]", error.description);
 #endif
                     return;
                 }
@@ -284,7 +284,7 @@
                     [[NSFileManager defaultManager] removeItemAtPath:filePath error:&error];
 #ifdef DEBUG
                     if(error) {
-                        NSLog(@"[UNIT MANAGER] Remove unit file failed. error >>>>  %@", error.description);
+                        NSLog(@"[UNIT MANAGER] 从硬盘中删除主控文件失败 [%@]", error.description);
                     }
 #endif
                 }
@@ -298,7 +298,7 @@
             
             NSDictionary *json = @{
                                    @"units" : unitsToSave,
-                                   @"currentUnitIdentifier" : currentUnitIdentifier
+                                   @"currentUnitIdentifier" : (currentUnitIdentifier ? currentUnitIdentifier : @"")
                                    };
             
             NSData *data = [JsonUtils createJsonDataFromDictionary:json];
@@ -306,13 +306,13 @@
             BOOL success = [data writeToFile:filePath atomically:YES];
             if(!success) {
 #ifdef DEBUG
-                NSLog(@"[UNIT MANAGER] Save units failed ...");
+                NSLog(@"[UNIT MANAGER] 保存所有主控列表失败了");
 #endif
             }
         }
         @catch (NSException *exception) {
 #ifdef DEBUG
-            NSLog(@"[UNIT MANAGER] Save units exception reason %@", exception.reason);
+            NSLog(@"[UNIT MANAGER] 保存所有主控出异常了 [%@]", exception.reason);
 #endif
         }
         @finally {
@@ -376,7 +376,7 @@
             [self.units removeAllObjects];
         }
 #ifdef DEBUG
-        NSLog(@"[UNIT MANAGER] Clear units.");
+        NSLog(@"[UNIT MANAGER] 清理所有主控");
 #endif
     }
 }
