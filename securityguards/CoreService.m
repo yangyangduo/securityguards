@@ -495,16 +495,10 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
         [self checkIsReachableInternalUnit];
         
         if(self.needRefreshUnit) {
-            // 如果现在的网络状态包含有内网  那么通过内网rest 去拿主控信息
-            // 否则不需要有任何操作 服务器会通过 Socket 推送最新信息过来
-            if((self.netMode & NetModeInternal) == NetModeInternal) {
-                // Update current unit
-                DeviceCommand *command = [CommandFactory commandForType:CommandTypeGetUnits];
-                command.commandNetworkMode = CommandNetworkModeInternal;
-                command.masterDeviceCode = unit.identifier;
-                command.hashCode = unit.hashCode;
-                [self executeDeviceCommand:command];
-            }
+            DeviceCommand *command = [CommandFactory commandForType:CommandTypeGetUnits];
+            command.masterDeviceCode = unit.identifier;
+            command.hashCode = unit.hashCode;
+            [self executeDeviceCommand:command];
             
             // 拿当前主控的传感器设备信息(pm2.5 等)
             DeviceCommand *getSensorsCommand = [CommandFactory commandForType:CommandTypeGetSensors];
