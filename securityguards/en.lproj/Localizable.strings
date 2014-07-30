@@ -145,6 +145,8 @@
 "device_close"                   =      "关闭";
 "device_automatic"               =      "自动";
 "device_manual"                  =      "手动";
+"device_sleep"                   =      "睡眠";
+"device_wakeup"                  =      "唤醒";
 "view"                           =      "查看";
 "security_all_open"              =      "完全设防";
 "security_close"                 =      "关闭";

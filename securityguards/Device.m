@@ -8,6 +8,22 @@
 
 #import "Device.h"
 
+int const kDeviceStateIgnore                              =    999;
+
+int const kDeviceStateClose                               =    0;
+int const kDeviceStateOpen                                =    1;
+
+int const kDeviceAirPurifierLevelHigh                     =    2;
+int const kDeviceAirPurifierLevelMedium                   =    1;
+int const kDeviceAirPurifierLevelLow                      =    0;
+
+int const kDeviceSecurityClose                            =    0;
+int const kDeviceSecurityOpen                             =    1;
+
+int const kDeviceAirPurifierControlModeAutomatic          =    0;
+int const kDeviceAirPurifierControlModeManual             =    1;
+int const kDeviceAirPurifierControlModeSleepOrWakeUp      =    2;
+
 @implementation Device
 
 @synthesize zone;

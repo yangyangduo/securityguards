@@ -18,7 +18,10 @@
 + (NSString *)stateAsString:(int)state;
 
 + (NSMutableArray *)operationsListFor:(Device *)device;
++ (NSMutableArray *)operationsListFor:(Device *)device deviceState:(unsigned int)deviceState;
+
 + (DeviceOperationItem *)operationItemFor:(Device *)device withState:(int)state;
+
 + (void)executeOperationItem:(DeviceOperationItem *)operationItem;
 + (void)executeOperationItems:(NSArray *)operationItems forUnit:(NSString *)unitIdentifier;
 

@@ -23,7 +23,15 @@
     return nil;
 }
 
+/*
+ 
+ */
 + (NSMutableArray *)operationsListFor:(Device *)device {
+    return [[self class] operationsListFor:device deviceState:kDeviceStateIgnore];
+}
+
+
++ (NSMutableArray *)operationsListFor:(Device *)device deviceState:(unsigned int)deviceState {
     NSMutableArray *operations = [NSMutableArray array];
     if(device == nil) return operations;
     
@@ -60,15 +68,29 @@
     } else if(device.isAirPurifierModeControl) {
         DeviceOperationItem *itemAutomatic = [[DeviceOperationItem alloc] init];
         DeviceOperationItem *itemManual = [[DeviceOperationItem alloc] init];
+        DeviceOperationItem *itemSleepOrWakeup = [[DeviceOperationItem alloc] init];
         
         itemManual.displayName = NSLocalizedString(@"device_manual", @"");
         itemAutomatic.displayName = NSLocalizedString(@"device_automatic", @"");
         
         itemAutomatic.deviceState = kDeviceAirPurifierControlModeAutomatic;
         itemManual.deviceState = kDeviceAirPurifierControlModeManual;
+        itemSleepOrWakeup.deviceState = kDeviceAirPurifierControlModeSleepOrWakeUp;
         
-        [operations addObject:itemManual];
-        [operations addObject:itemAutomatic];
+        if(kDeviceStateIgnore != deviceState) {
+            if(kDeviceAirPurifierControlModeSleepOrWakeUp == deviceState) {
+                itemSleepOrWakeup.displayName = NSLocalizedString(@"device_wakeup", @"");
+                [operations addObject:itemSleepOrWakeup];
+            }
+        }
+        
+        if(operations.count == 0) {
+            itemSleepOrWakeup.displayName = NSLocalizedString(@"device_sleep", @"");
+            [operations addObject:itemManual];
+            [operations addObject:itemAutomatic];
+            [operations addObject:itemSleepOrWakeup];
+        }
+        
     } else if(device.isAirPurifierSecurity) {
         DeviceOperationItem *itemAllOpen = [[DeviceOperationItem alloc] init];
         DeviceOperationItem *itemClosed = [[DeviceOperationItem alloc] init];
@@ -137,6 +159,8 @@
             return NSLocalizedString(@"device_manual", @"");
         } else if(status == kDeviceAirPurifierControlModeAutomatic) {
             return NSLocalizedString(@"device_automatic", @"");
+        } else if(status == kDeviceAirPurifierControlModeSleepOrWakeUp) {
+            return NSLocalizedString(@"device_sleep", @"");
         }
     } else if(device.isSocket) {
         if(status == kDeviceStateOpen) {

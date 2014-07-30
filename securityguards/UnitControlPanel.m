@@ -178,7 +178,12 @@
         cameraViewController.cameraDevice = device;
         [[[Shared shared].app topViewController] presentViewController:cameraViewController animated:YES completion:^{}];
     } else {
-        NSArray *operations = [DeviceUtils operationsListFor:device];
+        NSArray *operations;
+        if(device.isAirPurifierModeControl) {
+            operations = [DeviceUtils operationsListFor:device deviceState:device.status];
+        } else {
+            operations = [DeviceUtils operationsListFor:device];
+        }
         if(operations != nil && operations.count > 0) {
             XXActionSheet *actionSheet = [[XXActionSheet alloc] init];
             [actionSheet setParameter:operations forKey:@"deviceOperations"];
@@ -187,7 +192,8 @@
             actionSheet.delegate = self;
             for(int i=0; i<operations.count; i++) {
                 DeviceOperationItem *item = [operations objectAtIndex:i];
-                if(device.status == item.deviceState) {
+                if(!(device.isAirPurifierModeControl && device.status == kDeviceAirPurifierControlModeSleepOrWakeUp)
+                   && device.status == item.deviceState) {
                     actionSheet.destructiveButtonIndex = i;
                 }
                 [actionSheet addButtonWithTitle:item.displayName];

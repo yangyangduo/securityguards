@@ -9,18 +9,21 @@
 #import <Foundation/Foundation.h>
 #import "Entity.h"
 
-static const int kDeviceStateClose                        =    0;
-static const int kDeviceStateOpen                         =    1;
+extern int const kDeviceStateIgnore;
 
-static const int kDeviceAirPurifierLevelHigh              =    2;
-static const int kDeviceAirPurifierLevelMedium            =    1;
-static const int kDeviceAirPurifierLevelLow               =    0;
+extern int const kDeviceStateClose;
+extern int const kDeviceStateOpen;
 
-static const int kDeviceSecurityClose                     =    0;
-static const int kDeviceSecurityOpen                      =    1;
+extern int const kDeviceAirPurifierLevelHigh;
+extern int const kDeviceAirPurifierLevelMedium;
+extern int const kDeviceAirPurifierLevelLow;
 
-static const int kDeviceAirPurifierControlModeAutomatic   =    0;
-static const int kDeviceAirPurifierControlModeManual      =    1;
+extern int const kDeviceSecurityClose;
+extern int const kDeviceSecurityOpen;
+
+extern int const kDeviceAirPurifierControlModeAutomatic;
+extern int const kDeviceAirPurifierControlModeManual;
+extern int const kDeviceAirPurifierControlModeSleepOrWakeUp;
 
 @class Zone;
 
