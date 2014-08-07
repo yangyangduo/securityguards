@@ -68,7 +68,7 @@
 "user_mgr_drawer_title"          =      "用户管理";
 "task_timer_title"               =      "定时任务";
 "contact_us_drawer_title"        =      "关于我们";
-"logout_drawer_title"            =      "注销账号";
+"logout_drawer_title"            =      "退出登录";
 "notifications_drawer_title"     =      "消息中心";
 "logouting"                      =      "注销中...";
 "logout_success"                 =      "注销成功";
@@ -166,6 +166,8 @@
 "wifi_name"                      =      "WIFI名称";
 "internal_ip"                    =      "内网地址";
 "wifi_disconnectted"             =      "未连接WIFI";
+"execution_success"              =      "执行成功";
+"execution_failed"               =      "执行失败";
 
 
 /****************	Timer Task View Strings	****************/

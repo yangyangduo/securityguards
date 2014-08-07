@@ -286,6 +286,8 @@ typedef enum {
                 cell.imageView.image = [UIImage imageNamed:@"icon_control_mode"];
             } else if(eachItem.device.isAirPurifierSecurity) {
                 cell.imageView.image = [UIImage imageNamed:@"icon_security"];
+            } else if(eachItem.device.isSocket) {
+                cell.imageView.image = [UIImage imageNamed:@"icon_socket"];
             }
             
             // set text && detail text label

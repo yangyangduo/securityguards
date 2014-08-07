@@ -238,10 +238,18 @@
 }
 
 - (void)btnSharePressed:(id)sender {
+    int score = [UnitManager defaultManager].currentUnit.score.score;
+    int ranking = [UnitManager defaultManager].currentUnit.score.rankings;
+    
     FrontiaShareContent *content = [[FrontiaShareContent alloc] init];
-    content.url = @"http://www.365jws.com";
-    content.title = @"Test test test";
-    content.description = @"365家卫士 Test test";
+    content.url = @"http://365smart.com";
+    content.title = @"365家卫士";
+    
+    if(score != 0) {
+        content.description = [NSString stringWithFormat:@"当前我的家庭健康及安全指数为 %d 分, 已超过 %d%% 的家庭 ", score, ranking];
+    } else {
+        content.description = @"我的健康安全防护专家，365家卫士家庭安全健康中心，享受科技生活！";
+    }
     
     [[Frontia getShare] showShareMenuWithShareContent:content
                         displayPlatforms:[NSArray arrayWithObjects:

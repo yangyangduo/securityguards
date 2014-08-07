@@ -90,7 +90,7 @@
 #pragma mark Get Score
 
 - (void)getScoreWithUnitIdentifier:(NSString *)unitIdentifier withUrl:(NSString *)url {
-    [self.client getForUrl:url acceptType:@"text/html" success:@selector(getScoreSuccess:) error:@selector(getScoreFailed:) for:self callback:unitIdentifier];
+    [self.client getForUrl:url acceptType:@"application/json" success:@selector(getScoreSuccess:) error:@selector(getScoreFailed:) for:self callback:unitIdentifier];
 }
 
 - (void)getScoreSuccess:(RestResponse *)resp {

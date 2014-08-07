@@ -94,7 +94,7 @@
         if(_unit_ != nil) {
             for(int i=0; i<_unit_.devices.count; i++) {
                 Device *device = [_unit_.devices objectAtIndex:i];
-                if(device.isAirPurifier) {
+                if(device.isAirPurifier || device.isSocket) {
                     TimingTaskExecutionItem *item = [[TimingTaskExecutionItem alloc] init];
                     item.device = device;
                     item.deviceIdentifier = device.identifier;
@@ -142,7 +142,7 @@
         
         for(int i=0; i<_unit_.devices.count; i++) {
             Device *device = [_unit_.devices objectAtIndex:i];
-            if(device.isAirPurifier) {
+            if(device.isAirPurifier || device.isSocket) {
                 TimingTaskExecutionItem *item = [[TimingTaskExecutionItem alloc] init];
                 item.device = device;
                 item.deviceIdentifier = device.identifier;

@@ -70,7 +70,8 @@
     NSDictionary *getUpTemplate = @{
             kTemplateName             : NSLocalizedString(@"scene_get_up", @""),
             kAirPurifierPower         : [NSNumber numberWithInt:kDeviceStateClose],
-            kAirPurifierSecurity      : [NSNumber numberWithInt:kDeviceSecurityClose]
+            kAirPurifierSecurity      : [NSNumber numberWithInt:kDeviceSecurityClose],
+            kAirPurifierModeControl   : [NSNumber numberWithInt:kDeviceAirPurifierControlModeSleepOrWakeUp]
     };
 
     NSDictionary *sleepTemplate = @{
@@ -78,7 +79,7 @@
             kAirPurifierLevel         : [NSNumber numberWithInt:kDeviceAirPurifierLevelLow],
             kAirPurifierPower         : [NSNumber numberWithInt:kDeviceStateOpen],
             kAirPurifierSecurity      : [NSNumber numberWithInt:kDeviceSecurityOpen],
-            kAirPurifierModeControl   : [NSNumber numberWithInt:kDeviceAirPurifierControlModeManual]
+            kAirPurifierModeControl   : [NSNumber numberWithInt:kDeviceAirPurifierControlModeSleepOrWakeUp]
     };
 
     defaultTemplates = @{

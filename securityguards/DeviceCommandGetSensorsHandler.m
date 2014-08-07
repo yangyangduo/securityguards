@@ -24,7 +24,13 @@
     
     Unit *unit = [[UnitManager defaultManager] findUnitByIdentifier:cmd.masterDeviceCode];
     if(unit != nil) {
-        unit.sensors = cmd.sensors;
+        Device *airPurifierPowDevice = unit.airPurifierPowDevice;
+        if(kDeviceStateClose == airPurifierPowDevice.status) {
+            // 净化器电源此时是关闭的
+            unit.sensors = [NSArray array];
+        } else {
+            unit.sensors = cmd.sensors;
+        }
         [[UnitManager defaultManager] syncUnitsToDisk];
         [[XXEventSubscriptionPublisher defaultPublisher] publishWithEvent:[[SensorStateChangedEvent alloc] initWithUnitIdentifier:cmd.masterDeviceCode]];
     }

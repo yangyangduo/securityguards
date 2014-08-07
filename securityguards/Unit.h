@@ -67,6 +67,8 @@
 - (Zone *)findMasterZone;
 - (Zone *)findSlaveZone;
 
+- (Device *)airPurifierPowDevice;
+
 @end
 
 

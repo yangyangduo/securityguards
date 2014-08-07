@@ -17,6 +17,7 @@
 #import "DeviceCommandEvent.h"
 #import "Shared.h"
 #import "UnitManager.h"
+#import "ScenesTemplate.h"
 
 #define MESSAGE_VIEW_TAG 999
 
@@ -40,6 +41,8 @@ typedef NS_ENUM(NSInteger, RecognizerState) {
     RecognizerState recognizerState;
     
     BOOL portalViewIsOpenning;
+    
+    NSString *lastUnprocessedLocalVoiceMessage;
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -291,6 +294,22 @@ typedef NS_ENUM(NSInteger, RecognizerState) {
     }
 }
 
+- (BOOL)simplyMappingLocalMessageListWith:(NSString *)voiceMessage {
+    if([@"回家" isEqualToString:voiceMessage]) {
+        [ScenesTemplate executeDefaultTemplatesWithTemplateId:kSceneReturnHome forUnit:[UnitManager defaultManager].currentUnit];
+    } else if([@"出门" isEqualToString:voiceMessage]) {
+        [ScenesTemplate executeDefaultTemplatesWithTemplateId:kSceneOut forUnit:[UnitManager defaultManager].currentUnit];
+    } else if([@"起床" isEqualToString:voiceMessage]) {
+        [ScenesTemplate executeDefaultTemplatesWithTemplateId:kSceneGetUp forUnit:[UnitManager defaultManager].currentUnit];
+    } else if([@"睡觉" isEqualToString:voiceMessage]){
+        [ScenesTemplate executeDefaultTemplatesWithTemplateId:kSceneSleep forUnit:[UnitManager defaultManager].currentUnit];
+    } else {
+        return NO;
+    }
+    lastUnprocessedLocalVoiceMessage = voiceMessage;
+    return YES;
+}
+
 - (void)recognizeSuccess:(NSString *)result {
     if(![XXStringUtils isBlank:result]) {
         //Process text message
@@ -303,10 +322,12 @@ typedef NS_ENUM(NSInteger, RecognizerState) {
         textMessage.timeMessage = [XXDateFormatter dateToString:[NSDate date] format:@"HH:mm:ss"];
         [self addMessage:textMessage];
         
-        DeviceCommandVoiceControl *command = (DeviceCommandVoiceControl *)[CommandFactory commandForType:CommandTypeUpdateDeviceViaVoice];
-        command.masterDeviceCode = [UnitManager defaultManager].currentUnit.identifier;
-        command.voiceText = result;
-        [[CoreService defaultService] executeDeviceCommand:command];
+        if(![self simplyMappingLocalMessageListWith:result]) {
+            DeviceCommandVoiceControl *command = (DeviceCommandVoiceControl *)[CommandFactory commandForType:CommandTypeUpdateDeviceViaVoice];
+            command.masterDeviceCode = [UnitManager defaultManager].currentUnit.identifier;
+            command.voiceText = result;
+            [[CoreService defaultService] executeDeviceCommand:command];
+        }
     } else {
         [self speechRecognizerFailed:@"[SPEECH RECOGNIZER] No speaking"];
     }
@@ -330,8 +351,11 @@ typedef NS_ENUM(NSInteger, RecognizerState) {
 - (void)xxEventPublisherNotifyWithEvent:(XXEvent *)event {
     if([event isKindOfClass:[DeviceCommandEvent class]]) {
         DeviceCommandEvent *evt = (DeviceCommandEvent *)event;
-        DeviceCommandVoiceControl *cmd = (DeviceCommandVoiceControl *)evt.command;
-        [self notifyVoiceControlAccept:cmd];
+        DeviceCommandVoiceControl *cmd;
+        if([evt.command isKindOfClass:[DeviceCommandVoiceControl class]]) {
+            cmd = (DeviceCommandVoiceControl *)evt.command;
+            [self notifyVoiceControlAccept:cmd];
+        }
     } else if([event isKindOfClass:[DeviceStatusChangedEvent class]]) {
         DeviceStatusChangedEvent *evt = (DeviceStatusChangedEvent *)event;
         [self notifyDeviceStatusChanged:evt.command];
@@ -343,7 +367,16 @@ typedef NS_ENUM(NSInteger, RecognizerState) {
 }
 
 - (void)notifyDeviceStatusChanged:(DeviceCommandUpdateDevices *)command {
-    if([XXStringUtils isBlank:command.voiceText]) return;
+    if(command == nil) return;
+    NSString *voiceText;
+    if([XXStringUtils isBlank:command.voiceText]) {
+        if(lastUnprocessedLocalVoiceMessage == nil) return;
+        
+        voiceText = lastUnprocessedLocalVoiceMessage;
+        lastUnprocessedLocalVoiceMessage = nil;
+    } else {
+        voiceText = command.voiceText;
+    }
     
     NSString *successMsg = [NSString stringWithFormat:@"[%@]", NSLocalizedString(@"execution_success", @"")] ;
     NSString *successErr = [NSString stringWithFormat:@"[%@]", NSLocalizedString(@"execution_failed", @"")] ;
@@ -351,7 +384,7 @@ typedef NS_ENUM(NSInteger, RecognizerState) {
     
     ConversationTextMessage *textMessage = [[ConversationTextMessage alloc] init];
     textMessage.messageOwner = MESSAGE_OWNER_THEIRS;
-    textMessage.textMessage = [NSString stringWithFormat:@"%@ %@", command.voiceText, executeResult];
+    textMessage.textMessage = [NSString stringWithFormat:@"%@ %@", voiceText, executeResult];
     textMessage.timeMessage = [XXDateFormatter dateToString:[NSDate date] format:@"HH:mm:ss"];
     [self addMessage:textMessage];
 }

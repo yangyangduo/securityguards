@@ -155,6 +155,16 @@
     return nil;
 }
 
+- (Device *)airPurifierPowDevice {
+    Zone *masterZone = [self findMasterZone];
+    if(masterZone == nil || masterZone.devices == nil) return nil;
+    for(int i=0; i<masterZone.devices.count; i++) {
+        Device *device = [masterZone.devices objectAtIndex:i];
+        if(device.isAirPurifierPower) return device;
+    }
+    return nil;
+}
+
 - (NSArray *)devices {
     NSMutableArray *_devices_ = [NSMutableArray array];
     if(self.zones.count != 0) {
