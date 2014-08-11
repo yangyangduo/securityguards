@@ -85,6 +85,7 @@
 "heath_index_desc3"              =      "的同类用户";
 "speech_view_title"              =      "语音控制";
 "rename_unit"                    =      "重命名";
+"family_heath_index"             =      "家庭健康安全指数";
 "enter_new_unit_name"            =      "请输入新的主控名";
 "no_network"                     =      "网络无法连接,正在重试中...";
 "no_extra_network"               =      "无法连接云端,正在重试中...";

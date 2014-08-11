@@ -155,21 +155,30 @@
     /*
      * Create heathIndex view
      */
+    
     imgHeathIndex = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, SENSOR_DISPLAY_PANEL_HEIGHT)];
     imgHeathIndex.userInteractionEnabled = YES;
     imgHeathIndex.tag = IMAGE_VIEW_TAG;
     imgHeathIndex.backgroundColor = [UIColor appWhite];
     imgHeathIndex.image = [UIImage imageNamed:@"img_portal_header"];
+    
+    UILabel *lblIndexTips = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, 120, 25)];
+    lblIndexTips.text = NSLocalizedString(@"family_heath_index", @"");
+    lblIndexTips.textAlignment = NSTextAlignmentCenter;
+    lblIndexTips.backgroundColor = [UIColor clearColor];
+    lblIndexTips.font = [UIFont boldSystemFontOfSize:14.f];
+    lblIndexTips.textColor = [UIColor colorWithRed:10.f / 255.f green:217.f / 255.f blue:1.f alpha:1.0];
+    [imgHeathIndex addSubview:lblIndexTips];
 
-    UIImageView *imgCircleBackground = [[UIImageView alloc] initWithFrame:CGRectMake(25, 14, 177.f / 2, 177.f / 2)];
+    UIImageView *imgCircleBackground = [[UIImageView alloc] initWithFrame:CGRectMake(25, 38, 160.f / 2, 160.f / 2)];
     imgCircleBackground.image = [UIImage imageNamed:@"bg_circle"];
     [imgHeathIndex addSubview:imgCircleBackground];
 
-    lblHealthIndex = [[UILabel alloc] initWithFrame:CGRectMake(20, 15, 100, 90)];
+    lblHealthIndex = [[UILabel alloc] initWithFrame:CGRectMake(16, 32, 100, 90)];
     lblHealthIndex.backgroundColor = [UIColor clearColor];
     lblHealthIndex.text = @"--";
     lblHealthIndex.textColor = [UIColor colorWithRed:10.f / 255.f green:217.f / 255.f blue:1.f alpha:1.0];
-    lblHealthIndex.font = [UIFont systemFontOfSize:50.f];
+    lblHealthIndex.font = [UIFont systemFontOfSize:46.f];
     lblHealthIndex.shadowColor = [UIColor whiteColor];
     lblHealthIndex.textAlignment = NSTextAlignmentCenter;
     lblHealthIndex.shadowOffset = CGSizeMake(2, 2);
@@ -180,7 +189,7 @@
     imgSeparatorLine.image = [UIImage imageNamed:@"line_portal_blue_seperator"];
     [imgHeathIndex addSubview:imgSeparatorLine];
 
-    UILabel *lblShareTips = [[UILabel alloc] initWithFrame:CGRectMake(37, 115, 90, 25)];
+    UILabel *lblShareTips = [[UILabel alloc] initWithFrame:CGRectMake(37, 125, 90, 25)];
     lblShareTips.text = NSLocalizedString(@"share_my_data", @"");
     lblShareTips.textAlignment = NSTextAlignmentCenter;
     lblShareTips.backgroundColor = [UIColor clearColor];
