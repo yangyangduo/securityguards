@@ -16,28 +16,12 @@
 
 @implementation NotificationsViewController{
     UITableView *tblNotifications;
-    NSMutableArray *messageArr;
-}
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    NSMutableArray *_notifications_;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -63,14 +47,9 @@
 
 - (void)initDefaults {
     [super initDefaults];
-    messageArr = [NSMutableArray arrayWithArray:[[NotificationsFileManager fileManager] readFromDisk]];
-    if (messageArr.count > 0) {
-        for (SMNotification *notification in messageArr) {
-            notification.hasRead = YES;
-        }
-        [[NotificationsFileManager fileManager] update:messageArr deleteList:nil];
-        [self sort:messageArr ascending:NO];
-    }
+    _notifications_ = [NSMutableArray arrayWithArray:[[NotificationsFileManager fileManager] readFromDisk]];
+    [self sort:_notifications_];
+    [self markNotificationsAsRead:_notifications_];
 }
 
 - (void)initUI {
@@ -90,7 +69,7 @@
 
 - (void)setUp {
     [super setUp];
-    if(messageArr.count == 0) {
+    if(_notifications_.count == 0) {
         [self showEmptyContentViewWithMessage:NSLocalizedString(@"empty_notifications", @"")];
     }
 }
@@ -98,11 +77,28 @@
 #pragma mark -
 #pragma mark services
 
-- (void)sort:(NSMutableArray *)arr ascending:(BOOL)ascending {
-    if(arr != nil || arr.count == 0) return;
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"createTime" ascending:ascending];
+- (void)sort:(NSMutableArray *)notifications {
+    if(notifications == nil || notifications.count == 0) return;
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"createTime" ascending:NO];
     NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
-    [arr sortUsingDescriptors:sortDescriptors];
+    [notifications sortUsingDescriptors:sortDescriptors];
+}
+
+- (void)markNotificationsAsRead:(NSMutableArray *)notifications {
+    if (notifications != nil && notifications.count > 0) {
+        int unReadMessagesCount = 0;
+        for(int i=0; i<notifications.count; i++) {
+            SMNotification *notification = [notifications objectAtIndex:i];
+            if(!notification.hasRead) {
+                unReadMessagesCount++;
+            }
+            notification.hasRead = YES;
+        }
+#ifdef DEBUG
+        NSLog(@"[Notifications View] number of %d unread messages was mark as read", unReadMessagesCount);
+#endif
+        [[NotificationsFileManager fileManager] update:notifications deleteList:nil];
+    }
 }
 
 #pragma mark -
@@ -113,20 +109,18 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return messageArr.count;
+    return _notifications_.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    MessageCell *messageCell = nil;
-    SMNotification *notification = [messageArr objectAtIndex:indexPath.row];
-    static NSString *messageIdentifier = @"messageCellIdentifier";
-    messageCell = [tableView dequeueReusableCellWithIdentifier:messageIdentifier];
+    static NSString *cellIdentifier = @"cellIdentifier";
+    MessageCell *messageCell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (messageCell == nil) {
-        messageCell = [[MessageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:messageIdentifier];
+        messageCell = [[MessageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         messageCell.backgroundColor = [UIColor clearColor];
     }
+    SMNotification *notification = [_notifications_ objectAtIndex:indexPath.row];
     [messageCell loadWithMessage:notification];
-    
     return messageCell;
 }
 
@@ -135,19 +129,19 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    SMNotification *notificaion = [messageArr objectAtIndex:indexPath.row];
+    SMNotification *notificaion = [_notifications_ objectAtIndex:indexPath.row];
     NotificationDetailsViewController *notificationDetailsViewController = [[NotificationDetailsViewController alloc] initWithNotification:notificaion];
     notificationDetailsViewController.delegate = self;
     [self.navigationController pushViewController:notificationDetailsViewController animated:YES];
 }
 
 - (void)refresh {
-    messageArr = [NSMutableArray arrayWithArray:[[NotificationsFileManager fileManager] readFromDisk]];
-    if(messageArr.count == 0) {
+    _notifications_ = [NSMutableArray arrayWithArray:[[NotificationsFileManager fileManager] readFromDisk]];
+    if(_notifications_.count == 0) {
         [self showEmptyContentViewWithMessage:NSLocalizedString(@"empty_notifications", @"")];
     } else {
         [self removeEmptyContentView];
-        [self sort:messageArr ascending:NO];
+        [self sort:_notifications_];
     }
     [tblNotifications reloadData];
 }

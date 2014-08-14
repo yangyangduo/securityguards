@@ -699,18 +699,27 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
     // 判断是否有必要发送 Get Units Command,
     // 如果时间间隔不是很长就没必要发送
     NSDate *lastExecuteDate = [GlobalSettings defaultSettings].getUnitsCommandLastExecuteDate;
+    
     if(lastExecuteDate != nil && [UnitManager defaultManager].units.count > 0) {
-        NSTimeInterval lastExecuteMinutesSinceNow = abs(lastExecuteDate.timeIntervalSinceNow) / 60;
-#ifdef DEBUG
-        NSLog(@"[Core Service] 在 %.2f 分钟以前已经获取过所有主控列表了", lastExecuteMinutesSinceNow);
-#endif
+        NSTimeInterval lastExecuteMinutesSinceNow = abs(lastExecuteDate.timeIntervalSinceNow) / 60.f;
         if(lastExecuteMinutesSinceNow >= GETUNITS_MINITES_INTERVAL) {
+#ifdef DEBUG
+            NSLog(@"[Core Service] 准备获取所有主控列表,  距离上次获取 %.2f 分钟", lastExecuteMinutesSinceNow);
+#endif
             [self executeDeviceCommand:[CommandFactory commandForType:CommandTypeGetUnits]];
+        } else {
+            #ifdef DEBUG
+                NSLog(@"[Core Service] 无须获取所有主控列表,  距离上次获取 %.2f 分钟", lastExecuteMinutesSinceNow);
+            #endif
         }
     } else {
+#ifdef DEBUG
+        NSLog(@"[Core Service] 准备 首次 获取所有主控列表");
+#endif
         [self executeDeviceCommand:[CommandFactory commandForType:CommandTypeGetUnits]];
     }
     
+    // Get notifications
     [self executeDeviceCommand:[CommandFactory commandForType:CommandTypeGetNotifications]];
 }
 

@@ -175,8 +175,12 @@
 + (NSString *)stateAsString:(int)state {
     if(state == 0) {
         return NSLocalizedString(@"device_offline", @"");
-    } else {
+    } else if(state == 1) {
         return NSLocalizedString(@"device_online", @"");
+    } else if(state == 2) {
+        return NSLocalizedString(@"device_low_battery", @"");
+    } else {
+        return NSLocalizedString(@"unknow", @"");
     }
 }
 

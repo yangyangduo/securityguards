@@ -58,7 +58,7 @@
     UILabel *lblThanks = [[UILabel alloc] initWithFrame:CGRectMake(0, imgLineBegin.frame.origin.y + imgLineBegin.bounds.size.height + 8, 230, 70)];
     lblThanks.center = CGPointMake(self.view.center.x, lblThanks.center.y);
     lblThanks.numberOfLines = 3;
-    lblThanks.text = NSLocalizedString(@"shopping_welcome_tips", @"");
+    lblThanks.text = @"非常感谢您的支持,您的订单已经确认,如有需要欢迎直接拨打下方热线号码。";
     lblThanks.textColor = [UIColor darkGrayColor];
     lblThanks.backgroundColor = [UIColor clearColor];
     [self.view addSubview:lblThanks];
@@ -88,7 +88,7 @@
     lblTips.textColor = [UIColor lightGrayColor];
     lblTips.numberOfLines = 5;
     lblTips.font = [UIFont systemFontOfSize:14.f];
-    lblTips.text = NSLocalizedString(@"shopping_completed_tips", @"");
+    lblTips.text = @"* 商城所售卖的所有货品均为顺丰快递货到付款,当您的订单提交后,我们的工作人员将在24小时内与您取得联系,并约定送货时间。请您提交订单后保持电话的通畅状态,并准备现金或信用卡刷卡方式付款。";
     [self.view addSubview:lblTips];
     
     UIButton *btnContinueShopping = [BlueButton blueButtonWithPoint:CGPointMake(0, lblTips.frame.origin.y + lblTips.bounds.size.height + 12) resize:CGSizeMake(260, 30)];

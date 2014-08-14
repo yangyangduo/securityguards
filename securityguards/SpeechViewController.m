@@ -122,7 +122,7 @@ typedef NS_ENUM(NSInteger, RecognizerState) {
 - (void)initUI {
     [super initUI];
     
-    self.topbarView.title = NSLocalizedString(@"speech_view_title", @"");
+    self.topbarView.title = @"语音控制";
     
     /*
      * Create voice button view

@@ -39,27 +39,6 @@ typedef enum {
 @synthesize timingTask = _timingTask_;
 @synthesize preViewController;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	// Do any additional setup after loading the view.
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 - (instancetype)initWithUnit:(Unit *)unit timingTask:(TimingTask *)timingTask {
     self = [super init];
     if(self) {
@@ -71,7 +50,6 @@ typedef enum {
 
 - (void)initDefaults {
     [super initDefaults];
-    
     if(self.timingTask == nil) {
         _mode_ = ControllerModeCreate;
         self.timingTask = [[TimingTask alloc] initWithUnit:self.unit];
@@ -89,12 +67,14 @@ typedef enum {
     btnRight.titleLabel.font = [UIFont systemFontOfSize:14.f];
     [btnRight setBackgroundImage:[UIImage imageNamed:@"icon_save"] forState:UIControlStateNormal];
     [btnRight setTitle:[NSString stringWithFormat:@"  %@", NSLocalizedString(@"determine", @"")] forState:UIControlStateNormal];
+    btnRight.hidden = !_timingTask_.isOwner;
     [btnRight addTarget:self action:@selector(saveTimingTasksPlan:) forControlEvents:UIControlEventTouchUpInside];
     [self.topbarView addSubview:btnRight];
     
     datePicker = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, self.topbarView.bounds.size.height, self.view.bounds.size.width, 120)];
     datePicker.datePickerMode = UIDatePickerModeTime;
     datePicker.minuteInterval = 5;
+    datePicker.userInteractionEnabled = _timingTask_.isOwner;
     [self.view addSubview:datePicker];
     
     tblTimerTaskPlans = [[UITableView alloc] initWithFrame:CGRectMake(0, datePicker.frame.origin.y + datePicker.frame.size.height, self.view.bounds.size.width, self.view.bounds.size.height - self.topbarView.bounds.size.height - datePicker.bounds.size.height) style:UITableViewStyleGrouped];
@@ -309,12 +289,18 @@ typedef enum {
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if(!_timingTask_.isOwner) {
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        return;
+    }
+    
     if(self.timingTask.isSystemTask) {
-        if(!(indexPath.section == 0 && indexPath.row == 1)) {
+        if(indexPath.section == 0 && indexPath.row == 0) {
             [tblTimerTaskPlans deselectRowAtIndexPath:indexPath animated:YES];
             return;
         }
     }
+    
     if(indexPath.section == 0) {
         if(indexPath.row == 0) {
             TextViewController *textViewController = [[TextViewController alloc] init];

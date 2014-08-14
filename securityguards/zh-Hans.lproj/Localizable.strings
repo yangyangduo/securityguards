@@ -8,7 +8,7 @@
 
 /****************	Global Strings	****************/
 
-"app_name"                       =      "家庭卫士";
+"app_name"                       =      "365家卫士";
 "version"                        =      "版本号 1.0.0";
 
 "unknow"                         =      "未知";
@@ -78,17 +78,10 @@
 
 /****************	Portal View Strings	****************/
 
-"btn_voice_title"                =      "点击开启语音模式";
 "change_unit_name"               =      "点击修改主控名称";
-"heath_index_desc1"              =      "您的健康安全指数已超";
-"heath_index_desc2"              =      "过";
-"heath_index_desc3"              =      "的同类用户";
-"speech_view_title"              =      "语音控制";
 "rename_unit"                    =      "重命名";
 "family_heath_index"             =      "家庭健康安全指数";
 "enter_new_unit_name"            =      "请输入新的主控名";
-"no_network"                     =      "网络无法连接,正在重试中...";
-"no_extra_network"               =      "无法连接云端,正在重试中...";
 "unit_name_not_blank"            =      "主控名不能为空";
 "unit_name_change_success"       =      "修改成功";
 "unit_name_change_failed"        =      "修改失败";
@@ -164,6 +157,7 @@
 "humidity_high"                  =      "湿";
 "device_online"                  =      "在线";
 "device_offline"                 =      "离线";
+"device_low_battery"             =      "低电量";
 "wifi_name"                      =      "WIFI名称";
 "internal_ip"                    =      "内网地址";
 "wifi_disconnectted"             =      "未连接WIFI";
@@ -186,8 +180,8 @@
 "can_not_select_multi"                =      "此模式不能多选";
 "exe_repeat"                          =      "每周重复执行";
 "exe_no_repeat"                       =      "仅仅执行一次";
-"no_permissions"                      =      "权限错误";
-"has_no_permissions_del"              =      "您没有权限删除";
+"no_permissions"                      =      "非主账号,不能操作";
+"has_no_permissions_del"              =      "非主账号,不能删除";
 "can_not_delete_system_task"          =      "不能删除系统任务";
 "no_unit_bind"                        =      "未绑定的主控";
 
@@ -289,14 +283,6 @@
 "account_management"       =           "用户管理";
 "user_online"              =           "在线";
 "user_offline"             =           "下线";
-"send.message"             =           "发送短信";
-"call.phoneNumber"         =           "拨打电话";
-"unbinding"                =           "解除绑定";
-"confirm.unbinding"        =           "是否确定解除用户[%@]与主控[%@]的绑定关系？";
-"unbinding_success"        =           "已解除绑定";
-"account_binding_count"    =           "账户绑定数";
-"user_unit"                =           "个";
-"user_binding_tips"        =           "只有绑定用户才允许在3G/4G网络中控制,其他用户仅允许需在内网WIFI下临时使用设备。";
 
 
 /*************** Refresh Table View Strings *************************/
@@ -313,46 +299,6 @@
 "minute"                   =           "分钟";
 "hour"                     =           "小时";
 "day"                      =           "天";
-
-
-/****************	Unit Finder View Strings	****************/
-
-"unit_binding_tips"        =           "将主控与手机处于同一Wifi下,按下\"自动发现\"按钮,主控与手机将自动绑定";
-"auto_find"                =           "自动发现";
-
-"step1_title"              =           "第一步:设置前准备";
-"step1_line1"              =           "请将摄像头用网线连接到路由器。";
-"step1_line2"              =           "将手机WIFI打开并连接到同一个路由器的WIFI热点上。";
-"step1_line3"              =           "请确保手机、摄像头以及即将接入网络的家卫士都在使用同一网络。";
-
-"step2_title"              =           "第二步:设置前准备";
-"step2_line1"              =           "请将家卫士电源连通(如果已经打开请忽略这一步);";
-"step2_line2"              =           "开机后30-60秒将听到\"嘀\"一声,表示家卫士自检已完成;";
-"step2_line3"              =           "在自检声响起后，请按下面板上的对码键，并听到\"嘀嘀\"连续声后点击\"下一步\"继续配置过程。";
-
-"step3_title"              =           "第三步:连接家卫士";
-"step3_line1"              =           "请打开手机的\"设置-->Wi-Fi\"，在Wi-Fi列表中找到以下名称的热点网络并连接:";
-"step3_tips"               =           "*成功后请点击“下一步\"继续\"";
-
-"step4_title"              =           "第四步:配置家卫士";
-"step4_line1_linked"       =           "已连接到家卫士控制器。";
-"step4_line1_linking"      =           "正在连接家卫士控制器 ...";
-"step4_line2"              =           "配置家卫士WIFI网络名称为:";
-"wifi_password"            =           "WIFI密码";
-"send_settings"            =           "发送配置";
-
-"step5_title"              =           "第五步:绑定家卫士";
-"step5_line1"              =           "已经完成家卫士配置";
-"step5_line2"              =           "开始绑定家卫士前请确保当前WIFI已正确切换到以下WIFI网络:";
-"reset"                    =           "重新配置";
-
-"unit_finder_line1"        =           "请确保家卫士已正确接入当前WIFI网格，并且处于开机状态";
-"unit_finder_line2"        =           "正在绑定家卫士 ...";
-"rebind"                   =           "重新绑定";
-"connect_wifi_first"       =           "请先连接WIFI";
-"connect_365_first"        =           "请连接家卫士WIFI";
-"start_binding"            =           "开始绑定";
-"change_wifi_to_lasted"    =           "请切换WIFI到以上网络";
 
 
 /************ Contact Us View Strings ***************/
@@ -392,14 +338,12 @@
 "aqi_today"                =           "日空气质量";
 "aqi"                      =           "AQI指数";
 "order_submitted"          =           "订单已提交";
-"customer_service_phone"   =           "客户电话: 400-0000-0000";
-"wechat_account"           =           "微信号码: 00000000";
+"customer_service_phone"   =           "客户电话: 0731-84323687";
+"wechat_account"           =           "微信号码: hentre";
 "current_user"             =           "当前用户";
 "change_recommended"       =           "修改推荐人(请输入推荐账户电话号码)";
 "phone_invalid"            =           "电话格式错误";
 "suggest_user"             =           "推荐用户";
 "no_merchandise"           =           "请先选择商品";
 "get_merchandises_failed"  =           "获取商品列表失败";
-"shopping_welcome_tips"    =           "非常感谢您的支持,您的订单已经确认,如有需要欢迎直接拨打下方热线号码。";
-"shopping_completed_tips"  =           "* 商城所售卖的所有货品均为顺丰快递货到付款,当您的订单提交后,我们的工作人员将在24小时内与您取得联系,并约定送货时间。请您提交订单后保持电话的通畅状态,并准备现金或信用卡刷卡方式付款。";
 "no_content_html"          =           "<html><body><p style='margin-top:5px; font-size:15px; color:gray;'>暂无商品详情详情</p></body></html>";

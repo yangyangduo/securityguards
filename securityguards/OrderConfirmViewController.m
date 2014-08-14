@@ -279,7 +279,7 @@
         lblTips.textColor = [UIColor lightGrayColor];
         lblTips.numberOfLines = 5;
         lblTips.font = [UIFont systemFontOfSize:14.f];
-        lblTips.text = NSLocalizedString(@"shopping_completed_tips", @"");
+        lblTips.text = @"* 商城所售卖的所有货品均为顺丰快递货到付款,当您的订单提交后,我们的工作人员将在24小时内与您取得联系,并约定送货时间。请您提交订单后保持电话的通畅状态,并准备现金或信用卡刷卡方式付款。";
         [footView addSubview:lblTips];
         return footView;
     }

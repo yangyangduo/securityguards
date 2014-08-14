@@ -34,7 +34,7 @@
 
 - (void)initUI{
     [super initUI];
-    self.topbarView.title = NSLocalizedString(@"step2_title", @"");
+    self.topbarView.title = @"第二步:设置前准备";
 
     CGFloat offsetXOfTipsLabel = 40;
     CGFloat offsetXOfContentLabel = 50;
@@ -43,7 +43,7 @@
     [self.view addSubview:lblLine1];
 
     UILabel *lblLine1Content = [[UILabel alloc] initWithFrame:CGRectMake(offsetXOfContentLabel, self.topbarView.frame.size.height + 10, 220, 50)];
-    lblLine1Content.text = NSLocalizedString(@"step2_line1", @"");
+    lblLine1Content.text = @"请将家卫士电源连通(如果已经打开请忽略这一步);";
     lblLine1Content.textColor = [UIColor darkGrayColor];
     lblLine1Content.backgroundColor = [UIColor clearColor];
     lblLine1Content.font = [UIFont systemFontOfSize:15.f];
@@ -58,7 +58,7 @@
     lblLine2Content.numberOfLines = 2;
     lblLine2Content.lineBreakMode = NSLineBreakByWordWrapping;
     lblLine2Content.backgroundColor = [UIColor clearColor];
-    NSMutableAttributedString * tttstring = [[NSMutableAttributedString alloc] initWithString: NSLocalizedString(@"step2_line2", @"")];
+    NSMutableAttributedString * tttstring = [[NSMutableAttributedString alloc] initWithString:@"开机后30-60秒将听到\"嘀\"一声,表示家卫士自检已完成;"];
     UIFont *italicFont = [UIFont italicSystemFontOfSize:15.f];
     CTFontRef italicCTFont = CTFontCreateWithName((CFStringRef)italicFont.fontName, italicFont.pointSize, NULL);
     [tttstring addAttribute:(NSString *)kCTFontAttributeName value:(__bridge id)italicCTFont range:NSMakeRange(0, tttstring.length)];
@@ -74,7 +74,7 @@
     lblLine3Content.backgroundColor = [UIColor clearColor];
     lblLine3Content.numberOfLines = 3;
     lblLine3Content.lineBreakMode = NSLineBreakByWordWrapping;
-    NSMutableAttributedString * line3Text = [[NSMutableAttributedString alloc] initWithString: NSLocalizedString(@"step2_line3", @"")];
+    NSMutableAttributedString * line3Text = [[NSMutableAttributedString alloc] initWithString:@"在自检声响起后，请按下面板上的对码键，并听到\"嘀嘀\"连续声后点击\"下一步\"继续配置过程。"];
     [line3Text addAttribute:(NSString *)kCTFontAttributeName value:(__bridge id)italicCTFont range:NSMakeRange(0, line3Text.length)];
     [line3Text addAttribute:(NSString*)kCTForegroundColorAttributeName value:(id)[[UIColor darkGrayColor] CGColor] range:NSMakeRange(0,line3Text.length)];
     [line3Text addAttribute:(NSString*)kCTForegroundColorAttributeName value:(id)[[UIColor appBlue] CGColor] range:NSMakeRange(22, 4)];

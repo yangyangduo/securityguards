@@ -18,19 +18,13 @@
 
 @implementation TimingTasksPlanViewController {
     UITableView *tblTaskPlans;
+    
+    UIButton *btnEdit;
+    UIButton *btnRight;
 }
 
 @synthesize unit = _unit_;
 @synthesize needRefresh;
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 - (instancetype)initWithUnit:(Unit *)unit {
     self = [super init];
@@ -41,30 +35,20 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	// Do any additional setup after loading the view.
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 - (void)initUI {
     [super initUI];
     
     self.topbarView.title =
         self.unit == nil ? NSLocalizedString(@"task_timer_title", @"") : self.unit.name;
     
-    UIButton *btnRight = [[UIButton alloc] initWithFrame:CGRectMake(([UIScreen mainScreen].bounds.size.width - 88 / 2), [UIDevice systemVersionIsMoreThanOrEuqal7] ? 20 : 0, 88 / 2, 88 / 2)];
+    btnRight = [[UIButton alloc] initWithFrame:CGRectMake(([UIScreen mainScreen].bounds.size.width - 88 / 2), [UIDevice systemVersionIsMoreThanOrEuqal7] ? 20 : 0, 88 / 2, 88 / 2)];
+    btnRight.hidden = YES;
     [btnRight setBackgroundImage:[UIImage imageNamed:@"icon_add"] forState:UIControlStateNormal];
     [btnRight addTarget:self action:@selector(showTimingTasksPlanEditViewController:) forControlEvents:UIControlEventTouchUpInside];
     [self.topbarView addSubview:btnRight];
     
-    UIButton *btnEdit = [[UIButton alloc] initWithFrame:CGRectMake(([UIScreen mainScreen].bounds.size.width - 88), [UIDevice systemVersionIsMoreThanOrEuqal7] ? 20 : 0, 88 / 2, 88 / 2)];
+    btnEdit = [[UIButton alloc] initWithFrame:CGRectMake(([UIScreen mainScreen].bounds.size.width - 88), [UIDevice systemVersionIsMoreThanOrEuqal7] ? 20 : 0, 88 / 2, 88 / 2)];
+    btnEdit.hidden = YES;
     [btnEdit setBackgroundImage:[UIImage imageNamed:@"trash"] forState:UIControlStateNormal];
     [btnEdit addTarget:self action:@selector(btnEditTable:) forControlEvents:UIControlEventTouchUpInside];
     [self.topbarView addSubview:btnEdit];
@@ -141,6 +125,8 @@
                     NSDictionary *_timing_task_json_ = [_timing_tasks_json_ objectAtIndex:i];
                     TimingTask *tt = [[TimingTask alloc] initWithJson:_timing_task_json_ forUnit:self.unit];
                     tt.isOwner = (resultId == 1);
+                    btnEdit.hidden = !tt.isOwner;
+                    btnRight.hidden = !tt.isOwner;
                     [self.unit.timingTasksPlan addObject:tt];
                 }
                 

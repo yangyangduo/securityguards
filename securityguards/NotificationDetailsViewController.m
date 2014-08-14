@@ -29,31 +29,6 @@
     return self;
 }
 
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	// Do any additional setup after loading the view.
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (void)initDefaults {
-}
-
 - (void)initUI {
     [super initUI];
     
@@ -64,20 +39,7 @@
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, self.topbarView.frame.size.height+5,self.view.frame.size.width-10 , MESSAGE_CELL_HEIGHT)];
     view.backgroundColor = [UIColor clearColor];
     view.center = CGPointMake(self.view.center.x, view.center.y);
-//    view.backgroundColor = [UIColor colorWithHexString:@"eeeeee"];
     view.layer.cornerRadius = 5;
-    
-//    UIImageView *typeMessage = typeMessage = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 50/2, 39/2)];
-//    if([self.notification.type isEqualToString:@"MS"] || [self.notification.type isEqualToString:@"AT"]) {
-//        typeMessage.image = [UIImage imageNamed:@"icon_message.png"];
-//    } else if([self.notification.type isEqualToString:@"CF"]) {
-//        typeMessage.image = [UIImage imageNamed:@"icon_validation.png"];
-//    } else if([self.notification.type isEqualToString:@"AL"]) {
-//        typeMessage.image = [UIImage imageNamed:@"icon_warning"];
-//    }
-//    typeMessage.backgroundColor = [UIColor clearColor];
-//    typeMessage.tag = TYPE_IMAGE_TAG;
-//    [view addSubview:typeMessage];
     
     UILabel *textLabel = [[UILabel alloc] initWithFrame:CGRectMake(40, 5, 240,MESSAGE_CELL_HEIGHT)];
     textLabel.tag = TEXT_LABEL_TAG;
@@ -104,17 +66,18 @@
     view.frame = CGRectMake(view.frame.origin.x, view.frame.origin.y, view.frame.size.width, textLabel.frame.size.height+15+5+8);
     view.tag = CELL_VIEW_TAG;
     [self.view addSubview:view];
+    
     if(self.notification.isWarning && self.notification.data.isCameraData) {
-        BlueButton *btnCheck = [BlueButton blueButtonWithPoint:CGPointMake(5, view.frame.size.height+view.frame.origin.y+5) resize:CGSizeMake(152.5,BLUE_BUTTON_DEFAULT_HEIGHT)];
+        BlueButton *btnCheck = [BlueButton blueButtonWithPoint:CGPointMake(5, view.frame.size.height+view.frame.origin.y+5) resize:CGSizeMake(152.5, BLUE_BUTTON_DEFAULT_HEIGHT)];
         [btnCheck setTitle:NSLocalizedString(@"view_video", @"") forState:UIControlStateNormal];
         [btnCheck addTarget:self action:@selector(btnCheckPressed:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:btnCheck];
-        BlueButton *btnDelete = [BlueButton blueButtonWithPoint:CGPointMake(162.5, btnCheck.frame.origin.y) resize:CGSizeMake(152.5,BLUE_BUTTON_DEFAULT_HEIGHT)];
+        BlueButton *btnDelete = [BlueButton blueButtonWithPoint:CGPointMake(162.5, btnCheck.frame.origin.y) resize:CGSizeMake(152.5, BLUE_BUTTON_DEFAULT_HEIGHT)];
         [btnDelete setTitle:NSLocalizedString(@"delete", @"") forState:UIControlStateNormal];
         [btnDelete addTarget:self action:@selector(deleteBtnPressed:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:btnDelete];
     } else if([self.notification.type isEqualToString:@"MS"] || [self.notification.type isEqualToString:@"AT"] || [self.notification.type isEqualToString:@"AL"]) {
-        BlueButton *btnDelete = [BlueButton blueButtonWithPoint:CGPointMake(0,view.frame.size.height+view.frame.origin.y+5) resize:CGSizeMake(311,BLUE_BUTTON_DEFAULT_HEIGHT)];
+        BlueButton *btnDelete = [BlueButton blueButtonWithPoint:CGPointMake(0,view.frame.size.height+view.frame.origin.y+5) resize:CGSizeMake(311, BLUE_BUTTON_DEFAULT_HEIGHT)];
         btnDelete.center = CGPointMake(self.view.center.x, btnDelete.center.y);
         [btnDelete setTitle: NSLocalizedString(@"delete", @"") forState:UIControlStateNormal];
         [btnDelete addTarget:self action:@selector(deleteBtnPressed:) forControlEvents:UIControlEventTouchUpInside];

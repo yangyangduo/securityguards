@@ -80,4 +80,6 @@ extern int const kDeviceAirPurifierControlModeSleepOrWakeUp;
 - (NSString *)commandStringForCamera:(NSString *)direction;
 - (NSString *)commandStringForRemote:(int)st;
 
+- (NSString *)deviceStateAsString;
+
 @end

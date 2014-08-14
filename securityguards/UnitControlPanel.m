@@ -281,7 +281,7 @@
                 if(device.isCamera) {
                     // if device is camera, need displayed in first row
                     [displayedDevices insertObject:device atIndex:0];
-                } else {
+                } else if(device.isAirPurifier || device.isSocket) {
                     [displayedDevices addObject:device];
                 }
             }

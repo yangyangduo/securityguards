@@ -40,7 +40,7 @@
 
 - (void)initUI{
     [super initUI];
-    self.topbarView.title = NSLocalizedString(@"step5_title", @"");
+    self.topbarView.title = @"第五步:绑定家卫士";
 
     CGFloat offsetXOfTipsLabel = 40;
     CGFloat offsetXOfContentLabel = 50;
@@ -49,7 +49,7 @@
     [self.view addSubview:lblLine1];
     UILabel *lblLine1Content = [[UILabel alloc] initWithFrame:
             CGRectMake(offsetXOfContentLabel, self.topbarView.frame.size.height + 10, 220, 25)];
-    lblLine1Content.text = NSLocalizedString(@"step5_line1", @"");
+    lblLine1Content.text = @"已经完成家卫士配置";
     lblLine1Content.textColor = [UIColor darkGrayColor];
     lblLine1Content.backgroundColor = [UIColor clearColor];
     lblLine1Content.font = [UIFont systemFontOfSize:15.f];
@@ -61,7 +61,7 @@
             CGRectMake(offsetXOfContentLabel, lblLine1Content.frame.origin.y + lblLine1Content.frame.size.height + 5, 220, 50)];
     lblLine2Content.numberOfLines = 2;
     lblLine2Content.lineBreakMode = NSLineBreakByWordWrapping;
-    lblLine2Content.text = NSLocalizedString(@"step5_line2", @"");
+    lblLine2Content.text = @"开始绑定家卫士前请确保当前WIFI已正确切换到以下WIFI网络:";
     lblLine2Content.textColor = [UIColor darkGrayColor];
     lblLine2Content.backgroundColor = [UIColor clearColor];
     lblLine2Content.font = [UIFont systemFontOfSize:15.f];
@@ -74,7 +74,7 @@
 
     UIButton *btnStartBinding = [[UIButton alloc] initWithFrame:CGRectMake(0, lblWIFIName.frame.origin.y + lblWIFIName.frame.size.height + 15, 500 / 2, 66 / 2)];
     btnStartBinding.center = CGPointMake(self.view.center.x, btnStartBinding.center.y);
-    [btnStartBinding setTitle:NSLocalizedString(@"start_binding", @"") forState:UIControlStateNormal];
+    [btnStartBinding setTitle:@"开始绑定" forState:UIControlStateNormal];
     [btnStartBinding setBackgroundImage:[UIImage imageNamed:@"btn_blue"] forState:UIControlStateNormal];
     [btnStartBinding setBackgroundImage:[UIImage imageNamed:@"btn_blue_highlighted"] forState:UIControlStateHighlighted];
     [btnStartBinding setBackgroundImage:[UIImage imageNamed:@"btn_gray"] forState:UIControlStateDisabled];
@@ -83,7 +83,7 @@
     
     UIButton *btnReset = [[UIButton alloc] initWithFrame:CGRectMake(0, btnStartBinding.frame.origin.y + btnStartBinding.bounds.size.height + 15, 500 / 2, 66 / 2)];
     btnReset.center = CGPointMake(self.view.center.x, btnReset.center.y);
-    [btnReset setTitle:NSLocalizedString(@"reset", @"") forState:UIControlStateNormal];
+    [btnReset setTitle:@"重新配置" forState:UIControlStateNormal];
     [btnReset setBackgroundImage:[UIImage imageNamed:@"btn_blue"] forState:UIControlStateNormal];
     [btnReset setBackgroundImage:[UIImage imageNamed:@"btn_blue_highlighted"] forState:UIControlStateHighlighted];
     [btnReset setBackgroundImage:[UIImage imageNamed:@"btn_gray"] forState:UIControlStateDisabled];
@@ -102,7 +102,7 @@
 
 - (void)btnStartBindingPressed:(UIButton *)sender {
     if(![[SMNetworkTool ssidForCurrentWifi] isEqualToString:[Shared shared].lastedContectionWifiName]) {
-        [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"change_wifi_to_lasted", @"") forType:AlertViewTypeFailed];
+        [[XXAlertView currentAlertView] setMessage:@"请切换WIFI到以上网络" forType:AlertViewTypeFailed];
         [[XXAlertView currentAlertView] alertForLock:NO autoDismiss:YES];
         return;
     }

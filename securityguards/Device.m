@@ -106,6 +106,17 @@ int const kDeviceAirPurifierControlModeSleepOrWakeUp      =    2;
     return json;
 }
 
+- (NSString *)deviceStateAsString {
+    if(self.state == 0) {
+        return NSLocalizedString(@"device_offline", @"");
+    } else if(self.state == 1) {
+        return NSLocalizedString(@"device_online", @"");
+    } else if(self.state == 2) {
+        return NSLocalizedString(@"device_low_battery", @"");
+    }
+    return NSLocalizedString(@"unknow", @"");
+}
+
 - (NSString *)commandStringForStatus:(int)st {
     return [NSString stringWithFormat:@"%@-%@-%d", self.category, self.identifier, st];
 }

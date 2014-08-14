@@ -89,7 +89,7 @@
     [bindingDetailView addSubview:imgUserBinding];
 
     UILabel *lblUserBindingTitle = [[UILabel alloc] initWithFrame:CGRectMake(85, 10, 80, 21)];
-    lblUserBindingTitle.text = [NSString stringWithFormat:@"%@:", NSLocalizedString(@"account_binding_count", @"")];
+    lblUserBindingTitle.text = @"账户绑定数:";
     lblUserBindingTitle.font = [UIFont systemFontOfSize:14.f];
     lblUserBindingTitle.backgroundColor = [UIColor clearColor];
     [bindingDetailView addSubview:lblUserBindingTitle];
@@ -103,7 +103,7 @@
     [bindingDetailView addSubview:lblUserBindingCount];
 
     UILabel *lblUnit = [[UILabel alloc] initWithFrame:CGRectMake(239, 10, 20, 21)];
-    lblUnit.text = NSLocalizedString(@"user_unit", @"");
+    lblUnit.text = @"个";
     lblUnit.font = [UIFont systemFontOfSize:14.f];
     lblUnit.backgroundColor = [UIColor clearColor];
     [bindingDetailView addSubview:lblUnit];
@@ -113,7 +113,7 @@
     lblSmsTips.font = [UIFont systemFontOfSize:11.f];
     lblSmsTips.backgroundColor = [UIColor clearColor];
     lblSmsTips.textColor = [UIColor lightGrayColor];
-    lblSmsTips.text = NSLocalizedString(@"user_binding_tips", @"");
+    lblSmsTips.text = @"只有绑定用户才允许在3G/4G网络中控制,其他用户仅允许需在内网WIFI下临时使用设备。";
     [bindingDetailView addSubview:lblSmsTips];
 
     [self.view addSubview:bindingDetailView];
@@ -240,7 +240,7 @@
     } else if ([sender isEqual:btnPhone]){
         [SystemService dialToMobile:selectedUser.mobile];
     } else if ([sender isEqual:btnUnbinding]){
-        UIAlertView  *confirmAlertView = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"tips", @"") message:[NSString stringWithFormat: NSLocalizedString(@"confirm.unbinding", @""),selectedUser.name,[UnitManager defaultManager].currentUnit.name] delegate:self cancelButtonTitle:NSLocalizedString(@"determine", @"") otherButtonTitles:NSLocalizedString(@"cancel", @""), nil];
+        UIAlertView  *confirmAlertView = [[UIAlertView alloc]initWithTitle:NSLocalizedString(@"tips", @"") message:[NSString stringWithFormat:@"是否确定解除用户[%@]与主控[%@]的绑定关系?", selectedUser.name,[UnitManager defaultManager].currentUnit.name] delegate:self cancelButtonTitle:NSLocalizedString(@"determine", @"") otherButtonTitles:NSLocalizedString(@"cancel", @""), nil];
         confirmAlertView.tag = 1023;
         [confirmAlertView dismissWithClickedButtonIndex:1 animated:YES];
         [confirmAlertView show];
@@ -350,7 +350,6 @@
 }
 
 - (void)pullTableViewDidTriggerLoadMore:(PullTableView *)pullTableView {
-    // no implementations
 }
 
 #pragma mark -

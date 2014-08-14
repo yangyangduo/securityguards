@@ -40,7 +40,7 @@
 
 - (void)initUI{
     [super initUI];
-    self.topbarView.title = NSLocalizedString(@"step4_title", @"");
+    self.topbarView.title = @"第四步:配置家卫士";
 
     CGFloat offsetXOfTipsLabel = 40;
     CGFloat offsetXOfContentLabel = 50;
@@ -60,7 +60,7 @@
     UILabel *lblLine2Content = [[UILabel alloc] initWithFrame:
             CGRectMake(offsetXOfContentLabel, self.topbarView.frame.size.height + 15, 220, 25)];
     lblLine2Content.lineBreakMode = NSLineBreakByWordWrapping;
-    lblLine2Content.text = NSLocalizedString(@"step4_line2", @"");
+    lblLine2Content.text = @"配置家卫士WIFI网络名称为:";
     lblLine2Content.textColor = [UIColor darkGrayColor];
     lblLine2Content.backgroundColor = [UIColor clearColor];
     lblLine2Content.font = [UIFont systemFontOfSize:15.f];
@@ -73,7 +73,7 @@
     
     txtPassword = [[UITextField alloc] initWithFrame:CGRectMake(0, lblWIFIName.frame.size.height + lblWIFIName.frame.origin.y + 10, 250, 58 / 2)];
     txtPassword.center = CGPointMake(self.view.center.x, txtPassword.center.y);
-    txtPassword.placeholder = NSLocalizedString(@"wifi_password",@"");
+    txtPassword.placeholder = @"WIFI密码";
     txtPassword.textColor = [UIColor darkGrayColor];
     txtPassword.background = [UIImage imageNamed:@"light_gray_textbox"];
     txtPassword.clearButtonMode = UITextFieldViewModeWhileEditing;
@@ -87,7 +87,7 @@
     
     btnSendSettings = [[UIButton alloc] initWithFrame:CGRectMake(0, txtPassword.frame.origin.y + txtPassword.frame.size.height + 15, 500 / 2, 66 / 2)];
     btnSendSettings.center = CGPointMake(self.view.center.x, btnSendSettings.center.y);
-    [btnSendSettings setTitle:NSLocalizedString(@"send_settings", @"") forState:UIControlStateNormal];
+    [btnSendSettings setTitle:@"发送配置" forState:UIControlStateNormal];
     [btnSendSettings setBackgroundImage:[UIImage imageNamed:@"btn_blue"] forState:UIControlStateNormal];
     [btnSendSettings setBackgroundImage:[UIImage imageNamed:@"btn_blue_highlighted"] forState:UIControlStateHighlighted];
     [btnSendSettings setBackgroundImage:[UIImage imageNamed:@"btn_gray"] forState:UIControlStateDisabled];
@@ -100,7 +100,7 @@
 
 - (void)btnSendSettingsPressed:(UIButton *)sender {
     if(![self detectionFamilyGuardsWifiExists]) {
-        [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"connect_365_first", @"") forType:AlertViewTypeFailed];
+        [[XXAlertView currentAlertView] setMessage:@"请连接家卫士WIFI" forType:AlertViewTypeFailed];
         [[XXAlertView currentAlertView] alertForLock:NO autoDismiss:YES];
         return;
     }
@@ -176,11 +176,9 @@
     NSString *wifiName = [SMNetworkTool ssidForCurrentWifi];
     if(![XXStringUtils isBlank:wifiName] && ([FamilyGuardsHotSpotName isEqualToString:wifiName]
                                              || [DefaultFamilyGuardsHotSpotName isEqualToString:wifiName])) {
-//        lblLine1Content.text = NSLocalizedString(@"step4_line1_linked", @"");
         [self enableContinue];
         return YES;
     } else {
-//        lblLine1Content.text = NSLocalizedString(@"step4_line1_linking", @"");
         [self disableContinue];
         return NO;
     }

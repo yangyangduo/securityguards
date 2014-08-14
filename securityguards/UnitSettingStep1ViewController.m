@@ -37,7 +37,7 @@
 
 - (void)initUI{
     [super initUI];
-    self.topbarView.title = NSLocalizedString(@"step1_title", @"");
+    self.topbarView.title = @"第一步:设置前准备";
 
     CGFloat offsetXOfTipsLabel = 40;
     CGFloat offsetXOfContentLabel = 50;
@@ -46,7 +46,7 @@
     [self.view addSubview:lblLine1];
 
     UILabel *lblLine1Content = [[UILabel alloc] initWithFrame:CGRectMake(offsetXOfContentLabel, self.topbarView.frame.size.height + 10, 220, 50)];
-    lblLine1Content.text = NSLocalizedString(@"step1_line1", @"");
+    lblLine1Content.text = @"请将摄像头用网线连接到路由器。";
     lblLine1Content.textColor = [UIColor darkGrayColor];
     lblLine1Content.backgroundColor = [UIColor clearColor];
     lblLine1Content.numberOfLines = 2;
@@ -60,7 +60,7 @@
     UILabel *lblLine2Content = [[UILabel alloc] initWithFrame:CGRectMake(offsetXOfContentLabel, lblLine1Content.frame.origin.y + lblLine1Content.frame.size.height, 220, 50)];
     lblLine2Content.numberOfLines = 2;
     lblLine2Content.lineBreakMode = NSLineBreakByWordWrapping;
-    lblLine2Content.text = NSLocalizedString(@"step1_line2", @"");
+    lblLine2Content.text = @"将手机WIFI打开并连接到同一个路由器的WIFI热点上。";
     lblLine2Content.textColor = [UIColor darkGrayColor];
     lblLine2Content.backgroundColor = [UIColor clearColor];
     lblLine2Content.font = [UIFont systemFontOfSize:15.f];
@@ -72,7 +72,7 @@
     lblLine3Content.numberOfLines = 3;
     lblLine3Content.lineBreakMode = NSLineBreakByWordWrapping;
     lblLine3Content.textColor = [UIColor darkGrayColor];
-    lblLine3Content.text  = NSLocalizedString(@"step1_line3", @"");
+    lblLine3Content.text  = @"请确保手机、摄像头以及即将接入网络的家卫士都在使用同一网络。";
     lblLine3Content.backgroundColor = [UIColor clearColor];
     lblLine3Content.font = [UIFont systemFontOfSize:15.f];
     [self.view addSubview:lblLine3Content];
@@ -97,7 +97,7 @@
         if(![XXStringUtils isBlank:[Shared shared].lastedContectionWifiName]) {
             [self.navigationController pushViewController:[[UnitSettingStep2ViewController alloc] init] animated:YES];
         } else {
-            [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"connect_wifi_first", @"") forType:AlertViewTypeFailed];
+            [[XXAlertView currentAlertView] setMessage:@"请先连接WIFI" forType:AlertViewTypeFailed];
             [[XXAlertView currentAlertView] alertForLock:NO autoDismiss:YES];
         }
 }

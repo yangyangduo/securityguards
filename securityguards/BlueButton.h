@@ -9,7 +9,7 @@
 #import "XXButton.h"
 
 #define BLUE_BUTTON_DEFAULT_WIDTH 200
-#define BLUE_BUTTON_DEFAULT_HEIGHT 53
+#define BLUE_BUTTON_DEFAULT_HEIGHT 38
 
 @interface BlueButton : XXButton
 

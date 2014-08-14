@@ -37,6 +37,12 @@
 
 #define IMAGE_VIEW_TAG 500
 
+typedef NS_ENUM(NSUInteger, NotificationViewType) {
+    NotificationViewTypeNone              =      0,
+    NotificationViewTypeNetworkState      =      1,
+    NotificationViewTypeNewMessage        =      2
+};
+
 @interface PortalViewController ()
 
 @end
@@ -56,24 +62,12 @@
     UIImageView *imgNetwork;
     
     BOOL getAccountCommandHasSent;
-}
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    
+    BOOL shouldKeepNotificationViewInMessageState;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     
     // update devices
     [self updateUnitsView];
@@ -108,19 +102,17 @@
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
     // un subscribe events
     [[XXEventSubscriptionPublisher defaultPublisher] unSubscribeForSubscriber:self];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
     // update network state display
-    [self updateNetworkStateForView:[CoreService defaultService].netMode];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [self initialNotificationsView];
 }
 
 - (void)initDefaults {
@@ -150,10 +142,11 @@
     scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, self.topbarView.bounds.size.height, [UIScreen mainScreen].bounds.size.width, self.view.bounds.size.height - self.topbarView.bounds.size.height)];
     scrollView.backgroundColor = [UIColor whiteColor];
     scrollView.showsHorizontalScrollIndicator = NO;
+    scrollView.alwaysBounceVertical = YES;
     [self.view addSubview:scrollView];
     
     /*
-     * Create heathIndex view
+     * Create heathIndex view start
      */
     
     imgHeathIndex = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, SENSOR_DISPLAY_PANEL_HEIGHT)];
@@ -170,11 +163,11 @@
     lblIndexTips.textColor = [UIColor colorWithRed:10.f / 255.f green:217.f / 255.f blue:1.f alpha:1.0];
     [imgHeathIndex addSubview:lblIndexTips];
 
-    UIImageView *imgCircleBackground = [[UIImageView alloc] initWithFrame:CGRectMake(25, 38, 160.f / 2, 160.f / 2)];
+    UIImageView *imgCircleBackground = [[UIImageView alloc] initWithFrame:CGRectMake(32, 38, 160.f / 2, 160.f / 2)];
     imgCircleBackground.image = [UIImage imageNamed:@"bg_circle"];
     [imgHeathIndex addSubview:imgCircleBackground];
 
-    lblHealthIndex = [[UILabel alloc] initWithFrame:CGRectMake(16, 32, 100, 90)];
+    lblHealthIndex = [[UILabel alloc] initWithFrame:CGRectMake(23, 32, 100, 90)];
     lblHealthIndex.backgroundColor = [UIColor clearColor];
     lblHealthIndex.text = @"--";
     lblHealthIndex.textColor = [UIColor colorWithRed:10.f / 255.f green:217.f / 255.f blue:1.f alpha:1.0];
@@ -205,20 +198,22 @@
     [btnShare addTarget:self action:@selector(btnSharePressed:) forControlEvents:UIControlEventTouchUpInside];
     [btnShare setBackgroundImage:[UIImage imageNamed:@"btn_share"] forState:UIControlStateNormal];
     [imgHeathIndex addSubview:btnShare];
-
-    /*
-     * Create sensors display view
-     */
+    
+    // create sensor display view
     sensorDisplayPanel = [[SensorsDisplayPanel alloc] initWithPoint:CGPointMake([UIScreen mainScreen].bounds.size.width / 2 - 10, 0)];
     [imgHeathIndex addSubview:sensorDisplayPanel];
-    [scrollView addSubview:imgHeathIndex];
-
-    /*
-     * -------------  Separator line ---------------
-     */
+    
+    // -------------  Separator line ---------------
     UIImageView *separatorLineForImgHealthIndex = [[UIImageView alloc] initWithFrame:CGRectMake(0, imgHeathIndex.bounds.size.height - 1, [UIScreen mainScreen].bounds.size.width, 1)];
     separatorLineForImgHealthIndex.image = [UIImage imageNamed:@"line_dashed_white"];
     [imgHeathIndex addSubview:separatorLineForImgHealthIndex];
+    
+    /*
+     * Create heathIndex view ended
+     */
+    
+    [scrollView addSubview:imgHeathIndex];
+    
 
     /*
      * Create scene and voice view
@@ -251,8 +246,8 @@
     int ranking = [UnitManager defaultManager].currentUnit.score.rankings;
     
     FrontiaShareContent *content = [[FrontiaShareContent alloc] init];
-    content.url = @"http://365smart.com";
-    content.title = @"365家卫士";
+    content.url = @"http://hentre.com";
+    content.title = NSLocalizedString(@"app_name", @"");
     
     if(score != 0) {
         content.description = [NSString stringWithFormat:@"当前我的家庭健康及安全指数为 %d 分, 已超过 %d%% 的家庭 ", score, ranking];
@@ -323,27 +318,6 @@
 #pragma mark -
 #pragma mark UI Methods
 
-//- (void)btnScenePressed:(id)sender {
-//    XXActionSheet *actionSheet = [[XXActionSheet alloc] init];
-//    actionSheet.title = NSLocalizedString(@"select_scene_mode", @"");
-//
-//    NSDictionary *templates = [ScenesTemplate defaultTemplates];
-//    NSMutableArray *templateKeys = [NSMutableArray arrayWithCapacity:4];
-//    [actionSheet addButtonWithTitle:[[templates dictionaryForKey:kSceneReturnHome] noNilStringForKey:kTemplateName]];
-//    [templateKeys addObject:kSceneReturnHome];
-//    [actionSheet addButtonWithTitle:[[templates dictionaryForKey:kSceneOut] noNilStringForKey:kTemplateName]];
-//    [templateKeys addObject:kSceneOut];
-//    [actionSheet addButtonWithTitle:[[templates dictionaryForKey:kSceneSleep] noNilStringForKey:kTemplateName]];
-//    [templateKeys addObject:kSceneSleep];
-//    [actionSheet addButtonWithTitle:[[templates dictionaryForKey:kSceneGetUp] noNilStringForKey:kTemplateName]];
-//    [templateKeys addObject:kSceneGetUp];
-//
-//    [actionSheet setParameter:templateKeys forKey:@"templateKeys"];
-//    actionSheet.cancelButtonIndex = [actionSheet addButtonWithTitle:NSLocalizedString(@"cancel", @"")];
-//    actionSheet.delegate = self;
-//    [actionSheet showInView:self.view];
-//}
-
 - (void)resizeScrollView {
     [self resizeScrollViewWithFlag:0];
 }
@@ -372,28 +346,6 @@
     [[Shared shared].app.rootViewController showRightView];
 }
 
-//- (void)showSpeechViewController:(id)sender {
-//    if(speechViewIsOpening) return;
-//    if(self.parentViewController != nil) {
-//        speechViewIsOpening = YES;
-//        SpeechViewController *speechViewController = [[SpeechViewController alloc] init];
-//        RootViewController *rootViewController = [Shared shared].app.rootViewController;
-//        [rootViewController addChildViewController:speechViewController];
-//        [self willMoveToParentViewController:nil];
-//        CGRect frame = speechViewController.view.frame;
-//        speechViewController.view.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
-//        [rootViewController transitionFromViewController:self toViewController:speechViewController duration:0.8f options:UIViewAnimationOptionTransitionCrossDissolve
-//            animations:^{
-//            }
-//            completion:^(BOOL finished) {
-//                [speechViewController didMoveToParentViewController:rootViewController];
-//                [self removeFromParentViewController];
-//                [rootViewController setDisplayViewController:speechViewController];
-//                speechViewIsOpening = NO;
-//            }];
-//    }
-//}
-
 - (void)btnRenameUnit:(id)sender {
     Unit *currentUnit = [UnitManager defaultManager].currentUnit;
     if(currentUnit != nil) {
@@ -402,7 +354,24 @@
     }
 }
 
-- (void)showNetworkStateView:(BOOL)reachbilityInternal {
+- (void)showNotificationsViewWithMessage:(NSString *)message
+                    notificationViewType:(NotificationViewType)notificationViewType {
+    
+    if(shouldKeepNotificationViewInMessageState) {
+#ifdef DEBUG
+        NSLog(@"[Portal View] ");
+#endif
+        return;
+    }
+    
+    if(NotificationViewTypeNone == notificationViewType) {
+        if(imgNetwork != nil && imgNetwork.superview != nil) {
+            [imgNetwork removeFromSuperview];
+        }
+        imgNetwork = nil;
+        return;
+    }
+    
     if(imgNetwork == nil) {
         imgNetwork = [[UIImageView alloc] initWithFrame:CGRectMake(0, self.topbarView.bounds.size.height, self.view.bounds.size.width, 30)];
         UILabel *lblDescription = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 26)];
@@ -412,27 +381,31 @@
         lblDescription.backgroundColor = [UIColor clearColor];
         lblDescription.font = [UIFont systemFontOfSize:14.f];
         [imgNetwork addSubview:lblDescription];
-    }
-    
-    UILabel *lblDescription = (UILabel *)[imgNetwork viewWithTag:100];
-    if(reachbilityInternal) {
-        imgNetwork.image = [UIImage imageNamed:@"bg_alert_green"];
-        lblDescription.text = NSLocalizedString(@"no_extra_network", @"");
-    } else {
-        imgNetwork.image = [UIImage imageNamed:@"bg_alert_yellow"];
-        lblDescription.text = NSLocalizedString(@"no_network", @"");
+        
+        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleNotificationViewTap:)];
+        [imgNetwork addGestureRecognizer:tapGesture];
+        imgNetwork.userInteractionEnabled = YES;
     }
     
     if(imgNetwork.superview == nil) {
         [self.view addSubview:imgNetwork];
     }
-}
-
-- (void)hideNetworkStateView {
-    if(imgNetwork != nil && imgNetwork.superview != nil) {
-        [imgNetwork removeFromSuperview];
+    
+    UILabel *lblDescription = (UILabel *)[imgNetwork viewWithTag:100];
+    lblDescription.text = message ? message : @"";
+    
+    if(NotificationViewTypeNetworkState == notificationViewType) {
+        imgNetwork.image = [UIImage imageNamed:@"bg_alert_yellow"];
+    } else if(NotificationViewTypeNewMessage == notificationViewType) {
+        imgNetwork.image = [UIImage imageNamed:@"bg_alert_green"];
+        shouldKeepNotificationViewInMessageState = YES;
+    } else {
+#ifdef DEBUG
+        NSLog(@"[Portal] Unknow notification view type %d", notificationViewType);
+#endif
     }
 }
+
 
 #pragma mark -
 #pragma mark Event Subscriber
@@ -442,13 +415,14 @@
 }
 
 - (void)xxEventPublisherNotifyWithEvent:(XXEvent *)event {
-    if([event isKindOfClass:[NetworkModeChangedEvent class]]) {
+    if([event isKindOfClass:[NetworkModeChangedEvent class]]) {  // 网络模式状态改变
         NetworkModeChangedEvent *evt = (NetworkModeChangedEvent *)event;
         [self updateNetworkStateForView:evt.netMode];
     } else if([event isKindOfClass:[UnitsListUpdatedEvent class]]
-              || [event isKindOfClass:[CurrentUnitChangedEvent class]]) {
+              || [event isKindOfClass:[CurrentUnitChangedEvent class]]) {  // 主控设备列表信息改变
         [self updateUnitsView];
-    } else if([event isKindOfClass:[SensorStateChangedEvent class]]) {
+        [self updateNetworkStateForView:[CoreService defaultService].netMode];
+    } else if([event isKindOfClass:[SensorStateChangedEvent class]]) {     // 传感器数据改变
         Unit *currentUnit = [UnitManager defaultManager].currentUnit;
         if(currentUnit != nil) {
             SensorStateChangedEvent *ssevt = (SensorStateChangedEvent *)event;
@@ -456,7 +430,7 @@
                 [self updateSensorsStatus:currentUnit];
             }
         }
-    } else if([event isKindOfClass:[DeviceStatusChangedEvent class]]) {
+    } else if([event isKindOfClass:[DeviceStatusChangedEvent class]]) {   // 设备状态改变
         Unit *currentUnit = [UnitManager defaultManager].currentUnit;
         if(currentUnit != nil) {
             DeviceStatusChangedEvent *dsevt = (DeviceStatusChangedEvent *)event;
@@ -473,15 +447,15 @@
             LeftNavView *leftView = (LeftNavView *)[Shared shared].app.rootViewController.leftView;
             [leftView setScreenName:cmd.screenName];
         }
-    } else if([event isKindOfClass:[CurrentLocationUpdatedEvent class]]) {
+    } else if([event isKindOfClass:[CurrentLocationUpdatedEvent class]]) {   // 地理位置信息更新
         CurrentLocationUpdatedEvent *evt = (CurrentLocationUpdatedEvent *)event;
         [self updateAQIPanelViewWithAqi:evt.aqiDetail];
-    } else if([event isKindOfClass:[ScoreChangedEvent class]]) {
+    } else if([event isKindOfClass:[ScoreChangedEvent class]]) {   // 打分信息更新
         ScoreChangedEvent *evt = (ScoreChangedEvent *)event;
         [self updateUnitScoreViewWithScore:evt.score];
-    } else if([event isKindOfClass:[NotificationsFileUpdatedEvent class]]) {
+    } else if([event isKindOfClass:[NotificationsFileUpdatedEvent class]]) {  // 新的通知抵达
 #ifdef DEBUG
-        NSLog(@"[Portal View] Received Notifications");
+        NSLog(@"[Portal View] Received New Notifications");
 #endif
         [self mayShowNotificationsInView];
     }
@@ -567,22 +541,8 @@
 - (void)updateUnitScoreViewWithScore:(Score *)score {
     if(score == nil || score.score == -1) {
         lblHealthIndex.text = @"--";
-//        lblHealthIndexGreatThan.text = @" --%";
-//        lblEvaluateTime.text = NSLocalizedString(@"has_not_refresh", @"");
     } else {
-        if(score.score == 100) {
-           lblHealthIndex.font = [UIFont systemFontOfSize:38];
-           lblHealthIndex.text = [NSString stringWithFormat:@"%d", score.score];
-        } else {
-           lblHealthIndex.font = [UIFont systemFontOfSize:50];
-           lblHealthIndex.text = [NSString stringWithFormat:@"%d", score.score];
-        }
-//        if(score.rankings != -1) {
-//            lblHealthIndexGreatThan.text = [NSString stringWithFormat:@"%d%%", score.rankings];
-//        } else {
-//            lblHealthIndexGreatThan.text = @" --%";
-//        }
-//        lblEvaluateTime.text = score.scoreDate == nil ? NSLocalizedString(@"has_not_refresh", @"") : [score scoreDateAsFormattedString];
+        lblHealthIndex.text = [NSString stringWithFormat:@"%d", score.score];
     }
 }
 
@@ -595,20 +555,73 @@
 }
 
 - (void)updateNetworkStateForView:(NetMode)netMode {
-    if((netMode & NetModeExtranet) == NetModeExtranet) {
-        [self hideNetworkStateView];
+    NSString *displayMessage = nil;
+    Unit *unit = [UnitManager defaultManager].currentUnit;
+    
+    if(unit == nil) {
+        [self showNotificationsViewWithMessage:nil notificationViewType:NotificationViewTypeNone];
+        return;
+    }
+    
+    if(NetModeExtranet == (netMode & NetModeExtranet)) { // 有外网
+        if(unit.isOnline) {  // 主控在线
+            [self showNotificationsViewWithMessage:nil notificationViewType:NotificationViewTypeNone];
+            return;
+        } else {  // 主控不在线
+            if(NetModeInternal == (netMode & NetModeInternal)) { // 有内网, 一般主控不在线状态肯定是没有内网的
+                // 万一到了这里还是认为网络 ok
+                [self showNotificationsViewWithMessage:nil notificationViewType:NotificationViewTypeNone];
+#ifdef DEBUG
+                NSLog(@"[Portal] 主控不在线, 且内网通 !!! 奇怪~~~~~~~ ");
+#endif
+                return;
+            } else {
+                displayMessage = @"365家卫士设备正处于离线状态";
+            }
+        }
+    } else { // 无外网
+        if(NetModeInternal == (netMode & NetModeInternal)) {
+            displayMessage = @"无法连接云端服务，功能将受限制";
+        } else {
+            displayMessage = @"当前网络不可用，请检查手机设置";
+        }
+    }
+    
+    [self showNotificationsViewWithMessage:displayMessage notificationViewType:NotificationViewTypeNetworkState];
+}
+
+- (BOOL)mayShowNotificationsInView {
+    BOOL needShow = NO;
+    NSArray *notifications = [[NotificationsFileManager fileManager] readFromDisk];
+    if(notifications != nil) {
+        for(SMNotification *notification in notifications) {
+            if(!notification.hasRead) {
+                needShow = YES;
+                break;
+            }
+        }
+    }
+    if(needShow) {
+        [self showNotificationsViewWithMessage:@"您有新消息,请点击查看" notificationViewType:NotificationViewTypeNewMessage];
     } else {
-        [self showNetworkStateView:(netMode & NetModeInternal) == NetModeInternal];
+        shouldKeepNotificationViewInMessageState = NO;
+    }
+    return needShow;
+}
+
+- (void)handleNotificationViewTap:(UITapGestureRecognizer *)tapGesture {
+    if(shouldKeepNotificationViewInMessageState) {
+        shouldKeepNotificationViewInMessageState = NO;
+        [self updateNetworkStateForView:[CoreService defaultService].netMode];
+        
+        // show notifications view
     }
 }
 
-- (void)mayShowNotificationsInView {
-//    NSArray *notifications = [[NotificationsFileManager fileManager] readFromDisk];
-//    if(notifications != nil) {
-//        for(SMNotification *notification in notifications) {
-//        
-//        }
-//    }
+- (void)initialNotificationsView {
+    if(![self mayShowNotificationsInView]) {
+        [self updateNetworkStateForView:[CoreService defaultService].netMode];
+    }
 }
 
 - (void)reset {

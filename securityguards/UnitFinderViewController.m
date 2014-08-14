@@ -56,7 +56,7 @@
     [self.view addSubview:lblLine1];
 
     UILabel *lblLine1Content = [[UILabel alloc] initWithFrame:CGRectMake(65, self.topbarView.frame.size.height + 23, 220, 50)];
-    lblLine1Content.text = NSLocalizedString(@"unit_finder_line1", @"");
+    lblLine1Content.text = @"请确保家卫士已正确接入当前WIFI网格，并且处于开机状态";
     lblLine1Content.textColor = [UIColor darkGrayColor];
     lblLine1Content.numberOfLines = 2;
     lblLine1Content.lineBreakMode = NSLineBreakByWordWrapping;
@@ -66,7 +66,7 @@
     
     UIButton *btnRebind = [[UIButton alloc] initWithFrame:CGRectMake(0, lblLine1Content.frame.origin.y + lblLine1Content.frame.size.height + 20, 500 / 2, 66 / 2)];
     btnRebind.center = CGPointMake(self.view.center.x, btnRebind.center.y);
-    [btnRebind setTitle:NSLocalizedString(@"start_binding", @"") forState:UIControlStateNormal];
+    [btnRebind setTitle:@"开始绑定" forState:UIControlStateNormal];
     [btnRebind setBackgroundImage:[UIImage imageNamed:@"btn_blue.png"] forState:UIControlStateNormal];
     [btnRebind setBackgroundImage:[UIImage imageNamed:@"btn_blue_highlighted.png"] forState:UIControlStateHighlighted];
     [btnRebind setBackgroundImage:[UIImage imageNamed:@"btn_gray.png"] forState:UIControlStateDisabled];
