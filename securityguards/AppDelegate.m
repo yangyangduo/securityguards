@@ -13,6 +13,7 @@
 #import "SecurityGuards.h"
 #import "ShoppingCart.h"
 #import "UIColor+XXImage.h"
+#import "Shared.h"
 
 #import <Frontia/Frontia.h>
 
@@ -163,6 +164,9 @@
         
         // Reset root view controller
         [self.rootViewController.portalViewController reset];
+        
+        LeftNavView *leftView = (LeftNavView *)[Shared shared].app.rootViewController.leftView;
+        [leftView setScreenName:@""];
         
         // UI ...
         [NSTimer scheduledTimerWithTimeInterval:0.8f target:self selector:@selector(delayLogout) userInfo:nil repeats:NO];

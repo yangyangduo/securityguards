@@ -26,27 +26,6 @@
 }
 @synthesize data;
 
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	// Do any additional setup after loading the view.
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 - (void)initDefaults {
     provider = [[ImageProvider alloc] init];
     provider.delegate = self;
@@ -57,18 +36,16 @@
 - (void)initUI {
     [super initUI];
     
-    if(playView == nil) {
-        playView = [[UIImageView alloc] initWithFrame:CGRectMake(0, self.topbarView.bounds.size.height, 320, 240)];
-        playView.backgroundColor = [UIColor blackColor];
-        [self.view addSubview:playView];
-        
-//        if(loadingView == nil) {
-//            loadingView = [CameraLoadingView viewWithPoint:CGPointMake(0, 0)];
-//            loadingView.center = CGPointMake(playView.center.x, playView.bounds.size.height / 2);
-//            [loadingView hide];
-//            [playView addSubview:loadingView];
-//        }
-    }
+    self.topbarView.title = @"查看报警视频";
+    
+    playView = [[UIImageView alloc] initWithFrame:CGRectMake(0, self.topbarView.bounds.size.height, [UIScreen mainScreen].bounds.size.width, 240)];
+    playView.backgroundColor = [UIColor blackColor];
+    [self.view addSubview:playView];
+
+    loadingView = [[CameraLoadingView alloc] initWithPoint:CGPointMake(0, 0)];
+    loadingView.center = CGPointMake(playView.center.x, playView.bounds.size.height / 2);
+    loadingView.cameraState = CameraStateNotOpen;
+    [playView addSubview:loadingView];
     
     if(data.cameraPicPaths != nil) {
         for (int i = 0; i<data.cameraPicPaths.count; i++) {
@@ -84,8 +61,6 @@
             [self.view addSubview:btnPlayCamera];
         }
     }
-    
-    self.topbarView.title = NSLocalizedString(@"view_message_video", @"");
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -102,8 +77,6 @@
     [self dismissViewControllerAnimated:NO completion:nil];
 }
 
-
-
 - (void)play:(id<XXParameterAware>)source {
     if(isPlaying) {
         if(provider != nil && provider.isDownloading) {
@@ -116,7 +89,7 @@
         NSString *url = [source parameterForKey:@"url"];
         if(![XXStringUtils isBlank:url]) {
             isPlaying = YES;
-//            [loadingView show];
+            loadingView.cameraState = CameraStateOpenning;
             [self performSelectorInBackground:@selector(startDownloader:) withObject:url];
         }
     }
@@ -132,7 +105,7 @@
 - (void)imageProviderNotifyImageAvailable:(UIImage *)image {
     if(isFirst) {
         isFirst = NO;
-//        [loadingView hide];
+        loadingView.cameraState = CameraStatePlaying;
     }
     playView.image = image;
 }
@@ -141,7 +114,7 @@
     isPlaying = NO;
     isFirst = YES;
     playView.image = nil;
-//    [loadingView showError];
+    loadingView.cameraState = CameraStateNotOpen;
 #ifdef DEBUG
     NSLog(@"[Image provider] Download Ended.");
 #endif
@@ -151,11 +124,10 @@
     isPlaying = NO;
     isFirst = YES;
     playView.image = nil;
-//    [loadingView showError];
+    loadingView.cameraState = CameraStateError;
 #ifdef DEBUG
     NSLog(@"[Image provider] Reading Error.");
 #endif
 }
-
 
 @end

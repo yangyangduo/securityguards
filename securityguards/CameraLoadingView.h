@@ -26,6 +26,6 @@ typedef NS_ENUM(NSUInteger, CameraState) {
 @property (nonatomic, assign) CameraState cameraState;
 @property (nonatomic, weak) id<CameraLoadingViewDelegate> delegate;
 
-- (id)initWithPoint:(CGPoint)point;
+- (instancetype)initWithPoint:(CGPoint)point;
 
 @end

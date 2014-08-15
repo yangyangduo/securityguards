@@ -115,8 +115,14 @@
     cell.imageView.image = [UIImage imageNamed:item.imageName];
     cell.textLabel.text = item.displayName;
     
-    if(indexPath.row == 0) {
-        [tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+    if(_currentItem_ == nil) {
+        if(indexPath.row == 0) {
+            [tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+        }
+    } else {
+        if([item isEqual:_currentItem_]) {
+            [tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+        }
     }
     
     return cell;

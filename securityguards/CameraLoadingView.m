@@ -18,27 +18,21 @@
 @synthesize delegate;
 @synthesize cameraState = _cameraState_;
 
-- (id)initWithFrame:(CGRect)frame
+- (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
-        [self initDefaults];
         [self initUI];
     }
     return self;
 }
 
-- (id)initWithPoint:(CGPoint)point {
+- (instancetype)initWithPoint:(CGPoint)point {
     self = [super initWithFrame:CGRectMake(point.x, point.y, 170, 110)];
     if(self) {
-        [self initDefaults];
         [self initUI];
     }
     return self;
-}
-
-- (void)initDefaults {
-    
 }
 
 - (void)initUI {

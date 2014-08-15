@@ -615,6 +615,7 @@ typedef NS_ENUM(NSUInteger, NotificationViewType) {
         [self updateNetworkStateForView:[CoreService defaultService].netMode];
         
         // show notifications view
+        [[Shared shared].app.rootViewController changeViewControllerWithIdentifier:@"notificationsItem"];
     }
 }
 

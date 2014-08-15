@@ -96,7 +96,7 @@
     [btnContinueShopping setBackgroundImage:[UIImage imageNamed:@"btn_blue"] forState:UIControlStateNormal];
     [btnContinueShopping setBackgroundImage:[UIImage imageNamed:@"btn_blue_highlighted"] forState:UIControlStateHighlighted];
     [btnContinueShopping addTarget:self action:@selector(btnContinueShoppingPressed:) forControlEvents:UIControlEventTouchUpInside];
-    [btnContinueShopping setTitle:NSLocalizedString(@"continue_shopping", @"") forState:UIControlStateNormal];
+    [btnContinueShopping setTitle:@"继续购物" forState:UIControlStateNormal];
     [self.view addSubview:btnContinueShopping];
 }
 
