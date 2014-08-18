@@ -15,14 +15,14 @@
 
 @property (nonatomic, assign) int score;
 @property (nonatomic, assign) int rankings;
-@property (nonatomic, strong) NSDate *scoreDate;
+//@property (nonatomic, strong) NSDate *scoreDate;
 
+/*
 - (BOOL)hasValue;
-
 - (BOOL)needRefresh;
-
 - (NSString *)scoreDateAsFormattedString;
 - (int)nextRefreshMinutes;
+ */
 
 @end
 

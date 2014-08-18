@@ -136,6 +136,10 @@ int const kDeviceAirPurifierControlModeSleepOrWakeUp      =    2;
     return self.state != 0;
 }
 
+- (BOOL)isLowBattery {
+    return self.state == 2;
+}
+
 - (BOOL)isAvailableDevice {
     return self.isAirPurifier || self.isCamera || self.isSensor || self.isSocket;
 }
@@ -206,6 +210,16 @@ int const kDeviceAirPurifierControlModeSleepOrWakeUp      =    2;
 
 - (BOOL)isSensor {
     return [@"sensor" isEqualToString:self.category];
+}
+
+- (BOOL)isSmokeDetector {
+    if(!self.isSensor) return NO;
+    return self.ep = 102;
+}
+
+- (BOOL)isBodyDetector {
+    if(!self.isSensor) return NO;
+    return self.ep = 100;
 }
 
 - (BOOL)isAirPurifierPower {

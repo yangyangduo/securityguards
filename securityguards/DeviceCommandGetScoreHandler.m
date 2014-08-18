@@ -16,9 +16,9 @@
         DeviceCommandGetScore *getScoreCommand = (DeviceCommandGetScore *)command;
         Unit *unit = [[UnitManager defaultManager] findUnitByIdentifier:getScoreCommand.masterDeviceCode];
         if(unit != nil) {
+            unit.score = [[Score alloc] init];
             unit.score.score = getScoreCommand.score;
             unit.score.rankings = getScoreCommand.rankings;
-            unit.score.scoreDate = getScoreCommand.scoreTime;
 
             ScoreChangedEvent *event = [[ScoreChangedEvent alloc] init];
             event.score = unit.score;

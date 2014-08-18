@@ -242,30 +242,44 @@ typedef NS_ENUM(NSUInteger, NotificationViewType) {
 }
 
 - (void)btnSharePressed:(id)sender {
-    int score = [UnitManager defaultManager].currentUnit.score.score;
-    int ranking = [UnitManager defaultManager].currentUnit.score.rankings;
+    Unit *currentUnit = [UnitManager defaultManager].currentUnit;
+    
+    NSString *pm25String = @"---";
+    NSString *vocString = @"---";
+    NSString *humidityString = @"---";
+    NSString *tempureString = @"---";
+    
+    for(Sensor *sensor in currentUnit.sensors) {
+        if(sensor.isPM25Sensor) {
+            pm25String = [NSString stringWithFormat:@"%.0f", sensor.data.value];
+        } else if(sensor.isVOCSensor) {
+            vocString = [NSString stringWithFormat:@"%.0f", sensor.data.value];
+        } else if(sensor.isHumiditySensor) {
+            humidityString = [NSString stringWithFormat:@"%.0f", sensor.data.value];
+        } else if(sensor.isTempureSensor) {
+            tempureString = [NSString stringWithFormat:@"%.0f", sensor.data.value];
+        }
+    }
     
     FrontiaShareContent *content = [[FrontiaShareContent alloc] init];
-    content.url = @"http://hentre.com";
+    
+    content.url = [NSString stringWithFormat:@"http://www.hentre.com/sv?tp=%@&rh=%@&pm=%@&voc=%@&t=%f", tempureString, humidityString, pm25String, vocString, [NSDate date].timeIntervalSince1970 * 1000];
+#ifdef DEBUG
+    NSLog(@"Shared url is %@", content.url);
+#endif
     content.title = NSLocalizedString(@"app_name", @"");
     
-    if(score != 0) {
-        content.description = [NSString stringWithFormat:@"当前我的家庭健康及安全指数为 %d 分, 已超过 %d%% 的家庭 ", score, ranking];
+    if(currentUnit != nil && currentUnit.score != nil) {
+        content.description = [NSString stringWithFormat:@"当前我的家庭健康及安全指数为 %d 分, 已超过 %d%% 的家庭 ", currentUnit.score.score, currentUnit.score.rankings];
     } else {
         content.description = @"我的健康安全防护专家，365家卫士家庭安全健康中心，享受科技生活！";
     }
     
     [[Frontia getShare] showShareMenuWithShareContent:content
                         displayPlatforms:[NSArray arrayWithObjects:
-                                          FRONTIA_SOCIAL_SHARE_PLATFORM_SINAWEIBO,
                                           FRONTIA_SOCIAL_SHARE_PLATFORM_WEIXIN_SESSION,
                                           FRONTIA_SOCIAL_SHARE_PLATFORM_WEIXIN_TIMELINE,
-                                          FRONTIA_SOCIAL_SHARE_PLATFORM_QQ,
-                                          FRONTIA_SOCIAL_SHARE_PLATFORM_QQFRIEND,
-                                          FRONTIA_SOCIAL_SHARE_PLATFORM_QQWEIBO,
-                                          FRONTIA_SOCIAL_SHARE_PLATFORM_RENREN,
-                                          FRONTIA_SOCIAL_SHARE_PLATFORM_SMS,
-                                          FRONTIA_SOCIAL_SHARE_PLATFORM_EMAIL, nil]
+                                          nil]
                         supportedInterfaceOrientations:UIInterfaceOrientationMaskPortrait
                         isStatusBarHidden:NO targetViewForPad:nil
                         cancelListener:^{
@@ -539,7 +553,7 @@ typedef NS_ENUM(NSUInteger, NotificationViewType) {
 }
 
 - (void)updateUnitScoreViewWithScore:(Score *)score {
-    if(score == nil || score.score == -1) {
+    if(score == nil) {
         lblHealthIndex.text = @"--";
     } else {
         lblHealthIndex.text = [NSString stringWithFormat:@"%d", score.score];

@@ -48,6 +48,7 @@ extern int const kDeviceAirPurifierControlModeSleepOrWakeUp;
 @property (nonatomic) int type;
 
 @property (nonatomic, readonly) BOOL isOnline;
+@property (nonatomic, readonly) BOOL isLowBattery;
 
 @property (nonatomic, readonly) BOOL isLight;                    //灯
 @property (nonatomic, readonly) BOOL isInlight;                  //零火灯
@@ -72,6 +73,8 @@ extern int const kDeviceAirPurifierControlModeSleepOrWakeUp;
 @property (nonatomic, readonly) BOOL isAirPurifierSecurity;      //空气净化器安防
 
 @property (nonatomic, readonly) BOOL isSensor;
+@property (nonatomic, readonly) BOOL isSmokeDetector;            //烟感器
+@property (nonatomic, readonly) BOOL isBodyDetector;             //红外感应
 
 @property (nonatomic, readonly) BOOL isAvailableDevice;
 

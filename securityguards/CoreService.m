@@ -14,6 +14,7 @@
 #import "DeviceCommandEvent.h"
 #import "CurrentUnitChangedEvent.h"
 #import "XXEventNameFilter.h"
+#import "ScoringTools.h"
 
 /*  Command Handler  */
 #import "DeviceCommandGetUnitsHandler.h"
@@ -29,7 +30,7 @@
 
 #define NETWORK_CHECK_INTERVAL     5
 #define UNIT_REFRESH_INTERVAL      10
-#define HEART_BEAT_TIMEOUT         1.f
+#define HEART_BEAT_TIMEOUT         2.f
 #define GETUNITS_MINITES_INTERVAL  60
 
 
@@ -506,7 +507,7 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
             [self executeDeviceCommand:getSensorsCommand];
         }
 
-        [self mayRefreshScoreForUnit:unit];
+        [self updateScoreForUnit:unit];
     }
     
     // 更新当前location 以及 AQI 信息
@@ -677,20 +678,30 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
     });
 }
 
-- (void)mayRefreshScoreForUnit:(Unit *)unit {
-    if(unit == nil) return;
-    if([unit.score needRefresh]) {
+- (void)updateScoreForUnit:(Unit *)unit {
+    NSNumber *score = [ScoringTools scoringForUnit:unit];
+    if(score != nil) {
+        float ranking = [ScoringTools rankingForScore:score.floatValue];
+        DeviceCommandGetScore *mockReceivedGetUnitScoreCommand = [[DeviceCommandGetScore alloc] init];
+        mockReceivedGetUnitScoreCommand.commandName = COMMAND_GET_SCORE;
+        mockReceivedGetUnitScoreCommand.masterDeviceCode = unit.identifier;
+        mockReceivedGetUnitScoreCommand.score = score.intValue;
+        mockReceivedGetUnitScoreCommand.rankings = ranking;
+        DeviceCommandGetScoreHandler *handler = [[DeviceCommandGetScoreHandler alloc] init];
+        [handler handle:mockReceivedGetUnitScoreCommand];
 #ifdef DEBUG
-        //NSLog(@"[Core Service] Now start refresh score for %@", unit.identifier);
+        NSLog(@"[Core Service] Score %.0f, ranking %.0f for unit %@", score.floatValue, ranking, unit.identifier);
 #endif
-        DeviceCommand *getScoreCommand = [CommandFactory commandForType:CommandTypeGetScore];
-        getScoreCommand.masterDeviceCode = unit.identifier;
-        [self executeDeviceCommand:getScoreCommand];
     } else {
 #ifdef DEBUG
-        //NSLog(@"[Core Service] Don't need to refresh score, after %d minute", unit.score.nextRefreshMinutes);
+        NSLog(@"[Core Service] No score ...");
 #endif
     }
+    /*
+        DeviceCommand *getScoreCommand = [CommandFactory commandForType:CommandTypeGetScore];
+        getScoreCommand.masterDeviceCode = unit.identifier;
+        [self executeDeviceCommand:getScoreCommand]; 
+    */
 }
 
 - (void)notifyTcpConnectionOpened {

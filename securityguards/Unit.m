@@ -100,7 +100,7 @@
     [json setObject:(self.hashCode == nil ? [NSNumber numberWithInteger:0] : self.hashCode) forKey:@"hashCode"];
 
     // set score ...
-    if([self.score hasValue]) {
+    if(self.score != nil) {
         [json setNoNilObject:[self.score toJson] forKey:@"score"];
     }
     
@@ -207,26 +207,19 @@
     return [@"在线" isEqualToString:self.status];
 }
 
-- (Score *)score {
-    if(_score_ == nil) {
-        _score_ = [[Score alloc] init];
-    }
-    return _score_;
-}
-
 @end
 
 @implementation Score
 
 @synthesize score;
 @synthesize rankings;
-@synthesize scoreDate;
+//@synthesize scoreDate;
 
 - (id)init {
     self = [super init];
     if(self) {
-        self.score = -1;
-        self.rankings = -1;
+        self.score = 0.f;
+        self.rankings = 0.f;
     }
     return self;
 }
@@ -236,7 +229,7 @@
     if(self && json) {
         self.score = [json intForKey:@"score"];
         self.rankings = [json intForKey:@"rankings"];
-        self.scoreDate = [json dateWithTimeIntervalSince1970ForKey:@"scoreDate"];
+//        self.scoreDate = [json dateWithTimeIntervalSince1970ForKey:@"scoreDate"];
     }
     return self;
 }
@@ -245,10 +238,12 @@
     NSMutableDictionary *json = [super toJson];
     [json setInteger:self.score forKey:@"score"];
     [json setInteger:self.rankings forKey:@"rankings"];
-    [json setDateUsingTimeIntervalSince1970:self.scoreDate forKey:@"scoreDate"];
+//    [json setDateUsingTimeIntervalSince1970:self.scoreDate forKey:@"scoreDate"];
     return json;
 }
 
+/*
+ 
 - (BOOL)hasValue {
     if(self.score == -1 && self.rankings == -1 && self.scoreDate == nil) return NO;
     return YES;
@@ -271,5 +266,7 @@
     if(self.scoreDate == nil) return [XXStringUtils emptyString];
     return [XXDateFormatter dateToString:self.scoreDate format:@"MM-dd HH:mm"];
 }
+ 
+*/
 
 @end
