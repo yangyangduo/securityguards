@@ -12,7 +12,7 @@
 #import "ImageProvider.h"
 #import "CameraLoadingView.h"
 
-@interface PlayCameraPicViewController : NavigationViewController<ImageProviderDelegate>
+@interface PlayCameraPicViewController : NavigationViewController<ImageProviderDelegate, CameraLoadingViewDelegate>
 
 @property (strong, nonatomic) NotificationData *data;
 

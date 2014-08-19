@@ -19,27 +19,6 @@
 
 @synthesize unit = _unit_;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	// Do any additional setup after loading the view.
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 - (id)init {
     self = [super init];
     if(self) {
@@ -100,6 +79,10 @@
 - (void)btnSubmitPressed:(id)sender {
     if([XXStringUtils isBlank:self.value]) {
         [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"unit_name_not_blank", @"") forType:AlertViewTypeFailed];
+        [[XXAlertView currentAlertView] alertForLock:NO autoDismiss:YES];
+        return;
+    } else if(self.value.length > 8) {
+        [[XXAlertView currentAlertView] setMessage:@"名字太长" forType:AlertViewTypeFailed];
         [[XXAlertView currentAlertView] alertForLock:NO autoDismiss:YES];
         return;
     }

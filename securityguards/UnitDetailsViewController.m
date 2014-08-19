@@ -232,6 +232,9 @@
     if([XXStringUtils isBlank:newText]) {
         [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"timing_tasks_plan_name_not_blank", @"") forType:AlertViewTypeFailed];
         [[XXAlertView currentAlertView] alertForLock:NO autoDismiss:YES];
+    } else if(newText.length > 8) {
+        [[XXAlertView currentAlertView] setMessage:@"名字太长" forType:AlertViewTypeFailed];
+        [[XXAlertView currentAlertView] alertForLock:NO autoDismiss:YES];
     } else {
         Device *device = [self.unit deviceForId:textView.identifier];
         if([device.name isEqualToString:newText] || device == nil) {

@@ -67,12 +67,29 @@
     return [NSNumber numberWithFloat:score];
 }
 
+/*
+ 0: 超过0%用户
+ 10：超过6%用户
+ 20：超过17%用户
+ 30：超过38%用户
+ 40：超过41%用户
+ 50：超过56%用户
+ 60：超过62%用户
+ 70：超过68%用户
+ 80：超过87%用户
+ 90：超过94%用户
+ */
 + (float)rankingForScore:(float)score {
-    if(score < 50) return 0.3f;
-    if(score >= 50 && score < 60) return 0.6f;
-    if(score >= 60 && score < 70) return 0.7f;
-    if(score >= 70 && score < 80) return 0.8f;
-    if(score >= 90.f) return 0.95f;
+    if(score == 0) return 0.f;
+    if(score < 10) return 0.06f;
+    if(score < 20) return 0.17f;
+    if(score < 30) return 0.38f;
+    if(score < 40) return 0.41f;
+    if(score < 50) return 0.56f;
+    if(score < 60) return 0.62f;
+    if(score < 70) return 0.68f;
+    if(score < 80) return 0.87f;
+    if(score < 90) return 0.94f;
     return 0.f;
 }
 

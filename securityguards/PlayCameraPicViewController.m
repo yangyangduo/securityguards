@@ -40,11 +40,13 @@
     
     playView = [[UIImageView alloc] initWithFrame:CGRectMake(0, self.topbarView.bounds.size.height, [UIScreen mainScreen].bounds.size.width, 240)];
     playView.backgroundColor = [UIColor blackColor];
+    playView.userInteractionEnabled = YES;
     [self.view addSubview:playView];
 
     loadingView = [[CameraLoadingView alloc] initWithPoint:CGPointMake(0, 0)];
     loadingView.center = CGPointMake(playView.center.x, playView.bounds.size.height / 2);
     loadingView.cameraState = CameraStateNotOpen;
+    loadingView.delegate = self;
     [playView addSubview:loadingView];
     
     if(data.cameraPicPaths != nil) {
@@ -64,17 +66,14 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    XXButton *firstButton = (XXButton *)[self.view viewWithTag:FIRST_BUTTON_TAG];
-    if(firstButton != nil) {
-        [self play:firstButton];
-    }
+    [self playFirstCamera];
 }
 
 - (void)popupViewController {
     if(provider != nil) {
         [provider stopDownload];
     }
-    [self dismissViewControllerAnimated:NO completion:nil];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)play:(id<XXParameterAware>)source {
@@ -97,6 +96,13 @@
 
 - (void)startDownloader:(NSString *)url {
     [provider startDownloader:url imageIndex:0];
+}
+
+- (void)playFirstCamera {
+    XXButton *firstButton = (XXButton *)[self.view viewWithTag:FIRST_BUTTON_TAG];
+    if(firstButton != nil) {
+        [self play:firstButton];
+    }
 }
 
 #pragma mark -
@@ -128,6 +134,10 @@
 #ifdef DEBUG
     NSLog(@"[Image provider] Reading Error.");
 #endif
+}
+
+- (void)playButtonPressed {
+    [self playFirstCamera];
 }
 
 @end

@@ -20,22 +20,6 @@
     
     BOOL isFinding;
     BOOL cancelledByUser;
-    
-}
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	// Do any additional setup after loading the view.
 }
 
 - (void)initUI{
@@ -61,7 +45,7 @@
             CGRectMake(offsetXOfContentLabel, lblLine1Content.frame.origin.y + lblLine1Content.frame.size.height + 5, 220, 50)];
     lblLine2Content.numberOfLines = 2;
     lblLine2Content.lineBreakMode = NSLineBreakByWordWrapping;
-    lblLine2Content.text = @"开始绑定家卫士前请确保当前WIFI已正确切换到以下WIFI网络:";
+    lblLine2Content.text = @"请确保手机的当前WIFI已切换到如下热点的家庭网络";
     lblLine2Content.textColor = [UIColor darkGrayColor];
     lblLine2Content.backgroundColor = [UIColor clearColor];
     lblLine2Content.font = [UIFont systemFontOfSize:15.f];
@@ -70,9 +54,21 @@
     UILabel *lblWIFIName = [[UILabel alloc] initWithFrame:CGRectMake(offsetXOfTipsLabel, lblLine2Content.frame.origin.y + lblLine2Content.frame.size.height + 6, 220, 25)];
     lblWIFIName.text = [Shared shared].lastedContectionWifiName;
     lblWIFIName.textColor = [UIColor appBlue];
+    lblWIFIName.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:lblWIFIName];
+    
+    UILabel *lblLine3 = [TipsLabel labelWithPoint:CGPointMake(offsetXOfTipsLabel, lblWIFIName.frame.origin.y + lblWIFIName.frame.size.height + 8)];
+    [self.view addSubview:lblLine3];
+    UILabel *lblLine3Content = [[UILabel alloc] initWithFrame:CGRectMake(offsetXOfContentLabel, lblLine3.frame.origin.y - 3, 220, 50)];
+    lblLine3Content.numberOfLines = 2;
+    lblLine3Content.lineBreakMode = NSLineBreakByWordWrapping;
+    lblLine3Content.text = @"请按下面板上“风速”按钮超过3秒，在2分钟之内点击“开始绑定”完成绑定操作";
+    lblLine3Content.textColor = [UIColor darkGrayColor];
+    lblLine3Content.backgroundColor = [UIColor clearColor];
+    lblLine3Content.font = [UIFont systemFontOfSize:15.f];
+    [self.view addSubview:lblLine3Content];
 
-    UIButton *btnStartBinding = [[UIButton alloc] initWithFrame:CGRectMake(0, lblWIFIName.frame.origin.y + lblWIFIName.frame.size.height + 15, 500 / 2, 66 / 2)];
+    UIButton *btnStartBinding = [[UIButton alloc] initWithFrame:CGRectMake(0, lblLine3Content.frame.origin.y + lblLine3Content.frame.size.height + 15, 500 / 2, 66 / 2)];
     btnStartBinding.center = CGPointMake(self.view.center.x, btnStartBinding.center.y);
     [btnStartBinding setTitle:@"开始绑定" forState:UIControlStateNormal];
     [btnStartBinding setBackgroundImage:[UIImage imageNamed:@"btn_blue"] forState:UIControlStateNormal];
@@ -102,7 +98,7 @@
 
 - (void)btnStartBindingPressed:(UIButton *)sender {
     if(![[SMNetworkTool ssidForCurrentWifi] isEqualToString:[Shared shared].lastedContectionWifiName]) {
-        [[XXAlertView currentAlertView] setMessage:@"请切换WIFI到以上网络" forType:AlertViewTypeFailed];
+        [[XXAlertView currentAlertView] setMessage:@"Wifi选择错误" forType:AlertViewTypeFailed];
         [[XXAlertView currentAlertView] alertForLock:NO autoDismiss:YES];
         return;
     }

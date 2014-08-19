@@ -686,7 +686,7 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
         mockReceivedGetUnitScoreCommand.commandName = COMMAND_GET_SCORE;
         mockReceivedGetUnitScoreCommand.masterDeviceCode = unit.identifier;
         mockReceivedGetUnitScoreCommand.score = score.intValue;
-        mockReceivedGetUnitScoreCommand.rankings = ranking;
+        mockReceivedGetUnitScoreCommand.rankings = ranking * 100;
         DeviceCommandGetScoreHandler *handler = [[DeviceCommandGetScoreHandler alloc] init];
         [handler handle:mockReceivedGetUnitScoreCommand];
 #ifdef DEBUG

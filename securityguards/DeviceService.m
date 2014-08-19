@@ -7,8 +7,8 @@
 //
 
 #import "DeviceService.h"
-#import "Zone.h"
 #import "Unit.h"
+#import "Zone.h"
 
 @implementation DeviceService
 
@@ -22,11 +22,13 @@
 
 - (void)updateDeviceName:(NSString *)name status:(int)status type:(int)type for:(Device *)device success:(SEL)s failed:(SEL)f target:(id)t callback:(id)cb {
     NSMutableString *url = [NSMutableString stringWithFormat:
-                     @"/update/%@%@/%@?deviceCode=%@&appKey=%@&security=%@&name=%@",
-                     device.zone.unit.identifier, APP_KEY, device.identifier,
-                     [GlobalSettings defaultSettings].deviceCode, APP_KEY,
-                     [GlobalSettings defaultSettings].secretKey,
-                     [name stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+                     @"/update/%@/%@?name=%@&deviceCode=%@&appKey=%@&security=%@",
+                            device.zone.unit.identifier, device.identifier,
+                            [name stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],
+                            [GlobalSettings defaultSettings].deviceCode, APP_KEY,
+                            [GlobalSettings defaultSettings].secretKey
+                     ];
+
     if(status != -1000) {
         [url appendString:[NSString stringWithFormat:@"&status=%d", status]];
     }

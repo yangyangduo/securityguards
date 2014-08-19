@@ -24,7 +24,8 @@
         self.identifier = [json noNilStringForKey:@"id"];
         self.name = [json noNilStringForKey:@"screenName"];
         self.mobile = [json noNilStringForKey:@"phoneNumber"];
-        self.isOwner = [json boolForKey:@"owner"];
+//        self.isOwner = [json boolForKey:@"owner"];
+        self.isOwner = [json booleanForKey:@"owner"];
         
         NSString *_status = [json noNilStringForKey:@"status"];
         if([XXStringUtils isBlank:_status]) {
@@ -42,7 +43,6 @@
 
 - (NSMutableDictionary *)toJson {
     NSMutableDictionary *json = [super toJson];
-    
     return json;
 }
 

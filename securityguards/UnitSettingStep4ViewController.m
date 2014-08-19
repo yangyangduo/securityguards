@@ -12,8 +12,9 @@
 #import "SMNetworkTool.h"
 #import "Shared.h"
 
+NSString * const DefaultFamilyGuardsHotSpotName = @"DIRECT-AW-MiniMax";
+
 @interface UnitSettingStep4ViewController () {
-//    UILabel *lblLine1Content;
     UILabel *lblWIFIName;
     UITextField *txtPassword;
     UIButton *btnSendSettings;
@@ -22,21 +23,6 @@
 @end
 
 @implementation UnitSettingStep4ViewController
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	// Do any additional setup after loading the view.
-}
 
 - (void)initUI{
     [super initUI];
@@ -47,20 +33,13 @@
 
     UILabel *lblLine1 = [TipsLabel labelWithPoint:CGPointMake(offsetXOfTipsLabel, self.topbarView.frame.size.height + 14)];
     [self.view addSubview:lblLine1];
-
-//    lblLine1Content = [[UILabel alloc] initWithFrame:CGRectMake(offsetXOfContentLabel, self.topbarView.frame.size.height + 15, 220, 25)];
-//    lblLine1Content.text = NSLocalizedString(@"step4_line1_linking", @"");
-//    lblLine1Content.textColor = [UIColor darkGrayColor];
-//    lblLine1Content.backgroundColor = [UIColor clearColor];
-//    lblLine1Content.font = [UIFont systemFontOfSize:15.f];
-//    [self.view addSubview:lblLine1Content];
     
     UILabel *lblLine2 = [TipsLabel labelWithPoint:CGPointMake(offsetXOfTipsLabel, self.topbarView.frame.size.height + 15)];
     [self.view addSubview:lblLine2];
     UILabel *lblLine2Content = [[UILabel alloc] initWithFrame:
-            CGRectMake(offsetXOfContentLabel, self.topbarView.frame.size.height + 15, 220, 25)];
+            CGRectMake(offsetXOfContentLabel, self.topbarView.frame.size.height + 15, 235, 25)];
     lblLine2Content.lineBreakMode = NSLineBreakByWordWrapping;
-    lblLine2Content.text = @"配置家卫士WIFI网络名称为:";
+    lblLine2Content.text = @"家卫士即将接入的家庭网络名称为:";
     lblLine2Content.textColor = [UIColor darkGrayColor];
     lblLine2Content.backgroundColor = [UIColor clearColor];
     lblLine2Content.font = [UIFont systemFontOfSize:15.f];
@@ -73,7 +52,7 @@
     
     txtPassword = [[UITextField alloc] initWithFrame:CGRectMake(0, lblWIFIName.frame.size.height + lblWIFIName.frame.origin.y + 10, 250, 58 / 2)];
     txtPassword.center = CGPointMake(self.view.center.x, txtPassword.center.y);
-    txtPassword.placeholder = @"WIFI密码";
+    txtPassword.placeholder = @"请输入该家庭网络的密码";
     txtPassword.textColor = [UIColor darkGrayColor];
     txtPassword.background = [UIImage imageNamed:@"light_gray_textbox"];
     txtPassword.clearButtonMode = UITextFieldViewModeWhileEditing;
@@ -100,7 +79,7 @@
 
 - (void)btnSendSettingsPressed:(UIButton *)sender {
     if(![self detectionFamilyGuardsWifiExists]) {
-        [[XXAlertView currentAlertView] setMessage:@"请连接家卫士WIFI" forType:AlertViewTypeFailed];
+        [[XXAlertView currentAlertView] setMessage:@"请连接家卫士Wifi" forType:AlertViewTypeFailed];
         [[XXAlertView currentAlertView] alertForLock:NO autoDismiss:YES];
         return;
     }
@@ -109,10 +88,6 @@
     if(![XXStringUtils isBlank:localIp]) {
         NSArray *components = [localIp componentsSeparatedByString:@"."];
         NSString *url = [NSString stringWithFormat:@"http://%@.%@.%@.1:8777/wifi/connections", [components objectAtIndex:0], [components objectAtIndex:1], [components objectAtIndex:2]];
-
-        /*
-        NSString *stringBody = [NSString stringWithFormat:@"wifiSSID=%@&wifiPwd=%@", [Shared shared].lastedContectionWifiName, [XXStringUtils trim:txtPassword.text]];
-        */
         
         NSDictionary *postJson = @{
                                     @"ssid" : [Shared shared].lastedContectionWifiName,
@@ -152,14 +127,13 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     [txtPassword becomeFirstResponder];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     [self detectionFamilyGuardsWifiExists];
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
 }
 
 - (void)setWifiNameForLabel:(NSString *)wifiName {
@@ -174,8 +148,7 @@
 - (BOOL)detectionFamilyGuardsWifiExists {
     [self setWifiNameForLabel:[Shared shared].lastedContectionWifiName];
     NSString *wifiName = [SMNetworkTool ssidForCurrentWifi];
-    if(![XXStringUtils isBlank:wifiName] && ([FamilyGuardsHotSpotName isEqualToString:wifiName]
-                                             || [DefaultFamilyGuardsHotSpotName isEqualToString:wifiName])) {
+    if([DefaultFamilyGuardsHotSpotName isEqualToString:wifiName]) {
         [self enableContinue];
         return YES;
     } else {

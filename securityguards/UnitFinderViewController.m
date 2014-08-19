@@ -16,36 +16,8 @@
 @end
 
 @implementation UnitFinderViewController {
-    
-    
     BOOL isFinding;
     BOOL cancelledByUser;
-    
-}
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
-- (void)initDefaults {
-    [super initDefaults];
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	// Do any additional setup after loading the view.
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)initUI {
@@ -56,7 +28,7 @@
     [self.view addSubview:lblLine1];
 
     UILabel *lblLine1Content = [[UILabel alloc] initWithFrame:CGRectMake(65, self.topbarView.frame.size.height + 23, 220, 50)];
-    lblLine1Content.text = @"请确保家卫士已正确接入当前WIFI网格，并且处于开机状态";
+    lblLine1Content.text = @"请确保家卫士已正确接入当前Wifi网络，并且处于开机状态";
     lblLine1Content.textColor = [UIColor darkGrayColor];
     lblLine1Content.numberOfLines = 2;
     lblLine1Content.lineBreakMode = NSLineBreakByWordWrapping;
