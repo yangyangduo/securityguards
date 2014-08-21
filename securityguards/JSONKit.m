@@ -223,6 +223,7 @@
 #endif // defined (__GNUC__) && (__GNUC__ >= 4) && (__GNUC_MINOR__ >= 3)
 
 
+
 @class JKArray, JKDictionaryEnumerator, JKDictionary;
 
 enum {
@@ -2594,8 +2595,12 @@ rerunAfterClassFormatter:;
     //
     // XXX XXX XXX XXX
     
+#pragma clang diagnostic push
     
+#pragma clang diagnostic ignored"-Wdeprecated-objc-pointer-introspection"
     BOOL   workAroundMacOSXABIBreakingBug = (JK_EXPECT_F(((NSUInteger)object) & 0x1))     ? YES  : NO;
+#pragma clang diagnostic pop
+    
     void  *objectISA                      = (JK_EXPECT_F(workAroundMacOSXABIBreakingBug)) ? NULL : *((void **)objectPtr);
     if(JK_EXPECT_F(workAroundMacOSXABIBreakingBug)) { goto slowClassLookup; }
     

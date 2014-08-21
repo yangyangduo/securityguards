@@ -11,8 +11,8 @@
 #import "SMNetworkTool.h"
 #import "GlobalSettings.h"
 
-#define MAX_BROADCAST_COUNT      50
-#define BROADCAST_TIME_INTERVAL  3
+#define MAX_BROADCAST_COUNT      15
+#define BROADCAST_TIME_INTERVAL  2
 
 @implementation UnitFinder {
     // UDP Socket

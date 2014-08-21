@@ -47,12 +47,19 @@
     
     UILabel *lblTips = [[UILabel alloc] initWithFrame:CGRectMake(0, lblHotPoint.frame.origin.y + lblHotPoint.frame.size.height, 220, 30)];
     lblTips.center = CGPointMake(self.view.center.x, lblTips.center.y);
-    lblTips.text = @"  *成功后请点击\"下一步\"继续";
+    lblTips.text = @"            密码: 12345678";
     lblTips.font = [UIFont systemFontOfSize:15.f];
     lblTips.textColor = [UIColor lightGrayColor];
     [self.view addSubview:lblTips];
     
-    UIButton *btnNextStep = [[UIButton alloc] initWithFrame:CGRectMake(0, lblTips.frame.origin.y+lblTips.frame.size.height + 10, 500 / 2, 66 / 2)];
+    UILabel *lblTips2 = [[UILabel alloc] initWithFrame:CGRectMake(0, lblTips.frame.origin.y + lblTips.frame.size.height, 220, 30)];
+    lblTips2.center = CGPointMake(self.view.center.x, lblTips2.center.y);
+    lblTips2.text = @"  *成功后请点击\"下一步\"继续";
+    lblTips2.font = [UIFont systemFontOfSize:15.f];
+    lblTips2.textColor = [UIColor lightGrayColor];
+    [self.view addSubview:lblTips2];
+    
+    UIButton *btnNextStep = [[UIButton alloc] initWithFrame:CGRectMake(0, lblTips2.frame.origin.y + lblTips2.frame.size.height + 10, 500 / 2, 66 / 2)];
     btnNextStep.center = CGPointMake(self.view.center.x, btnNextStep.center.y);
     [btnNextStep setTitle:NSLocalizedString(@"next_step", @"") forState:UIControlStateNormal];
     [btnNextStep setBackgroundImage:[UIImage imageNamed:@"btn_blue.png"] forState:UIControlStateNormal];

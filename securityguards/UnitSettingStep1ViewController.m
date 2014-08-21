@@ -52,18 +52,19 @@
     UILabel *lblLine3 = [TipsLabel labelWithPoint:CGPointMake(offsetXOfTipsLabel, lblLine2Content.frame.origin.y + lblLine2Content.frame.size.height + 5)];
     [self.view addSubview:lblLine3];
     
-    UILabel *lblLine3Content = [[UILabel alloc] initWithFrame:CGRectMake(offsetXOfContentLabel, lblLine2Content.frame.origin.y + lblLine2Content.frame.size.height + 8, 220, 25)];
+    UILabel *lblLine3Content = [[UILabel alloc] initWithFrame:CGRectMake(offsetXOfContentLabel, lblLine2Content.frame.origin.y + lblLine2Content.frame.size.height, 220, 50)];
     lblLine3Content.lineBreakMode = NSLineBreakByWordWrapping;
     lblLine3Content.textColor = [UIColor darkGrayColor];
-    lblLine3Content.text  = @"请将摄像头用网线连接到路由器";
+    lblLine3Content.text  = @"请将摄像头用网线连接到路由器(配置成功后,可拔掉网线)";
     lblLine3Content.backgroundColor = [UIColor clearColor];
+    lblLine3Content.numberOfLines = 2;
     lblLine3Content.font = [UIFont systemFontOfSize:15.f];
     [self.view addSubview:lblLine3Content];
     
     UILabel *lblLine4 = [TipsLabel labelWithPoint:CGPointMake(offsetXOfTipsLabel, lblLine3Content.frame.origin.y + lblLine3Content.frame.size.height + 12)];
     [self.view addSubview:lblLine4];
     
-    UILabel *lblLine4Content = [[UILabel alloc] initWithFrame:CGRectMake(offsetXOfContentLabel, lblLine3Content.frame.origin.y + lblLine3Content.frame.size.height + 6, 220, 75)];
+    UILabel *lblLine4Content = [[UILabel alloc] initWithFrame:CGRectMake(offsetXOfContentLabel, lblLine3Content.frame.origin.y + lblLine3Content.frame.size.height + 4, 220, 75)];
     lblLine4Content.numberOfLines = 3;
     lblLine4Content.lineBreakMode = NSLineBreakByWordWrapping;
     lblLine4Content.textColor = [UIColor darkGrayColor];
@@ -77,7 +78,7 @@
     imgTips.center = CGPointMake(self.view.center.x, imgTips.center.y);
     [self.view addSubview:imgTips];
     
-    UIButton *btnNextStep = [[UIButton alloc] initWithFrame:CGRectMake(0, imgTips.frame.origin.y + imgTips.frame.size.height + 15, 500 / 2, 66 / 2)];
+    UIButton *btnNextStep = [[UIButton alloc] initWithFrame:CGRectMake(0, imgTips.frame.origin.y + imgTips.frame.size.height + 18, 500 / 2, 66 / 2)];
     btnNextStep.center = CGPointMake(self.view.center.x, btnNextStep.center.y);
     [btnNextStep setTitle:NSLocalizedString(@"next_step", @"") forState:UIControlStateNormal];
     [btnNextStep setBackgroundImage:[UIImage imageNamed:@"btn_blue.png"] forState:UIControlStateNormal];

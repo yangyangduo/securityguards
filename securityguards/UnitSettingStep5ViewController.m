@@ -17,7 +17,6 @@
 @end
 
 @implementation UnitSettingStep5ViewController {
-    
     BOOL isFinding;
     BOOL cancelledByUser;
 }
@@ -29,23 +28,24 @@
     CGFloat offsetXOfTipsLabel = 40;
     CGFloat offsetXOfContentLabel = 50;
 
-    UILabel *lblLine1 = [TipsLabel labelWithPoint:CGPointMake(offsetXOfTipsLabel, self.topbarView.frame.size.height + 9)];
+    UILabel *lblLine1 = [TipsLabel labelWithPoint:CGPointMake(offsetXOfTipsLabel, self.topbarView.frame.size.height + 12)];
     [self.view addSubview:lblLine1];
     UILabel *lblLine1Content = [[UILabel alloc] initWithFrame:
-            CGRectMake(offsetXOfContentLabel, self.topbarView.frame.size.height + 10, 220, 25)];
-    lblLine1Content.text = @"已经完成家卫士配置";
+            CGRectMake(offsetXOfContentLabel, self.topbarView.frame.size.height + 10, 220, 50)];
+    lblLine1Content.text = @"已经完成家卫士配置(摄像头配置已完成,请拔掉网线连接)";
     lblLine1Content.textColor = [UIColor darkGrayColor];
     lblLine1Content.backgroundColor = [UIColor clearColor];
     lblLine1Content.font = [UIFont systemFontOfSize:15.f];
+    lblLine1Content.numberOfLines = 2;
     [self.view addSubview:lblLine1Content];
     
-    UILabel *lblLine2 = [TipsLabel labelWithPoint:CGPointMake(offsetXOfTipsLabel, lblLine1.frame.origin.y+lblLine1.frame.size.height + 4)];
+    UILabel *lblLine2 = [TipsLabel labelWithPoint:CGPointMake(offsetXOfTipsLabel, lblLine1.frame.origin.y + lblLine1.frame.size.height + 25)];
     [self.view addSubview:lblLine2];
     UILabel *lblLine2Content = [[UILabel alloc] initWithFrame:
             CGRectMake(offsetXOfContentLabel, lblLine1Content.frame.origin.y + lblLine1Content.frame.size.height + 5, 220, 50)];
     lblLine2Content.numberOfLines = 2;
     lblLine2Content.lineBreakMode = NSLineBreakByWordWrapping;
-    lblLine2Content.text = @"请确保手机的当前WIFI已切换到如下热点的家庭网络";
+    lblLine2Content.text = @"确保手机的当前WIFI已切换回如下热点的家庭网络:";
     lblLine2Content.textColor = [UIColor darkGrayColor];
     lblLine2Content.backgroundColor = [UIColor clearColor];
     lblLine2Content.font = [UIFont systemFontOfSize:15.f];
@@ -62,7 +62,7 @@
     UILabel *lblLine3Content = [[UILabel alloc] initWithFrame:CGRectMake(offsetXOfContentLabel, lblLine3.frame.origin.y - 3, 220, 50)];
     lblLine3Content.numberOfLines = 2;
     lblLine3Content.lineBreakMode = NSLineBreakByWordWrapping;
-    lblLine3Content.text = @"请按下面板上“风速”按钮超过3秒，在2分钟之内点击“开始绑定”完成绑定操作";
+    lblLine3Content.text = @"请在2分钟之内点击“开始绑定”完成家卫士与手机的绑定操作";
     lblLine3Content.textColor = [UIColor darkGrayColor];
     lblLine3Content.backgroundColor = [UIColor clearColor];
     lblLine3Content.font = [UIFont systemFontOfSize:15.f];
@@ -122,7 +122,6 @@
     // start finding unit
     [finder startFinding];
 }
-
 
 #pragma mark -
 #pragma mark Unit find delegate

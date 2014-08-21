@@ -27,7 +27,7 @@
     UILabel *lblLine1 = [TipsLabel labelWithPoint:CGPointMake(offsetXOfTipsLabel, self.topbarView.frame.size.height + 9)];
     [self.view addSubview:lblLine1];
 
-    UILabel *lblLine1Content = [[UILabel alloc] initWithFrame:CGRectMake(offsetXOfContentLabel, self.topbarView.frame.size.height + 10, 220, 25)];
+    UILabel *lblLine1Content = [[UILabel alloc] initWithFrame:CGRectMake(offsetXOfContentLabel, self.topbarView.frame.size.height + 11, 220, 25)];
     lblLine1Content.text = @"请接通家卫士电源";
     lblLine1Content.textColor = [UIColor darkGrayColor];
     lblLine1Content.backgroundColor = [UIColor clearColor];
@@ -35,12 +35,12 @@
     lblLine1Content.lineBreakMode = NSLineBreakByWordWrapping;
     [self.view addSubview:lblLine1Content];
     
-    UILabel *lblLine2 = [TipsLabel labelWithPoint:CGPointMake(offsetXOfTipsLabel, lblLine1.frame.origin.y + lblLine1.frame.size.height + 10)];
+    UILabel *lblLine2 = [TipsLabel labelWithPoint:CGPointMake(offsetXOfTipsLabel, lblLine1.frame.origin.y + lblLine1.frame.size.height + 5)];
     [self.view addSubview:lblLine2];
     
     TTTAttributedLabel *lblLine2Content = [[TTTAttributedLabel alloc] initWithFrame:
-            CGRectMake(offsetXOfContentLabel, lblLine1Content.frame.origin.y + lblLine1Content.frame.size.height + 19, 220, 50)];
-    lblLine2Content.numberOfLines = 2;
+            CGRectMake(offsetXOfContentLabel, lblLine1Content.frame.origin.y + lblLine1Content.frame.size.height, 220, 75)];
+    lblLine2Content.numberOfLines = 3;
     lblLine2Content.lineBreakMode = NSLineBreakByWordWrapping;
     lblLine2Content.backgroundColor = [UIColor clearColor];
     NSMutableAttributedString * tttstring = [[NSMutableAttributedString alloc] initWithString:@"打开家卫士，30-60秒后将听到“滴滴滴”三声，表示家卫士自检已完成"];
@@ -53,10 +53,10 @@
     lblLine2Content.text = tttstring;
     [self.view addSubview:lblLine2Content];
     
-    UILabel *lblLine3 = [TipsLabel labelWithPoint:CGPointMake(offsetXOfTipsLabel,lblLine2.frame.origin.y + lblLine2.frame.size.height + 20)];
+    UILabel *lblLine3 = [TipsLabel labelWithPoint:CGPointMake(offsetXOfTipsLabel,lblLine2.frame.origin.y + lblLine2.frame.size.height + 30)];
     [self.view addSubview:lblLine3];
     TTTAttributedLabel *lblLine3Content = [[TTTAttributedLabel alloc] initWithFrame:
-        CGRectMake(offsetXOfContentLabel, lblLine2Content.frame.origin.y + lblLine2Content.frame.size.height - 2, 220, 75)];
+        CGRectMake(offsetXOfContentLabel, lblLine2Content.frame.origin.y + lblLine2Content.frame.size.height - 5, 220, 75)];
     lblLine3Content.backgroundColor = [UIColor clearColor];
     lblLine3Content.numberOfLines = 4;
     lblLine3Content.lineBreakMode = NSLineBreakByWordWrapping;
