@@ -606,13 +606,22 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
             NSHTTPURLResponse *rp = (NSHTTPURLResponse *)response;
             if(rp.statusCode == 200 && data != nil) {
                 NSString *unitIdentifier = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                unitIdentifier = [unitIdentifier stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"\""]];
                 Unit *currentUnit = [UnitManager defaultManager].currentUnit;
                 if(currentUnit != nil) {
                     if([currentUnit.identifier isEqualToString:unitIdentifier]) {
                         // 有内网, 给当前网络状态增加一个内网模式
                         [self addNetMode:NetModeInternal];
                         return;
+                    } else {
+#ifdef DEBUG    
+                        NSLog(@"[Core Service] 没有找到主控 [%@] 在本地列表, 当前主控为 [%@]", unitIdentifier, currentUnit.identifier);
+#endif
                     }
+                } else {
+#ifdef DEBUG    
+                    NSLog(@"[Core Service] 当前没有选择的主控");
+#endif
                 }
             }
         }

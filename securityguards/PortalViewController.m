@@ -275,6 +275,9 @@ typedef NS_ENUM(NSUInteger, NotificationViewType) {
         content.description = @"我的健康安全防护专家，365家卫士家庭安全健康中心，享受科技生活！";
     }
     
+    content.title = [NSString stringWithFormat:@"%@%@", content.title, content.description];
+    content.description = @"";
+    
     [[Frontia getShare] showShareMenuWithShareContent:content
                         displayPlatforms:[NSArray arrayWithObjects:
                                           FRONTIA_SOCIAL_SHARE_PLATFORM_WEIXIN_SESSION,
