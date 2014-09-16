@@ -9,8 +9,7 @@
 #import "AccountService.h"
 #import "XXStringUtils.h"
 
-#define AUTH_URL @"http://hentre.f3322.org:6868/FrontServer-1.0/auth"
-//#define AUTH_URL @"http://172.16.8.16:6868/FrontServer-1.0/auth"
+#define AUTH_URL @"http://www.hentre.com:6868/FrontServer-1.0/auth"
 
 static const NSString *MD5_KEY = @"FFFF";
 

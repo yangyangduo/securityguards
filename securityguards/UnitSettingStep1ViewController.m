@@ -68,7 +68,7 @@
     lblLine4Content.numberOfLines = 3;
     lblLine4Content.lineBreakMode = NSLineBreakByWordWrapping;
     lblLine4Content.textColor = [UIColor darkGrayColor];
-    lblLine4Content.text  = @"请确保手机、摄像头以及即将接入网络的家卫士都在使用同一网络";
+    lblLine4Content.text  = @"请确保手机、摄像头以及即将接入网络的智能卫士都在使用同一网络";
     lblLine4Content.backgroundColor = [UIColor clearColor];
     lblLine4Content.font = [UIFont systemFontOfSize:15.f];
     [self.view addSubview:lblLine4Content];

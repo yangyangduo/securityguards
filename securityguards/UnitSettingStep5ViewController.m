@@ -23,7 +23,7 @@
 
 - (void)initUI{
     [super initUI];
-    self.topbarView.title = @"第五步:绑定家卫士";
+    self.topbarView.title = @"第五步:绑定智能卫士";
 
     CGFloat offsetXOfTipsLabel = 40;
     CGFloat offsetXOfContentLabel = 50;
@@ -32,7 +32,7 @@
     [self.view addSubview:lblLine1];
     UILabel *lblLine1Content = [[UILabel alloc] initWithFrame:
             CGRectMake(offsetXOfContentLabel, self.topbarView.frame.size.height + 10, 220, 50)];
-    lblLine1Content.text = @"已经完成家卫士配置(摄像头配置已完成,请拔掉网线连接)";
+    lblLine1Content.text = @"已经完成智能卫士配置(摄像头配置已完成,请拔掉网线连接)";
     lblLine1Content.textColor = [UIColor darkGrayColor];
     lblLine1Content.backgroundColor = [UIColor clearColor];
     lblLine1Content.font = [UIFont systemFontOfSize:15.f];
@@ -62,7 +62,7 @@
     UILabel *lblLine3Content = [[UILabel alloc] initWithFrame:CGRectMake(offsetXOfContentLabel, lblLine3.frame.origin.y - 3, 220, 50)];
     lblLine3Content.numberOfLines = 2;
     lblLine3Content.lineBreakMode = NSLineBreakByWordWrapping;
-    lblLine3Content.text = @"请在2分钟之内点击“开始绑定”完成家卫士与手机的绑定操作";
+    lblLine3Content.text = @"请在2分钟之内点击“开始绑定”完成智能卫士与手机的绑定操作";
     lblLine3Content.textColor = [UIColor darkGrayColor];
     lblLine3Content.backgroundColor = [UIColor clearColor];
     lblLine3Content.font = [UIFont systemFontOfSize:15.f];

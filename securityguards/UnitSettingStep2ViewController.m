@@ -28,7 +28,7 @@
     [self.view addSubview:lblLine1];
 
     UILabel *lblLine1Content = [[UILabel alloc] initWithFrame:CGRectMake(offsetXOfContentLabel, self.topbarView.frame.size.height + 11, 220, 25)];
-    lblLine1Content.text = @"请接通家卫士电源";
+    lblLine1Content.text = @"请接通智能卫士电源";
     lblLine1Content.textColor = [UIColor darkGrayColor];
     lblLine1Content.backgroundColor = [UIColor clearColor];
     lblLine1Content.font = [UIFont systemFontOfSize:15.f];
@@ -43,7 +43,7 @@
     lblLine2Content.numberOfLines = 3;
     lblLine2Content.lineBreakMode = NSLineBreakByWordWrapping;
     lblLine2Content.backgroundColor = [UIColor clearColor];
-    NSMutableAttributedString * tttstring = [[NSMutableAttributedString alloc] initWithString:@"打开家卫士，30-60秒后将听到“滴滴滴”三声，表示家卫士自检已完成"];
+    NSMutableAttributedString * tttstring = [[NSMutableAttributedString alloc] initWithString:@"打开智能卫士，30-60秒后将听到“滴滴滴”三声，表示智能卫士自检已完成"];
     
     UIFont *italicFont = [UIFont italicSystemFontOfSize:15.f];
     CTFontRef italicCTFont = CTFontCreateWithName((CFStringRef)italicFont.fontName, italicFont.pointSize, NULL);

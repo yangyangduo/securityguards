@@ -272,7 +272,7 @@ typedef NS_ENUM(NSUInteger, NotificationViewType) {
     if(currentUnit != nil && currentUnit.score != nil) {
         content.description = [NSString stringWithFormat:@"当前我的家庭健康及安全指数为 %d 分, 已超过 %d%% 的家庭 ", currentUnit.score.score, currentUnit.score.rankings];
     } else {
-        content.description = @"我的健康安全防护专家，365家卫士家庭安全健康中心，享受科技生活！";
+        content.description = @"我的健康安全防护专家，365智能卫士家庭安全健康中心，享受科技生活！";
     }
     
     content.title = [NSString stringWithFormat:@"%@%@", content.title, content.description];
@@ -593,7 +593,7 @@ typedef NS_ENUM(NSUInteger, NotificationViewType) {
 #endif
                 return;
             } else {
-                displayMessage = @"365家卫士设备正处于离线状态";
+                displayMessage = @"365智能卫士设备正处于离线状态";
             }
         }
     } else { // 无外网

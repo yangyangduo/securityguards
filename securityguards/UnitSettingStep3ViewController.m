@@ -19,7 +19,7 @@
 
 - (void)initUI{
     [super initUI];
-    self.topbarView.title = @"第三步:连接家卫士";
+    self.topbarView.title = @"第三步:连接智能卫士";
 
     CGFloat offsetXOfTipsLabel = 40;
     CGFloat offsetXOfContentLabel = 50;
@@ -78,7 +78,7 @@
             return;
         }
     }
-    [[XXAlertView currentAlertView] setMessage:@"请连接家卫士热点" forType:AlertViewTypeFailed];
+    [[XXAlertView currentAlertView] setMessage:@"请连接智能卫士热点" forType:AlertViewTypeFailed];
     [[XXAlertView currentAlertView] alertForLock:NO autoDismiss:YES];
 }
 

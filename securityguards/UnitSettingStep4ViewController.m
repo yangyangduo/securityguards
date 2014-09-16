@@ -12,7 +12,7 @@
 #import "SMNetworkTool.h"
 #import "Shared.h"
 
-NSString * const DefaultFamilyGuardsHotSpotName = @"DIRECT-AW-MiniMax";
+NSString * const DefaultFamilyGuardsHotSpotName = @"365-Smart-Guard";
 
 @interface UnitSettingStep4ViewController () {
     UILabel *lblWIFIName;
@@ -26,7 +26,7 @@ NSString * const DefaultFamilyGuardsHotSpotName = @"DIRECT-AW-MiniMax";
 
 - (void)initUI{
     [super initUI];
-    self.topbarView.title = @"第四步:配置家卫士";
+    self.topbarView.title = @"第四步:配置智能卫士";
 
     CGFloat offsetXOfTipsLabel = 40;
     CGFloat offsetXOfContentLabel = 50;
@@ -39,7 +39,7 @@ NSString * const DefaultFamilyGuardsHotSpotName = @"DIRECT-AW-MiniMax";
     UILabel *lblLine2Content = [[UILabel alloc] initWithFrame:
             CGRectMake(offsetXOfContentLabel, self.topbarView.frame.size.height + 15, 235, 25)];
     lblLine2Content.lineBreakMode = NSLineBreakByWordWrapping;
-    lblLine2Content.text = @"家卫士即将接入的家庭网络名称为:";
+    lblLine2Content.text = @"智能卫士即将接入的家庭网络名称为:";
     lblLine2Content.textColor = [UIColor darkGrayColor];
     lblLine2Content.backgroundColor = [UIColor clearColor];
     lblLine2Content.font = [UIFont systemFontOfSize:15.f];
@@ -79,7 +79,7 @@ NSString * const DefaultFamilyGuardsHotSpotName = @"DIRECT-AW-MiniMax";
 
 - (void)btnSendSettingsPressed:(UIButton *)sender {
     if(![self detectionFamilyGuardsWifiExists]) {
-        [[XXAlertView currentAlertView] setMessage:@"请连接家卫士Wifi" forType:AlertViewTypeFailed];
+        [[XXAlertView currentAlertView] setMessage:@"请连接智能卫士Wifi" forType:AlertViewTypeFailed];
         [[XXAlertView currentAlertView] alertForLock:NO autoDismiss:YES];
         return;
     }

@@ -31,7 +31,7 @@
     [self.view addSubview:lblLine1];
     
     UILabel *lblLine1Content = [[UILabel alloc] initWithFrame:CGRectMake(offsetXOfContentLabel, self.topbarView.frame.size.height + 13, 220, 100)];
-    lblLine1Content.text = @"请确保365家卫士已接通电源，并自检完成(每次接通电源30-60秒后将听到“滴滴滴”三声，表示家卫士自检已完成)";
+    lblLine1Content.text = @"请确保365智能卫士已接通电源，并自检完成(每次接通电源30-60秒后将听到“滴滴滴”三声，表示智能卫士自检已完成)";
     lblLine1Content.textColor = [UIColor darkGrayColor];
     lblLine1Content.backgroundColor = [UIColor clearColor];
     lblLine1Content.numberOfLines = 4;
@@ -43,7 +43,7 @@
     
     UILabel *lblLine2Content = [[UILabel alloc] initWithFrame:CGRectMake(offsetXOfContentLabel, lblLine1Content.frame.origin.y + lblLine1Content.frame.size.height, 220, 50)];
     lblLine2Content.numberOfLines = 2;
-    lblLine2Content.text = @"请确保手机与365家卫士已连接上同一家庭WIFI网络";
+    lblLine2Content.text = @"请确保手机与365智能卫士已连接上同一家庭WIFI网络";
     lblLine2Content.textColor = [UIColor darkGrayColor];
     lblLine2Content.backgroundColor = [UIColor clearColor];
     lblLine2Content.font = [UIFont systemFontOfSize:15.f];
@@ -55,7 +55,7 @@
     UILabel *lblLine3Content = [[UILabel alloc] initWithFrame:CGRectMake(offsetXOfContentLabel, lblLine2Content.frame.origin.y + lblLine2Content.frame.size.height, 220, 100)];
     lblLine3Content.lineBreakMode = NSLineBreakByWordWrapping;
     lblLine3Content.textColor = [UIColor darkGrayColor];
-    lblLine3Content.text  = @"请长按家卫士主机面板上“风速”键3秒,并在2分钟内点击“开始绑定”按钮,完成手机与家卫士的绑定操作";
+    lblLine3Content.text  = @"请长按智能卫士主机面板上“风速”键3秒,并在2分钟内点击“开始绑定”按钮,完成手机与智能卫士的绑定操作";
     lblLine3Content.backgroundColor = [UIColor clearColor];
     lblLine3Content.numberOfLines = 4;
     lblLine3Content.font = [UIFont systemFontOfSize:15.f];
