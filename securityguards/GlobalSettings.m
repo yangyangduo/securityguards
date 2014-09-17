@@ -21,6 +21,7 @@
 #define DEVICE_TOKEN_KEY                         @"device_token.key"
 #define REST_ADDRESS_KEY                         @"rest_address.key"
 #define GET_UNITS_COMMAND_LAST_EXECUTE_DATE      @"g_u_c_l_e_d.key"
+#define REMOTE_NOTIFICATIONS_KEY                 @"remote_notifications.key"
 
 @implementation GlobalSettings
 
@@ -32,6 +33,7 @@
 @synthesize restAddress;
 @synthesize isShake;
 @synthesize isVoice;
+@synthesize remoteNotificationsToken;
 
 @synthesize getUnitsCommandLastExecuteDate;
 
@@ -58,6 +60,7 @@
             self.restAddress = [XXStringUtils emptyString];
             self.deviceToken = [XXStringUtils emptyString];
             self.getUnitsCommandLastExecuteDate = nil;
+            self.remoteNotificationsToken = [XXStringUtils emptyString];
             self.isVoice = NO;
             self.isShake = YES;
         } else {
@@ -71,6 +74,7 @@
             self.isVoice = [settings booleanForKey:IS_VOICE_KEY];
             self.deviceToken = [settings noNilStringForKey:DEVICE_TOKEN_KEY];
             self.restAddress = [settings noNilStringForKey:REST_ADDRESS_KEY];
+            self.remoteNotificationsToken = [settings noNilStringForKey:REMOTE_NOTIFICATIONS_KEY];
             self.getUnitsCommandLastExecuteDate = [settings dateWithTimeIntervalSince1970ForKey:GET_UNITS_COMMAND_LAST_EXECUTE_DATE];
         }
     }
@@ -86,6 +90,7 @@
     [dictionary setMayBlankString:self.tcpAddress forKey:TCP_ADDRESS_KEY];
     [dictionary setMayBlankString:self.deviceCode forKey:DEVICE_CODE_KEY];
     [dictionary setMayBlankString:self.restAddress forKey:REST_ADDRESS_KEY];
+    [dictionary setMayBlankString:self.remoteNotificationsToken forKey:REMOTE_NOTIFICATIONS_KEY];
     if(self.getUnitsCommandLastExecuteDate != nil) {
         [dictionary setDateUsingTimeIntervalSince1970:self.getUnitsCommandLastExecuteDate forKey:GET_UNITS_COMMAND_LAST_EXECUTE_DATE];
     }
@@ -106,6 +111,7 @@
         self.account = [XXStringUtils emptyString];
         self.deviceCode = [XXStringUtils emptyString];
         self.deviceToken = [XXStringUtils emptyString];
+        self.remoteNotificationsToken = [XXStringUtils emptyString];
         self.getUnitsCommandLastExecuteDate = nil;
         [self saveSettingsInternal];
     }

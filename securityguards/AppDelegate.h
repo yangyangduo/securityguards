@@ -17,6 +17,8 @@
 - (UIViewController *)topViewController;
 - (RootViewController *)rootViewController;
 
+- (void)registerForRemoteNotifications;
+
 - (void)logout;
 
 @end

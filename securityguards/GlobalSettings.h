@@ -9,9 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "SecurityGuards.h"
 
-
 @interface GlobalSettings : NSObject
-
 
 @property (nonatomic) BOOL isVoice;
 @property (nonatomic) BOOL isShake;
@@ -21,6 +19,7 @@
 @property (nonatomic, strong) NSString *deviceCode;
 @property (nonatomic, strong) NSString *restAddress;
 @property (nonatomic, strong) NSString *deviceToken;
+@property (nonatomic, strong) NSString *remoteNotificationsToken;
 @property (nonatomic, readonly, getter = hasLogin) BOOL login;
 
 @property (nonatomic, strong) NSDate *getUnitsCommandLastExecuteDate;

@@ -27,6 +27,18 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+    
+    if(launchOptions) {
+#ifdef DEBUG
+        NSLog(@"[APP] launch with options %@", launchOptions.description);
+#endif
+    }
+    
+    if([GlobalSettings defaultSettings].hasLogin) {
+        [self registerForRemoteNotifications];
+    }
+    
     // Init Baidu Frontia Module
     [self initBaiduShareKits];
 
@@ -71,6 +83,8 @@
     NSLog(@"[APP] Will Enter foregroud");
 #endif
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+    
     if([GlobalSettings defaultSettings].hasLogin) {
         [[CoreService defaultService] startService];
     }
@@ -108,6 +122,42 @@
     NSLog(@"[APP] Open url [%@] --> source app [%@].", url.description, sourceApplication);
 #endif
     return [[Frontia getShare] handleOpenURL:url];
+}
+
+#pragma mark -
+#pragma mark Notifications push
+
+- (void)registerForRemoteNotifications {
+    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound | UIRemoteNotificationTypeBadge];
+}
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    NSString *token = [[[deviceToken description] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]] stringByReplacingOccurrencesOfString:@" " withString:@""];
+#ifdef DEBUG
+    NSLog(@"[APP] Remote notifications token is %@", token);
+#endif
+    if(![token isEqualToString:[GlobalSettings defaultSettings].remoteNotificationsToken]) {
+#ifdef DEBUG
+        NSLog(@"[APP] Update remote notifications token for server");
+#endif
+        [GlobalSettings defaultSettings].remoteNotificationsToken = token;
+        [[GlobalSettings defaultSettings] saveSettings];
+        DeviceCommandUpdateDeviceToken *updateDeviceTokenCommand = (DeviceCommandUpdateDeviceToken *)[CommandFactory commandForType:CommandTypeUpdateDeviceToken];
+        updateDeviceTokenCommand.iosToken = token;
+        [[CoreService defaultService] queueCommand:updateDeviceTokenCommand];
+    }
+}
+
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+#ifdef DEBUG
+    NSLog(@"[APP] Fail to register for remote notifications");
+#endif
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+#ifdef DEBUG
+    NSLog(@"[APP] Received remote notifications %@", userInfo.description);
+#endif
 }
 
 #pragma mark -
@@ -170,6 +220,8 @@
         
         // UI ...
         [NSTimer scheduledTimerWithTimeInterval:0.8f target:self selector:@selector(delayLogout) userInfo:nil repeats:NO];
+        
+        
     }
 }
 

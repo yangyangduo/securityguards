@@ -77,12 +77,14 @@
         itemManual.deviceState = kDeviceAirPurifierControlModeManual;
         itemSleepOrWakeup.deviceState = kDeviceAirPurifierControlModeSleepOrWakeUp;
         
+        /*
         if(kDeviceStateIgnore != deviceState) {
             if(kDeviceAirPurifierControlModeSleepOrWakeUp == deviceState) {
                 itemSleepOrWakeup.displayName = NSLocalizedString(@"device_wakeup", @"");
                 [operations addObject:itemSleepOrWakeup];
             }
         }
+         */
         
         if(operations.count == 0) {
             itemSleepOrWakeup.displayName = NSLocalizedString(@"device_sleep", @"");

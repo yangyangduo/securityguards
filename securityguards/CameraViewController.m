@@ -161,13 +161,17 @@
         cameraService.delegate = self;
         [cameraService open];
     } else {
+        if(cameraIsRunning) {
+#ifdef DEBUG
+            NSLog(@"[Camera] Can not run camera, because it's running now.");
+#endif
+            return;
+        }
         NSArray *addressSet = [command.server componentsSeparatedByString:@":"];
         if(addressSet != nil && addressSet.count == 2) {
             NSString *address = [addressSet objectAtIndex:0];
             NSString *port = [addressSet objectAtIndex:1];
-            if(socket != nil && [socket isConnectted]) {
-                [socket close];
-            }
+            cameraIsRunning = YES;
             socket = [[CameraSocket alloc] initWithIPAddress:address portNumber:port.integerValue];
             socket.delegate = self;
             socket.key = command.conStr;
@@ -198,7 +202,6 @@
 
 - (void)notifyCameraConnectted {
     firstImageHasBeenSet = NO;
-    cameraIsRunning = YES;
 }
 
 - (void)notifyCameraWasDisconnectted {
@@ -207,6 +210,7 @@
     if(loadingView != nil) {
         loadingView.cameraState = CameraStateError;
     }
+    cameraIsRunning = NO;
 #ifdef DEBUG
     NSLog(@"[CAMERA] Closed.");
 #endif
