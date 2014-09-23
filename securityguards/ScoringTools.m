@@ -26,7 +26,10 @@
     
     for(Sensor *sensor in unit.sensors) {
         if(sensor.isPM25Sensor) {
-            pm25Score = (6 - sensor.data.value) * 7.f;
+            int pm25Value = (int)sensor.data.value;
+            pm25Value = (pm25Value / 50) + 1;
+            if(pm25Value > 6) pm25Value = 6;
+            pm25Score = (6 - pm25Value) * 7.f;
             if(pm25Score > 35.f) pm25Score = 35.f;
         } else if(sensor.isVOCSensor) {
             vocScore = (6 - sensor.data.value) * 3.f;

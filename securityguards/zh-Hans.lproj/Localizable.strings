@@ -142,7 +142,7 @@
 "device_sleep"                   =      "睡眠";
 "device_wakeup"                  =      "唤醒";
 "view"                           =      "查看";
-"security_all_open"              =      "完全设防";
+"security_all_open"              =      "开启";
 "security_close"                 =      "关闭";
 "security_fireproof"             =      "仅防火";
 "sensor_great"                   =      "优秀";

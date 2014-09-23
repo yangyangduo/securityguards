@@ -81,7 +81,8 @@
         [humiditySensor setDisplayValue:[NSString stringWithFormat:@"%.0f%%(%@)", value, desc]];
         humiditySensor.sensorDisplayViewState = SensorDisplayViewStateNormal;
     } else if(SensorTypePM25 == sensorType) {
-        [pm25Sensor setDisplayValue:[self pm25OrVocStateStringAsReadableString:value]];
+        [pm25Sensor setDisplayValue:[NSString stringWithFormat:@"%.0f", value]];
+        value = value / 50 + 1;
         if(value >= 1 && value <= 2) {
             pm25Sensor.sensorDisplayViewState = SensorDisplayViewStateNormal;
         } else if(value >=3 && value <= 4) {
