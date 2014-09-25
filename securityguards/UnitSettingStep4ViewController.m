@@ -12,8 +12,8 @@
 #import "SMNetworkTool.h"
 #import "Shared.h"
 
-//NSString * const DefaultFamilyGuardsHotSpotName = @"365-Smart-Guard";
-NSString * const DefaultFamilyGuardsHotSpotName = @"DIRECT-AW-MiniMax";
+NSString * const DefaultFamilyGuardsHotSpotName = @"365-Smart-Guard";
+//NSString * const DefaultFamilyGuardsHotSpotName = @"DIRECT-AW-MiniMax";
 
 @interface UnitSettingStep4ViewController () {
     UILabel *lblWIFIName;

@@ -10,33 +10,33 @@
 	<string>securityguards</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>C25B97FB-122E-42B2-9594-7BFCDFFDD639</key>
-		<string>https://github.com/yangyangduo/securityguards.git</string>
-		<key>FFBBD1C8-99E0-4781-B2D4-EFB559196944</key>
+		<key>8DF50EEE553947DE28548152509CA024004B4CE1</key>
 		<string>https://github.com/yangyangduo/Reddydog.git</string>
+		<key>CF374957B789779C84D9B9E162756A5BFDD13C14</key>
+		<string>https://github.com/yangyangduo/securityguards.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>securityguards.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>C25B97FB-122E-42B2-9594-7BFCDFFDD639</key>
+		<key>8DF50EEE553947DE28548152509CA024004B4CE1</key>
+		<string>../../Reddydog</string>
+		<key>CF374957B789779C84D9B9E162756A5BFDD13C14</key>
 		<string>..</string>
-		<key>FFBBD1C8-99E0-4781-B2D4-EFB559196944</key>
-		<string>../../Reddydog/Reddydog</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/yangyangduo/securityguards.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>C25B97FB-122E-42B2-9594-7BFCDFFDD639</string>
+	<string>CF374957B789779C84D9B9E162756A5BFDD13C14</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>FFBBD1C8-99E0-4781-B2D4-EFB559196944</string>
+			<string>8DF50EEE553947DE28548152509CA024004B4CE1</string>
 			<key>IDESourceControlWCCName</key>
 			<string>Reddydog</string>
 		</dict>
@@ -44,7 +44,15 @@
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>C25B97FB-122E-42B2-9594-7BFCDFFDD639</string>
+			<string>8DF50EEE553947DE28548152509CA024004B4CE1</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Reddydog</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>CF374957B789779C84D9B9E162756A5BFDD13C14</string>
 			<key>IDESourceControlWCCName</key>
 			<string>securityguards</string>
 		</dict>
