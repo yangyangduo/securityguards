@@ -171,7 +171,6 @@
         if(addressSet != nil && addressSet.count == 2) {
             NSString *address = [addressSet objectAtIndex:0];
             NSString *port = [addressSet objectAtIndex:1];
-            cameraIsRunning = YES;
             socket = [[CameraSocket alloc] initWithIPAddress:address portNumber:port.integerValue];
             socket.delegate = self;
             socket.key = command.conStr;
@@ -195,6 +194,7 @@
     if(!firstImageHasBeenSet) {
         if(loadingView != nil) {
             loadingView.cameraState = CameraStatePlaying;
+            cameraIsRunning = YES;
         }
     }
     imgCameraShots.image = image;

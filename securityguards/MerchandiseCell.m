@@ -11,7 +11,7 @@
 #import "ShoppingCart.h"
 #import "UIColor+MoreColor.h"
 #import "GlobalSettings.h"
-#import <UIImageView+WebCache.h>
+#import <AFNetworking/UIImageView+AFNetworking.h>
 
 @implementation MerchandiseCell {
     UILabel *lblMerchandiseName;

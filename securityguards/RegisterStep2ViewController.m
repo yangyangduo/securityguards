@@ -18,14 +18,13 @@
 
 #define TOPBAR_HEIGHT   self.topbarView.frame.size.height
 
-
-
 @interface RegisterStep2ViewController ()
 
 @end
 
 @implementation RegisterStep2ViewController{
     UITextField *txtVerificationCode;
+    UITextField *txtPassword;
     UIButton *btnResendVerificationCode;
 
     NSTimer *countDownTimer;
@@ -36,31 +35,12 @@
 @synthesize countDown;
 @synthesize isModify;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 - (id)initAsModify:(BOOL)modify{
     self = [super init];
     if (self) {
         isModify = modify;
     }
     return self;
-}
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	// Do any additional setup after loading the view.
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)initUI{
@@ -82,10 +62,28 @@
     txtVerificationCode.delegate = self;
     [self.view addSubview:txtVerificationCode];
     
-    UIView *seperatorView = [[UIView alloc] initWithFrame:CGRectMake(0, lblVerificationCode.frame.size.height+lblVerificationCode.frame.origin.y+5, self.view.bounds.size.width, 1)];
+    UIView *seperatorView1 = [[UIView alloc] initWithFrame:CGRectMake(0, lblVerificationCode.frame.size.height +lblVerificationCode.frame.origin.y + 5, self.view.bounds.size.width, 1)];
+    seperatorView1.backgroundColor = [UIColor lightGrayColor];
+    [self.view addSubview:seperatorView1];
+    
+    UILabel *lblPassword = [[UILabel alloc] initWithFrame:CGRectMake(5, seperatorView1.frame.origin.y + seperatorView1.bounds.size.height + 5, 80, 44)];
+    lblPassword.text = [NSString stringWithFormat:@"%@ :", @"新密码"];
+    lblPassword.font = [UIFont systemFontOfSize:16.0f];
+    [self.view addSubview:lblPassword];
+    
+    txtPassword = [[UITextField alloc] initWithFrame:CGRectMake(85, lblPassword.frame.origin.y + 2, 200, 44)];
+    txtPassword.placeholder = @"请输入新密码";
+    txtPassword.clearButtonMode = UITextFieldViewModeWhileEditing;
+    txtPassword.autocorrectionType = UITextAutocapitalizationTypeNone;
+    txtPassword.keyboardType = UIKeyboardTypeASCIICapable;
+    txtPassword.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+    [self.view addSubview:txtPassword];
+    
+    UIView *seperatorView = [[UIView alloc] initWithFrame:CGRectMake(0, lblPassword.frame.size.height+lblPassword.frame.origin.y+5, self.view.bounds.size.width, 1)];
     seperatorView.backgroundColor = [UIColor lightGrayColor];
     [self.view addSubview:seperatorView];
 
+    /*
     UILabel *lblTip = [[UILabel alloc] initWithFrame:CGRectMake(0, seperatorView.frame.size.height+seperatorView.frame.origin.y+10,200,60)];
     lblTip.numberOfLines = 2;
     lblTip.center = CGPointMake(self.view.center.x, lblTip.center.y);
@@ -93,9 +91,9 @@
     lblTip.textColor = [UIColor lightGrayColor];
     lblTip.font = [UIFont systemFontOfSize:11.f];
     lblTip.text = NSLocalizedString(@"register_tips2", @"");
-    [self.view addSubview:lblTip];
+    [self.view addSubview:lblTip]; */
 
-    UIButton *btnRegister = [[UIButton alloc] initWithFrame:CGRectMake(0, lblTip.frame.origin.y+lblTip.frame.size.height+5, 460 / 2, 60 / 2)];
+    UIButton *btnRegister = [[UIButton alloc] initWithFrame:CGRectMake(0, seperatorView.frame.origin.y+seperatorView.frame.size.height + 10, 460 / 2, 60 / 2)];
     btnRegister.center = CGPointMake(self.view.center.x, btnRegister.center.y);
     [btnRegister setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [btnRegister addTarget:self action:@selector(btnRegisterPressed:) forControlEvents:UIControlEventTouchUpInside];
@@ -148,14 +146,11 @@
     }else{
         [self submitVerificationCode];
     }
-        
-    
 }
 
 - (void)btnResendVerificationCode:(id) sender{
     [self resendVerificationCode];
 }
-
 
 #pragma mark-
 #pragma mark modify username
@@ -166,7 +161,6 @@
         [checkPassword setAlertViewStyle:UIAlertViewStyleSecureTextInput];
         
         [checkPassword show];
-
     }
 }
 
@@ -310,9 +304,17 @@
         [[XXAlertView currentAlertView] alertForLock:NO autoDismiss:YES];
         return;
     }
+    
+    if([XXStringUtils isBlank:txtPassword.text]) {
+        [[XXAlertView currentAlertView] setMessage:@"密码格式错误" forType:AlertViewTypeFailed];
+        [[XXAlertView currentAlertView] alertForLock:NO autoDismiss:YES];
+        return;
+    }
+    
     [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"please_wait", @"") forType:AlertViewTypeWaitting];
     [[XXAlertView currentAlertView] alertForLock:YES autoDismiss:NO];
-    [[[AccountService alloc] init] registerWithPhoneNumber:self.phoneNumber checkCode:txtVerificationCode.text success:@selector(registerSuccessfully:) failed:@selector(registerFailed:) target:self callback:nil];
+    
+    [[[AccountService alloc] init] regWithMobile:self.phoneNumber pwd:txtPassword.text checkCode:txtVerificationCode.text success:@selector(registerSuccessfully:) failed:@selector(registerFailed:) target:self callback:nil];
 }
 
 - (void)registerSuccessfully:(RestResponse *)resp {

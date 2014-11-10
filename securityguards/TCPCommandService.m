@@ -157,6 +157,9 @@
 #endif
                         [GlobalSettings defaultSettings].tcpAddress = tcp;
                         [[GlobalSettings defaultSettings] saveSettings];
+#ifdef DEBUG
+                        NSLog(@"the key is %@", [GlobalSettings defaultSettings].secretKey);
+#endif
                     }
                     return;
                 } else if([@"-3000" isEqualToString:result]) {
@@ -196,9 +199,9 @@
 }
 
 - (void)clientSocketWithReceivedMessage:(NSData *)messages {
-//#ifdef DEBUG
-//    NSLog(@"%@", [[NSString alloc] initWithData:messages encoding:NSUTF8StringEncoding]);
-//#endif
+#ifdef DEBUG
+    NSLog(@"%@", [[NSString alloc] initWithData:messages encoding:NSUTF8StringEncoding]);
+#endif
     DeviceCommand *command = [CommandFactory commandFromJson:[JsonUtils createDictionaryFromJson:messages]];
     command.commandNetworkMode = CommandNetworkModeExternalViaTcpSocket;
     [[XXEventSubscriptionPublisher defaultPublisher] publishWithEvent:[[DeviceCommandEvent alloc] initWithDeviceCommand:command]];

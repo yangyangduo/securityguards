@@ -140,6 +140,9 @@
                         settings.deviceCode = command.deviceCode;
                         settings.restAddress = command.restAddress;
                         [settings saveSettings];
+#ifdef DEBUG
+                        NSLog(@"security key is [%@]", command.security);
+#endif
                         
                         // register for remote notifications
                         AppDelegate *app = [UIApplication sharedApplication].delegate;

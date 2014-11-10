@@ -60,10 +60,10 @@
     lblLine3Content.backgroundColor = [UIColor clearColor];
     lblLine3Content.numberOfLines = 4;
     lblLine3Content.lineBreakMode = NSLineBreakByWordWrapping;
-    NSMutableAttributedString * line3Text = [[NSMutableAttributedString alloc] initWithString:@"在自检声响起后，请按下面板上的“手/自”按钮超过3秒，并听到“滴嘟”一声后，点击“下一步”继续配置过程"];
+    NSMutableAttributedString * line3Text = [[NSMutableAttributedString alloc] initWithString:@"在自检声响起后，请长按面板上的“手/自”按钮，并听到“滴嘟”一声后，点击“下一步”继续配置过程"];
     [line3Text addAttribute:(NSString *)kCTFontAttributeName value:(__bridge id)italicCTFont range:NSMakeRange(0, line3Text.length)];
     [line3Text addAttribute:(NSString*)kCTForegroundColorAttributeName value:(id)[[UIColor darkGrayColor] CGColor] range:NSMakeRange(0,line3Text.length)];
-    [line3Text addAttribute:(NSString*)kCTForegroundColorAttributeName value:(id)[[UIColor appBlue] CGColor] range:NSMakeRange(22, 4)];
+//    [line3Text addAttribute:(NSString*)kCTForegroundColorAttributeName value:(id)[[UIColor appBlue] CGColor] range:NSMakeRange(22, 4)];
     lblLine3Content.text = line3Text;
     [self.view addSubview:lblLine3Content];
     

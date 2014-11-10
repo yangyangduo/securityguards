@@ -24,4 +24,6 @@
 
 - (void)relogin:(SEL)s failed:(SEL)f target:(id)t callback:(id)cb;
 
+- (void)regWithMobile:(NSString *)mobile pwd:(NSString *)pwd checkCode:(NSString *)checkCode success:(SEL)s failed:(SEL)f target:(id)t callback:(id)cb;
+
 @end

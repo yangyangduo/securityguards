@@ -55,7 +55,7 @@
     UILabel *lblLine3Content = [[UILabel alloc] initWithFrame:CGRectMake(offsetXOfContentLabel, lblLine2Content.frame.origin.y + lblLine2Content.frame.size.height, 220, 100)];
     lblLine3Content.lineBreakMode = NSLineBreakByWordWrapping;
     lblLine3Content.textColor = [UIColor darkGrayColor];
-    lblLine3Content.text  = @"请长按智能卫士主机面板上“风速”键3秒,并在2分钟内点击“开始绑定”按钮,完成手机与智能卫士的绑定操作";
+    lblLine3Content.text  = @"请长按智能卫士主机面板上“风速”键,听到“滴嘟”一声后在2分钟内点击“开始绑定”按钮,完成手机与智能卫士的绑定操作";
     lblLine3Content.backgroundColor = [UIColor clearColor];
     lblLine3Content.numberOfLines = 4;
     lblLine3Content.font = [UIFont systemFontOfSize:15.f];
@@ -106,7 +106,7 @@
 - (void)unitFinderOnResult:(UnitFinderResult *)result {
      if(result.resultType == UnitFinderResultTypeSuccess) {
          if(![XXStringUtils isBlank:result.unitIdentifier]) {
-             if([[UnitManager defaultManager] findUnitByIdentifier:result.unitIdentifier] == nil) {
+//             if([[UnitManager defaultManager] findUnitByIdentifier:result.unitIdentifier] == nil) {
                  DeviceCommand *bindingUnitCommand = [CommandFactory commandForType:CommandTypeBindingUnit];
                  bindingUnitCommand.masterDeviceCode = result.unitIdentifier;
                  [[CoreService defaultService] executeDeviceCommand:bindingUnitCommand];
@@ -123,7 +123,7 @@
                  [self popupViewController];
                  
                  return;
-             }
+             //}
          }
     }
     

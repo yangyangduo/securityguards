@@ -306,6 +306,10 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
     // Security key 错了或者过期了 必须踢出去
     if(command.resultID == -3000 || command.resultID == -2000 || command.resultID == -1000) {
         dispatch_async(dispatch_get_main_queue(), ^{
+#ifdef DEBUG
+            NSLog(@"Will logout with command [%@] for [%@] and resultID is [%d]"
+                  , command.commandName, networkModeString, command.resultID);
+#endif
             [[Shared shared].app logout];
             return;
         });
@@ -699,7 +703,7 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
         DeviceCommandGetScoreHandler *handler = [[DeviceCommandGetScoreHandler alloc] init];
         [handler handle:mockReceivedGetUnitScoreCommand];
 #ifdef DEBUG
-        NSLog(@"[Core Service] Score %.0f, ranking %.0f for unit %@", score.floatValue, ranking, unit.identifier);
+        //NSLog(@"[Core Service] Score %.0f, ranking %.0f for unit %@", score.floatValue, ranking, unit.identifier);
 #endif
     } else {
 #ifdef DEBUG
@@ -719,7 +723,6 @@ static dispatch_queue_t networkModeCheckTaskQueue() {
     // 判断是否有必要发送 Get Units Command,
     // 如果时间间隔不是很长就没必要发送
     NSDate *lastExecuteDate = [GlobalSettings defaultSettings].getUnitsCommandLastExecuteDate;
-    
     if(lastExecuteDate != nil && [UnitManager defaultManager].units.count > 0) {
         NSTimeInterval lastExecuteMinutesSinceNow = abs(lastExecuteDate.timeIntervalSinceNow) / 60.f;
         if(lastExecuteMinutesSinceNow >= GETUNITS_MINITES_INTERVAL) {

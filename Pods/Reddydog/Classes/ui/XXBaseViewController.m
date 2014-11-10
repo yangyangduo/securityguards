@@ -110,29 +110,17 @@
 }
 
 - (void)showEmptyContentViewWithMessage:(NSString *)message {
-    
-    UIView *existsEmptyContentView = [self.view viewWithTag:EMPTY_CONTENT_VIEW_TAG];
-    if(existsEmptyContentView != nil) {
-        UILabel *label = [existsEmptyContentView viewWithTag:888];
-        if([XXStringUtils isBlank:message]) {
-            label.text = NSLocalizedString(@"no_content", @"");
-        } else {
-            label.text = message;
-        }
-        return;
-    }
-    
     UIView *emptyContentView = [[UIView alloc] initWithFrame:CGRectMake(0, [UIDevice systemVersionIsMoreThanOrEuqal7] ? 64 : 44, self.view.bounds.size.width, [UIScreen mainScreen].bounds.size.height - self.standardTopbarHeight)];
     emptyContentView.tag = EMPTY_CONTENT_VIEW_TAG;
     emptyContentView.backgroundColor = self.view.backgroundColor;
     UILabel *lbl = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 220, 30)];
-    lbl.tag = 888;
     lbl.backgroundColor = [UIColor clearColor];
     lbl.textColor = [UIColor lightGrayColor];
     lbl.font = [UIFont systemFontOfSize:16.f];
     lbl.textAlignment = NSTextAlignmentCenter;
     lbl.center = CGPointMake(self.view.center.x, self.view.bounds.size.height / 2 - self.standardTopbarHeight);
     [emptyContentView addSubview:lbl];
+    
     if([XXStringUtils isBlank:message]) {
         lbl.text = NSLocalizedString(@"no_content", @"");
     } else {

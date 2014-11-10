@@ -8,7 +8,7 @@
 
 #import "NewsViewController.h"
 #import "NewsDetailViewController.h"
-#import "UIImageView+WebCache.h"
+#import <AFNetworking/UIImageView+AFNetworking.h>
 #import "NSDate+Extension.h"
 #import "NewsCell.h"
 #import "NewsService.h"
@@ -87,8 +87,8 @@
         }
     }
     
-    [self getTopNews];
     tblNews.pullTableIsRefreshing = YES;
+    [self getTopNews];
 }
 
 #pragma mark -
@@ -127,8 +127,12 @@
                 
                 NSMutableArray *indexPaths = [NSMutableArray array];
                 NSUInteger lastIndex = allNews.count;
-                if(arr == nil || arr.count == 0) {
-                    [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"no_more", @"") forType:AlertViewTypeFailed];
+                if((arr == nil || arr.count == 0)) {
+                    if(!isAppendNews) {
+                        [[XXAlertView currentAlertView] setMessage:@"没有新的动态" forType:AlertViewTypeFailed];
+                    } else {
+                        [[XXAlertView currentAlertView] setMessage:NSLocalizedString(@"no_more", @"") forType:AlertViewTypeFailed];
+                    }
                     [[XXAlertView currentAlertView] alertForLock:NO autoDismiss:YES];
                 } else {
                     for(int i=0; i<arr.count; i++) {
@@ -140,9 +144,6 @@
                     }
                 }
                 
-                [self cancelRefresh];
-                [self cancelLoadMore];
-                
                 if(!isAppendNews) {
                     [tblNews reloadData];
                     NSDate *now = [NSDate date];
@@ -153,6 +154,9 @@
                     [tblNews insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationNone];
                     [tblNews endUpdates];
                 }
+                
+                [self cancelRefresh];
+                [self cancelLoadMore];
                 return;
             }
         }

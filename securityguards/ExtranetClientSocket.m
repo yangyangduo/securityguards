@@ -159,7 +159,7 @@
                     [self performSelectorOnMainThread:@selector(notifyHandlerDataError) withObject:nil waitUntilDone:NO];
                     [self close];
 #ifdef DEBUG
-                    NSLog(@"[External Socket] Data header is not matched [~] 126 .");
+                    NSLog(@"[External Socket] Data header is not matched [~] 126 . it's [%d]", header[0]);
 #endif
                     return;
                 }

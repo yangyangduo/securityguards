@@ -8,6 +8,7 @@
 
 #import "AccountService.h"
 #import "XXStringUtils.h"
+#import "JsonUtils.h"
 
 //#define AUTH_URL @"http://www.hentre.com:6868/FrontServer-1.0/auth"
 #define AUTH_URL @"http://hentre.f3322.org:6868/FrontServer-1.0/auth"
@@ -26,7 +27,7 @@ static const NSString *MD5_KEY = @"FFFF";
 
 - (void)sendVerificationCodeFor:(NSString *)phoneNumber success:(SEL)s failed:(SEL)f target:(id)t callback:(id)cb {
     NSString *checkCode = [XXStringUtils md5HexDigest:[NSString stringWithFormat:@"%@%@", phoneNumber, MD5_KEY]];
-    NSString *url = [NSString stringWithFormat:@"/regist?mobileCode=%@&checkCode=%@&appKey=%@", phoneNumber, checkCode,APP_KEY];
+    NSString *url = [NSString stringWithFormat:@"/usr/code?mobileCode=%@&checkCode=%@&appKey=%@", phoneNumber, checkCode,APP_KEY];
     [self.client getForUrl:url acceptType:@"text/*" success:s error:f for:t callback:cb];
 }
 
@@ -41,8 +42,15 @@ static const NSString *MD5_KEY = @"FFFF";
     [self.client getForUrl:url acceptType:@"text/*" success:s error:f for:t callback:cb];
 }
 
+- (void)regWithMobile:(NSString *)mobile pwd:(NSString *)pwd checkCode:(NSString *)checkCode success:(SEL)s failed:(SEL)f target:(id)t callback:(id)cb {
+    NSString *url = [NSString stringWithFormat:@"/usr/reg?mobileCode=%@&password=%@&checkCode=%@&phoneType=%@&appKey=%@",
+     mobile, pwd, checkCode, PHONE_TYPE, APP_KEY
+     ];
+    [self.client postForUrl:url acceptType:@"text/*" contentType:@"application/json" body:nil success:s error:f for:t callback:cb];
+}
+
 - (void)loginWithAccount:(NSString *)account password:(NSString *)pwd success:(SEL)s failed:(SEL)f target:(id)t callback:(id)cb {
-    NSString *url = [NSString stringWithFormat:@"/login?mobileCode=%@&pwd=%@&appKey=%@&phoneType=%@",account, pwd,APP_KEY, PHONE_TYPE];
+    NSString *url = [NSString stringWithFormat:@"/login?mobileCode=%@&pwd=%@&appKey=%@&phoneType=%@",account, pwd, APP_KEY, PHONE_TYPE];
     [self.client getForUrl:url acceptType:@"text/*" success:s error:f for:t callback:cb];
 }
 

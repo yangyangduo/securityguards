@@ -130,7 +130,8 @@
     if(UnitFinderResultTypeSuccess == result.resultType) {
         DeviceCommand *bindingUnitCommand = [CommandFactory commandForType:CommandTypeBindingUnit];
         bindingUnitCommand.masterDeviceCode = result.unitIdentifier;
-        [[CoreService defaultService] executeDeviceCommand:bindingUnitCommand];
+//        [[CoreService defaultService] executeDeviceCommand:bindingUnitCommand];
+        [[CoreService defaultService] queueCommand:bindingUnitCommand];
         
         DeviceCommandGetUnit *refreshUnitsCommand = (DeviceCommandGetUnit *)[CommandFactory commandForType:CommandTypeGetUnits];
         refreshUnitsCommand.commandNetworkMode = CommandNetworkModeInternal;

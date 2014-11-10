@@ -63,8 +63,8 @@
     if(score > 90.f) score = 90.f;
 
 #ifdef DEBUG
-    NSLog(@"Score [pm25=%.0f, voc=%.0f, camera=%.0f, body_detector=%.0f, smoke_detector=%.0f]",
-            pm25Score, vocScore, cameraScore, bodyDetectorScore, smokeDetectorScore);
+    //NSLog(@"Score [pm25=%.0f, voc=%.0f, camera=%.0f, body_detector=%.0f, smoke_detector=%.0f]",
+            //pm25Score, vocScore, cameraScore, bodyDetectorScore, smokeDetectorScore);
 #endif
     
     return [NSNumber numberWithFloat:score];

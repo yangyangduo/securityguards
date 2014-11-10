@@ -83,9 +83,9 @@
     } else if(SensorTypePM25 == sensorType) {
         [pm25Sensor setDisplayValue:[NSString stringWithFormat:@"%.0f", value]];
         value = value / 50 + 1;
-        if(value >= 1 && value <= 2) {
+        if(value <= 2) {
             pm25Sensor.sensorDisplayViewState = SensorDisplayViewStateNormal;
-        } else if(value >=3 && value <= 4) {
+        } else if(value > 2 && value <= 4) {
             pm25Sensor.sensorDisplayViewState = SensorDisplayViewStateWarning;
         } else {
             pm25Sensor.sensorDisplayViewState = SensorDisplayViewStateAlarm;
