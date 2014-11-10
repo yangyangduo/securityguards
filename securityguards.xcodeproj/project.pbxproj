@@ -321,6 +321,7 @@
 		6FFE29C418EA98EE00A1A899 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FFE29C318EA98EE00A1A899 /* libsqlite3.dylib */; };
 		6FFE29C618EA991200A1A899 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FFE29C518EA991200A1A899 /* libstdc++.dylib */; };
 		6FFE29C818EA991F00A1A899 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FFE29C718EA991F00A1A899 /* libz.dylib */; };
+		D3D32ACC1A1080CB0005CFF3 /* libBLNetwork.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D3D32ACB1A1080CB0005CFF3 /* libBLNetwork.a */; };
 		F207BE36187E7D1300993A6F /* AccountManageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F207BE35187E7D1300993A6F /* AccountManageCell.m */; };
 		F209B486188E44F10044C8C6 /* image.png in Resources */ = {isa = PBXBuildFile; fileRef = F209B483188E44F10044C8C6 /* image.png */; };
 		F209B488188E45760044C8C6 /* light_gray_textbox@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F209B487188E45760044C8C6 /* light_gray_textbox@2x.png */; };
@@ -897,6 +898,8 @@
 		6FFE29C518EA991200A1A899 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
 		6FFE29C718EA991F00A1A899 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		7D9356B8D7BD48649820A160 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		D3D32ACA1A1080CB0005CFF3 /* BLNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLNetwork.h; sourceTree = "<group>"; };
+		D3D32ACB1A1080CB0005CFF3 /* libBLNetwork.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libBLNetwork.a; sourceTree = "<group>"; };
 		F207BE34187E7D1300993A6F /* AccountManageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountManageCell.h; sourceTree = "<group>"; };
 		F207BE35187E7D1300993A6F /* AccountManageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountManageCell.m; sourceTree = "<group>"; };
 		F209B483188E44F10044C8C6 /* image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image.png; sourceTree = "<group>"; };
@@ -1020,6 +1023,7 @@
 				6F600457186BCE210085B4BD /* Foundation.framework in Frameworks */,
 				2D066F21FCAD4EC3BFEF59E2 /* libPods.a in Frameworks */,
 				6F4FA06119A427410049C023 /* TencentOpenAPI in Frameworks */,
+				D3D32ACC1A1080CB0005CFF3 /* libBLNetwork.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1557,6 +1561,7 @@
 		6F6004D6186BD22F0085B4BD /* third */ = {
 			isa = PBXGroup;
 			children = (
+				D3D32AC91A1080B10005CFF3 /* Broadlink */,
 				6FFE29E618EAA86100A1A899 /* BaiduShareKit */,
 				F2F3E18C187A3FD6006A9447 /* EGOTableViewPullRefresh */,
 				6F6004DA186BD24E0085B4BD /* AsyncUdpSocket */,
@@ -2180,6 +2185,15 @@
 				6F4FA05A19A427410049C023 /* WX */,
 			);
 			name = BaiduShareKit;
+			sourceTree = "<group>";
+		};
+		D3D32AC91A1080B10005CFF3 /* Broadlink */ = {
+			isa = PBXGroup;
+			children = (
+				D3D32ACA1A1080CB0005CFF3 /* BLNetwork.h */,
+				D3D32ACB1A1080CB0005CFF3 /* libBLNetwork.a */,
+			);
+			name = Broadlink;
 			sourceTree = "<group>";
 		};
 		F20D6AC11872992500FE6B6D /* cells */ = {
@@ -2940,6 +2954,7 @@
 					"$(PROJECT_DIR)/securityguards/QQ",
 					"$(PROJECT_DIR)/securityguards/WB",
 					"$(PROJECT_DIR)/securityguards/WX",
+					"$(PROJECT_DIR)/securityguards",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
@@ -2983,6 +2998,7 @@
 					"$(PROJECT_DIR)/securityguards/QQ",
 					"$(PROJECT_DIR)/securityguards/WB",
 					"$(PROJECT_DIR)/securityguards/WX",
+					"$(PROJECT_DIR)/securityguards",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
